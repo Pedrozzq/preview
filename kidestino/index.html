@@ -80,6 +80,33 @@
         .scroll-parallax-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
         .parallax-item { position: absolute; color: rgba(255, 122, 26, 0.14); will-change: transform; }
 
+        /* Avião PNG cruzando o fundo (lento e gradual) */
+        .bg-plane-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+        .bg-plane-png {
+            position: absolute;
+            top: 22%;
+            left: 0;
+            width: 130px;
+            opacity: 0;
+            filter: drop-shadow(0 12px 22px rgba(0,0,0,0.55));
+            will-change: transform;
+            transform: translate(-20vw, 0);
+            animation: bgPlanePngFly 26s linear infinite;
+        }
+        .bg-plane-png.second {
+            top: 60%;
+            width: 80px;
+            opacity: 0;
+            animation: bgPlanePngFly 34s linear infinite 13s;
+        }
+        @keyframes bgPlanePngFly {
+            0%   { transform: translate(-20vw, 0) rotate(-2deg);       opacity: 0; }
+            12%  { opacity: 0.9; }
+            50%  { transform: translate(55vw, -5vh) rotate(1deg); }
+            88%  { opacity: 0.9; }
+            100% { transform: translate(125vw, -12vh) rotate(-2deg);   opacity: 0; }
+        }
+
         /* --- PAINÉIS --- */
         .glass-panel {
             background: rgba(36, 22, 17, 0.35);
@@ -183,6 +210,7 @@
         @media (prefers-reduced-motion: reduce) {
             .world-route-line, .world-pin-dot--dest, .preloader-glow, .btn-whatsapp-premium { animation-duration: 0.001s !important; }
             .parallax-item { display: none; }
+            .bg-plane-png { display: none; }
         }
     </style>
 </head>
@@ -209,6 +237,11 @@
         <i class="fa-solid fa-anchor parallax-item" data-speed="0.2" style="top:88%; right:6%; font-size:26px;"></i>
         <i class="fa-solid fa-umbrella-beach parallax-item" data-speed="0.18" style="top:100%; left:20%; font-size:22px;"></i>
         <i class="fa-solid fa-sun parallax-item" data-speed="0.14" style="top:118%; right:16%; font-size:24px;"></i>
+    </div>
+
+    <div class="bg-plane-layer" aria-hidden="true">
+        <img class="bg-plane-png" src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-realistic-passenger-airplane-in-mid-flight-isolated-on-transparent-background-png-image_15788014.png" alt="">
+        <img class="bg-plane-png second" src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-realistic-passenger-airplane-in-mid-flight-isolated-on-transparent-background-png-image_15788014.png" alt="">
     </div>
 
     <main id="main-content" class="relative z-10 min-h-screen opacity-0 transition-opacity duration-1000">
