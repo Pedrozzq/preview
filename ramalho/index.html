@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartão Digital - Igor Ramalho</title>
+    <title>Igor Ramalho - Advogado</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome para os ícones -->
@@ -29,12 +29,29 @@
     <style>
         body {
             background-color: #2b2b2b; /* Fundo escuro simulando o contexto da imagem */
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ===================== STICKY STACK (cartão + preview do Instagram) =====================
+           #card-stack-back fica "presa" (position: sticky) preenchendo a tela inteira
+           enquanto #instagram-preview, que vem logo depois no HTML, sobe por cima dela
+           ao rolar — o clássico efeito de "cards empilhando". */
+        .stack-wrap {
+            width: 100%;
+        }
+
+        #card-stack-back {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Inter', sans-serif;
+            background-color: #2b2b2b;
         }
 
         .phone-container {
@@ -144,13 +161,176 @@
             scrollbar-width: none;
         }
 
+        /* Seção 2 do sticky stack: o preview do Instagram, que desliza por
+           cima do cartão ao rolar. Mesmo fundo escuro da seção 1. */
+        #instagram-preview {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 24px;
+            background-color: #2b2b2b;
+            border-radius: 40px 40px 0 0;
+            box-shadow: 0 -40px 60px -25px rgba(0,0,0,0.5);
+        }
+
+        /* Cartão que simula a tela de perfil do Instagram */
+        .ig-card {
+            width: 100%;
+            max-width: 380px;
+            background-color: #ffffff;
+            border-radius: 28px;
+            padding: 32px 24px 28px 24px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+            box-sizing: border-box;
+        }
+
+        .ig-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .ig-profile-pic {
+            width: 78px;
+            height: 78px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            padding: 3px;
+            background: radial-gradient(circle at 30% 20%, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%);
+        }
+
+        .ig-profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 50%;
+            border: 2.5px solid #ffffff;
+            display: block;
+        }
+
+        .ig-profile-stats {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ig-profile-stats div {
+            text-align: center;
+        }
+
+        .ig-profile-stats strong {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .ig-profile-stats span {
+            font-size: 10px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .ig-profile-bio {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .ig-profile-bio h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 4px 0;
+        }
+
+        .ig-profile-bio p {
+            font-size: 12.5px;
+            color: #374151;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .ig-profile-bio .ig-profile-link {
+            color: #405DE6;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .ig-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #833AB4, #C13584, #E1306C, #FD1D1D, #F77737);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            box-sizing: border-box;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .ig-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(225, 48, 108, 0.4);
+        }
+
+        /* Grade simulando os posts do perfil */
+        .ig-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .ig-grid-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+
+        .ig-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+        }
+
+        .ig-grid-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f4f1ea;
+            color: #c49a45;
+            font-size: 20px;
+        }
+
         /* ===================== VERSÃO DESKTOP =====================
            Acima de 900px, o cartão deixa de imitar uma tela de celular e
            passa a ser um layout dividido em duas colunas: foto de um lado,
            links do outro. No celular tudo continua exatamente como antes. */
         @media (min-width: 900px) {
-            body {
+            #card-stack-back {
                 padding: 40px 20px;
+            }
+
+            .ig-card {
+                max-width: 420px;
+                padding: 48px 36px;
             }
 
             .phone-container {
@@ -195,8 +375,10 @@
 </head>
 <body>
 
+    <div class="stack-wrap">
+    <div id="card-stack-back">
     <div class="phone-container">
-        
+
         <!-- Header com Imagem e Curva -->
         <header class="header-banner">
             <!-- A imagem de fundo é definida no CSS .header-banner -->
@@ -298,6 +480,58 @@
             </button>
         </div>
 
+    </div>
+    </div>
+
+    <!-- Seção 2 do sticky stack: preview do Instagram, sobe por cima do cartão -->
+    <section id="instagram-preview">
+        <div class="ig-card">
+
+            <div class="ig-profile-header">
+                <div class="ig-profile-pic">
+                    <img src="img/igor-instagram.webp" alt="Igor Ramalho">
+                </div>
+                <div class="ig-profile-stats">
+                    <div><strong>131</strong><span>Posts</span></div>
+                    <div><strong>1820</strong><span>Seguidores</span></div>
+                    <div><strong>874</strong><span>Seguindo</span></div>
+                </div>
+            </div>
+
+            <div class="ig-profile-bio">
+                <h3>Igor Ramalho</h3>
+                <p>Advogado | Direito Civil, Empresarial e Imobiliário</p>
+                <p class="ig-profile-link">sbr.adv.br</p>
+            </div>
+
+            <a href="https://www.instagram.com/igorramalho/" target="_blank" rel="noopener" class="ig-btn">
+                <i class="fa-brands fa-instagram"></i>
+                Seguir no Instagram
+            </a>
+
+            <div class="ig-grid">
+                <div class="ig-grid-item">
+                    <img src="img/igor.webp" alt="Igor Ramalho">
+                </div>
+                <div class="ig-grid-item">
+                    <img src="img/post-1.webp" alt="Post Instagram Igor Ramalho">
+                </div>
+                <div class="ig-grid-item">
+                    <img src="img/post-2.webp" alt="Post Instagram Igor Ramalho">
+                </div>
+                <div class="ig-grid-item">
+                    <img src="img/post-3.webp" alt="Post Instagram Igor Ramalho">
+                </div>
+                <div class="ig-grid-item">
+                    <img src="img/post-4.webp" alt="Post Instagram Igor Ramalho">
+                </div>
+                <div class="ig-grid-item">
+                    <img src="img/post-5.webp" alt="Post Instagram Igor Ramalho">
+                </div>
+            </div>
+
+        </div>
+    </section>
     </div>
 
     <script>
