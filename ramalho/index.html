@@ -143,6 +143,54 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* ===================== VERSÃO DESKTOP =====================
+           Acima de 900px, o cartão deixa de imitar uma tela de celular e
+           passa a ser um layout dividido em duas colunas: foto de um lado,
+           links do outro. No celular tudo continua exatamente como antes. */
+        @media (min-width: 900px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .phone-container {
+                max-width: 900px;
+                min-height: 560px;
+                flex-direction: row;
+                border-radius: 28px;
+            }
+
+            .header-banner {
+                width: 42%;
+                height: auto; /* estica para acompanhar a altura da coluna de links */
+                flex-shrink: 0;
+            }
+
+            /* A curva foi desenhada para uma transição horizontal (topo/baixo);
+               não faz sentido na divisão vertical entre as duas colunas. */
+            .wave-bottom {
+                display: none;
+            }
+
+            .floating-logo {
+                bottom: 28px;
+                right: 28px;
+            }
+
+            .links-container {
+                padding: 48px 48px 130px 48px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .floating-button-container {
+                left: 42%;
+                width: 58%;
+                padding: 0 48px;
+                bottom: 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -196,7 +244,7 @@
                 </a>
 
                 <!-- Link Instagram -->
-                <a href="#" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
+                <a href="https://www.instagram.com/igorramalho/" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
                     <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
                         <i class="fa-brands fa-instagram text-xl"></i>
                     </div>
@@ -207,7 +255,7 @@
                 </a>
 
                 <!-- Link Localização -->
-                <a href="#" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
+                <a href="https://www.google.com/maps/dir//SBR+Advogados+Associados,+R.+Geraldo+Menezes+Soares,+435+-+Salas+201+e+202+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG,+31030-440/@-20.3914238,-43.5126098,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0xa69bd4ad7aa2c7:0x2752e7faa677b68c!2m2!1d-43.9275531!2d-19.9000191?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
                     <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
                         <i class="fa-solid fa-map-location-dot text-lg"></i>
                     </div>
@@ -218,7 +266,7 @@
                 </a>
 
                 <!-- Link Site -->
-                <a href="#" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
+                <a href="https://www.sbr.adv.br/" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
                     <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
                         <i class="fa-solid fa-earth-americas text-lg"></i>
                     </div>
