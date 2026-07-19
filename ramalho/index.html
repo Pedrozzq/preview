@@ -33,25 +33,35 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* ===================== STICKY STACK (cartão + preview do Instagram) =====================
-           #card-stack-back fica "presa" (position: sticky) preenchendo a tela inteira
-           enquanto #instagram-preview, que vem logo depois no HTML, sobe por cima dela
-           ao rolar — o clássico efeito de "cards empilhando". */
+        /* ===================== SEÇÕES EMPILHADAS =====================
+           Cartão e preview do Instagram ficam no fluxo normal da página
+           (sem sticky). Ao rolar, o preview do Instagram surge com um
+           fade + leve deslize para cima, via IntersectionObserver. */
         .stack-wrap {
             width: 100%;
         }
 
         #card-stack-back {
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            min-height: 100vh;
             width: 100%;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 40px 20px;
             background-color: #2b2b2b;
+        }
+
+        /* Elementos com esta classe começam invisíveis/deslocados e
+           recebem .is-visible via JS quando entram na viewport. */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .phone-container {
@@ -161,12 +171,9 @@
             scrollbar-width: none;
         }
 
-        /* Seção 2 do sticky stack: o preview do Instagram, que desliza por
-           cima do cartão ao rolar. Mesmo fundo escuro da seção 1. */
+        /* Seção 2: preview do Instagram, no fluxo normal da página,
+           logo abaixo do cartão. Mesmo fundo escuro da seção 1. */
         #instagram-preview {
-            position: relative;
-            z-index: 2;
-            min-height: 100vh;
             width: 100%;
             box-sizing: border-box;
             display: flex;
@@ -174,8 +181,6 @@
             align-items: center;
             padding: 60px 24px;
             background-color: #2b2b2b;
-            border-radius: 40px 40px 0 0;
-            box-shadow: 0 -40px 60px -25px rgba(0,0,0,0.5);
         }
 
         /* Cartão que simula a tela de perfil do Instagram */
@@ -483,8 +488,8 @@
     </div>
     </div>
 
-    <!-- Seção 2 do sticky stack: preview do Instagram, sobe por cima do cartão -->
-    <section id="instagram-preview">
+    <!-- Seção 2: preview do Instagram, aparece com fade + slide ao rolar -->
+    <section id="instagram-preview" class="reveal">
         <div class="ig-card">
 
             <div class="ig-profile-header">
@@ -562,6 +567,18 @@ END:VCARD`;
             window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
         }
+
+        // Anima elementos .reveal (fade + slide) quando entram na viewport
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
     </script>
 </body>
 </html>
