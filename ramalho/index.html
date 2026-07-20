@@ -252,12 +252,14 @@
             .preloader-text-wrap { opacity: 1; transform: none; }
         }
 
-        /* ===================== SEÇÕES EMPILHADAS =====================
-           Cartão e preview do Instagram ficam no fluxo normal da página
-           (sem sticky). Ao rolar, o preview do Instagram surge com um
-           fade + leve deslize para cima, via IntersectionObserver. */
+        /* ===================== SEÇÕES EMPILHADAS (STICKY STACK) =====================
+           A seção 1 (cartão) fica "presa" no topo via position: sticky enquanto
+           a seção 2 (preview do Instagram) rola por cima e a cobre. Nenhum
+           ancestral pode ter overflow diferente de visible, senão o sticky
+           deixa de funcionar. */
         .stack-wrap {
             width: 100%;
+            position: relative;
         }
 
         #card-stack-back {
@@ -268,6 +270,9 @@
             align-items: center;
             padding: 40px 20px;
             background-color: #2b2b2b;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
 
         /* Elementos com esta classe começam invisíveis/deslocados e
@@ -390,9 +395,12 @@
             scrollbar-width: none;
         }
 
-        /* Seção 2: preview do Instagram, no fluxo normal da página,
-           logo abaixo do cartão. Mesmo fundo escuro da seção 1. */
+        /* Seção 2: preview do Instagram. Fica depois da seção 1 no fluxo normal
+           e, por vir depois no DOM, naturalmente desenha por cima dela — some
+           z-index explícito só para garantir isso mesmo se algo mudar. */
         #instagram-preview {
+            position: relative;
+            z-index: 2;
             width: 100%;
             box-sizing: border-box;
             display: flex;
