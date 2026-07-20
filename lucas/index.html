@@ -563,11 +563,14 @@
         }
 
         /* =====================================================================
-           ABERTURA — a foto enviada (img/loading.png) "emerge" da pedra em
-           1,5s (desfoque + escurecimento iniciais que se dissipam), como um
-           retrato revelado de um bloco esculpido. 100% em CSS para nunca
-           travar a página caso o JavaScript falhe, e neutralizada em
-           reduced-motion.
+           ABERTURA — fundo transparente (sem moldura/círculo), a foto
+           enviada (img/loading.png) surge suavemente e uma barra de
+           carregamento dourada preenche em 1,5s.
+           O disparo é feito via JS somente quando a imagem já está
+           carregada (evita a abertura sumir antes da foto aparecer em
+           conexões lentas) — classe .intro-ready. Sem JS, ou se a imagem
+           falhar, um fallback em CSS (abaixo) garante que a tela nunca
+           fique travada. Neutralizada em reduced-motion.
            ===================================================================== */
         .intro-overlay {
             position: fixed;
@@ -577,42 +580,65 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.9rem;
-            background:
-                radial-gradient(ellipse at 50% 45%, rgba(92, 107, 88, 0.18), transparent 60%),
-                radial-gradient(ellipse at center, #241a14 0%, #0a0705 78%);
+            gap: 1.1rem;
+            background: transparent;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            /* Fallback: some sozinha em 6s se o JS não disparar .intro-ready por algum motivo */
+            animation: introDismiss 0.5s ease forwards;
+            animation-delay: 6s;
+        }
+        .intro-overlay.intro-ready {
             animation: introDismiss 0.5s ease forwards;
             animation-delay: 1.5s;
         }
-        .intro-photo-frame {
-            width: 132px;
-            height: 132px;
-            border-radius: 9999px;
-            overflow: hidden;
-            border: 2px solid rgba(138, 154, 135, 0.4);
-            box-shadow: 0 0 0 6px rgba(10, 7, 5, 0.45), 0 15px 35px -10px rgba(0, 0, 0, 0.7);
-        }
         .intro-photo {
-            width: 100%;
-            height: 100%;
+            width: 110px;
+            height: 110px;
             object-fit: cover;
+            border-radius: 1rem;
             opacity: 0;
-            transform: scale(1.35);
-            filter: brightness(0.25) saturate(0.4) blur(10px);
+            transform: scale(1.15);
+            filter: brightness(0.4) saturate(0.5) blur(8px);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+        }
+        .intro-overlay.intro-ready .intro-photo {
             animation: introEmerge 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         @keyframes introEmerge {
-            0%   { opacity: 0; transform: scale(1.35); filter: brightness(0.25) saturate(0.4) blur(10px); }
+            0%   { opacity: 0; transform: scale(1.15); filter: brightness(0.4) saturate(0.5) blur(8px); }
             55%  { opacity: 1; filter: brightness(0.9) saturate(0.8) blur(2px); }
             100% { opacity: 1; transform: scale(1); filter: brightness(1) saturate(1) blur(0); }
+        }
+        .intro-loadbar {
+            width: 160px;
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+        }
+        .intro-loadbar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #5c6b58, #8a9a87);
+        }
+        .intro-overlay.intro-ready .intro-loadbar-fill {
+            animation: introLoadbar 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+        @keyframes introLoadbar {
+            to { width: 100%; }
         }
         .intro-title, .intro-sub {
             opacity: 0;
             transform: translateY(10px);
+        }
+        .intro-overlay.intro-ready .intro-title,
+        .intro-overlay.intro-ready .intro-sub {
             animation: introRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .intro-title { animation-delay: 0.8s; }
-        .intro-sub { animation-delay: 0.95s; }
+        .intro-overlay.intro-ready .intro-title { animation-delay: 0.8s; }
+        .intro-overlay.intro-ready .intro-sub { animation-delay: 0.95s; }
         @keyframes introRise {
             to { opacity: 1; transform: translateY(0); }
         }
@@ -687,29 +713,176 @@
         }
 
         /* =====================================================================
-           PREFERS-REDUCED-MOTION — neutraliza toda animação automática
+           ROTEIRO PRINCIPAL — "stacking sections": cada cartão usa
+           position: sticky no mesmo topo; o z-index crescente faz o cartão
+           seguinte deslizar por cima do anterior, que fica "preso" enquanto
+           isso acontece. A entrada em cena de cada cartão (escala + opacidade)
+           só é disparada quando ele está 100% visível na tela
+           (IntersectionObserver com threshold 1).
+           ===================================================================== */
+        .stack-container {
+            position: relative;
+        }
+        /* Cada .stack-item é mais alto que o cartão em si — essa sobra é o
+           "tempo de permanência": o cartão fica preso e 100% visível durante
+           essa rolagem extra, e só então o próximo cartão começa a cobri-lo. */
+        .stack-item {
+            position: relative;
+            min-height: 145vh;
+        }
+        .stack-item:last-child {
+            min-height: 0;
+        }
+        .stack-card {
+            position: sticky;
+            top: 5.25rem;
+            height: min(72vh, 640px);
+            min-height: 420px;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+            opacity: 0;
+            transform: scale(0.94) translateY(26px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .stack-card.in-view {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .stack-item:nth-child(1) .stack-card { z-index: 1; }
+        .stack-item:nth-child(2) .stack-card { z-index: 2; }
+        .stack-item:nth-child(3) .stack-card { z-index: 3; }
+        .stack-item:nth-child(4) .stack-card { z-index: 4; }
+        .stack-item:nth-child(5) .stack-card { z-index: 5; }
+        .stack-card-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .stack-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 7, 5, 0.95) 0%, rgba(10, 7, 5, 0.55) 45%, rgba(10, 7, 5, 0.1) 78%);
+        }
+        .stack-card-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.75rem;
+        }
+        .stack-card-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.9rem;
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.6);
+        }
+        .stack-card-title {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .stack-card-desc {
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: rgba(248, 250, 252, 0.85);
+            max-width: 34rem;
+        }
+
+        /* =====================================================================
+           PERFIL DO INSTAGRAM — mini preview com anel de stories e grade 3x2
+           ===================================================================== */
+        .ig-avatar-ring {
+            display: block;
+            width: 2.75rem;
+            height: 2.75rem;
+            padding: 2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+        }
+        .ig-avatar-ring img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #0a0705;
+            border-radius: 9999px;
+        }
+        .ig-follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .ig-follow-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .ig-tile {
+            position: relative;
+            display: block;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.6rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .ig-tile img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .ig-tile:hover img {
+            transform: scale(1.08);
+        }
+
+        /* =====================================================================
+           PREFERS-REDUCED-MOTION — neutraliza animações de zoom/blur/translação
            (abertura, partículas, brilhos e desenhos), preservando o
-           conteúdo sempre visível e 100% funcional. O carrossel de
-           categorias (marquee) segue deslizando propositalmente.
+           conteúdo sempre visível e 100% funcional. A abertura com a foto
+           continua APARECENDO normalmente (só sem o efeito de zoom/desfoque);
+           o carrossel de categorias (marquee) segue deslizando propositalmente.
            ===================================================================== */
         @media (prefers-reduced-motion: reduce) {
-            .intro-overlay {
-                animation: none;
-                opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-            }
-            .intro-ring, .intro-flourish, .intro-letter, .intro-title, .intro-sub {
+            .intro-photo, .intro-title, .intro-sub {
                 animation: none !important;
                 opacity: 1 !important;
                 transform: none !important;
-                stroke-dashoffset: 0 !important;
+                filter: none !important;
+            }
+            .intro-loadbar-fill {
+                animation: none !important;
+                width: 100% !important;
             }
             .animate-enter {
                 animation: none !important;
                 opacity: 1 !important;
             }
             .fade-scroll {
+                transition-duration: 0.01ms !important;
+            }
+            .stack-card {
                 transition-duration: 0.01ms !important;
             }
             .divider-path {
@@ -733,9 +906,8 @@
     <!-- Abertura: medalhão esculpido em pedra-sabão, referência aos frontões de Aleijadinho.
          Curta, decorativa e ignorada por leitores de tela; some sozinha em ~2s. -->
     <div class="intro-overlay" aria-hidden="true">
-        <div class="intro-photo-frame">
-            <img src="img/loading.png" alt="" class="intro-photo">
-        </div>
+        <img src="img/loading.png" alt="" class="intro-photo">
+        <div class="intro-loadbar"><div class="intro-loadbar-fill"></div></div>
         <p class="intro-title font-decorative text-2xl text-white tracking-widest">Lucas Guia Você</p>
         <p class="intro-sub text-ouro-light text-xs uppercase tracking-[0.3em]">Guia em Ouro Preto</p>
     </div>
@@ -799,7 +971,7 @@
             </a>
 
             <div class="flex justify-center mb-6 animate-enter delay-3">
-                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B5531999999999%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiaouropreto%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B553195216545%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiavoce%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
                     <i class="fa-solid fa-address-book"></i>
                     <span>Salvar Contato</span>
                 </a>
@@ -894,7 +1066,7 @@
             </div>
 
             <nav class="w-full flex flex-col gap-4">
-                <a href="https://instagram.com/lucasguiaouropreto" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
                     <span class="flex items-center gap-3">
                         <i class="fa-brands fa-instagram text-[#E1306C] text-xl w-8 text-center"></i>
                         Acompanhe no Instagram
@@ -934,7 +1106,7 @@
             </p>
 
             <div class="flex justify-center">
-                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B5531999999999%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiaouropreto%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B553195216545%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiavoce%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
                     <i class="fa-solid fa-address-book"></i>
                     <span>Salvar Contato</span>
                 </a>
@@ -947,99 +1119,160 @@
             </svg>
         </div>
 
-        <section id="roteiros" class="glass-panel baroque-frame rounded-3xl p-8 w-full fade-scroll">
-            <div class="flex items-center gap-4 mb-8">
-                <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner">
+        <!-- Perfil do Instagram: mesma identidade visual do card principal, com preview de 6 fotos -->
+        <section class="glass-panel baroque-frame rounded-3xl p-6 w-full fade-scroll">
+            <div class="flex items-center justify-between mb-4 gap-3">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="flex items-center gap-3 min-w-0">
+                    <span class="ig-avatar-ring shrink-0">
+                        <img src="img/perfil.webp" alt="Lucas Guia Você" class="w-full h-full object-cover rounded-full">
+                    </span>
+                    <span class="min-w-0">
+                        <span class="block text-white font-semibold text-sm truncate">@lucasguiavoce</span>
+                        <span class="block text-slate-400 text-xs">Guia em Ouro Preto</span>
+                    </span>
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-follow-btn shrink-0">
+                    <i class="fa-brands fa-instagram"></i> Seguir
+                </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1.5">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/sao-francisco-assis.webp" alt="São Francisco de Assis no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/basilica-pilar.webp" alt="Basílica do Pilar no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/santa-efigenia.webp" alt="Santa Efigênia no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/mina-do-chico-rei-ouro-preto.webp" alt="Mina do Chico Rei no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/andorinhas.webp" alt="Parque das Andorinhas no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/tiradentes%20e%20sao%20joao%20del%20rei.webp" alt="Tiradentes no Instagram de Lucas" loading="lazy">
+                </a>
+            </div>
+
+            <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="block text-center text-xs text-slate-400 hover:text-ouro-light transition-colors mt-3">
+                Ver perfil completo no Instagram
+            </a>
+        </section>
+
+        <div class="baroque-divider fade-scroll" aria-hidden="true">
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path class="divider-path" pathLength="1" d="M0,10 C40,-4 60,24 100,10 C140,-4 160,24 200,10 C240,-4 260,24 300,10"></path>
+            </svg>
+        </div>
+
+        <section id="roteiros" class="w-full fade-scroll">
+            <div class="flex items-center gap-4 mb-6 px-1">
+                <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner shrink-0">
                     <i class="fa-solid fa-cross"></i>
                 </div>
-                <h2 class="font-display text-2xl font-bold text-white leading-tight tracking-wide">Roteiro Principal:<br><span class="text-ouro-light text-lg font-medium font-serif tracking-normal">Joias do Barroco & Trilhas da Serra</span></h2>
+                <h2 class="font-display text-2xl font-bold text-white leading-tight tracking-wide">Roteiro Principal:<br><span class="text-ouro-light text-lg font-medium font-serif tracking-normal">Roteiro Ouro Preto</span></h2>
             </div>
-            
-            <!-- Timeline (Linha do Tempo Vertical) — foto ocupa o lado oposto, vazio, do texto -->
-            <div class="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-ouro before:via-white/20 before:to-transparent">
 
-                <!-- Igreja 1 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">São Francisco de Assis</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">A obra-prima esculpida pelo mestre Aleijadinho com as incríveis pinturas celestiais de Mestre Ataíde. Considerada uma das maravilhas de origem portuguesa no mundo.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        1
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/sao-francisco-assis.webp" alt="Igreja São Francisco de Assis, Ouro Preto" class="w-full h-full object-cover">
+            <!-- Stacking sections: cada .stack-card é sticky no mesmo topo; o .stack-item
+                 ao redor é mais alto (tempo de permanência), e só depois disso o próximo
+                 cartão desliza por cima do anterior (position: sticky + z-index). -->
+            <div class="stack-container">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/basilica-pilar.webp" alt="Igreja de Nossa Senhora do Pilar, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-ouro text-slate-900">1</span>
+                            <h3 class="stack-card-title">Nossa Senhora do Pilar</h3>
+                            <p class="stack-card-desc">O ápice absoluto do barroco mineiro. Seu interior majestoso guarda mais de 400kg de ouro puro, ostentando a enorme riqueza das irmandades da época.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Igreja 2 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Basílica do Pilar</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">O ápice absoluto do barroco mineiro. Seu interior majestoso guarda mais de 400kg de ouro puro, ostentando a enorme riqueza e o poder das irmandades da época.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        2
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/basilica-pilar.webp" alt="Basílica de Nossa Senhora do Pilar, Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/sao-francisco-assis.webp" alt="Igreja São Francisco de Assis, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-barroco text-white">2</span>
+                            <h3 class="stack-card-title">São Francisco de Assis</h3>
+                            <p class="stack-card-desc">A obra-prima esculpida pelo mestre Aleijadinho com as incríveis pinturas celestiais de Mestre Ataíde, uma das maravilhas do barroco no mundo.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Igreja 3 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">N. Sra. do Carmo</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">A única igreja em Minas Gerais que possui painéis de azulejos portugueses na capela-mor. Um projeto requintado com inovações arquitetônicas trazidas da Europa.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        3
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/nossa-senhora-carmo.webp" alt="Igreja Nossa Senhora do Carmo, Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/santa-efigenia.webp" alt="Igreja Santa Efigênia dos Pretos, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-ouro text-slate-900">3</span>
+                            <h3 class="stack-card-title">Santa Efigênia</h3>
+                            <p class="stack-card-desc">Erguida pela irmandade dos negros. A lenda local diz que foi financiada pelo pó de ouro retirado dos cabelos de escravizados libertos pelo Rei Chico Rei.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Igreja 4 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Igreja Santa Efigênia</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">Erguida pela irmandade dos negros. A forte lenda local diz que ela foi financiada pelo pó de ouro retirado dos cabelos de escravizados libertos pelo Rei Chico Rei.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        4
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/santa-efigenia.webp" alt="Igreja Santa Efigênia dos Pretos, Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/mina-do-chico-rei-ouro-preto.webp" alt="Mina do Chico Rei, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-barroco text-white">4</span>
+                            <h3 class="stack-card-title">Mina do Chico Rei</h3>
+                            <p class="stack-card-desc">Descemos aos túneis escavados à mão no século XVIII, ligados à lenda do Rei Chico Rei, que revelam como o ouro da serra fez de Vila Rica a cidade mais rica do Brasil colonial.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Trilha 5: Serra de Ouro Preto -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-pedra-light mb-2 text-lg">Trilha da Serra</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">Encerramos com uma caminhada pelos caminhos antigos que cercam a cidade, entre mirantes e vales, de onde se avista o casario colonial recortado pela serra.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-pedra text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        5
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/trilha-serra.webp" alt="Trilha na serra de Minas Gerais, arredores de Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/bg-centro-historico.webp" alt="Centro Histórico de Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-ouro text-slate-900">5</span>
+                            <h3 class="stack-card-title">Centro Histórico</h3>
+                            <p class="stack-card-desc">Praça Tiradentes, Rua Direita e o Museu Casa dos Contos encerram o passeio a pé pelo coração colonial de Vila Rica.</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="mt-4 mb-4 text-center">
-            <p class="text-slate-400 text-xs flex items-center justify-center gap-1">
-                Feito com <i class="fa-solid fa-heart text-red-500/70 text-[10px]"></i> em Ouro Preto, MG
-            </p>
+            <p class="text-slate-500 text-[11px]">Lucas Guia Você - Todos os direitos reservados</p>
         </footer>
     </div>
 
     <script>
+        // 0. Abertura — só inicia a animação de 1,5s quando a foto (img/loading.png)
+        // já estiver de fato carregada, para nunca sumir antes de aparecer em
+        // conexões lentas. Timeout de segurança caso o load nunca dispare.
+        (function () {
+            const overlay = document.querySelector('.intro-overlay');
+            const photo = overlay && overlay.querySelector('.intro-photo');
+            if (!overlay || !photo) return;
+
+            let started = false;
+            function reveal() {
+                if (started) return;
+                started = true;
+                overlay.classList.add('intro-ready');
+            }
+
+            if (photo.complete && photo.naturalWidth > 0) {
+                reveal();
+            } else {
+                photo.addEventListener('load', reveal, { once: true });
+                photo.addEventListener('error', reveal, { once: true });
+                setTimeout(reveal, 4000);
+            }
+        })();
+
         // 1. Sistema de partículas (Pó de Ouro)
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.getElementById('particles-container');
@@ -1068,6 +1301,21 @@
             const fadeElements = document.querySelectorAll('.fade-scroll');
             fadeElements.forEach(el => {
                 scrollObserver.observe(el);
+            });
+
+            // 2b. Roteiro Principal (stacking cards) — a entrada de cada cartão só
+            // dispara quando ele está 100% visível na tela (cartão "preso" pelo sticky).
+            const stackObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.intersectionRatio >= 0.98) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, threshold: [0.98, 1] });
+
+            document.querySelectorAll('.stack-card').forEach(card => {
+                stackObserver.observe(card);
             });
         });
 
@@ -1300,7 +1548,7 @@
                     'Passeio: ' + selectedTour + '\n' +
                     'Data: ' + dataFmt + '\n' +
                     'Pessoas: ' + peopleInput.value;
-                window.open('https://wa.me/5531999999999?text=' + encodeURIComponent(msg), '_blank');
+                window.open('https://wa.me/553195216545?text=' + encodeURIComponent(msg), '_blank');
             });
         })();
 
