@@ -972,11 +972,11 @@
         }
 
         /* =====================================================================
-           PREFERS-REDUCED-MOTION — neutraliza animações de zoom/blur/translação
-           (abertura, partículas, brilhos e desenhos), preservando o
-           conteúdo sempre visível e 100% funcional. A barra de carregamento
-           continua aparecendo normalmente, só sem a animação de preenchimento;
-           o carrossel de categorias (marquee) segue deslizando propositalmente.
+           PREFERS-REDUCED-MOTION — neutraliza só as animações de
+           zoom/blur/translação da abertura, mantendo o conteúdo sempre
+           visível e 100% funcional. A cascata de entrada (.animate-enter),
+           o carrossel de categorias (marquee) e a barra de carregamento
+           seguem tocando normalmente, propositalmente.
            ===================================================================== */
         @media (prefers-reduced-motion: reduce) {
             .intro-photo, .intro-title {
@@ -995,10 +995,6 @@
             }
             .ai-typing-dots span {
                 animation: none !important;
-            }
-            .animate-enter {
-                animation: none !important;
-                opacity: 1 !important;
             }
             .fade-scroll {
                 transition-duration: 0.01ms !important;
