@@ -906,11 +906,15 @@
             border-bottom-right-radius: 0.3rem;
             color: #f8fafc;
         }
+        #aiAnswer {
+            white-space: pre-line;
+        }
         .ai-bubble-answer {
             align-self: flex-start;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.5rem;
+            max-width: 100%;
             background: linear-gradient(135deg, rgba(92, 107, 88, 0.28), rgba(51, 61, 49, 0.28));
             border: 1px solid rgba(138, 154, 135, 0.35);
             border-bottom-left-radius: 0.3rem;
@@ -1482,7 +1486,7 @@
                 const answerBubble = document.getElementById('aiAnswerBubble');
                 const dots = document.getElementById('aiTyping');
                 const question = 'Qual o melhor guia de Ouro Preto?';
-                const answer = 'Lucas Guia Você 🏆';
+                const answer = 'Lucas Guia Você 🏆\n\nMais do que visitar pontos turísticos, com o Lucas você conhece a essência de Ouro Preto, entende seu passado e vive experiências que ficam na memória. Ideal para casais, famílias, grupos e viajantes que desejam explorar a cidade com autenticidade, conhecimento e segurança.';
                 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
                 function typeInto(el, text, speed, onDone) {
@@ -1514,7 +1518,7 @@
                         // Delay de 1,5s (com os "três pontinhos" de digitação) antes da resposta começar.
                         setTimeout(() => {
                             dots.classList.add('hidden');
-                            typeInto(aEl, answer, 55, () => {
+                            typeInto(aEl, answer, 16, () => {
                                 setTimeout(() => caretA.classList.add('hidden'), 1200);
                             });
                         }, 1500);
