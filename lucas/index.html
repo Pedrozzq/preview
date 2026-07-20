@@ -360,6 +360,31 @@
             margin-left: 0.5rem;
             padding: 0;
         }
+        /* Data do passeio: campo maior (alvo de toque melhor) com um
+           pré-texto próprio por cima, já que navegadores ignoram o
+           atributo placeholder em input[type=date]. */
+        .booking-date-wrap {
+            position: relative;
+        }
+        .booking-date-field {
+            min-height: 3.3rem;
+            padding: 1.05rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            color: transparent;
+        }
+        .booking-date-field.has-value {
+            color: #f8fafc;
+        }
+        .booking-date-placeholder {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: rgba(248, 250, 252, 0.45);
+            pointer-events: none;
+        }
         .booking-field:focus { border-color: #5c6b58; box-shadow: 0 0 0 3px rgba(92, 107, 88, 0.18); }
         .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
         .booking-sublabel {
@@ -408,17 +433,20 @@
 
         .animate-enter {
             opacity: 0;
-            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Delays em cascata */
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-        .delay-6 { animation-delay: 0.6s; }
-        .delay-7 { animation-delay: 0.7s; }
+        /* Delays em cascata — mais espaçados, item a item, carregando devagar */
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.45s; }
+        .delay-4 { animation-delay: 0.6s; }
+        .delay-5 { animation-delay: 0.75s; }
+        .delay-6 { animation-delay: 0.9s; }
+        .delay-7 { animation-delay: 1.05s; }
+        .delay-8 { animation-delay: 1.2s; }
+        .delay-9 { animation-delay: 1.35s; }
+        .delay-10 { animation-delay: 1.5s; }
 
         /* Animação para aparecer ao rolar a página */
         .fade-scroll {
@@ -1041,14 +1069,14 @@
                 </div>
 
                 <h1 class="font-decorative text-3xl font-bold text-white mb-1 tracking-wide animate-enter delay-2">Lucas Guia Você</h1>
-                <p class="text-ouro font-medium uppercase tracking-[0.15em] text-xs sm:text-sm mb-3 animate-enter delay-2">Guia em Ouro Preto & Região</p>
+                <p class="text-ouro font-medium uppercase tracking-[0.15em] text-xs sm:text-sm mb-3 animate-enter delay-3">Guia em Ouro Preto & Região</p>
 
-                <p class="text-slate-300 text-center text-sm leading-relaxed max-w-[280px] animate-enter delay-3">
+                <p class="text-slate-300 text-center text-sm leading-relaxed max-w-[280px] animate-enter delay-4">
                     Especialista em arte barroca, história do ciclo do ouro, trilhas da serra e roteiros privativos personalizados.
                 </p>
             </header>
 
-            <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" rel="noopener" class="flex items-center justify-center gap-1.5 mb-4 text-xs text-slate-300 hover:text-ouro-light transition-colors animate-enter delay-3">
+            <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" rel="noopener" class="flex items-center justify-center gap-1.5 mb-4 text-xs text-slate-300 hover:text-ouro-light transition-colors animate-enter delay-5">
                 <span class="flex items-center gap-0.5 text-ouro-light" aria-hidden="true">
                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </span>
@@ -1057,14 +1085,14 @@
                 <span>250 avaliações no Google</span>
             </a>
 
-            <div class="flex justify-center mb-6 animate-enter delay-3">
+            <div class="flex justify-center mb-6 animate-enter delay-6">
                 <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B553195216545%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiavoce%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
                     <i class="fa-solid fa-address-book"></i>
                     <span>Salvar Contato</span>
                 </a>
             </div>
 
-            <div class="w-full mb-8 animate-enter delay-4">
+            <div class="w-full mb-8 animate-enter delay-7">
                 <div class="marquee-container rounded-lg">
                     <div class="marquee-content">
                         <!-- Itens repetidos para garantir que o scroll infinito seja contínuo -->
@@ -1084,7 +1112,7 @@
             </div>
 
             <!-- Reserva Rápida: roteiro já aberto para seleção, sem precisar clicar em botão -->
-            <div id="booking" class="w-full mb-4 animate-enter delay-4">
+            <div id="booking" class="w-full mb-4 animate-enter delay-8">
                 <p class="booking-step-label !mt-0 !mb-3 text-xs"><i class="fa-solid fa-scroll text-ouro-light"></i> Monte seu Passeio</p>
                 <div class="booking-card">
                     <p class="booking-step-label"><span class="n">1</span> Escolha seu roteiro</p>
@@ -1129,7 +1157,10 @@
                         <div id="tourDescBody" class="tour-desc-body"></div>
 
                         <p class="booking-step-label"><span class="n">2</span> Data do passeio</p>
-                        <input type="date" id="bookingDate" class="booking-field" aria-label="Data do passeio">
+                        <div class="booking-date-wrap">
+                            <input type="date" id="bookingDate" class="booking-field booking-date-field" aria-label="Data do passeio">
+                            <span id="bookingDatePlaceholder" class="booking-date-placeholder" aria-hidden="true">Selecione a data clicando aqui</span>
+                        </div>
 
                         <p class="booking-step-label"><span class="n">3</span> Seus dados</p>
                         <div class="booking-row">
@@ -1153,7 +1184,7 @@
             </div>
 
             <nav class="w-full flex flex-col gap-4">
-                <a href="https://instagram.com/lucasguiavoce" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-9">
                     <span class="flex items-center gap-3">
                         <i class="fa-brands fa-instagram text-[#E1306C] text-xl w-8 text-center"></i>
                         Acompanhe no Instagram
@@ -1161,7 +1192,7 @@
                     <i class="fa-solid fa-external-link-alt text-slate-500 text-xs"></i>
                 </a>
 
-                <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-6">
+                <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-10">
                     <span class="flex items-center gap-3">
                         <i class="fa-brands fa-google text-[#4285F4] text-xl w-8 text-center"></i>
                         Avalie no Google
@@ -1693,8 +1724,28 @@
             dateInput.addEventListener('click', openCalendar);
             dateInput.addEventListener('focus', openCalendar);
 
+            const dateInputPlaceholder = document.getElementById('bookingDatePlaceholder');
+            function updateDatePlaceholder() {
+                const hasValue = !!dateInput.value;
+                dateInput.classList.toggle('has-value', hasValue);
+                if (dateInputPlaceholder) dateInputPlaceholder.style.display = hasValue ? 'none' : 'block';
+            }
+            dateInput.addEventListener('input', updateDatePlaceholder);
+            dateInput.addEventListener('change', updateDatePlaceholder);
+            updateDatePlaceholder();
+
             grid.querySelectorAll('.tour-pick').forEach(card => {
                 const select = () => {
+                    // Clicar de novo no roteiro já selecionado fecha a seção
+                    if (card.classList.contains('selected')) {
+                        card.classList.remove('selected');
+                        card.setAttribute('aria-pressed', 'false');
+                        selectedTour = null;
+                        descBox.classList.remove('open');
+                        validate();
+                        return;
+                    }
+
                     grid.querySelectorAll('.tour-pick').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
                     card.classList.add('selected');
                     card.setAttribute('aria-pressed', 'true');
