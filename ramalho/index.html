@@ -325,19 +325,25 @@
                 right: 18px;
             }
 
-            /* Sobe nome, descrição e botões: menos espaço no topo e entre
-               os itens, para tudo caber bem visível na tela sem cortar
-               e sem precisar rolar dentro do cartão. */
+            /* Sobe nome e descrição; sem o botão flutuante de antes, sobra
+               espaço para dar respiro maior entre os botões — tudo ainda
+               cabe na seção 1, sem precisar rolar dentro do cartão. */
             .links-container {
-                padding: 12px 22px 76px 22px;
+                padding: 14px 22px 22px 22px;
                 overflow-y: visible;
             }
             .profile-info {
                 margin-bottom: 10px !important;
             }
             .profile-info h1 {
-                font-size: 19px !important;
+                font-size: 17px !important;
                 color: #111827 !important;
+            }
+            .save-contact-btn {
+                padding: 5px 10px !important;
+            }
+            .save-contact-btn span {
+                font-size: 10px !important;
             }
             .profile-info h2 {
                 margin-top: 2px !important;
@@ -348,23 +354,16 @@
                 line-height: 1.35 !important;
             }
             .links-container .space-y-4 > * + * {
-                margin-top: 4px !important;
+                margin-top: 14px !important;
             }
             .link-item {
-                padding-top: 4px !important;
-                padding-bottom: 4px !important;
+                padding-top: 8px !important;
+                padding-bottom: 8px !important;
             }
             .link-item .w-10 {
                 width: 34px !important;
                 height: 34px !important;
                 margin-right: 12px !important;
-            }
-            .floating-button-container {
-                bottom: 14px;
-            }
-            .floating-button-container button {
-                padding-top: 10px !important;
-                padding-bottom: 10px !important;
             }
         }
 
@@ -428,19 +427,14 @@
         /* Estilo da área de links */
         .links-container {
             flex-grow: 1;
-            padding: 20px 30px 100px 30px; /* Padding extra embaixo para o botão fixo */
+            padding: 20px 30px 30px 30px;
             background-color: white;
             overflow-y: auto;
         }
 
-        /* Botão flutuante na parte inferior */
-        .floating-button-container {
-            position: absolute;
-            bottom: 30px;
-            left: 0;
-            width: 100%;
-            padding: 0 30px;
-            z-index: 20;
+        /* Botão "Salvar Contato" minimalista, ao lado do nome */
+        .save-contact-btn {
+            background-color: transparent;
         }
 
         .link-item {
@@ -673,17 +667,10 @@
             }
 
             .links-container {
-                padding: 48px 48px 130px 48px;
+                padding: 48px 48px 48px 48px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-            }
-
-            .floating-button-container {
-                left: 42%;
-                width: 58%;
-                padding: 0 48px;
-                bottom: 40px;
             }
         }
     </style>
@@ -736,7 +723,13 @@
             
             <!-- Informações do Perfil -->
             <div class="mb-6 profile-info">
-                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Igor Ramalho</h1>
+                <div class="flex items-center justify-between gap-3">
+                    <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Igor Ramalho</h1>
+                    <button onclick="downloadVCard()" aria-label="Salvar Contato" title="Salvar Contato" class="save-contact-btn shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-gray-800 hover:text-gray-800 active:scale-95">
+                        <i class="fa-regular fa-address-book text-xs"></i>
+                        <span class="text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap">Salvar Contato</span>
+                    </button>
+                </div>
                 <h2 class="text-sm font-semibold text-gray-600 mt-1 uppercase tracking-wider">Advogado</h2>
                 <p class="text-sm text-gray-500 mt-3 italic leading-relaxed">
                     Atuo no direito civil, empresarial e imobiliário, principalmente nas ações possessórias, revisão contratual e regularização de imóveis, tanto no contencioso e no consultivo.
@@ -792,14 +785,6 @@
 
             </div>
         </main>
-
-        <!-- Botão Salvar Contato Fixo -->
-        <div class="floating-button-container">
-            <button onclick="downloadVCard()" class="w-full bg-[#1a1a1a] text-white font-semibold py-4 rounded-full flex items-center justify-center space-x-2 shadow-lg transition-transform hover:scale-[1.02] active:scale-95 uppercase tracking-wide text-sm">
-                <i class="fa-regular fa-address-book text-lg mr-2"></i>
-                Salvar Contato
-            </button>
-        </div>
 
     </div>
     </div>
@@ -865,7 +850,7 @@
             // Dados fictícios para o exemplo
             const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:Igor Ramalho
+FN:Igor Ramalho Advogado
 TITLE:Advogado
 TEL;TYPE=CELL:+5531997562966
 EMAIL:contato@igorramalho.adv.br
