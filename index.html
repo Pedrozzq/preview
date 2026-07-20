@@ -23,9 +23,9 @@
                 extend: {
                     colors: {
                         ouro: {
-                            light: '#fde68a',
-                            DEFAULT: '#d97706', // Tom de ouro envelhecido
-                            dark: '#92400e'
+                            light: '#8a9a87',
+                            DEFAULT: '#5c6b58', // Antigo tom dourado — agora pedra-sabão, ver troca abaixo
+                            dark: '#333d31'
                         },
                         barroco: {
                             DEFAULT: '#4c1d95', // Roxo profundo
@@ -99,7 +99,7 @@
             inset: 0;
             z-index: -2;
             background:
-                radial-gradient(ellipse at 50% 0%, rgba(217, 119, 6, 0.12), transparent 55%),
+                radial-gradient(ellipse at 50% 0%, rgba(92, 107, 88, 0.12), transparent 55%),
                 radial-gradient(ellipse at 50% 100%, rgba(92, 107, 88, 0.15), transparent 60%),
                 linear-gradient(to bottom, rgba(10,7,5,0.75), rgba(10,7,5,0.55) 40%, rgba(10,7,5,0.85));
         }
@@ -108,7 +108,7 @@
             position: fixed;
             inset: 0;
             z-index: -1;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZD0iTTAsNDAgQzEwLDIwIDMwLDIwIDQwLDQwIEM1MCw2MCA3MCw2MCA4MCw0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNMCw0MCBDMTAsNjAgMzAsNjAgNDAsNDAgQzUwLDIwIDcwLDIwIDgwLDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMSIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjIuNSIgZmlsbD0iI2Q0YTAxNyIvPjwvc3ZnPgo=');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MCA4MCc+PHBhdGggZD0nTTAsNDAgQzEwLDIwIDMwLDIwIDQwLDQwIEM1MCw2MCA3MCw2MCA4MCw0MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGE5YTg3JyBzdHJva2Utd2lkdGg9JzEnLz48cGF0aCBkPSdNMCw0MCBDMTAsNjAgMzAsNjAgNDAsNDAgQzUwLDIwIDcwLDIwIDgwLDQwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4YTlhODcnIHN0cm9rZS13aWR0aD0nMScvPjxjaXJjbGUgY3g9JzQwJyBjeT0nNDAnIHI9JzIuNScgZmlsbD0nIzhhOWE4NycvPjwvc3ZnPg==');
             background-repeat: repeat;
             background-size: 80px 80px;
             opacity: 0.05;
@@ -119,7 +119,7 @@
             background: rgba(28, 20, 16, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(217, 119, 6, 0.18);
+            border: 1px solid rgba(92, 107, 88, 0.18);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             position: relative;
         }
@@ -131,7 +131,7 @@
             position: absolute;
             width: 46px;
             height: 46px;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNOCw5MiBDOCw1MCA4LDggNTAsOCBDODIsOCA5MiwyOCA5Miw0NSBDOTIsNjIgNzYsNjggNjQsNjAgQzU1LDU0IDU4LDQwIDcwLDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBjeD0iNzAiIGN5PSI0MCIgcj0iNC41IiBmaWxsPSIjZDRhMDE3Ii8+PHBhdGggZD0iTTIwLDgwIEMyMCw1NSAyMiwzNSA0MCwyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz48L3N2Zz4K');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cGF0aCBkPSdNOCw5MiBDOCw1MCA4LDggNTAsOCBDODIsOCA5MiwyOCA5Miw0NSBDOTIsNjIgNzYsNjggNjQsNjAgQzU1LDU0IDU4LDQwIDcwLDQwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4YTlhODcnIHN0cm9rZS13aWR0aD0nMycgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+PGNpcmNsZSBjeD0nNzAnIGN5PSc0MCcgcj0nNC41JyBmaWxsPScjOGE5YTg3Jy8+PHBhdGggZD0nTTIwLDgwIEMyMCw1NSAyMiwzNSA0MCwyMicgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGE5YTg3JyBzdHJva2Utd2lkdGg9JzEuNScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBvcGFjaXR5PScwLjYnLz48L3N2Zz4=');
             background-size: contain;
             background-repeat: no-repeat;
             opacity: 0.75;
@@ -162,7 +162,7 @@
         .shell-ornament {
             width: 90px;
             height: 50px;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTEwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjkiPjxwYXRoIGQ9Ik0xMDAsOTUgTDEwMCwxNSIvPjxwYXRoIGQ9Ik0xMDAsOTUgTDY4LDIwIi8+PHBhdGggZD0iTTEwMCw5NSBMMTMyLDIwIi8+PHBhdGggZD0iTTEwMCw5NSBMNDIsMzIiLz48cGF0aCBkPSJNMTAwLDk1IEwxNTgsMzIiLz48cGF0aCBkPSJNMTAwLDk1IEwyMCw1MiIvPjxwYXRoIGQ9Ik0xMDAsOTUgTDE4MCw1MiIvPjwvZz48cGF0aCBkPSJNMTQsNTggUTEwMCwtMTggMTg2LDU4IiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMi41Ii8+PHBhdGggZD0iTTMwLDk1IFExMDAsNjAgMTcwLDk1IiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjciLz48L3N2Zz4K');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAgMTEwJz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyM4YTlhODcnIHN0cm9rZS13aWR0aD0nMS44JyBvcGFjaXR5PScwLjknPjxwYXRoIGQ9J00xMDAsOTUgTDEwMCwxNScvPjxwYXRoIGQ9J00xMDAsOTUgTDY4LDIwJy8+PHBhdGggZD0nTTEwMCw5NSBMMTMyLDIwJy8+PHBhdGggZD0nTTEwMCw5NSBMNDIsMzInLz48cGF0aCBkPSdNMTAwLDk1IEwxNTgsMzInLz48cGF0aCBkPSdNMTAwLDk1IEwyMCw1MicvPjxwYXRoIGQ9J00xMDAsOTUgTDE4MCw1MicvPjwvZz48cGF0aCBkPSdNMTQsNTggUTEwMCwtMTggMTg2LDU4JyBmaWxsPSdub25lJyBzdHJva2U9JyM4YTlhODcnIHN0cm9rZS13aWR0aD0nMi41Jy8+PHBhdGggZD0nTTMwLDk1IFExMDAsNjAgMTcwLDk1JyBmaWxsPSdub25lJyBzdHJva2U9JyM4YTlhODcnIHN0cm9rZS13aWR0aD0nMS41JyBvcGFjaXR5PScwLjcnLz48L3N2Zz4=');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -170,8 +170,8 @@
             animation: baroqueGlow 4s ease-in-out infinite;
         }
         @keyframes baroqueGlow {
-            0%, 100% { filter: drop-shadow(0 0 0 rgba(253, 230, 138, 0)); opacity: 0.85; }
-            50%      { filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.55)); opacity: 1; }
+            0%, 100% { filter: drop-shadow(0 0 0 rgba(138, 154, 135, 0)); opacity: 0.85; }
+            50%      { filter: drop-shadow(0 0 6px rgba(138, 154, 135, 0.55)); opacity: 1; }
         }
         @media (prefers-reduced-motion: reduce) {
             .shell-ornament { animation: none; }
@@ -190,7 +190,7 @@
         /* ===== Reserva Rápida — roteiro já aberto para seleção imediata ===== */
         .booking-card {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(217, 119, 6, 0.28);
+            border: 1px solid rgba(92, 107, 88, 0.28);
             border-radius: 1.25rem;
             padding: 1.4rem 1.3rem 1.5rem;
         }
@@ -199,7 +199,7 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             font-size: 0.68rem;
-            color: #fde68a;
+            color: #8a9a87;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -210,7 +210,7 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: #d97706;
+            background: #5c6b58;
             color: #1c1410;
             display: inline-flex;
             align-items: center;
@@ -261,8 +261,8 @@
         }
         .tour-pick-label span { font-size: 0.72rem; font-weight: 600; color: #fff; line-height: 1.2; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
         .tour-pick:hover img { transform: scale(1.08); }
-        .tour-pick:hover { transform: translateY(-2px); border-color: rgba(217, 119, 6, 0.45); }
-        .tour-pick.selected { border-color: #d97706; box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.35); }
+        .tour-pick:hover { transform: translateY(-2px); border-color: rgba(92, 107, 88, 0.45); }
+        .tour-pick.selected { border-color: #5c6b58; box-shadow: 0 0 0 2px rgba(92, 107, 88, 0.35); }
         .tour-pick.selected::after {
             content: '\f00c';
             font-family: 'Font Awesome 6 Free';
@@ -274,7 +274,7 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #d97706;
+            background: #5c6b58;
             color: #1c1410;
             display: flex;
             align-items: center;
@@ -296,7 +296,7 @@
             opacity: 1;
             margin-top: 0.9rem;
             padding: 1rem 1.1rem;
-            border-color: rgba(217, 119, 6, 0.28);
+            border-color: rgba(92, 107, 88, 0.28);
             background: rgba(255, 255, 255, 0.03);
         }
         .tour-desc-head {
@@ -308,15 +308,15 @@
             padding-bottom: 0.7rem;
             border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
         }
-        .tour-desc-head h3 { font-weight: 700; color: #fde68a; font-size: 1.02rem; line-height: 1.3; }
+        .tour-desc-head h3 { font-weight: 700; color: #8a9a87; font-size: 1.02rem; line-height: 1.3; }
         .tour-desc-price { display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem; font-size: 0.82rem; white-space: nowrap; shrink: 0; }
         .tour-desc-price-old { text-decoration: line-through; color: rgba(248, 250, 252, 0.45); font-weight: 500; font-size: 0.74rem; }
-        .tour-desc-price-new { color: #fde68a; font-weight: 800; font-size: 0.98rem; }
+        .tour-desc-price-new { color: #8a9a87; font-weight: 800; font-size: 0.98rem; }
         .tour-desc-body { font-size: 0.82rem; color: rgba(248, 250, 252, 0.85); line-height: 1.6; }
         .tour-desc-body p { margin: 0 0 0.5rem 0; }
         .tour-desc-body p.tour-desc-sub {
             font-weight: 700;
-            color: #fde68a;
+            color: #8a9a87;
             margin-top: 0.75rem;
             margin-bottom: 0.35rem;
             font-size: 0.72rem;
@@ -333,7 +333,7 @@
             left: 0;
             top: 0.18em;
             font-size: 0.62rem;
-            color: #d97706;
+            color: #5c6b58;
         }
         .tour-desc-note { font-size: 0.72rem; color: rgba(248, 250, 252, 0.5); font-style: italic; margin-top: 0.4rem; }
 
@@ -344,6 +344,8 @@
 
         .booking-field {
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 0.8rem;
             padding: 0.75rem 0.9rem;
@@ -355,7 +357,20 @@
             color-scheme: dark;
         }
         .booking-field::placeholder { color: rgba(248, 250, 252, 0.35); }
-        .booking-field:focus { border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18); }
+        /* input[type=date] no mobile: a UA soma o ícone do calendário fora da
+           caixa declarada em alguns navegadores, estourando a largura do
+           cartão. Removemos a aparência nativa (o clique já abre o seletor
+           via JS) para manter a largura sob controle. */
+        #bookingDate.booking-field {
+            -webkit-appearance: none;
+            appearance: none;
+            min-width: 0;
+        }
+        #bookingDate.booking-field::-webkit-calendar-picker-indicator {
+            margin-left: 0.5rem;
+            padding: 0;
+        }
+        .booking-field:focus { border-color: #5c6b58; box-shadow: 0 0 0 3px rgba(92, 107, 88, 0.18); }
         .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
         .booking-sublabel {
             display: block;
@@ -379,12 +394,12 @@
             font-size: 0.8rem;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #d97706, #92400e);
+            background: linear-gradient(135deg, #5c6b58, #333d31);
             color: #fff;
             border: none;
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 25px -8px rgba(217, 119, 6, 0.5);
+            box-shadow: 0 10px 25px -8px rgba(92, 107, 88, 0.5);
         }
         .booking-submit:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); }
         .booking-submit:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -437,7 +452,7 @@
             position: absolute;
             inset: -9px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent 0%, transparent 58%, rgba(217, 119, 6, 0.18) 72%, #fde68a 85%, rgba(217, 119, 6, 0.18) 94%, transparent 100%);
+            background: conic-gradient(from 0deg, transparent 0%, transparent 58%, rgba(92, 107, 88, 0.18) 72%, #8a9a87 85%, rgba(92, 107, 88, 0.18) 94%, transparent 100%);
             animation: baroqueOrbit 7s linear infinite;
             z-index: -1;
         }
@@ -446,7 +461,7 @@
             position: absolute;
             inset: -3px;
             border-radius: 50%;
-            border: 1px solid rgba(253, 230, 138, 0.35);
+            border: 1px solid rgba(138, 154, 135, 0.35);
             z-index: -1;
         }
         @keyframes baroqueOrbit {
@@ -472,9 +487,9 @@
         }
         .save-contact-minimal i { font-size: 0.85rem; }
         .save-contact-minimal:hover {
-            border-color: rgba(217, 119, 6, 0.55);
-            color: #fde68a;
-            background-color: rgba(217, 119, 6, 0.08);
+            border-color: rgba(92, 107, 88, 0.55);
+            color: #8a9a87;
+            background-color: rgba(92, 107, 88, 0.08);
         }
 
         .link-card {
@@ -487,9 +502,9 @@
 
         .link-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(217, 119, 6, 0.5);
+            border-color: rgba(92, 107, 88, 0.5);
             background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 20px -5px rgba(217, 119, 6, 0.2);
+            box-shadow: 0 10px 20px -5px rgba(92, 107, 88, 0.2);
         }
 
         .link-card.highlight::before {
@@ -515,10 +530,10 @@
             overflow: hidden;
             white-space: nowrap;
             width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(217, 119, 6, 0.15), transparent);
+            background: linear-gradient(90deg, transparent, rgba(92, 107, 88, 0.15), transparent);
             padding: 8px 0;
-            border-top: 1px solid rgba(217, 119, 6, 0.2);
-            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+            border-top: 1px solid rgba(92, 107, 88, 0.2);
+            border-bottom: 1px solid rgba(92, 107, 88, 0.2);
         }
         .marquee-content {
             display: flex;
@@ -529,7 +544,7 @@
             align-items: center;
             gap: 8px;
             padding: 0 20px;
-            color: #fde68a;
+            color: #8a9a87;
             font-weight: 500;
             font-size: 0.85rem;
             letter-spacing: 0.05em;
@@ -539,38 +554,443 @@
             100% { transform: translateX(-50%); }
         }
 
-        #particles-container {
+        /* =====================================================================
+           ABERTURA — só o fundo do próprio site (visível através do overlay
+           transparente) e uma barra de carregamento dourada, preenchendo em 2s.
+           O disparo é feito via JS somente após o "load" da página (todos os
+           recursos, incluindo imagens de fundo, já carregados) — classe
+           .intro-ready. Sem JS, ou se o load demorar demais, um fallback em
+           CSS (abaixo) garante que a tela nunca fique travada. Neutralizada
+           em reduced-motion.
+           ===================================================================== */
+        .intro-overlay {
             position: fixed;
-            top: 0;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1rem;
+            background: transparent;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            /* Fallback: some sozinha em 6s se o JS não disparar .intro-ready por algum motivo */
+            animation: introDismiss 0.5s ease forwards;
+            animation-delay: 6s;
+        }
+        .intro-overlay.intro-ready {
+            animation: introDismiss 0.5s ease forwards;
+            animation-delay: 2s;
+        }
+        .intro-photo {
+            width: 108px;
+            height: 108px;
+            object-fit: cover;
+            border-radius: 1rem;
+            opacity: 0;
+            transform: scale(1.12);
+            filter: brightness(0.45) saturate(0.5) blur(6px);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+        }
+        .intro-overlay.intro-ready .intro-photo {
+            animation: introEmerge 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes introEmerge {
+            0%   { opacity: 0; transform: scale(1.12); filter: brightness(0.45) saturate(0.5) blur(6px); }
+            60%  { opacity: 1; filter: brightness(0.9) saturate(0.8) blur(1px); }
+            100% { opacity: 1; transform: scale(1); filter: brightness(1) saturate(1) blur(0); }
+        }
+        .intro-title {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .intro-overlay.intro-ready .intro-title {
+            animation: introRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.6s;
+        }
+        @keyframes introRise {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .intro-loadbar {
+            width: 160px;
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+        }
+        .intro-loadbar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #5c6b58, #8a9a87);
+        }
+        .intro-overlay.intro-ready .intro-loadbar-fill {
+            animation: introLoadbar 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+        @keyframes introLoadbar {
+            to { width: 100%; }
+        }
+        @keyframes introDismiss {
+            to { opacity: 0; visibility: hidden; pointer-events: none; }
+        }
+
+        /* =====================================================================
+           DIVISÓRIAS DESENHADAS — arabescos que se "talham" ao entrar na tela,
+           reaproveitando o mesmo IntersectionObserver do .fade-scroll.
+           ===================================================================== */
+        .baroque-divider {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0.25rem 0;
+        }
+        .baroque-divider svg { width: 100%; max-width: 240px; height: 18px; }
+        .divider-path {
+            fill: none;
+            stroke: #8a9a87;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            opacity: 0.8;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+        }
+        .fade-scroll.visible .divider-path { stroke-dashoffset: 0; }
+
+        /* Friso dourado sob os títulos de seção — talha discreta */
+        h2.font-display { position: relative; padding-bottom: 0.55rem; }
+        h2.font-display::after {
+            content: '';
+            position: absolute;
             left: 0;
+            bottom: 0;
+            width: 56px;
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #5c6b58, #8a9a87, transparent);
+        }
+
+        /* Brilho dourado discreto no botão de reserva */
+        .booking-submit { animation: goldPulse 5s ease-in-out infinite; }
+        .booking-submit:disabled { animation-play-state: paused; }
+        @keyframes goldPulse {
+            0%, 100% { box-shadow: 0 10px 25px -8px rgba(92, 107, 88, 0.5); }
+            50%      { box-shadow: 0 12px 30px -6px rgba(138, 154, 135, 0.6); }
+        }
+
+        /* Efeito "pedra-sabão": veios sutis sobre painéis e cartões */
+        .glass-panel {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCcgdmFsdWVzPScwIDAgMCAwIDAuNTQxIDAgMCAwIDAgMC42MDQgMCAwIDAgMCAwLjUyOSAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=');
+            background-blend-mode: overlay;
+        }
+        .link-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCcgdmFsdWVzPScwIDAgMCAwIDAuNTQxIDAgMCAwIDAgMC42MDQgMCAwIDAgMCAwLjUyOSAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=');
+            background-size: 140px 140px;
+            opacity: 0.6;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        .tour-pick::before {
+            background-image:
+                linear-gradient(to top, rgba(10, 7, 5, 0.85), rgba(10, 7, 5, 0.05) 55%, transparent),
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCcgdmFsdWVzPScwIDAgMCAwIDAuNTQxIDAgMCAwIDAgMC42MDQgMCAwIDAgMCAwLjUyOSAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=');
+            background-blend-mode: overlay;
+        }
+
+        /* =====================================================================
+           ROTEIRO PRINCIPAL — "stacking sections": cada cartão usa
+           position: sticky no mesmo topo; o z-index crescente faz o cartão
+           seguinte deslizar por cima do anterior, que fica "preso" enquanto
+           isso acontece. A entrada em cena de cada cartão (escala + opacidade)
+           só é disparada quando ele está 100% visível na tela
+           (IntersectionObserver com threshold 1).
+           ===================================================================== */
+        .stack-container {
+            position: relative;
+        }
+        /* Cada .stack-item é mais alto que o cartão em si — essa sobra é o
+           "tempo de permanência": o cartão fica preso e 100% visível durante
+           essa rolagem extra, e só então o próximo cartão começa a cobri-lo. */
+        .stack-item {
+            position: relative;
+            min-height: 108vh;
+        }
+        .stack-item:last-child {
+            min-height: 0;
+        }
+        .stack-card {
+            position: sticky;
+            top: 5.25rem;
+            height: min(72vh, 640px);
+            min-height: 420px;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+            opacity: 0;
+            transform: scale(0.94) translateY(26px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .stack-card.in-view {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .stack-item:nth-child(1) .stack-card { z-index: 1; }
+        .stack-item:nth-child(2) .stack-card { z-index: 2; }
+        .stack-item:nth-child(3) .stack-card { z-index: 3; }
+        .stack-item:nth-child(4) .stack-card { z-index: 4; }
+        .stack-item:nth-child(5) .stack-card { z-index: 5; }
+        .stack-card-img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            object-fit: cover;
         }
-        .particle {
+        .stack-card-overlay {
             position: absolute;
-            background-color: #fde68a;
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: floatUp linear infinite;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 7, 5, 0.95) 0%, rgba(10, 7, 5, 0.55) 45%, rgba(10, 7, 5, 0.1) 78%);
         }
-        @keyframes floatUp {
-            from { transform: translateY(100vh) scale(1); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            to { transform: translateY(-100px) scale(0.5); opacity: 0; }
+        .stack-card-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.75rem;
+        }
+        .stack-card-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.9rem;
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.6);
+        }
+        .stack-card-title {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .stack-card-desc {
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: rgba(248, 250, 252, 0.85);
+            max-width: 34rem;
+        }
+
+        /* =====================================================================
+           PERFIL DO INSTAGRAM — mini preview com anel de stories e grade 3x2
+           ===================================================================== */
+        .ig-avatar-ring {
+            display: block;
+            width: 2.75rem;
+            height: 2.75rem;
+            padding: 2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+        }
+        .ig-avatar-ring img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #0a0705;
+            border-radius: 9999px;
+        }
+        .ig-follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .ig-follow-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .ig-tile {
+            position: relative;
+            display: block;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.6rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .ig-tile img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .ig-tile:hover img {
+            transform: scale(1.08);
+        }
+
+        /* =====================================================================
+           PERGUNTE A UMA IA — mockup de chat com efeito de máquina de escrever
+           ===================================================================== */
+        .ai-bubble {
+            padding: 0.7rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: 92%;
+            min-height: 1.7em;
+        }
+        .ai-bubble-user {
+            align-self: flex-end;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom-right-radius: 0.3rem;
+            color: #f8fafc;
+        }
+        .ai-bubble-answer {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(92, 107, 88, 0.28), rgba(51, 61, 49, 0.28));
+            border: 1px solid rgba(138, 154, 135, 0.35);
+            border-bottom-left-radius: 0.3rem;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ai-bubble-answer:hover,
+        .ai-bubble-answer:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.55);
+            border-color: rgba(138, 154, 135, 0.6);
+        }
+        .ai-wa-icon {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .ai-bubble-answer:hover .ai-wa-icon,
+        .ai-bubble-answer:focus-visible .ai-wa-icon {
+            opacity: 1;
+        }
+        .ai-caret {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: currentColor;
+            margin-left: 1px;
+            vertical-align: middle;
+            animation: aiCaretBlink 0.9s step-end infinite;
+        }
+        .ai-caret.hidden {
+            display: none;
+        }
+        @keyframes aiCaretBlink {
+            50% { opacity: 0; }
+        }
+        .ai-typing-dots {
+            display: inline-flex;
+            gap: 3px;
+        }
+        .ai-typing-dots.hidden {
+            display: none;
+        }
+        .ai-typing-dots span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+            animation: aiDotBounce 1.2s ease-in-out infinite;
+        }
+        .ai-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+        .ai-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes aiDotBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        /* =====================================================================
+           PREFERS-REDUCED-MOTION — neutraliza animações de zoom/blur/translação
+           (abertura, partículas, brilhos e desenhos), preservando o
+           conteúdo sempre visível e 100% funcional. A barra de carregamento
+           continua aparecendo normalmente, só sem a animação de preenchimento;
+           o carrossel de categorias (marquee) segue deslizando propositalmente.
+           ===================================================================== */
+        @media (prefers-reduced-motion: reduce) {
+            .intro-photo, .intro-title {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+            .intro-loadbar-fill {
+                animation: none !important;
+                width: 100% !important;
+            }
+            .ai-caret {
+                animation: none !important;
+                display: none !important;
+            }
+            .ai-typing-dots span {
+                animation: none !important;
+            }
+            .animate-enter {
+                animation: none !important;
+                opacity: 1 !important;
+            }
+            .fade-scroll {
+                transition-duration: 0.01ms !important;
+            }
+            .stack-card {
+                transition-duration: 0.01ms !important;
+            }
+            .divider-path {
+                transition: none !important;
+            }
+            .booking-submit {
+                animation: none !important;
+            }
+            .link-card.highlight::before {
+                animation: none !important;
+            }
         }
     </style>
 </head>
 <!-- Removido justify-center para permitir rolagem vertical fluida -->
 <body class="flex flex-col items-center py-10 px-4 sm:px-8 font-sans">
 
+    <!-- Abertura: medalhão esculpido em pedra-sabão, referência aos frontões de Aleijadinho.
+         Curta, decorativa e ignorada por leitores de tela; some sozinha em ~2s. -->
+    <div class="intro-overlay" aria-hidden="true">
+        <img src="img/loading.webp" alt="" class="intro-photo">
+        <p class="intro-title font-decorative text-2xl text-white tracking-widest">Lucas Guia Você</p>
+        <div class="intro-loadbar"><div class="intro-loadbar-fill"></div></div>
+    </div>
+
     <div class="bg-image" aria-hidden="true"></div>
     <div class="bg-trilha" aria-hidden="true"></div>
     <div class="bg-vignette" aria-hidden="true"></div>
     <div class="bg-iron-texture" aria-hidden="true"></div>
-    <div id="particles-container"></div>
 
     <div class="w-full max-w-lg flex flex-col gap-6 relative z-10">
         
@@ -578,21 +998,36 @@
         <main class="glass-panel baroque-frame rounded-3xl p-6 sm:p-10 flex flex-col items-center w-full">
 
             <header class="flex flex-col items-center w-full mb-6">
-                <!-- Cartela em concha, referência aos frontões esculpidos por Aleijadinho -->
-                <div class="shell-ornament animate-enter delay-1" aria-hidden="true"></div>
-
                 <!-- Foto do Perfil -->
-                <div class="relative mb-5 -mt-2 animate-enter delay-1">
+                <div class="relative mb-5 animate-enter delay-1">
                     <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-black/60 avatar-frame">
                         <img src="img/perfil.webp" alt="Lucas, Guia de Turismo em Ouro Preto" class="w-full h-full object-cover">
                     </div>
-                    <!-- Ícone de verificado/destaque -->
-                    <div class="absolute bottom-1 right-1 bg-black text-ouro-light rounded-full w-8 h-8 flex items-center justify-center border-2 border-ouro/50 shadow-lg">
-                        <i class="fa-solid fa-map-location-dot text-sm"></i>
+                    <!-- Selo de verificado no estilo Instagram (rosácea de 8 pontas) -->
+                    <div class="absolute bottom-1 right-1 w-8 h-8 drop-shadow-lg" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" class="w-full h-full">
+                            <defs>
+                                <linearGradient id="igBadgeGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#5ec1f7"></stop>
+                                    <stop offset="1" stop-color="#1877c9"></stop>
+                                </linearGradient>
+                            </defs>
+                            <g fill="url(#igBadgeGrad)">
+                                <circle cx="33" cy="20" r="8.6"></circle>
+                                <circle cx="29.19" cy="29.19" r="8.6"></circle>
+                                <circle cx="20" cy="33" r="8.6"></circle>
+                                <circle cx="10.81" cy="29.19" r="8.6"></circle>
+                                <circle cx="7" cy="20" r="8.6"></circle>
+                                <circle cx="10.81" cy="10.81" r="8.6"></circle>
+                                <circle cx="20" cy="7" r="8.6"></circle>
+                                <circle cx="29.19" cy="10.81" r="8.6"></circle>
+                            </g>
+                            <path d="M13,20.5 L17.8,25.3 L27.5,14.5" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
                     </div>
                 </div>
 
-                <h1 class="font-decorative text-3xl font-bold text-white mb-1 tracking-wide animate-enter delay-2">Lucas</h1>
+                <h1 class="font-decorative text-3xl font-bold text-white mb-1 tracking-wide animate-enter delay-2">Lucas Guia Você</h1>
                 <p class="text-ouro font-medium uppercase tracking-[0.15em] text-xs sm:text-sm mb-3 animate-enter delay-2">Guia em Ouro Preto & Região</p>
 
                 <p class="text-slate-300 text-center text-sm leading-relaxed max-w-[280px] animate-enter delay-3">
@@ -600,9 +1035,23 @@
                 </p>
             </header>
 
-            <div class="azulejo-strip mb-6 animate-enter delay-3" aria-hidden="true"></div>
+            <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" rel="noopener" class="flex items-center justify-center gap-1.5 mb-4 text-xs text-slate-300 hover:text-ouro-light transition-colors animate-enter delay-3">
+                <span class="flex items-center gap-0.5 text-ouro-light" aria-hidden="true">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </span>
+                <span class="font-medium">5,0</span>
+                <span class="text-slate-500">&middot;</span>
+                <span>250 avaliações no Google</span>
+            </a>
 
-            <div class="w-full mb-8 animate-enter delay-3">
+            <div class="flex justify-center mb-6 animate-enter delay-3">
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B553195216545%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiavoce%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
+                    <i class="fa-solid fa-address-book"></i>
+                    <span>Salvar Contato</span>
+                </a>
+            </div>
+
+            <div class="w-full mb-8 animate-enter delay-4">
                 <div class="marquee-container rounded-lg">
                     <div class="marquee-content">
                         <!-- Itens repetidos para garantir que o scroll infinito seja contínuo -->
@@ -691,29 +1140,7 @@
             </div>
 
             <nav class="w-full flex flex-col gap-4">
-                <a href="#roteiros" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
-                    <span class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-ouro-light">
-                            <i class="fa-solid fa-church"></i>
-                        </div>
-                        Ver Roteiro das Igrejas
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-slate-500 text-sm"></i>
-                </a>
-
-                <a href="#" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-6">
-                    <span class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-indigo-300">
-                            <i class="fa-solid fa-moon"></i>
-                        </div>
-                        Tour Lendas Ouro-pretanas
-                    </span>
-                    <i class="fa-solid fa-chevron-right text-slate-500 text-sm"></i>
-                </a>
-
-                <div class="w-full h-px bg-white/10 my-2 animate-enter delay-7"></div>
-
-                <a href="https://instagram.com/lucasguiaouropreto" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-7" style="animation-delay: 0.8s;">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
                     <span class="flex items-center gap-3">
                         <i class="fa-brands fa-instagram text-[#E1306C] text-xl w-8 text-center"></i>
                         Acompanhe no Instagram
@@ -721,7 +1148,7 @@
                     <i class="fa-solid fa-external-link-alt text-slate-500 text-xs"></i>
                 </a>
 
-                <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-7" style="animation-delay: 0.85s;">
+                <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-6">
                     <span class="flex items-center gap-3">
                         <i class="fa-brands fa-google text-[#4285F4] text-xl w-8 text-center"></i>
                         Avalie no Google
@@ -731,6 +1158,12 @@
 
             </nav>
         </main>
+
+        <div class="baroque-divider fade-scroll" aria-hidden="true">
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path class="divider-path" pathLength="1" d="M0,10 C40,-4 60,24 100,10 C140,-4 160,24 200,10 C240,-4 260,24 300,10"></path>
+            </svg>
+        </div>
 
         <section class="glass-panel baroque-frame-alt rounded-3xl p-8 w-full fade-scroll">
             <div class="flex items-center gap-4 mb-5">
@@ -746,117 +1179,217 @@
                 Mais do que apenas mostrar as igrejas, eu te conto os segredos da inconfidência, as lendas urbanas e as histórias por trás do ouro que financiou impérios. Meu compromisso é transformar sua viagem em uma experiência cultural imersiva e inesquecível.
             </p>
 
-            <!-- Salvar Contato: minimalista, logo abaixo da descrição do Lucas -->
             <div class="flex justify-center">
-                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B5531999999999%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiaouropreto%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B553195216545%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiavoce%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
                     <i class="fa-solid fa-address-book"></i>
                     <span>Salvar Contato</span>
                 </a>
             </div>
         </section>
 
-        <section id="roteiros" class="glass-panel baroque-frame rounded-3xl p-8 w-full fade-scroll">
-            <div class="flex items-center gap-4 mb-8">
-                <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner">
+        <div class="baroque-divider fade-scroll" aria-hidden="true">
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path class="divider-path" pathLength="1" d="M0,10 C40,-4 60,24 100,10 C140,-4 160,24 200,10 C240,-4 260,24 300,10"></path>
+            </svg>
+        </div>
+
+        <!-- Pergunte a uma IA: mockup de chat com efeito de digitação, disparado ao entrar na tela -->
+        <section id="aiChat" class="glass-panel baroque-frame rounded-3xl p-6 w-full fade-scroll">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-ouro-light shrink-0">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+                </div>
+                <p class="text-xs uppercase tracking-[0.15em] text-slate-400 font-medium">Pergunte a uma IA</p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <div class="ai-bubble ai-bubble-user">
+                    <span id="aiQuestion" class="ai-typing-text"></span><span class="ai-caret" id="aiCaretQ"></span>
+                </div>
+                <a href="https://wa.me/553195216545?text=Ol%C3%A1%20Lucas!%20Uma%20IA%20me%20disse%20que%20voc%C3%AA%20%C3%A9%20o%20melhor%20guia%20de%20Ouro%20Preto%2C%20quero%20saber%20mais%20sobre%20os%20passeios!" target="_blank" rel="noopener" class="ai-bubble ai-bubble-answer" id="aiAnswerBubble" aria-label="Conversar com Lucas no WhatsApp">
+                    <i class="fa-solid fa-sparkles text-ouro-light text-xs"></i>
+                    <span id="aiTyping" class="ai-typing-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                    <span id="aiAnswer" class="ai-typing-text"></span><span class="ai-caret" id="aiCaretA"></span>
+                    <i class="fa-brands fa-whatsapp text-[#25D366] text-xs ai-wa-icon"></i>
+                </a>
+            </div>
+        </section>
+
+        <div class="baroque-divider fade-scroll" aria-hidden="true">
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path class="divider-path" pathLength="1" d="M0,10 C40,-4 60,24 100,10 C140,-4 160,24 200,10 C240,-4 260,24 300,10"></path>
+            </svg>
+        </div>
+
+        <!-- Perfil do Instagram: mesma identidade visual do card principal, com preview de 6 fotos -->
+        <section class="glass-panel baroque-frame-alt rounded-3xl p-6 w-full fade-scroll">
+            <div class="flex items-center justify-between mb-4 gap-3">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="flex items-center gap-3 min-w-0">
+                    <span class="ig-avatar-ring shrink-0">
+                        <img src="img/perfil.webp" alt="Lucas Guia Você" class="w-full h-full object-cover rounded-full">
+                    </span>
+                    <span class="min-w-0">
+                        <span class="block text-white font-semibold text-sm truncate">@lucasguiavoce</span>
+                        <span class="block text-slate-400 text-xs">Guia em Ouro Preto</span>
+                    </span>
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-follow-btn shrink-0">
+                    <i class="fa-brands fa-instagram"></i> Seguir
+                </a>
+            </div>
+
+            <div class="grid grid-cols-3 text-center mb-4 py-3 border-y border-white/10">
+                <div>
+                    <span class="block text-white font-bold text-sm">308</span>
+                    <span class="block text-slate-400 text-[11px]">Publicações</span>
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-sm">6.577</span>
+                    <span class="block text-slate-400 text-[11px]">Seguidores</span>
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-sm">1.168</span>
+                    <span class="block text-slate-400 text-[11px]">Seguindo</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1.5">
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed1.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed2.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed3.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed5.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed6.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/sao-francisco-assis.webp" alt="São Francisco de Assis no Instagram de Lucas" loading="lazy">
+                </a>
+            </div>
+
+            <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="block text-center text-xs text-slate-400 hover:text-ouro-light transition-colors mt-3">
+                Ver perfil completo no Instagram
+            </a>
+        </section>
+
+        <div class="baroque-divider fade-scroll" aria-hidden="true">
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path class="divider-path" pathLength="1" d="M0,10 C40,-4 60,24 100,10 C140,-4 160,24 200,10 C240,-4 260,24 300,10"></path>
+            </svg>
+        </div>
+
+        <section id="roteiros" class="w-full">
+            <div class="flex items-center gap-4 mb-6 px-1 fade-scroll">
+                <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner shrink-0">
                     <i class="fa-solid fa-cross"></i>
                 </div>
-                <h2 class="font-display text-2xl font-bold text-white leading-tight tracking-wide">Roteiro Principal:<br><span class="text-ouro-light text-lg font-medium font-serif tracking-normal">Joias do Barroco & Trilhas da Serra</span></h2>
+                <h2 class="font-display text-2xl font-bold text-white leading-tight tracking-wide">Roteiro Principal:<br><span class="text-ouro-light text-lg font-medium font-serif tracking-normal">Roteiro Ouro Preto</span></h2>
             </div>
-            
-            <!-- Timeline (Linha do Tempo Vertical) — foto ocupa o lado oposto, vazio, do texto -->
-            <div class="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-ouro before:via-white/20 before:to-transparent">
 
-                <!-- Igreja 1 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">São Francisco de Assis</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">A obra-prima esculpida pelo mestre Aleijadinho com as incríveis pinturas celestiais de Mestre Ataíde. Considerada uma das maravilhas de origem portuguesa no mundo.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        1
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/sao-francisco-assis.webp" alt="Igreja São Francisco de Assis, Ouro Preto" class="w-full h-full object-cover">
+            <!-- Stacking sections: cada .stack-card é sticky no mesmo topo; o .stack-item
+                 ao redor é mais alto (tempo de permanência), e só depois disso o próximo
+                 cartão desliza por cima do anterior (position: sticky + z-index). -->
+            <div class="stack-container">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/basilica-pilar.webp" alt="Igreja de Nossa Senhora do Pilar, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-ouro text-slate-900">1</span>
+                            <h3 class="stack-card-title">Nossa Senhora do Pilar</h3>
+                            <p class="stack-card-desc">O ápice absoluto do barroco mineiro. Seu interior majestoso guarda mais de 400kg de ouro puro, ostentando a enorme riqueza das irmandades da época.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Igreja 2 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Basílica do Pilar</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">O ápice absoluto do barroco mineiro. Seu interior majestoso guarda mais de 400kg de ouro puro, ostentando a enorme riqueza e o poder das irmandades da época.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        2
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/basilica-pilar.webp" alt="Basílica de Nossa Senhora do Pilar, Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/sao-francisco-assis.webp" alt="Igreja São Francisco de Assis, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-barroco text-white">2</span>
+                            <h3 class="stack-card-title">São Francisco de Assis</h3>
+                            <p class="stack-card-desc">A obra-prima esculpida pelo mestre Aleijadinho com as incríveis pinturas celestiais de Mestre Ataíde, uma das maravilhas do barroco no mundo.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Igreja 3 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">N. Sra. do Carmo</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">A única igreja em Minas Gerais que possui painéis de azulejos portugueses na capela-mor. Um projeto requintado com inovações arquitetônicas trazidas da Europa.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        3
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/nossa-senhora-carmo.webp" alt="Igreja Nossa Senhora do Carmo, Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/santa-efigenia.webp" alt="Igreja Santa Efigênia dos Pretos, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-ouro text-slate-900">3</span>
+                            <h3 class="stack-card-title">Santa Efigênia</h3>
+                            <p class="stack-card-desc">Erguida pela irmandade dos negros. A lenda local diz que foi financiada pelo pó de ouro retirado dos cabelos de escravizados libertos pelo Rei Chico Rei.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Igreja 4 -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Igreja Santa Efigênia</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">Erguida pela irmandade dos negros. A forte lenda local diz que ela foi financiada pelo pó de ouro retirado dos cabelos de escravizados libertos pelo Rei Chico Rei.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        4
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/santa-efigenia.webp" alt="Igreja Santa Efigênia dos Pretos, Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/mina-do-chico-rei-ouro-preto.webp" alt="Mina do Chico Rei, Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-barroco text-white">4</span>
+                            <h3 class="stack-card-title">Mina do Chico Rei</h3>
+                            <p class="stack-card-desc">Descemos aos túneis escavados à mão no século XVIII, ligados à lenda do Rei Chico Rei, que revelam como o ouro da serra fez de Vila Rica a cidade mais rica do Brasil colonial.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Trilha 5: Serra de Ouro Preto -->
-                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
-                        <h3 class="font-serif font-bold text-pedra-light mb-2 text-lg">Trilha da Serra</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed">Encerramos com uma caminhada pelos caminhos antigos que cercam a cidade, entre mirantes e vales, de onde se avista o casario colonial recortado pela serra.</p>
-                    </div>
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-pedra text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
-                        5
-                    </div>
-                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
-                        <img src="img/trilha-serra.webp" alt="Trilha na serra de Minas Gerais, arredores de Ouro Preto" class="w-full h-full object-cover">
+                <div class="stack-item">
+                    <div class="stack-card">
+                        <img src="img/bg-centro-historico.webp" alt="Centro Histórico de Ouro Preto" class="stack-card-img">
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                            <span class="stack-card-num bg-ouro text-slate-900">5</span>
+                            <h3 class="stack-card-title">Centro Histórico</h3>
+                            <p class="stack-card-desc">Praça Tiradentes, Rua Direita e o Museu Casa dos Contos encerram o passeio a pé pelo coração colonial de Vila Rica.</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="mt-4 mb-4 text-center">
-            <p class="text-slate-400 text-xs flex items-center justify-center gap-1">
-                Feito com <i class="fa-solid fa-heart text-red-500/70 text-[10px]"></i> em Ouro Preto, MG
-            </p>
+            <p class="text-slate-500 text-[11px]">Lucas Guia Você - Todos os direitos reservados</p>
         </footer>
     </div>
 
     <script>
-        // 1. Sistema de partículas (Pó de Ouro)
-        document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById('particles-container');
-            const particleCount = 25; // Quantidade de partículas simultâneas
+        // 0. Abertura — só inicia a barra de carregamento de 2s depois que a
+        // página (incluindo as imagens de fundo) já terminou de carregar,
+        // para nunca sumir antes do site estar pronto. Timeout de segurança
+        // caso o "load" demore demais.
+        (function () {
+            const overlay = document.querySelector('.intro-overlay');
+            if (!overlay) return;
 
-            for (let i = 0; i < particleCount; i++) {
-                createParticle(container);
+            let started = false;
+            function reveal() {
+                if (started) return;
+                started = true;
+                overlay.classList.add('intro-ready');
             }
 
+            if (document.readyState === 'complete') {
+                reveal();
+            } else {
+                window.addEventListener('load', reveal, { once: true });
+                setTimeout(reveal, 4000);
+            }
+        })();
+
+        document.addEventListener("DOMContentLoaded", () => {
             // 2. Intersection Observer para animar seções no Scroll
             const observerOptions = {
                 root: null,
@@ -877,6 +1410,82 @@
             fadeElements.forEach(el => {
                 scrollObserver.observe(el);
             });
+
+            // 2b. Roteiro Principal (stacking cards) — a entrada de cada cartão só
+            // dispara quando ele está 100% visível na tela (cartão "preso" pelo sticky).
+            const stackObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.intersectionRatio >= 0.98) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, threshold: [0.98, 1] });
+
+            document.querySelectorAll('.stack-card').forEach(card => {
+                stackObserver.observe(card);
+            });
+
+            // 2c. "Pergunte a uma IA" — efeito de máquina de escrever, disparado
+            // uma única vez quando a seção entra na tela.
+            const aiSection = document.getElementById('aiChat');
+            if (aiSection) {
+                const qEl = document.getElementById('aiQuestion');
+                const aEl = document.getElementById('aiAnswer');
+                const caretQ = document.getElementById('aiCaretQ');
+                const caretA = document.getElementById('aiCaretA');
+                const answerBubble = document.getElementById('aiAnswerBubble');
+                const dots = document.getElementById('aiTyping');
+                const question = 'Qual o melhor guia de Ouro Preto?';
+                const answer = 'Lucas Guia Você 🏆';
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                function typeInto(el, text, speed, onDone) {
+                    let i = 0;
+                    (function step() {
+                        if (i <= text.length) {
+                            el.textContent = text.slice(0, i);
+                            i++;
+                            setTimeout(step, speed);
+                        } else if (onDone) {
+                            onDone();
+                        }
+                    })();
+                }
+
+                function runAiChat() {
+                    if (reduceMotion) {
+                        qEl.textContent = question;
+                        caretQ.classList.add('hidden');
+                        answerBubble.style.opacity = '1';
+                        dots.classList.add('hidden');
+                        aEl.textContent = answer;
+                        caretA.classList.add('hidden');
+                        return;
+                    }
+                    typeInto(qEl, question, 38, () => {
+                        caretQ.classList.add('hidden');
+                        answerBubble.style.opacity = '1';
+                        // Delay de 1,5s (com os "três pontinhos" de digitação) antes da resposta começar.
+                        setTimeout(() => {
+                            dots.classList.add('hidden');
+                            typeInto(aEl, answer, 55, () => {
+                                setTimeout(() => caretA.classList.add('hidden'), 1200);
+                            });
+                        }, 1500);
+                    });
+                }
+
+                const aiObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            runAiChat();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.4 });
+                aiObserver.observe(aiSection);
+            }
         });
 
         // 3. Reserva Rápida — roteiro, data, pessoas e nome → mensagem pronta no WhatsApp (painel sempre aberto)
@@ -1108,32 +1717,9 @@
                     'Passeio: ' + selectedTour + '\n' +
                     'Data: ' + dataFmt + '\n' +
                     'Pessoas: ' + peopleInput.value;
-                window.open('https://wa.me/5531999999999?text=' + encodeURIComponent(msg), '_blank');
+                window.open('https://wa.me/553195216545?text=' + encodeURIComponent(msg), '_blank');
             });
         })();
-
-        function createParticle(container) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            const size = Math.random() * 3 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            particle.style.left = `${Math.random() * 100}vw`;
-            
-            const duration = Math.random() * 15 + 10;
-            particle.style.animationDuration = `${duration}s`;
-            
-            const delay = Math.random() * 10;
-            particle.style.animationDelay = `-${delay}s`;
-
-            container.appendChild(particle);
-
-            particle.addEventListener('animationiteration', () => {
-                particle.style.left = `${Math.random() * 100}vw`;
-            });
-        }
     </script>
 </body>
 </html>
