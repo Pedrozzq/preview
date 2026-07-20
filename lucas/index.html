@@ -104,16 +104,6 @@
                 linear-gradient(to bottom, rgba(10,7,5,0.75), rgba(10,7,5,0.55) 40%, rgba(10,7,5,0.85));
         }
 
-        .bg-iron-texture {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MCA4MCc+PHBhdGggZD0nTTAsNDAgQzEwLDIwIDMwLDIwIDQwLDQwIEM1MCw2MCA3MCw2MCA4MCw0MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGE5YTg3JyBzdHJva2Utd2lkdGg9JzEnLz48cGF0aCBkPSdNMCw0MCBDMTAsNjAgMzAsNjAgNDAsNDAgQzUwLDIwIDcwLDIwIDgwLDQwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4YTlhODcnIHN0cm9rZS13aWR0aD0nMScvPjxjaXJjbGUgY3g9JzQwJyBjeT0nNDAnIHI9JzIuNScgZmlsbD0nIzhhOWE4NycvPjwvc3ZnPg==');
-            background-repeat: repeat;
-            background-size: 80px 80px;
-            opacity: 0.05;
-        }
-
         /* Efeito Vidro Fosco (Glassmorphism) sobre madeira/pedra-sabão escura */
         .glass-panel {
             background: rgba(28, 20, 16, 0.6);
@@ -344,6 +334,8 @@
 
         .booking-field {
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 0.8rem;
             padding: 0.75rem 0.9rem;
@@ -355,6 +347,19 @@
             color-scheme: dark;
         }
         .booking-field::placeholder { color: rgba(248, 250, 252, 0.35); }
+        /* input[type=date] no mobile: a UA soma o ícone do calendário fora da
+           caixa declarada em alguns navegadores, estourando a largura do
+           cartão. Removemos a aparência nativa (o clique já abre o seletor
+           via JS) para manter a largura sob controle. */
+        #bookingDate.booking-field {
+            -webkit-appearance: none;
+            appearance: none;
+            min-width: 0;
+        }
+        #bookingDate.booking-field::-webkit-calendar-picker-indicator {
+            margin-left: 0.5rem;
+            padding: 0;
+        }
         .booking-field:focus { border-color: #5c6b58; box-shadow: 0 0 0 3px rgba(92, 107, 88, 0.18); }
         .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
         .booking-sublabel {
@@ -539,38 +544,14 @@
             100% { transform: translateX(-50%); }
         }
 
-        #particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .particle {
-            position: absolute;
-            background-color: #8a9a87;
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: floatUp linear infinite;
-        }
-        @keyframes floatUp {
-            from { transform: translateY(100vh) scale(1); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            to { transform: translateY(-100px) scale(0.5); opacity: 0; }
-        }
-
         /* =====================================================================
-           ABERTURA — fundo transparente (sem moldura/círculo), a foto
-           enviada (img/loading.png) surge suavemente e uma barra de
-           carregamento dourada preenche em 1,5s.
-           O disparo é feito via JS somente quando a imagem já está
-           carregada (evita a abertura sumir antes da foto aparecer em
-           conexões lentas) — classe .intro-ready. Sem JS, ou se a imagem
-           falhar, um fallback em CSS (abaixo) garante que a tela nunca
-           fique travada. Neutralizada em reduced-motion.
+           ABERTURA — só o fundo do próprio site (visível através do overlay
+           transparente) e uma barra de carregamento dourada, preenchendo em 2s.
+           O disparo é feito via JS somente após o "load" da página (todos os
+           recursos, incluindo imagens de fundo, já carregados) — classe
+           .intro-ready. Sem JS, ou se o load demorar demais, um fallback em
+           CSS (abaixo) garante que a tela nunca fique travada. Neutralizada
+           em reduced-motion.
            ===================================================================== */
         .intro-overlay {
             position: fixed;
@@ -581,34 +562,47 @@
             align-items: center;
             justify-content: center;
             gap: 1.1rem;
-            background: transparent;
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            /* Opaco (mesma paleta do fundo do site) — o conteúdo da página
+               não deve aparecer atrás durante o carregamento. */
+            background:
+                radial-gradient(ellipse at 50% 45%, rgba(92, 107, 88, 0.18), transparent 60%),
+                radial-gradient(ellipse at center, #241a14 0%, #0a0705 78%);
             /* Fallback: some sozinha em 6s se o JS não disparar .intro-ready por algum motivo */
             animation: introDismiss 0.5s ease forwards;
             animation-delay: 6s;
         }
         .intro-overlay.intro-ready {
             animation: introDismiss 0.5s ease forwards;
-            animation-delay: 1.5s;
+            animation-delay: 2s;
         }
         .intro-photo {
-            width: 110px;
-            height: 110px;
+            width: 108px;
+            height: 108px;
             object-fit: cover;
             border-radius: 1rem;
             opacity: 0;
-            transform: scale(1.15);
-            filter: brightness(0.4) saturate(0.5) blur(8px);
+            transform: scale(1.12);
+            filter: brightness(0.45) saturate(0.5) blur(6px);
             box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
         }
         .intro-overlay.intro-ready .intro-photo {
-            animation: introEmerge 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation: introEmerge 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         @keyframes introEmerge {
-            0%   { opacity: 0; transform: scale(1.15); filter: brightness(0.4) saturate(0.5) blur(8px); }
-            55%  { opacity: 1; filter: brightness(0.9) saturate(0.8) blur(2px); }
+            0%   { opacity: 0; transform: scale(1.12); filter: brightness(0.45) saturate(0.5) blur(6px); }
+            60%  { opacity: 1; filter: brightness(0.9) saturate(0.8) blur(1px); }
             100% { opacity: 1; transform: scale(1); filter: brightness(1) saturate(1) blur(0); }
+        }
+        .intro-title {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .intro-overlay.intro-ready .intro-title {
+            animation: introRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.6s;
+        }
+        @keyframes introRise {
+            to { opacity: 1; transform: translateY(0); }
         }
         .intro-loadbar {
             width: 160px;
@@ -624,23 +618,10 @@
             background: linear-gradient(90deg, #5c6b58, #8a9a87);
         }
         .intro-overlay.intro-ready .intro-loadbar-fill {
-            animation: introLoadbar 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            animation: introLoadbar 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
         }
         @keyframes introLoadbar {
             to { width: 100%; }
-        }
-        .intro-title, .intro-sub {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        .intro-overlay.intro-ready .intro-title,
-        .intro-overlay.intro-ready .intro-sub {
-            animation: introRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .intro-overlay.intro-ready .intro-title { animation-delay: 0.8s; }
-        .intro-overlay.intro-ready .intro-sub { animation-delay: 0.95s; }
-        @keyframes introRise {
-            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes introDismiss {
             to { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -728,7 +709,7 @@
            essa rolagem extra, e só então o próximo cartão começa a cobri-lo. */
         .stack-item {
             position: relative;
-            min-height: 145vh;
+            min-height: 108vh;
         }
         .stack-item:last-child {
             min-height: 0;
@@ -858,14 +839,97 @@
         }
 
         /* =====================================================================
+           PERGUNTE A UMA IA — mockup de chat com efeito de máquina de escrever
+           ===================================================================== */
+        .ai-bubble {
+            padding: 0.7rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: 92%;
+            min-height: 1.7em;
+        }
+        .ai-bubble-user {
+            align-self: flex-end;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom-right-radius: 0.3rem;
+            color: #f8fafc;
+        }
+        .ai-bubble-answer {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(92, 107, 88, 0.28), rgba(51, 61, 49, 0.28));
+            border: 1px solid rgba(138, 154, 135, 0.35);
+            border-bottom-left-radius: 0.3rem;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ai-bubble-answer:hover,
+        .ai-bubble-answer:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.55);
+            border-color: rgba(138, 154, 135, 0.6);
+        }
+        .ai-wa-icon {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .ai-bubble-answer:hover .ai-wa-icon,
+        .ai-bubble-answer:focus-visible .ai-wa-icon {
+            opacity: 1;
+        }
+        .ai-caret {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: currentColor;
+            margin-left: 1px;
+            vertical-align: middle;
+            animation: aiCaretBlink 0.9s step-end infinite;
+        }
+        .ai-caret.hidden {
+            display: none;
+        }
+        @keyframes aiCaretBlink {
+            50% { opacity: 0; }
+        }
+        .ai-typing-dots {
+            display: inline-flex;
+            gap: 3px;
+        }
+        .ai-typing-dots.hidden {
+            display: none;
+        }
+        .ai-typing-dots span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+            animation: aiDotBounce 1.2s ease-in-out infinite;
+        }
+        .ai-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+        .ai-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes aiDotBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        /* =====================================================================
            PREFERS-REDUCED-MOTION — neutraliza animações de zoom/blur/translação
            (abertura, partículas, brilhos e desenhos), preservando o
-           conteúdo sempre visível e 100% funcional. A abertura com a foto
-           continua APARECENDO normalmente (só sem o efeito de zoom/desfoque);
+           conteúdo sempre visível e 100% funcional. A barra de carregamento
+           continua aparecendo normalmente, só sem a animação de preenchimento;
            o carrossel de categorias (marquee) segue deslizando propositalmente.
            ===================================================================== */
         @media (prefers-reduced-motion: reduce) {
-            .intro-photo, .intro-title, .intro-sub {
+            .intro-photo, .intro-title {
                 animation: none !important;
                 opacity: 1 !important;
                 transform: none !important;
@@ -874,6 +938,13 @@
             .intro-loadbar-fill {
                 animation: none !important;
                 width: 100% !important;
+            }
+            .ai-caret {
+                animation: none !important;
+                display: none !important;
+            }
+            .ai-typing-dots span {
+                animation: none !important;
             }
             .animate-enter {
                 animation: none !important;
@@ -894,9 +965,6 @@
             .link-card.highlight::before {
                 animation: none !important;
             }
-            #particles-container {
-                display: none !important;
-            }
         }
     </style>
 </head>
@@ -906,17 +974,14 @@
     <!-- Abertura: medalhão esculpido em pedra-sabão, referência aos frontões de Aleijadinho.
          Curta, decorativa e ignorada por leitores de tela; some sozinha em ~2s. -->
     <div class="intro-overlay" aria-hidden="true">
-        <img src="img/loading.png" alt="" class="intro-photo">
-        <div class="intro-loadbar"><div class="intro-loadbar-fill"></div></div>
+        <img src="img/loading.webp" alt="" class="intro-photo">
         <p class="intro-title font-decorative text-2xl text-white tracking-widest">Lucas Guia Você</p>
-        <p class="intro-sub text-ouro-light text-xs uppercase tracking-[0.3em]">Guia em Ouro Preto</p>
+        <div class="intro-loadbar"><div class="intro-loadbar-fill"></div></div>
     </div>
 
     <div class="bg-image" aria-hidden="true"></div>
     <div class="bg-trilha" aria-hidden="true"></div>
     <div class="bg-vignette" aria-hidden="true"></div>
-    <div class="bg-iron-texture" aria-hidden="true"></div>
-    <div id="particles-container"></div>
 
     <div class="w-full max-w-lg flex flex-col gap-6 relative z-10">
         
@@ -1119,8 +1184,36 @@
             </svg>
         </div>
 
+        <!-- Pergunte a uma IA: mockup de chat com efeito de digitação, disparado ao entrar na tela -->
+        <section id="aiChat" class="glass-panel baroque-frame rounded-3xl p-6 w-full fade-scroll">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-ouro-light shrink-0">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+                </div>
+                <p class="text-xs uppercase tracking-[0.15em] text-slate-400 font-medium">Pergunte a uma IA</p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <div class="ai-bubble ai-bubble-user">
+                    <span id="aiQuestion" class="ai-typing-text"></span><span class="ai-caret" id="aiCaretQ"></span>
+                </div>
+                <a href="https://wa.me/553195216545?text=Ol%C3%A1%20Lucas!%20Uma%20IA%20me%20disse%20que%20voc%C3%AA%20%C3%A9%20o%20melhor%20guia%20de%20Ouro%20Preto%2C%20quero%20saber%20mais%20sobre%20os%20passeios!" target="_blank" rel="noopener" class="ai-bubble ai-bubble-answer" id="aiAnswerBubble" aria-label="Conversar com Lucas no WhatsApp">
+                    <i class="fa-solid fa-sparkles text-ouro-light text-xs"></i>
+                    <span id="aiTyping" class="ai-typing-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                    <span id="aiAnswer" class="ai-typing-text"></span><span class="ai-caret" id="aiCaretA"></span>
+                    <i class="fa-brands fa-whatsapp text-[#25D366] text-xs ai-wa-icon"></i>
+                </a>
+            </div>
+        </section>
+
+        <div class="baroque-divider fade-scroll" aria-hidden="true">
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path class="divider-path" pathLength="1" d="M0,10 C40,-4 60,24 100,10 C140,-4 160,24 200,10 C240,-4 260,24 300,10"></path>
+            </svg>
+        </div>
+
         <!-- Perfil do Instagram: mesma identidade visual do card principal, com preview de 6 fotos -->
-        <section class="glass-panel baroque-frame rounded-3xl p-6 w-full fade-scroll">
+        <section class="glass-panel baroque-frame-alt rounded-3xl p-6 w-full fade-scroll">
             <div class="flex items-center justify-between mb-4 gap-3">
                 <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="flex items-center gap-3 min-w-0">
                     <span class="ig-avatar-ring shrink-0">
@@ -1136,24 +1229,39 @@
                 </a>
             </div>
 
+            <div class="grid grid-cols-3 text-center mb-4 py-3 border-y border-white/10">
+                <div>
+                    <span class="block text-white font-bold text-sm">308</span>
+                    <span class="block text-slate-400 text-[11px]">Publicações</span>
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-sm">6.577</span>
+                    <span class="block text-slate-400 text-[11px]">Seguidores</span>
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-sm">1.168</span>
+                    <span class="block text-slate-400 text-[11px]">Seguindo</span>
+                </div>
+            </div>
+
             <div class="grid grid-cols-3 gap-1.5">
                 <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed1.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed2.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed3.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed5.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
+                    <img src="img/fed6.webp" alt="Foto no Instagram de Lucas" loading="lazy">
+                </a>
+                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
                     <img src="img/sao-francisco-assis.webp" alt="São Francisco de Assis no Instagram de Lucas" loading="lazy">
-                </a>
-                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
-                    <img src="img/basilica-pilar.webp" alt="Basílica do Pilar no Instagram de Lucas" loading="lazy">
-                </a>
-                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
-                    <img src="img/santa-efigenia.webp" alt="Santa Efigênia no Instagram de Lucas" loading="lazy">
-                </a>
-                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
-                    <img src="img/mina-do-chico-rei-ouro-preto.webp" alt="Mina do Chico Rei no Instagram de Lucas" loading="lazy">
-                </a>
-                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
-                    <img src="img/andorinhas.webp" alt="Parque das Andorinhas no Instagram de Lucas" loading="lazy">
-                </a>
-                <a href="https://instagram.com/lucasguiavoce" target="_blank" rel="noopener" class="ig-tile">
-                    <img src="img/tiradentes%20e%20sao%20joao%20del%20rei.webp" alt="Tiradentes no Instagram de Lucas" loading="lazy">
                 </a>
             </div>
 
@@ -1168,8 +1276,8 @@
             </svg>
         </div>
 
-        <section id="roteiros" class="w-full fade-scroll">
-            <div class="flex items-center gap-4 mb-6 px-1">
+        <section id="roteiros" class="w-full">
+            <div class="flex items-center gap-4 mb-6 px-1 fade-scroll">
                 <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner shrink-0">
                     <i class="fa-solid fa-cross"></i>
                 </div>
@@ -1249,13 +1357,13 @@
     </div>
 
     <script>
-        // 0. Abertura — só inicia a animação de 1,5s quando a foto (img/loading.png)
-        // já estiver de fato carregada, para nunca sumir antes de aparecer em
-        // conexões lentas. Timeout de segurança caso o load nunca dispare.
+        // 0. Abertura — só inicia a barra de carregamento de 2s depois que a
+        // página (incluindo as imagens de fundo) já terminou de carregar,
+        // para nunca sumir antes do site estar pronto. Timeout de segurança
+        // caso o "load" demore demais.
         (function () {
             const overlay = document.querySelector('.intro-overlay');
-            const photo = overlay && overlay.querySelector('.intro-photo');
-            if (!overlay || !photo) return;
+            if (!overlay) return;
 
             let started = false;
             function reveal() {
@@ -1264,24 +1372,15 @@
                 overlay.classList.add('intro-ready');
             }
 
-            if (photo.complete && photo.naturalWidth > 0) {
+            if (document.readyState === 'complete') {
                 reveal();
             } else {
-                photo.addEventListener('load', reveal, { once: true });
-                photo.addEventListener('error', reveal, { once: true });
+                window.addEventListener('load', reveal, { once: true });
                 setTimeout(reveal, 4000);
             }
         })();
 
-        // 1. Sistema de partículas (Pó de Ouro)
         document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById('particles-container');
-            const particleCount = 25; // Quantidade de partículas simultâneas
-
-            for (let i = 0; i < particleCount; i++) {
-                createParticle(container);
-            }
-
             // 2. Intersection Observer para animar seções no Scroll
             const observerOptions = {
                 root: null,
@@ -1317,6 +1416,67 @@
             document.querySelectorAll('.stack-card').forEach(card => {
                 stackObserver.observe(card);
             });
+
+            // 2c. "Pergunte a uma IA" — efeito de máquina de escrever, disparado
+            // uma única vez quando a seção entra na tela.
+            const aiSection = document.getElementById('aiChat');
+            if (aiSection) {
+                const qEl = document.getElementById('aiQuestion');
+                const aEl = document.getElementById('aiAnswer');
+                const caretQ = document.getElementById('aiCaretQ');
+                const caretA = document.getElementById('aiCaretA');
+                const answerBubble = document.getElementById('aiAnswerBubble');
+                const dots = document.getElementById('aiTyping');
+                const question = 'Qual o melhor guia de Ouro Preto?';
+                const answer = 'Lucas Guia Você 🏆';
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                function typeInto(el, text, speed, onDone) {
+                    let i = 0;
+                    (function step() {
+                        if (i <= text.length) {
+                            el.textContent = text.slice(0, i);
+                            i++;
+                            setTimeout(step, speed);
+                        } else if (onDone) {
+                            onDone();
+                        }
+                    })();
+                }
+
+                function runAiChat() {
+                    if (reduceMotion) {
+                        qEl.textContent = question;
+                        caretQ.classList.add('hidden');
+                        answerBubble.style.opacity = '1';
+                        dots.classList.add('hidden');
+                        aEl.textContent = answer;
+                        caretA.classList.add('hidden');
+                        return;
+                    }
+                    typeInto(qEl, question, 38, () => {
+                        caretQ.classList.add('hidden');
+                        answerBubble.style.opacity = '1';
+                        // Delay de 1,5s (com os "três pontinhos" de digitação) antes da resposta começar.
+                        setTimeout(() => {
+                            dots.classList.add('hidden');
+                            typeInto(aEl, answer, 55, () => {
+                                setTimeout(() => caretA.classList.add('hidden'), 1200);
+                            });
+                        }, 1500);
+                    });
+                }
+
+                const aiObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            runAiChat();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.4 });
+                aiObserver.observe(aiSection);
+            }
         });
 
         // 3. Reserva Rápida — roteiro, data, pessoas e nome → mensagem pronta no WhatsApp (painel sempre aberto)
@@ -1551,29 +1711,6 @@
                 window.open('https://wa.me/553195216545?text=' + encodeURIComponent(msg), '_blank');
             });
         })();
-
-        function createParticle(container) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            const size = Math.random() * 3 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            particle.style.left = `${Math.random() * 100}vw`;
-            
-            const duration = Math.random() * 15 + 10;
-            particle.style.animationDuration = `${duration}s`;
-            
-            const delay = Math.random() * 10;
-            particle.style.animationDelay = `-${delay}s`;
-
-            container.appendChild(particle);
-
-            particle.addEventListener('animationiteration', () => {
-                particle.style.left = `${Math.random() * 100}vw`;
-            });
-        }
     </script>
 </body>
 </html>
