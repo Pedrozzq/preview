@@ -253,10 +253,12 @@
         }
 
         /* ===================== SEÇÕES EMPILHADAS (STICKY STACK) =====================
-           A seção 1 (cartão) fica "presa" no topo via position: sticky enquanto
-           a seção 2 (preview do Instagram) rola por cima e a cobre. Nenhum
-           ancestral pode ter overflow diferente de visible, senão o sticky
-           deixa de funcionar. */
+           No desktop, a seção 1 (cartão) fica "presa" no topo via position: sticky
+           enquanto a seção 2 (preview do Instagram) rola por cima e a cobre.
+           No mobile o sticky fica DESLIGADO (ver media query no fim do arquivo):
+           ele depende de a seção 1 caber exatamente na altura da tela, o que
+           varia muito entre navegadores/celulares — para garantir que o rodapé
+           sempre apareça, no mobile a página simplesmente rola normal. */
         .stack-wrap {
             width: 100%;
             position: relative;
@@ -270,8 +272,7 @@
             align-items: center;
             padding: 40px 20px;
             background-color: #2b2b2b;
-            position: sticky;
-            top: 0;
+            position: relative;
             z-index: 1;
         }
 
@@ -304,16 +305,16 @@
 
         /* No mobile o cartão não pode ser mais alto que a tela: como a seção 1
            fica "presa" (sticky) assim que toca o topo, qualquer parte que
-           ultrapasse a viewport nunca seria vista. Limitamos a altura à tela
-           e encolhemos banner/espaçamentos para tudo caber junto, sem
-           precisar de scroll dentro do cartão. */
+           ultrapasse a viewport nunca seria vista. Como o sticky fica desligado
+           no mobile (a seção 1 rola normal, veja acima), aqui só encolhemos
+           banner/espaçamentos para o cartão ficar mais compacto e agradável —
+           não é mais uma exigência técnica, é só estética. */
         @media (max-width: 899px) {
             #card-stack-back {
                 padding: 20px 16px;
             }
             .phone-container {
                 min-height: 0;
-                max-height: calc(100dvh - 40px);
             }
             .header-banner {
                 height: 150px;
@@ -330,13 +331,14 @@
                cabe na seção 1, sem precisar rolar dentro do cartão. */
             .links-container {
                 padding: 14px 22px 22px 22px;
-                overflow-y: visible;
+                overflow: hidden;
+                touch-action: none;
             }
             .profile-info {
                 margin-bottom: 10px !important;
             }
             .profile-info h1 {
-                font-size: 17px !important;
+                font-size: 22px !important;
                 color: #111827 !important;
             }
             .save-contact-btn {
@@ -635,6 +637,8 @@
         @media (min-width: 900px) {
             #card-stack-back {
                 padding: 40px 20px;
+                position: sticky;
+                top: 0;
             }
 
             .ig-card {
@@ -724,7 +728,7 @@
             <!-- Informações do Perfil -->
             <div class="mb-6 profile-info">
                 <div class="flex items-center justify-between gap-3">
-                    <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Igor Ramalho</h1>
+                    <h1 class="text-3xl font-bold text-gray-800 tracking-tight">Igor Ramalho</h1>
                     <button onclick="downloadVCard()" aria-label="Salvar Contato" title="Salvar Contato" class="save-contact-btn shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-gray-800 hover:text-gray-800 active:scale-95">
                         <i class="fa-regular fa-address-book text-xs"></i>
                         <span class="text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap">Salvar Contato</span>
