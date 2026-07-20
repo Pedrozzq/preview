@@ -114,35 +114,46 @@
             animation: preloaderSpin 3.6s linear infinite reverse;
         }
 
-        /* Moldura circular preenchida totalmente pela logo, com respiração
-           sutil de escala e brilho dourado pulsante ao redor. */
+        /* Logo grande centralizada dentro do anel, sem moldura/fundo atrás —
+           o brilho e o "shimmer" usam a própria arte da logo (canal alpha)
+           como referência, então só acendem em cima do desenho, nunca no
+           fundo transparente ao redor das letras. */
         .preloader-icon {
             position: relative;
             width: 108px;
             height: 108px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #1a1a1a;
-            box-shadow: 0 0 0 1px rgba(196, 154, 69, 0.3);
-            animation: preloaderBreathe 2.6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: preloaderBreathe 1.5s ease-in-out infinite;
         }
 
         .preloader-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 76%;
+            height: 76%;
+            object-fit: contain;
             display: block;
+            animation: preloaderIconGlow 1.5s ease-in-out infinite;
         }
 
-        /* Brilho de luz varrendo a logo, dando um toque premium/moderno */
+        /* Brilho de luz varrendo somente a silhueta da logo: a própria imagem
+           é usada como máscara, recortando o degradê nas letras "SB". */
         .preloader-icon::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.5) 50%, transparent 65%);
+            inset: 12%;
+            background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.95) 50%, transparent 65%);
             background-size: 260% 260%;
+            -webkit-mask-image: url('img/sbr.webp');
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('img/sbr.webp');
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
             mix-blend-mode: overlay;
-            animation: preloaderShimmer 2.6s ease-in-out infinite;
+            animation: preloaderShimmer 1.5s ease-in-out infinite;
         }
 
         .preloader-text-wrap {
@@ -203,8 +214,15 @@
         }
 
         @keyframes preloaderBreathe {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 1px rgba(196, 154, 69, 0.3), 0 0 16px rgba(196, 154, 69, 0.25); }
-            50%      { transform: scale(1.06); box-shadow: 0 0 0 1px rgba(196, 154, 69, 0.55), 0 0 32px rgba(196, 154, 69, 0.55); }
+            0%, 100% { transform: scale(1); }
+            50%      { transform: scale(1.06); }
+        }
+
+        /* Brilho ao redor das letras (drop-shadow segue o canal alpha da
+           imagem, então não "vaza" para o fundo transparente da logo) */
+        @keyframes preloaderIconGlow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(196, 154, 69, 0.45)); }
+            50%      { filter: drop-shadow(0 0 18px rgba(196, 154, 69, 0.9)); }
         }
 
         @keyframes preloaderShimmer {
@@ -217,7 +235,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .preloader-content, .preloader-bg-glow, .preloader-ring, .preloader-ring::before,
-            .preloader-icon, .preloader-icon::after, .preloader-text-wrap, .preloader-bar::before {
+            .preloader-icon, .preloader-icon img, .preloader-icon::after, .preloader-text-wrap, .preloader-bar::before {
                 animation: none;
             }
             .preloader-text-wrap { opacity: 1; transform: none; }
