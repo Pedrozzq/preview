@@ -305,15 +305,66 @@
         /* No mobile o cartão não pode ser mais alto que a tela: como a seção 1
            fica "presa" (sticky) assim que toca o topo, qualquer parte que
            ultrapasse a viewport nunca seria vista. Limitamos a altura à tela
-           e deixamos a lista de links (.links-container, que já tem
-           overflow-y: auto) rolar internamente para caber tudo. */
+           e encolhemos banner/espaçamentos para tudo caber junto, sem
+           precisar de scroll dentro do cartão. */
         @media (max-width: 899px) {
             #card-stack-back {
-                padding: 24px 16px;
+                padding: 20px 16px;
             }
             .phone-container {
                 min-height: 0;
-                max-height: calc(100dvh - 48px);
+                max-height: calc(100dvh - 40px);
+            }
+            .header-banner {
+                height: 150px;
+            }
+            .floating-logo {
+                width: 56px;
+                height: 56px;
+                bottom: 14px;
+                right: 18px;
+            }
+
+            /* Sobe nome, descrição e botões: menos espaço no topo e entre
+               os itens, para tudo caber bem visível na tela sem cortar
+               e sem precisar rolar dentro do cartão. */
+            .links-container {
+                padding: 12px 22px 76px 22px;
+                overflow-y: visible;
+            }
+            .profile-info {
+                margin-bottom: 10px !important;
+            }
+            .profile-info h1 {
+                font-size: 19px !important;
+                color: #111827 !important;
+            }
+            .profile-info h2 {
+                margin-top: 2px !important;
+            }
+            .profile-info p {
+                margin-top: 5px !important;
+                font-size: 12px !important;
+                line-height: 1.35 !important;
+            }
+            .links-container .space-y-4 > * + * {
+                margin-top: 4px !important;
+            }
+            .link-item {
+                padding-top: 4px !important;
+                padding-bottom: 4px !important;
+            }
+            .link-item .w-10 {
+                width: 34px !important;
+                height: 34px !important;
+                margin-right: 12px !important;
+            }
+            .floating-button-container {
+                bottom: 14px;
+            }
+            .floating-button-container button {
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
             }
         }
 
@@ -684,7 +735,7 @@
         <main class="links-container">
             
             <!-- Informações do Perfil -->
-            <div class="mb-6">
+            <div class="mb-6 profile-info">
                 <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Igor Ramalho</h1>
                 <h2 class="text-sm font-semibold text-gray-600 mt-1 uppercase tracking-wider">Advogado</h2>
                 <p class="text-sm text-gray-500 mt-3 italic leading-relaxed">
