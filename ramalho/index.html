@@ -302,6 +302,21 @@
             flex-direction: column;
         }
 
+        /* No mobile o cartão não pode ser mais alto que a tela: como a seção 1
+           fica "presa" (sticky) assim que toca o topo, qualquer parte que
+           ultrapasse a viewport nunca seria vista. Limitamos a altura à tela
+           e deixamos a lista de links (.links-container, que já tem
+           overflow-y: auto) rolar internamente para caber tudo. */
+        @media (max-width: 899px) {
+            #card-stack-back {
+                padding: 24px 16px;
+            }
+            .phone-container {
+                min-height: 0;
+                max-height: calc(100dvh - 48px);
+            }
+        }
+
         /* Banner superior com a imagem e a curva */
         .header-banner {
             position: relative;
