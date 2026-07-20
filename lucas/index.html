@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas | Guia de Turismo em Ouro Preto</title>
+    <meta name="description" content="Descubra os segredos, a história e a arte de Ouro Preto com Lucas, seu guia turístico privativo.">
+    
+    <!-- Google Fonts: Cinzel (Monumental/Barroca, referência às inscrições em pedra-sabão), Lora (Clássica/Histórica) e Inter (Moderna/Legível) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ouro: {
+                            light: '#fde68a',
+                            DEFAULT: '#d97706', // Tom de ouro envelhecido
+                            dark: '#92400e'
+                        },
+                        barroco: {
+                            DEFAULT: '#4c1d95', // Roxo profundo
+                            dark: '#1e1b4b'
+                        },
+                        pedra: {
+                            light: '#8a9a87',
+                            DEFAULT: '#5c6b58', // Pedra-sabão, matéria-prima de Aleijadinho
+                            dark: '#333d31'
+                        },
+                        madeira: {
+                            DEFAULT: '#1c1410', // Talha dourada / madeira envelhecida
+                            dark: '#0a0705'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                        display: ['Cinzel', 'serif'],
+                        decorative: ['"Cinzel Decorative"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0705;
+            color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Camada 1: Centro Histórico - casario colonial sobre a serra de Ouro Preto */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65%;
+            background-image: url('https://images.unsplash.com/photo-1615510025370-0b4c08637106?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            opacity: 0.22;
+            z-index: -3;
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+        }
+
+        /* Camada 2: Trilhas da Serra - estradas e vales que cercam Ouro Preto, ancorada ao rodapé */
+        .bg-trilha {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background-image: url('https://images.unsplash.com/photo-1682347812583-7855d5debecd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.16;
+            z-index: -3;
+            -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+            mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+        }
+
+        /* Vinheta dourada + textura de ferro forjado (grades das varandas coloniais) */
+        .bg-vignette {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(217, 119, 6, 0.12), transparent 55%),
+                radial-gradient(ellipse at 50% 100%, rgba(92, 107, 88, 0.15), transparent 60%),
+                linear-gradient(to bottom, rgba(10,7,5,0.75), rgba(10,7,5,0.55) 40%, rgba(10,7,5,0.85));
+        }
+
+        .bg-iron-texture {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZD0iTTAsNDAgQzEwLDIwIDMwLDIwIDQwLDQwIEM1MCw2MCA3MCw2MCA4MCw0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNMCw0MCBDMTAsNjAgMzAsNjAgNDAsNDAgQzUwLDIwIDcwLDIwIDgwLDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMSIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjIuNSIgZmlsbD0iI2Q0YTAxNyIvPjwvc3ZnPgo=');
+            background-repeat: repeat;
+            background-size: 80px 80px;
+            opacity: 0.05;
+        }
+
+        /* Efeito Vidro Fosco (Glassmorphism) sobre madeira/pedra-sabão escura */
+        .glass-panel {
+            background: rgba(28, 20, 16, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(217, 119, 6, 0.18);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        /* Talha dourada: molduras de canto inspiradas nas volutas de altares barrocos */
+        .baroque-frame::before,
+        .baroque-frame::after {
+            content: '';
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNOCw5MiBDOCw1MCA4LDggNTAsOCBDODIsOCA5MiwyOCA5Miw0NSBDOTIsNjIgNzYsNjggNjQsNjAgQzU1LDU0IDU4LDQwIDcwLDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBjeD0iNzAiIGN5PSI0MCIgcj0iNC41IiBmaWxsPSIjZDRhMDE3Ii8+PHBhdGggZD0iTTIwLDgwIEMyMCw1NSAyMiwzNSA0MCwyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz48L3N2Zz4K');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+        .baroque-frame::before {
+            top: 10px;
+            left: 10px;
+        }
+        .baroque-frame::after {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(180deg);
+        }
+        .baroque-frame-alt::before {
+            top: 10px;
+            right: 10px;
+            left: auto;
+            transform: scaleX(-1);
+        }
+        .baroque-frame-alt::after {
+            bottom: 10px;
+            left: 10px;
+            right: auto;
+            transform: rotate(180deg) scaleX(-1);
+        }
+
+        .shell-ornament {
+            width: 90px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTEwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjkiPjxwYXRoIGQ9Ik0xMDAsOTUgTDEwMCwxNSIvPjxwYXRoIGQ9Ik0xMDAsOTUgTDY4LDIwIi8+PHBhdGggZD0iTTEwMCw5NSBMMTMyLDIwIi8+PHBhdGggZD0iTTEwMCw5NSBMNDIsMzIiLz48cGF0aCBkPSJNMTAwLDk1IEwxNTgsMzIiLz48cGF0aCBkPSJNMTAwLDk1IEwyMCw1MiIvPjxwYXRoIGQ9Ik0xMDAsOTUgTDE4MCw1MiIvPjwvZz48cGF0aCBkPSJNMTQsNTggUTEwMCwtMTggMTg2LDU4IiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMi41Ii8+PHBhdGggZD0iTTMwLDk1IFExMDAsNjAgMTcwLDk1IiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjciLz48L3N2Zz4K');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .azulejo-strip {
+            height: 10px;
+            width: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMWUzYTVmIi8+PHBhdGggZD0iTTIwLDMgTDM3LDIwIEwyMCwzNyBMMywyMCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGU3ZmYiIHN0cm9rZS13aWR0aD0iMS40Ii8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMy41IiBmaWxsPSIjZTBlN2ZmIiBvcGFjaXR5PSIwLjYiLz48L3N2Zz4K');
+            background-repeat: repeat-x;
+            background-size: 26px 26px;
+            border-radius: 4px;
+            opacity: 0.85;
+        }
+
+        /* ===== Reserva Rápida — roteiro já aberto para seleção imediata ===== */
+        .booking-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(217, 119, 6, 0.28);
+            border-radius: 1.25rem;
+            padding: 1.4rem 1.3rem 1.5rem;
+        }
+        .booking-step-label {
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            color: #fde68a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.1rem 0 0.6rem;
+        }
+        .booking-step-label:first-child { margin-top: 0; }
+        .booking-step-label span.n {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #d97706;
+            color: #1c1410;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.62rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+        }
+        .tour-pick {
+            position: relative;
+            border-radius: 0.9rem;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            cursor: pointer;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+        .tour-pick img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .tour-pick:hover img { transform: scale(1.08); }
+        .tour-pick:hover { transform: translateY(-2px); border-color: rgba(217, 119, 6, 0.45); }
+        .tour-pick.selected { border-color: #d97706; box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.35); }
+        .tour-pick.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 0.4rem;
+            right: 0.4rem;
+            z-index: 3;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #d97706;
+            color: #1c1410;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.62rem;
+        }
+
+        /* ===== Box de descrição do roteiro selecionado ===== */
+        .tour-desc {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            border: 1px solid transparent;
+            transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, margin 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+        }
+        .tour-desc.open {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: 0.9rem;
+            padding: 1rem 1.1rem;
+            border-color: rgba(217, 119, 6, 0.28);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .tour-desc-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+        }
+        .tour-desc-head h3 { font-weight: 700; color: #fde68a; font-size: 1.02rem; line-height: 1.3; }
+        .tour-desc-price { display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem; font-weight: 700; color: #fff; font-size: 0.82rem; white-space: nowrap; shrink: 0; }
+        .tour-desc-body { font-size: 0.82rem; color: rgba(248, 250, 252, 0.85); line-height: 1.6; }
+        .tour-desc-body p { margin: 0 0 0.5rem 0; }
+        .tour-desc-body p.tour-desc-sub {
+            font-weight: 700;
+            color: #fde68a;
+            margin-top: 0.75rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .tour-desc-body ul { list-style: none; margin: 0 0 0.5rem 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+        .tour-desc-body ul li { padding-left: 1.15rem; position: relative; }
+        .tour-desc-body ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.18em;
+            font-size: 0.62rem;
+            color: #d97706;
+        }
+        .tour-desc-note { font-size: 0.72rem; color: rgba(248, 250, 252, 0.5); font-style: italic; margin-top: 0.4rem; }
+
+        /* ===== Continuação da reserva: só abre após escolher o roteiro ===== */
+        .booking-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;
+        }
+        .booking-details.open {
+            max-height: 900px;
+            opacity: 1;
+        }
+        .booking-field {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.8rem;
+            padding: 0.75rem 0.9rem;
+            font-size: 0.9rem;
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.05);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            color-scheme: dark;
+        }
+        .booking-field::placeholder { color: rgba(248, 250, 252, 0.35); }
+        .booking-field:focus { border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18); }
+        .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        .booking-sublabel {
+            display: block;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            color: rgba(248, 250, 252, 0.5);
+            margin-bottom: 0.3rem;
+        }
+        .booking-submit {
+            width: 100%;
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            padding: 1rem 1.25rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #d97706, #92400e);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 25px -8px rgba(217, 119, 6, 0.5);
+        }
+        .booking-submit:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); }
+        .booking-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+        .booking-hint { font-size: 0.68rem; color: rgba(248, 250, 252, 0.45); margin-top: 0.55rem; text-align: center; }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-enter {
+            opacity: 0;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Delays em cascata */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+
+        /* Animação para aparecer ao rolar a página */
+        .fade-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes borderPulse {
+            0% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(217, 119, 6, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+        }
+        .avatar-pulse {
+            animation: borderPulse 3s infinite;
+        }
+
+        .link-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 119, 6, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px -5px rgba(217, 119, 6, 0.2);
+        }
+
+        .link-card.highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(217, 119, 6, 0.15), transparent);
+            padding: 8px 0;
+            border-top: 1px solid rgba(217, 119, 6, 0.2);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 15s linear infinite;
+        }
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 20px;
+            color: #fde68a;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .particle {
+            position: absolute;
+            background-color: #fde68a;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(100vh) scale(1); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            to { transform: translateY(-100px) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<!-- Removido justify-center para permitir rolagem vertical fluida -->
+<body class="flex flex-col items-center py-10 px-4 sm:px-8 font-sans">
+
+    <div class="bg-image" aria-hidden="true"></div>
+    <div class="bg-trilha" aria-hidden="true"></div>
+    <div class="bg-vignette" aria-hidden="true"></div>
+    <div class="bg-iron-texture" aria-hidden="true"></div>
+    <div id="particles-container"></div>
+
+    <div class="w-full max-w-lg flex flex-col gap-6 relative z-10">
+        
+        <!-- Painel Principal de Links -->
+        <main class="glass-panel baroque-frame rounded-3xl p-6 sm:p-10 flex flex-col items-center w-full">
+
+            <header class="flex flex-col items-center w-full mb-6">
+                <!-- Cartela em concha, referência aos frontões esculpidos por Aleijadinho -->
+                <div class="shell-ornament animate-enter delay-1" aria-hidden="true"></div>
+
+                <!-- Foto do Perfil -->
+                <div class="relative mb-5 -mt-2 animate-enter delay-1">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-ouro avatar-pulse">
+                        <img src="img/perfil.jpg" alt="Lucas, Guia de Turismo em Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Ícone de verificado/destaque -->
+                    <div class="absolute bottom-1 right-1 bg-ouro text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-madeira shadow-lg">
+                        <i class="fa-solid fa-map-location-dot text-sm"></i>
+                    </div>
+                </div>
+
+                <h1 class="font-decorative text-3xl font-bold text-white mb-1 tracking-wide animate-enter delay-2">Lucas</h1>
+                <p class="text-ouro font-medium uppercase tracking-[0.15em] text-xs sm:text-sm mb-3 animate-enter delay-2">Guia em Ouro Preto & Região</p>
+
+                <p class="text-slate-300 text-center text-sm leading-relaxed max-w-[280px] animate-enter delay-3">
+                    Especialista em arte barroca, história do ciclo do ouro, trilhas da serra e roteiros privativos personalizados.
+                </p>
+            </header>
+
+            <div class="azulejo-strip mb-6 animate-enter delay-3" aria-hidden="true"></div>
+
+            <div class="w-full mb-8 animate-enter delay-3">
+                <div class="marquee-container rounded-lg">
+                    <div class="marquee-content">
+                        <!-- Itens repetidos para garantir que o scroll infinito seja contínuo -->
+                        <div class="marquee-item"><i class="fa-solid fa-person-hiking"></i> Trilhas da Serra</div>
+                        <div class="marquee-item"><i class="fa-solid fa-church"></i> Arte Barroca</div>
+                        <div class="marquee-item"><i class="fa-solid fa-city"></i> Centro Histórico</div>
+                        <div class="marquee-item"><i class="fa-solid fa-camera"></i> Mirantes Exclusivos</div>
+                        <div class="marquee-item"><i class="fa-solid fa-moon"></i> Lendas Noturnas</div>
+
+                        <div class="marquee-item"><i class="fa-solid fa-person-hiking"></i> Trilhas da Serra</div>
+                        <div class="marquee-item"><i class="fa-solid fa-church"></i> Arte Barroca</div>
+                        <div class="marquee-item"><i class="fa-solid fa-city"></i> Centro Histórico</div>
+                        <div class="marquee-item"><i class="fa-solid fa-camera"></i> Mirantes Exclusivos</div>
+                        <div class="marquee-item"><i class="fa-solid fa-moon"></i> Lendas Noturnas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reserva Rápida: roteiro já aberto para seleção, sem precisar clicar em botão -->
+            <div id="booking" class="w-full mb-4 animate-enter delay-4">
+                <p class="booking-step-label !mt-0 !mb-3 text-xs"><i class="fa-solid fa-scroll text-ouro-light"></i> Monte seu Passeio</p>
+                <div class="booking-card">
+                    <p class="booking-step-label"><span class="n">1</span> Escolha seu roteiro</p>
+                    <div class="tour-grid" id="tourGrid">
+                        <div class="tour-pick" data-name="Tiradentes e São João Del Rei (Circuito Estrada Real)" tabindex="0" role="button" aria-pressed="false" aria-label="Tiradentes e São João Del Rei">
+                            <img src="img/tiradentes%20e%20sao%20joao%20del%20rei.png" alt="Tiradentes e São João Del Rei" loading="lazy">
+                        </div>
+                        <div class="tour-pick" data-name="Parque Natural das Andorinhas - Privativo" tabindex="0" role="button" aria-pressed="false" aria-label="Parque Natural das Andorinhas">
+                            <img src="img/andorinhas.png" alt="Parque Natural das Andorinhas" loading="lazy">
+                        </div>
+                        <div class="tour-pick" data-name="Mariana - Privativo" tabindex="0" role="button" aria-pressed="false" aria-label="Mariana">
+                            <img src="https://images.unsplash.com/photo-1700754491355-3d6858745045?q=80&w=400&auto=format&fit=crop" alt="Mariana" loading="lazy">
+                        </div>
+                        <div class="tour-pick" data-name="Ouro Preto - Privativo" tabindex="0" role="button" aria-pressed="false" aria-label="Ouro Preto">
+                            <img src="img/ouropreto%20privativo.png" alt="Ouro Preto" loading="lazy">
+                        </div>
+                        <div class="tour-pick" data-name="Congonhas do Campo" tabindex="0" role="button" aria-pressed="false" aria-label="Congonhas do Campo">
+                            <img src="img/congonhas%20do%20campo.png" alt="Congonhas do Campo" loading="lazy">
+                        </div>
+                        <div class="tour-pick" data-name="Passeios em Grupo Privado" tabindex="0" role="button" aria-pressed="false" aria-label="Passeio em Grupo Privado">
+                            <img src="img/passeio%20em%20grupo%20privado.png" alt="Passeio em Grupo Privado" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Box de descrição do roteiro: some até um card ser escolhido.
+                         Data do passeio e dados do cliente ficam dentro dela, logo
+                         após a explicação do roteiro. -->
+                    <div id="tourDescription" class="tour-desc">
+                        <div class="tour-desc-head">
+                            <h3 id="tourDescTitle"></h3>
+                            <div class="tour-desc-price">
+                                <span id="tourDescPriceFrom"></span>
+                                <span id="tourDescPriceTo"></span>
+                            </div>
+                        </div>
+                        <div id="tourDescBody" class="tour-desc-body"></div>
+
+                        <p class="booking-step-label"><span class="n">2</span> Data do passeio</p>
+                        <input type="date" id="bookingDate" class="booking-field" aria-label="Data do passeio">
+
+                        <p class="booking-step-label"><span class="n">3</span> Seus dados</p>
+                        <div class="booking-row">
+                            <div>
+                                <label class="booking-sublabel" for="bookingName">Nome completo</label>
+                                <input type="text" id="bookingName" class="booking-field" placeholder="Ex: Maria Silva" aria-label="Seu nome">
+                            </div>
+                            <div>
+                                <label class="booking-sublabel" for="bookingPeople">Nº de pessoas</label>
+                                <input type="number" id="bookingPeople" class="booking-field" placeholder="Ex: 2" min="1" value="1" aria-label="Número de pessoas">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão do WhatsApp: fica no final da tela, com o resumo das informações -->
+                    <button type="button" id="bookingSubmit" class="booking-submit" disabled>
+                        <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                    </button>
+                    <p class="booking-hint">Selecione um roteiro para continuar</p>
+                </div>
+            </div>
+
+            <nav class="w-full flex flex-col gap-4">
+                <a href="#roteiros" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
+                    <span class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-ouro-light">
+                            <i class="fa-solid fa-church"></i>
+                        </div>
+                        Ver Roteiro das Igrejas
+                    </span>
+                    <i class="fa-solid fa-chevron-down text-slate-500 text-sm"></i>
+                </a>
+
+                <a href="#" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-6">
+                    <span class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-indigo-300">
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                        Tour Lendas Ouro-pretanas
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-slate-500 text-sm"></i>
+                </a>
+
+                <div class="w-full h-px bg-white/10 my-2 animate-enter delay-7"></div>
+
+                <a href="https://instagram.com/lucasguiaouropreto" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-7" style="animation-delay: 0.8s;">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-instagram text-[#E1306C] text-xl w-8 text-center"></i>
+                        Acompanhe no Instagram
+                    </span>
+                    <i class="fa-solid fa-external-link-alt text-slate-500 text-xs"></i>
+                </a>
+
+                <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-7" style="animation-delay: 0.85s;">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-google text-[#4285F4] text-xl w-8 text-center"></i>
+                        Avalie no Google
+                    </span>
+                    <i class="fa-solid fa-star text-ouro-light text-xs"></i>
+                </a>
+
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B5531999999999%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiaouropreto%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf"
+                   class="link-card bg-slate-800 text-slate-300 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium mt-2 animate-enter delay-7" style="animation-delay: 0.9s;">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-address-book text-ouro-light w-8 text-center text-lg"></i>
+                        Salvar na Agenda
+                    </span>
+                    <i class="fa-solid fa-download opacity-60"></i>
+                </a>
+            </nav>
+        </main>
+
+        <section class="glass-panel baroque-frame-alt rounded-3xl p-8 w-full fade-scroll">
+            <div class="flex items-center gap-4 mb-5">
+                <div class="w-12 h-12 rounded-full bg-ouro/20 border border-ouro/30 text-ouro-light flex items-center justify-center text-xl shadow-inner">
+                    <i class="fa-solid fa-map"></i>
+                </div>
+                <h2 class="font-display text-2xl font-bold text-white tracking-wide">Sobre o Guia</h2>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                Olá! Sou Lucas, historiador e guia credenciado (Cadastur) apaixonado pelas ladeiras de Ouro Preto. Nasci respirando a história das Minas Gerais e minha missão é fazer você viajar no tempo de forma autêntica.
+            </p>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                Mais do que apenas mostrar as igrejas, eu te conto os segredos da inconfidência, as lendas urbanas e as histórias por trás do ouro que financiou impérios. Meu compromisso é transformar sua viagem em uma experiência cultural imersiva e inesquecível.
+            </p>
+        </section>
+
+        <section id="roteiros" class="glass-panel baroque-frame rounded-3xl p-8 w-full fade-scroll">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner">
+                    <i class="fa-solid fa-cross"></i>
+                </div>
+                <h2 class="font-display text-2xl font-bold text-white leading-tight tracking-wide">Roteiro Principal:<br><span class="text-ouro-light text-lg font-medium font-serif tracking-normal">Joias do Barroco & Trilhas da Serra</span></h2>
+            </div>
+            
+            <!-- Timeline (Linha do Tempo Vertical) — foto ocupa o lado oposto, vazio, do texto -->
+            <div class="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-ouro before:via-white/20 before:to-transparent">
+
+                <!-- Igreja 1 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">São Francisco de Assis</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">A obra-prima esculpida pelo mestre Aleijadinho com as incríveis pinturas celestiais de Mestre Ataíde. Considerada uma das maravilhas de origem portuguesa no mundo.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        1
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlm7hNd0zVHxQsLU1L6DWbCdFmkEtXg-TbWxVQYZNyjEl1MtbXGUnZAWa4kP3_3ZHFy83fKULNwQZEUhDlAknr4D4x3TVHVGvY_9E03xUKwW2wik74h-dV2iPHK87WznS4kZSMVuQ=s680-w680-h510-rw" alt="Igreja São Francisco de Assis, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Igreja 2 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Basílica do Pilar</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">O ápice absoluto do barroco mineiro. Seu interior majestoso guarda mais de 400kg de ouro puro, ostentando a enorme riqueza e o poder das irmandades da época.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        2
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://arqmariana.com.br/wp-content/uploads/2024/12/dedicacao-da-igreja-do-pilar-op-4-682x1024.jpeg" alt="Basílica de Nossa Senhora do Pilar, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Igreja 3 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">N. Sra. do Carmo</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">A única igreja em Minas Gerais que possui painéis de azulejos portugueses na capela-mor. Um projeto requintado com inovações arquitetônicas trazidas da Europa.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        3
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOi5H8BMDUqwfJq5W1GBOGPLuyT2A-7iSUEdcUVQwwTvtygDzI2FWGEfIA&s=10" alt="Igreja Nossa Senhora do Carmo, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Igreja 4 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Igreja Santa Efigênia</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">Erguida pela irmandade dos negros. A forte lenda local diz que ela foi financiada pelo pó de ouro retirado dos cabelos de escravizados libertos pelo Rei Chico Rei.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        4
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1574378833005-46c3f87a90d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Igreja Santa Efigênia dos Pretos, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Trilha 5: Serra de Ouro Preto -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-pedra-light mb-2 text-lg">Trilha da Serra</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">Encerramos com uma caminhada pelos caminhos antigos que cercam a cidade, entre mirantes e vales, de onde se avista o casario colonial recortado pela serra.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-pedra text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        5
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1682347812583-7855d5debecd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trilha na serra de Minas Gerais, arredores de Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-4 mb-4 text-center">
+            <p class="text-slate-400 text-xs flex items-center justify-center gap-1">
+                Feito com <i class="fa-solid fa-heart text-red-500/70 text-[10px]"></i> em Ouro Preto, MG
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Sistema de partículas (Pó de Ouro)
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById('particles-container');
+            const particleCount = 25; // Quantidade de partículas simultâneas
+
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(container);
+            }
+
+            // 2. Intersection Observer para animar seções no Scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Dispara quando 15% do elemento estiver visível
+            };
+
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Para a animação acontecer apenas 1x
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-scroll');
+            fadeElements.forEach(el => {
+                scrollObserver.observe(el);
+            });
+        });
+
+        // 3. Reserva Rápida — roteiro, data, pessoas e nome → mensagem pronta no WhatsApp (painel sempre aberto)
+        (function () {
+            const grid = document.getElementById('tourGrid');
+            if (!grid) return;
+            const dateInput = document.getElementById('bookingDate');
+            const nameInput = document.getElementById('bookingName');
+            const peopleInput = document.getElementById('bookingPeople');
+            const submitBtn = document.getElementById('bookingSubmit');
+            const hint = document.querySelector('#booking .booking-hint');
+            const descBox = document.getElementById('tourDescription');
+            const descTitle = document.getElementById('tourDescTitle');
+            const descPriceFrom = document.getElementById('tourDescPriceFrom');
+            const descPriceTo = document.getElementById('tourDescPriceTo');
+            const descBody = document.getElementById('tourDescBody');
+            const detailsBox = document.getElementById('bookingDetails');
+            let selectedTour = null;
+
+            // Conteúdo completo de cada roteiro, exibido no box de descrição ao selecionar
+            const tourDetails = {
+                'Tiradentes e São João Del Rei (Circuito Estrada Real)': {
+                    title: 'Tiradentes e São João Del Rei',
+                    priceFrom: 'BRL 1.600,00',
+                    priceTo: 'BRL 1.730,00',
+                    body: `
+                        <p>Circuito Estrada Real — São João Del Rei a Tiradentes!</p>
+                        <p class="tour-desc-sub">Principais pontos turísticos</p>
+                        <p class="tour-desc-sub" style="margin-top:0;color:#fff;text-transform:none;letter-spacing:normal;font-size:0.82rem;">Início em São João Del Rei</p>
+                        <ul>
+                            <li>Matriz Nossa Senhora do Pilar</li>
+                            <li>Igreja São Francisco de Assis</li>
+                            <li>Igreja do Rosário</li>
+                            <li>Solar dos Neves</li>
+                        </ul>
+                        <p class="tour-desc-sub" style="margin-top:0.4rem;color:#fff;text-transform:none;letter-spacing:normal;font-size:0.82rem;">Início em Tiradentes</p>
+                        <ul>
+                            <li>Matriz de Santo Antônio</li>
+                            <li>Igreja do Rosário</li>
+                            <li>Museu Casa do Padre Toledo</li>
+                            <li>Chafariz São José</li>
+                            <li>Mirante</li>
+                            <li>Passeio pela cidade caminhando ou de charrete (charrete não inclusa no valor do tour)</li>
+                        </ul>
+                        <p>Horário de saída às 08:00 e retorno às 18:00 horas! Transporte executivo!</p>
+                        <p>Passeio opcional incluindo Bichinhos — confira o valor adicional!</p>
+                        <p class="tour-desc-note">Venha viver essa experiência.</p>
+                    `
+                },
+                'Parque Natural das Andorinhas - Privativo': {
+                    title: 'Parque Natural das Andorinhas — Privativo',
+                    priceFrom: 'BRL 500,00',
+                    priceTo: 'BRL 650,00',
+                    body: `
+                        <p>Roteiro realizado no Parque Natural das Andorinhas, em meio à mata, conhecendo as mais belas quedas d'água e paisagens da região de Ouro Preto!</p>
+                        <ul>
+                            <li>Cachoeira das Andorinhas</li>
+                            <li>Cachoeira dos Pelados</li>
+                            <li>Cachoeira Poço das Crianças</li>
+                            <li>Mirante da Pedra do Jacaré</li>
+                            <li>Mirante Véu das Noivas</li>
+                            <li>Mirante do Morro São Sebastião</li>
+                            <li>Mina de Ouro Século 18</li>
+                            <li>Marco Zero (local da foto oficial do parque)</li>
+                        </ul>
+                        <p>Duração do roteiro: 4 horas.</p>
+                        <p>Transporte e guiamento inclusos no valor, até 4 pessoas!</p>
+                        <p class="tour-desc-note">Buscamos apenas em hospedagens na cidade de Ouro Preto. Parada para almoço — almoço não incluso no valor!</p>
+                    `
+                },
+                'Mariana - Privativo': {
+                    title: 'Mariana — Privativo',
+                    priceFrom: 'BRL 550,00',
+                    priceTo: 'BRL 650,00',
+                    body: `
+                        <p>Roteiro realizado na cidade de Mariana!</p>
+                        <p class="tour-desc-sub">Visitas internas</p>
+                        <ul>
+                            <li>Catedral de Nossa Senhora da Assunção</li>
+                            <li>Igreja São Pedro dos Clérigos</li>
+                            <li>Igreja de São Francisco de Assis</li>
+                            <li>Casa da Câmara e Cadeia</li>
+                            <li>Igreja de Nossa Senhora do Carmo</li>
+                            <li>Museu de Artes Sacras</li>
+                        </ul>
+                        <p class="tour-desc-sub">Visitas externas</p>
+                        <ul>
+                            <li>Praça Minas Gerais</li>
+                            <li>Praça Gomes Freire</li>
+                            <li>Casa de Fundição</li>
+                            <li>Rua Direita</li>
+                        </ul>
+                        <p>Roteiro realizado em 3 a 4 horas — transporte e guiamento inclusos no valor de R$ 400,00!</p>
+                        <p>Acima de 4 pessoas, consulte o valor!</p>
+                        <p class="tour-desc-note">Almoço com comida mineira, taxas de visitação e almoço não inclusos no valor.</p>
+                    `
+                },
+                'Ouro Preto - Privativo': {
+                    title: 'Ouro Preto — Privativo',
+                    priceFrom: 'BRL 600,00',
+                    priceTo: 'BRL 750,00',
+                    body: `
+                        <p>Roteiro realizado nos principais pontos, onde o cliente pode montar seu roteiro.</p>
+                        <p class="tour-desc-sub">Visitas internas</p>
+                        <ul>
+                            <li>Igreja de Nossa Senhora do Pilar</li>
+                            <li>Igreja de São Francisco de Assis (obra do mestre Aleijadinho)</li>
+                            <li>Igreja de Santa Efigênia</li>
+                            <li>Igreja de Nossa Senhora da Conceição</li>
+                            <li>Mina de Ouro do século 18</li>
+                            <li>Fábrica de artesanato</li>
+                            <li>Lapidação de pedras preciosas e fábrica de joias</li>
+                        </ul>
+                        <p class="tour-desc-sub">Visitas panorâmicas</p>
+                        <ul>
+                            <li>Praça Tiradentes</li>
+                            <li>Igreja de Nossa Senhora do Rosário</li>
+                            <li>Ponte dos Suspiros</li>
+                            <li>Largo de Marília</li>
+                            <li>Mirante da cidade</li>
+                            <li>Igreja de Nossa Senhora das Mercês</li>
+                            <li>Mirante da Santa Efigênia</li>
+                            <li>Rua Direita</li>
+                            <li>Rua São José</li>
+                            <li>Museu Casa dos Contos</li>
+                            <li>Casa de Tomás Antônio Gonzaga</li>
+                        </ul>
+                        <p>Roteiro realizado em 5 horas em média. Transporte e guiamento inclusos!</p>
+                        <p>Acima de 4 pessoas, consulte o valor.</p>
+                        <p class="tour-desc-note">Almoço com comida mineira, taxas de entrada e almoço não inclusos neste valor!</p>
+                    `
+                },
+                'Congonhas do Campo': {
+                    title: 'Congonhas do Campo',
+                    priceFrom: 'BRL 750,00',
+                    priceTo: 'BRL 820,00',
+                    body: `
+                        <p>Roteiro realizado na cidade de Congonhas do Campo, histórico cultural!</p>
+                        <ul>
+                            <li>Igreja do Bom Jesus de Matosinhos</li>
+                            <li>Capelas da Via Sacra (obras do mestre Aleijadinho)</li>
+                            <li>Museu de Artes Sacras (obras do mestre Aleijadinho)</li>
+                            <li>Centro histórico</li>
+                        </ul>
+                        <p>Duração de 3 horas e meia! Transporte executivo.</p>
+                    `
+                },
+                'Passeios em Grupo Privado': {
+                    title: 'Passeios em Grupo Privado',
+                    priceFrom: 'BRL 650,00',
+                    priceTo: 'BRL 720,00',
+                    body: `
+                        <p>Um roteiro incrível feito pra você, que está vindo pra Ouro Preto com grupo de pessoas, amigos, família ou excursão — pensado pra trazer conforto, agilidade e muito conhecimento pra você.</p>
+                        <ul>
+                            <li>Roteiro em grupo pela cidade histórica de Ouro Preto (MG)</li>
+                            <li>Experiência cultural e histórica guiada</li>
+                            <li>Duração média: 5 a 6 horas</li>
+                        </ul>
+                        <p class="tour-desc-sub">Pontos visitados no roteiro</p>
+                        <ul>
+                            <li>Igreja de Nossa Senhora do Pilar</li>
+                            <li>Igreja de São Francisco de Assis</li>
+                            <li>Mina de Ouro do século XVIII</li>
+                            <li>Igreja de Nossa Senhora da Conceição</li>
+                            <li>Museu Casa dos Contos</li>
+                            <li>Museu da Inconfidência</li>
+                            <li>Loja de artesanatos e lapidação de pedras preciosas</li>
+                            <li>Praça Tiradentes</li>
+                            <li>Rua Direita</li>
+                            <li>Rua São José</li>
+                            <li>Largo do Cinema</li>
+                            <li>Mirante da cidade</li>
+                        </ul>
+                        <p>Roteiro realizado a pé, com paradas explicativas em cada ponto. Ideal para grupos, escolas, excursões e turistas em geral.</p>
+                        <p class="tour-desc-note">Custos de entrada em igrejas, museus, mina e demais atrativos, além de despesas pessoais e consumos extras, não estão inclusos.</p>
+                    `
+                }
+            };
+
+            dateInput.min = new Date().toISOString().split('T')[0];
+
+            function openCalendar() {
+                if (typeof dateInput.showPicker === 'function') {
+                    try { dateInput.showPicker(); } catch (e) {}
+                }
+            }
+            dateInput.addEventListener('click', openCalendar);
+            dateInput.addEventListener('focus', openCalendar);
+
+            grid.querySelectorAll('.tour-pick').forEach(card => {
+                const select = () => {
+                    grid.querySelectorAll('.tour-pick').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
+                    card.classList.add('selected');
+                    card.setAttribute('aria-pressed', 'true');
+                    selectedTour = card.dataset.name;
+
+                    // Preenche e abre o box com a explicação completa do roteiro
+                    const info = tourDetails[selectedTour];
+                    if (info) {
+                        descTitle.textContent = info.title;
+                        descPriceFrom.textContent = info.priceFrom;
+                        descPriceTo.textContent = info.priceTo;
+                        descBody.innerHTML = info.body;
+                    }
+                    descBox.classList.add('open');
+
+                    // Abre a continuação da reserva (data, dados, botão do WhatsApp)
+                    detailsBox.classList.add('open');
+
+                    validate();
+                    setTimeout(() => descBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+                };
+                card.addEventListener('click', select);
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); }
+                });
+            });
+
+            function validate() {
+                const ok = !!(selectedTour && dateInput.value && nameInput.value.trim() && Number(peopleInput.value) > 0);
+                submitBtn.disabled = !ok;
+                hint.textContent = ok
+                    ? 'Tudo pronto! Confirme pelo WhatsApp.'
+                    : (!selectedTour ? 'Selecione um roteiro para continuar' : 'Preencha data, nome e nº de pessoas');
+            }
+            [dateInput, nameInput, peopleInput].forEach(el => el.addEventListener('input', validate));
+
+            submitBtn.addEventListener('click', () => {
+                if (submitBtn.disabled) return;
+                const dataFmt = new Date(dateInput.value + 'T00:00:00').toLocaleDateString('pt-BR');
+                const msg = 'Olá Lucas, me chamo ' + nameInput.value.trim() + '! Quero reservar um passeio em Ouro Preto:\n\n' +
+                    'Passeio: ' + selectedTour + '\n' +
+                    'Data: ' + dataFmt + '\n' +
+                    'Pessoas: ' + peopleInput.value;
+                window.open('https://wa.me/5531999999999?text=' + encodeURIComponent(msg), '_blank');
+            });
+        })();
+
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 3 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}vw`;
+            
+            const duration = Math.random() * 15 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            const delay = Math.random() * 10;
+            particle.style.animationDelay = `-${delay}s`;
+
+            container.appendChild(particle);
+
+            particle.addEventListener('animationiteration', () => {
+                particle.style.left = `${Math.random() * 100}vw`;
+            });
+        }
+    </script>
+</body>
+</html>
