@@ -67,6 +67,17 @@
             to   { opacity: 1; transform: scale(1); }
         }
 
+        /* Contêiner que agrupa glow + anel + logo, servindo de referência
+           para a centralização (evita que o texto abaixo desloque o centro). */
+        .preloader-orb {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Glow ambiente pulsando atrás de tudo, para dar profundidade */
         .preloader-bg-glow {
             position: absolute;
@@ -608,10 +619,12 @@
     <!-- Tela de pré-carregamento: animação premium (balança da justiça + anel dourado) -->
     <div id="preloader" aria-hidden="true">
         <div class="preloader-content">
-            <div class="preloader-bg-glow"></div>
-            <div class="preloader-ring"></div>
-            <div class="preloader-icon">
-                <img src="img/sbr.webp" alt="SBR Advogados">
+            <div class="preloader-orb">
+                <div class="preloader-bg-glow"></div>
+                <div class="preloader-ring"></div>
+                <div class="preloader-icon">
+                    <img src="img/sbr.webp" alt="SBR Advogados">
+                </div>
             </div>
             <div class="preloader-text-wrap">
                 <span class="preloader-text">SBR <span>Advogados</span></span>
