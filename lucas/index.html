@@ -3,915 +3,1137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Igor Ramalho - Advogado</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para os ícones -->
+    <title>Lucas | Guia de Turismo em Ouro Preto</title>
+    <meta name="description" content="Descubra os segredos, a história e a arte de Ouro Preto com Lucas, seu guia turístico privativo.">
+    
+    <!-- Google Fonts: Cinzel (Monumental/Barroca, referência às inscrições em pedra-sabão), Lora (Clássica/Histórica) e Inter (Moderna/Legível) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        ouro: {
+                            light: '#fde68a',
+                            DEFAULT: '#d97706', // Tom de ouro envelhecido
+                            dark: '#92400e'
+                        },
+                        barroco: {
+                            DEFAULT: '#4c1d95', // Roxo profundo
+                            dark: '#1e1b4b'
+                        },
+                        pedra: {
+                            light: '#8a9a87',
+                            DEFAULT: '#5c6b58', // Pedra-sabão, matéria-prima de Aleijadinho
+                            dark: '#333d31'
+                        },
+                        madeira: {
+                            DEFAULT: '#1c1410', // Talha dourada / madeira envelhecida
+                            dark: '#0a0705'
+                        }
+                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#1a1a1a',
-                            gold: '#c49a45', // Cor aproximada do logo da balança
-                        }
+                        serif: ['Lora', 'serif'],
+                        display: ['Cinzel', 'serif'],
+                        decorative: ['"Cinzel Decorative"', 'serif'],
                     }
                 }
             }
         }
     </script>
+
     <style>
         body {
-            background-color: #2b2b2b; /* Fundo escuro simulando o contexto da imagem */
-            margin: 0;
-            font-family: 'Inter', sans-serif;
+            background-color: #0a0705;
+            color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* ===================== PRÉ-CARREGAMENTO (PRELOADER) =====================
-           Tela de abertura discreta e premium: anel dourado girando ao redor
-           do ícone da balança da justiça, sobre fundo escuro da marca. */
-        #preloader {
+        /* Camada 1: Centro Histórico - casario colonial sobre a serra de Ouro Preto */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65%;
+            background-image: url('https://images.unsplash.com/photo-1615510025370-0b4c08637106?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            opacity: 0.22;
+            z-index: -3;
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+        }
+
+        /* Camada 2: Trilhas da Serra - estradas e vales que cercam Ouro Preto, ancorada ao rodapé */
+        .bg-trilha {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background-image: url('https://images.unsplash.com/photo-1682347812583-7855d5debecd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.16;
+            z-index: -3;
+            -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+            mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+        }
+
+        /* Vinheta dourada + textura de ferro forjado (grades das varandas coloniais) */
+        .bg-vignette {
             position: fixed;
             inset: 0;
-            z-index: 9999;
-            background-color: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(217, 119, 6, 0.12), transparent 55%),
+                radial-gradient(ellipse at 50% 100%, rgba(92, 107, 88, 0.15), transparent 60%),
+                linear-gradient(to bottom, rgba(10,7,5,0.75), rgba(10,7,5,0.55) 40%, rgba(10,7,5,0.85));
         }
 
-        #preloader.preloader-hidden {
-            opacity: 0;
-            visibility: hidden;
+        .bg-iron-texture {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZD0iTTAsNDAgQzEwLDIwIDMwLDIwIDQwLDQwIEM1MCw2MCA3MCw2MCA4MCw0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNMCw0MCBDMTAsNjAgMzAsNjAgNDAsNDAgQzUwLDIwIDcwLDIwIDgwLDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMSIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjIuNSIgZmlsbD0iI2Q0YTAxNyIvPjwvc3ZnPgo=');
+            background-repeat: repeat;
+            background-size: 80px 80px;
+            opacity: 0.05;
+        }
+
+        /* Efeito Vidro Fosco (Glassmorphism) sobre madeira/pedra-sabão escura */
+        .glass-panel {
+            background: rgba(28, 20, 16, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(217, 119, 6, 0.18);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        /* Talha dourada: molduras de canto inspiradas nas volutas de altares barrocos */
+        .baroque-frame::before,
+        .baroque-frame::after {
+            content: '';
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNOCw5MiBDOCw1MCA4LDggNTAsOCBDODIsOCA5MiwyOCA5Miw0NSBDOTIsNjIgNzYsNjggNjQsNjAgQzU1LDU0IDU4LDQwIDcwLDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBjeD0iNzAiIGN5PSI0MCIgcj0iNC41IiBmaWxsPSIjZDRhMDE3Ii8+PHBhdGggZD0iTTIwLDgwIEMyMCw1NSAyMiwzNSA0MCwyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz48L3N2Zz4K');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.75;
             pointer-events: none;
         }
+        .baroque-frame::before {
+            top: 10px;
+            left: 10px;
+        }
+        .baroque-frame::after {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(180deg);
+        }
+        .baroque-frame-alt::before {
+            top: 10px;
+            right: 10px;
+            left: auto;
+            transform: scaleX(-1);
+        }
+        .baroque-frame-alt::after {
+            bottom: 10px;
+            left: 10px;
+            right: auto;
+            transform: rotate(180deg) scaleX(-1);
+        }
 
-        .preloader-content {
+        .shell-ornament {
+            width: 90px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTEwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjkiPjxwYXRoIGQ9Ik0xMDAsOTUgTDEwMCwxNSIvPjxwYXRoIGQ9Ik0xMDAsOTUgTDY4LDIwIi8+PHBhdGggZD0iTTEwMCw5NSBMMTMyLDIwIi8+PHBhdGggZD0iTTEwMCw5NSBMNDIsMzIiLz48cGF0aCBkPSJNMTAwLDk1IEwxNTgsMzIiLz48cGF0aCBkPSJNMTAwLDk1IEwyMCw1MiIvPjxwYXRoIGQ9Ik0xMDAsOTUgTDE4MCw1MiIvPjwvZz48cGF0aCBkPSJNMTQsNTggUTEwMCwtMTggMTg2LDU4IiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMi41Ii8+PHBhdGggZD0iTTMwLDk1IFExMDAsNjAgMTcwLDk1IiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGEwMTciIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjciLz48L3N2Zz4K');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-            animation: preloaderEnter 1s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: baroqueGlow 4s ease-in-out infinite;
+        }
+        @keyframes baroqueGlow {
+            0%, 100% { filter: drop-shadow(0 0 0 rgba(253, 230, 138, 0)); opacity: 0.85; }
+            50%      { filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.55)); opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .shell-ornament { animation: none; }
         }
 
-        @keyframes preloaderEnter {
-            from { opacity: 0; transform: scale(0.85); }
-            to   { opacity: 1; transform: scale(1); }
-        }
-
-        /* Contêiner que agrupa glow + anel + logo, servindo de referência
-           para a centralização (evita que o texto abaixo desloque o centro). */
-        .preloader-orb {
-            position: relative;
-            width: 132px;
-            height: 132px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Glow ambiente pulsando atrás de tudo, para dar profundidade */
-        .preloader-bg-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 260px;
-            height: 260px;
-            margin: -130px 0 0 -130px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(196, 154, 69, 0.18) 0%, transparent 70%);
-            filter: blur(10px);
-            animation: preloaderGlowPulse 2.6s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes preloaderGlowPulse {
-            0%, 100% { transform: scale(0.85); opacity: 0.6; }
-            50%      { transform: scale(1.15); opacity: 1; }
-        }
-
-        /* Anel giratório: gradiente cônico "recortado" em máscara para um traço
-           fino e suave (sem o efeito de borda segmentada). */
-        .preloader-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 132px;
-            height: 132px;
-            margin: -66px 0 0 -66px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent 0%, transparent 62%, rgba(196,154,69,0.25) 78%, #f0cf87 92%, #c49a45 97%, transparent 100%);
-            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-            animation: preloaderSpin 2.4s linear infinite;
-        }
-
-        .preloader-ring::before {
-            content: '';
-            position: absolute;
-            inset: 14px;
-            border-radius: 50%;
-            background: conic-gradient(from 180deg, transparent 0%, transparent 70%, rgba(196,154,69,0.5) 100%);
-            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
-            mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
-            animation: preloaderSpin 3.6s linear infinite reverse;
-        }
-
-        /* Logo grande centralizada dentro do anel, sem moldura/fundo atrás —
-           o brilho e o "shimmer" usam a própria arte da logo (canal alpha)
-           como referência, então só acendem em cima do desenho, nunca no
-           fundo transparente ao redor das letras. */
-        .preloader-icon {
-            position: relative;
-            width: 124px;
-            height: 124px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: preloaderBreathe 1.5s ease-in-out infinite;
-        }
-
-        .preloader-icon img {
+        .azulejo-strip {
+            height: 10px;
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            animation: preloaderIconGlow 1.5s ease-in-out infinite;
-        }
-
-        /* Brilho de luz varrendo somente a silhueta da logo: a própria imagem
-           é usada como máscara, recortando o degradê nas letras "SB". */
-        .preloader-icon::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.95) 50%, transparent 65%);
-            background-size: 260% 260%;
-            -webkit-mask-image: url('img/sbr.webp');
-            -webkit-mask-size: contain;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-            mask-image: url('img/sbr.webp');
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            mask-position: center;
-            mix-blend-mode: overlay;
-            animation: preloaderShimmer 1.5s ease-in-out infinite;
-        }
-
-        .preloader-text-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            opacity: 0;
-            transform: translateY(6px);
-            animation: preloaderTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-        }
-
-        @keyframes preloaderTextIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .preloader-text {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: #ffffff;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMWUzYTVmIi8+PHBhdGggZD0iTTIwLDMgTDM3LDIwIEwyMCwzNyBMMywyMCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGU3ZmYiIHN0cm9rZS13aWR0aD0iMS40Ii8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMy41IiBmaWxsPSIjZTBlN2ZmIiBvcGFjaXR5PSIwLjYiLz48L3N2Zz4K');
+            background-repeat: repeat-x;
+            background-size: 26px 26px;
+            border-radius: 4px;
             opacity: 0.85;
         }
 
-        .preloader-text span {
-            color: #c49a45;
+        /* ===== Reserva Rápida — roteiro já aberto para seleção imediata ===== */
+        .booking-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(217, 119, 6, 0.28);
+            border-radius: 1.25rem;
+            padding: 1.4rem 1.3rem 1.5rem;
         }
-
-        /* Barrinha de carregamento fina, com brilho dourado deslizando */
-        .preloader-bar {
+        .booking-step-label {
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            color: #fde68a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.1rem 0 0.6rem;
+        }
+        .booking-step-label:first-child { margin-top: 0; }
+        .booking-step-label span.n {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #d97706;
+            color: #1c1410;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.62rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+        }
+        .tour-pick {
             position: relative;
-            width: 84px;
-            height: 2px;
-            border-radius: 999px;
-            background: rgba(196, 154, 69, 0.18);
+            border-radius: 0.9rem;
             overflow: hidden;
+            aspect-ratio: 4 / 3;
+            cursor: pointer;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            transition: border-color 0.25s ease, transform 0.25s ease;
         }
-
-        .preloader-bar::before {
+        .tour-pick img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .tour-pick::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            width: 40%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, transparent, #c49a45, #f0cf87, #c49a45, transparent);
-            animation: preloaderBarSlide 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-        }
-
-        @keyframes preloaderBarSlide {
-            0%   { transform: translateX(-100%); }
-            100% { transform: translateX(250%); }
-        }
-
-        @keyframes preloaderSpin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes preloaderBreathe {
-            0%, 100% { transform: scale(1); }
-            50%      { transform: scale(1.06); }
-        }
-
-        /* Brilho ao redor das letras (drop-shadow segue o canal alpha da
-           imagem, então não "vaza" para o fundo transparente da logo) */
-        @keyframes preloaderIconGlow {
-            0%, 100% { filter: drop-shadow(0 0 6px rgba(196, 154, 69, 0.45)); }
-            50%      { filter: drop-shadow(0 0 18px rgba(196, 154, 69, 0.9)); }
-        }
-
-        @keyframes preloaderShimmer {
-            0%   { background-position: -40% -40%; opacity: 0; }
-            20%  { opacity: 1; }
-            55%  { background-position: 140% 140%; opacity: 0.8; }
-            75%  { opacity: 0; }
-            100% { background-position: 140% 140%; opacity: 0; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .preloader-content, .preloader-bg-glow, .preloader-ring, .preloader-ring::before,
-            .preloader-icon, .preloader-icon img, .preloader-icon::after, .preloader-text-wrap, .preloader-bar::before {
-                animation: none;
-            }
-            .preloader-text-wrap { opacity: 1; transform: none; }
-        }
-
-        /* ===================== SEÇÕES EMPILHADAS (STICKY STACK) =====================
-           No desktop, a seção 1 (cartão) fica "presa" no topo via position: sticky
-           enquanto a seção 2 (preview do Instagram) rola por cima e a cobre.
-           No mobile o sticky fica DESLIGADO (ver media query no fim do arquivo):
-           ele depende de a seção 1 caber exatamente na altura da tela, o que
-           varia muito entre navegadores/celulares — para garantir que o rodapé
-           sempre apareça, no mobile a página simplesmente rola normal. */
-        .stack-wrap {
-            width: 100%;
-            position: relative;
-        }
-
-        #card-stack-back {
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            background-color: #2b2b2b;
-            position: relative;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 7, 5, 0.85), rgba(10, 7, 5, 0.05) 55%, transparent);
             z-index: 1;
         }
-
-        /* Elementos com esta classe começam invisíveis/deslocados e
-           recebem .is-visible via JS quando entram na viewport. */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        .tour-pick-label {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 100%;
+            padding: 0.6rem 0.4rem;
+            text-align: center;
+        }
+        .tour-pick-label span { font-size: 0.72rem; font-weight: 600; color: #fff; line-height: 1.2; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
+        .tour-pick:hover img { transform: scale(1.08); }
+        .tour-pick:hover { transform: translateY(-2px); border-color: rgba(217, 119, 6, 0.45); }
+        .tour-pick.selected { border-color: #d97706; box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.35); }
+        .tour-pick.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 0.4rem;
+            right: 0.4rem;
+            z-index: 3;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #d97706;
+            color: #1c1410;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.62rem;
         }
 
-        .reveal.is-visible {
+        /* ===== Box de descrição do roteiro selecionado ===== */
+        .tour-desc {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            border: 1px solid transparent;
+            transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, margin 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+        }
+        .tour-desc.open {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: 0.9rem;
+            padding: 1rem 1.1rem;
+            border-color: rgba(217, 119, 6, 0.28);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .tour-desc-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+        }
+        .tour-desc-head h3 { font-weight: 700; color: #fde68a; font-size: 1.02rem; line-height: 1.3; }
+        .tour-desc-price { display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem; font-size: 0.82rem; white-space: nowrap; shrink: 0; }
+        .tour-desc-price-old { text-decoration: line-through; color: rgba(248, 250, 252, 0.45); font-weight: 500; font-size: 0.74rem; }
+        .tour-desc-price-new { color: #fde68a; font-weight: 800; font-size: 0.98rem; }
+        .tour-desc-body { font-size: 0.82rem; color: rgba(248, 250, 252, 0.85); line-height: 1.6; }
+        .tour-desc-body p { margin: 0 0 0.5rem 0; }
+        .tour-desc-body p.tour-desc-sub {
+            font-weight: 700;
+            color: #fde68a;
+            margin-top: 0.75rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .tour-desc-body ul { list-style: none; margin: 0 0 0.5rem 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+        .tour-desc-body ul li { padding-left: 1.15rem; position: relative; }
+        .tour-desc-body ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.18em;
+            font-size: 0.62rem;
+            color: #d97706;
+        }
+        .tour-desc-note { font-size: 0.72rem; color: rgba(248, 250, 252, 0.5); font-style: italic; margin-top: 0.4rem; }
+
+        /* Data do passeio / Seus dados, dentro da própria box de descrição */
+        .tour-desc #bookingDate,
+        .tour-desc .booking-row { margin-top: 0.4rem; }
+        .tour-desc .booking-step-label { margin-top: 1rem; }
+
+        .booking-field {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.8rem;
+            padding: 0.75rem 0.9rem;
+            font-size: 0.9rem;
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.05);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            color-scheme: dark;
+        }
+        .booking-field::placeholder { color: rgba(248, 250, 252, 0.35); }
+        .booking-field:focus { border-color: #d97706; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18); }
+        .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        .booking-sublabel {
+            display: block;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            color: rgba(248, 250, 252, 0.5);
+            margin-bottom: 0.3rem;
+        }
+        .booking-submit {
+            width: 100%;
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            padding: 1rem 1.25rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #d97706, #92400e);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 25px -8px rgba(217, 119, 6, 0.5);
+        }
+        .booking-submit:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); }
+        .booking-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+        .booking-hint { font-size: 0.68rem; color: rgba(248, 250, 252, 0.45); margin-top: 0.55rem; text-align: center; }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-enter {
+            opacity: 0;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Delays em cascata */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+
+        /* Animação para aparecer ao rolar a página */
+        .fade-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .phone-container {
-            width: 100%;
-            max-width: 400px;
-            background-color: #ffffff;
-            /* Estilo imitando a tela de um celular */
-            border-radius: 35px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        /* ===== Moldura barroca da foto: substitui o antigo brilho laranja pulsante
+           por um anel giratório em veios dourados, como um medalhão esculpido
+           em pedra-sabão (referência ao trabalho do Aleijadinho). ===== */
+        .avatar-frame {
             position: relative;
-            min-height: 800px; /* Altura fixa para manter o formato em desktops */
-            display: flex;
-            flex-direction: column;
         }
-
-        /* No mobile o cartão não pode ser mais alto que a tela: como a seção 1
-           fica "presa" (sticky) assim que toca o topo, qualquer parte que
-           ultrapasse a viewport nunca seria vista. Como o sticky fica desligado
-           no mobile (a seção 1 rola normal, veja acima), aqui só encolhemos
-           banner/espaçamentos para o cartão ficar mais compacto e agradável —
-           não é mais uma exigência técnica, é só estética. */
-        @media (max-width: 899px) {
-            #card-stack-back {
-                padding: 20px 16px;
-            }
-            .phone-container {
-                min-height: 0;
-            }
-            .header-banner {
-                height: 150px;
-            }
-            .floating-logo {
-                width: 56px;
-                height: 56px;
-                bottom: 14px;
-                right: 18px;
-            }
-
-            /* Sobe nome e descrição; sem o botão flutuante de antes, sobra
-               espaço para dar respiro maior entre os botões — tudo ainda
-               cabe na seção 1, sem precisar rolar dentro do cartão. */
-            .links-container {
-                padding: 14px 22px 22px 22px;
-                overflow: hidden;
-                touch-action: none;
-            }
-            .profile-info {
-                margin-bottom: 10px !important;
-            }
-            .profile-info h1 {
-                font-size: 22px !important;
-                color: #111827 !important;
-            }
-            .save-contact-btn {
-                padding: 5px 10px !important;
-            }
-            .save-contact-btn span {
-                font-size: 10px !important;
-            }
-            .profile-info h2 {
-                margin-top: 2px !important;
-            }
-            .profile-info p {
-                margin-top: 5px !important;
-                font-size: 12px !important;
-                line-height: 1.35 !important;
-            }
-            .links-container .space-y-4 > * + * {
-                margin-top: 14px !important;
-            }
-            .link-item {
-                padding-top: 8px !important;
-                padding-bottom: 8px !important;
-            }
-            .link-item .w-10 {
-                width: 34px !important;
-                height: 34px !important;
-                margin-right: 12px !important;
-            }
-        }
-
-        /* Banner superior com a imagem e a curva */
-        .header-banner {
-            position: relative;
-            width: 100%;
-            height: 350px; /* Altura do banner */
-            background-image: url('img/igor.webp');
-            background-size: cover;
-            background-position: center 20%;
-        }
-
-        /* Forma SVG para criar a curva suave na parte inferior da imagem */
-        .wave-bottom {
+        .avatar-frame::before {
+            content: '';
             position: absolute;
-            bottom: 0;
+            inset: -9px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 58%, rgba(217, 119, 6, 0.18) 72%, #fde68a 85%, rgba(217, 119, 6, 0.18) 94%, transparent 100%);
+            animation: baroqueOrbit 7s linear infinite;
+            z-index: -1;
+        }
+        .avatar-frame::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 1px solid rgba(253, 230, 138, 0.35);
+            z-index: -1;
+        }
+        @keyframes baroqueOrbit {
+            to { transform: rotate(360deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .avatar-frame::before { animation: none; }
+        }
+
+        /* Botão "Salvar Contato" minimalista */
+        .save-contact-minimal {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.2rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: rgba(248, 250, 252, 0.7);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+        }
+        .save-contact-minimal i { font-size: 0.85rem; }
+        .save-contact-minimal:hover {
+            border-color: rgba(217, 119, 6, 0.55);
+            color: #fde68a;
+            background-color: rgba(217, 119, 6, 0.08);
+        }
+
+        .link-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 119, 6, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px -5px rgba(217, 119, 6, 0.2);
+        }
+
+        .link-card.highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(217, 119, 6, 0.15), transparent);
+            padding: 8px 0;
+            border-top: 1px solid rgba(217, 119, 6, 0.2);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 15s linear infinite;
+        }
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 20px;
+            color: #fde68a;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        #particles-container {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: translateY(1px); /* Corrige uma pequena linha que pode aparecer */
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
-
-        .wave-bottom svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 60px; /* Altura da curva */
-        }
-
-        .wave-bottom .shape-fill {
-            fill: #FFFFFF;
-        }
-        
-        .wave-bottom .shape-fill-dark {
-            fill: #1a1a1a;
-        }
-
-        /* Logo flutuante da balança */
-        .floating-logo {
+        .particle {
             position: absolute;
-            bottom: 20px;
-            right: 30px;
-            width: 80px;
-            height: 80px;
-            background-color: transparent;
+            background-color: #fde68a;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
+            opacity: 0.4;
+            animation: floatUp linear infinite;
         }
-        
-        .floating-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Estilo da área de links */
-        .links-container {
-            flex-grow: 1;
-            padding: 20px 30px 30px 30px;
-            background-color: white;
-            overflow-y: auto;
-        }
-
-        /* Botão "Salvar Contato" minimalista, ao lado do nome */
-        .save-contact-btn {
-            background-color: transparent;
-        }
-
-        .link-item {
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        
-        .link-item:active {
-            transform: scale(0.98);
-            background-color: #f3f4f6;
-        }
-
-        /* Esconde a scrollbar para um visual mais limpo */
-        .links-container::-webkit-scrollbar {
-            display: none;
-        }
-        .links-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Seção 2: preview do Instagram. Fica depois da seção 1 no fluxo normal
-           e, por vir depois no DOM, naturalmente desenha por cima dela — some
-           z-index explícito só para garantir isso mesmo se algo mudar. */
-        #instagram-preview {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 24px;
-            background-color: #2b2b2b;
-        }
-
-        /* Cartão que simula a tela de perfil do Instagram */
-        .ig-card {
-            width: 100%;
-            max-width: 380px;
-            background-color: #ffffff;
-            border-radius: 28px;
-            padding: 32px 24px 28px 24px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.35);
-            box-sizing: border-box;
-        }
-
-        .ig-profile-header {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 18px;
-        }
-
-        .ig-profile-pic {
-            width: 78px;
-            height: 78px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            padding: 3px;
-            background: radial-gradient(circle at 30% 20%, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%);
-        }
-
-        .ig-profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            border-radius: 50%;
-            border: 2.5px solid #ffffff;
-            display: block;
-        }
-
-        .ig-profile-stats {
-            flex-grow: 1;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .ig-profile-stats div {
-            text-align: center;
-        }
-
-        .ig-profile-stats strong {
-            display: block;
-            font-size: 16px;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-
-        .ig-profile-stats span {
-            font-size: 10px;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .ig-profile-bio {
-            text-align: left;
-            margin-bottom: 18px;
-        }
-
-        .ig-profile-bio h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 0 0 4px 0;
-        }
-
-        .ig-profile-bio p {
-            font-size: 12.5px;
-            color: #374151;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .ig-profile-bio .ig-profile-link {
-            color: #405DE6;
-            font-weight: 600;
-            margin-top: 2px;
-        }
-
-        .ig-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 9999px;
-            background: linear-gradient(90deg, #833AB4, #C13584, #E1306C, #FD1D1D, #F77737);
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 13px;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            box-sizing: border-box;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            margin-bottom: 20px;
-        }
-
-        .ig-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(225, 48, 108, 0.4);
-        }
-
-        /* Grade simulando os posts do perfil */
-        .ig-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .ig-grid-item {
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-        }
-
-        .ig-grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 15%;
-            display: block;
-        }
-
-        .ig-grid-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f4f1ea;
-            color: #c49a45;
-            font-size: 20px;
-        }
-
-        /* Rodapé com os direitos reservados */
-        .site-footer {
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            padding: 8px 20px 40px 20px;
-            background-color: #2b2b2b;
-        }
-
-        .site-footer p {
-            margin: 0;
-            font-size: 11px;
-            color: #8a8a8a;
-            letter-spacing: 0.02em;
-        }
-
-        /* ===================== VERSÃO DESKTOP =====================
-           Acima de 900px, o cartão deixa de imitar uma tela de celular e
-           passa a ser um layout dividido em duas colunas: foto de um lado,
-           links do outro. No celular tudo continua exatamente como antes. */
-        @media (min-width: 900px) {
-            #card-stack-back {
-                padding: 40px 20px;
-                position: sticky;
-                top: 0;
-            }
-
-            .ig-card {
-                max-width: 420px;
-                padding: 48px 36px;
-            }
-
-            .phone-container {
-                max-width: 900px;
-                min-height: 560px;
-                flex-direction: row;
-                border-radius: 28px;
-            }
-
-            .header-banner {
-                width: 42%;
-                height: auto; /* estica para acompanhar a altura da coluna de links */
-                flex-shrink: 0;
-            }
-
-            /* A curva foi desenhada para uma transição horizontal (topo/baixo);
-               não faz sentido na divisão vertical entre as duas colunas. */
-            .wave-bottom {
-                display: none;
-            }
-
-            .floating-logo {
-                bottom: 28px;
-                right: 28px;
-            }
-
-            .links-container {
-                padding: 48px 48px 48px 48px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
+        @keyframes floatUp {
+            from { transform: translateY(100vh) scale(1); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            to { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
     </style>
 </head>
-<body>
+<!-- Removido justify-center para permitir rolagem vertical fluida -->
+<body class="flex flex-col items-center py-10 px-4 sm:px-8 font-sans">
 
-    <!-- Tela de pré-carregamento: animação premium (balança da justiça + anel dourado) -->
-    <div id="preloader" aria-hidden="true">
-        <div class="preloader-content">
-            <div class="preloader-orb">
-                <div class="preloader-bg-glow"></div>
-                <div class="preloader-ring"></div>
-                <div class="preloader-icon">
-                    <img src="img/sbr.webp" alt="SBR Advogados">
+    <div class="bg-image" aria-hidden="true"></div>
+    <div class="bg-trilha" aria-hidden="true"></div>
+    <div class="bg-vignette" aria-hidden="true"></div>
+    <div class="bg-iron-texture" aria-hidden="true"></div>
+    <div id="particles-container"></div>
+
+    <div class="w-full max-w-lg flex flex-col gap-6 relative z-10">
+        
+        <!-- Painel Principal de Links -->
+        <main class="glass-panel baroque-frame rounded-3xl p-6 sm:p-10 flex flex-col items-center w-full">
+
+            <header class="flex flex-col items-center w-full mb-6">
+                <!-- Cartela em concha, referência aos frontões esculpidos por Aleijadinho -->
+                <div class="shell-ornament animate-enter delay-1" aria-hidden="true"></div>
+
+                <!-- Foto do Perfil -->
+                <div class="relative mb-5 -mt-2 animate-enter delay-1">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-black/60 avatar-frame">
+                        <img src="img/perfil.jpg" alt="Lucas, Guia de Turismo em Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Ícone de verificado/destaque -->
+                    <div class="absolute bottom-1 right-1 bg-black text-ouro-light rounded-full w-8 h-8 flex items-center justify-center border-2 border-ouro/50 shadow-lg">
+                        <i class="fa-solid fa-map-location-dot text-sm"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="preloader-text-wrap">
-                <span class="preloader-text">SBR <span>Advogados</span></span>
-                <div class="preloader-bar"></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="stack-wrap">
-    <div id="card-stack-back">
-    <div class="phone-container">
+                <h1 class="font-decorative text-3xl font-bold text-white mb-1 tracking-wide animate-enter delay-2">Lucas</h1>
+                <p class="text-ouro font-medium uppercase tracking-[0.15em] text-xs sm:text-sm mb-3 animate-enter delay-2">Guia em Ouro Preto & Região</p>
 
-        <!-- Header com Imagem e Curva -->
-        <header class="header-banner">
-            <!-- A imagem de fundo é definida no CSS .header-banner -->
-            
-            <!-- Logo da balança flutuante -->
-            <div class="floating-logo">
-                <img src="img/sbr.webp" alt="Logo SBR Advocacia">
-            </div>
-
-            <!-- Divisor em forma de onda dupla para recriar o efeito da imagem -->
-            <div class="wave-bottom">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <!-- Curva escura de fundo -->
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V120H0Z" class="shape-fill-dark" opacity=".8"></path>
-                    <!-- Curva branca principal -->
-                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V120H0Z" class="shape-fill"></path>
-                </svg>
-            </div>
-        </header>
-
-        <!-- Conteúdo Principal -->
-        <main class="links-container">
-            
-            <!-- Informações do Perfil -->
-            <div class="mb-6 profile-info">
-                <div class="flex items-center justify-between gap-3">
-                    <h1 class="text-3xl font-bold text-gray-800 tracking-tight">Igor Ramalho</h1>
-                    <button onclick="downloadVCard()" aria-label="Salvar Contato" title="Salvar Contato" class="save-contact-btn shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-gray-800 hover:text-gray-800 active:scale-95">
-                        <i class="fa-regular fa-address-book text-xs"></i>
-                        <span class="text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap">Salvar Contato</span>
-                    </button>
-                </div>
-                <h2 class="text-sm font-semibold text-gray-600 mt-1 uppercase tracking-wider">Advogado</h2>
-                <p class="text-sm text-gray-500 mt-3 italic leading-relaxed">
-                    Atuo no direito civil, empresarial e imobiliário, principalmente nas ações possessórias, revisão contratual e regularização de imóveis, tanto no contencioso e no consultivo.
+                <p class="text-slate-300 text-center text-sm leading-relaxed max-w-[280px] animate-enter delay-3">
+                    Especialista em arte barroca, história do ciclo do ouro, trilhas da serra e roteiros privativos personalizados.
                 </p>
+            </header>
+
+            <div class="azulejo-strip mb-6 animate-enter delay-3" aria-hidden="true"></div>
+
+            <div class="w-full mb-8 animate-enter delay-3">
+                <div class="marquee-container rounded-lg">
+                    <div class="marquee-content">
+                        <!-- Itens repetidos para garantir que o scroll infinito seja contínuo -->
+                        <div class="marquee-item"><i class="fa-solid fa-person-hiking"></i> Trilhas da Serra</div>
+                        <div class="marquee-item"><i class="fa-solid fa-church"></i> Arte Barroca</div>
+                        <div class="marquee-item"><i class="fa-solid fa-city"></i> Centro Histórico</div>
+                        <div class="marquee-item"><i class="fa-solid fa-camera"></i> Mirantes Exclusivos</div>
+                        <div class="marquee-item"><i class="fa-solid fa-leaf"></i> Natureza</div>
+
+                        <div class="marquee-item"><i class="fa-solid fa-person-hiking"></i> Trilhas da Serra</div>
+                        <div class="marquee-item"><i class="fa-solid fa-church"></i> Arte Barroca</div>
+                        <div class="marquee-item"><i class="fa-solid fa-city"></i> Centro Histórico</div>
+                        <div class="marquee-item"><i class="fa-solid fa-camera"></i> Mirantes Exclusivos</div>
+                        <div class="marquee-item"><i class="fa-solid fa-leaf"></i> Natureza</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Lista de Links -->
-            <div class="space-y-4">
-                
-                <!-- Link WhatsApp -->
-                <a href="https://wa.me/5531997562966" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
-                    <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
+            <!-- Reserva Rápida: roteiro já aberto para seleção, sem precisar clicar em botão -->
+            <div id="booking" class="w-full mb-4 animate-enter delay-4">
+                <p class="booking-step-label !mt-0 !mb-3 text-xs"><i class="fa-solid fa-scroll text-ouro-light"></i> Monte seu Passeio</p>
+                <div class="booking-card">
+                    <p class="booking-step-label"><span class="n">1</span> Escolha seu roteiro</p>
+                    <div class="tour-grid" id="tourGrid">
+                        <div class="tour-pick" data-name="Tiradentes e São João Del Rei (Circuito Estrada Real)" tabindex="0" role="button" aria-pressed="false" aria-label="Tiradentes e São João Del Rei">
+                            <img src="img/tiradentes%20e%20sao%20joao%20del%20rei.png" alt="Tiradentes e São João Del Rei" loading="lazy">
+                            <div class="tour-pick-label"><span>Tiradentes &amp; São João Del Rei</span></div>
+                        </div>
+                        <div class="tour-pick" data-name="Parque Natural das Andorinhas - Privativo" tabindex="0" role="button" aria-pressed="false" aria-label="Parque Natural das Andorinhas">
+                            <img src="img/andorinhas.png" alt="Parque Natural das Andorinhas" loading="lazy">
+                            <div class="tour-pick-label"><span>Parque das Andorinhas</span></div>
+                        </div>
+                        <div class="tour-pick" data-name="Mariana - Privativo" tabindex="0" role="button" aria-pressed="false" aria-label="Mariana">
+                            <img src="https://images.unsplash.com/photo-1700754491355-3d6858745045?q=80&w=400&auto=format&fit=crop" alt="Mariana" loading="lazy">
+                            <div class="tour-pick-label"><span>Mariana</span></div>
+                        </div>
+                        <div class="tour-pick" data-name="Ouro Preto - Privativo" tabindex="0" role="button" aria-pressed="false" aria-label="Ouro Preto">
+                            <img src="img/ouropreto%20privativo.png" alt="Ouro Preto" loading="lazy">
+                            <div class="tour-pick-label"><span>Ouro Preto</span></div>
+                        </div>
+                        <div class="tour-pick" data-name="Congonhas do Campo" tabindex="0" role="button" aria-pressed="false" aria-label="Congonhas do Campo">
+                            <img src="img/congonhas%20do%20campo.png" alt="Congonhas do Campo" loading="lazy">
+                            <div class="tour-pick-label"><span>Congonhas do Campo</span></div>
+                        </div>
+                        <div class="tour-pick" data-name="Passeios em Grupo Privado" tabindex="0" role="button" aria-pressed="false" aria-label="Passeio em Grupo Privado">
+                            <img src="img/passeio%20em%20grupo%20privado.png" alt="Passeio em Grupo Privado" loading="lazy">
+                            <div class="tour-pick-label"><span>Passeio em Grupo</span></div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-[15px]">WhatsApp</h3>
-                        <p class="text-xs text-gray-500">Conversar no Whatsapp</p>
-                    </div>
-                </a>
 
-                <!-- Link Instagram -->
-                <a href="https://www.instagram.com/igorramalho/" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
-                    <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
-                        <i class="fa-brands fa-instagram text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-[15px]">Instagram</h3>
-                        <p class="text-xs text-gray-500">Meu perfil no Instagram</p>
-                    </div>
-                </a>
+                    <!-- Box de descrição do roteiro: some até um card ser escolhido.
+                         Data do passeio e dados do cliente ficam dentro dela, logo
+                         após a explicação do roteiro. -->
+                    <div id="tourDescription" class="tour-desc">
+                        <div class="tour-desc-head">
+                            <h3 id="tourDescTitle"></h3>
+                            <div class="tour-desc-price">
+                                <span id="tourDescPriceTo" class="tour-desc-price-old"></span>
+                                <span id="tourDescPriceFrom" class="tour-desc-price-new"></span>
+                            </div>
+                        </div>
+                        <div id="tourDescBody" class="tour-desc-body"></div>
 
-                <!-- Link Localização -->
-                <a href="https://www.google.com/maps/dir//SBR+Advogados+Associados,+R.+Geraldo+Menezes+Soares,+435+-+Salas+201+e+202+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG,+31030-440/@-20.3914238,-43.5126098,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0xa69bd4ad7aa2c7:0x2752e7faa677b68c!2m2!1d-43.9275531!2d-19.9000191?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
-                    <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
-                        <i class="fa-solid fa-map-location-dot text-lg"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-[15px]">Localização do Escritório</h3>
-                        <p class="text-xs text-gray-500 truncate max-w-[200px]">Nossa localização</p>
-                    </div>
-                </a>
+                        <p class="booking-step-label"><span class="n">2</span> Data do passeio</p>
+                        <input type="date" id="bookingDate" class="booking-field" aria-label="Data do passeio">
 
-                <!-- Link Site -->
-                <a href="https://www.sbr.adv.br/" target="_blank" class="link-item flex items-center p-2 rounded-lg no-underline text-gray-800">
-                    <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 border-gray-800 rounded-full mr-4">
-                        <i class="fa-solid fa-earth-americas text-lg"></i>
+                        <p class="booking-step-label"><span class="n">3</span> Seus dados</p>
+                        <div class="booking-row">
+                            <div>
+                                <label class="booking-sublabel" for="bookingName">Nome completo</label>
+                                <input type="text" id="bookingName" class="booking-field" placeholder="Ex: Maria Silva" aria-label="Seu nome">
+                            </div>
+                            <div>
+                                <label class="booking-sublabel" for="bookingPeople">Nº de pessoas</label>
+                                <input type="number" id="bookingPeople" class="booking-field" placeholder="Ex: 2" min="1" value="1" aria-label="Número de pessoas">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-[15px]">Site</h3>
-                        <p class="text-xs text-gray-500">Visite o site oficial da SBR Advogados</p>
-                    </div>
-                </a>
 
+                    <!-- Botão do WhatsApp: fica no final da tela, com o resumo das informações -->
+                    <button type="button" id="bookingSubmit" class="booking-submit" disabled>
+                        <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                    </button>
+                    <p class="booking-hint">Selecione um roteiro para continuar</p>
+                </div>
             </div>
+
+            <nav class="w-full flex flex-col gap-4">
+                <a href="#roteiros" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-5">
+                    <span class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-ouro-light">
+                            <i class="fa-solid fa-church"></i>
+                        </div>
+                        Ver Roteiro das Igrejas
+                    </span>
+                    <i class="fa-solid fa-chevron-down text-slate-500 text-sm"></i>
+                </a>
+
+                <a href="#" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-6">
+                    <span class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-indigo-300">
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                        Tour Lendas Ouro-pretanas
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-slate-500 text-sm"></i>
+                </a>
+
+                <div class="w-full h-px bg-white/10 my-2 animate-enter delay-7"></div>
+
+                <a href="https://instagram.com/lucasguiaouropreto" target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-7" style="animation-delay: 0.8s;">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-instagram text-[#E1306C] text-xl w-8 text-center"></i>
+                        Acompanhe no Instagram
+                    </span>
+                    <i class="fa-solid fa-external-link-alt text-slate-500 text-xs"></i>
+                </a>
+
+                <a href="https://www.google.com/search?q=lucas+guia+voce&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=lucas+guia+vo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgcIAxAAGIAEMg0IBBAuGIMBGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMTQ3MmowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40bf6ecdf18eb:0xff67f8c55d05255f,3,,,," target="_blank" class="link-card text-slate-100 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium animate-enter delay-7" style="animation-delay: 0.85s;">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-brands fa-google text-[#4285F4] text-xl w-8 text-center"></i>
+                        Avalie no Google
+                    </span>
+                    <i class="fa-solid fa-star text-ouro-light text-xs"></i>
+                </a>
+
+            </nav>
         </main>
 
-    </div>
-    </div>
-
-    <!-- Seção 2: preview do Instagram, aparece com fade + slide ao rolar -->
-    <section id="instagram-preview" class="reveal">
-        <div class="ig-card">
-
-            <div class="ig-profile-header">
-                <div class="ig-profile-pic">
-                    <img src="img/igor-instagram.webp" alt="Igor Ramalho">
+        <section class="glass-panel baroque-frame-alt rounded-3xl p-8 w-full fade-scroll">
+            <div class="flex items-center gap-4 mb-5">
+                <div class="w-12 h-12 rounded-full bg-ouro/20 border border-ouro/30 text-ouro-light flex items-center justify-center text-xl shadow-inner">
+                    <i class="fa-solid fa-map"></i>
                 </div>
-                <div class="ig-profile-stats">
-                    <div><strong>131</strong><span>Posts</span></div>
-                    <div><strong>1820</strong><span>Seguidores</span></div>
-                    <div><strong>874</strong><span>Seguindo</span></div>
-                </div>
+                <h2 class="font-display text-2xl font-bold text-white tracking-wide">Sobre o Guia</h2>
             </div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                Olá! Sou Lucas, historiador e guia credenciado (Cadastur) apaixonado pelas ladeiras de Ouro Preto. Nasci respirando a história das Minas Gerais e minha missão é fazer você viajar no tempo de forma autêntica.
+            </p>
+            <p class="text-slate-300 text-sm leading-relaxed mb-5">
+                Mais do que apenas mostrar as igrejas, eu te conto os segredos da inconfidência, as lendas urbanas e as histórias por trás do ouro que financiou impérios. Meu compromisso é transformar sua viagem em uma experiência cultural imersiva e inesquecível.
+            </p>
 
-            <div class="ig-profile-bio">
-                <h3>Igor Ramalho</h3>
-                <p>Advogado | Direito Civil, Empresarial e Imobiliário</p>
-                <p class="ig-profile-link">sbr.adv.br</p>
+            <!-- Salvar Contato: minimalista, logo abaixo da descrição do Lucas -->
+            <div class="flex justify-center">
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%3BLucas%20Guia%20Ouro%20Preto%3B%3B%3B%0AFN%3ALucas%20-%20Guia%20de%20Turismo%0AORG%3ATurismo%20Ouro%20Preto%0ATITLE%3AGuia%20de%20Turismo%0ATEL%3BTYPE%3DCELL%3A%2B5531999999999%0AURL%3Ahttps%3A%2F%2Finstagram.com%2Flucasguiaouropreto%0AEND%3AVCARD" download="Lucas_Guia_OuroPreto.vcf" class="save-contact-minimal">
+                    <i class="fa-solid fa-address-book"></i>
+                    <span>Salvar Contato</span>
+                </a>
             </div>
+        </section>
 
-            <a href="https://www.instagram.com/igorramalho/" target="_blank" rel="noopener" class="ig-btn">
-                <i class="fa-brands fa-instagram"></i>
-                Seguir no Instagram
-            </a>
-
-            <div class="ig-grid">
-                <div class="ig-grid-item">
-                    <img src="img/igor.webp" alt="Igor Ramalho">
+        <section id="roteiros" class="glass-panel baroque-frame rounded-3xl p-8 w-full fade-scroll">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-12 h-12 rounded-full bg-barroco border border-barroco-dark text-indigo-200 flex items-center justify-center text-xl shadow-inner">
+                    <i class="fa-solid fa-cross"></i>
                 </div>
-                <div class="ig-grid-item">
-                    <img src="img/post-1.webp" alt="Post Instagram Igor Ramalho">
-                </div>
-                <div class="ig-grid-item">
-                    <img src="img/post-2.webp" alt="Post Instagram Igor Ramalho">
-                </div>
-                <div class="ig-grid-item">
-                    <img src="img/post-3.webp" alt="Post Instagram Igor Ramalho">
-                </div>
-                <div class="ig-grid-item">
-                    <img src="img/post-4.webp" alt="Post Instagram Igor Ramalho">
-                </div>
-                <div class="ig-grid-item">
-                    <img src="img/post-5.webp" alt="Post Instagram Igor Ramalho">
-                </div>
+                <h2 class="font-display text-2xl font-bold text-white leading-tight tracking-wide">Roteiro Principal:<br><span class="text-ouro-light text-lg font-medium font-serif tracking-normal">Joias do Barroco & Trilhas da Serra</span></h2>
             </div>
+            
+            <!-- Timeline (Linha do Tempo Vertical) — foto ocupa o lado oposto, vazio, do texto -->
+            <div class="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-ouro before:via-white/20 before:to-transparent">
 
-        </div>
-    </section>
+                <!-- Igreja 1 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">São Francisco de Assis</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">A obra-prima esculpida pelo mestre Aleijadinho com as incríveis pinturas celestiais de Mestre Ataíde. Considerada uma das maravilhas de origem portuguesa no mundo.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        1
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlm7hNd0zVHxQsLU1L6DWbCdFmkEtXg-TbWxVQYZNyjEl1MtbXGUnZAWa4kP3_3ZHFy83fKULNwQZEUhDlAknr4D4x3TVHVGvY_9E03xUKwW2wik74h-dV2iPHK87WznS4kZSMVuQ=s680-w680-h510-rw" alt="Igreja São Francisco de Assis, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 Igor Ramalho — SBR Advogados. Todos os direitos reservados.</p>
-    </footer>
+                <!-- Igreja 2 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Basílica do Pilar</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">O ápice absoluto do barroco mineiro. Seu interior majestoso guarda mais de 400kg de ouro puro, ostentando a enorme riqueza e o poder das irmandades da época.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        2
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://arqmariana.com.br/wp-content/uploads/2024/12/dedicacao-da-igreja-do-pilar-op-4-682x1024.jpeg" alt="Basílica de Nossa Senhora do Pilar, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Igreja 3 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-ouro-light mb-2 text-lg">N. Sra. do Carmo</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">A única igreja em Minas Gerais que possui painéis de azulejos portugueses na capela-mor. Um projeto requintado com inovações arquitetônicas trazidas da Europa.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-ouro text-slate-900 font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        3
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOi5H8BMDUqwfJq5W1GBOGPLuyT2A-7iSUEdcUVQwwTvtygDzI2FWGEfIA&s=10" alt="Igreja Nossa Senhora do Carmo, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Igreja 4 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-indigo-300 mb-2 text-lg">Igreja Santa Efigênia</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">Erguida pela irmandade dos negros. A forte lenda local diz que ela foi financiada pelo pó de ouro retirado dos cabelos de escravizados libertos pelo Rei Chico Rei.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-barroco text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        4
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1574378833005-46c3f87a90d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Igreja Santa Efigênia dos Pretos, Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Trilha 5: Serra de Ouro Preto -->
+                <div class="relative flex flex-col md:flex-row items-center gap-4 md:gap-6 md:odd:flex-row-reverse group">
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] order-2 md:order-none bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+                        <h3 class="font-serif font-bold text-pedra-light mb-2 text-lg">Trilha da Serra</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">Encerramos com uma caminhada pelos caminhos antigos que cercam a cidade, entre mirantes e vales, de onde se avista o casario colonial recortado pela serra.</p>
+                    </div>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-800 bg-pedra text-white font-bold shadow-lg shrink-0 order-1 md:order-none z-10">
+                        5
+                    </div>
+                    <div class="w-[calc(100%-4rem)] h-40 md:h-auto md:w-[calc(50%-2.5rem)] md:self-stretch order-3 md:order-none rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1682347812583-7855d5debecd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Trilha na serra de Minas Gerais, arredores de Ouro Preto" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-4 mb-4 text-center">
+            <p class="text-slate-400 text-xs flex items-center justify-center gap-1">
+                Feito com <i class="fa-solid fa-heart text-red-500/70 text-[10px]"></i> em Ouro Preto, MG
+            </p>
+        </footer>
     </div>
 
     <script>
-        // Função para simular o download de um vCard (contato)
-        function downloadVCard() {
-            // Dados fictícios para o exemplo
-            const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:Igor Ramalho Advogado
-TITLE:Advogado
-TEL;TYPE=CELL:+5531997562966
-EMAIL:contato@igorramalho.adv.br
-URL:https://www.meusite.com.br
-END:VCARD`;
+        // 1. Sistema de partículas (Pó de Ouro)
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById('particles-container');
+            const particleCount = 25; // Quantidade de partículas simultâneas
 
-            const blob = new Blob([vcard], { type: 'text/vcard' });
-            const url = window.URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            // Nome do arquivo que será baixado
-            a.download = 'Igor_Ramalho.vcf';
-            
-            document.body.appendChild(a);
-            a.click();
-            
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-        }
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(container);
+            }
 
-        // Esconde o preloader assim que a página termina de carregar
-        // (com um tempo mínimo de exibição para a animação não "piscar" em conexões rápidas)
+            // 2. Intersection Observer para animar seções no Scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Dispara quando 15% do elemento estiver visível
+            };
+
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Para a animação acontecer apenas 1x
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-scroll');
+            fadeElements.forEach(el => {
+                scrollObserver.observe(el);
+            });
+        });
+
+        // 3. Reserva Rápida — roteiro, data, pessoas e nome → mensagem pronta no WhatsApp (painel sempre aberto)
         (function () {
-            const preloader = document.getElementById('preloader');
-            if (!preloader) return;
-            const minDisplay = 1500;
-            const start = Date.now();
+            const grid = document.getElementById('tourGrid');
+            if (!grid) return;
+            const dateInput = document.getElementById('bookingDate');
+            const nameInput = document.getElementById('bookingName');
+            const peopleInput = document.getElementById('bookingPeople');
+            const submitBtn = document.getElementById('bookingSubmit');
+            const hint = document.querySelector('#booking .booking-hint');
+            const descBox = document.getElementById('tourDescription');
+            const descTitle = document.getElementById('tourDescTitle');
+            const descPriceFrom = document.getElementById('tourDescPriceFrom');
+            const descPriceTo = document.getElementById('tourDescPriceTo');
+            const descBody = document.getElementById('tourDescBody');
+            const detailsBox = document.getElementById('bookingDetails');
+            let selectedTour = null;
 
-            function hidePreloader() {
-                const elapsed = Date.now() - start;
-                const wait = Math.max(minDisplay - elapsed, 0);
-                setTimeout(() => {
-                    preloader.classList.add('preloader-hidden');
-                    setTimeout(() => preloader.remove(), 700);
-                }, wait);
-            }
+            // Conteúdo completo de cada roteiro, exibido no box de descrição ao selecionar
+            const tourDetails = {
+                'Tiradentes e São João Del Rei (Circuito Estrada Real)': {
+                    title: 'Tiradentes e São João Del Rei',
+                    priceFrom: 'BRL 1.600,00',
+                    priceTo: 'BRL 1.730,00',
+                    body: `
+                        <p>Circuito Estrada Real — São João Del Rei a Tiradentes!</p>
+                        <p class="tour-desc-sub">Principais pontos turísticos</p>
+                        <p class="tour-desc-sub" style="margin-top:0;color:#fff;text-transform:none;letter-spacing:normal;font-size:0.82rem;">Início em São João Del Rei</p>
+                        <ul>
+                            <li>Matriz Nossa Senhora do Pilar</li>
+                            <li>Igreja São Francisco de Assis</li>
+                            <li>Igreja do Rosário</li>
+                            <li>Solar dos Neves</li>
+                        </ul>
+                        <p class="tour-desc-sub" style="margin-top:0.4rem;color:#fff;text-transform:none;letter-spacing:normal;font-size:0.82rem;">Início em Tiradentes</p>
+                        <ul>
+                            <li>Matriz de Santo Antônio</li>
+                            <li>Igreja do Rosário</li>
+                            <li>Museu Casa do Padre Toledo</li>
+                            <li>Chafariz São José</li>
+                            <li>Mirante</li>
+                            <li>Passeio pela cidade caminhando ou de charrete (charrete não inclusa no valor do tour)</li>
+                        </ul>
+                        <p>Horário de saída às 08:00 e retorno às 18:00 horas! Transporte executivo!</p>
+                        <p>Passeio opcional incluindo Bichinhos — confira o valor adicional!</p>
+                        <p class="tour-desc-note">Venha viver essa experiência.</p>
+                    `
+                },
+                'Parque Natural das Andorinhas - Privativo': {
+                    title: 'Parque Natural das Andorinhas — Privativo',
+                    priceFrom: 'BRL 500,00',
+                    priceTo: 'BRL 650,00',
+                    body: `
+                        <p>Roteiro realizado no Parque Natural das Andorinhas, em meio à mata, conhecendo as mais belas quedas d'água e paisagens da região de Ouro Preto!</p>
+                        <ul>
+                            <li>Cachoeira das Andorinhas</li>
+                            <li>Cachoeira dos Pelados</li>
+                            <li>Cachoeira Poço das Crianças</li>
+                            <li>Mirante da Pedra do Jacaré</li>
+                            <li>Mirante Véu das Noivas</li>
+                            <li>Mirante do Morro São Sebastião</li>
+                            <li>Mina de Ouro Século 18</li>
+                            <li>Marco Zero (local da foto oficial do parque)</li>
+                        </ul>
+                        <p>Duração do roteiro: 4 horas.</p>
+                        <p>Transporte e guiamento inclusos no valor, até 4 pessoas!</p>
+                        <p class="tour-desc-note">Buscamos apenas em hospedagens na cidade de Ouro Preto. Parada para almoço — almoço não incluso no valor!</p>
+                    `
+                },
+                'Mariana - Privativo': {
+                    title: 'Mariana — Privativo',
+                    priceFrom: 'BRL 550,00',
+                    priceTo: 'BRL 650,00',
+                    body: `
+                        <p>Roteiro realizado na cidade de Mariana!</p>
+                        <p class="tour-desc-sub">Visitas internas</p>
+                        <ul>
+                            <li>Catedral de Nossa Senhora da Assunção</li>
+                            <li>Igreja São Pedro dos Clérigos</li>
+                            <li>Igreja de São Francisco de Assis</li>
+                            <li>Casa da Câmara e Cadeia</li>
+                            <li>Igreja de Nossa Senhora do Carmo</li>
+                            <li>Museu de Artes Sacras</li>
+                        </ul>
+                        <p class="tour-desc-sub">Visitas externas</p>
+                        <ul>
+                            <li>Praça Minas Gerais</li>
+                            <li>Praça Gomes Freire</li>
+                            <li>Casa de Fundição</li>
+                            <li>Rua Direita</li>
+                        </ul>
+                        <p>Roteiro realizado em 3 a 4 horas — transporte e guiamento inclusos no valor de R$ 400,00!</p>
+                        <p>Acima de 4 pessoas, consulte o valor!</p>
+                        <p class="tour-desc-note">Almoço com comida mineira, taxas de visitação e almoço não inclusos no valor.</p>
+                    `
+                },
+                'Ouro Preto - Privativo': {
+                    title: 'Ouro Preto — Privativo',
+                    priceFrom: 'BRL 600,00',
+                    priceTo: 'BRL 750,00',
+                    body: `
+                        <p>Roteiro realizado nos principais pontos, onde o cliente pode montar seu roteiro.</p>
+                        <p class="tour-desc-sub">Visitas internas</p>
+                        <ul>
+                            <li>Igreja de Nossa Senhora do Pilar</li>
+                            <li>Igreja de São Francisco de Assis (obra do mestre Aleijadinho)</li>
+                            <li>Igreja de Santa Efigênia</li>
+                            <li>Igreja de Nossa Senhora da Conceição</li>
+                            <li>Mina de Ouro do século 18</li>
+                            <li>Fábrica de artesanato</li>
+                            <li>Lapidação de pedras preciosas e fábrica de joias</li>
+                        </ul>
+                        <p class="tour-desc-sub">Visitas panorâmicas</p>
+                        <ul>
+                            <li>Praça Tiradentes</li>
+                            <li>Igreja de Nossa Senhora do Rosário</li>
+                            <li>Ponte dos Suspiros</li>
+                            <li>Largo de Marília</li>
+                            <li>Mirante da cidade</li>
+                            <li>Igreja de Nossa Senhora das Mercês</li>
+                            <li>Mirante da Santa Efigênia</li>
+                            <li>Rua Direita</li>
+                            <li>Rua São José</li>
+                            <li>Museu Casa dos Contos</li>
+                            <li>Casa de Tomás Antônio Gonzaga</li>
+                        </ul>
+                        <p>Roteiro realizado em 5 horas em média. Transporte e guiamento inclusos!</p>
+                        <p>Acima de 4 pessoas, consulte o valor.</p>
+                        <p class="tour-desc-note">Almoço com comida mineira, taxas de entrada e almoço não inclusos neste valor!</p>
+                    `
+                },
+                'Congonhas do Campo': {
+                    title: 'Congonhas do Campo',
+                    priceFrom: 'BRL 750,00',
+                    priceTo: 'BRL 820,00',
+                    body: `
+                        <p>Roteiro realizado na cidade de Congonhas do Campo, histórico cultural!</p>
+                        <ul>
+                            <li>Igreja do Bom Jesus de Matosinhos</li>
+                            <li>Capelas da Via Sacra (obras do mestre Aleijadinho)</li>
+                            <li>Museu de Artes Sacras (obras do mestre Aleijadinho)</li>
+                            <li>Centro histórico</li>
+                        </ul>
+                        <p>Duração de 3 horas e meia! Transporte executivo.</p>
+                    `
+                },
+                'Passeios em Grupo Privado': {
+                    title: 'Passeios em Grupo Privado',
+                    priceFrom: 'BRL 650,00',
+                    priceTo: 'BRL 720,00',
+                    body: `
+                        <p>Um roteiro incrível feito pra você, que está vindo pra Ouro Preto com grupo de pessoas, amigos, família ou excursão — pensado pra trazer conforto, agilidade e muito conhecimento pra você.</p>
+                        <ul>
+                            <li>Roteiro em grupo pela cidade histórica de Ouro Preto (MG)</li>
+                            <li>Experiência cultural e histórica guiada</li>
+                            <li>Duração média: 5 a 6 horas</li>
+                        </ul>
+                        <p class="tour-desc-sub">Pontos visitados no roteiro</p>
+                        <ul>
+                            <li>Igreja de Nossa Senhora do Pilar</li>
+                            <li>Igreja de São Francisco de Assis</li>
+                            <li>Mina de Ouro do século XVIII</li>
+                            <li>Igreja de Nossa Senhora da Conceição</li>
+                            <li>Museu Casa dos Contos</li>
+                            <li>Museu da Inconfidência</li>
+                            <li>Loja de artesanatos e lapidação de pedras preciosas</li>
+                            <li>Praça Tiradentes</li>
+                            <li>Rua Direita</li>
+                            <li>Rua São José</li>
+                            <li>Largo do Cinema</li>
+                            <li>Mirante da cidade</li>
+                        </ul>
+                        <p>Roteiro realizado a pé, com paradas explicativas em cada ponto. Ideal para grupos, escolas, excursões e turistas em geral.</p>
+                        <p class="tour-desc-note">Custos de entrada em igrejas, museus, mina e demais atrativos, além de despesas pessoais e consumos extras, não estão inclusos.</p>
+                    `
+                }
+            };
 
-            if (document.readyState === 'complete') {
-                hidePreloader();
-            } else {
-                window.addEventListener('load', hidePreloader);
+            dateInput.min = new Date().toISOString().split('T')[0];
+
+            function openCalendar() {
+                if (typeof dateInput.showPicker === 'function') {
+                    try { dateInput.showPicker(); } catch (e) {}
+                }
             }
+            dateInput.addEventListener('click', openCalendar);
+            dateInput.addEventListener('focus', openCalendar);
+
+            grid.querySelectorAll('.tour-pick').forEach(card => {
+                const select = () => {
+                    grid.querySelectorAll('.tour-pick').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
+                    card.classList.add('selected');
+                    card.setAttribute('aria-pressed', 'true');
+                    selectedTour = card.dataset.name;
+
+                    // Preenche e abre o box com a explicação completa do roteiro
+                    const info = tourDetails[selectedTour];
+                    if (info) {
+                        descTitle.textContent = info.title;
+                        descPriceFrom.textContent = info.priceFrom;
+                        descPriceTo.textContent = info.priceTo;
+                        descBody.innerHTML = info.body;
+                    }
+                    descBox.classList.add('open');
+
+                    validate();
+                    setTimeout(() => descBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+                };
+                card.addEventListener('click', select);
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); }
+                });
+            });
+
+            function validate() {
+                const ok = !!(selectedTour && dateInput.value && nameInput.value.trim() && Number(peopleInput.value) > 0);
+                submitBtn.disabled = !ok;
+                hint.textContent = ok
+                    ? 'Tudo pronto! Confirme pelo WhatsApp.'
+                    : (!selectedTour ? 'Selecione um roteiro para continuar' : 'Preencha data, nome e nº de pessoas');
+            }
+            [dateInput, nameInput, peopleInput].forEach(el => el.addEventListener('input', validate));
+
+            submitBtn.addEventListener('click', () => {
+                if (submitBtn.disabled) return;
+                const dataFmt = new Date(dateInput.value + 'T00:00:00').toLocaleDateString('pt-BR');
+                const msg = 'Olá Lucas, me chamo ' + nameInput.value.trim() + '! Quero reservar um passeio em Ouro Preto:\n\n' +
+                    'Passeio: ' + selectedTour + '\n' +
+                    'Data: ' + dataFmt + '\n' +
+                    'Pessoas: ' + peopleInput.value;
+                window.open('https://wa.me/5531999999999?text=' + encodeURIComponent(msg), '_blank');
+            });
         })();
 
-        // Anima elementos .reveal (fade + slide) quando entram na viewport
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 3 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}vw`;
+            
+            const duration = Math.random() * 15 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            const delay = Math.random() * 10;
+            particle.style.animationDelay = `-${delay}s`;
 
-        document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+            container.appendChild(particle);
+
+            particle.addEventListener('animationiteration', () => {
+                particle.style.left = `${Math.random() * 100}vw`;
+            });
+        }
     </script>
 </body>
 </html>
