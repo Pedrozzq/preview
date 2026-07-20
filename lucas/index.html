@@ -482,6 +482,28 @@
             background-color: rgba(92, 107, 88, 0.08);
         }
 
+        /* Botão flutuante-style de WhatsApp, cores oficiais da marca */
+        .whatsapp-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            background: #25D366;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 15px 30px -12px rgba(37, 211, 102, 0.55);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+        }
+        .whatsapp-cta:hover {
+            background: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 18px 34px -10px rgba(37, 211, 102, 0.65);
+        }
+
         .link-card {
             position: relative;
             overflow: hidden;
@@ -1190,7 +1212,7 @@
                 <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-ouro-light shrink-0">
                     <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
                 </div>
-                <p class="text-xs uppercase tracking-[0.15em] text-slate-400 font-medium">Pergunte a uma IA</p>
+                <p class="text-xs uppercase tracking-[0.15em] text-slate-400 font-medium">Pergunte ao ChatGPT</p>
             </div>
 
             <div class="flex flex-col gap-3">
@@ -1350,9 +1372,14 @@
             </div>
         </section>
 
+        <a href="https://wa.me/553195216545?text=Ol%C3%A1%20Lucas!%20Quero%20saber%20mais%20sobre%20os%20passeios%20em%20Ouro%20Preto." target="_blank" rel="noopener" class="whatsapp-cta w-full fade-scroll">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span>Chamar no WhatsApp</span>
+        </a>
+
         <!-- Footer -->
         <footer class="mt-4 mb-4 text-center">
-            <p class="text-slate-500 text-[11px]">Lucas Guia Você - Todos os direitos reservados</p>
+            <p class="text-slate-500 text-[11px]">© 2026 Lucas Guia Você - Todos os direitos reservados</p>
         </footer>
     </div>
 
