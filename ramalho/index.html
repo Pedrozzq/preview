@@ -33,6 +33,196 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* ===================== PRÉ-CARREGAMENTO (PRELOADER) =====================
+           Tela de abertura discreta e premium: anel dourado girando ao redor
+           do ícone da balança da justiça, sobre fundo escuro da marca. */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #preloader.preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .preloader-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            animation: preloaderEnter 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes preloaderEnter {
+            from { opacity: 0; transform: scale(0.85); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        /* Glow ambiente pulsando atrás de tudo, para dar profundidade */
+        .preloader-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 260px;
+            height: 260px;
+            margin: -130px 0 0 -130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196, 154, 69, 0.18) 0%, transparent 70%);
+            filter: blur(10px);
+            animation: preloaderGlowPulse 2.6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes preloaderGlowPulse {
+            0%, 100% { transform: scale(0.85); opacity: 0.6; }
+            50%      { transform: scale(1.15); opacity: 1; }
+        }
+
+        /* Anel giratório: gradiente cônico "recortado" em máscara para um traço
+           fino e suave (sem o efeito de borda segmentada). */
+        .preloader-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 132px;
+            height: 132px;
+            margin: -66px 0 0 -66px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 62%, rgba(196,154,69,0.25) 78%, #f0cf87 92%, #c49a45 97%, transparent 100%);
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+            animation: preloaderSpin 2.4s linear infinite;
+        }
+
+        .preloader-ring::before {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg, transparent 0%, transparent 70%, rgba(196,154,69,0.5) 100%);
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+            animation: preloaderSpin 3.6s linear infinite reverse;
+        }
+
+        /* Moldura circular preenchida totalmente pela logo, com respiração
+           sutil de escala e brilho dourado pulsante ao redor. */
+        .preloader-icon {
+            position: relative;
+            width: 108px;
+            height: 108px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 1px rgba(196, 154, 69, 0.3);
+            animation: preloaderBreathe 2.6s ease-in-out infinite;
+        }
+
+        .preloader-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Brilho de luz varrendo a logo, dando um toque premium/moderno */
+        .preloader-icon::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.5) 50%, transparent 65%);
+            background-size: 260% 260%;
+            mix-blend-mode: overlay;
+            animation: preloaderShimmer 2.6s ease-in-out infinite;
+        }
+
+        .preloader-text-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(6px);
+            animation: preloaderTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        @keyframes preloaderTextIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .preloader-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: #ffffff;
+            opacity: 0.85;
+        }
+
+        .preloader-text span {
+            color: #c49a45;
+        }
+
+        /* Barrinha de carregamento fina, com brilho dourado deslizando */
+        .preloader-bar {
+            position: relative;
+            width: 84px;
+            height: 2px;
+            border-radius: 999px;
+            background: rgba(196, 154, 69, 0.18);
+            overflow: hidden;
+        }
+
+        .preloader-bar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 40%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent, #c49a45, #f0cf87, #c49a45, transparent);
+            animation: preloaderBarSlide 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+        }
+
+        @keyframes preloaderBarSlide {
+            0%   { transform: translateX(-100%); }
+            100% { transform: translateX(250%); }
+        }
+
+        @keyframes preloaderSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes preloaderBreathe {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 1px rgba(196, 154, 69, 0.3), 0 0 16px rgba(196, 154, 69, 0.25); }
+            50%      { transform: scale(1.06); box-shadow: 0 0 0 1px rgba(196, 154, 69, 0.55), 0 0 32px rgba(196, 154, 69, 0.55); }
+        }
+
+        @keyframes preloaderShimmer {
+            0%   { background-position: -40% -40%; opacity: 0; }
+            20%  { opacity: 1; }
+            55%  { background-position: 140% 140%; opacity: 0.8; }
+            75%  { opacity: 0; }
+            100% { background-position: 140% 140%; opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .preloader-content, .preloader-bg-glow, .preloader-ring, .preloader-ring::before,
+            .preloader-icon, .preloader-icon::after, .preloader-text-wrap, .preloader-bar::before {
+                animation: none;
+            }
+            .preloader-text-wrap { opacity: 1; transform: none; }
+        }
+
         /* ===================== SEÇÕES EMPILHADAS =====================
            Cartão e preview do Instagram ficam no fluxo normal da página
            (sem sticky). Ao rolar, o preview do Instagram surge com um
@@ -177,6 +367,7 @@
             width: 100%;
             box-sizing: border-box;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 60px 24px;
@@ -324,6 +515,22 @@
             font-size: 20px;
         }
 
+        /* Rodapé com os direitos reservados */
+        .site-footer {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 8px 20px 40px 20px;
+            background-color: #2b2b2b;
+        }
+
+        .site-footer p {
+            margin: 0;
+            font-size: 11px;
+            color: #8a8a8a;
+            letter-spacing: 0.02em;
+        }
+
         /* ===================== VERSÃO DESKTOP =====================
            Acima de 900px, o cartão deixa de imitar uma tela de celular e
            passa a ser um layout dividido em duas colunas: foto de um lado,
@@ -379,6 +586,21 @@
     </style>
 </head>
 <body>
+
+    <!-- Tela de pré-carregamento: animação premium (balança da justiça + anel dourado) -->
+    <div id="preloader" aria-hidden="true">
+        <div class="preloader-content">
+            <div class="preloader-bg-glow"></div>
+            <div class="preloader-ring"></div>
+            <div class="preloader-icon">
+                <img src="img/sbr.webp" alt="SBR Advogados">
+            </div>
+            <div class="preloader-text-wrap">
+                <span class="preloader-text">SBR <span>Advogados</span></span>
+                <div class="preloader-bar"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="stack-wrap">
     <div id="card-stack-back">
@@ -526,6 +748,10 @@
 
         </div>
     </section>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Igor Ramalho — SBR Advogados. Todos os direitos reservados.</p>
+    </footer>
     </div>
 
     <script>
@@ -556,6 +782,30 @@ END:VCARD`;
             window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
         }
+
+        // Esconde o preloader assim que a página termina de carregar
+        // (com um tempo mínimo de exibição para a animação não "piscar" em conexões rápidas)
+        (function () {
+            const preloader = document.getElementById('preloader');
+            if (!preloader) return;
+            const minDisplay = 1500;
+            const start = Date.now();
+
+            function hidePreloader() {
+                const elapsed = Date.now() - start;
+                const wait = Math.max(minDisplay - elapsed, 0);
+                setTimeout(() => {
+                    preloader.classList.add('preloader-hidden');
+                    setTimeout(() => preloader.remove(), 700);
+                }, wait);
+            }
+
+            if (document.readyState === 'complete') {
+                hidePreloader();
+            } else {
+                window.addEventListener('load', hidePreloader);
+            }
+        })();
 
         // Anima elementos .reveal (fade + slide) quando entram na viewport
         const revealObserver = new IntersectionObserver((entries) => {
