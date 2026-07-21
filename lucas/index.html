@@ -61,7 +61,8 @@
             overflow-x: hidden;
         }
 
-        /* Camada 1: Centro Histórico - casario colonial sobre a serra de Ouro Preto */
+        /* Camada 1: Centro Histórico - casario colonial sobre a serra de Ouro Preto.
+           A translação segue --scroll-parallax-1, atualizada via JS ao rolar. */
         .bg-image {
             position: fixed;
             top: 0;
@@ -72,9 +73,11 @@
             background-size: cover;
             background-position: center 30%;
             opacity: 0.22;
-            z-index: -3;
+            z-index: -4;
             -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
             mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            transform: translateY(var(--scroll-parallax-1, 0px));
+            will-change: transform;
         }
 
         /* Camada 2: Trilhas da Serra - estradas e vales que cercam Ouro Preto, ancorada ao rodapé */
@@ -88,9 +91,30 @@
             background-size: cover;
             background-position: center;
             opacity: 0.16;
-            z-index: -3;
+            z-index: -4;
             -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
             mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+            transform: translateY(var(--scroll-parallax-2, 0px));
+            will-change: transform;
+        }
+
+        /* Camada 3: retrato da abertura (img/loading.webp) como marca-d'água que
+           acompanha a rolagem — a mesma foto do pré-loading "continua" no fundo. */
+        .bg-portrait {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            background-image: url('img/loading.webp');
+            background-size: 85% auto;
+            background-position: center 18%;
+            background-repeat: no-repeat;
+            opacity: 0.16;
+            filter: grayscale(0.25) blur(1px);
+            -webkit-mask-image: radial-gradient(ellipse 68% 52% at 50% 24%, black 45%, transparent 85%);
+            mask-image: radial-gradient(ellipse 68% 52% at 50% 24%, black 45%, transparent 85%);
+            transform: translateY(var(--scroll-parallax-3, 0px)) scale(1.05);
+            will-change: transform;
+            pointer-events: none;
         }
 
         /* Vinheta dourada + textura de ferro forjado (grades das varandas coloniais) */
@@ -1059,6 +1083,7 @@
 
     <div class="bg-image" aria-hidden="true"></div>
     <div class="bg-trilha" aria-hidden="true"></div>
+    <div class="bg-portrait" aria-hidden="true"></div>
     <div class="bg-vignette" aria-hidden="true"></div>
 
     <div class="w-full max-w-lg flex flex-col gap-6 relative z-10">
@@ -1464,6 +1489,29 @@
                 window.addEventListener('load', reveal, { once: true });
                 setTimeout(reveal, 4000);
             }
+        })();
+
+        // 0b. Paralaxe no fundo ao rolar — as camadas fixas (casario, trilha e o
+        // retrato da abertura) se deslocam em velocidades diferentes conforme a
+        // rolagem, dando sensação de profundidade. Atualiza variáveis CSS via
+        // requestAnimationFrame para não travar o scroll.
+        (function () {
+            const root = document.documentElement;
+            let ticking = false;
+            function updateParallax() {
+                const y = window.scrollY;
+                root.style.setProperty('--scroll-parallax-1', (y * 0.08) + 'px');
+                root.style.setProperty('--scroll-parallax-2', (y * -0.05) + 'px');
+                root.style.setProperty('--scroll-parallax-3', (y * 0.14) + 'px');
+                ticking = false;
+            }
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }, { passive: true });
+            updateParallax();
         })();
 
         document.addEventListener("DOMContentLoaded", () => {
