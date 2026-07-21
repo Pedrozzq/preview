@@ -123,15 +123,18 @@
             z-index: -4;
             background-image: url('img/truck-bg.webp');
             background-size: cover;
-            background-position: center 35%;
-            opacity: calc(0.12 + var(--clean-progress) * 0.4);
+            /* enquadra mais para baixo para manter a caminhonete sempre visível
+               (ela fica na metade inferior da foto) mesmo em telas altas */
+            background-position: center 78%;
+            opacity: calc(0.36 + var(--clean-progress) * 0.5);
             /* "sujo" no topo: dessaturado e amarelado; clareia e ganha cor
-               conforme --clean-progress sobe, como se estivesse sendo lavado */
+               conforme --clean-progress sobe, como se estivesse sendo lavado.
+               Base menos apagada que antes para a caminhonete se destacar. */
             filter:
-                saturate(calc(0.15 + var(--clean-progress) * 0.85))
-                brightness(calc(0.65 + var(--clean-progress) * 0.55))
-                sepia(calc(0.55 - var(--clean-progress) * 0.55))
-                contrast(calc(0.9 + var(--clean-progress) * 0.15));
+                saturate(calc(0.3 + var(--clean-progress) * 0.85))
+                brightness(calc(0.8 + var(--clean-progress) * 0.5))
+                sepia(calc(0.4 - var(--clean-progress) * 0.4))
+                contrast(calc(0.95 + var(--clean-progress) * 0.15));
             transition: opacity 0.15s linear, filter 0.15s linear;
         }
         /* Camada de sujeira/grão que vai sumindo (sendo "lavada") ao rolar */
@@ -152,11 +155,14 @@
             inset: 0;
             z-index: -2;
             background:
+                /* holofote sobre a caminhonete, para destacá-la do fundo escuro */
+                radial-gradient(ellipse 78% 48% at 46% 76%, rgba(255, 246, 224, calc(0.32 + var(--clean-progress) * 0.22)), transparent 65%),
                 radial-gradient(ellipse at 50% calc(10% + var(--clean-progress) * 60%), rgba(75, 156, 211, calc(0.1 + var(--clean-progress) * 0.12)), transparent 55%),
                 linear-gradient(180deg,
                     rgba(0, 0, 0, calc(0.95 - var(--clean-progress) * 0.35)) 0%,
                     rgba(6, 12, 22, calc(0.88 - var(--clean-progress) * 0.35)) 45%,
                     rgba(0, 0, 0, calc(0.97 - var(--clean-progress) * 0.28)) 100%);
+            background-blend-mode: screen, normal, normal;
             transition: background 0.15s linear;
         }
 
@@ -361,6 +367,24 @@
             color: #ffffff;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
         }
+
+        /* Mesmo efeito para os itens de Commercial Services e Service Area */
+        #commercial-services .service-tag,
+        #service-area .area-chip {
+            transition: color 0.45s ease, background-color 0.45s ease,
+                border-color 0.45s ease, text-shadow 0.45s ease, transform 0.45s ease;
+        }
+        #commercial-services .service-tag.lit {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.45);
+        }
+        #service-area .area-chip.lit {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+        }
         .area-chip {
             display: inline-flex;
             align-items: center;
@@ -499,7 +523,7 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 1.25rem;
             padding: 1.25rem;
-            max-width: 420px;
+            max-width: 480px;
             width: 100%;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
             transform: scale(0.92);
@@ -511,6 +535,20 @@
         .area-modal-box img {
             width: 100%;
             border-radius: 0.75rem;
+            display: block;
+        }
+        .area-modal-map {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .area-modal-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
             display: block;
         }
         .area-modal-close {
@@ -671,21 +709,6 @@
                     <div class="flex flex-col">
                         <span class="font-bold text-lg">WhatsApp Us</span>
                         <span class="text-xs text-gray-400">Chat with our team directly</span>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right text-gray-500 opacity-50"></i>
-            </a>
-
-            <!-- Link 4: All Services (on-page) -->
-            <a href="#services"
-               class="link-btn animate-slide-up delay-400 glass-panel flex items-center justify-between p-4 rounded-2xl w-full text-white no-underline">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 border border-purple-500/30">
-                        <i class="fa-solid fa-house-chimney-crack text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-bold text-lg">View Our Services</span>
-                        <span class="text-xs text-gray-400">Residential & Commercial Cleaning</span>
                     </div>
                 </div>
                 <i class="fa-solid fa-chevron-right text-gray-500 opacity-50"></i>
@@ -935,44 +958,20 @@
             </p>
         </section>
 
-        <!-- Depoimentos -->
-        <section id="testimonials" class="w-full mb-12 animate-slide-up delay-600">
-            <div class="section-heading mb-5">
-                <span class="line"></span>
-                <span class="text-brand-light font-bold text-xs uppercase tracking-widest">Testimonials</span>
-                <span class="line right"></span>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="glass-panel rounded-2xl p-4">
-                    <div class="text-yellow-400 text-xs mb-2">★★★★★</div>
-                    <p class="text-sm text-gray-200 italic leading-relaxed">"They said the house would look like new — and it does! Super responsive, and they followed up after the job was done."</p>
-                </div>
-                <div class="glass-panel rounded-2xl p-4">
-                    <div class="text-yellow-400 text-xs mb-2">★★★★★</div>
-                    <p class="text-sm text-gray-200 italic leading-relaxed">"Thorough, careful and professional job, at a reasonable price."</p>
-                </div>
-                <div class="glass-panel rounded-2xl p-4">
-                    <div class="text-yellow-400 text-xs mb-2">★★★★★</div>
-                    <p class="text-sm text-gray-200 italic leading-relaxed">"Extremely professional and hard working."</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Media Row -->
-        <div class="mt-10 flex gap-6 justify-center animate-slide-up delay-600">
-            <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-300 hover:text-white hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-600 transition-all duration-300 hover:scale-110">
-                <i class="fa-brands fa-instagram text-xl"></i>
-            </a>
-            <a href="https://facebook.com/TheJollyWasher" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300 hover:scale-110">
-                <i class="fa-brands fa-facebook-f text-xl"></i>
-            </a>
-            <a href="https://maps.app.goo.gl/L46AMR9Mkhsq48wTA" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-300 hover:text-white hover:bg-yellow-500 transition-all duration-300 hover:scale-110">
-                <i class="fa-brands fa-google text-xl"></i>
-            </a>
-        </div>
-
         <!-- Footer info -->
-        <footer class="mt-8 text-center animate-slide-up delay-600">
+        <footer class="w-full mt-10 text-center animate-slide-up delay-600 bg-black rounded-2xl border border-white/5 py-6 px-4">
+            <!-- Social Media Row -->
+            <div class="flex gap-6 justify-center mb-5">
+                <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-300 hover:text-white hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-600 transition-all duration-300 hover:scale-110">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                <a href="https://facebook.com/TheJollyWasher" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300 hover:scale-110">
+                    <i class="fa-brands fa-facebook-f text-xl"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/L46AMR9Mkhsq48wTA" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-300 hover:text-white hover:bg-yellow-500 transition-all duration-300 hover:scale-110">
+                    <i class="fa-brands fa-google text-xl"></i>
+                </a>
+            </div>
             <p class="text-xs text-gray-400 font-medium">1913 Shore Road, Linwood, NJ 08221</p>
             <a href="tel:+16097578847" class="text-xs text-gray-500 hover:text-brand-light transition-colors">609-757-8847</a>
             <p class="text-[10px] text-gray-600 mt-2">
@@ -989,7 +988,11 @@
             <button type="button" class="area-modal-close" data-area-close aria-label="Close">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <img src="img/service-area.webp" alt="The Jolly Washer service area map">
+            <div class="area-modal-map">
+                <iframe
+                    src="https://www.google.com/maps/d/u/0/embed?mid=1rh6Avu9KOafKfa38OAAyM_nTlHs4gRY&ehbc=2E312F"
+                    title="The Jolly Washer service area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
             <p class="text-center text-[11px] text-gray-400 mt-3 px-1 leading-relaxed">
                 If you don't see your town listed, give us a call and ask if you're in our territory.
             </p>
@@ -1065,6 +1068,24 @@
     <script>
         (function () {
             const items = document.querySelectorAll('#services .service-tag, #services .service-family-label');
+            if (!items.length) return;
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('lit');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            items.forEach(item => observer.observe(item));
+        })();
+    </script>
+
+    <!-- Commercial Services e Service Area: mesmo efeito de "acender" em
+         branco ao atingir 50% de visibilidade na tela -->
+    <script>
+        (function () {
+            const items = document.querySelectorAll('#commercial-services .service-tag, #service-area .area-chip');
             if (!items.length) return;
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
