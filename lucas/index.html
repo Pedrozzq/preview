@@ -692,36 +692,6 @@
             60%  { opacity: 1; filter: brightness(0.9) saturate(0.8) blur(1px); }
             100% { opacity: 1; transform: scale(1); filter: brightness(1) saturate(1) blur(0); }
         }
-        .intro-title {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        .intro-overlay.intro-ready .intro-title {
-            animation: introRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.6s;
-        }
-        @keyframes introRise {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .intro-loadbar {
-            width: 160px;
-            height: 3px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.15);
-            overflow: hidden;
-        }
-        .intro-loadbar-fill {
-            height: 100%;
-            width: 0%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #5c6b58, #8a9a87);
-        }
-        .intro-overlay.intro-ready .intro-loadbar-fill {
-            animation: introLoadbar 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-        }
-        @keyframes introLoadbar {
-            to { width: 100%; }
-        }
         @keyframes introDismiss {
             to { opacity: 0; visibility: hidden; pointer-events: none; }
         }
@@ -1032,15 +1002,11 @@
            seguem tocando normalmente, propositalmente.
            ===================================================================== */
         @media (prefers-reduced-motion: reduce) {
-            .intro-photo, .intro-title {
+            .intro-photo {
                 animation: none !important;
                 opacity: 1 !important;
                 transform: none !important;
                 filter: none !important;
-            }
-            .intro-loadbar-fill {
-                animation: none !important;
-                width: 100% !important;
             }
             .ai-caret {
                 animation: none !important;
@@ -1077,8 +1043,6 @@
             <img src="img/loading.webp" alt="" class="intro-photo">
             <span class="intro-spinner"></span>
         </div>
-        <p class="intro-title font-decorative text-2xl text-white tracking-widest">Lucas Guia Você</p>
-        <div class="intro-loadbar"><div class="intro-loadbar-fill"></div></div>
     </div>
 
     <div class="bg-image" aria-hidden="true"></div>
