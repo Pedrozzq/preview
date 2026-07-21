@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>The Jolly Washer | Quick Links</title>
     <!-- Tailwind CSS for rapid styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -202,8 +205,8 @@
         }
         @keyframes bubble-rise {
             0% { transform: translate(0, 0) scale(0.7); opacity: 0; }
-            12% { opacity: 0.9; }
-            75% { opacity: 0.55; }
+            12% { opacity: 0.45; }
+            75% { opacity: 0.28; }
             100% { transform: translate(var(--bubble-drift, 24px), -115vh) scale(1); opacity: 0; }
         }
 
@@ -779,12 +782,12 @@
         </section>
 
         <!-- Serviços Residenciais -->
-        <section id="services" class="w-full mb-12 animate-slide-up delay-600">
+        <section id="services" class="w-full mt-10 mb-12 animate-slide-up delay-600">
             <!-- Demais serviços, organizados por família -->
             <div class="flex flex-col gap-4">
                 <div>
                     <span class="block text-[11px] font-bold uppercase tracking-widest text-brand-accent mb-2 service-family-label">Cleaning</span>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-wrap gap-3">
                         <span class="service-tag">Pool Area Cleaning</span>
                         <span class="service-tag">Dryer Vent Cleaning</span>
                         <span class="service-tag">Upholstery Cleaning</span>
@@ -1119,8 +1122,8 @@
         (function () {
             const layer = document.getElementById('scroll-bubbles');
             if (!layer) return;
-            const MAX_BUBBLES = 40;
-            const SPAWN_COOLDOWN = 90;
+            const MAX_BUBBLES = 16;
+            const SPAWN_COOLDOWN = 260;
             let lastScrollY = window.scrollY;
             let lastSpawn = 0;
             let activeCount = 0;
@@ -1154,7 +1157,6 @@
                 if (now - lastSpawn < SPAWN_COOLDOWN) return;
                 lastSpawn = now;
                 spawnBubble();
-                if (Math.random() < 0.5) spawnBubble();
             }, { passive: true });
         })();
     </script>
