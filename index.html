@@ -225,6 +225,20 @@
                 contrast(calc(0.95 + var(--clean-progress) * 0.15));
             transition: opacity 0.15s linear, filter 0.15s linear, transform 0.08s linear;
         }
+        /* CSS `filter` on a wrapper that contains a playing <video> forces
+           many mobile GPUs to composite it in software instead of using the
+           fast hardware video-decode path — in practice this is what reads
+           as the background video "freezing"/not loading on phones, even
+           though it plays fine on desktop. Recalculating that filter every
+           scroll frame makes it worse. Drop the filter on touch/coarse-
+           pointer devices; the overlay gradients below still carry most of
+           the "wash" color effect, so the loss is mostly the saturation/
+           contrast ramp. */
+        @media (pointer: coarse) {
+            .bg-truck-wrap {
+                filter: none;
+            }
+        }
         .bg-truck {
             position: absolute;
             inset: 0;
@@ -504,55 +518,24 @@
             background: rgba(0, 0, 0, 0.75);
         }
 
-        /* "See Us In Action" stacking-cards effect: the section stays
-           pinned (position: sticky) via #video-showcase while the next
-           section (#services) scrolls up and covers it. Pure CSS, driven
-           by native scroll/sticky — no scroll-position JS math, so it can't
-           jank or desync the rest of the page.
-           .stack-pin-wrap is 200vh tall: 100vh is the pinned card's own
-           on-screen height, and the extra 100vh is scroll runway the user
-           has to move through *while it stays stuck* before #services
-           finally reaches the top and slides over it — i.e. the pin holds
-           for more than 100% of the card's own height, as requested. */
+        /* "See Us In Action" section now scrolls normally (no more
+           position: sticky pin/scroll-jack holding it in place while
+           #services slides over it) — removed per request so the scroll
+           from the video into the Cleaning services section feels fluid
+           instead of getting stuck. */
         .stack-pin-wrap {
-            position: relative;
-            height: 200vh;
-            /* breathing room from the buttons/links section above — lives
-               here (outside the sticky element) so it doesn't interfere
-               with the sticky-positioning math on #video-showcase itself */
             margin-top: 5rem;
         }
         #video-showcase.stack-pin-inner {
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            height: 100vh;
             margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            overflow: hidden;
         }
-        /* position/z-index stay (needed so this section, being non-sticky
-           and later in the DOM, correctly paints over #video-showcase's
-           sticky stacking context as it scrolls up) but the decorative
-           "sliding card lid" look (rounded top, gradient fill, shadow) was
-           removed per request — it's back to a normal, unstyled section. */
         #services {
-            position: relative;
-            z-index: 2;
             /* breathing room between the "Cleaning" label (its first line
-               of content) and the video section stacked above it */
+               of content) and the video section above it */
             padding-top: 2.5rem;
-        }
-        @media (prefers-reduced-motion: reduce), (max-height: 480px) {
-            .stack-pin-wrap {
-                height: auto;
-            }
-            #video-showcase.stack-pin-inner {
-                position: relative;
-                height: auto;
-            }
         }
 
         /* Parallax sutil na logo: sobe um pouco mais devagar que o resto do
@@ -1669,12 +1652,7 @@
 
         <!-- Vídeo cinematográfico: clipe curto mostrando o serviço em ação.
              O quadro "acende" (borda/brilho dourado) quando atinge 50% de
-             visibilidade na tela, como um estado ativo ao rolar.
-
-             Stacking-cards: esta seção fica "presa" (position: sticky)
-             enquanto a próxima seção (#services) desliza por cima dela —
-             ver .stack-pin-wrap / #video-showcase.stack-pin-inner / #services
-             no <head>. -->
+             visibilidade na tela, como um estado ativo ao rolar. -->
         <div class="stack-pin-wrap">
             <section id="video-showcase" class="w-full stack-pin-inner animate-slide-up delay-600">
                 <div class="section-heading mb-2">
