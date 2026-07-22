@@ -56,6 +56,13 @@
             color: #e6f1ff;
             min-height: 100vh;
             overflow-x: hidden;
+            /* Explicit, because overflow-x:hidden without this would make the
+               UA resolve overflow-y to "auto" (per spec, when only one axis
+               is "visible" it flips to "auto"), silently turning <body> into
+               its own scroll container. That breaks position:sticky below —
+               sticky descendants would stick to body's scrollport instead of
+               the real viewport, in the exact "sticky just doesn't work" way. */
+            overflow-y: visible;
             position: relative;
         }
 
@@ -498,6 +505,54 @@
             background: rgba(0, 0, 0, 0.75);
         }
 
+        /* "See Us In Action" stacking-cards effect: the section stays
+           pinned (position: sticky) via #video-showcase while the next
+           section (#services) scrolls up and covers it. Pure CSS, driven
+           by native scroll/sticky — no scroll-position JS math, so it can't
+           jank or desync the rest of the page.
+           .stack-pin-wrap is 200vh tall: 100vh is the pinned card's own
+           on-screen height, and the extra 100vh is scroll runway the user
+           has to move through *while it stays stuck* before #services
+           finally reaches the top and slides over it — i.e. the pin holds
+           for more than 100% of the card's own height, as requested. */
+        .stack-pin-wrap {
+            position: relative;
+            height: 200vh;
+            /* breathing room from the buttons/links section above — lives
+               here (outside the sticky element) so it doesn't interfere
+               with the sticky-positioning math on #video-showcase itself */
+            margin-top: 2.5rem;
+        }
+        #video-showcase.stack-pin-inner {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #services {
+            position: relative;
+            z-index: 2;
+            margin-top: 0;
+            padding: 2rem 0 0;
+            border-radius: 1.75rem 1.75rem 0 0;
+            background: linear-gradient(180deg, rgba(4, 9, 17, 0.97) 0%, rgba(5, 11, 21, 0.99) 100%);
+            box-shadow: 0 -40px 70px -20px rgba(0, 0, 0, 0.65);
+        }
+        @media (prefers-reduced-motion: reduce), (max-height: 480px) {
+            .stack-pin-wrap {
+                height: auto;
+            }
+            #video-showcase.stack-pin-inner {
+                position: relative;
+                height: auto;
+            }
+        }
+
         /* Parallax sutil na logo: sobe um pouco mais devagar que o resto do
            cabeçalho enquanto o usuário começa a rolar a página */
         .logo-parallax {
@@ -532,6 +587,135 @@
             0% { box-shadow: 0 0 15px rgba(249, 168, 38, 0.6); }
             50% { box-shadow: 0 0 30px rgba(249, 168, 38, 0.9); }
             100% { box-shadow: 0 0 15px rgba(249, 168, 38, 0.6); }
+        }
+
+        /* Perfil do Instagram: cartão com avatar, stats e grid de posts */
+        .ig-profile-card {
+            border-radius: 1.25rem;
+            padding: 1.25rem 1.1rem;
+        }
+        .ig-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ig-avatar {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 2px;
+            border: 2px solid transparent;
+            /* brand-gradient ring like a real Instagram avatar */
+            background: linear-gradient(135deg, #F9A826, #4B9CD3) border-box;
+            box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.6);
+        }
+        .ig-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+        .ig-profile-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .ig-name {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        .ig-verified {
+            font-size: 0.85rem;
+            color: #3897f0;
+        }
+        .ig-handle {
+            display: block;
+            font-weight: 500;
+            font-size: 0.78rem;
+            color: #8fa1b3;
+            margin-bottom: 0.5rem;
+        }
+        .ig-stats {
+            display: flex;
+            gap: 1.1rem;
+        }
+        .ig-stat {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .ig-stat strong {
+            font-size: 0.95rem;
+            color: #fff;
+            font-weight: 800;
+        }
+        .ig-stat span {
+            font-size: 10px;
+            color: #8fa1b3;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .ig-follow-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #F9A826, #e1306c 55%, #4B9CD3);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .ig-follow-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px -8px rgba(249, 168, 38, 0.6);
+        }
+        .ig-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.4rem;
+            margin-top: 1.1rem;
+        }
+        .ig-grid-item {
+            position: relative;
+            display: block;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .ig-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .ig-grid-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Widget de avaliações do Google (Elfsight): esconde a marca d'água
+           "Powered by Elfsight" que o script injeta dinamicamente, deixando
+           só o conteúdo das avaliações visível. Cobre os seletores padrão
+           usados pela plataforma — se algum resquício de propaganda ainda
+           aparecer depois do script carregar de verdade, é só avisar com o
+           nome exato da classe/elemento para eu mirar o seletor certo. */
+        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa a[href*="elfsight.com"],
+        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa [class*="powered-by"],
+        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa [class*="PoweredBy"],
+        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa [class*="branding"],
+        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa .eapps-widget-toolbar {
+            display: none !important;
         }
 
         /* Galeria Antes & Depois */
@@ -1126,7 +1310,9 @@
             pointer-events: none;
         }
         .compare-after {
-            clip-path: inset(0 50% 0 0);
+            /* clipped from the left so the visible sliver always sits on the
+               RIGHT, matching the "After" label pinned to the right edge */
+            clip-path: inset(0 0 0 50%);
         }
         .compare-label {
             position: absolute;
@@ -1164,6 +1350,7 @@
             bottom: 0;
             left: 50%;
             width: 3px;
+            touch-action: none;
             background: #fff;
             z-index: 4;
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
@@ -1252,7 +1439,7 @@
     <div id="preloader" aria-hidden="true">
         <div class="preloader-inner">
             <div class="preloader-ring"></div>
-            <img src="img/logo.webp" alt="" class="preloader-logo">
+            <img id="preloaderLogo" src="img/logo.webp" alt="" class="preloader-logo">
         </div>
     </div>
 
@@ -1289,7 +1476,7 @@
                  Envolvida por um wrapper com parallax (se move mais devagar
                  que o texto abaixo enquanto o usuário começa a rolar). -->
             <div class="logo-parallax">
-                <div class="relative w-32 h-32 mb-4 rounded-full flex items-center justify-center border-2 border-brand-blue animate-float shadow-[0_0_20px_rgba(15,50,150,0.5)] overflow-hidden p-4" style="background: radial-gradient(circle, rgba(240,245,255,0.85) 0%, rgba(240,245,255,0.55) 55%, rgba(240,245,255,0.15) 78%, transparent 92%);">
+                <div id="headerLogoFrame" class="relative w-32 h-32 mb-4 rounded-full flex items-center justify-center border-2 border-brand-blue animate-float shadow-[0_0_20px_rgba(15,50,150,0.5)] overflow-hidden p-4" style="background: radial-gradient(circle, rgba(240,245,255,0.85) 0%, rgba(240,245,255,0.55) 55%, rgba(240,245,255,0.15) 78%, transparent 92%);">
                     <img src="img/logo.webp" alt="The Jolly Washer" class="w-full h-full object-contain">
                 </div>
             </div>
@@ -1480,25 +1667,32 @@
 
         <!-- Vídeo cinematográfico: clipe curto mostrando o serviço em ação.
              O quadro "acende" (borda/brilho dourado) quando atinge 50% de
-             visibilidade na tela, como um estado ativo ao rolar. -->
-        <section id="video-showcase" class="w-full mt-10 mb-12 animate-slide-up delay-600">
-            <div class="section-heading mb-2">
-                <span class="line"></span>
-                <span class="video-showcase-title font-bold text-base uppercase tracking-widest">See Us In Action</span>
-                <span class="line right"></span>
-            </div>
-            <p class="text-gray-400 text-xs text-center mb-5">A quick look at the transformation in motion</p>
-            <div class="video-showcase-frame">
-                <video class="video-showcase-media" src="video/cleaning-showcase.mp4" autoplay muted loop playsinline preload="metadata"></video>
-                <span class="video-corner video-corner-tl" aria-hidden="true"></span>
-                <span class="video-corner video-corner-tr" aria-hidden="true"></span>
-                <span class="video-corner video-corner-bl" aria-hidden="true"></span>
-                <span class="video-corner video-corner-br" aria-hidden="true"></span>
-                <button type="button" class="video-mute-toggle" aria-label="Toggle video sound">
-                    <i class="fa-solid fa-volume-xmark"></i>
-                </button>
-            </div>
-        </section>
+             visibilidade na tela, como um estado ativo ao rolar.
+
+             Stacking-cards: esta seção fica "presa" (position: sticky)
+             enquanto a próxima seção (#services) desliza por cima dela —
+             ver .stack-pin-wrap / #video-showcase.stack-pin-inner / #services
+             no <head>. -->
+        <div class="stack-pin-wrap">
+            <section id="video-showcase" class="w-full stack-pin-inner animate-slide-up delay-600">
+                <div class="section-heading mb-2">
+                    <span class="line"></span>
+                    <span class="video-showcase-title font-bold text-base uppercase tracking-widest">See Us In Action</span>
+                    <span class="line right"></span>
+                </div>
+                <p class="text-gray-400 text-xs text-center mb-5">A quick look at the transformation in motion</p>
+                <div class="video-showcase-frame">
+                    <video class="video-showcase-media" src="video/cleaning-showcase.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                    <span class="video-corner video-corner-tl" aria-hidden="true"></span>
+                    <span class="video-corner video-corner-tr" aria-hidden="true"></span>
+                    <span class="video-corner video-corner-bl" aria-hidden="true"></span>
+                    <span class="video-corner video-corner-br" aria-hidden="true"></span>
+                    <button type="button" class="video-mute-toggle" aria-label="Toggle video sound">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
 
         <!-- Serviços Residenciais -->
         <section id="services" class="w-full mb-12 animate-slide-up delay-600">
@@ -1567,16 +1761,8 @@
             </div>
         </section>
 
-        <!-- Divisor líquido 2 de 3: da lista de serviços para a prova visual -->
-        <div class="liquid-divider full-bleed" aria-hidden="true">
-            <svg viewBox="0 0 2400 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,25 C300,55 600,-5 900,25 C1200,55 1500,-5 1800,25 C2100,55 2300,10 2400,25 L2400,60 L0,60 Z" fill="rgba(75,156,211,0.14)"></path>
-                <path d="M0,38 C300,15 600,50 900,38 C1200,15 1500,50 1800,38 C2100,15 2300,45 2400,38 L2400,60 L0,60 Z" fill="rgba(255,255,255,0.07)"></path>
-            </svg>
-        </div>
-
         <!-- Comparador interativo antes/depois (arrastar) -->
-        <section id="comparator" class="w-full mb-12">
+        <section id="comparator" class="w-full mb-12 animate-slide-up delay-600">
             <div class="section-heading mb-2">
                 <span class="line"></span>
                 <span class="water-reveal font-bold text-base uppercase tracking-widest text-white">See the Jolly Difference</span>
@@ -1584,11 +1770,11 @@
             </div>
             <p class="text-gray-400 text-xs text-center mb-5">Drag the slider to compare — browse all our projects</p>
             <div class="compare-wrap reveal-up" data-stagger="0" id="compareWrap">
-                <img src="img/project-before.webp" alt="Before pressure washing" class="compare-before" id="compareBeforeImg" loading="lazy">
-                <img src="img/project-after.webp" alt="After pressure washing" class="compare-after" id="compareAfterImg" loading="lazy">
+                <img src="img/ba-walkway-before.webp" alt="Before Paver Walkway" class="compare-before" id="compareBeforeImg" loading="lazy">
+                <img src="img/ba-walkway-after.webp" alt="After Paver Walkway" class="compare-after" id="compareAfterImg" loading="lazy">
                 <span class="compare-label compare-label-before">Before</span>
                 <span class="compare-label compare-label-after">After</span>
-                <span class="compare-project-label" id="compareProjectLabel">Front Walkway</span>
+                <span class="compare-project-label" id="compareProjectLabel">Paver Walkway</span>
                 <div class="compare-handle" role="slider" tabindex="0" aria-label="Comparison slider"
                      aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
                 <span class="compare-hint">Drag to see the transformation</span>
@@ -1600,6 +1786,67 @@
                 </button>
             </div>
             <div class="ba-carousel-dots" id="compareDots"></div>
+        </section>
+
+        <!-- Perfil do Instagram: avatar, contadores e grid com as últimas
+             fotos do perfil. Os números de posts/seguidores/seguindo e as
+             imagens (avatar + grid) são placeholders — ver instruções no
+             final da resposta sobre quais arquivos salvar em img/. -->
+        <section id="instagram" class="w-full mb-12 animate-slide-up delay-600">
+            <div class="section-heading mb-2">
+                <span class="line"></span>
+                <span class="water-reveal font-bold text-base uppercase tracking-widest text-white">Follow Our Work</span>
+                <span class="line right"></span>
+            </div>
+            <p class="text-gray-400 text-xs text-center mb-5">@thejollywasher</p>
+            <div class="ig-profile-card glass-panel reveal-up" data-stagger="0">
+                <div class="ig-profile-header">
+                    <div class="ig-avatar">
+                        <img src="img/insta-logo.webp" alt="The Jolly Washer logo" loading="lazy">
+                    </div>
+                    <div class="ig-profile-info">
+                        <span class="ig-name">The Jolly Washer <i class="fa-solid fa-circle-check ig-verified" aria-hidden="true" title="Verified"></i></span>
+                        <span class="ig-handle">@thejollywasher</span>
+                        <div class="ig-stats">
+                            <div class="ig-stat"><strong>320</strong><span>Posts</span></div>
+                            <div class="ig-stat"><strong>1,200</strong><span>Followers</span></div>
+                            <div class="ig-stat"><strong>802</strong><span>Following</span></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-follow-btn">
+                    <i class="fa-brands fa-instagram"></i> Follow
+                </a>
+                <div class="ig-grid">
+                    <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-grid-item">
+                        <img src="img/insta1.webp" alt="The Jolly Washer Instagram post 1" loading="lazy">
+                    </a>
+                    <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-grid-item">
+                        <img src="img/insta2.webp" alt="The Jolly Washer Instagram post 2" loading="lazy">
+                    </a>
+                    <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-grid-item">
+                        <img src="img/insta3.webp" alt="The Jolly Washer Instagram post 3" loading="lazy">
+                    </a>
+                    <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-grid-item">
+                        <img src="img/insta4.webp" alt="The Jolly Washer Instagram post 4" loading="lazy">
+                    </a>
+                    <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-grid-item">
+                        <img src="img/insta5.webp" alt="The Jolly Washer Instagram post 5" loading="lazy">
+                    </a>
+                    <a href="https://instagram.com/thejollywasher" target="_blank" rel="noopener noreferrer" class="ig-grid-item">
+                        <img src="img/insta6.webp" alt="The Jolly Washer Instagram post 6" loading="lazy">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Widget de avaliações do Google (Elfsight). O CSS abaixo (ver
+             regra .elfsight-app-6f399a56... no <head>) esconde a marca
+             d'água/propaganda "Powered by Elfsight" que o widget injeta,
+             deixando só o conteúdo das avaliações visível. -->
+        <section id="google-reviews" class="w-full mb-12 animate-slide-up delay-600">
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa" data-elfsight-app-lazy></div>
         </section>
 
         <!-- Galeria Antes & Depois -->
@@ -2087,18 +2334,69 @@
         })();
     </script>
 
-    <!-- Pré-loading: fica 1,5s na tela (só ele e o fundo do site aparecem);
-         depois some e revela o conteúdo principal em cascata -->
+    <!-- Pré-loading: fica 1,5s na tela: depois a logo do preloader "voa" da
+         posição central até a posição real da logo no cabeçalho (em vez de
+         simplesmente sumir), enquanto o conteúdo principal já revela em
+         cascata por baixo — assim a logo "pousa" bem onde a de verdade já
+         está aparecendo, criando a sensação de transição contínua. -->
     <script>
         (function () {
             const preloader = document.getElementById('preloader');
             const main = document.querySelector('main.pre-hide');
+            const logo = document.getElementById('preloaderLogo');
+            const ring = preloader ? preloader.querySelector('.preloader-ring') : null;
+            const target = document.getElementById('headerLogoFrame');
             const LOADING_DURATION = 1500;
+            const FLIGHT_DURATION = 750;
+
+            function fadeOutPreloader() {
+                if (!preloader) return;
+                preloader.classList.add('hidden');
+                setTimeout(() => preloader.remove(), 500);
+            }
+
             setTimeout(() => {
+                // Measure the preloader logo's on-screen spot *before* main
+                // becomes visible (main is display:none until now, so its
+                // header logo has no real position to measure yet).
+                const startRect = logo ? logo.getBoundingClientRect() : null;
+
                 if (main) main.classList.remove('pre-hide');
-                if (preloader) {
-                    preloader.classList.add('hidden');
-                    setTimeout(() => preloader.remove(), 600);
+
+                if (logo && target && preloader && startRect) {
+                    const endRect = target.getBoundingClientRect();
+                    const dx = (endRect.left + endRect.width / 2) - (startRect.left + startRect.width / 2);
+                    const dy = (endRect.top + endRect.height / 2) - (startRect.top + startRect.height / 2);
+                    const scale = endRect.width / startRect.width;
+
+                    // Detach the logo from the centered preloader layout and
+                    // pin it exactly where it visually already is, as its
+                    // own freely-animatable fixed element.
+                    logo.style.position = 'fixed';
+                    logo.style.left = startRect.left + 'px';
+                    logo.style.top = startRect.top + 'px';
+                    logo.style.width = startRect.width + 'px';
+                    logo.style.height = startRect.height + 'px';
+                    logo.style.margin = '0';
+                    logo.style.animation = 'none';
+                    logo.style.zIndex = '10000';
+                    logo.style.transition = 'transform ' + FLIGHT_DURATION + 'ms cubic-bezier(0.65, 0, 0.35, 1)';
+                    if (ring) ring.style.transition = 'opacity 0.3s ease';
+
+                    // Two rAFs so the browser paints the "still centered, no
+                    // transform yet" frame before the transform change is
+                    // applied — otherwise both changes can get coalesced
+                    // into one paint and the logo would just snap, not fly.
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            if (ring) ring.style.opacity = '0';
+                            logo.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scale + ')';
+                        });
+                    });
+
+                    setTimeout(fadeOutPreloader, FLIGHT_DURATION);
+                } else {
+                    fadeOutPreloader();
                 }
             }, LOADING_DURATION);
         })();
