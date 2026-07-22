@@ -328,6 +328,54 @@
             50% { transform: translateY(-6px); }
         }
 
+        /* Vídeo cinematográfico mostrando o serviço em ação */
+        .video-showcase-frame {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            aspect-ratio: 9 / 16;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
+            background: #000;
+            transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+        }
+        /* Estado ativo: acende ao atingir 50% de visibilidade na tela */
+        .video-showcase-frame.active {
+            border-color: rgba(249, 168, 38, 0.7);
+            box-shadow: 0 20px 55px -12px rgba(0, 0, 0, 0.65), 0 0 30px rgba(249, 168, 38, 0.35);
+            transform: scale(1.02);
+        }
+        .video-showcase-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .video-mute-toggle {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 9999px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .video-mute-toggle:hover {
+            background: rgba(0, 0, 0, 0.75);
+        }
+
         /* Parallax sutil na logo: sobe um pouco mais devagar que o resto do
            cabeçalho enquanto o usuário começa a rolar a página */
         .logo-parallax {
@@ -922,8 +970,26 @@
 
         </section>
 
+        <!-- Vídeo cinematográfico: clipe curto mostrando o serviço em ação.
+             O quadro "acende" (borda/brilho dourado) quando atinge 50% de
+             visibilidade na tela, como um estado ativo ao rolar. -->
+        <section id="video-showcase" class="w-full mt-10 mb-12 animate-slide-up delay-600">
+            <div class="section-heading mb-2">
+                <span class="line"></span>
+                <span class="text-brand-light font-bold text-xs uppercase tracking-widest">See Us In Action</span>
+                <span class="line right"></span>
+            </div>
+            <p class="text-gray-400 text-xs text-center mb-5">A quick look at the transformation in motion</p>
+            <div class="video-showcase-frame">
+                <video class="video-showcase-media" src="video/cleaning-showcase.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                <button type="button" class="video-mute-toggle" aria-label="Toggle video sound">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+            </div>
+        </section>
+
         <!-- Serviços Residenciais -->
-        <section id="services" class="w-full mt-10 mb-12 animate-slide-up delay-600">
+        <section id="services" class="w-full mb-12 animate-slide-up delay-600">
             <!-- Demais serviços, organizados por família -->
             <div class="flex flex-col gap-4">
                 <div>
@@ -1333,6 +1399,36 @@
                     root.style.setProperty('--foam-opacity', '0.14');
                 }, 700);
             }, { passive: true });
+        })();
+    </script>
+
+    <!-- Vídeo cinematográfico: botão de mudo/som -->
+    <script>
+        (function () {
+            const video = document.querySelector('.video-showcase-media');
+            const btn = document.querySelector('.video-mute-toggle');
+            if (!video || !btn) return;
+            btn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                btn.innerHTML = video.muted
+                    ? '<i class="fa-solid fa-volume-xmark"></i>'
+                    : '<i class="fa-solid fa-volume-high"></i>';
+            });
+        })();
+    </script>
+
+    <!-- Vídeo cinematográfico: o quadro "acende" (estado ativo) ao atingir
+         50% de visibilidade na tela -->
+    <script>
+        (function () {
+            const frame = document.querySelector('.video-showcase-frame');
+            if (!frame) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    frame.classList.toggle('active', entry.isIntersecting);
+                });
+            }, { threshold: 0.5 });
+            observer.observe(frame);
         })();
     </script>
 
