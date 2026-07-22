@@ -186,14 +186,18 @@
                de parallax das camadas de fundo */
             --scroll-y: 0;
         }
-        .bg-truck {
+        /* Wrapper carries the fixed positioning + scroll effects; the video
+           itself stays position:absolute inside it. iOS/Android Safari and
+           Chrome routinely freeze a <video> that is *directly* position:fixed
+           mid-scroll — keeping the video absolute inside a fixed wrapper is
+           the standard fix so it keeps playing while scrolling on mobile. */
+        .bg-truck-wrap {
             position: fixed;
             inset: 0;
             z-index: -4;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
+            overflow: hidden;
             opacity: calc(0.72 + var(--clean-progress) * 0.25);
             /* parallax: o vídeo de fundo se move mais devagar que o
                conteúdo, criando sensação de profundidade ao rolar */
@@ -205,6 +209,15 @@
                 brightness(calc(0.92 + var(--clean-progress) * 0.25))
                 contrast(calc(0.95 + var(--clean-progress) * 0.15));
             transition: opacity 0.15s linear, filter 0.15s linear, transform 0.08s linear;
+        }
+        .bg-truck {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
         }
         /* Camada de sujeira/grão que vai sumindo (sendo "lavada") ao rolar */
         .bg-grime {
@@ -1200,7 +1213,7 @@
             .foam-layer {
                 display: none !important;
             }
-            .bg-truck,
+            .bg-truck-wrap,
             .bg-grime,
             #particles-js,
             .logo-parallax {
@@ -1236,9 +1249,15 @@
     </div>
 
     <!-- Fundo principal do site: vídeo hero-fresh em alta resolução, fixo
-         atrás de todo o conteúdo, com o mesmo efeito de "clareando" ao rolar -->
-    <video id="bgVideo" class="bg-truck" src="video/hero-fresh-start.mp4" poster="img/hero-poster.webp"
-           autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+         atrás de todo o conteúdo, com o mesmo efeito de "clareando" ao rolar.
+         O vídeo fica position:absolute dentro de um wrapper position:fixed
+         (em vez de fixed diretamente no <video>) porque Safari/Chrome mobile
+         costumam "congelar" um vídeo fixed durante o scroll — assim ele
+         continua rodando normalmente no celular. -->
+    <div class="bg-truck-wrap" aria-hidden="true">
+        <video id="bgVideo" class="bg-truck" src="video/hero-fresh-start.mp4" poster="img/hero-poster.webp"
+               autoplay muted loop playsinline webkit-playsinline="true" preload="auto"></video>
+    </div>
     <div class="bg-grime" aria-hidden="true"></div>
     <div class="bg-truck-overlay" aria-hidden="true"></div>
 
