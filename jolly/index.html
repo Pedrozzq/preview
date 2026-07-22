@@ -1076,6 +1076,10 @@
             padding: 0.9rem 1.5rem;
             font-size: 0.95rem;
         }
+        /* Keeps footer text readable over the background video/photo */
+        .footer-shadow-text {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.6);
+        }
 
         /* ---- 3: drag before/after comparator ------------------------------ */
         .compare-wrap {
@@ -1119,6 +1123,20 @@
         }
         .compare-label-before { left: 0.75rem; }
         .compare-label-after { right: 0.75rem; }
+        .compare-project-label {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            z-index: 5;
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: #0a192f;
+            background: #F9A826;
+            box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
+        }
         .compare-handle {
             position: absolute;
             top: 0;
@@ -1236,14 +1254,6 @@
 
     <!-- Main Content Container -->
     <main class="w-full max-w-md mx-auto z-10 flex flex-col items-center pt-8 pre-hide">
-
-        <!-- Divisor líquido 1 de 3: topo da página -->
-        <div class="liquid-divider full-bleed" aria-hidden="true">
-            <svg viewBox="0 0 2400 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 C1400,60 1600,0 1800,30 C2000,60 2200,0 2400,30 L2400,60 L0,60 Z" fill="rgba(75,156,211,0.16)"></path>
-                <path d="M0,40 C200,15 400,55 600,40 C800,15 1000,55 1200,40 C1400,15 1600,55 1800,40 C2000,15 2200,55 2400,40 L2400,60 L0,60 Z" fill="rgba(255,255,255,0.08)"></path>
-            </svg>
-        </div>
 
         <!-- Profile/Logo Section -->
         <header class="flex flex-col items-center mb-10 text-center animate-slide-up">
@@ -1545,16 +1555,24 @@
                 <span class="water-reveal font-bold text-base uppercase tracking-widest text-white">See the Jolly Difference</span>
                 <span class="line right"></span>
             </div>
-            <p class="text-gray-400 text-xs text-center mb-5">Drag the slider to compare the results yourself</p>
-            <div class="compare-wrap reveal-up" data-stagger="0">
-                <img src="img/project-before.webp" alt="Before pressure washing" class="compare-before" loading="lazy">
-                <img src="img/project-after.webp" alt="After pressure washing" class="compare-after" loading="lazy">
+            <p class="text-gray-400 text-xs text-center mb-5">Drag the slider to compare — browse all our projects</p>
+            <div class="compare-wrap reveal-up" data-stagger="0" id="compareWrap">
+                <img src="img/project-before.webp" alt="Before pressure washing" class="compare-before" id="compareBeforeImg" loading="lazy">
+                <img src="img/project-after.webp" alt="After pressure washing" class="compare-after" id="compareAfterImg" loading="lazy">
                 <span class="compare-label compare-label-before">Before</span>
                 <span class="compare-label compare-label-after">After</span>
+                <span class="compare-project-label" id="compareProjectLabel">Front Walkway</span>
                 <div class="compare-handle" role="slider" tabindex="0" aria-label="Comparison slider"
                      aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
                 <span class="compare-hint">Drag to see the transformation</span>
+                <button type="button" class="ba-carousel-arrow ba-carousel-arrow-prev" id="comparePrev" aria-label="Previous project">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" class="ba-carousel-arrow ba-carousel-arrow-next" id="compareNext" aria-label="Next project">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
+            <div class="ba-carousel-dots" id="compareDots"></div>
         </section>
 
         <!-- Galeria Antes & Depois -->
@@ -1636,14 +1654,6 @@
             </button>
         </section>
 
-        <!-- Divisor líquido 3 de 3: fechamento antes do rodapé -->
-        <div class="liquid-divider full-bleed" aria-hidden="true">
-            <svg viewBox="0 0 2400 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,32 C250,5 500,58 750,32 C1000,5 1250,58 1500,32 C1750,5 2000,58 2250,32 C2350,20 2400,28 2400,28 L2400,60 L0,60 Z" fill="rgba(75,156,211,0.16)"></path>
-                <path d="M0,42 C250,20 500,55 750,42 C1000,20 1250,55 1500,42 C1750,20 2000,55 2250,42 L2400,42 L2400,60 L0,60 Z" fill="rgba(255,255,255,0.08)"></path>
-            </svg>
-        </div>
-
         <!-- Footer info -->
         <footer class="w-full mt-10 text-center animate-slide-up delay-600 py-6 px-4">
             <!-- Social Media Row -->
@@ -1658,9 +1668,9 @@
                     <i class="fa-brands fa-google text-xl"></i>
                 </a>
             </div>
-            <p class="text-xs text-gray-400 font-medium">1913 Shore Road, Linwood, NJ 08221</p>
-            <a href="tel:+16097578847" class="text-xs text-gray-500 hover:text-brand-light transition-colors">609-757-8847</a>
-            <p class="text-[10px] text-gray-600 mt-2">
+            <p class="text-xs text-gray-200 font-medium footer-shadow-text">1913 Shore Road, Linwood, NJ 08221</p>
+            <a href="tel:+16097578847" class="text-xs text-gray-300 hover:text-brand-light transition-colors footer-shadow-text">609-757-8847</a>
+            <p class="text-[10px] text-gray-400 mt-2 footer-shadow-text">
                 © 2026 The Jolly Washer. All Rights Reserved.
             </p>
         </footer>
