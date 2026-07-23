@@ -50,6 +50,16 @@
     </script>
 
     <style>
+        /* Belt-and-suspenders against horizontal scroll/swipe on mobile:
+           body's overflow-x: hidden alone doesn't stop it on every mobile
+           browser when a fixed/transformed element (e.g. the scaled
+           .bg-truck-wrap background) pushes past the edge — clipping on
+           html too closes that gap without affecting which element ends
+           up as the actual scrolling container (that's decided by the
+           overflow-y setup below, left untouched). */
+        html {
+            overflow-x: hidden;
+        }
         body {
             /* Fallback background if particles fail or take a moment */
             background: linear-gradient(135deg, #000000 0%, #060a12 100%);
@@ -225,6 +235,20 @@
                 contrast(calc(0.95 + var(--clean-progress) * 0.15));
             transition: opacity 0.15s linear, filter 0.15s linear, transform 0.08s linear;
         }
+        /* CSS `filter` on a wrapper that contains a playing <video> forces
+           many mobile GPUs to composite it in software instead of using the
+           fast hardware video-decode path — in practice this is what reads
+           as the background video "freezing"/not loading on phones, even
+           though it plays fine on desktop. Recalculating that filter every
+           scroll frame makes it worse. Drop the filter on touch/coarse-
+           pointer devices; the overlay gradients below still carry most of
+           the "wash" color effect, so the loss is mostly the saturation/
+           contrast ramp. */
+        @media (pointer: coarse) {
+            .bg-truck-wrap {
+                filter: none;
+            }
+        }
         .bg-truck {
             position: absolute;
             inset: 0;
@@ -280,119 +304,10 @@
             transition: transform 0.08s linear;
         }
 
-        /* Bolhas de sabão que sobem ao rolar a página para baixo */
-        #scroll-bubbles {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            z-index: 30;
-            pointer-events: none;
-        }
-        .bubble {
-            position: absolute;
-            bottom: -10vh;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 28%,
-                rgba(255, 255, 255, 0.95),
-                rgba(255, 255, 255, 0.18) 45%,
-                rgba(150, 200, 240, 0.06) 72%,
-                transparent 82%);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45), 0 0 6px rgba(120, 180, 255, 0.2);
-            opacity: 0;
-            animation-name: bubble-rise;
-            animation-timing-function: ease-in;
-            animation-fill-mode: forwards;
-        }
-        @keyframes bubble-rise {
-            0% { transform: translate(0, 0) scale(0.7); opacity: 0; }
-            12% { opacity: 0.45; }
-            75% { opacity: 0.28; }
-            100% { transform: translate(var(--bubble-drift, 24px), -115vh) scale(1); opacity: 0; }
-        }
-
-        /* Espuma de sabão: uma faixa de "bolhinhas" agrupadas na parte de
-           baixo da tela, que fica mais forte enquanto o usuário rola para
-           baixo e volta a ficar sutil quando ele para de rolar */
-        :root {
-            --foam-opacity: 0.14;
-        }
-        .foam-layer {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 150px;
-            z-index: 25;
-            pointer-events: none;
-            background-image:
-                radial-gradient(circle 16px at 8% 78%, rgba(255, 255, 255, 0.9), transparent 70%),
-                radial-gradient(circle 24px at 24% 58%, rgba(255, 255, 255, 0.75), transparent 70%),
-                radial-gradient(circle 13px at 38% 82%, rgba(255, 255, 255, 0.85), transparent 70%),
-                radial-gradient(circle 20px at 54% 52%, rgba(255, 255, 255, 0.7), transparent 70%),
-                radial-gradient(circle 15px at 68% 78%, rgba(255, 255, 255, 0.9), transparent 70%),
-                radial-gradient(circle 26px at 84% 58%, rgba(255, 255, 255, 0.7), transparent 70%),
-                radial-gradient(circle 11px at 96% 82%, rgba(255, 255, 255, 0.85), transparent 70%);
-            background-repeat: repeat-x;
-            background-size: 240px 150px;
-            filter: blur(2px);
-            -webkit-mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
-            mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
-            opacity: var(--foam-opacity);
-            transition: opacity 1.1s ease;
-            animation: foam-drift 10s linear infinite, foam-bob 3.4s ease-in-out infinite;
-        }
-        @keyframes foam-drift {
-            from { background-position-x: 0; }
-            to { background-position-x: -240px; }
-        }
-        @keyframes foam-bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-
         /* Vídeo cinematográfico mostrando o serviço em ação */
-        /* Título da sessão: acende com o mesmo gradiente animado da marca
-           quando a sessão atinge 50% de visibilidade na tela */
         .video-showcase-title {
             display: inline-block;
             color: #7f93a8;
-            transition: color 0.6s ease, letter-spacing 0.6s ease, transform 0.6s ease, filter 0.6s ease;
-        }
-        #video-showcase.active .video-showcase-title {
-            background: linear-gradient(90deg, #4B9CD3 0%, #ffffff 30%, #F9A826 55%, #ffffff 75%, #4B9CD3 100%);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: brand-color-flow 5s linear infinite;
-            letter-spacing: 0.18em;
-            transform: translateY(-2px);
-            filter: drop-shadow(0 0 10px rgba(249, 168, 38, 0.4));
-        }
-
-        /* Before & After: mesmo tratamento de título animado */
-        .ba-heading-title {
-            display: inline-block;
-            color: #7f93a8;
-            transition: color 0.6s ease, letter-spacing 0.6s ease, transform 0.6s ease, filter 0.6s ease;
-        }
-        .ba-heading-sub {
-            transition: color 0.6s ease;
-        }
-        #gallery.active .ba-heading-title {
-            background: linear-gradient(90deg, #4B9CD3 0%, #ffffff 30%, #F9A826 55%, #ffffff 75%, #4B9CD3 100%);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: brand-color-flow 5s linear infinite;
-            letter-spacing: 0.18em;
-            transform: translateY(-2px);
-            filter: drop-shadow(0 0 10px rgba(249, 168, 38, 0.4));
-        }
-        #gallery.active .ba-heading-sub {
-            color: #cbd5e1;
         }
 
         .video-showcase-frame {
@@ -405,78 +320,7 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
-            background: #000;
-            transition: box-shadow 0.6s ease, transform 0.6s ease;
         }
-        /* Estado ativo: acende ao atingir 50% de visibilidade na tela */
-        #video-showcase.active .video-showcase-frame {
-            box-shadow: 0 20px 55px -12px rgba(0, 0, 0, 0.65), 0 0 34px rgba(249, 168, 38, 0.3);
-            transform: scale(1.02);
-        }
-        /* Borda em gradiente girando, só aparece no estado ativo */
-        .video-showcase-frame::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: inherit;
-            padding: 2px;
-            background: conic-gradient(from 0deg, #F9A826, #4B9CD3, #ffffff, #F9A826);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            animation: frame-border-spin 4s linear infinite;
-            pointer-events: none;
-            z-index: 2;
-        }
-        #video-showcase.active .video-showcase-frame::before {
-            opacity: 1;
-        }
-        @keyframes frame-border-spin {
-            to { transform: rotate(360deg); }
-        }
-        /* Brilho diagonal que varre o quadro uma vez ao ativar */
-        .video-showcase-frame::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.4) 50%, transparent 58%);
-            background-size: 250% 250%;
-            background-position: -120% -120%;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 3;
-        }
-        #video-showcase.active .video-showcase-frame::after {
-            animation: frame-shine 1.5s ease-out 1;
-        }
-        @keyframes frame-shine {
-            0% { opacity: 0; background-position: -120% -120%; }
-            12% { opacity: 1; }
-            55% { opacity: 1; }
-            100% { opacity: 0; background-position: 120% 120%; }
-        }
-        /* Cantos estilo "viewfinder" que se desenham ao ativar */
-        .video-corner {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            border: 2px solid rgba(249, 168, 38, 0.9);
-            opacity: 0;
-            transform: scale(0.6);
-            transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
-            z-index: 4;
-            pointer-events: none;
-        }
-        #video-showcase.active .video-corner {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .video-corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-top-left-radius: 8px; }
-        .video-corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-top-right-radius: 8px; }
-        .video-corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
-        .video-corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
         .video-showcase-media {
             width: 100%;
             height: 100%;
@@ -505,52 +349,24 @@
             background: rgba(0, 0, 0, 0.75);
         }
 
-        /* "See Us In Action" stacking-cards effect: the section stays
-           pinned (position: sticky) via #video-showcase while the next
-           section (#services) scrolls up and covers it. Pure CSS, driven
-           by native scroll/sticky — no scroll-position JS math, so it can't
-           jank or desync the rest of the page.
-           .stack-pin-wrap is 200vh tall: 100vh is the pinned card's own
-           on-screen height, and the extra 100vh is scroll runway the user
-           has to move through *while it stays stuck* before #services
-           finally reaches the top and slides over it — i.e. the pin holds
-           for more than 100% of the card's own height, as requested. */
+        /* "See Us In Action" section now scrolls normally (no more
+           position: sticky pin/scroll-jack holding it in place while
+           #services slides over it) — removed per request so the scroll
+           from the video into the Cleaning services section feels fluid
+           instead of getting stuck. */
         .stack-pin-wrap {
-            position: relative;
-            height: 200vh;
-            /* breathing room from the buttons/links section above — lives
-               here (outside the sticky element) so it doesn't interfere
-               with the sticky-positioning math on #video-showcase itself */
-            margin-top: 2.5rem;
+            margin-top: 5rem;
         }
         #video-showcase.stack-pin-inner {
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            height: 100vh;
             margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            overflow: hidden;
         }
         #services {
-            position: relative;
-            z-index: 2;
-            margin-top: 0;
-            padding: 2rem 0 0;
-            border-radius: 1.75rem 1.75rem 0 0;
-            background: linear-gradient(180deg, rgba(4, 9, 17, 0.97) 0%, rgba(5, 11, 21, 0.99) 100%);
-            box-shadow: 0 -40px 70px -20px rgba(0, 0, 0, 0.65);
-        }
-        @media (prefers-reduced-motion: reduce), (max-height: 480px) {
-            .stack-pin-wrap {
-                height: auto;
-            }
-            #video-showcase.stack-pin-inner {
-                position: relative;
-                height: auto;
-            }
+            /* breathing room between the "Cleaning" label (its first line
+               of content) and the video section above it */
+            padding-top: 2.5rem;
         }
 
         /* Parallax sutil na logo: sobe um pouco mais devagar que o resto do
@@ -704,20 +520,6 @@
             transform: scale(1.08);
         }
 
-        /* Widget de avaliações do Google (Elfsight): esconde a marca d'água
-           "Powered by Elfsight" que o script injeta dinamicamente, deixando
-           só o conteúdo das avaliações visível. Cobre os seletores padrão
-           usados pela plataforma — se algum resquício de propaganda ainda
-           aparecer depois do script carregar de verdade, é só avisar com o
-           nome exato da classe/elemento para eu mirar o seletor certo. */
-        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa a[href*="elfsight.com"],
-        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa [class*="powered-by"],
-        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa [class*="PoweredBy"],
-        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa [class*="branding"],
-        .elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa .eapps-widget-toolbar {
-            display: none !important;
-        }
-
         /* Galeria Antes & Depois */
         .ba-tile {
             position: relative;
@@ -740,11 +542,6 @@
             transform: scale(1.06);
         }
 
-        /* Before & After: carrossel horizontal que avança sozinho (alternância
-           rápida automática), em vez do empilhamento vertical anterior */
-        .ba-carousel-wrap {
-            position: relative;
-        }
         .ba-carousel-arrow {
             position: absolute;
             top: 50%;
@@ -769,49 +566,6 @@
         }
         .ba-carousel-arrow-prev { left: 0.35rem; }
         .ba-carousel-arrow-next { right: 0.35rem; }
-        .ba-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 0.75rem;
-            padding: 0.25rem 0.25rem 0.5rem;
-            margin: 0 -0.25rem;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .ba-carousel::-webkit-scrollbar {
-            display: none;
-        }
-        .ba-slide {
-            position: relative;
-            flex: 0 0 80%;
-            aspect-ratio: 4 / 5;
-            scroll-snap-align: center;
-            border-radius: 1.1rem;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6);
-            background: #0a1424;
-        }
-        .ba-slide-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-        .ba-slide-label {
-            position: absolute;
-            left: 0.75rem;
-            bottom: 0.75rem;
-            padding: 0.4rem 0.9rem;
-            border-radius: 9999px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            color: #0a192f;
-            background: #F9A826;
-            box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
-        }
         .ba-carousel-dots {
             display: flex;
             justify-content: center;
@@ -1404,10 +1158,6 @@
                pinning and tilt across both the existing effects and the
                new ones added above ---------------------------------------- */
         @media (prefers-reduced-motion: reduce) {
-            #scroll-bubbles,
-            .foam-layer {
-                display: none !important;
-            }
             .bg-truck-wrap,
             .bg-grime,
             #particles-js,
@@ -1424,10 +1174,6 @@
 
         /* Same reduction also applied via JS-added class for browsers/paths
            the media query alone doesn't cover (kept in sync intentionally). */
-        .reduced-motion #scroll-bubbles,
-        .reduced-motion .foam-layer {
-            display: none !important;
-        }
         .reduced-motion .tilt-card {
             transform: none !important;
         }
@@ -1450,21 +1196,20 @@
          costumam "congelar" um vídeo fixed durante o scroll — assim ele
          continua rodando normalmente no celular. -->
     <div class="bg-truck-wrap" aria-hidden="true">
-        <video id="bgVideo" class="bg-truck" src="video/hero-fresh-start.mp4" poster="img/hero-poster.webp"
-               autoplay muted loop playsinline webkit-playsinline="true" preload="auto"></video>
+        <!-- Fonte "mobile" (H.264 Main, ~5MB, sem áudio) primeiro para telas
+             estreitas — o navegador usa a primeira <source> cujo media bate;
+             a de baixo (sem media) é o fallback pra telas maiores/desktop. -->
+        <video id="bgVideo" class="bg-truck" poster="img/hero-poster.webp"
+               autoplay muted loop playsinline webkit-playsinline="true" preload="auto">
+            <source src="video/hero-fresh-start-mobile.mp4" type="video/mp4" media="(max-width: 767px)">
+            <source src="video/hero-fresh-start.mp4" type="video/mp4">
+        </video>
     </div>
     <div class="bg-grime" aria-hidden="true"></div>
     <div class="bg-truck-overlay" aria-hidden="true"></div>
 
     <!-- Background element for water bubble effect -->
     <div id="particles-js"></div>
-
-    <!-- Bolhas de sabão que aparecem e sobem conforme o usuário rola para baixo -->
-    <div id="scroll-bubbles" aria-hidden="true"></div>
-
-    <!-- Espuma de sabão: acumula na parte de baixo da tela e fica mais forte
-         enquanto o usuário rola para baixo -->
-    <div class="foam-layer" aria-hidden="true"></div>
 
     <!-- Main Content Container -->
     <main class="w-full max-w-md mx-auto z-10 flex flex-col items-center pt-8 pre-hide">
@@ -1665,14 +1410,7 @@
 
         </section>
 
-        <!-- Vídeo cinematográfico: clipe curto mostrando o serviço em ação.
-             O quadro "acende" (borda/brilho dourado) quando atinge 50% de
-             visibilidade na tela, como um estado ativo ao rolar.
-
-             Stacking-cards: esta seção fica "presa" (position: sticky)
-             enquanto a próxima seção (#services) desliza por cima dela —
-             ver .stack-pin-wrap / #video-showcase.stack-pin-inner / #services
-             no <head>. -->
+        <!-- Vídeo cinematográfico: clipe curto mostrando o serviço em ação. -->
         <div class="stack-pin-wrap">
             <section id="video-showcase" class="w-full stack-pin-inner animate-slide-up delay-600">
                 <div class="section-heading mb-2">
@@ -1682,11 +1420,7 @@
                 </div>
                 <p class="text-gray-400 text-xs text-center mb-5">A quick look at the transformation in motion</p>
                 <div class="video-showcase-frame">
-                    <video class="video-showcase-media" src="video/cleaning-showcase.mp4" autoplay muted loop playsinline preload="metadata"></video>
-                    <span class="video-corner video-corner-tl" aria-hidden="true"></span>
-                    <span class="video-corner video-corner-tr" aria-hidden="true"></span>
-                    <span class="video-corner video-corner-bl" aria-hidden="true"></span>
-                    <span class="video-corner video-corner-br" aria-hidden="true"></span>
+                    <video id="showcaseVideo" class="video-showcase-media" src="video/cleaning-showcase.mp4" poster="img/cleaning-showcase-poster.webp" autoplay muted loop playsinline preload="auto"></video>
                     <button type="button" class="video-mute-toggle" aria-label="Toggle video sound">
                         <i class="fa-solid fa-volume-xmark"></i>
                     </button>
@@ -1840,86 +1574,6 @@
             </div>
         </section>
 
-        <!-- Widget de avaliações do Google (Elfsight). O CSS abaixo (ver
-             regra .elfsight-app-6f399a56... no <head>) esconde a marca
-             d'água/propaganda "Powered by Elfsight" que o widget injeta,
-             deixando só o conteúdo das avaliações visível. -->
-        <section id="google-reviews" class="w-full mb-12 animate-slide-up delay-600">
-            <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-6f399a56-d230-4060-809b-39d14115b4fa" data-elfsight-app-lazy></div>
-        </section>
-
-        <!-- Galeria Antes & Depois -->
-        <section id="gallery" class="w-full mb-12 animate-slide-up delay-600">
-            <div class="section-heading mb-2">
-                <span class="line"></span>
-                <span class="ba-heading-title font-bold text-base uppercase tracking-widest">Before &amp; After</span>
-                <span class="line right"></span>
-            </div>
-            <p class="ba-heading-sub text-gray-400 text-xs text-center mb-5">Real results from real South Jersey homes</p>
-
-            <!-- Carrossel horizontal com avanço automático (alternância rápida) -->
-            <div class="ba-carousel-wrap">
-                <button type="button" class="ba-carousel-arrow ba-carousel-arrow-prev" id="baPrev" aria-label="Previous photo">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <div class="ba-carousel" id="baCarousel">
-                    <div class="ba-slide">
-                        <img src="img/ba-walkway.webp" alt="Before and after paver walkway wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Paver Walkway</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-wood-deck.webp" alt="Before and after wood deck wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Wood Deck</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-siding-corner.webp" alt="Before and after vinyl siding wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Vinyl Siding</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-staircase.webp" alt="Before and after staircase wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Staircase</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-siding-ac.webp" alt="Before and after siding wash near AC unit" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Siding</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-deck-stain.webp" alt="Before and after stained deck wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Deck Staining</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-porch-steps.webp" alt="Before and after porch steps wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Porch Steps</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-siding-angle.webp" alt="Before and after siding wash, angled house view" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Full Exterior</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-sidewalk.webp" alt="Before and after sidewalk wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Sidewalk</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-driveway.webp" alt="Before and after driveway and walkway wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Driveway</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-composite-deck.webp" alt="Before and after composite deck wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Composite Deck</span>
-                </div>
-                <div class="ba-slide">
-                    <img src="img/ba-balcony-floor.webp" alt="Before and after balcony floor wash" class="ba-slide-img" loading="lazy">
-                    <span class="ba-slide-label">Balcony Floor</span>
-                </div>
-                </div>
-                <button type="button" class="ba-carousel-arrow ba-carousel-arrow-next" id="baNext" aria-label="Next photo">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="ba-carousel-dots" id="baCarouselDots"></div>
-        </section>
-
         <!-- CTA de fechamento -->
         <section class="w-full mb-4 text-center reveal-up" data-stagger="0">
             <h2 class="water-reveal font-extrabold text-white text-xl mb-4 block">Ready to Make Your Property Look Jolly Again?</h2>
@@ -2017,67 +1671,6 @@
         })();
     </script>
 
-    <!-- Before & After: carrossel horizontal com avanço automático rápido,
-         pausando brevemente quando o usuário interage manualmente -->
-    <script>
-        (function () {
-            const carousel = document.getElementById('baCarousel');
-            const dotsWrap = document.getElementById('baCarouselDots');
-            if (!carousel) return;
-            const slides = [...carousel.querySelectorAll('.ba-slide')];
-            if (!slides.length) return;
-
-            slides.forEach((_, i) => {
-                const dot = document.createElement('span');
-                dot.className = 'ba-carousel-dot' + (i === 0 ? ' active' : '');
-                dotsWrap.appendChild(dot);
-            });
-            const dots = [...dotsWrap.querySelectorAll('.ba-carousel-dot')];
-
-            let index = 0;
-            let userInteracting = false;
-            let resumeTimer = null;
-
-            function setActiveDot(i) {
-                dots.forEach((d, di) => d.classList.toggle('active', di === i));
-            }
-
-            function goTo(i) {
-                index = (i + slides.length) % slides.length;
-                const target = slides[index];
-                const targetLeft = target.offsetLeft - (carousel.clientWidth - target.offsetWidth) / 2;
-                carousel.scrollTo({ left: targetLeft, behavior: 'smooth' });
-                setActiveDot(index);
-            }
-
-            const autoTimer = setInterval(() => {
-                if (userInteracting) return;
-                goTo(index + 1);
-            }, 1700);
-
-            ['touchstart', 'wheel', 'pointerdown'].forEach(evt => {
-                carousel.addEventListener(evt, () => {
-                    userInteracting = true;
-                    clearTimeout(resumeTimer);
-                    resumeTimer = setTimeout(() => { userInteracting = false; }, 3500);
-                }, { passive: true });
-            });
-
-            function pauseThenResume() {
-                userInteracting = true;
-                clearTimeout(resumeTimer);
-                resumeTimer = setTimeout(() => { userInteracting = false; }, 3500);
-            }
-
-            const prevBtn = document.getElementById('baPrev');
-            const nextBtn = document.getElementById('baNext');
-            if (prevBtn) prevBtn.addEventListener('click', () => { pauseThenResume(); goTo(index - 1); });
-            if (nextBtn) nextBtn.addEventListener('click', () => { pauseThenResume(); goTo(index + 1); });
-
-            window.addEventListener('beforeunload', () => clearInterval(autoTimer));
-        })();
-    </script>
-
     <!-- Our Services: cada pill e nome de família "acende" em branco ao
          atingir 50% de visibilidade na tela -->
     <script>
@@ -2130,73 +1723,6 @@
         })();
     </script>
 
-    <!-- Bolhas de sabão: surgem na parte de baixo da tela e sobem enquanto o
-         usuário rola a página para baixo -->
-    <script>
-        (function () {
-            const layer = document.getElementById('scroll-bubbles');
-            if (!layer) return;
-            const MAX_BUBBLES = 16;
-            const SPAWN_COOLDOWN = 260;
-            let lastScrollY = window.scrollY;
-            let lastSpawn = 0;
-            let activeCount = 0;
-
-            function spawnBubble() {
-                if (activeCount >= MAX_BUBBLES) return;
-                const bubble = document.createElement('span');
-                const size = 8 + Math.random() * 26;
-                const duration = 4 + Math.random() * 3.5;
-                const drift = (Math.random() * 80 - 40).toFixed(0) + 'px';
-                bubble.className = 'bubble';
-                bubble.style.left = (Math.random() * 100) + 'vw';
-                bubble.style.width = size + 'px';
-                bubble.style.height = size + 'px';
-                bubble.style.setProperty('--bubble-drift', drift);
-                bubble.style.animationDuration = duration + 's';
-                layer.appendChild(bubble);
-                activeCount++;
-                bubble.addEventListener('animationend', () => {
-                    bubble.remove();
-                    activeCount--;
-                });
-            }
-
-            window.addEventListener('scroll', () => {
-                const now = performance.now();
-                const currentY = window.scrollY;
-                const scrollingDown = currentY > lastScrollY;
-                lastScrollY = currentY;
-                if (!scrollingDown) return;
-                if (now - lastSpawn < SPAWN_COOLDOWN) return;
-                lastSpawn = now;
-                spawnBubble();
-            }, { passive: true });
-        })();
-    </script>
-
-    <!-- Espuma de sabão: fica mais forte enquanto o usuário rola para baixo
-         e volta ao normal quando ele para de rolar -->
-    <script>
-        (function () {
-            const root = document.documentElement;
-            const foam = document.querySelector('.foam-layer');
-            if (!foam) return;
-            let lastScrollY = window.scrollY;
-            let decayTimer = null;
-            window.addEventListener('scroll', () => {
-                const currentY = window.scrollY;
-                const scrollingDown = currentY > lastScrollY;
-                lastScrollY = currentY;
-                if (!scrollingDown) return;
-                root.style.setProperty('--foam-opacity', '0.85');
-                clearTimeout(decayTimer);
-                decayTimer = setTimeout(() => {
-                    root.style.setProperty('--foam-opacity', '0.14');
-                }, 700);
-            }, { passive: true });
-        })();
-    </script>
 
     <!-- Vídeo cinematográfico: botão de mudo/som -->
     <script>
@@ -2210,36 +1736,6 @@
                     ? '<i class="fa-solid fa-volume-xmark"></i>'
                     : '<i class="fa-solid fa-volume-high"></i>';
             });
-        })();
-    </script>
-
-    <!-- Vídeo cinematográfico: a sessão inteira (título + quadro) "acende"
-         com o estado ativo ao atingir 50% de visibilidade na tela -->
-    <script>
-        (function () {
-            const section = document.getElementById('video-showcase');
-            if (!section) return;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    section.classList.toggle('active', entry.isIntersecting);
-                });
-            }, { threshold: 0.5 });
-            observer.observe(section);
-        })();
-    </script>
-
-    <!-- Before & After: título "acende" com o mesmo efeito ao atingir 50%
-         de visibilidade na tela -->
-    <script>
-        (function () {
-            const section = document.getElementById('gallery');
-            if (!section) return;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    section.classList.toggle('active', entry.isIntersecting);
-                });
-            }, { threshold: 0.5 });
-            observer.observe(section);
         })();
     </script>
 
