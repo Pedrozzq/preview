@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>The Jolly Washer | Quick Links</title>
+    <title>The Jolly Washer</title>
     <!-- Tailwind CSS for rapid styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts for premium typography -->
@@ -1253,6 +1253,40 @@
             padding: 0.9rem 1.5rem;
             font-size: 0.95rem;
         }
+        /* Indicador Open/Closed now, abaixo do nome no header (horário de NY) */
+        #openStatus {
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            border: 1px solid currentColor;
+            font-size: 0.8rem;
+        }
+        #openStatus.is-open {
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        #openStatus.is-closed {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+        #openStatus.is-soon-open {
+            color: #F9A826;
+            background: rgba(249, 168, 38, 0.1);
+        }
+        #openStatus .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 6px currentColor;
+        }
+        #openStatus.is-open .status-dot {
+            animation: status-dot-pulse 1.8s ease-in-out infinite;
+        }
+        @keyframes status-dot-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
         /* Botão "Call Us Now" da CTA de fechamento — preenchido e pulsante
            para ter destaque equivalente ao botão premium ao lado dele */
         .call-cta {
@@ -1492,6 +1526,10 @@
             <h1 class="text-3xl font-extrabold tracking-tight mb-2 brand-name">
                 The Jolly Washer
             </h1>
+            <div id="openStatus" class="flex items-center justify-center gap-1.5 text-xs font-semibold mb-2" aria-live="polite">
+                <span class="status-dot"></span>
+                <span id="openStatusText">Checking hours&hellip;</span>
+            </div>
             <a href="https://www.google.com/search?hl=pt-BR&gl=br&q=The+Jolly+Washer&ludocid=5857143261891729488&lsig=AB86z5X3avwobtqxPDB1lkUotWCk#lrd=0x89c0eb4b66aab003:0x5148c0c3a3a11850,3" target="_blank" rel="noopener noreferrer"
                class="flex items-center justify-center gap-1.5 text-xs text-gray-300 hover:text-brand-light transition-colors no-underline">
                 <span class="flex items-center gap-0.5 text-yellow-400" aria-hidden="true">
@@ -1896,6 +1934,59 @@
             </p>
         </div>
     </div>
+
+    <!-- Open/Closed now: Mon-Sun 08:00-18:00, horário de New York -->
+    <script>
+        (function () {
+            const textEl = document.getElementById('openStatusText');
+            const boxEl = document.getElementById('openStatus');
+            if (!textEl || !boxEl) return;
+
+            const OPEN_SECONDS = 8 * 3600;
+            const CLOSE_SECONDS = 18 * 3600;
+            const DAY_SECONDS = 24 * 3600;
+            const SOON_WINDOW = 20 * 60; // 20 min countdown window
+
+            function update() {
+                const parts = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/New_York',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: false
+                }).formatToParts(new Date());
+                const get = (type) => parseInt(parts.find(p => p.type === type).value, 10);
+                const nowSeconds = (get('hour') % 24) * 3600 + get('minute') * 60 + get('second');
+
+                const isOpen = nowSeconds >= OPEN_SECONDS && nowSeconds < CLOSE_SECONDS;
+                let isSoonOpen = false;
+
+                if (isOpen) {
+                    const secondsToClose = CLOSE_SECONDS - nowSeconds;
+                    const minsToClose = Math.ceil(secondsToClose / 60);
+                    textEl.textContent = minsToClose <= SOON_WINDOW / 60
+                        ? `Closing in ${minsToClose} min`
+                        : 'Open Now';
+                } else {
+                    const secondsToOpen = nowSeconds < OPEN_SECONDS
+                        ? OPEN_SECONDS - nowSeconds
+                        : (DAY_SECONDS - nowSeconds) + OPEN_SECONDS;
+                    const minsToOpen = Math.ceil(secondsToOpen / 60);
+                    isSoonOpen = minsToOpen <= SOON_WINDOW / 60;
+                    textEl.textContent = isSoonOpen
+                        ? `Opening in ${minsToOpen} min`
+                        : 'Closed Now';
+                }
+
+                boxEl.classList.toggle('is-open', isOpen);
+                boxEl.classList.toggle('is-soon-open', !isOpen && isSoonOpen);
+                boxEl.classList.toggle('is-closed', !isOpen && !isSoonOpen);
+            }
+
+            update();
+            setInterval(update, 1000);
+        })();
+    </script>
 
     <!-- Box com o mapa da área atendida -->
     <script>
