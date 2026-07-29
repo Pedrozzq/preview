@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carol Faria | Personal Trainer & Pilates</title>
+    <meta name="description" content="Carol Faria - Profissional de Educação Física especializada em Personal Trainer e Pilates. Transforme seu corpo e ganhe qualidade de vida.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#f3f7ea', // Branco levemente esverdeado, combina com o verde limão
+                            DEFAULT: '#bcdb02', // Verde limão vibrante da logo Carol Faria
+                            dark: '#00296f',  // Azul marinho da logo Carol Faria
+                            accent: '#1f4e8c' // Azul médio de apoio (complementa o marinho)
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animações suaves para rolagem */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Efeito parallax simples no hero */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 41, 111, 0.65), rgba(0, 41, 111, 0.85)), url('img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Esconder barra de rolagem mas manter funcionalidade na galeria horizontal mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Efeito Hover dos Links do Hero (Linktree) */
+        .link-card {
+            transition: all 0.3s ease;
+        }
+        .link-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -5px rgba(188, 219, 2, 0.4);
+        }
+
+        /* Mockup de celular (vídeo do Pilates) */
+        .phone-frame {
+            width: 280px;
+            max-width: 78vw;
+            aspect-ratio: 9 / 19.5;
+            background-color: #000;
+            border: 10px solid #00296f;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+        }
+        .phone-frame-notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 22px;
+            background-color: #00296f;
+            border-radius: 9999px;
+            z-index: 10;
+        }
+
+        /* Efeitos de fundo imersivos (blobs de movimento + linha de pulso) */
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -25px) scale(1.08); }
+        }
+        .blob-float { animation: blobFloat 11s ease-in-out infinite; }
+        .blob-float-delay { animation: blobFloat 13s ease-in-out infinite; animation-delay: -5s; }
+
+        @keyframes pulseScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 400px 0; }
+        }
+        .pulse-line {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='120' viewBox='0 0 400 120'%3E%3Cpath d='M0 60 H60 L80 15 L100 105 L120 60 H400' stroke='%2300296f' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 400px 120px;
+            animation: pulseScroll 16s linear infinite;
+        }
+        .pulse-line-light {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='120' viewBox='0 0 400 120'%3E%3Cpath d='M0 60 H60 L80 15 L100 105 L120 60 H400' stroke='%23ffffff' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 400px 120px;
+            animation: pulseScroll 16s linear infinite;
+        }
+
+        /* Animação de pulso suave para os botões de call-to-action */
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.035); }
+        }
+        .btn-animated {
+            animation: btnPulse 2.4s ease-in-out infinite;
+        }
+        .btn-animated:hover {
+            animation-play-state: paused;
+        }
+
+        /* Botão flutuante do WhatsApp com efeito de onda (ripple) */
+        @keyframes whatsappRipple {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 50;
+            background-color: #25D366;
+            animation: whatsappRipple 2.2s infinite;
+            transition: transform 0.25s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.06);
+            background-color: #1ebe5b;
+        }
+        @media (max-width: 640px) {
+            .whatsapp-float span { display: none; }
+            .whatsapp-float { padding: 16px; }
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
+
+    <section id="linktree" class="min-h-screen pt-12 pb-12 relative flex flex-col items-center bg-brand-dark">
+        <!-- Background Pattern or image com overlay escuro para manter elegância -->
+        <div class="absolute inset-0 bg-[url('img/hero-bg.jpg')] bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-dark"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 flex flex-col items-center w-full max-w-lg fade-in">
+            <!-- Foto de Perfil Premium -->
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-brand shadow-2xl mb-5 relative">
+                <img src="img/carol.jpg" alt="Carol Faria" class="w-full h-full object-cover">
+            </div>
+            
+            <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-2">Carol Faria</h1>
+            <p class="text-brand font-medium mb-3 text-center text-sm md:text-base uppercase tracking-[0.2em]">Personal & Pilates</p>
+            <p class="text-gray-300 text-center mb-10 text-sm md:text-base px-2 max-w-sm">
+                Especialista em saúde, mobilidade e força para a <strong>terceira idade</strong>. Transforme sua qualidade de vida com segurança.
+            </p>
+
+            <!-- Links Stack (Linktree Style) -->
+            <div class="w-full flex flex-col gap-4">
+                <!-- Botão Agendar Aula Experimental (WhatsApp) -->
+                <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Gostaria%20de%20agendar%20uma%20aula%20experimental." target="_blank" class="link-card btn-animated bg-[#25D366] text-white w-full py-4 px-6 rounded-2xl flex items-center justify-between font-semibold text-lg shadow-[0_0_20px_rgba(37,211,102,0.4)] border border-white/20">
+                    <span class="flex items-center gap-3"><i class="fa-brands fa-whatsapp text-2xl"></i> Agendar Aula Experimental</span>
+                    <i class="fa-solid fa-arrow-right opacity-80"></i>
+                </a>
+
+                <!-- Botão Principal Destaque -->
+                <a href="#pilates" class="link-card bg-brand text-brand-dark w-full py-4 px-6 rounded-2xl flex items-center justify-between font-semibold text-lg shadow-[0_0_20px_rgba(188,219,2,0.4)] border border-brand-light/20">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-child-reaching text-xl"></i> Conheça as Aulas de Pilates</span>
+                    <i class="fa-solid fa-arrow-right opacity-80"></i>
+                </a>
+
+                <a href="#personal" class="link-card bg-white text-brand-dark w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium shadow-md hover:bg-gray-50">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-dumbbell text-brand-accent text-xl w-6 text-center"></i> Personal: Treino Personalizado</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                </a>
+
+                <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="link-card bg-white text-brand-dark w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium shadow-md hover:bg-gray-50">
+                    <span class="flex items-center gap-3"><i class="fa-brands fa-instagram text-[#E1306C] text-xl w-6 text-center"></i> Acompanhe no Instagram</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                </a>
+
+                <a href="https://www.google.com/maps/place/Pra%C3%A7a+Monsenhor+Castilho+Barbosa,+31+-+Ouro+Preto,+MG,+35402-033/@-20.3864402,-43.5081111,1078a,75y,118.93h,90t/data=!3m7!1e1!3m5!1sGofEQpV5PQ9FZvLFY5VtMQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DGofEQpV5PQ9FZvLFY5VtMQ%26yaw%3D118.92588005635659!7i16384!8i8192!4m15!1m8!3m7!1s0xa40ae3d8b593f1:0x9c066b767664a18a!2sPra%C3%A7a+Monsenhor+Castilho+Barbosa,+31+-+Ouro+Preto,+MG,+35402-033!3b1!8m2!3d-20.3866669!4d-43.5078716!16s%2Fg%2F11wxv4w3qf!3m5!1s0xa40ae3d8b593f1:0x9c066b767664a18a!8m2!3d-20.3866669!4d-43.5078716!16s%2Fg%2F11wxv4w3qf?entry=ttu&amp;g_ep=EgoyMDI2MDcxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="link-card bg-white text-brand-dark w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium shadow-md hover:bg-gray-50">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-gray-500 text-xl w-6 text-center"></i> Localização do Estúdio</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                </a>
+
+                <!-- Download vCard -->
+                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AFaria%3BCarol%3B%3B%3B%0AFN%3ACarol%20Faria%20-%20Personal%0AORG%3ACarol%20Faria%20Personal%20Trainer%0ATITLE%3APersonal%20Trainer%20e%20Instrutora%20de%20Pilates%0ATEL%3BTYPE%3DCELL%3A%2B5531989171555%0AURL%3Ahttps%3A%2F%2Fwww.instagram.com%2Fcarolfaria.personal%2F%0AEND%3AVCARD" download="Carol_Faria.vcf" class="link-card bg-blue-600 text-white border border-blue-500 w-full py-4 px-6 rounded-2xl flex items-center justify-between font-medium shadow-md mt-2 hover:bg-blue-700">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-address-book text-brand-light text-xl w-6 text-center"></i> Salvar Contato</span>
+                    <i class="fa-solid fa-download opacity-70"></i>
+                </a>
+            </div>
+            
+            <div class="mt-12 animate-bounce">
+                <a href="#sobre" class="text-white opacity-50 hover:opacity-100 flex flex-col items-center">
+                    <span class="text-xs uppercase tracking-widest mb-2 font-semibold">Saiba Mais</span>
+                    <i class="fa-solid fa-chevron-down text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 pulse-line opacity-[0.06] pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-brand/25 rounded-full blur-3xl blob-float pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -right-20 w-72 h-72 md:w-96 md:h-96 bg-brand-accent/20 rounded-full blur-3xl blob-float-delay pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <div class="w-full md:w-1/2 fade-in relative">
+                    <div class="absolute inset-0 bg-brand rounded-2xl transform translate-x-4 translate-y-4"></div>
+                    <img src="img/sobre.png" alt="Carol Faria" class="relative z-10 rounded-2xl shadow-xl w-full object-cover object-top h-[500px]">
+                    <div class="absolute z-20 -bottom-6 -right-6 md:-right-8 bg-brand-dark text-white rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-4 border-4 border-white">
+                        <span class="font-serif text-4xl md:text-5xl font-bold text-brand leading-none">15+</span>
+                        <span class="text-xs md:text-sm uppercase tracking-wide leading-tight max-w-[6rem]">Anos de Experiência</span>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 fade-in">
+                    <h3 class="text-brand-accent font-bold uppercase tracking-wider text-sm mb-2">Atenção e Cuidado</h3>
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-brand-dark mb-6">Quem é Carol Faria?</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        Carol Faria é Profissional de Educação Física com <strong>mais de 15 anos de experiência</strong>, especializada no atendimento focado na <strong>saúde da terceira idade</strong>. Sua missão é devolver a autonomia, a força e a alegria de viver sem dores.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Entendo que o corpo do idoso exige um olhar diferenciado. Através do Pilates e da Musculação (Treino Funcional), desenvolvo protocolos seguros que respeitam as limitações de cada aluno, transformando desafios em superação, seja na reabilitação ou na prevenção.
+                    </p>
+                    
+                    <div class="bg-brand-light p-6 rounded-2xl border-l-4 border-brand mb-8">
+                        <p class="text-brand-dark font-medium italic">"Envelhecer é inevitável, mas perder a qualidade de vida é opcional. O movimento bem orientado é o melhor remédio para a longevidade."</p>
+                    </div>
+
+                    <div class="text-center md:text-left">
+                        <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20avalia%C3%A7%C3%A3o." target="_blank" class="btn-animated inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Agende sua Avaliação
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pilates" class="py-24 bg-brand-light relative overflow-hidden">
+        <div class="absolute inset-0 pulse-line opacity-[0.06] pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -top-20 -right-20 w-72 h-72 md:w-96 md:h-96 bg-brand-accent/20 rounded-full blur-3xl blob-float pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-brand/25 rounded-full blur-3xl blob-float-delay pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 md:px-12 fade-in relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-brand-accent mx-auto mb-4 shadow-md">
+                    <i class="fa-solid fa-leaf text-2xl"></i>
+                </div>
+                <h3 class="text-brand-accent font-bold uppercase tracking-wider text-sm mb-2">Movimento que cura</h3>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6">Pilates na Terceira Idade</h2>
+                <p class="text-gray-600 text-lg">
+                    O Pilates é uma das atividades mais seguras e recomendadas para idosos, pois trabalha o corpo de forma global, com baixo impacto e foco total na estabilização e controle corporal.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 relative flex justify-center">
+                    <!-- Mockup de celular com vídeo de Pilates -->
+                    <div class="relative">
+                        <div class="absolute -inset-6 bg-brand/25 rounded-[3rem] blur-3xl"></div>
+                        <div class="phone-frame relative">
+                            <div class="phone-frame-notch"></div>
+                            <video src="video/pilates.mp4" autoplay muted loop playsinline class="w-full h-full object-cover"></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <ul class="space-y-6">
+                        <li class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex gap-4 items-start">
+                            <div class="bg-brand-accent/10 text-brand-accent p-3 rounded-xl"><i class="fa-solid fa-person-walking text-xl w-6 text-center"></i></div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xl mb-2">Prevenção de Quedas</h4>
+                                <p class="text-gray-600 leading-relaxed">Trabalhamos o centro de força (core) e o equilíbrio, fundamentais para dar firmeza aos passos e evitar quedas, que são um grande risco na melhor idade.</p>
+                            </div>
+                        </li>
+                        <li class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex gap-4 items-start">
+                            <div class="bg-brand-accent/10 text-brand-accent p-3 rounded-xl"><i class="fa-solid fa-hand-holding-medical text-xl w-6 text-center"></i></div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xl mb-2">Alívio de Dores e Artrose</h4>
+                                <p class="text-gray-600 leading-relaxed">Os alongamentos e a descompressão das articulações ajudam significativamente no alívio de dores crônicas nas costas, joelhos e quadris.</p>
+                            </div>
+                        </li>
+                        <li class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex gap-4 items-start">
+                            <div class="bg-brand-accent/10 text-brand-accent p-3 rounded-xl"><i class="fa-solid fa-lungs text-xl w-6 text-center"></i></div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xl mb-2">Mobilidade e Respiração</h4>
+                                <p class="text-gray-600 leading-relaxed">Exercícios guiados pela respiração que resgatam a amplitude de movimento, permitindo amarrar os sapatos ou alcançar objetos sem dificuldade.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Tenho%20interesse%20em%20agendar%20uma%20aula%20experimental%20de%20Pilates." target="_blank" class="btn-animated inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-brand-dark hover:text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl text-lg">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Agendar uma Aula Experimental
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="personal" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 pulse-line opacity-[0.06] pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-brand/25 rounded-full blur-3xl blob-float pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -right-20 w-72 h-72 md:w-96 md:h-96 bg-brand-accent/20 rounded-full blur-3xl blob-float-delay pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 md:px-12 fade-in relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center text-brand-accent mx-auto mb-4 shadow-md">
+                    <i class="fa-solid fa-dumbbell text-2xl"></i>
+                </div>
+                <h3 class="text-brand-accent font-bold uppercase tracking-wider text-sm mb-2">Força e Independência</h3>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6">Treino Personalizado</h2>
+                <p class="text-gray-600 text-lg">
+                    A perda de massa muscular é o maior inimigo de uma longevidade ativa. O treinamento de força (Musculação e Funcional) adaptado e supervisionado é o melhor caminho.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 relative">
+                    <video src="video/treino.mp4" autoplay muted loop playsinline class="rounded-3xl shadow-2xl object-cover h-[500px] w-full"></video>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <ul class="space-y-6">
+                        <li class="p-6 rounded-2xl border border-gray-100 hover:border-brand transition-colors flex gap-4 items-start">
+                            <div class="bg-brand/10 text-brand-accent p-3 rounded-xl"><i class="fa-solid fa-child-reaching text-xl w-6 text-center"></i></div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xl mb-2">Combate à Sarcopenia</h4>
+                                <p class="text-gray-600 leading-relaxed">O treino de força freia a perda natural de massa muscular e protege os ossos (osteoporose), garantindo pernas e braços fortes para sustentar o próprio corpo.</p>
+                            </div>
+                        </li>
+                        <li class="p-6 rounded-2xl border border-gray-100 hover:border-brand transition-colors flex gap-4 items-start">
+                            <div class="bg-brand/10 text-brand-accent p-3 rounded-xl"><i class="fa-solid fa-house-user text-xl w-6 text-center"></i></div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xl mb-2">Autonomia para o Dia a Dia</h4>
+                                <p class="text-gray-600 leading-relaxed">Foco em "força funcional": exercícios que simulam o cotidiano, tornando tarefas como levantar do sofá, carregar sacolas e subir escadas muito mais fáceis.</p>
+                            </div>
+                        </li>
+                        <li class="p-6 rounded-2xl border border-gray-100 hover:border-brand transition-colors flex gap-4 items-start">
+                            <div class="bg-brand/10 text-brand-accent p-3 rounded-xl"><i class="fa-solid fa-heart-pulse text-xl w-6 text-center"></i></div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xl mb-2">Saúde do Coração e da Mente</h4>
+                                <p class="text-gray-600 leading-relaxed">Além dos músculos, o exercício bem direcionado melhora a circulação, ajuda a controlar a pressão arterial e estimula a memória e o bom humor.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Tenho%20interesse%20em%20agendar%20uma%20aula%20experimental%20de%20Treino%20Personalizado." target="_blank" class="btn-animated inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-brand-dark hover:text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl text-lg">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Agendar uma Aula Experimental
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="instagram" class="py-24 bg-white overflow-hidden relative">
+        <div class="absolute inset-0 pulse-line opacity-[0.06] pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -top-20 -right-20 w-72 h-72 md:w-96 md:h-96 bg-brand-accent/20 rounded-full blur-3xl blob-float pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-brand/25 rounded-full blur-3xl blob-float-delay pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 md:px-12 text-center fade-in relative z-10">
+            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-brand shadow-xl mx-auto mb-5">
+                <img src="img/carol.jpg" alt="Carol Faria" class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-brand-accent font-bold uppercase tracking-wider text-sm mb-2">Conecte-se comigo</h3>
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-4">@carolfaria.personal</h2>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Siga meu perfil para dicas diárias de treinos, execução de movimentos de pilates, motivação e um pouco da minha rotina.</p>
+
+            <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="inline-block bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:opacity-90 transition-all mb-12">
+                <i class="fa-brands fa-instagram mr-2"></i> Seguir no Instagram
+            </a>
+
+            <!-- Grid de Fotos do feed do Instagram -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10">
+                <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="block group relative aspect-square overflow-hidden rounded-xl bg-gray-100">
+                    <img src="img/carol-estudio-treino.png" alt="Carol Faria treinando no estúdio" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="block group relative aspect-square overflow-hidden rounded-xl bg-gray-100">
+                    <img src="img/carol-aluna-personal.png" alt="Carol Faria orientando aluna" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="block group relative aspect-square overflow-hidden rounded-xl bg-gray-100">
+                    <img src="img/carol-turma-pilates.png" alt="Turma de Pilates com Carol Faria" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="block group relative aspect-square overflow-hidden rounded-xl bg-gray-100">
+                    <img src="img/carol.jpg" alt="Carol Faria" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 pulse-line-light opacity-[0.08] pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 bg-brand/20 rounded-full blur-3xl blob-float pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -right-20 w-72 h-72 md:w-96 md:h-96 bg-brand-accent/30 rounded-full blur-3xl blob-float-delay pointer-events-none z-0" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 md:px-12 text-center fade-in relative z-10">
+            <h2 class="font-serif text-3xl md:text-5xl font-bold mb-6">Pronta para começar sua transformação?</h2>
+            <p class="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">
+                As vagas para acompanhamento presencial e consultoria são limitadas. Entre em contato via WhatsApp para verificarmos a disponibilidade e montar seu plano de ação.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20atendimentos." target="_blank" class="btn-animated bg-green-500 hover:bg-green-600 text-white px-10 py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-green-500/30 flex items-center gap-3 text-lg w-full sm:w-auto justify-center">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Falar no WhatsApp
+                </a>
+            </div>
+            
+            <div class="mt-16 flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-gray-400">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-envelope text-brand text-xl"></i>
+                    <span>acfpenna@yahoo.com.br</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot text-brand text-xl"></i>
+                    <span>Atendimento Presencial e Online</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-500 py-8 text-center text-sm border-t border-gray-800">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; <span id="year"></span> Carol Faria Personal. Todos os direitos reservados.</p>
+            <div class="flex gap-4">
+                <a href="https://www.instagram.com/carolfaria.personal/" target="_blank" class="text-gray-400 hover:text-brand transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20falar%20com%20voc%C3%AA." target="_blank" class="text-gray-400 hover:text-green-500 transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a href="https://wa.me/5531989171555?text=Ol%C3%A1%20Carol!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar." target="_blank" class="whatsapp-float flex items-center gap-2 text-white px-5 py-4 rounded-full font-semibold shadow-2xl">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span>Conversar com Carol</span>
+    </a>
+
+    <script>
+        // Atualizar ano dinamicamente
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll Animation Observer (Fade In Elements)
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
