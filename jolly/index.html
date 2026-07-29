@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>The Jolly Washer</title>
+    <title>The Jolly Washer | Quick Links</title>
     <!-- Tailwind CSS for rapid styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts for premium typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -74,6 +74,13 @@
                the real viewport, in the exact "sticky just doesn't work" way. */
             overflow-y: visible;
             position: relative;
+        }
+        /* Now that viewport-fit=cover lets the page draw under the iPhone
+           notch/status bar (needed for a dark status bar instead of iOS's
+           white fallback), push real content back down below it so the
+           logo/header isn't tucked under the notch. */
+        header {
+            padding-top: env(safe-area-inset-top);
         }
 
         /* Glassmorphism utility for buttons and cards */
@@ -568,6 +575,9 @@
 
         /* Nome da marca com efeito imersivo de cores fluindo (água/oceano) */
         .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
             background: linear-gradient(90deg,
                 #4B9CD3 0%, #8fd3ff 18%, #ffffff 32%,
                 #F9A826 48%, #ffffff 62%, #4B9CD3 78%, #0f3296 100%);
@@ -1477,13 +1487,6 @@
             <div class="squeegee-blade"></div>
             <div class="squeegee-handle"></div>
         </div>
-        <div class="preloader-center">
-            <div class="preloader-inner">
-                <div class="preloader-ring"></div>
-                <img id="preloaderLogo" src="img/logo.webp" alt="" class="preloader-logo">
-            </div>
-            <p class="preloader-text">Getting everything ready to shine...</p>
-        </div>
     </div>
 
     <!-- Fundo principal do site: vídeo hero-fresh em alta resolução, fixo
@@ -1523,7 +1526,7 @@
                 </div>
             </div>
 
-            <h1 class="text-3xl font-extrabold tracking-tight mb-2 brand-name">
+            <h1 class="text-6xl font-normal mb-2 brand-name">
                 The Jolly Washer
             </h1>
             <div id="openStatus" class="flex items-center justify-center gap-1.5 text-xs font-semibold mb-2" aria-live="polite">
