@@ -984,11 +984,22 @@
             padding: 1.5rem;
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .area-modal.open {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
+        }
+        /* O script de embed do LeadConnector (form_embed.js) seta
+           "pointer-events: auto" direto no style inline do iframe assim que
+           o formulário termina de carregar — isso vence a regra herdada do
+           modal (inline sempre vence CSS normal), fazendo o iframe continuar
+           clicável mesmo com o modal fechado e sobrepondo outros botões da
+           página. Só !important consegue vencer esse inline aqui. */
+        .area-modal:not(.open) iframe {
+            pointer-events: none !important;
         }
         .area-modal-backdrop {
             position: absolute;
