@@ -34,7 +34,7 @@
                             blue: '#0A4287',    // Azul da logo
                             blueDark: '#072b5c',
                             yellow: '#F97316',  // Laranja da logo
-                            green: '#8CC63F',   // Verde da logo
+                            green: '#EA580C',   // Laranja (antigo verde da logo)
                             light: '#f8fafc',
                             dark: '#1e293b'
                         }
@@ -58,6 +58,10 @@
                         'pulse-yellow': {
                             '0%, 100%': { boxShadow: '0 0 0 0 rgba(249, 115, 22, 0.4)' },
                             '70%': { boxShadow: '0 0 0 15px rgba(249, 115, 22, 0)' },
+                        },
+                        progress: {
+                            '0%': { transform: 'scaleX(0)' },
+                            '100%': { transform: 'scaleX(1)' },
                         }
                     }
                 }
@@ -187,15 +191,19 @@
 
     <!-- PRELOADER AZUL -->
     <div id="preloader">
-        <div id="preloader-3d-canvas" class="w-full h-64 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="relative z-10 flex flex-col items-center mt-48">
-            <div class="flex items-center gap-1 mb-2">
-                <span class="text-5xl font-heading font-extrabold text-white">00</span>
-                <span class="text-5xl font-heading font-extrabold text-psd-yellow">.000</span>
+        <div class="relative z-10 flex flex-col items-center">
+            <h1 class="font-heading font-extrabold text-4xl sm:text-5xl text-white tracking-tight mb-4">
+                Paulo<span class="text-psd-yellow">Silva</span>
+            </h1>
+
+            <div class="bg-psd-yellow px-8 py-3 rounded-2xl shadow-[0_10px_30px_rgba(249,115,22,0.3)] transform -rotate-2 hover:rotate-0 transition-transform cursor-default">
+                <div class="text-xs uppercase font-bold text-psd-blueDark tracking-widest text-center mb-[-5px]">Deputado Federal</div>
+                <div class="text-6xl font-heading font-extrabold text-psd-blueDark tracking-tighter">
+                    00<span class="text-white drop-shadow-sm">.000</span>
+                </div>
             </div>
-            <p class="text-sm uppercase tracking-[0.3em] text-white/80 font-semibold animate-pulse">Iniciando sistema...</p>
-            
-            <div class="w-48 h-1 bg-white/20 mt-4 rounded-full overflow-hidden">
+
+            <div class="w-48 h-1 bg-white/20 mt-6 rounded-full overflow-hidden">
                 <div class="h-full bg-psd-yellow w-full animate-[progress_1.5s_ease-in-out] origin-left"></div>
             </div>
         </div>
@@ -649,8 +657,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
                     <!-- Card Proposta -->
-                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-blue hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
-                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-blue group-hover:text-white transition-colors text-psd-blue">
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-green hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-green group-hover:text-white transition-colors text-psd-green">
                             <i class="fa-solid fa-industry"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Desenvolvimento e Emprego</h3>
@@ -660,8 +668,8 @@
                     </div>
 
                     <!-- Card Proposta -->
-                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-green hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
-                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-green group-hover:text-white transition-colors text-psd-green">
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-blue hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-blue group-hover:text-white transition-colors text-psd-blue">
                             <i class="fa-solid fa-tractor"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Agronegócio Forte</h3>
@@ -682,8 +690,8 @@
                     </div>
 
                     <!-- Card Proposta -->
-                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-blue hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
-                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-blue group-hover:text-white transition-colors text-psd-blue">
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-green hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-green group-hover:text-white transition-colors text-psd-green">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Segurança Inteligente</h3>
@@ -693,8 +701,8 @@
                     </div>
 
                     <!-- Card Proposta -->
-                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-green hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
-                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-green group-hover:text-white transition-colors text-psd-green">
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-blue hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-blue group-hover:text-white transition-colors text-psd-blue">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Educação e Inovação</h3>
@@ -924,116 +932,6 @@
         });
 
         // ==========================================
-        // THREE.JS - PRELOADER COM LUZES AZUL E AMARELO
-        // ==========================================
-        const initPreloader = () => {
-            const container = document.getElementById('preloader-3d-canvas');
-            const scene = new THREE.Scene();
-            
-            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.z = 5;
-            camera.position.y = 1;
-
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-            scene.add(ambientLight);
-            
-            // Luzes baseadas no Logo do PSD
-            const blueLight = new THREE.PointLight(0x0A4287, 3, 50);
-            blueLight.position.set(-2, 3, 4);
-            scene.add(blueLight);
-
-            const yellowLight = new THREE.PointLight(0xF97316, 2, 50);
-            yellowLight.position.set(2, 2, 4);
-            scene.add(yellowLight);
-
-            const urnaGroup = new THREE.Group();
-
-            // Base Escura Abstrata
-            const baseGeo = new THREE.BoxGeometry(2.5, 1.5, 2);
-            const baseMat = new THREE.MeshStandardMaterial({ 
-                color: 0x1e293b, 
-                roughness: 0.2, 
-                metalness: 0.8,
-            });
-            const base = new THREE.Mesh(baseGeo, baseMat);
-            urnaGroup.add(base);
-
-            // Tela Clara
-            const screenGeo = new THREE.PlaneGeometry(1.8, 1);
-            const screenMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-            const screen = new THREE.Mesh(screenGeo, screenMat);
-            screen.position.set(0, 0.2, 1.01);
-            screen.rotation.x = -0.1;
-            urnaGroup.add(screen);
-
-            // Teclado
-            for(let i=0; i<3; i++) {
-                for(let j=0; j<4; j++) {
-                    const btnGeo = new THREE.BoxGeometry(0.2, 0.1, 0.2);
-                    const isConfirm = (i===2 && j===3);
-                    const btnMat = new THREE.MeshBasicMaterial({ color: isConfirm ? 0x8CC63F : 0x334155 }); // Botão confirma verde PSD
-                    const btn = new THREE.Mesh(btnGeo, btnMat);
-                    btn.position.set(-0.6 + (i * 0.6), -0.5, 1.2 - (j * 0.1));
-                    btn.rotation.x = 0.2;
-                    urnaGroup.add(btn);
-                }
-            }
-
-            scene.add(urnaGroup);
-
-            // Partículas flutuantes Amarelas e Verdes
-            const particlesGeo = new THREE.BufferGeometry();
-            const particlesCount = 100;
-            const posArray = new Float32Array(particlesCount * 3);
-            const colorsArray = new Float32Array(particlesCount * 3);
-            
-            const colorYellow = new THREE.Color(0xF97316);
-            const colorGreen = new THREE.Color(0x8CC63F);
-
-            for(let i = 0; i < particlesCount; i++) {
-                posArray[i*3] = (Math.random() - 0.5) * 10;
-                posArray[i*3+1] = (Math.random() - 0.5) * 10;
-                posArray[i*3+2] = (Math.random() - 0.5) * 10;
-
-                const mixedColor = Math.random() > 0.5 ? colorYellow : colorGreen;
-                colorsArray[i*3] = mixedColor.r;
-                colorsArray[i*3+1] = mixedColor.g;
-                colorsArray[i*3+2] = mixedColor.b;
-            }
-            particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            particlesGeo.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
-            
-            const particlesMat = new THREE.PointsMaterial({
-                size: 0.08,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.8
-            });
-            const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
-            scene.add(particlesMesh);
-
-            const animate = () => {
-                requestAnimationFrame(animate);
-                urnaGroup.rotation.y += 0.01;
-                urnaGroup.position.y = Math.sin(Date.now() * 0.002) * 0.2;
-                particlesMesh.rotation.y -= 0.002;
-                particlesMesh.rotation.x += 0.001;
-                renderer.render(scene, camera);
-            };
-            animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            });
-        };
-
-        // ==========================================
         // THREE.JS - BG PARTICLES (Azul e Amarelo)
         // ==========================================
         const initBgParticles = () => {
@@ -1097,7 +995,6 @@
 
         // INICIALIZAÇÃO
         window.onload = () => {
-            initPreloader();
             initBgParticles();
 
             setTimeout(() => {
