@@ -794,7 +794,7 @@
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <h3 class="text-xl font-heading font-bold text-psd-blue mb-2">Cadastro recebido!</h3>
-                <p class="text-gray-500 text-sm">Obrigado por topar essa! Nossa equipe vai entrar em contato em breve.</p>
+                <p class="text-gray-500 text-sm">Obrigado por topar essa! Enviamos seus dados para o nosso WhatsApp e nossa equipe vai entrar em contato em breve.</p>
             </div>
         </div>
     </div>
@@ -845,6 +845,25 @@
         }
         function submitVoluntarioForm(e) {
             e.preventDefault();
+            const form = e.target;
+            const textInputs = form.querySelectorAll('input[type="text"]');
+            const nome = textInputs[0].value;
+            const cidadeEstado = textInputs[1].value;
+            const outro = textInputs[2].value;
+
+            const opcoes = Array.from(form.querySelectorAll('input[type="checkbox"]'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.parentElement.textContent.trim());
+
+            let mensagem = 'Olá! Quero ser voluntário na campanha.\n\n';
+            mensagem += `Nome: ${nome}\n`;
+            mensagem += `Cidade/Estado: ${cidadeEstado}\n`;
+            mensagem += `Como deseja ajudar: ${opcoes.length ? opcoes.join(', ') : 'Não informado'}\n`;
+            if (outro) mensagem += `Outro: ${outro}\n`;
+
+            const whatsappUrl = `https://wa.me/5531993445037?text=${encodeURIComponent(mensagem)}`;
+            window.open(whatsappUrl, '_blank');
+
             document.getElementById('voluntario-form-wrapper').classList.add('hidden');
             document.getElementById('voluntario-success').classList.remove('hidden');
             setTimeout(closeVoluntarioModal, 2500);
