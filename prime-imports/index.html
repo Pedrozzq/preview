@@ -183,6 +183,11 @@
             gap: 1.5rem;
             margin-right: 1.5rem;
         }
+        #brands-marquee .marquee-group {
+            align-items: center;
+            gap: 3rem;
+            margin-right: 3rem;
+        }
         .marquee-next-btn {
             transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
         }
@@ -727,9 +732,6 @@
     <section id="bestsellers" class="py-20 bg-brand-black">
         <div class="container mx-auto px-6">
             <div data-reveal-solo class="text-center mb-10">
-                <div class="mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gold/10 border border-brand-gold/30 text-brand-gold">
-                    <i class="fa-solid fa-gem text-base"></i>
-                </div>
                 <span class="font-display text-brand-gold text-sm tracking-widest uppercase mb-2 block">Destaques</span>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold">Os Mais Vendidos</h2>
             </div>
@@ -881,15 +883,64 @@
         <div data-reveal-solo class="container mx-auto px-6 mb-10 text-center">
             <p class="coming-soon-gold font-display text-brand-gold uppercase text-sm md:text-base font-semibold">Em Breve</p>
         </div>
-        <div data-reveal-group class="flex space-x-12 px-6 items-center justify-center flex-wrap gap-y-10 opacity-70">
-            <!-- Simulated Logos using text for structural mockup -->
-            <span data-reveal class="text-2xl font-serif tracking-widest font-bold">CHANEL</span>
-            <span data-reveal class="text-2xl font-serif tracking-widest">DIOR</span>
-            <span data-reveal class="text-2xl font-serif tracking-widest uppercase font-light">Tom Ford</span>
-            <span data-reveal class="text-2xl font-sans tracking-[0.3em] font-medium uppercase text-center leading-tight">Carolina<br>Herrera</span>
-            <span data-reveal class="text-2xl font-sans tracking-widest font-bold lowercase">paco rabanne</span>
-            <span data-reveal class="text-2xl font-serif tracking-widest">GIORGIO ARMANI</span>
+        <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 md:w-28 bg-gradient-to-r from-brand-dark to-transparent"></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 md:w-28 bg-gradient-to-l from-brand-dark to-transparent"></div>
+            <div id="brands-marquee" class="marquee-wrap opacity-70">
+                <div class="marquee-group">
+                    <!-- Simulated Logos using text for structural mockup -->
+                    <span class="text-2xl font-serif tracking-widest font-bold shrink-0">CHANEL</span>
+                    <span class="text-2xl font-serif tracking-widest shrink-0">DIOR</span>
+                    <span class="text-2xl font-serif tracking-widest uppercase font-light shrink-0">Tom Ford</span>
+                    <span class="text-2xl font-sans tracking-[0.3em] font-medium uppercase text-center leading-tight shrink-0">Carolina<br>Herrera</span>
+                    <span class="text-2xl font-sans tracking-widest font-bold lowercase shrink-0">paco rabanne</span>
+                    <span class="text-2xl font-serif tracking-widest shrink-0">GIORGIO ARMANI</span>
+                </div>
+                <div class="marquee-group" aria-hidden="true">
+                    <span class="text-2xl font-serif tracking-widest font-bold shrink-0">CHANEL</span>
+                    <span class="text-2xl font-serif tracking-widest shrink-0">DIOR</span>
+                    <span class="text-2xl font-serif tracking-widest uppercase font-light shrink-0">Tom Ford</span>
+                    <span class="text-2xl font-sans tracking-[0.3em] font-medium uppercase text-center leading-tight shrink-0">Carolina<br>Herrera</span>
+                    <span class="text-2xl font-sans tracking-widest font-bold lowercase shrink-0">paco rabanne</span>
+                    <span class="text-2xl font-serif tracking-widest shrink-0">GIORGIO ARMANI</span>
+                </div>
+            </div>
         </div>
+
+        <script>
+        (function () {
+            var wrap = document.getElementById('brands-marquee');
+            if (!wrap) return;
+            var groupWidth = 0;
+            function measure() {
+                var firstGroup = wrap.querySelector('.marquee-group');
+                groupWidth = firstGroup ? firstGroup.getBoundingClientRect().width + 48 : 0;
+            }
+            measure();
+            window.addEventListener('resize', measure);
+
+            var isHovering = false;
+            wrap.addEventListener('mouseenter', function () { isHovering = true; });
+            wrap.addEventListener('mouseleave', function () { isHovering = false; });
+
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var speed = 26; // px/s
+            var lastTs = null;
+            function tick(ts) {
+                if (lastTs === null) lastTs = ts;
+                var dt = (ts - lastTs) / 1000;
+                lastTs = ts;
+                if (!reduceMotion && !isHovering) {
+                    wrap.scrollLeft += speed * dt;
+                }
+                if (groupWidth && wrap.scrollLeft >= groupWidth) {
+                    wrap.scrollLeft -= groupWidth;
+                }
+                requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        })();
+        </script>
     </section>
 
     <!-- Footer -->
