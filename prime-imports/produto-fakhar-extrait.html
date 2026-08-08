@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script>document.documentElement.classList.add('js-page-enter');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fakhar Extrait Women 100ml — Lattafa | Prime Imports BR</title>
@@ -12,6 +13,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="css/buttons.css">
+
+    <!-- Motion Principles: skeleton de imagens, lazy loading, barra de progresso
+         e transição leve de entrada/saída entre páginas -->
+    <link rel="stylesheet" href="css/motion-principles.css">
+    <script src="js/motion-principles.js" defer></script>
 
     <script src="js/cart.js" defer></script>
 
@@ -113,7 +119,7 @@
         .trust-title { letter-spacing: 0.14em; }
     </style>
 </head>
-<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden page-transition-enter">
 
     <div class="bg-brand-gold text-black text-xs md:text-sm text-center py-2 font-display font-medium tracking-widest uppercase">
         Frete grátis para todo o Brasil nas compras acima de R$ 499
@@ -127,7 +133,7 @@
                 </button>
 
                 <a href="index.html" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
-                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain">
+                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain" loading="eager" decoding="async" data-skel>
                     <span class="font-display text-white text-xs md:text-sm tracking-[0.25em] font-semibold uppercase">Prime Imports</span>
                 </a>
 
@@ -184,7 +190,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="bg-brand-dark rounded-sm border border-white/5 h-[420px] md:h-[520px] flex items-center justify-center overflow-hidden relative">
-                    <img src="img/fakhar-extrait.png" alt="Lattafa Fakhar Extrait Women" class="w-full h-full object-contain p-8 md:p-10">
+                    <img src="img/fakhar-extrait.png" alt="Lattafa Fakhar Extrait Women" class="w-full h-full object-contain p-8 md:p-10" loading="eager" decoding="async" data-skel>
                     <span class="absolute bottom-4 inset-x-0 text-center text-[10px] uppercase tracking-widest text-brand-gray/70">Imagem ilustrativa</span>
                 </div>
                 <div>
@@ -307,7 +313,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <a href="produto-atheeri.html" class="group bg-brand-black p-4 rounded-sm border border-white/5 hover:border-brand-gold/50 transition-all duration-300">
                     <div class="h-48 mb-4 overflow-hidden bg-white/5 rounded flex items-center justify-center">
-                        <img src="img/atheeri.png" alt="Lattafa Atheeri" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <img src="img/atheeri.png" alt="Lattafa Atheeri" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" data-skel>
                     </div>
                     <p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">Lattafa</p>
                     <h3 class="text-sm font-serif font-medium">Atheeri 100ml</h3>
@@ -315,7 +321,7 @@
                 </a>
                 <a href="produto-hawas-black.html" class="group bg-brand-black p-4 rounded-sm border border-white/5 hover:border-brand-gold/50 transition-all duration-300">
                     <div class="h-48 mb-4 overflow-hidden bg-white/5 rounded flex items-center justify-center">
-                        <img src="img/hawas-black.png" alt="Rasasi Hawas Black" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <img src="img/hawas-black.png" alt="Rasasi Hawas Black" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" data-skel>
                     </div>
                     <p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">Rasasi</p>
                     <h3 class="text-sm font-serif font-medium">Hawas Black</h3>
@@ -323,7 +329,7 @@
                 </a>
                 <a href="produto-kit-khamrah-fakhar-hawas.html" class="group bg-brand-black p-4 rounded-sm border border-white/5 hover:border-brand-gold/50 transition-all duration-300">
                     <div class="h-48 mb-4 overflow-hidden bg-white/5 rounded flex items-center justify-center">
-                        <img src="img/kit-khamrah-fakhar-hawas.png" alt="Kit Khamrah + Fakhar Extrait + Hawas Black" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <img src="img/kit-khamrah-fakhar-hawas.png" alt="Kit Khamrah + Fakhar Extrait + Hawas Black" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" data-skel>
                     </div>
                     <p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">Kit Exclusivo</p>
                     <h3 class="text-sm font-serif font-medium">Kit Khamrah + Fakhar + Hawas</h3>
@@ -338,7 +344,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div>
                     <a href="index.html" class="block mb-6">
-                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain">
+                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain" loading="lazy" decoding="async" data-skel>
                     </a>
                     <p class="text-brand-gray text-sm leading-relaxed mb-6">
                         Sua perfumaria de luxo online. Oferecemos as melhores e mais exclusivas fragrâncias internacionais com garantia de autenticidade.

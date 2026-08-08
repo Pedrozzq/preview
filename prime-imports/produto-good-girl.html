@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script>document.documentElement.classList.add('js-page-enter');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Girl EDP — Carolina Herrera | Prime Imports BR</title>
@@ -15,6 +16,11 @@
 
     <!-- Botões: estética premium compartilhada ("Vênus") -->
     <link rel="stylesheet" href="css/buttons.css">
+
+    <!-- Motion Principles: skeleton de imagens, lazy loading, barra de progresso
+         e transição leve de entrada/saída entre páginas -->
+    <link rel="stylesheet" href="css/motion-principles.css">
+    <script src="js/motion-principles.js" defer></script>
 
     <!-- Carrinho de compras (client-side) -->
     <script src="js/cart.js" defer></script>
@@ -103,12 +109,8 @@
         .trust-title { letter-spacing: 0.14em; }
     </style>
 </head>
-<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden page-transition-enter">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-gold text-black text-xs md:text-sm text-center py-2 font-display font-medium tracking-widest uppercase">
-        Frete grátis para todo o Brasil nas compras acima de R$ 499
-    </div>
 
     <!-- Main Navigation -->
     <nav class="bg-brand-black/95 backdrop-blur-md sticky top-0 z-50 border-b border-white/10 transition-all duration-300">
@@ -122,7 +124,7 @@
 
                 <!-- Logo -->
                 <a href="index.html" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
-                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain">
+                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain" loading="eager" decoding="async" data-skel>
                     <span class="font-display text-white text-xs md:text-sm tracking-[0.25em] font-semibold uppercase">Prime Imports</span>
                 </a>
 
@@ -184,7 +186,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="bg-brand-dark rounded-sm border border-white/5 h-[420px] md:h-[520px] flex items-center justify-center overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1771990770592-2fea44c43617?q=80&w=800&auto=format&fit=crop" alt="Good Girl EDP" class="h-4/5 object-cover mix-blend-lighten">
+                    <img src="https://images.unsplash.com/photo-1771990770592-2fea44c43617?q=80&w=800&auto=format&fit=crop" alt="Good Girl EDP" class="h-4/5 object-cover mix-blend-lighten" loading="eager" decoding="async" data-skel>
                 </div>
                 <div>
                     <div class="flex items-center gap-2 mb-2">
@@ -312,7 +314,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <a href="produto-sauvage.html" class="group bg-brand-black p-4 rounded-sm border border-white/5 hover:border-brand-gold/50 transition-all duration-300">
                     <div class="h-48 mb-4 overflow-hidden bg-white/5 rounded flex items-center justify-center">
-                        <img src="https://images.unsplash.com/photo-1700522604220-471669e4364c?q=80&w=400&auto=format&fit=crop" alt="Sauvage Eau de Parfum" class="h-4/5 object-cover transform group-hover:scale-110 transition-transform duration-500 mix-blend-lighten">
+                        <img src="https://images.unsplash.com/photo-1700522604220-471669e4364c?q=80&w=400&auto=format&fit=crop" alt="Sauvage Eau de Parfum" class="h-4/5 object-cover transform group-hover:scale-110 transition-transform duration-500 mix-blend-lighten" loading="lazy" decoding="async" data-skel>
                     </div>
                     <p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">Dior</p>
                     <h3 class="text-sm font-serif font-medium">Sauvage Eau de Parfum</h3>
@@ -320,7 +322,7 @@
                 </a>
                 <a href="produto-bleu-de-chanel.html" class="group bg-brand-black p-4 rounded-sm border border-white/5 hover:border-brand-gold/50 transition-all duration-300">
                     <div class="h-48 mb-4 overflow-hidden bg-white/5 rounded flex items-center justify-center">
-                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=400&auto=format&fit=crop" alt="Bleu de Chanel Parfum" class="h-4/5 object-cover transform group-hover:scale-110 transition-transform duration-500 mix-blend-lighten">
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=400&auto=format&fit=crop" alt="Bleu de Chanel Parfum" class="h-4/5 object-cover transform group-hover:scale-110 transition-transform duration-500 mix-blend-lighten" loading="lazy" decoding="async" data-skel>
                     </div>
                     <p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">Chanel</p>
                     <h3 class="text-sm font-serif font-medium">Bleu de Chanel Parfum</h3>
@@ -328,7 +330,7 @@
                 </a>
                 <a href="produto-black-orchid.html" class="group bg-brand-black p-4 rounded-sm border border-white/5 hover:border-brand-gold/50 transition-all duration-300">
                     <div class="h-48 mb-4 overflow-hidden bg-white/5 rounded flex items-center justify-center">
-                        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=400&auto=format&fit=crop" alt="Black Orchid EDP" class="h-4/5 object-cover transform group-hover:scale-110 transition-transform duration-500 mix-blend-lighten">
+                        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=400&auto=format&fit=crop" alt="Black Orchid EDP" class="h-4/5 object-cover transform group-hover:scale-110 transition-transform duration-500 mix-blend-lighten" loading="lazy" decoding="async" data-skel>
                     </div>
                     <p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">Tom Ford</p>
                     <h3 class="text-sm font-serif font-medium">Black Orchid EDP</h3>
@@ -345,7 +347,7 @@
                 <!-- Brand Info -->
                 <div>
                     <a href="index.html" class="block mb-6">
-                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain">
+                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain" loading="lazy" decoding="async" data-skel>
                     </a>
                     <p class="text-brand-gray text-sm leading-relaxed mb-6">
                         Sua perfumaria de luxo online. Oferecemos as melhores e mais exclusivas fragrâncias internacionais com garantia de autenticidade.

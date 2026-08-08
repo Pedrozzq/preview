@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script>document.documentElement.classList.add('js-page-enter');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trocas e Devoluções | Prime Imports BR</title>
@@ -13,7 +14,11 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Carrinho de compras (client-side) -->
+        <!-- Motion Principles: skeleton de imagens, lazy loading, barra de progresso
+         e transição leve de entrada/saída entre páginas -->
+    <link rel="stylesheet" href="css/motion-principles.css">
+    <script src="js/motion-principles.js" defer></script>
+
     <script src="js/cart.js" defer></script>
 
     <!-- Dependências de animação/scroll: GSAP + Lenis (smooth scroll), via CDN -->
@@ -57,12 +62,8 @@
         ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
     </style>
 </head>
-<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden page-transition-enter">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-gold text-black text-xs md:text-sm text-center py-2 font-display font-medium tracking-widest uppercase">
-        Frete grátis para todo o Brasil nas compras acima de R$ 499
-    </div>
 
     <!-- Main Navigation -->
     <nav class="bg-brand-black/95 backdrop-blur-md sticky top-0 z-50 border-b border-white/10 transition-all duration-300">
@@ -76,7 +77,7 @@
 
                 <!-- Logo -->
                 <a href="index.html" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
-                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain">
+                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain" loading="eager" decoding="async" data-skel>
                     <span class="font-display text-white text-xs md:text-sm tracking-[0.25em] font-semibold uppercase">Prime Imports</span>
                 </a>
 
@@ -172,7 +173,7 @@
                 <!-- Brand Info -->
                 <div>
                     <a href="index.html" class="block mb-6">
-                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain">
+                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain" loading="eager" decoding="async" data-skel>
                     </a>
                     <p class="text-brand-gray text-sm leading-relaxed mb-6">
                         Sua perfumaria de luxo online. Oferecemos as melhores e mais exclusivas fragrâncias internacionais com garantia de autenticidade.

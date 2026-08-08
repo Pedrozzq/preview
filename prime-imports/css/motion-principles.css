@@ -1,0 +1,83 @@
+/**
+ * Prime Imports — Motion Principles: skeleton loaders, lazy loading (fade-in),
+ * barra de progresso de carregamento/navegação e transição leve de entrada/saída
+ * de página. Compartilhado por todas as páginas junto de js/motion-principles.js.
+ */
+
+/* ---------- Skeleton + fade-in de imagens (usar com atributo data-skel) ---------- */
+img[data-skel] {
+    background: linear-gradient(100deg,
+        rgba(255, 255, 255, 0.035) 30%,
+        rgba(212, 175, 55, 0.12) 50%,
+        rgba(255, 255, 255, 0.035) 70%);
+    background-size: 200% 100%;
+    animation: skel-shimmer 1.6s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+img[data-skel].is-loaded {
+    opacity: 1;
+    animation: none;
+    background: none;
+}
+@keyframes skel-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ---------- Barra de progresso (topo, carregamento de página / navegação) ---------- */
+#page-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2.5px;
+    width: 0%;
+    background: linear-gradient(90deg, #AA8529, #D4AF37, #F3E5AB);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+    z-index: 999;
+    transition: width 0.3s ease, opacity 0.25s ease;
+    opacity: 1;
+}
+#page-progress.is-done {
+    opacity: 0;
+}
+
+/* ---------- Entrada/saída leve de página (para páginas sem preloader próprio) ---------- */
+body.page-transition-enter {
+    opacity: 0;
+}
+body.page-transition-enter.is-ready {
+    opacity: 1;
+    transition: opacity 0.45s ease;
+}
+body.page-transition-exit {
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
+/* ---------- Feedback de carregamento em botões (ex.: adicionar à sacola) ---------- */
+.btn-loading {
+    pointer-events: none;
+    position: relative;
+    color: transparent !important;
+}
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.1em;
+    height: 1.1em;
+    margin: -0.55em 0 0 -0.55em;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: btn-loading-spin 0.6s linear infinite;
+    color: #0a0a0a;
+}
+.btn-loading.btn-venus::after {
+    color: #F3E5AB;
+}
+@keyframes btn-loading-spin {
+    to { transform: rotate(360deg); }
+}
