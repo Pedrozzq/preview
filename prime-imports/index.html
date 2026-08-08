@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Imports BR | Perfumaria de Luxo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Botões: estética premium compartilhada ("Vênus") -->
+    <link rel="stylesheet" href="css/buttons.css">
+
+    <!-- Carrinho de compras (client-side) -->
+    <script src="js/cart.js" defer></script>
+
+    <!-- Dependências de animação/scroll: GSAP + ScrollTrigger + Lenis (smooth scroll), via CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+    <script src="js/lenis-init.js" defer></script>
+
+    <!-- Animações de entrada ao rolar (fade + slide-up nas seções da home) -->
+    <script src="js/scroll-reveal.js" defer></script>
+
+    <!-- Abas do catálogo: Perfumes Árabes / Importados -->
+    <script src="js/catalog-tabs.js" defer></script>
+
+    <!-- Efeito Neon Flow (fundo animado da hero) -->
+    <!-- Script clássico (não type="module") de propósito: precisa funcionar mesmo abrindo
+         o index.html direto do disco (file://), onde módulos ES locais são bloqueados por
+         CORS. O import() dinâmico lá dentro carrega a lib do CDN via https e funciona igual. -->
+    <script src="js/neon-flow.js" defer></script>
+
+    <!-- Carrossel premium do frasco em destaque na hero -->
+    <script src="js/hero-carousel.js" defer></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            dark: '#171717',
+                            gold: '#D4AF37',
+                            'gold-light': '#F3E5AB',
+                            'gold-dark': '#AA8529',
+                            gray: '#a3a3a3'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar for an elegant touch */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #404040;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+        
+        /* Hide scrollbar for brand marquee but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Logo do menu: recorta só o brasão (garrafa) do arquivo img/logo.webp, maior e ao lado do texto */
+
+        /* Título "Prime Imports" abaixo da logo: dourado com brilho animado (shimmer) */
+        .logo-title-gold {
+            background: linear-gradient(90deg, #AA8529, #F3E5AB, #D4AF37, #F3E5AB, #AA8529);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: logo-title-shimmer 5s linear infinite;
+        }
+        @keyframes logo-title-shimmer {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* "Em Breve" (seção Marcas Premium): minimalista, com respiro de luz dourada */
+        .coming-soon-gold {
+            animation: coming-soon-pulse 2.8s ease-in-out infinite;
+        }
+        @keyframes coming-soon-pulse {
+            0%, 100% { opacity: 0.55; text-shadow: 0 0 0 rgba(212,175,55,0); letter-spacing: 0.4em; }
+            50%      { opacity: 1;    text-shadow: 0 0 18px rgba(212,175,55,0.55); letter-spacing: 0.48em; }
+        }
+
+        /* ---------- Trust Bar premium (Autenticidade / Entrega / Parcelamento) ---------- */
+        .trust-item {
+            position: relative;
+        }
+        .trust-item + .trust-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 10%;
+            height: 80%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(212,175,55,0.25), transparent);
+        }
+        .trust-icon-ring {
+            position: relative;
+            width: 4.25rem;
+            height: 4.25rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                linear-gradient(135deg, #D4AF37, rgba(212,175,55,0.15) 45%, rgba(212,175,55,0.4)) border-box;
+            border: 1px solid transparent;
+            box-shadow: 0 0 0 rgba(212,175,55,0);
+            transition: box-shadow 0.5s ease, transform 0.5s ease;
+        }
+        .trust-item:hover .trust-icon-ring {
+            box-shadow: 0 0 26px rgba(212,175,55,0.35);
+            transform: translateY(-3px);
+        }
+        .trust-icon-ring i {
+            background: linear-gradient(135deg, #F3E5AB, #D4AF37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .trust-title {
+            letter-spacing: 0.14em;
+        }
+        .trust-divider {
+            width: 22px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            margin: 0.6rem auto 0.7rem;
+        }
+
+        /* ---------- Vitrine de produtos em marquee (rolagem contínua, pausa no hover, avanço manual) ---------- */
+        .marquee-wrap {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .marquee-wrap::-webkit-scrollbar {
+            display: none;
+        }
+        .marquee-group {
+            display: flex;
+            flex-shrink: 0;
+            align-items: stretch;
+            gap: 1.5rem;
+            margin-right: 1.5rem;
+        }
+        .marquee-next-btn {
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .marquee-next-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.45);
+        }
+        .marquee-card-img {
+            filter: grayscale(35%) brightness(0.9);
+            transform: scale(1);
+            transition: filter 0.6s ease, transform 0.7s ease;
+        }
+        .marquee-card:hover .marquee-card-img {
+            filter: grayscale(0%) brightness(1.05);
+            transform: scale(1.07);
+        }
+        .marquee-add-btn {
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .marquee-add-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 10px 26px rgba(212,175,55,0.5);
+        }
+        .marquee-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.32rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            transition: transform 0.4s ease;
+        }
+        .marquee-card:hover .marquee-badge {
+            transform: translateY(-2px);
+        }
+        .marquee-badge i {
+            font-size: 0.6rem;
+        }
+        .marquee-badge--gold {
+            background: linear-gradient(135deg, #F3E5AB, #D4AF37 55%, #AA8529);
+            color: #0a0a0a;
+            box-shadow: 0 4px 16px rgba(212,175,55,0.5);
+        }
+        .marquee-badge--kit {
+            background: rgba(10,10,10,0.72);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #F3E5AB;
+            border: 1px solid rgba(212,175,55,0.55);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+        }
+
+        /* Ícone de perfume (placeholder): muda de cor ao passar o mouse; em celulares (sem hover) anima sozinho */
+        .perfume-icon {
+            transition: filter 0.4s ease;
+        }
+        .perfume-icon:hover {
+            animation: perfume-icon-hue 3s linear infinite;
+        }
+        @keyframes perfume-icon-hue {
+            0%   { filter: hue-rotate(0deg) saturate(1.4) brightness(1.05); }
+            50%  { filter: hue-rotate(180deg) saturate(1.7) brightness(1.15); }
+            100% { filter: hue-rotate(360deg) saturate(1.4) brightness(1.05); }
+        }
+        @media (hover: none) {
+            .perfume-icon { animation: perfume-icon-hue 6s linear infinite; }
+        }
+        /* ---------- Animação de entrada (preloader) ---------- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: preloader-fadeout 0.7s ease forwards;
+            animation-delay: 1.6s;
+        }
+        .preloader-logo-mark {
+            height: 6.5rem;
+            width: auto;
+            object-fit: contain;
+            opacity: 0;
+            filter: drop-shadow(0 0 24px rgba(212,175,55,0.35));
+            animation: preloader-logo-in 1s ease forwards 0.15s;
+        }
+        @media (min-width: 768px) {
+            .preloader-logo-mark { height: 8.5rem; }
+        }
+        .preloader-title {
+            margin-top: 1rem;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            opacity: 0;
+            animation: preloader-logo-in 1s ease forwards 0.4s;
+        }
+        @media (min-width: 768px) {
+            .preloader-title { font-size: 1.25rem; }
+        }
+        .preloader-line {
+            width: 0;
+            height: 1px;
+            margin-top: 1.5rem;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            animation: preloader-line-in 0.9s ease forwards 0.55s;
+        }
+        @keyframes preloader-logo-in {
+            from { opacity: 0; transform: translateY(12px) scale(0.96); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes preloader-line-in {
+            from { width: 0; }
+            to   { width: 180px; }
+        }
+        @keyframes preloader-fadeout {
+            to { opacity: 0; visibility: hidden; pointer-events: none; }
+        }
+
+        /* Entrada escalonada do conteúdo da hero, logo após o preloader sumir */
+        .hero-copy > * {
+            opacity: 0;
+            animation: hero-fade-up 0.9s ease forwards;
+        }
+        .hero-copy > *:nth-child(1) { animation-delay: 1.75s; }
+        .hero-copy > *:nth-child(2) { animation-delay: 1.9s; }
+        .hero-copy > *:nth-child(3) { animation-delay: 2.05s; }
+        .hero-copy > *:nth-child(4) { animation-delay: 2.2s; }
+        @keyframes hero-fade-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------- Frasco em destaque na hero (carrossel de fotos reais do catálogo) ---------- */
+        .bottle3d-scene {
+            position: relative;
+            width: min(190px, 48vw);
+            height: min(235px, 58vw);
+            margin: 0 auto;
+            animation: bottle3d-float 4s ease-in-out infinite;
+        }
+        @media (min-width: 1024px) {
+            .bottle3d-scene { width: 340px; height: 420px; }
+        }
+        @keyframes bottle3d-float {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-14px); }
+        }
+        .bottle3d-glow {
+            position: absolute;
+            inset: -40px;
+            background: radial-gradient(circle, rgba(212,175,55,0.28) 0%, transparent 65%);
+            filter: blur(10px);
+            z-index: 0;
+        }
+
+        /* Efeito Spotlight: feixes de luz diagonais que "acendem" sobre os
+           perfumes ao carregar a hero (estilo Aceternity UI, refeito em CSS puro). */
+        .hero-spotlight {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .hero-spotlight::before,
+        .hero-spotlight::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            width: 65%;
+            height: 160%;
+            background: radial-gradient(ellipse 50% 50% at 50% 0%, rgba(255,255,255,0.22), transparent 72%);
+            transform: rotate(-32deg);
+            opacity: 0;
+            mix-blend-mode: screen;
+            animation: hero-spotlight-in 2.4s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+        .hero-spotlight::before { left: 32%; }
+        .hero-spotlight::after {
+            right: -8%;
+            background: radial-gradient(ellipse 50% 50% at 50% 0%, rgba(212,175,55,0.32), transparent 72%);
+            transform: rotate(28deg);
+            animation-delay: 0.75s;
+        }
+        @keyframes hero-spotlight-in {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Seletor de catálogo (Perfumes Árabes / Importados), acima do grid de produtos */
+        .catalog-tab-btn {
+            padding: 0.65rem 1.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #F3E5AB;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .catalog-tab-btn:hover {
+            background: #D4AF37;
+            border-color: #D4AF37;
+            color: #0a0a0a;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.35);
+        }
+        .catalog-tab-btn.is-active {
+            background: #D4AF37;
+            border-color: #D4AF37;
+            color: #0a0a0a;
+            box-shadow: 0 10px 28px rgba(212,175,55,0.3);
+        }
+        /* Crossfade suave entre os frascos, com leve zoom-out no "assentar" da imagem
+           (efeito editorial, tipo vitrine premium — nada de corte seco entre fotos). */
+        .hero-bottle-stack {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+        }
+        .hero-bottle-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.6));
+            opacity: 0;
+            transform: scale(1.045);
+            transition: opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1), transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+        .hero-bottle-img.is-active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        .hero-bottle-dots {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+        }
+        .hero-bottle-dot {
+            width: 6px; height: 6px;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.3);
+            border: none; padding: 0; cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .hero-bottle-dot:hover { background: rgba(212,175,55,0.6); }
+        .hero-bottle-dot.is-active {
+            background: linear-gradient(90deg, #D4AF37, #F3E5AB);
+            width: 26px;
+        }
+        .bottle3d-shadow {
+            position: absolute;
+            bottom: 6px; left: 50%;
+            width: 140px; height: 22px;
+            margin-left: -70px;
+            background: radial-gradient(ellipse, rgba(0,0,0,0.55), transparent 70%);
+            z-index: 0;
+            animation: bottle3d-shadow-pulse 4s ease-in-out infinite;
+        }
+        @keyframes bottle3d-shadow-pulse {
+            0%, 100% { transform: scale(1);    opacity: 0.6;  }
+            50%      { transform: scale(0.82); opacity: 0.35; }
+        }
+        /* ---------- Faixa de Novidades & Promoções (abaixo do menu): 1 mensagem por vez, troca a cada 6s ---------- */
+        .news-strip {
+            background: linear-gradient(90deg, rgba(212,175,55,0.16), rgba(212,175,55,0.04) 40%, rgba(212,175,55,0.16));
+            background-size: 200% auto;
+            animation: news-strip-glow 8s ease-in-out infinite;
+            position: relative;
+            height: 2.75rem;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            box-shadow: inset 0 0 18px rgba(212,175,55,0.08);
+            overflow: hidden;
+        }
+        @keyframes news-strip-glow {
+            0%, 100% { background-position: 0% 50%; }
+            50%      { background-position: 100% 50%; }
+        }
+        /* Reflexo de luz que varre a faixa periodicamente (toque premium, sutil) */
+        .news-strip::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            width: 35%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16) 45%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.16) 55%, transparent);
+            transform: translateX(-140%) skewX(-15deg);
+            animation: news-strip-sweep 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes news-strip-sweep {
+            0%, 45%  { transform: translateX(-140%) skewX(-15deg); }
+            65%, 100% { transform: translateX(280%) skewX(-15deg); }
+        }
+        .news-strip-track {
+            position: relative;
+            height: 100%;
+        }
+        .news-pill {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0 3rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #F3E5AB;
+            white-space: nowrap;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        .news-pill.is-active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .news-pill i { color: #D4AF37; filter: drop-shadow(0 0 4px rgba(212,175,55,0.6)); }
+        .news-pill .news-tag {
+            background: linear-gradient(135deg, #F3E5AB, #D4AF37);
+            color: #0a0a0a;
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(212,175,55,0.45);
+        }
+        .news-pill .news-price {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05em;
+            letter-spacing: 0.02em;
+            text-shadow: 0 0 12px rgba(212,175,55,0.6);
+        }
+
+    </style>
+</head>
+<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden">
+
+    <!-- Animação de entrada: overlay que aparece por ~1.6s e some suavemente -->
+    <div id="preloader" aria-hidden="true">
+        <img src="img/logo-mark.webp" alt="" class="preloader-logo-mark">
+        <span class="preloader-title logo-title-gold font-display font-semibold uppercase">Prime Imports</span>
+        <div class="preloader-line"></div>
+    </div>
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-gold text-black text-xs md:text-sm text-center py-2 font-display font-medium tracking-widest uppercase">
+        Frete grátis para todo o Brasil nas compras acima de R$ 499
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="bg-brand-black/95 backdrop-blur-md sticky top-0 z-50 border-b border-white/10 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="relative flex justify-between items-center h-24 md:h-28">
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white hover:text-brand-gold transition-colors text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <!-- Logo -->
+                <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
+                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain">
+                    <span class="logo-title-gold font-display text-xs md:text-sm tracking-[0.25em] font-semibold uppercase">Prime Imports</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-sm font-medium hover:text-brand-gold transition-colors">Marcas</a>
+                    <a href="#" class="text-sm font-medium hover:text-brand-gold transition-colors">Feminino</a>
+                    <a href="#" class="text-sm font-medium hover:text-brand-gold transition-colors">Masculino</a>
+                    <a href="#" class="text-sm font-medium hover:text-brand-gold transition-colors">Unissex</a>
+                    <a href="#" class="text-sm font-medium text-brand-gold hover:text-white transition-colors">Ofertas</a>
+                </div>
+
+                <!-- Icons (Search, User, Cart) -->
+                <div class="flex space-x-5 items-center">
+                    <button class="text-white hover:text-brand-gold transition-colors hidden sm:block">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                    <button class="text-white hover:text-brand-gold transition-colors hidden sm:block">
+                        <i class="fa-regular fa-user text-lg"></i>
+                    </button>
+                    <button data-cart-open class="text-white hover:text-brand-gold transition-colors relative">
+                        <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        <span data-cart-badge class="hidden absolute -top-2 -right-2 bg-brand-gold text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-white/10 absolute w-full left-0 top-[100%] shadow-2xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <div class="relative mb-4">
+                    <input type="text" placeholder="Buscar perfumes..." class="w-full bg-brand-black border border-white/20 rounded-md py-2 px-4 text-sm text-white focus:outline-none focus:border-brand-gold">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-brand-gray text-sm"></i>
+                </div>
+                <a href="#" class="text-sm font-medium text-white hover:text-brand-gold">Marcas</a>
+                <a href="#" class="text-sm font-medium text-white hover:text-brand-gold">Feminino</a>
+                <a href="#" class="text-sm font-medium text-white hover:text-brand-gold">Masculino</a>
+                <a href="#" class="text-sm font-medium text-white hover:text-brand-gold">Unissex</a>
+                <a href="#" class="text-sm font-medium text-brand-gold">Ofertas</a>
+                <div class="pt-4 border-t border-white/10 flex space-x-4">
+                    <a href="#" class="text-sm text-brand-gray hover:text-white"><i class="fa-regular fa-user mr-2"></i> Minha Conta</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Faixa de Novidades & Promoções: 1 mensagem por vez, troca a cada 6s (ver script no fim do body) -->
+    <div class="news-strip border-b border-brand-gold/15 overflow-hidden">
+        <div class="news-strip-track" id="news-strip-track">
+            <span class="news-pill is-active"><span class="news-tag">Novo</span> Atheeri 100ml já está disponível</span>
+            <span class="news-pill"><i class="fa-solid fa-fire"></i> Kit Khamrah + Fakhar + Hawas por <span class="news-price">R$ 537,30</span></span>
+            <span class="news-pill"><i class="fa-solid fa-fire"></i> Kit Hawas + Oud for Glory + Khamrah por <span class="news-price">R$ 486,90</span></span>
+            <span class="news-pill"><i class="fa-solid fa-star"></i> Khamrah, o mais vendido da Lattafa</span>
+            <span class="news-pill"><i class="fa-solid fa-truck-fast"></i> Frete grátis para todo o Brasil acima de R$ 499</span>
+            <span class="news-pill"><i class="fa-solid fa-credit-card"></i> Até 10x sem juros em todo o site</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-0 lg:h-[80vh] py-6 lg:py-0 flex items-center justify-center overflow-hidden">
+        <!-- Fundo elegante com efeito Neon Flow (tubos de luz animados em WebGL) -->
+        <div class="absolute inset-0 w-full h-full bg-brand-black">
+            <canvas id="neon-flow-canvas" class="absolute inset-0 w-full h-full block" style="touch-action: none;"></canvas>
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse 65% 60% at 78% 45%, rgba(212,175,55,0.16), transparent 60%), radial-gradient(ellipse 45% 45% at 10% 85%, rgba(212,175,55,0.08), transparent 60%), linear-gradient(135deg, rgba(10,10,10,0.55) 0%, rgba(23,23,23,0.35) 55%, rgba(10,10,10,0.55) 100%);"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/70 to-transparent"></div>
+        </div>
+
+        <!-- Spotlight: feixes de luz sobre o frasco em destaque -->
+        <div class="hero-spotlight" aria-hidden="true"></div>
+
+        <!-- Hero Content -->
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-12 items-center">
+                <div class="hero-copy max-w-2xl order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
+                    <h1 class="font-serif text-3xl sm:text-4xl md:text-7xl font-bold leading-tight mb-3 md:mb-6 text-white drop-shadow-lg">
+                        Perfume é <br> <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-gold-light">Presença.</span>
+                    </h1>
+                    <p class="text-brand-gray text-xs md:text-lg mb-4 md:mb-8 max-w-lg font-light leading-relaxed mx-auto lg:mx-0">
+                        Selecionamos os perfumes importados mais desejados do mundo para quem valoriza autenticidade, sofisticação e exclusividade. Todos os produtos são 100% originais, lacrados, com nota fiscal e garantia de procedência.
+                    </p>
+                </div>
+
+                <!-- Frasco em destaque: carrossel com fotos reais do catálogo, alternando sozinho -->
+                <div class="order-1 lg:order-2 flex flex-col items-center justify-center -mt-2 lg:mt-0">
+                    <div class="bottle3d-scene">
+                        <div class="bottle3d-glow"></div>
+                        <div class="hero-bottle-stack" id="hero-bottle-stack">
+                            <a href="produto-khamrah.html" class="hero-bottle-img is-active" aria-label="Ver Khamrah — Lattafa">
+                                <img src="img/khamrah.png" alt="Khamrah — Lattafa" class="w-full h-full object-contain">
+                            </a>
+                            <a href="produto-hawas-black.html" class="hero-bottle-img" aria-label="Ver Hawas Black — Rasasi">
+                                <img src="img/hawas-black.png" alt="Hawas Black — Rasasi" class="w-full h-full object-contain">
+                            </a>
+                            <a href="produto-bade-al-oud.html" class="hero-bottle-img" aria-label="Ver Bade'e Al Oud for Glory — Lattafa">
+                                <img src="img/bade-al-oud.png" alt="Bade'e Al Oud for Glory — Lattafa" class="w-full h-full object-contain">
+                            </a>
+                            <a href="produto-atheeri.html" class="hero-bottle-img" aria-label="Ver Atheeri — Lattafa">
+                                <img src="img/atheeri.png" alt="Atheeri — Lattafa" class="w-full h-full object-contain">
+                            </a>
+                            <a href="produto-fakhar-extrait.html" class="hero-bottle-img" aria-label="Ver Fakhar Extrait Women — Lattafa">
+                                <img src="img/fakhar-extrait.png" alt="Fakhar Extrait Women — Lattafa" class="w-full h-full object-contain">
+                            </a>
+                        </div>
+                        <div class="bottle3d-shadow"></div>
+                    </div>
+                    <div class="hero-bottle-dots" id="hero-bottle-dots">
+                        <button type="button" class="hero-bottle-dot is-active" data-index="0" aria-label="Khamrah"></button>
+                        <button type="button" class="hero-bottle-dot" data-index="1" aria-label="Hawas Black"></button>
+                        <button type="button" class="hero-bottle-dot" data-index="2" aria-label="Bade'e Al Oud for Glory"></button>
+                        <button type="button" class="hero-bottle-dot" data-index="3" aria-label="Atheeri"></button>
+                        <button type="button" class="hero-bottle-dot" data-index="4" aria-label="Fakhar Extrait Women"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Bar -->
+    <section class="bg-brand-dark py-12 md:py-14 border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <div data-reveal-group class="grid grid-cols-3 gap-3 md:gap-6 text-center">
+                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
+                    <div class="trust-icon-ring mb-4">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Autenticidade</h3>
+                    <div class="trust-divider"></div>
+                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">Garantia de procedência</p>
+                </div>
+                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
+                    <div class="trust-icon-ring mb-4">
+                        <i class="fa-solid fa-truck-fast text-2xl"></i>
+                    </div>
+                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Entrega Rápida</h3>
+                    <div class="trust-divider"></div>
+                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">Para todo o Brasil</p>
+                </div>
+                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
+                    <div class="trust-icon-ring mb-4">
+                        <i class="fa-solid fa-credit-card text-2xl"></i>
+                    </div>
+                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Até 10x Sem Juros</h3>
+                    <div class="trust-divider"></div>
+                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">No cartão de crédito</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bestsellers Section -->
+    <section id="bestsellers" class="py-20 bg-brand-black">
+        <div class="container mx-auto px-6">
+            <div data-reveal-solo class="text-center mb-10">
+                <div class="mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gold/10 border border-brand-gold/30 text-brand-gold">
+                    <i class="fa-solid fa-gem text-base"></i>
+                </div>
+                <span class="font-display text-brand-gold text-sm tracking-widest uppercase mb-2 block">Destaques</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold">Os Mais Vendidos</h2>
+            </div>
+
+            <!-- Seletor de catálogo: Perfumes Árabes / Importados -->
+            <div class="flex items-center justify-center gap-3 mb-10">
+                <button type="button" data-catalog-tab="arabes" class="catalog-tab-btn is-active">Perfumes Árabes</button>
+                <button type="button" data-catalog-tab="importados" class="catalog-tab-btn">Importados</button>
+            </div>
+
+            <div id="catalog-panel-arabes" data-catalog-panel>
+                <!-- Vitrine em marquee: rolagem horizontal contínua, pausa no hover, cartões com foto que ganha cor no hover -->
+                <div class="relative">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 md:w-28 bg-gradient-to-r from-brand-black to-transparent"></div>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 md:w-28 bg-gradient-to-l from-brand-black to-transparent"></div>
+                    <div id="bestsellers-marquee" class="marquee-wrap"></div>
+                    <button type="button" id="bestsellers-marquee-next" aria-label="Ver mais produtos" class="marquee-next-btn absolute top-1/2 right-2 md:right-4 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-brand-gold hover:bg-white text-black flex items-center justify-center shadow-lg">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="mt-10 text-center">
+                    <a href="#" class="btn-venus py-3 px-8 text-xs">Ver Todos os Produtos</a>
+                </div>
+
+                <script>
+                (function () {
+                    var products = [
+                        { id: 'khamrah', brand: 'Lattafa', name: 'Khamrah 100ml', price: 174.90, image: 'img/khamrah.png', link: 'produto-khamrah.html', badge: { text: 'Mais Vendido', style: 'gold' } },
+                        { id: 'bade-al-oud', brand: 'Lattafa', name: "Bade'e Al Oud for Glory 100ml", price: 154.90, image: 'img/bade-al-oud.png', link: 'produto-bade-al-oud.html' },
+                        { id: 'atheeri', brand: 'Lattafa', name: 'Atheeri 100ml', price: 354.90, image: 'img/atheeri.png', link: 'produto-atheeri.html' },
+                        { id: 'fakhar-extrait', brand: 'Lattafa', name: 'Fakhar Extrait Women', price: 219.90, image: 'img/fakhar-extrait.png', link: 'produto-fakhar-extrait.html' },
+                        { id: 'hawas-black', brand: 'Rasasi', name: 'Hawas Black', price: 219.90, image: 'img/hawas-black.png', link: 'produto-hawas-black.html' },
+                        { id: 'kit-khamrah-fakhar-hawas', brand: 'Lattafa & Rasasi', name: 'Kit Khamrah + Fakhar Extrait + Hawas Black', price: 537.30, oldPrice: 614.70, image: 'img/kit-khamrah-fakhar-hawas.png', link: 'produto-kit-khamrah-fakhar-hawas.html', badge: { text: 'Kit Oferta', style: 'white' } },
+                        { id: 'kit-hawas-oud-khamrah', brand: 'Lattafa & Rasasi', name: 'Kit Hawas Black + Oud for Glory + Khamrah', price: 486.90, oldPrice: 549.70, image: 'img/kit-hawas-oud-khamrah.png', link: 'produto-kit-hawas-oud-khamrah.html', badge: { text: 'Kit Oferta', style: 'white' } }
+                    ];
+
+                    function esc(str) {
+                        return String(str).replace(/[&<>"']/g, function (c) {
+                            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                        });
+                    }
+                    function fmt(v) { return v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+                    function cardHtml(p, hidden) {
+                        var badge = p.badge
+                            ? '<span class="marquee-badge ' + (p.badge.style === 'white' ? 'marquee-badge--kit' : 'marquee-badge--gold') + '">' +
+                              '<i class="fa-solid ' + (p.badge.style === 'white' ? 'fa-gift' : 'fa-star') + '"></i>' + esc(p.badge.text) +
+                              '</span>'
+                            : '';
+                        var oldPrice = p.oldPrice
+                            ? '<p class="text-brand-gray text-[11px] line-through leading-none mb-0.5">R$ ' + fmt(p.oldPrice) + '</p>'
+                            : '';
+                        var tab = hidden ? ' tabindex="-1"' : '';
+                        return (
+                            '<div class="marquee-card group relative w-60 sm:w-64 shrink-0">' +
+                                '<div class="relative h-72 sm:h-80 w-full overflow-hidden rounded-2xl bg-brand-dark border border-white/5">' +
+                                    badge +
+                                    '<a href="' + p.link + '" class="absolute inset-0 z-0"' + tab + ' aria-label="Ver ' + esc(p.name) + '"></a>' +
+                                    '<img src="' + p.image + '" alt="' + esc(p.name) + '" class="marquee-card-img w-full h-full object-cover pointer-events-none">' +
+                                    '<div class="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-brand-black via-brand-black/90 to-transparent pt-12 pb-4 px-4 pointer-events-none">' +
+                                        '<p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">' + esc(p.brand) + '</p>' +
+                                        '<h3 class="font-serif text-white text-base font-medium truncate mb-2">' + esc(p.name) + '</h3>' +
+                                        '<div class="flex items-center justify-between gap-2 pointer-events-auto">' +
+                                            '<div>' + oldPrice +
+                                                '<p class="text-white font-semibold text-sm leading-tight">R$ ' + fmt(p.price) + '</p>' +
+                                            '</div>' +
+                                            '<button type="button" data-cart-add data-cart-id="' + p.id + '" data-cart-name="' + esc(p.name) + '" data-cart-brand="' + esc(p.brand) + '" data-cart-price="' + p.price.toFixed(2) + '" data-cart-image="' + p.image + '" aria-label="Adicionar ' + esc(p.name) + ' à sacola"' + tab + ' class="marquee-add-btn shrink-0 w-9 h-9 rounded-full bg-brand-gold hover:bg-white text-black flex items-center justify-center transition-colors">' +
+                                                '<i class="fa-solid fa-bag-shopping text-xs"></i>' +
+                                            '</button>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>'
+                        );
+                    }
+
+                    var wrap = document.getElementById('bestsellers-marquee');
+                    if (!wrap) return;
+                    var groupsHtml = '';
+                    for (var g = 0; g < 2; g++) {
+                        var hidden = g > 0;
+                        var cardsHtml = products.map(function (p) { return cardHtml(p, hidden); }).join('');
+                        groupsHtml += '<div class="marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' + cardsHtml + '</div>';
+                    }
+                    wrap.innerHTML = groupsHtml;
+
+                    // Rolagem automática contínua (loop invisível, já que os grupos são duplicados),
+                    // com pausa no hover e avanço manual pelo botão ">".
+                    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    var groupWidth = 0;
+                    function measure() {
+                        var firstGroup = wrap.querySelector('.marquee-group');
+                        groupWidth = firstGroup ? firstGroup.getBoundingClientRect().width + 24 : 0;
+                    }
+                    measure();
+                    window.addEventListener('resize', measure);
+
+                    var isHovering = false;
+                    var resumeAt = 0;
+                    wrap.addEventListener('mouseenter', function () { isHovering = true; });
+                    wrap.addEventListener('mouseleave', function () { isHovering = false; });
+
+                    var speed = 34; // px/s
+                    var lastTs = null;
+                    function tick(ts) {
+                        if (lastTs === null) lastTs = ts;
+                        var dt = (ts - lastTs) / 1000;
+                        lastTs = ts;
+                        if (!reduceMotion && !isHovering && ts > resumeAt) {
+                            wrap.scrollLeft += speed * dt;
+                        }
+                        if (groupWidth && wrap.scrollLeft >= groupWidth) {
+                            wrap.scrollLeft -= groupWidth;
+                        }
+                        requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+
+                    var nextBtn = document.getElementById('bestsellers-marquee-next');
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', function () {
+                            var card = wrap.querySelector('.marquee-card');
+                            var step = card ? card.getBoundingClientRect().width + 24 : 280;
+                            wrap.scrollBy({ left: step, behavior: 'smooth' });
+                            resumeAt = performance.now() + 1400;
+                        });
+                    }
+                })();
+                </script>
+            </div>
+
+            <div id="catalog-panel-importados" data-catalog-panel class="hidden">
+                <div class="flex flex-col items-center justify-center text-center py-20 border border-dashed border-white/10 rounded-sm">
+                    <i class="fa-solid fa-plane-departure text-brand-gold text-3xl mb-4 opacity-70"></i>
+                    <p class="text-white font-semibold mb-2 uppercase tracking-wider text-sm">Novidades chegando em breve</p>
+                    <p class="text-brand-gray text-sm max-w-sm">Estamos preparando uma seleção de perfumes importados internacionais. Volte em breve para conferir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Marquee (Simulated) -->
+    <section class="py-16 bg-brand-dark border-y border-white/5 overflow-hidden">
+        <div data-reveal-solo class="container mx-auto px-6 mb-8 text-center">
+            <h2 class="font-serif text-2xl text-white">Marcas Premium</h2>
+            <div class="w-16 h-px bg-brand-gold mx-auto mt-4"></div>
+        </div>
+        <div data-reveal-solo class="container mx-auto px-6 mb-10 text-center">
+            <p class="coming-soon-gold font-display text-brand-gold uppercase text-sm md:text-base font-semibold">Em Breve</p>
+        </div>
+        <div data-reveal-group class="flex space-x-12 px-6 items-center justify-center flex-wrap gap-y-10 opacity-70">
+            <!-- Simulated Logos using text for structural mockup -->
+            <span data-reveal class="text-2xl font-serif tracking-widest font-bold">CHANEL</span>
+            <span data-reveal class="text-2xl font-serif tracking-widest">DIOR</span>
+            <span data-reveal class="text-2xl font-serif tracking-widest uppercase font-light">Tom Ford</span>
+            <span data-reveal class="text-2xl font-sans tracking-[0.3em] font-medium uppercase text-center leading-tight">Carolina<br>Herrera</span>
+            <span data-reveal class="text-2xl font-sans tracking-widest font-bold lowercase">paco rabanne</span>
+            <span data-reveal class="text-2xl font-serif tracking-widest">GIORGIO ARMANI</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black pt-20 pb-10 border-t border-white/10 font-serif">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Info -->
+                <div>
+                    <a href="#" class="block mb-6">
+                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain">
+                    </a>
+                    <p class="text-brand-gray text-sm leading-relaxed mb-6">
+                        Sua perfumaria de luxo online. Oferecemos as melhores e mais exclusivas fragrâncias internacionais com garantia de autenticidade.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:border-brand-gold hover:text-black transition-all">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:border-brand-gold hover:text-black transition-all">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:border-brand-gold hover:text-black transition-all">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-display text-sm mb-6 tracking-[0.15em] uppercase">Institucional</h4>
+                    <ul class="space-y-3">
+                        <li><a href="garantia-autenticidade.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Garantia de Autenticidade</a></li>
+                        <li><a href="politica-privacidade.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Política de Privacidade</a></li>
+                        <li><a href="termos-condicoes.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Termos e Condições</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-white font-display text-sm mb-6 tracking-[0.15em] uppercase">Atendimento</h4>
+                    <ul class="space-y-3">
+                        <li><a href="meus-pedidos.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Meus Pedidos</a></li>
+                        <li><a href="trocas-devolucoes.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Trocas e Devoluções</a></li>
+                        <li><a href="faq.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Perguntas Frequentes (FAQ)</a></li>
+                        <li><a href="fale-conosco.html" class="text-brand-gray hover:text-brand-gold text-sm transition-colors">Fale Conosco</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-display text-sm mb-6 tracking-[0.15em] uppercase">Newsletter VIP</h4>
+                    <p class="text-brand-gray text-sm mb-4">Inscreva-se para receber lançamentos e ofertas exclusivas em primeira mão.</p>
+                    <form class="flex flex-col space-y-3">
+                        <input type="email" placeholder="Seu melhor e-mail" class="bg-brand-dark border border-white/20 text-white text-sm px-4 py-3 focus:outline-none focus:border-brand-gold rounded-sm">
+                        <button type="submit" class="btn-venus w-full py-3 px-4 text-xs">Assinar Agora</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-brand-gray text-xs">
+                    &copy; 2026 Prime Imports BR. Todos os direitos reservados.
+                </p>
+                <div class="flex items-center space-x-3 text-brand-gray text-2xl">
+                    <i class="fa-brands fa-cc-visa hover:text-white transition-colors"></i>
+                    <i class="fa-brands fa-cc-mastercard hover:text-white transition-colors"></i>
+                    <i class="fa-brands fa-cc-amex hover:text-white transition-colors"></i>
+                    <i class="fa-brands fa-pix hover:text-white transition-colors"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Faixa de Novidades & Promoções: alterna 1 mensagem por vez a cada 6s
+        (function () {
+            var track = document.getElementById('news-strip-track');
+            if (!track) return;
+            var pills = Array.prototype.slice.call(track.querySelectorAll('.news-pill'));
+            if (pills.length < 2) return;
+            var current = pills.findIndex(function (p) { return p.classList.contains('is-active'); });
+            if (current < 0) current = 0;
+            setInterval(function () {
+                pills[current].classList.remove('is-active');
+                current = (current + 1) % pills.length;
+                pills[current].classList.add('is-active');
+            }, 6000);
+        })();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+    </script>
+</body>
+</html>
