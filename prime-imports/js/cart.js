@@ -134,7 +134,7 @@
             itemsEl.innerHTML = cartItems.map(function (it) {
                 return '<div class="flex gap-4 items-center">' +
                     '<div class="w-16 h-16 bg-white/5 rounded-sm overflow-hidden flex items-center justify-center shrink-0">' +
-                        '<img src="' + it.image + '" alt="' + escapeHtml(it.name) + '" class="w-full h-full object-cover mix-blend-lighten">' +
+                        '<img src="' + it.image + '" alt="' + escapeHtml(it.name) + '" class="w-full h-full object-cover mix-blend-lighten" loading="lazy" decoding="async" data-skel>' +
                     '</div>' +
                     '<div class="flex-1 min-w-0">' +
                         '<p class="text-brand-gold text-[10px] uppercase tracking-widest">' + escapeHtml(it.brand) + '</p>' +
@@ -163,6 +163,7 @@
             itemsEl.querySelectorAll('.cart-remove-btn').forEach(function (btn) {
                 btn.addEventListener('click', function () { removeItem(btn.getAttribute('data-id')); });
             });
+            if (window.PrimeMotion) window.PrimeMotion.refreshSkeletons();
         }
 
         var subtotal = getSubtotal();
