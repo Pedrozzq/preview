@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João Silva - Pré-Candidato a Deputado Federal</title>
-    
+    <title>Paulo Silva - Pré-Candidato a Deputado Federal | MG</title>
+
     <!-- SEO Básico -->
-    <meta name="description" content="Conheça as propostas e a trajetória de João Silva, seu pré-candidato a Deputado Federal. Junte-se ao nosso time!">
+    <meta name="description" content="Conheça Paulo Silva. Trabalho, inovação e compromisso com o futuro de Minas Gerais.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,10 +14,10 @@
     <!-- FontAwesome (Ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts (Inter & Montserrat) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Poppins para um visual mais institucional e moderno) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Three.js (Para o 3D Preloader e Partículas) -->
+    <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Tailwind Config & Custom CSS -->
@@ -27,34 +27,41 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
                     },
                     colors: {
-                        campaign: {
-                            dark: '#0f172a',    // Fundo escuro (Azul Marinho)
-                            primary: '#1e40af', // Azul Principal
-                            secondary: '#10b981', // Verde Patriótico
-                            accent: '#fbbf24',  // Amarelo/Dourado (Destaque)
-                            light: '#f8fafc'
+                        psd: {
+                            blue: '#0A4287',    // Azul da logo
+                            blueDark: '#072b5c',
+                            yellow: '#F97316',  // Laranja da logo
+                            green: '#EA580C',   // Laranja (antigo verde da logo)
+                            light: '#f8fafc',
+                            dark: '#1e293b'
                         }
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'sweep': 'sweep 3s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                        'pulse-yellow': 'pulse-yellow 2s infinite',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         },
-                        'pulse-glow': {
-                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 15px rgba(251, 191, 36, 0.6))' },
-                            '50%': { opacity: .7, filter: 'drop-shadow(0 0 5px rgba(251, 191, 36, 0.2))' },
+                        slideInRight: {
+                            '0%': { opacity: 0, transform: 'translateX(50px)' },
+                            '100%': { opacity: 1, transform: 'translateX(0)' },
                         },
-                        sweep: {
-                            '0%': { backgroundPosition: '-200% center' },
-                            '100%': { backgroundPosition: '200% center' },
+                        'pulse-yellow': {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(249, 115, 22, 0.4)' },
+                            '70%': { boxShadow: '0 0 0 15px rgba(249, 115, 22, 0)' },
+                        },
+                        progress: {
+                            '0%': { transform: 'scaleX(0)' },
+                            '100%': { transform: 'scaleX(1)' },
                         }
                     }
                 }
@@ -64,68 +71,35 @@
 
     <style>
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #f8fafc;
+            color: #1e293b;
             overflow-x: hidden;
-        }
-
-        /* Efeito Glassmorphism Premium */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .glass-button {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .glass-button:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(251, 191, 36, 0.5); /* Borda dourada no hover */
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px -5px rgba(251, 191, 36, 0.2);
-        }
-
-        /* Texto com efeito de luz passando */
-        .text-sweep {
-            background: linear-gradient(90deg, #fbbf24 0%, #ffffff 50%, #fbbf24 100%);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: sweep 3s linear infinite;
         }
 
         /* Preloader */
         #preloader {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1e40af 0%, #0f172a 100%);
+            background: #0A4287; /* Fundo Azul PSD */
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 1s ease-out;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
         }
 
         #canvas-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; /* Atrás de tudo */
+            z-index: -1;
             pointer-events: none;
         }
 
-        /* Animações de Scroll (Intersection Observer) */
+        /* Animações de Scroll (Reveal) */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
         .reveal.active {
@@ -134,469 +108,620 @@
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e40af; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #fbbf24; 
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #0A4287; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #072b5c; }
 
-        /* ==========================================
-           NOVOS BOTÕES DE AÇÃO PREMIUM (MOBILIZAÇÃO)
-           ========================================== */
-        .action-btn {
+        /* Botões de Ação Dinâmicos (Action Cards) */
+        .action-card {
             position: relative;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico suave */
+            background: white;
+            border-radius: 1rem;
             z-index: 1;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            text-decoration: none;
         }
-        
-        /* Efeito de feixe de luz brilhante passando */
-        .action-btn::before {
+
+        .action-card::after {
             content: '';
             position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-            transform: skewX(-20deg);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0A4287; /* Azul preenchendo */
             z-index: -1;
-            transition: all 0.7s ease;
-        }
-        
-        .action-btn:hover::before {
-            left: 150%;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            background: rgba(255, 255, 255, 0.06);
-        }
-        
-        .action-btn:active {
-            transform: translateY(-2px) scale(0.98);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Cores de brilho no Hover específicas para cada botão */
-        .btn-agenda:hover { border-color: rgba(251, 191, 36, 0.6); box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.4); }
-        .btn-materiais:hover { border-color: rgba(96, 165, 250, 0.6); box-shadow: 0 10px 30px -10px rgba(96, 165, 250, 0.4); }
-        .btn-grupo:hover { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.4); }
-        .btn-voluntario:hover { border-color: rgba(192, 132, 252, 0.6); box-shadow: 0 10px 30px -10px rgba(192, 132, 252, 0.4); }
+        .action-card:hover {
+            transform: translateY(-5px);
+            border-color: #0A4287;
+            box-shadow: 0 15px 30px -5px rgba(10, 66, 135, 0.2);
+        }
 
-        /* Botão de Doação com Pulso Contínuo */
-        .btn-donate {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.3) 0%, rgba(16, 185, 129, 0.15) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            animation: pulse-border 2s infinite;
+        .action-card:hover::after { transform: scaleX(1); }
+        .action-card .icon-wrapper { transition: all 0.4s ease; }
+        .action-card:hover .icon-wrapper { background: #F97316; color: #0A4287; transform: scale(1.1) rotate(5deg); }
+        .action-card .text-title { transition: color 0.4s ease; }
+        .action-card:hover .text-title { color: white; }
+        .action-card .text-sub { transition: color 0.4s ease; }
+        .action-card:hover .text-sub { color: rgba(255,255,255,0.8); }
+        .action-card i.arrow-icon { transition: all 0.4s ease; color: #cbd5e1; }
+        .action-card:hover i.arrow-icon { color: #F97316; transform: translateX(5px); }
+
+        /* Timeline Styling */
+        .timeline-container { position: relative; }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 1.5rem; height: 100%; width: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+        @media (min-width: 768px) {
+            .timeline-container::before { left: 50%; transform: translateX(-50%); }
         }
         
-        .btn-donate:hover {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.5) 0%, rgba(16, 185, 129, 0.3) 100%);
-            border-color: rgba(16, 185, 129, 0.8);
-            box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.5);
-            animation: none; /* Para o pulso no hover */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        /* Navbar Sticky transition */
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
         }
+        .navbar-scrolled .nav-link { color: #0A4287 !important; }
+        .navbar-scrolled .logo-text { color: #0A4287 !important; }
     </style>
 </head>
 <body class="antialiased relative">
 
-    <!-- PRELOADER -->
+    <!-- PRELOADER AZUL -->
     <div id="preloader">
-        <div id="preloader-3d-canvas" class="w-full h-64 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="relative z-10 flex flex-col items-center mt-48">
-            <h2 class="text-3xl font-heading font-bold text-white mb-2 tracking-widest text-sweep">11555</h2>
-            <p class="text-sm uppercase tracking-[0.3em] text-campaign-secondary font-semibold animate-pulse">Iniciando sistema...</p>
-            
-            <!-- Barra de progresso abstrata -->
-            <div class="w-48 h-1 bg-white/20 mt-4 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-campaign-secondary to-campaign-accent w-full animate-[progress_2s_ease-in-out] origin-left"></div>
+        <div class="relative z-10 flex flex-col items-center">
+            <h1 class="font-heading font-extrabold text-4xl sm:text-5xl text-white tracking-tight mb-4">
+                Paulo<span class="text-psd-yellow">Silva</span>
+            </h1>
+
+            <div class="bg-psd-yellow px-8 py-3 rounded-2xl shadow-[0_10px_30px_rgba(249,115,22,0.3)] transform -rotate-2 hover:rotate-0 transition-transform cursor-default">
+                <div class="text-xs uppercase font-bold text-psd-blueDark tracking-widest text-center mb-[-5px]">Deputado Federal</div>
+                <div class="text-6xl font-heading font-extrabold text-psd-blueDark tracking-tighter">
+                    00<span class="text-white drop-shadow-sm">.000</span>
+                </div>
+            </div>
+
+            <div class="w-48 h-1 bg-white/20 mt-6 rounded-full overflow-hidden">
+                <div class="h-full bg-psd-yellow w-full animate-[progress_1.5s_ease-in-out] origin-left"></div>
             </div>
         </div>
     </div>
 
-    <!-- CANVAS PARA PARTÍCULAS DE FUNDO -->
+    <!-- CANVAS PARA PARTÍCULAS (Fundo) -->
     <div id="canvas-container"></div>
 
-    <!-- MAIN CONTENT CONTEINER -->
-    <main id="main-content" class="relative z-10 max-w-lg md:max-w-4xl mx-auto px-4 py-8 opacity-0 transition-opacity duration-1000">
+    <!-- NAVBAR (Fixo no topo) -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="#" class="logo-text font-heading font-bold text-2xl text-white tracking-tight transition-colors">
+                Paulo<span class="text-psd-yellow">Silva</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#sobre" class="nav-link text-white/90 hover:text-psd-yellow font-medium text-sm uppercase tracking-wider transition-colors">Sobre</a>
+                <a href="#propostas" class="nav-link text-white/90 hover:text-psd-yellow font-medium text-sm uppercase tracking-wider transition-colors">Propostas</a>
+                <a href="#agenda" class="nav-link text-white/90 hover:text-psd-yellow font-medium text-sm uppercase tracking-wider transition-colors">Agenda</a>
+                <a href="#mobilizacao" class="bg-psd-yellow text-psd-blueDark font-bold px-5 py-2 rounded-full hover:bg-white transition-colors transform hover:scale-105">
+                    Participe
+                </a>
+            </div>
 
-        <!-- HEADER / LINKTREE HERO -->
-        <header class="text-center pt-8 pb-12 reveal active">
-            <div class="relative inline-block mb-4">
-                <!-- Anel decorativo verde/amarelo -->
-                <div class="absolute inset-0 rounded-full border-4 border-t-campaign-secondary border-r-campaign-accent border-b-transparent border-l-transparent animate-spin" style="animation-duration: 3s;"></div>
-                <img src="https://placehold.co/400x400/1e40af/ffffff?text=FOTO+CANDIDATO" alt="João Silva" class="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover border-4 border-campaign-dark relative z-10 shadow-2xl">
-                <!-- Badge verificado -->
-                <div class="absolute bottom-2 right-2 bg-campaign-primary text-white p-2 rounded-full border-2 border-campaign-dark z-20">
-                    <i class="fa-solid fa-check text-sm"></i>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-psd-yellow text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000">
+
+        <!-- HERO SECTION -->
+        <header class="relative min-h-[90vh] flex items-center overflow-hidden bg-psd-blue pt-20">
+            <!-- Efeitos de Fundo do Hero -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-psd-blueDark rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+                <div class="absolute top-40 -left-20 w-72 h-72 bg-psd-yellow rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                <div class="absolute -bottom-20 right-20 w-80 h-80 bg-psd-green rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12 lg:py-0">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-4">
+                    
+                    <!-- Textos Hero -->
+                    <div class="w-full lg:w-3/5 text-center lg:text-left reveal active order-2 lg:order-1">
+                        <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-psd-yellow text-sm font-semibold tracking-widest uppercase mb-6 shadow-lg">
+                            <i class="fa-solid fa-location-dot mr-2"></i> Ouro Preto / Minas Gerais
+                        </div>
+                        
+                        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-4 drop-shadow-md">
+                            O Futuro de <br> Minas é <span class="text-psd-yellow inline-block relative">Agora.
+                                <svg class="absolute w-full h-3 -bottom-1 left-0 text-psd-yellow opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="transparent"/></svg>
+                            </span>
+                        </h1>
+                        
+                        <p class="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                            Gestão técnica, inovação e compromisso com o desenvolvimento das nossas cidades. Juntos, vamos construir um Estado mais forte e preparado.
+                        </p>
+
+                        <!-- Número Gigante e Cargos -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 mb-10">
+                            <div class="bg-psd-yellow px-8 py-3 rounded-2xl shadow-[0_10px_30px_rgba(249,115,22,0.3)] transform -rotate-2 hover:rotate-0 transition-transform cursor-default">
+                                <div class="text-xs uppercase font-bold text-psd-blueDark tracking-widest text-center mb-[-5px]">Deputado Federal</div>
+                                <div class="text-6xl font-heading font-extrabold text-psd-blueDark tracking-tighter">
+                                    00<span class="text-white drop-shadow-sm">.000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Foto Hero -->
+                    <div class="w-full lg:w-2/5 relative reveal active flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
+                        <div class="relative w-[320px] h-[400px] sm:w-[400px] sm:h-[500px]">
+                            <!-- Elemento decorativo atrás da foto -->
+                            <div class="absolute bottom-0 right-0 w-full h-[80%] bg-psd-yellow rounded-3xl transform rotate-3"></div>
+                            <!-- Foto do Candidato -->
+                            <img src="img/foto-candidato.webp" alt="Paulo Silva" class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom z-10 drop-shadow-2xl">
+
+                            <!-- Floating Badge -->
+                            <div class="absolute top-10 -left-6 z-20 bg-white p-3 rounded-xl shadow-xl flex items-center gap-3 animate-bounce">
+                                <div class="w-10 h-10 bg-psd-green rounded-full flex items-center justify-center text-white text-lg">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-bold uppercase">Partido</p>
+                                    <p class="font-heading font-extrabold text-psd-blue">PARTIDO XX</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <h1 class="text-4xl md:text-5xl font-heading font-black text-white mb-1 uppercase">João Silva</h1>
-            <h2 class="text-lg md:text-xl font-medium text-campaign-secondary tracking-widest uppercase mb-4">Deputado Federal</h2>
             
-            <!-- NÚMERO GIGANTE -->
-            <div class="inline-block glass-panel px-8 py-3 rounded-2xl mb-6 border-campaign-accent/30 animate-pulse-glow">
-                <span class="text-5xl md:text-7xl font-heading font-black text-white tracking-tighter drop-shadow-lg text-sweep">
-                    11555
-                </span>
-            </div>
-
-            <p class="text-lg text-gray-300 font-light max-w-md mx-auto italic mb-8">
-                "Renovação com coragem. Juntos por um estado mais forte e oportunidades para todos."
-            </p>
-
-            <!-- BOTÕES DE AÇÃO PRINCIPAIS (ESTILO LINKTREE) -->
-            <div class="flex flex-col gap-4 w-full max-w-md mx-auto">
-                <!-- Botão Destaque 1 -->
-                <a href="#propostas" class="bg-gradient-to-r from-campaign-primary to-blue-600 text-white font-bold text-lg py-4 px-6 rounded-xl shadow-[0_0_20px_rgba(30,64,175,0.5)] hover:shadow-[0_0_30px_rgba(30,64,175,0.8)] hover:-translate-y-1 transition-all flex items-center justify-between group">
-                    <span class="flex items-center gap-3"><i class="fa-solid fa-list-check text-xl"></i> Conheça as Propostas</span>
-                    <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
-                </a>
-
-                <!-- Botão Destaque 2 (WhatsApp) -->
-                <a href="#" class="bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold text-lg py-4 px-6 rounded-xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] hover:-translate-y-1 transition-all flex items-center justify-between group">
-                    <span class="flex items-center gap-3"><i class="fa-brands fa-whatsapp text-2xl"></i> Falar com a Equipe</span>
-                    <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
-                </a>
+            <!-- Curva na base do Hero -->
+            <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
+                <svg relative="block" class="w-full h-12 lg:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.9,132.32,201.7,126.9,242.47,123.82,282.88,113.8,321.39,56.44Z" fill="#f8fafc"></path>
+                </svg>
             </div>
         </header>
 
-        <!-- MOBILIZAÇÃO RÁPIDA (BOTÕES SECUNDÁRIOS PREMIUM) -->
-        <section class="mb-16 reveal">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md md:max-w-2xl mx-auto">
-                
-                <!-- Botão Agenda -->
-                <a href="#agenda" class="action-btn btn-agenda text-white py-4 px-5 rounded-2xl flex items-center gap-4 group cursor-pointer">
-                    <div class="bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 p-3 rounded-xl text-campaign-accent shadow-[0_0_15px_rgba(251,191,36,0.15)] group-hover:bg-campaign-accent group-hover:text-campaign-dark transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3">
-                        <i class="fa-regular fa-calendar-days text-xl"></i>
+        <!-- ESTATÍSTICAS (Sobrepostas à transição) -->
+        <section class="relative z-20 -mt-8 mb-16 px-4">
+            <div class="max-w-5xl mx-auto glass-panel shadow-xl rounded-2xl p-6 lg:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                    <div class="text-center pt-4 md:pt-0">
+                        <div class="text-4xl md:text-5xl font-heading font-bold text-psd-blue mb-1 counter" data-target="20">0</div>
+                        <div class="text-gray-500 uppercase font-bold tracking-wider text-xs">Anos de Vida Pública</div>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Acompanhe a</span>
-                        <span class="text-lg font-bold leading-none text-gray-100 group-hover:text-white transition-colors">Agenda Local</span>
+                    <div class="text-center pt-4 md:pt-0">
+                        <div class="text-4xl md:text-5xl font-heading font-bold text-psd-blue mb-1 counter" data-target="853">0</div>
+                        <div class="text-gray-500 uppercase font-bold tracking-wider text-xs">Municípios Mineiros Focados</div>
                     </div>
-                </a>
-
-                <!-- Botão Materiais -->
-                <a href="#materiais" class="action-btn btn-materiais text-white py-4 px-5 rounded-2xl flex items-center gap-4 group cursor-pointer">
-                    <div class="bg-gradient-to-br from-blue-400/20 to-blue-600/20 p-3 rounded-xl text-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.15)] group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:-rotate-3">
-                        <i class="fa-solid fa-download text-xl"></i>
+                    <div class="text-center pt-4 md:pt-0">
+                        <div class="text-4xl md:text-5xl font-heading font-bold text-psd-blue mb-1 counter" data-target="150">0</div>
+                        <div class="text-gray-500 uppercase font-bold tracking-wider text-xs">Projetos Apresentados</div>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Baixe nossos</span>
-                        <span class="text-lg font-bold leading-none text-gray-100 group-hover:text-white transition-colors">Materiais Digitais</span>
-                    </div>
-                </a>
-
-                <!-- Botão Grupo VIP -->
-                <a href="#" class="action-btn btn-grupo text-white py-4 px-5 rounded-2xl flex items-center gap-4 group cursor-pointer">
-                    <div class="bg-gradient-to-br from-green-400/20 to-green-600/20 p-3 rounded-xl text-campaign-secondary shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:bg-campaign-secondary group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3">
-                        <i class="fa-solid fa-users text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Participe do</span>
-                        <span class="text-lg font-bold leading-none text-gray-100 group-hover:text-white transition-colors">Grupo de Apoiadores</span>
-                    </div>
-                </a>
-
-                <!-- Botão Voluntário -->
-                <a href="#" class="action-btn btn-voluntario text-white py-4 px-5 rounded-2xl flex items-center gap-4 group cursor-pointer">
-                    <div class="bg-gradient-to-br from-purple-400/20 to-purple-600/20 p-3 rounded-xl text-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.15)] group-hover:bg-purple-500 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:-rotate-3">
-                        <i class="fa-solid fa-hand-holding-heart text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Faça a diferença</span>
-                        <span class="text-lg font-bold leading-none text-gray-100 group-hover:text-white transition-colors">Seja Voluntário</span>
-                    </div>
-                </a>
-
-                <!-- Botão Pix (Destaque Maior) -->
-                <a href="#" class="action-btn btn-donate md:col-span-2 text-white py-5 px-6 rounded-2xl flex items-center justify-center gap-4 group cursor-pointer overflow-hidden mt-2">
-                    <!-- Fundo animado no hover -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-campaign-primary/60 via-campaign-secondary/60 to-campaign-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[length:200%_auto] animate-[sweep_3s_linear_infinite]"></div>
-                    
-                    <div class="relative z-10 flex items-center gap-4">
-                        <div class="bg-white/10 p-3 rounded-full text-campaign-secondary border border-campaign-secondary/50 group-hover:bg-campaign-secondary group-hover:text-white group-hover:border-white transition-all duration-300">
-                            <i class="fa-brands fa-pix text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
-                        </div>
-                        <div class="flex flex-col text-left">
-                            <span class="text-sm text-gray-300 font-light leading-tight tracking-widest uppercase">Doação Legal (TSE)</span>
-                            <span class="text-xl font-black leading-tight text-white drop-shadow-lg">Apoie a Campanha</span>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
         </section>
 
-        <!-- QUEM É O CANDIDATO -->
-        <section id="quem-sou" class="mb-20 reveal pt-10">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-heading font-bold text-white uppercase"><span class="text-campaign-secondary">A Força</span> do Nosso Povo</h2>
-                <div class="w-16 h-1 bg-campaign-accent mx-auto mt-4 rounded-full"></div>
-            </div>
+        <!-- CENTRAL DE MOBILIZAÇÃO (Botões Linktree Premium) -->
+        <section id="mobilizacao" class="py-20 relative bg-psd-blue overflow-hidden reveal">
+            <!-- Padrão de fundo (Logo/Geometria) -->
+            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px;"></div>
             
-            <div class="glass-panel rounded-3xl p-6 md:p-10 relative overflow-hidden">
-                <!-- Elemento decorativo de fundo -->
-                <i class="fa-solid fa-quote-right absolute top-4 right-4 text-6xl text-white/5"></i>
-                
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-1/3">
-                        <img src="https://placehold.co/300x400/10b981/ffffff?text=TRAJETÓRIA" alt="História" class="rounded-xl w-full object-cover shadow-lg border border-white/10">
-                    </div>
-                    <div class="w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-campaign-accent mb-4">De onde venho, para onde vamos</h3>
-                        <p class="text-gray-300 leading-relaxed mb-4">
-                            Nascido no interior, filho de professores e trabalhador desde cedo. Minha história se confunde com a de milhares de brasileiros que acordam cedo para construir um futuro melhor.
-                        </p>
-                        <p class="text-gray-300 leading-relaxed mb-6">
-                            Com mais de 15 anos de atuação comunitária, compreendi que a política verdadeira se faz ouvindo as pessoas nas ruas, entendendo suas dores e buscando soluções práticas, sem promessas vazias.
-                        </p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-white/5 p-3 rounded-lg border border-white/10 flex items-center gap-3">
-                                <i class="fa-solid fa-hands-holding-circle text-campaign-secondary text-xl"></i>
-                                <span class="font-medium text-sm">Trabalho</span>
-                            </div>
-                            <div class="bg-white/5 p-3 rounded-lg border border-white/10 flex items-center gap-3">
-                                <i class="fa-solid fa-shield-halved text-campaign-secondary text-xl"></i>
-                                <span class="font-medium text-sm">Transparência</span>
-                            </div>
-                            <div class="bg-white/5 p-3 rounded-lg border border-white/10 flex items-center gap-3">
-                                <i class="fa-solid fa-handshake text-campaign-secondary text-xl"></i>
-                                <span class="font-medium text-sm">Compromisso</span>
-                            </div>
-                            <div class="bg-white/5 p-3 rounded-lg border border-white/10 flex items-center gap-3">
-                                <i class="fa-solid fa-leaf text-campaign-secondary text-xl"></i>
-                                <span class="font-medium text-sm">Renovação</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROPOSTAS -->
-        <section id="propostas" class="mb-20 reveal pt-10">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-heading font-bold text-white uppercase"><span class="text-campaign-accent">Minhas</span> Bandeiras</h2>
-                <div class="w-16 h-1 bg-campaign-primary mx-auto mt-4 rounded-full"></div>
-                <p class="text-gray-400 mt-4 max-w-xl mx-auto">Ideias concretas para transformar a realidade do nosso estado com responsabilidade e inovação.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card Proposta 1 -->
-                <div class="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform group-hover:bg-blue-500 group-hover:text-white">
-                        <i class="fa-solid fa-stethoscope"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Saúde Ágil</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Lutar por mutirões contínuos para zerar filas de exames e defender a ampliação de repasses para hospitais filantrópicos.
-                    </p>
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-2">Faça parte do <span class="text-psd-yellow">Movimento</span></h2>
+                    <p class="text-blue-200">Sua participação é fundamental na pré-campanha. Escolha como ajudar:</p>
                 </div>
 
-                <!-- Card Proposta 2 -->
-                <div class="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 bg-yellow-500/20 text-yellow-400 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform group-hover:bg-yellow-500 group-hover:text-white">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Educação e Futuro</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Foco no ensino técnico integrado ao médio, preparando nossos jovens diretamente para o mercado de trabalho local.
-                    </p>
-                </div>
-
-                <!-- Card Proposta 3 -->
-                <div class="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 bg-gray-500/20 text-gray-300 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform group-hover:bg-gray-500 group-hover:text-white">
-                        <i class="fa-solid fa-shield-cat"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Segurança Integrada</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Defesa de mais tecnologia (câmeras de monitoramento) e valorização das forças policiais no estado.
-                    </p>
-                </div>
-
-                <!-- Card Proposta 4 -->
-                <div class="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform group-hover:bg-green-500 group-hover:text-white">
-                        <i class="fa-solid fa-industry"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Emprego e Renda</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Desburocratização para o pequeno empreendedor e incentivos para indústrias se instalarem no interior do estado.
-                    </p>
-                </div>
-
-                <!-- Card Proposta 5 -->
-                <div class="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform group-hover:bg-orange-500 group-hover:text-white">
-                        <i class="fa-solid fa-road"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Infraestrutura</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Garantir recursos federais para manutenção de rodovias e estradas vicinais, facilitando o escoamento da produção.
-                    </p>
-                </div>
-
-                <!-- Card Proposta 6 -->
-                <div class="glass-panel p-6 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform group-hover:bg-purple-500 group-hover:text-white">
-                        <i class="fa-solid fa-city"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Apoio aos Municípios</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Um mandato municipalista: estar presente nas cidades, destinando emendas para quem mais precisa na ponta.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- COMPROMISSOS (TIMELINE VERTICAL) -->
-        <section class="mb-20 reveal pt-10">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-heading font-bold text-white uppercase">Meus <span class="text-campaign-secondary">Compromissos</span></h2>
-                <div class="w-16 h-1 bg-campaign-secondary mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="max-w-2xl mx-auto pl-4 md:pl-0">
-                <div class="relative border-l-2 border-campaign-primary/50 ml-3 md:ml-6 space-y-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     
-                    <!-- Item Timeline 1 -->
-                    <div class="relative pl-8 md:pl-12 reveal">
-                        <div class="absolute -left-[11px] top-1 w-5 h-5 bg-campaign-dark border-4 border-campaign-secondary rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
-                        <div class="glass-panel p-5 rounded-xl">
-                            <h4 class="text-lg font-bold text-campaign-secondary mb-1">Gabinete Transparente</h4>
-                            <p class="text-sm text-gray-300">Prestação de contas mensal detalhada de todos os gastos em redes sociais e site oficial. O dinheiro é do povo.</p>
+                    <!-- Conheça as Propostas -->
+                    <a href="#propostas" class="action-card group">
+                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Conheça as Propostas</h3>
+                            <p class="text-sub text-sm text-gray-500">Confira o plano de governo completo.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+
+                    <!-- Botão Zap/Grupo -->
+                    <a href="#" class="action-card group">
+                        <div class="icon-wrapper relative w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                            <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
+                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-white">1</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Grupo Oficial (Zap)</h3>
+                            <p class="text-sub text-sm text-gray-500">Notícias e mobilização em 1ª mão.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+
+                    <!-- Botão Voluntário -->
+                    <a href="#" onclick="openVoluntarioModal(event)" class="action-card group">
+                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Seja Voluntário</h3>
+                            <p class="text-sub text-sm text-gray-500">Ajude na organização nas ruas.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+
+                    <!-- Botão Materiais -->
+                    <a href="#" class="action-card group">
+                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Baixar Materiais</h3>
+                            <p class="text-sub text-sm text-gray-500">Adesivos, artes e plano em PDF.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+
+                    <!-- Falar no WhatsApp -->
+                    <a href="https://wa.me/5531999999999" target="_blank" class="action-card group">
+                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                            <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Falar no WhatsApp</h3>
+                            <p class="text-sub text-sm text-gray-500">Fale diretamente com a nossa equipe.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+
+                    <!-- Assista ao Jingle -->
+                    <a href="#" target="_blank" class="action-card group">
+                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Assista ao Jingle</h3>
+                            <p class="text-sub text-sm text-gray-500">Ouça e compartilhe a nossa música.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+
+                    <!-- Localização dos Comitês (Expansível) -->
+                    <div class="md:col-span-2">
+                        <button type="button" onclick="toggleComites(this)" class="action-card group w-full text-left">
+                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Localização dos Comitês</h3>
+                                <p class="text-sub text-sm text-gray-500">Veja os endereços e como chegar.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-down arrow-icon comites-chevron transition-transform duration-300"></i>
+                        </button>
+
+                        <div id="comites-lista" class="hidden mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Comitê 1 -->
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                                <h4 class="font-bold text-psd-blue text-base mb-1">Nome do Comitê</h4>
+                                <p class="text-sm text-gray-500 mb-4">Endereço completo do comitê aqui.</p>
+                                <a href="#" target="_blank" class="inline-flex items-center gap-2 text-psd-green font-bold text-sm uppercase hover:text-psd-blue transition-colors">
+                                    Como Chegar <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <!-- Comitê 2 -->
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                                <h4 class="font-bold text-psd-blue text-base mb-1">Nome do Comitê</h4>
+                                <p class="text-sm text-gray-500 mb-4">Endereço completo do comitê aqui.</p>
+                                <a href="#" target="_blank" class="inline-flex items-center gap-2 text-psd-green font-bold text-sm uppercase hover:text-psd-blue transition-colors">
+                                    Como Chegar <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Item Timeline 2 -->
-                    <div class="relative pl-8 md:pl-12 reveal">
-                        <div class="absolute -left-[11px] top-1 w-5 h-5 bg-campaign-dark border-4 border-campaign-accent rounded-full shadow-[0_0_10px_rgba(251,191,36,0.8)]"></div>
-                        <div class="glass-panel p-5 rounded-xl">
-                            <h4 class="text-lg font-bold text-campaign-accent mb-1">Presença Constante</h4>
-                            <p class="text-sm text-gray-300">Não serei deputado de época de eleição. Realizaremos o "Gabinete Itinerante", rodando as cidades durante todo o mandato.</p>
+                    <!-- Botão Doação (Destaque span-2) -->
+                    <a href="#" class="md:col-span-2 action-card group !bg-gradient-to-r !from-psd-yellow !to-[#C2410C] !border-none shadow-[0_0_20px_rgba(249,115,22,0.4)] animate-pulse-yellow mt-4">
+                        <div class="w-16 h-16 rounded-full bg-white text-psd-blue flex items-center justify-center text-3xl shrink-0 mr-6 shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-pix"></i>
                         </div>
-                    </div>
-
-                    <!-- Item Timeline 3 -->
-                    <div class="relative pl-8 md:pl-12 reveal">
-                        <div class="absolute -left-[11px] top-1 w-5 h-5 bg-campaign-dark border-4 border-blue-400 rounded-full shadow-[0_0_10px_rgba(96,165,250,0.8)]"></div>
-                        <div class="glass-panel p-5 rounded-xl">
-                            <h4 class="text-lg font-bold text-blue-400 mb-1">Voto Independente</h4>
-                            <p class="text-sm text-gray-300">Meu único patrão é você. Votarei a favor do que for bom para o Estado e contra qualquer aumento de impostos.</p>
+                        <div class="flex-1">
+                            <span class="block text-xs text-psd-blueDark font-bold uppercase tracking-wider mb-0.5">Vakinha Eleitoral Oficial</span>
+                            <h3 class="text-2xl font-heading font-extrabold text-psd-blueDark leading-tight">Apoie Financeiramente</h3>
                         </div>
-                    </div>
+                        <div class="hidden sm:flex bg-white/30 w-12 h-12 rounded-full items-center justify-center text-psd-blueDark group-hover:bg-white transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
 
                 </div>
-            </div>
-        </section>
 
-        <!-- ESTATÍSTICAS / CONTADORES (Prova Social) -->
-        <section class="mb-20 reveal bg-gradient-to-r from-campaign-primary/20 to-campaign-dark border border-white/10 rounded-3xl p-8 shadow-xl">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <div class="text-4xl md:text-5xl font-heading font-black text-campaign-accent mb-2 counter" data-target="144">0</div>
-                    <div class="text-sm uppercase tracking-wider text-gray-400 font-medium">Cidades Visitadas</div>
-                </div>
-                <div>
-                    <div class="text-4xl md:text-5xl font-heading font-black text-campaign-secondary mb-2 counter" data-target="35">0</div>
-                    <div class="text-sm uppercase tracking-wider text-gray-400 font-medium">Projetos Desenhados</div>
-                </div>
-                <div>
-                    <div class="text-4xl md:text-5xl font-heading font-black text-white mb-2 counter" data-target="5000">+</div>
-                    <div class="text-sm uppercase tracking-wider text-gray-400 font-medium">Apoiadores no Zap</div>
+                <!-- Compartilhar Site (Minimalista) -->
+                <div class="text-center mt-6">
+                    <a href="#" onclick="copyLink(event)" class="inline-flex items-center gap-2 text-blue-200 hover:text-psd-yellow transition-colors text-sm font-medium">
+                        <span class="icon-wrapper"><i class="fa-solid fa-share-nodes"></i></span>
+                        <span class="text-title">Compartilhar Site</span>
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- AGENDA DE EVENTOS -->
-        <section id="agenda" class="mb-20 reveal pt-10">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <div>
-                    <h2 class="text-3xl font-heading font-bold text-white uppercase"><i class="fa-regular fa-calendar-check text-campaign-primary mr-2"></i>Agenda <span class="text-gray-400 text-xl font-normal lowercase">dos próximos dias</span></h2>
-                </div>
-                <a href="#" class="text-campaign-accent text-sm hover:underline flex items-center gap-1">Ver agenda completa <i class="fa-solid fa-angle-right"></i></a>
-            </div>
-
-            <div class="space-y-4">
-                <!-- Evento 1 -->
-                <div class="glass-panel rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-l-4 border-l-campaign-secondary">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white/10 text-center rounded-lg p-2 min-w-[70px]">
-                            <span class="block text-xs text-campaign-secondary uppercase font-bold">OUT</span>
-                            <span class="block text-2xl font-black text-white">15</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white text-lg">Encontro com Lideranças</h4>
-                            <p class="text-sm text-gray-400"><i class="fa-solid fa-location-dot mr-1"></i> Associação de Moradores, Centro - Capital</p>
-                            <p class="text-sm text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 19:00h</p>
-                        </div>
+        <section id="agenda" class="py-20 bg-gray-50 reveal">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-200 pb-4">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-heading font-bold text-psd-blue">Agenda <span class="text-psd-green">Pré-Campanha</span></h2>
+                        <p class="text-gray-500 mt-2">Acompanhe nossos passos por Minas Gerais.</p>
                     </div>
-                    <a href="#" class="w-full md:w-auto text-center px-4 py-2 bg-white/5 hover:bg-campaign-secondary hover:text-white text-campaign-secondary border border-campaign-secondary rounded-lg text-sm font-medium transition-colors">
-                        Confirmar Presença
+                    <a href="#" class="hidden md:inline-flex items-center gap-2 text-psd-blue font-bold hover:text-psd-yellow transition-colors">
+                        Ver Calendário Completo <i class="fa-solid fa-calendar-days"></i>
                     </a>
                 </div>
 
-                <!-- Evento 2 -->
-                <div class="glass-panel rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-l-4 border-l-campaign-primary">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white/10 text-center rounded-lg p-2 min-w-[70px]">
-                            <span class="block text-xs text-campaign-primary uppercase font-bold">OUT</span>
-                            <span class="block text-2xl font-black text-white">18</span>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Evento 1 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="bg-psd-blue text-white p-4 flex justify-between items-center">
+                            <div class="text-center bg-white/20 rounded px-3 py-1">
+                                <span class="block text-sm font-bold uppercase">OUT</span>
+                                <span class="block text-2xl font-heading font-bold leading-none">15</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm font-bold text-psd-yellow">19:00</span>
+                                <span class="text-xs text-blue-200 uppercase tracking-wider">Ouro Preto, MG</span>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-white text-lg">Caminhada no Comércio</h4>
-                            <p class="text-sm text-gray-400"><i class="fa-solid fa-location-dot mr-1"></i> Av. Principal - Cidade do Interior</p>
-                            <p class="text-sm text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 09:00h</p>
+                        <div class="p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-2">Encontro com Lideranças Locais</h3>
+                            <p class="text-gray-500 text-sm mb-4">Reunião para debater o plano diretor e turismo na região dos inconfidentes.</p>
+                            <a href="#" class="text-psd-green font-bold text-sm uppercase flex items-center gap-2 hover:text-psd-blue transition-colors">
+                                <i class="fa-brands fa-whatsapp"></i> Confirmar Presença
+                            </a>
                         </div>
                     </div>
-                    <a href="#" class="w-full md:w-auto text-center px-4 py-2 bg-white/5 hover:bg-campaign-primary hover:text-white text-campaign-primary border border-campaign-primary rounded-lg text-sm font-medium transition-colors">
-                        Confirmar Presença
-                    </a>
+
+                    <!-- Evento 2 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="bg-psd-blue text-white p-4 flex justify-between items-center">
+                            <div class="text-center bg-white/20 rounded px-3 py-1">
+                                <span class="block text-sm font-bold uppercase">OUT</span>
+                                <span class="block text-2xl font-heading font-bold leading-none">18</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm font-bold text-psd-yellow">09:00</span>
+                                <span class="text-xs text-blue-200 uppercase tracking-wider">Belo Horizonte, MG</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-2">Café com Empresários do Setor Tech</h3>
+                            <p class="text-gray-500 text-sm mb-4">Apresentação de propostas para incentivos em tecnologia e inovação.</p>
+                            <a href="#" class="text-psd-green font-bold text-sm uppercase flex items-center gap-2 hover:text-psd-blue transition-colors">
+                                <i class="fa-brands fa-whatsapp"></i> Confirmar Presença
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Evento 3 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow opacity-60">
+                        <div class="bg-gray-400 text-white p-4 flex justify-between items-center">
+                            <div class="text-center bg-white/20 rounded px-3 py-1">
+                                <span class="block text-sm font-bold uppercase">OUT</span>
+                                <span class="block text-2xl font-heading font-bold leading-none">10</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm font-bold text-gray-200">Realizado</span>
+                                <span class="text-xs text-gray-200 uppercase tracking-wider">Mariana, MG</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-2">Visita à Associação Comercial</h3>
+                            <p class="text-gray-500 text-sm mb-4">Caminhada pelo centro histórico e diálogo sobre recuperação econômica.</p>
+                            <span class="text-gray-400 font-bold text-sm uppercase flex items-center gap-2">
+                                <i class="fa-solid fa-check"></i> Evento Concluído
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- MATERIAIS PARA DOWNLOAD / COMPARTILHAMENTO -->
-        <section id="materiais" class="mb-20 reveal">
-            <div class="glass-panel rounded-3xl p-8 text-center bg-gradient-to-b from-campaign-primary/10 to-transparent">
-                <i class="fa-solid fa-bullhorn text-4xl text-campaign-accent mb-4"></i>
-                <h2 class="text-2xl font-heading font-bold text-white mb-2">Faça parte da nossa rede</h2>
-                <p class="text-gray-400 mb-8 max-w-md mx-auto text-sm">Baixe os materiais de campanha e ajude a divulgar nossas ideias para seus amigos e familiares.</p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button class="flex flex-col items-center justify-center p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-colors group">
-                        <i class="fa-solid fa-image text-2xl text-blue-400 mb-2 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-medium">Artes para Zap</span>
-                    </button>
-                    <button class="flex flex-col items-center justify-center p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-colors group">
-                        <i class="fa-solid fa-file-pdf text-2xl text-red-400 mb-2 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-medium">Propostas PDF</span>
-                    </button>
-                    <button class="flex flex-col items-center justify-center p-4 bg-white/5 hover:bg-[#25D366]/20 rounded-xl border border-white/10 transition-colors group">
-                        <i class="fa-brands fa-whatsapp text-2xl text-[#25D366] mb-2 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-medium">Compartilhar</span>
-                    </button>
-                    <button onclick="copyLink()" class="flex flex-col items-center justify-center p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-colors group">
-                        <i class="fa-solid fa-link text-2xl text-gray-300 mb-2 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-medium" id="copy-text">Copiar Link</span>
-                    </button>
+        <!-- VÍDEO MANIFESTO -->
+        <section class="py-16 bg-white reveal">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="w-full lg:w-1/2">
+                        <div class="inline-flex items-center gap-2 text-psd-green font-bold uppercase tracking-widest text-sm mb-4">
+                            <i class="fa-solid fa-play"></i> Assista ao Manifesto
+                        </div>
+                        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-psd-blue mb-6">Por que sou pré-candidato?</h2>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Minas Gerais precisa de representação técnica, que entenda as dores dos municípios, desde a infraestrutura precária até a necessidade de inovação na gestão pública.
+                        </p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Neste vídeo, explico minha visão para 2026 e como a união de forças produtivas pode transformar a realidade do nosso estado.
+                        </p>
+                        <a href="#mobilizacao" class="text-psd-blue font-bold hover:text-psd-yellow transition-colors inline-flex items-center gap-2">
+                            Quero fazer parte desse movimento <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2 relative group cursor-pointer">
+                        <div class="absolute -inset-3 bg-gradient-to-r from-psd-blue to-psd-green opacity-30 blur-lg rounded-2xl group-hover:opacity-50 transition-opacity"></div>
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://placehold.co/800x500/1e293b/ffffff?text=THUMBNAIL+DO+VÍDEO" alt="Vídeo Manifesto" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                                <div class="w-20 h-20 bg-psd-yellow text-psd-blue rounded-full flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(249,115,22,0.6)] group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-play ml-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUEM SOU EU (TIMELINE) -->
+        <section id="sobre" class="py-20 bg-gray-50 reveal">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-psd-blue mb-4">Trajetória de <span class="text-psd-yellow">Trabalho</span></h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Experiência comprovada na gestão pública e privada, sempre focada em resultados reais para a população.</p>
+                </div>
+
+                <div class="timeline-container">
+                    
+                    <!-- Item Timeline 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 w-full">
+                        <div class="order-1 md:w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-psd-blue shadow-xl w-12 h-12 rounded-full absolute left-0 md:left-1/2 transform -translate-x-2 md:-translate-x-1/2 justify-center border-4 border-white">
+                            <i class="fa-solid fa-graduation-cap text-white"></i>
+                        </div>
+                        <div class="order-1 bg-white rounded-xl shadow-md border border-gray-100 w-[calc(100%-3rem)] md:w-5/12 ml-12 md:ml-0 p-6">
+                            <h3 class="font-bold text-psd-blue text-xl mb-1">Formação em Ouro Preto</h3>
+                            <span class="text-psd-yellow font-bold text-sm mb-3 block">2005 - 2010</span>
+                            <p class="text-gray-600 text-sm leading-relaxed">Engenheiro formado pela UFOP, onde iniciou sua liderança estudantil e compreendeu a importância da educação técnica.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item Timeline 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 w-full">
+                        <div class="order-1 bg-white rounded-xl shadow-md border border-gray-100 w-[calc(100%-3rem)] md:w-5/12 ml-12 md:ml-0 p-6 md:text-right">
+                            <h3 class="font-bold text-psd-blue text-xl mb-1">Gestão Municipal</h3>
+                            <span class="text-psd-yellow font-bold text-sm mb-3 block">2012 - 2020</span>
+                            <p class="text-gray-600 text-sm leading-relaxed">Atuou como Secretário de Planejamento, desburocratizando processos e atraindo dezenas de empresas para a região.</p>
+                        </div>
+                        <div class="z-20 flex items-center order-1 bg-psd-blue shadow-xl w-12 h-12 rounded-full absolute left-0 md:left-1/2 transform -translate-x-2 md:-translate-x-1/2 justify-center border-4 border-white">
+                            <i class="fa-solid fa-building text-white"></i>
+                        </div>
+                        <div class="order-1 md:w-5/12 hidden md:block"></div>
+                    </div>
+
+                    <!-- Item Timeline 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-psd-yellow shadow-xl w-16 h-16 rounded-full absolute left-[-8px] md:left-1/2 transform -translate-x-2 md:-translate-x-1/2 justify-center border-4 border-white animate-pulse">
+                            <i class="fa-solid fa-flag text-psd-blueDark text-xl"></i>
+                        </div>
+                        <div class="order-1 bg-psd-blue text-white rounded-xl shadow-xl w-[calc(100%-3rem)] md:w-5/12 ml-12 md:ml-0 p-6 border-b-4 border-psd-yellow">
+                            <h3 class="font-bold text-white text-xl mb-1">Projeto 2026</h3>
+                            <span class="text-psd-yellow font-bold text-sm mb-3 block">PRESENTE</span>
+                            <p class="text-blue-100 text-sm leading-relaxed">Pré-candidatura firmada pelo PARTIDO XX para levar a voz do interior e a gestão de excelência para a Câmara.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROPOSTAS (Bandeiras) -->
+        <section id="propostas" class="py-20 bg-white reveal">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-psd-green font-bold tracking-widest uppercase text-sm">Plano de Ação</span>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-psd-blue mb-4">Principais <span class="text-psd-yellow">Bandeiras</span></h2>
+                    <div class="w-20 h-1 bg-psd-blue mx-auto mt-4 mb-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card Proposta -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-green hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-green group-hover:text-white transition-colors text-psd-green">
+                            <i class="fa-solid fa-industry"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Desenvolvimento e Emprego</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Incentivos fiscais para empresas que se instalarem no interior de Minas e capacitação técnica para jovens.
+                        </p>
+                    </div>
+
+                    <!-- Card Proposta -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-blue hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-blue group-hover:text-white transition-colors text-psd-blue">
+                            <i class="fa-solid fa-tractor"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Agronegócio Forte</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Menos impostos para pequenos e médios produtores rurais. Melhoria das estradas vicinais para escoamento.
+                        </p>
+                    </div>
+
+                    <!-- Card Proposta -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-yellow hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-yellow group-hover:text-psd-blue transition-colors text-psd-yellow">
+                            <i class="fa-solid fa-hospital"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Saúde Regionalizada</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Fortalecimento dos hospitais regionais para que o cidadão não precise viajar horas para ter atendimento especializado.
+                        </p>
+                    </div>
+
+                    <!-- Card Proposta -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-green hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-green group-hover:text-white transition-colors text-psd-green">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Segurança Inteligente</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Integração de câmeras e tecnologia entre municípios e investimento na valorização das forças policiais.
+                        </p>
+                    </div>
+
+                    <!-- Card Proposta -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-blue hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-blue group-hover:text-white transition-colors text-psd-blue">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Educação e Inovação</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Internet de alta velocidade em todas as escolas públicas e currículo voltado para as profissões do futuro.
+                        </p>
+                    </div>
+
+                    <!-- Card Proposta -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-psd-yellow hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl group">
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-2xl mb-6 group-hover:bg-psd-yellow group-hover:text-psd-blue transition-colors text-psd-yellow">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 font-heading">Pacto Federativo</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Rever a distribuição de impostos. O dinheiro precisa ficar na cidade onde as pessoas vivem e trabalham.
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -604,33 +729,88 @@
     </main>
 
     <!-- FOOTER INSTITUCIONAL -->
-    <footer class="relative z-10 border-t border-white/10 bg-campaign-dark pb-8 pt-12">
-        <div class="max-w-4xl mx-auto px-4 flex flex-col items-center text-center">
-            
-            <div class="flex gap-4 mb-8">
-                <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-campaign-primary hover:text-white transition-colors border border-white/10 text-xl"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors border border-white/10 text-xl"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-black hover:text-white transition-colors border border-white/10 text-xl"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors border border-white/10 text-xl"><i class="fa-brands fa-youtube"></i></a>
-            </div>
+    <footer class="relative z-10 bg-psd-blueDark text-white pb-8 pt-16 border-t-8 border-psd-yellow">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-8 border-b border-white/10 pb-12">
+                
+                <div class="text-center md:text-left">
+                    <h3 class="font-heading font-bold text-3xl mb-1">Paulo <span class="text-psd-yellow">Silva</span></h3>
+                    <p class="text-blue-200 font-medium text-sm">Pré-Candidato a Deputado Federal - PARTIDO XX</p>
+                </div>
 
-            <h3 class="font-heading font-bold text-xl uppercase mb-1 text-white">João Silva</h3>
-            <p class="text-campaign-secondary font-medium text-sm mb-4">Pré-Candidato a Deputado Federal - Partido (SIGLA)</p>
-            
-            <div class="max-w-xl p-4 bg-black/30 rounded-lg border border-white/5 text-xs text-gray-500 leading-relaxed mb-6">
-                <strong>Aviso Institucional:</strong> Esta é uma página de caráter informativo e de apresentação pessoal. O conteúdo está adequado à legislação eleitoral vigente (Lei nº 9.504/97) referente ao período de pré-campanha. Não há pedido explícito de voto.
+                <div class="flex gap-3">
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-psd-yellow hover:text-psd-blueDark transition-colors text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-psd-yellow hover:text-psd-blueDark transition-colors text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-psd-yellow hover:text-psd-blueDark transition-colors text-xl"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-psd-yellow hover:text-psd-blueDark transition-colors text-xl"><i class="fa-brands fa-youtube"></i></a>
+                </div>
             </div>
+            
+            <div class="text-center">
+                <div class="inline-block p-4 bg-psd-blue rounded-lg border border-white/10 text-xs text-blue-200 leading-relaxed mb-6 max-w-2xl mx-auto">
+                    <strong>Aviso Institucional (Lei nº 9.504/97):</strong> Esta é uma página de caráter informativo e de apresentação pessoal referente ao período de pré-campanha eleitoral. Não há pedido explícito de voto. CNPJ: [00.000.000/0001-00]
+                </div>
 
-            <p class="text-xs text-gray-600">
-                &copy; 2026 - João Silva. Todos os direitos reservados.<br>
-                Produzido pela Equipe de Comunicação.
-            </p>
+                <p class="text-sm text-gray-500">
+                    &copy; 2026 - Paulo Silva. Juntos por Minas Gerais.<br>
+                    Desenvolvido por <a href="https://www.saturnonfc.com.br" target="_blank" rel="noopener" class="text-psd-yellow hover:underline">Saturno NFC</a>.
+                </p>
+            </div>
         </div>
     </footer>
 
+    <!-- MODAL SEJA VOLUNTÁRIO -->
+    <div id="voluntario-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeVoluntarioModal()"></div>
+        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 sm:p-8">
+            <button type="button" onclick="closeVoluntarioModal()" class="absolute top-4 right-4 text-gray-400 hover:text-psd-blue text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="voluntario-form-wrapper">
+                <h3 class="text-2xl font-heading font-bold text-psd-blue mb-1">Seja Voluntário</h3>
+                <p class="text-gray-500 text-sm mb-6">Preencha seus dados e escolha como quer ajudar.</p>
+
+                <form id="voluntario-form" onsubmit="submitVoluntarioForm(event)" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-bold text-psd-blue mb-1">Nome</label>
+                        <input type="text" required class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-psd-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-psd-blue mb-1">Cidade/Estado</label>
+                        <input type="text" required placeholder="Ex: Ouro Preto/MG" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-psd-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-psd-blue mb-2">Como deseja ajudar? <span class="font-normal text-gray-400">(selecione uma ou mais)</span></label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Redes sociais</label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Compartilhar conteúdo</label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Captação de apoiadores</label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Transporte e logística</label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Jurídico</label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Comunicação</label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" class="accent-psd-blue w-4 h-4"> Outro</label>
+                            <input type="text" placeholder="Se 'Outro', especifique aqui" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-psd-blue">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-psd-blue text-white font-bold py-3 rounded-lg hover:bg-psd-blueDark transition-colors">Quero Ajudar</button>
+                </form>
+            </div>
+
+            <div id="voluntario-success" class="hidden text-center py-8">
+                <div class="w-16 h-16 bg-psd-green/10 text-psd-green rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-psd-blue mb-2">Cadastro recebido!</h3>
+                <p class="text-gray-500 text-sm">Obrigado por topar essa! Enviamos seus dados para o nosso WhatsApp e nossa equipe vai entrar em contato em breve.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Lógica de Copiar Link
-        function copyLink() {
+        function copyLink(e) {
+            e.preventDefault();
             const url = window.location.href;
             const dummy = document.createElement('input');
             document.body.appendChild(dummy);
@@ -639,12 +819,73 @@
             document.execCommand('copy');
             document.body.removeChild(dummy);
             
-            const copyText = document.getElementById('copy-text');
-            copyText.innerHTML = '<span class="text-green-400">Copiado!</span>';
+            // Feedback visual no botão
+            const btn = e.currentTarget;
+            const originalText = btn.querySelector('.text-title').innerText;
+            const icon = btn.querySelector('.icon-wrapper i');
+            const originalIcon = icon.className;
+            
+            btn.querySelector('.text-title').innerText = "Link Copiado!";
+            icon.className = "fa-solid fa-check text-green-500";
+            
             setTimeout(() => {
-                copyText.innerText = 'Copiar Link';
-            }, 2000);
+                btn.querySelector('.text-title').innerText = originalText;
+                icon.className = originalIcon;
+            }, 3000);
         }
+
+        // TOGGLE LISTA DE COMITÊS
+        function toggleComites(btn) {
+            const panel = document.getElementById('comites-lista');
+            panel.classList.toggle('hidden');
+            btn.querySelector('.comites-chevron').classList.toggle('rotate-180');
+        }
+
+        // MODAL SEJA VOLUNTÁRIO
+        function openVoluntarioModal(e) {
+            if (e) e.preventDefault();
+            document.getElementById('voluntario-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVoluntarioModal() {
+            document.getElementById('voluntario-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function submitVoluntarioForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const textInputs = form.querySelectorAll('input[type="text"]');
+            const nome = textInputs[0].value;
+            const cidadeEstado = textInputs[1].value;
+            const outro = textInputs[2].value;
+
+            const opcoes = Array.from(form.querySelectorAll('input[type="checkbox"]'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.parentElement.textContent.trim());
+
+            let mensagem = 'Olá! Quero ser voluntário na campanha.\n\n';
+            mensagem += `Nome: ${nome}\n`;
+            mensagem += `Cidade/Estado: ${cidadeEstado}\n`;
+            mensagem += `Como deseja ajudar: ${opcoes.length ? opcoes.join(', ') : 'Não informado'}\n`;
+            if (outro) mensagem += `Outro: ${outro}\n`;
+
+            const whatsappUrl = `https://wa.me/5531993445037?text=${encodeURIComponent(mensagem)}`;
+            window.open(whatsappUrl, '_blank');
+
+            document.getElementById('voluntario-form-wrapper').classList.add('hidden');
+            document.getElementById('voluntario-success').classList.remove('hidden');
+            setTimeout(closeVoluntarioModal, 2500);
+        }
+
+        // NAVBAR SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('navbar-scrolled');
+            } else {
+                nav.classList.remove('navbar-scrolled');
+            }
+        });
 
         // SCROLL REVEAL ANIMATION
         function reveal() {
@@ -664,7 +905,7 @@
         let animatedCounters = false;
         function animateCounters() {
             const counters = document.querySelectorAll('.counter');
-            const speed = 200; // menor = mais rápido
+            const speed = 200;
 
             counters.forEach(counter => {
                 const updateCount = () => {
@@ -674,9 +915,9 @@
 
                     if (count < target) {
                         counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 15);
+                        setTimeout(updateCount, 20);
                     } else {
-                        counter.innerText = target + (target > 1000 ? '+' : '');
+                        counter.innerText = target + (target > 500 ? '+' : '');
                     }
                 };
                 updateCount();
@@ -684,124 +925,14 @@
         }
 
         window.addEventListener("scroll", () => {
-            if(!animatedCounters && window.scrollY > 500) {
+            if(!animatedCounters && window.scrollY > 150) {
                 animateCounters();
                 animatedCounters = true;
             }
         });
 
         // ==========================================
-        // THREE.JS - PRELOADER (Urna Abstrata 3D)
-        // ==========================================
-        const initPreloader = () => {
-            const container = document.getElementById('preloader-3d-canvas');
-            const scene = new THREE.Scene();
-            
-            // Camera
-            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.z = 5;
-            camera.position.y = 1;
-
-            // Renderer
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-
-            // Luzes
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-            scene.add(ambientLight);
-            
-            const pointLight = new THREE.PointLight(0x10b981, 2, 50); // Luz verde
-            pointLight.position.set(2, 3, 4);
-            scene.add(pointLight);
-
-            const pointLight2 = new THREE.PointLight(0xfbbf24, 2, 50); // Luz amarela
-            pointLight2.position.set(-2, -1, 4);
-            scene.add(pointLight2);
-
-            // Objeto Abstrato (Representando a Urna)
-            const urnaGroup = new THREE.Group();
-
-            // Base Escura
-            const baseGeo = new THREE.BoxGeometry(2.5, 1.5, 2);
-            const baseMat = new THREE.MeshStandardMaterial({ 
-                color: 0x0f172a, 
-                roughness: 0.2, 
-                metalness: 0.8,
-                transparent: true,
-                opacity: 0.9
-            });
-            const base = new THREE.Mesh(baseGeo, baseMat);
-            urnaGroup.add(base);
-
-            // Tela Brilhante (Painel Frontal)
-            const screenGeo = new THREE.PlaneGeometry(1.8, 1);
-            const screenMat = new THREE.MeshBasicMaterial({ 
-                color: 0xffffff,
-                transparent: true,
-                opacity: 0.8
-            });
-            const screen = new THREE.Mesh(screenGeo, screenMat);
-            screen.position.set(0, 0.2, 1.01);
-            screen.rotation.x = -0.1; // Leve inclinação
-            urnaGroup.add(screen);
-
-            // Teclado Abstrato (Grade de pontinhos brilhantes)
-            for(let i=0; i<3; i++) {
-                for(let j=0; j<4; j++) {
-                    const btnGeo = new THREE.BoxGeometry(0.2, 0.1, 0.2);
-                    const isConfirm = (i===2 && j===3);
-                    const btnMat = new THREE.MeshBasicMaterial({ color: isConfirm ? 0x10b981 : 0x334155 });
-                    const btn = new THREE.Mesh(btnGeo, btnMat);
-                    btn.position.set(-0.6 + (i * 0.6), -0.5, 1.2 - (j * 0.1));
-                    btn.rotation.x = 0.2;
-                    urnaGroup.add(btn);
-                }
-            }
-
-            scene.add(urnaGroup);
-
-            // Partículas flutuantes ao redor
-            const particlesGeo = new THREE.BufferGeometry();
-            const particlesCount = 100;
-            const posArray = new Float32Array(particlesCount * 3);
-            for(let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 10;
-            }
-            particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            const particlesMat = new THREE.PointsMaterial({
-                size: 0.05,
-                color: 0xfbbf24,
-                transparent: true,
-                opacity: 0.6
-            });
-            const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
-            scene.add(particlesMesh);
-
-            // Animação do Preloader
-            const animate = () => {
-                requestAnimationFrame(animate);
-                
-                urnaGroup.rotation.y += 0.01;
-                urnaGroup.position.y = Math.sin(Date.now() * 0.002) * 0.2; // Efeito flutuando
-                
-                particlesMesh.rotation.y -= 0.002;
-                particlesMesh.rotation.x += 0.001;
-
-                renderer.render(scene, camera);
-            };
-            animate();
-
-            // Resize handle
-            window.addEventListener('resize', () => {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            });
-        };
-
-        // ==========================================
-        // THREE.JS - MAIN BACKGROUND PARTICLES
+        // THREE.JS - BG PARTICLES (Azul e Amarelo)
         // ==========================================
         const initBgParticles = () => {
             const container = document.getElementById('canvas-container');
@@ -814,32 +945,32 @@
             container.appendChild(renderer.domElement);
 
             const particlesGeo = new THREE.BufferGeometry();
-            const particlesCount = 300; // Sutil
+            const particlesCount = 150; 
             const posArray = new Float32Array(particlesCount * 3);
 
             for(let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 15; // Espalhar pelo espaço
+                posArray[i] = (Math.random() - 0.5) * 20;
             }
 
             particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
             
-            // Textura abstrata circular
+            // Partículas Amarelas transparentes
             const canvas = document.createElement('canvas');
             canvas.width = 16;
             canvas.height = 16;
             const context = canvas.getContext('2d');
             const gradient = context.createRadialGradient(8, 8, 0, 8, 8, 8);
-            gradient.addColorStop(0, 'rgba(255,255,255,1)');
-            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            gradient.addColorStop(0, 'rgba(249, 115, 22, 0.5)');
+            gradient.addColorStop(1, 'rgba(249, 115, 22, 0)');
             context.fillStyle = gradient;
             context.fillRect(0,0,16,16);
             const texture = new THREE.CanvasTexture(canvas);
 
             const particlesMat = new THREE.PointsMaterial({
-                size: 0.08,
+                size: 0.15,
                 map: texture,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.5,
                 blending: THREE.AdditiveBlending
             });
 
@@ -848,8 +979,9 @@
 
             const animate = () => {
                 requestAnimationFrame(animate);
-                particlesMesh.rotation.y -= 0.0005;
-                particlesMesh.rotation.x -= 0.0002;
+                particlesMesh.rotation.y -= 0.0003;
+                particlesMesh.position.y += 0.0005; // Sobem lentamente
+                if(particlesMesh.position.y > 5) particlesMesh.position.y = -5;
                 renderer.render(scene, camera);
             };
             animate();
@@ -861,25 +993,21 @@
             });
         };
 
-        // ==========================================
-        // INICIALIZAÇÃO DA PÁGINA
-        // ==========================================
+        // INICIALIZAÇÃO
         window.onload = () => {
-            initPreloader();
             initBgParticles();
 
-            // Simula o tempo de carregamento da urna e transição
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
                 const mainContent = document.getElementById('main-content');
                 
                 preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden'; // Oculta da interação após sumir
                 setTimeout(() => {
-                    preloader.style.display = 'none';
                     mainContent.classList.remove('opacity-0');
-                    reveal(); // Força verificação de animação no primeiro view
-                }, 1000); // tempo do fadeout do preloader
-            }, 3500); // Tempo total do preloader (3.5s)
+                    reveal(); // Aciona as animações iniciais
+                }, 500);
+            }, 1500); // 1.5 segundos de loading
         };
 
     </script>
