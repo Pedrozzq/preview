@@ -43,6 +43,7 @@
                         'blob': 'blob 7s infinite',
                         'slide-in-right': 'slideInRight 0.8s ease-out forwards',
                         'pulse-yellow': 'pulse-yellow 2s infinite',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out both',
                     },
                     keyframes: {
                         blob: {
@@ -54,6 +55,10 @@
                         slideInRight: {
                             '0%': { opacity: 0, transform: 'translateX(50px)' },
                             '100%': { opacity: 1, transform: 'translateX(0)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
                         },
                         'pulse-yellow': {
                             '0%, 100%': { boxShadow: '0 0 0 0 rgba(249, 115, 22, 0.4)' },
@@ -240,7 +245,7 @@
     <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000">
 
         <!-- HERO SECTION -->
-        <header class="relative min-h-[90vh] flex items-center overflow-hidden bg-psd-blue pt-20">
+        <header id="mobilizacao" class="relative min-h-[90vh] flex items-center overflow-hidden bg-psd-blue pt-20">
             <!-- Efeitos de Fundo do Hero -->
             <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <div class="absolute -top-40 -right-40 w-96 h-96 bg-psd-blueDark rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
@@ -248,60 +253,169 @@
                 <div class="absolute -bottom-20 right-20 w-80 h-80 bg-psd-green rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
             </div>
             
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12 lg:py-0">
-                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-4">
-                    
-                    <!-- Textos Hero -->
-                    <div class="w-full lg:w-3/5 text-center lg:text-left reveal active order-2 lg:order-1">
-                        <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-psd-yellow text-sm font-semibold tracking-widest uppercase mb-6 shadow-lg">
-                            <i class="fa-solid fa-location-dot mr-2"></i> Ouro Preto / Minas Gerais
-                        </div>
-                        
-                        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-4 drop-shadow-md">
-                            O Futuro de <br> Minas é <span class="text-psd-yellow inline-block relative">Agora.
-                                <svg class="absolute w-full h-3 -bottom-1 left-0 text-psd-yellow opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="transparent"/></svg>
-                            </span>
-                        </h1>
-                        
-                        <p class="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                            Gestão técnica, inovação e compromisso com o desenvolvimento das nossas cidades. Juntos, vamos construir um Estado mais forte e preparado.
-                        </p>
+            <div class="max-w-lg mx-auto px-4 sm:px-6 relative z-10 w-full py-16">
 
-                        <!-- Número Gigante e Cargos -->
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 mb-10">
-                            <div class="bg-psd-yellow px-8 py-3 rounded-2xl shadow-[0_10px_30px_rgba(249,115,22,0.3)] transform -rotate-2 hover:rotate-0 transition-transform cursor-default">
-                                <div class="text-xs uppercase font-bold text-psd-blueDark tracking-widest text-center mb-[-5px]">Deputado Federal</div>
-                                <div class="text-6xl font-heading font-extrabold text-psd-blueDark tracking-tighter">
-                                    0000
-                                </div>
-                            </div>
+                <!-- Perfil (estilo Linktree) -->
+                <div class="flex flex-col items-center text-center reveal active">
+                    <div class="relative mb-5">
+                        <img src="img/foto-candidato.webp" alt="Paulo Silva" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover object-center border-4 border-psd-yellow shadow-2xl">
+                        <div class="absolute -bottom-1 -right-1 w-9 h-9 bg-psd-green rounded-full flex items-center justify-center text-white text-sm border-2 border-psd-blue">
+                            <i class="fa-solid fa-check"></i>
                         </div>
                     </div>
 
-                    <!-- Foto Hero -->
-                    <div class="w-full lg:w-2/5 relative reveal active flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
-                        <div class="relative w-[320px] h-[400px] sm:w-[400px] sm:h-[500px]">
-                            <!-- Elemento decorativo atrás da foto -->
-                            <div class="absolute bottom-0 right-0 w-full h-[80%] bg-psd-yellow rounded-3xl transform rotate-3"></div>
-                            <!-- Foto do Candidato -->
-                            <img src="img/foto-candidato.webp" alt="Paulo Silva" class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom z-10 drop-shadow-2xl">
+                    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-white leading-tight mb-1 drop-shadow-md">
+                        Paulo<span class="text-psd-yellow">Silva</span>
+                    </h1>
+                    <p class="text-blue-200 text-sm font-medium mb-5">PARTIDO XX</p>
 
-                            <!-- Floating Badge -->
-                            <div class="absolute top-10 -left-6 z-20 bg-white p-3 rounded-xl shadow-xl flex items-center gap-3 animate-bounce">
-                                <div class="w-10 h-10 bg-psd-green rounded-full flex items-center justify-center text-white text-lg">
-                                    <i class="fa-solid fa-check"></i>
+                    <div class="inline-flex items-center gap-3 bg-psd-yellow px-5 py-2 rounded-full shadow-[0_10px_20px_rgba(249,115,22,0.3)] mb-8">
+                        <span class="text-xs uppercase font-bold text-psd-blueDark tracking-widest">Deputado Federal</span>
+                        <span class="text-xl font-heading font-extrabold text-psd-blueDark tracking-tighter">0000</span>
+                    </div>
+                </div>
+
+                <!-- CENTRAL DE MOBILIZAÇÃO (Botões Linktree) -->
+                <div class="reveal active">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-heading font-bold text-white mb-1">Faça parte do <span class="text-psd-yellow">Movimento</span></h2>
+                        <p class="text-blue-200 text-sm">Sua participação é fundamental na pré-campanha:</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4">
+
+                        <!-- Conheça as Propostas -->
+                        <a href="#propostas" class="action-card group animate-fade-in-up [animation-delay:0ms]">
+                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Conheça as Propostas</h3>
+                                <p class="text-sub text-sm text-gray-500">Confira o plano de governo completo.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Botão Zap/Grupo -->
+                        <a href="https://wa.me/5531999999999?text=Ol%C3%A1!%20Quero%20entrar%20no%20grupo%20oficial." target="_blank" rel="noopener" class="action-card group animate-fade-in-up [animation-delay:80ms]">
+                            <div class="icon-wrapper relative w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
+                                <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-white">1</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Grupo Oficial</h3>
+                                <p class="text-sub text-sm text-gray-500">Notícias e mobilização em 1ª mão.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Botão Voluntário -->
+                        <a href="#" onclick="openVoluntarioModal(event)" class="action-card group animate-fade-in-up [animation-delay:160ms]">
+                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Seja Voluntário</h3>
+                                <p class="text-sub text-sm text-gray-500">Ajude na organização nas ruas.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Botão Materiais -->
+                        <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" rel="noopener" class="action-card group animate-fade-in-up [animation-delay:240ms]">
+                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-solid fa-cloud-arrow-down"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Baixar Materiais</h3>
+                                <p class="text-sub text-sm text-gray-500">Adesivos, artes e plano em PDF.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Falar no WhatsApp -->
+                        <a href="https://wa.me/5531999999999" target="_blank" class="action-card group animate-fade-in-up [animation-delay:320ms]">
+                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Falar no WhatsApp</h3>
+                                <p class="text-sub text-sm text-gray-500">Fale diretamente com a nossa equipe.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Assista ao Jingle -->
+                        <a href="https://www.youtube.com/watch?v=jNQXAC9IVRw" target="_blank" rel="noopener" class="action-card group animate-fade-in-up [animation-delay:400ms]">
+                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                <i class="fa-solid fa-music"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Assista ao Jingle</h3>
+                                <p class="text-sub text-sm text-gray-500">Ouça e compartilhe a nossa música.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Localização dos Comitês (Expansível) -->
+                        <div class="animate-fade-in-up [animation-delay:480ms]">
+                            <button type="button" onclick="toggleComites(this)" class="action-card group w-full text-left">
+                                <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
+                                    <i class="fa-solid fa-location-dot"></i>
                                 </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 font-bold uppercase">Partido</p>
-                                    <p class="font-heading font-extrabold text-psd-blue">PARTIDO XX</p>
+                                <div class="flex-1">
+                                    <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Localização dos Comitês</h3>
+                                    <p class="text-sub text-sm text-gray-500">Veja os endereços e como chegar.</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down arrow-icon comites-chevron transition-transform duration-300"></i>
+                            </button>
+
+                            <div id="comites-lista" class="hidden mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Comitê 1 -->
+                                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                                    <h4 class="font-bold text-psd-blue text-base mb-1">Nome do Comitê</h4>
+                                    <p class="text-sm text-gray-500 mb-4">Endereço completo do comitê aqui.</p>
+                                    <a href="#" target="_blank" class="inline-flex items-center gap-2 text-psd-green font-bold text-sm uppercase hover:text-psd-blue transition-colors">
+                                        Como Chegar <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <!-- Comitê 2 -->
+                                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                                    <h4 class="font-bold text-psd-blue text-base mb-1">Nome do Comitê</h4>
+                                    <p class="text-sm text-gray-500 mb-4">Endereço completo do comitê aqui.</p>
+                                    <a href="#" target="_blank" class="inline-flex items-center gap-2 text-psd-green font-bold text-sm uppercase hover:text-psd-blue transition-colors">
+                                        Como Chegar <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Botão Doação (Destaque) -->
+                        <a href="https://www.vakinha.com.br/" target="_blank" rel="noopener" class="action-card group !bg-gradient-to-r !from-psd-yellow !to-[#C2410C] !border-none shadow-[0_0_20px_rgba(249,115,22,0.4)] mt-4" style="animation: fadeInUp 0.6s ease-out 0.56s both, pulse-yellow 2s infinite 1.16s;">
+                            <div class="w-16 h-16 rounded-full bg-white text-psd-blue flex items-center justify-center text-3xl shrink-0 mr-6 shadow-inner group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-pix"></i>
+                            </div>
+                            <div class="flex-1">
+                                <span class="block text-xs text-psd-blueDark font-bold uppercase tracking-wider mb-0.5">Vakinha Eleitoral Oficial</span>
+                                <h3 class="text-2xl font-heading font-extrabold text-psd-blueDark leading-tight">Apoie Financeiramente</h3>
+                            </div>
+                            <div class="hidden sm:flex bg-white/30 w-12 h-12 rounded-full items-center justify-center text-psd-blueDark group-hover:bg-white transition-colors">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </a>
+
                     </div>
 
+                    <!-- Compartilhar Site (Minimalista) -->
+                    <div class="text-center mt-6 animate-fade-in-up [animation-delay:640ms]">
+                        <a href="#" onclick="copyLink(event)" class="inline-flex items-center gap-2 text-blue-200 hover:text-psd-yellow transition-colors text-sm font-medium">
+                            <span class="icon-wrapper"><i class="fa-solid fa-share-nodes"></i></span>
+                            <span class="text-title">Compartilhar Site</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            
+
             <!-- Curva na base do Hero -->
             <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
                 <svg relative="block" class="w-full h-12 lg:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -326,151 +440,6 @@
                         <div class="text-4xl md:text-5xl font-heading font-bold text-psd-blue mb-1 counter" data-target="150">0</div>
                         <div class="text-gray-500 uppercase font-bold tracking-wider text-xs">Projetos Apresentados</div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CENTRAL DE MOBILIZAÇÃO (Botões Linktree Premium) -->
-        <section id="mobilizacao" class="py-20 relative bg-psd-blue overflow-hidden reveal">
-            <!-- Padrão de fundo (Logo/Geometria) -->
-            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px;"></div>
-            
-            <div class="max-w-4xl mx-auto px-4 relative z-10">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-2">Faça parte do <span class="text-psd-yellow">Movimento</span></h2>
-                    <p class="text-blue-200">Sua participação é fundamental na pré-campanha. Escolha como ajudar:</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                    <!-- Conheça as Propostas -->
-                    <a href="#propostas" class="action-card group">
-                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                            <i class="fa-solid fa-list-check"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Conheça as Propostas</h3>
-                            <p class="text-sub text-sm text-gray-500">Confira o plano de governo completo.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Botão Zap/Grupo -->
-                    <a href="#" class="action-card group">
-                        <div class="icon-wrapper relative w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                            <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
-                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-white">1</span>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Grupo Oficial</h3>
-                            <p class="text-sub text-sm text-gray-500">Notícias e mobilização em 1ª mão.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Botão Voluntário -->
-                    <a href="#" onclick="openVoluntarioModal(event)" class="action-card group">
-                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Seja Voluntário</h3>
-                            <p class="text-sub text-sm text-gray-500">Ajude na organização nas ruas.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Botão Materiais -->
-                    <a href="#" class="action-card group">
-                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                            <i class="fa-solid fa-cloud-arrow-down"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Baixar Materiais</h3>
-                            <p class="text-sub text-sm text-gray-500">Adesivos, artes e plano em PDF.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Falar no WhatsApp -->
-                    <a href="https://wa.me/5531999999999" target="_blank" class="action-card group">
-                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                            <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Falar no WhatsApp</h3>
-                            <p class="text-sub text-sm text-gray-500">Fale diretamente com a nossa equipe.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Assista ao Jingle -->
-                    <a href="#" target="_blank" class="action-card group">
-                        <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                            <i class="fa-solid fa-music"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Assista ao Jingle</h3>
-                            <p class="text-sub text-sm text-gray-500">Ouça e compartilhe a nossa música.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Localização dos Comitês (Expansível) -->
-                    <div class="md:col-span-2">
-                        <button type="button" onclick="toggleComites(this)" class="action-card group w-full text-left">
-                            <div class="icon-wrapper w-14 h-14 rounded-full bg-blue-50 text-psd-blue flex items-center justify-center text-2xl shrink-0 mr-5">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-title text-lg font-bold text-psd-blue mb-0.5">Localização dos Comitês</h3>
-                                <p class="text-sub text-sm text-gray-500">Veja os endereços e como chegar.</p>
-                            </div>
-                            <i class="fa-solid fa-chevron-down arrow-icon comites-chevron transition-transform duration-300"></i>
-                        </button>
-
-                        <div id="comites-lista" class="hidden mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- Comitê 1 -->
-                            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
-                                <h4 class="font-bold text-psd-blue text-base mb-1">Nome do Comitê</h4>
-                                <p class="text-sm text-gray-500 mb-4">Endereço completo do comitê aqui.</p>
-                                <a href="#" target="_blank" class="inline-flex items-center gap-2 text-psd-green font-bold text-sm uppercase hover:text-psd-blue transition-colors">
-                                    Como Chegar <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
-                            <!-- Comitê 2 -->
-                            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
-                                <h4 class="font-bold text-psd-blue text-base mb-1">Nome do Comitê</h4>
-                                <p class="text-sm text-gray-500 mb-4">Endereço completo do comitê aqui.</p>
-                                <a href="#" target="_blank" class="inline-flex items-center gap-2 text-psd-green font-bold text-sm uppercase hover:text-psd-blue transition-colors">
-                                    Como Chegar <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Botão Doação (Destaque span-2) -->
-                    <a href="#" class="md:col-span-2 action-card group !bg-gradient-to-r !from-psd-yellow !to-[#C2410C] !border-none shadow-[0_0_20px_rgba(249,115,22,0.4)] animate-pulse-yellow mt-4">
-                        <div class="w-16 h-16 rounded-full bg-white text-psd-blue flex items-center justify-center text-3xl shrink-0 mr-6 shadow-inner group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-pix"></i>
-                        </div>
-                        <div class="flex-1">
-                            <span class="block text-xs text-psd-blueDark font-bold uppercase tracking-wider mb-0.5">Vakinha Eleitoral Oficial</span>
-                            <h3 class="text-2xl font-heading font-extrabold text-psd-blueDark leading-tight">Apoie Financeiramente</h3>
-                        </div>
-                        <div class="hidden sm:flex bg-white/30 w-12 h-12 rounded-full items-center justify-center text-psd-blueDark group-hover:bg-white transition-colors">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-
-                </div>
-
-                <!-- Compartilhar Site (Minimalista) -->
-                <div class="text-center mt-6">
-                    <a href="#" onclick="copyLink(event)" class="inline-flex items-center gap-2 text-blue-200 hover:text-psd-yellow transition-colors text-sm font-medium">
-                        <span class="icon-wrapper"><i class="fa-solid fa-share-nodes"></i></span>
-                        <span class="text-title">Compartilhar Site</span>
-                    </a>
                 </div>
             </div>
         </section>
