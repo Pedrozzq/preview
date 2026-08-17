@@ -16,11 +16,6 @@
     <!-- Botões: estética premium compartilhada ("Vênus") -->
     <link rel="stylesheet" href="css/buttons.css">
 
-    <!-- Motion Principles: skeleton de imagens, lazy loading, barra de progresso
-         e transição leve de entrada/saída entre páginas -->
-    <link rel="stylesheet" href="css/motion-principles.css">
-    <script src="js/motion-principles.js" defer></script>
-
     <!-- Carrinho de compras (client-side) -->
     <script src="js/cart.js" defer></script>
 
@@ -33,9 +28,6 @@
 
     <!-- Animações de entrada ao rolar (fade + slide-up nas seções da home) -->
     <script src="js/scroll-reveal.js" defer></script>
-
-    <!-- Abas do catálogo: Perfumes Árabes / Importados -->
-    <script src="js/catalog-tabs.js" defer></script>
 
     <!-- Efeito Neon Flow (fundo animado da hero) -->
     <!-- Script clássico (não type="module") de propósito: precisa funcionar mesmo abrindo
@@ -582,7 +574,7 @@
 
                 <!-- Logo -->
                 <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
-                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain" loading="eager" decoding="async" data-skel>
+                    <img src="img/logo-mark.webp" alt="Prime Imports Perfumes" class="h-16 md:h-20 w-auto object-contain">
                     <span class="logo-title-gold font-display text-xs md:text-sm tracking-[0.25em] font-semibold uppercase">Prime Imports</span>
                 </a>
 
@@ -631,7 +623,8 @@
     </nav>
 
     <!-- Faixa de Novidades & Promoções: 1 mensagem por vez, troca a cada 6s (ver script no fim do body) -->
-    <div class="news-strip border-b border-brand-gold/15 overflow-hidden">
+    <!-- Fixa logo abaixo do menu (sticky top = altura da nav) para continuar visível ao rolar a página -->
+    <div class="news-strip sticky top-24 md:top-28 z-40 border-b border-brand-gold/15 overflow-hidden">
         <div class="news-strip-track" id="news-strip-track">
             <span class="news-pill is-active"><span class="news-tag">Novo</span> Atheeri 100ml já está disponível</span>
             <span class="news-pill"><i class="fa-solid fa-fire"></i> Kit Khamrah + Fakhar + Hawas por <span class="news-price">R$ 537,30</span></span>
@@ -672,19 +665,19 @@
                         <div class="bottle3d-glow"></div>
                         <div class="hero-bottle-stack" id="hero-bottle-stack">
                             <a href="produto-khamrah.html" class="hero-bottle-img is-active" aria-label="Ver Khamrah — Lattafa">
-                                <img src="img/khamrah.png" alt="Khamrah — Lattafa" class="w-full h-full object-contain" loading="eager" decoding="async" data-skel>
+                                <img src="img/khamrah.png" alt="Khamrah — Lattafa" class="w-full h-full object-contain">
                             </a>
                             <a href="produto-hawas-black.html" class="hero-bottle-img" aria-label="Ver Hawas Black — Rasasi">
-                                <img src="img/hawas-black.png" alt="Hawas Black — Rasasi" class="w-full h-full object-contain" loading="eager" decoding="async" data-skel>
+                                <img src="img/hawas-black.png" alt="Hawas Black — Rasasi" class="w-full h-full object-contain">
                             </a>
                             <a href="produto-bade-al-oud.html" class="hero-bottle-img" aria-label="Ver Bade'e Al Oud for Glory — Lattafa">
-                                <img src="img/bade-al-oud.png" alt="Bade'e Al Oud for Glory — Lattafa" class="w-full h-full object-contain" loading="eager" decoding="async" data-skel>
+                                <img src="img/bade-al-oud.png" alt="Bade'e Al Oud for Glory — Lattafa" class="w-full h-full object-contain">
                             </a>
                             <a href="produto-atheeri.html" class="hero-bottle-img" aria-label="Ver Atheeri — Lattafa">
-                                <img src="img/atheeri.png" alt="Atheeri — Lattafa" class="w-full h-full object-contain" loading="eager" decoding="async" data-skel>
+                                <img src="img/atheeri.png" alt="Atheeri — Lattafa" class="w-full h-full object-contain">
                             </a>
                             <a href="produto-fakhar-extrait.html" class="hero-bottle-img" aria-label="Ver Fakhar Extrait Women — Lattafa">
-                                <img src="img/fakhar-extrait.png" alt="Fakhar Extrait Women — Lattafa" class="w-full h-full object-contain" loading="eager" decoding="async" data-skel>
+                                <img src="img/fakhar-extrait.png" alt="Fakhar Extrait Women — Lattafa" class="w-full h-full object-contain">
                             </a>
                         </div>
                         <div class="bottle3d-shadow"></div>
@@ -701,38 +694,6 @@
         </div>
     </header>
 
-    <!-- Trust Bar -->
-    <section class="bg-brand-dark py-12 md:py-14 border-b border-white/5">
-        <div class="container mx-auto px-6">
-            <div data-reveal-group class="grid grid-cols-3 gap-3 md:gap-6 text-center">
-                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
-                    <div class="trust-icon-ring mb-4">
-                        <i class="fa-solid fa-shield-halved text-2xl"></i>
-                    </div>
-                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Autenticidade</h3>
-                    <div class="trust-divider"></div>
-                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">Garantia de procedência</p>
-                </div>
-                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
-                    <div class="trust-icon-ring mb-4">
-                        <i class="fa-solid fa-truck-fast text-2xl"></i>
-                    </div>
-                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Entrega Rápida</h3>
-                    <div class="trust-divider"></div>
-                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">Para todo o Brasil</p>
-                </div>
-                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
-                    <div class="trust-icon-ring mb-4">
-                        <i class="fa-solid fa-credit-card text-2xl"></i>
-                    </div>
-                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Até 10x Sem Juros</h3>
-                    <div class="trust-divider"></div>
-                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">No cartão de crédito</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Bestsellers Section -->
     <section id="bestsellers" class="py-20 bg-brand-black">
         <div class="container mx-auto px-6">
@@ -741,13 +702,7 @@
                 <h2 class="font-serif text-3xl md:text-4xl font-bold">Os Mais Vendidos</h2>
             </div>
 
-            <!-- Seletor de catálogo: Perfumes Árabes / Importados -->
-            <div class="flex items-center justify-center gap-3 mb-10">
-                <button type="button" data-catalog-tab="arabes" class="catalog-tab-btn is-active">Perfumes Árabes</button>
-                <button type="button" data-catalog-tab="importados" class="catalog-tab-btn">Importados</button>
-            </div>
-
-            <div id="catalog-panel-arabes" data-catalog-panel>
+            <div id="catalog-panel-arabes">
                 <!-- Vitrine em marquee: rolagem horizontal contínua, pausa no hover, cartões com foto que ganha cor no hover -->
                 <div class="relative">
                     <div class="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 md:w-28 bg-gradient-to-r from-brand-black to-transparent"></div>
@@ -796,7 +751,7 @@
                                 '<div class="relative h-72 sm:h-80 w-full overflow-hidden rounded-2xl bg-brand-dark border border-white/5">' +
                                     badge +
                                     '<a href="' + p.link + '" class="absolute inset-0 z-0"' + tab + ' aria-label="Ver ' + esc(p.name) + '"></a>' +
-                                    '<img src="' + p.image + '" alt="' + esc(p.name) + '" class="marquee-card-img w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async" data-skel>' +
+                                    '<img src="' + p.image + '" alt="' + esc(p.name) + '" class="marquee-card-img w-full h-full object-cover pointer-events-none">' +
                                     '<div class="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-brand-black via-brand-black/90 to-transparent pt-12 pb-4 px-4 pointer-events-none">' +
                                         '<p class="text-brand-gold text-[10px] uppercase tracking-widest mb-1">' + esc(p.brand) + '</p>' +
                                         '<h3 class="font-serif text-white text-base font-medium truncate mb-2">' + esc(p.name) + '</h3>' +
@@ -823,7 +778,6 @@
                         groupsHtml += '<div class="marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' + cardsHtml + '</div>';
                     }
                     wrap.innerHTML = groupsHtml;
-                    if (window.PrimeMotion) window.PrimeMotion.refreshSkeletons();
 
                     // Rolagem automática contínua (loop invisível, já que os grupos são duplicados),
                     // com pausa no hover e avanço manual pelo botão ">".
@@ -868,14 +822,6 @@
                     }
                 })();
                 </script>
-            </div>
-
-            <div id="catalog-panel-importados" data-catalog-panel class="hidden">
-                <div class="flex flex-col items-center justify-center text-center py-20 border border-dashed border-white/10 rounded-sm">
-                    <i class="fa-solid fa-plane-departure text-brand-gold text-3xl mb-4 opacity-70"></i>
-                    <p class="text-white font-semibold mb-2 uppercase tracking-wider text-sm">Novidades chegando em breve</p>
-                    <p class="text-brand-gray text-sm max-w-sm">Estamos preparando uma seleção de perfumes importados internacionais. Volte em breve para conferir.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -949,6 +895,38 @@
         </script>
     </section>
 
+    <!-- Trust Bar -->
+    <section class="bg-brand-dark py-12 md:py-14 border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <div data-reveal-group class="grid grid-cols-3 gap-3 md:gap-6 text-center">
+                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
+                    <div class="trust-icon-ring mb-4">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Autenticidade</h3>
+                    <div class="trust-divider"></div>
+                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">Garantia de procedência</p>
+                </div>
+                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
+                    <div class="trust-icon-ring mb-4">
+                        <i class="fa-solid fa-truck-fast text-2xl"></i>
+                    </div>
+                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Entrega Rápida</h3>
+                    <div class="trust-divider"></div>
+                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">Para todo o Brasil</p>
+                </div>
+                <div data-reveal class="trust-item flex flex-col items-center justify-center px-2">
+                    <div class="trust-icon-ring mb-4">
+                        <i class="fa-solid fa-credit-card text-2xl"></i>
+                    </div>
+                    <h3 class="font-display trust-title text-white text-xs md:text-sm font-semibold uppercase mb-1">Até 10x Sem Juros</h3>
+                    <div class="trust-divider"></div>
+                    <p class="text-brand-gray text-[11px] md:text-xs font-light tracking-wide">No cartão de crédito</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-brand-black pt-20 pb-10 border-t border-white/10 font-serif">
         <div class="container mx-auto px-6">
@@ -956,7 +934,7 @@
                 <!-- Brand Info -->
                 <div>
                     <a href="#" class="block mb-6">
-                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain" loading="lazy" decoding="async" data-skel>
+                        <img src="img/logo.webp" alt="Prime Imports Perfumes" class="h-20 w-auto object-contain">
                     </a>
                     <p class="text-brand-gray text-sm leading-relaxed mb-6">
                         Sua perfumaria de luxo online. Oferecemos as melhores e mais exclusivas fragrâncias internacionais com garantia de autenticidade.
@@ -1020,6 +998,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Botões flutuantes de contato: WhatsApp e Instagram (mesmo número usado em js/cart.js) -->
+    <!-- TODO: substitua "#" pelo link real do perfil do Instagram da loja -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20do%20site%20da%20Prime%20Imports%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" class="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#1ebe57] text-white flex items-center justify-center shadow-lg shadow-black/50 transition-all duration-300 hover:scale-110">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Seguir no Instagram" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white flex items-center justify-center shadow-lg shadow-black/50 transition-all duration-300 hover:scale-110">
+            <i class="fa-brands fa-instagram text-2xl"></i>
+        </a>
+    </div>
 
     <script>
         // Faixa de Novidades & Promoções: alterna 1 mensagem por vez a cada 6s
