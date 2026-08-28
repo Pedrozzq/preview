@@ -719,7 +719,7 @@
             will-change: clip-path;
         }
         .pg-slide.active { clip-path: circle(150% at 50% 50%); opacity: 1; z-index: 2; }
-        .pg-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .pg-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #0E2F58; z-index: 1; }
         .pg-ph {
             position: absolute; inset: 0; z-index: 0;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem;
@@ -2168,10 +2168,10 @@
             <div class="max-w-5xl mx-auto px-4 relative z-10">
                 <div class="text-center mb-10">
                     <span class="inline-flex items-center gap-2 text-br-green font-bold tracking-widest uppercase text-sm mb-3">
-                        <i class="fa-solid fa-images"></i> Veja e compartilhe
+                        <i class="fa-solid fa-images"></i> Leve o 70 adiante
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-br-blue">Propostas em <span class="text-br-yellow">Imagens</span></h2>
-                    <p class="text-gray-500 max-w-xl mx-auto mt-3">Toque nos círculos para navegar. As artes avançam sozinhas.</p>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-br-blue">Artes da <span class="text-br-yellow">Campanha</span></h2>
+                    <p class="text-gray-500 max-w-xl mx-auto mt-3">Baixe, poste e envie para os amigos. Toque nos círculos para navegar &mdash; as artes avançam sozinhas.</p>
                 </div>
 
                 <div class="pg-wrap">
@@ -2179,34 +2179,14 @@
                          onmouseenter="pgPause()" onmouseleave="pgResume()">
 
                         <div class="pg-slide" data-i="0">
-                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Educação que Cuida</span></div>
-                            <img data-base="img/proposta-1" alt="Educação que Cuida">
-                            <div class="pg-caption"><span class="pg-eyebrow">Proposta 01</span><h3>Educação que Cuida</h3><p>Escola integral, professor valorizado e educação socioemocional em toda a rede pública.</p></div>
+                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Chapa 70</span></div>
+                            <img data-base="img/1" alt="Augusto Cury e Júlio Delgado">
+                            <div class="pg-caption"><span class="pg-eyebrow">Chapa 70</span><h3>Augusto Cury &amp; Júlio Delgado</h3><p>Presidente e vice pela coligação "O Brasil dos Sonhos".</p></div>
                         </div>
                         <div class="pg-slide" data-i="1">
-                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Saúde sem Fila</span></div>
-                            <img data-base="img/proposta-2" alt="Saúde sem Fila">
-                            <div class="pg-caption"><span class="pg-eyebrow">Proposta 02</span><h3>Saúde sem Fila</h3><p>SUS forte na prevenção, mutirões de exames e cirurgias e política nacional de saúde mental.</p></div>
-                        </div>
-                        <div class="pg-slide" data-i="2">
-                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Emprego e Renda</span></div>
-                            <img data-base="img/proposta-3" alt="Emprego e Renda">
-                            <div class="pg-caption"><span class="pg-eyebrow">Proposta 03</span><h3>Emprego e Renda</h3><p>Menos imposto para quem gera emprego, reindustrialização verde e qualificação gratuita.</p></div>
-                        </div>
-                        <div class="pg-slide" data-i="3">
-                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Segurança Integrada</span></div>
-                            <img data-base="img/proposta-4" alt="Segurança Integrada">
-                            <div class="pg-caption"><span class="pg-eyebrow">Proposta 04</span><h3>Segurança Integrada</h3><p>Inteligência entre as polícias, combate ao crime organizado e prevenção com a juventude.</p></div>
-                        </div>
-                        <div class="pg-slide" data-i="4">
-                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Meio Ambiente</span></div>
-                            <img data-base="img/proposta-5" alt="Meio Ambiente">
-                            <div class="pg-caption"><span class="pg-eyebrow">Proposta 05</span><h3>Meio Ambiente</h3><p>Desmatamento ilegal zero, bioeconomia e transição energética limpa gerando empregos.</p></div>
-                        </div>
-                        <div class="pg-slide" data-i="5">
-                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Governo Honesto</span></div>
-                            <img data-base="img/proposta-6" alt="Governo Honesto">
-                            <div class="pg-caption"><span class="pg-eyebrow">Proposta 06</span><h3>Governo Honesto</h3><p>Transparência radical dos gastos, órgãos de controle fortes e tolerância zero com a corrupção.</p></div>
+                            <div class="pg-ph"><span class="pg-ph-num">70</span><span class="pg-ph-title">Nosso número</span></div>
+                            <img data-base="img/2" alt="Nosso número é 70">
+                            <div class="pg-caption"><span class="pg-eyebrow">Na urna</span><h3>Nosso número é 70</h3><p>Digite 7-0 e confirme. Vote Augusto Cury 70.</p></div>
                         </div>
 
                         <button type="button" class="pg-arrow pg-prev" onclick="pgPrev()" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
@@ -2214,17 +2194,19 @@
                     </div>
 
                     <div id="pg-dots" class="pg-dots">
-                        <button type="button" class="pg-dot" data-i="0" onclick="pgGo(0)" aria-label="Educação que Cuida"><span class="pg-dot-ph"></span><img data-base="img/proposta-1" alt=""></button>
-                        <button type="button" class="pg-dot" data-i="1" onclick="pgGo(1)" aria-label="Saúde sem Fila"><span class="pg-dot-ph"></span><img data-base="img/proposta-2" alt=""></button>
-                        <button type="button" class="pg-dot" data-i="2" onclick="pgGo(2)" aria-label="Emprego e Renda"><span class="pg-dot-ph"></span><img data-base="img/proposta-3" alt=""></button>
-                        <button type="button" class="pg-dot" data-i="3" onclick="pgGo(3)" aria-label="Segurança Integrada"><span class="pg-dot-ph"></span><img data-base="img/proposta-4" alt=""></button>
-                        <button type="button" class="pg-dot" data-i="4" onclick="pgGo(4)" aria-label="Meio Ambiente"><span class="pg-dot-ph"></span><img data-base="img/proposta-5" alt=""></button>
-                        <button type="button" class="pg-dot" data-i="5" onclick="pgGo(5)" aria-label="Governo Honesto"><span class="pg-dot-ph"></span><img data-base="img/proposta-6" alt=""></button>
+                        <button type="button" class="pg-dot" data-i="0" onclick="pgGo(0)" aria-label="Chapa 70"><span class="pg-dot-ph"></span><img data-base="img/1" alt=""></button>
+                        <button type="button" class="pg-dot" data-i="1" onclick="pgGo(1)" aria-label="Nosso número é 70"><span class="pg-dot-ph"></span><img data-base="img/2" alt=""></button>
                     </div>
 
-                    <p class="text-center text-xs text-gray-400 mt-4">
-                        As artes entram em <code class="bg-white px-1 rounded border border-gray-200">img/proposta-1.jpg</code> … <code class="bg-white px-1 rounded border border-gray-200">proposta-6.jpg</code>
-                    </p>
+                    <p class="text-center text-gray-500 text-sm mt-8 mb-3">Compartilhe com os amigos:</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="https://api.whatsapp.com/send?text=Conhe%C3%A7a%20a%20campanha%20do%20Augusto%20Cury%207️⃣0️⃣%20🇧🇷%20https://preview.saturnonfc.com.br/cury70" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-3 rounded-full hover:brightness-95 transition-all">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> <span class="share-label">Enviar no WhatsApp</span>
+                        </a>
+                        <button type="button" onclick="shareSite(event)" class="inline-flex items-center gap-2 text-white font-bold px-5 py-3 rounded-full hover:brightness-95 transition-all" style="background:linear-gradient(90deg,#f58529,#dd2a7b 55%,#8134af)">
+                            <i class="fa-brands fa-instagram text-lg"></i> <span class="share-label">Enviar no Instagram</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2565,7 +2547,7 @@
             </div>
 
             <div class="sp-actions sp-reveal" style="--i:4">
-                <a href="https://wa.me/?text=Conhe%C3%A7a%20o%20site%20do%20Augusto%20Cury%2070%3A%20https%3A%2F%2Fpreview.saturnonfc.com.br%2Fcury70" target="_blank" rel="noopener" class="sp-wpp">
+                <a href="https://api.whatsapp.com/send?text=Conhe%C3%A7a%20o%20site%20do%20Augusto%20Cury%207️⃣0️⃣%20🇧🇷%20https://preview.saturnonfc.com.br/cury70" target="_blank" rel="noopener" class="sp-wpp">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Enviar no WhatsApp
                 </a>
             </div>
@@ -2608,6 +2590,28 @@
         // ===== Aviso "site não oficial" =====
         function dismissNotice() {
             document.body.classList.add('notice-hidden');
+        }
+
+        // ===== Compartilhar o site (Instagram: usa a folha de compartilhamento do aparelho) =====
+        function shareSite(e) {
+            if (e) e.preventDefault();
+            var url = 'https://preview.saturnonfc.com.br/cury70';
+            var text = 'Conheça a campanha do Augusto Cury 7️⃣0️⃣ 🇧🇷';
+            if (navigator.share) {
+                navigator.share({ title: 'Augusto Cury 70', text: text, url: url }).catch(function () {});
+                return;
+            }
+            var btn = e && e.currentTarget;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text + ' ' + url).catch(function () {});
+                var lbl = btn && btn.querySelector('.share-label');
+                if (lbl) {
+                    var old = lbl.textContent;
+                    lbl.textContent = 'Link copiado!';
+                    setTimeout(function () { lbl.textContent = old; }, 2500);
+                }
+            }
+            window.open('https://www.instagram.com/direct/inbox/', '_blank', 'noopener');
         }
 
         // ===== Menu mobile =====
