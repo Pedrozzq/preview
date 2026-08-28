@@ -3037,6 +3037,27 @@
             // NÃO toca no load. Só quando a seção entra na tela.
             let started = false;
 
+            // Registra que o usuário já interagiu com a página (libera áudio com som)
+            let userInteracted = false;
+            const markInteracted = () => { userInteracted = true; };
+            ['pointerdown', 'keydown', 'touchstart', 'click', 'scroll'].forEach(ev =>
+                window.addEventListener(ev, markInteracted, { passive: true, capture: true }));
+
+            // Tenta tocar JÁ COM SOM; se o navegador bloquear, cai para mudo
+            const playWithSound = () => {
+                v.muted = false; v.volume = 1;
+                const p = v.play();
+                if (p && p.catch) {
+                    p.catch(() => {
+                        // bloqueado: toca mudo e espera um toque para liberar o som
+                        v.muted = true;
+                        v.play().catch(() => {});
+                        setSoundUI();
+                    });
+                }
+                setSoundUI();
+            };
+
             if (soundBtn) soundBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 v.muted = false; v.volume = 1;
@@ -3045,14 +3066,14 @@
             });
             if (playBtn) playBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (v.paused) v.play().catch(() => {}); else v.pause();
+                if (v.paused) playWithSound(); else v.pause();
                 setPlayUI();
             });
             v.addEventListener('play', setPlayUI);
             v.addEventListener('pause', setPlayUI);
             v.addEventListener('volumechange', setSoundUI);
 
-            // Ao interagir com a página depois que o jingle começou, libera o som
+            // Se começou mudo, o primeiro toque na página libera o som
             const unlock = () => {
                 if (started && !v.paused && v.muted) {
                     v.muted = false; v.volume = 1;
@@ -3068,8 +3089,7 @@
                     entries.forEach(en => {
                         if (en.isIntersecting) {
                             started = true;
-                            v.play().catch(() => {});   // começa mudo (política do navegador)
-                            setSoundUI();
+                            playWithSound();   // autoplay COM SOM (com fallback mudo)
                         } else {
                             v.pause();
                         }
