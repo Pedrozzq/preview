@@ -1062,6 +1062,30 @@
             .apoiar-cta::before, .apoiar-cta .apoiar-icon { animation: none !important; }
         }
 
+        /* ===== Aviso "site não oficial" ===== */
+        #site-notice {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 60;
+            display: flex; align-items: center; justify-content: center; gap: .75rem;
+            background: #ed7026; color: #fff;
+            font-family: 'Poppins', sans-serif; font-weight: 700;
+            font-size: .74rem; letter-spacing: .02em; line-height: 1.3; text-align: center;
+            padding: .45rem 2.6rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+        #site-notice button {
+            position: absolute; right: .55rem; top: 50%; transform: translateY(-50%);
+            width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 0; cursor: pointer;
+            background: rgba(255,255,255,0.22); color: #fff;
+            display: flex; align-items: center; justify-content: center; font-size: .8rem;
+        }
+        #site-notice button:hover { background: rgba(255,255,255,0.4); }
+        #navbar { top: 2rem; }
+        body.notice-hidden #site-notice { display: none; }
+        body.notice-hidden #navbar { top: 0; }
+        @media (max-width: 480px) {
+            #site-notice { font-size: .66rem; padding: .4rem 2.3rem; }
+        }
+
         /* ===== Balão de instrução no botão flutuante do WhatsApp ===== */
         .wpp-fab-balloon {
             position: absolute; right: calc(100% + 14px); top: 50%;
@@ -1113,6 +1137,12 @@
     </style>
 </head>
 <body class="antialiased relative">
+
+    <!-- AVISO: site não oficial -->
+    <div id="site-notice" role="alert">
+        <span><i class="fa-solid fa-triangle-exclamation"></i> Site não oficial até o momento &middot; versão preview para Augusto Cury</span>
+        <button type="button" onclick="dismissNotice()" aria-label="Fechar aviso"><i class="fa-solid fa-xmark"></i></button>
+    </div>
 
     <!-- Filtro SVG que dá vida à bandeira (ondulação de tecido) -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -1190,7 +1220,7 @@
     <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000">
 
         <!-- HERO -->
-        <header id="mobilizacao" class="relative min-h-[95vh] flex items-center overflow-hidden bg-br-green pt-20">
+        <header id="mobilizacao" class="relative min-h-[95vh] flex items-center overflow-hidden bg-br-green pt-24 sm:pt-20">
             <!-- Efeitos de Fundo -->
             <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <!-- Foto do candidato como textura de fundo -->
@@ -1265,7 +1295,7 @@
                         </button>
 
                         <!-- Materiais -->
-                        <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" rel="noopener" class="action-card ac-yellow group" style="--d:340ms">
+                        <a href="https://augustocurypresidente.com.br/materiais-de-campanha" target="_blank" rel="noopener" class="action-card ac-yellow group" style="--d:340ms">
                             <div class="icon-wrapper w-11 h-11 rounded-full flex items-center justify-center text-lg shrink-0 mr-4">
                                 <i class="fa-solid fa-cloud-arrow-down"></i>
                             </div>
@@ -1309,6 +1339,18 @@
                             <div class="flex-1">
                                 <h3 class="text-title text-base font-bold text-br-blue mb-0.5 flex items-center gap-2">Seja Voluntário <span class="ac-badge ac-badge--green">Ajude</span></h3>
                                 <p class="text-sub text-xs text-gray-500">Mobilize sua cidade e suas redes.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Site Oficial -->
+                        <a href="https://augustocurypresidente.com.br/" target="_blank" rel="noopener" class="action-card ac-blue group" style="--d:1190ms">
+                            <div class="icon-wrapper w-11 h-11 rounded-full flex items-center justify-center text-lg shrink-0 mr-4">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-title text-base font-bold text-br-blue mb-0.5 flex items-center gap-2">Site Oficial <span class="ac-badge ac-badge--blue">Oficial</span></h3>
+                                <p class="text-sub text-xs text-gray-500">augustocurypresidente.com.br</p>
                             </div>
                             <i class="fa-solid fa-chevron-right arrow-icon"></i>
                         </a>
@@ -2056,10 +2098,10 @@
                         <div class="ig-bio">
                             <div class="ig-name">Augusto Cury 70</div>
                             <div class="ig-cat">Figura pública</div>
-                            <div>Médico psiquiatra · autor mais lido do Brasil · Escritor · Produtor Rural · Gestor</div>
-                            <div>🇧🇷 Pré-candidato à Presidência · Avante 70 · #Cury70</div>
-                            <div>O Brasil dos Sonhos, com os pés no chão.</div>
-                            <a href="https://augustocury70.com.br" target="_blank" rel="noopener"><i class="fa-solid fa-link text-[0.7rem]"></i> augustocury70.com.br</a>
+                            <div>🇧🇷 VAMOS PACIFICAR O PAÍS</div>
+                            <div>☝️ Candidato a Presidente 7️⃣0️⃣</div>
+                            <div>📚 Médico Psiquiatra + lido do mundo | Escritor | Produtor Rural | Gestor</div>
+                            <div>🧡 Marido, Pai, Avô</div>
                         </div>
 
                         <!-- Botões -->
@@ -2086,7 +2128,7 @@
                             <span><i class="fa-regular fa-address-card"></i></span>
                         </div>
 
-                        <!-- Grade (fotos entram em img/insta-4.jpg ... insta-12.jpg) -->
+                        <!-- Grade de publicações -->
                         <div class="ig-grid">
                             <button type="button" onclick="openReelModal()" class="ig-cell ig-cell--reel" aria-label="Abrir jingle da campanha">
                                 <span class="ig-cell-ph"><i class="fa-solid fa-clapperboard"></i><span>70</span></span>
@@ -2094,17 +2136,11 @@
                                 <span class="ig-reel-badge"><i class="fa-solid fa-clapperboard"></i></span>
                                 <span class="ig-reel-play"><i class="fa-solid fa-play"></i></span>
                             </button>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/post2 inst.png" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/augsuto presidente.png" alt="Augusto Presidente"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-4" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-5" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-6" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-7" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-8" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-9" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-10" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-11" alt="Publicação"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-base="img/insta-12" alt="Publicação"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta2.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta3.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta4.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta5.png" alt="Publicação de Augusto Cury"></a>
                         </div>
 
                         <!-- Barra de navegação inferior do app -->
@@ -2388,7 +2424,7 @@
                         <li><a href="#" onclick="openVoluntarioModal(event)" class="hover:text-white transition-colors">Ser Voluntário</a></li>
                         <li><a href="https://apoiar.me/augustocury" target="_blank" rel="noopener" class="hover:text-white transition-colors">apoiar.me/augustocury</a></li>
                         <li><a href="https://wa.me/553175337309" target="_blank" rel="noopener" class="hover:text-white transition-colors">Grupo Oficial (WhatsApp)</a></li>
-                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" rel="noopener" class="hover:text-white transition-colors">Baixar Materiais</a></li>
+                        <li><a href="https://augustocurypresidente.com.br/materiais-de-campanha" target="_blank" rel="noopener" class="hover:text-white transition-colors">Baixar Materiais</a></li>
                     </ul>
                 </div>
                 <div>
@@ -2522,14 +2558,14 @@
 
             <div class="sp-linkbox sp-reveal" style="--i:3">
                 <i class="fa-solid fa-link text-br-blue shrink-0"></i>
-                <span class="flex-1 min-w-0 text-sm font-bold text-br-blue truncate text-left">augustocury70.com.br</span>
-                <button type="button" onclick="copyText(this, 'https://augustocury70.com.br')" class="sp-copy">
+                <span class="flex-1 min-w-0 text-sm font-bold text-br-blue truncate text-left">preview.saturnonfc.com.br/cury70</span>
+                <button type="button" onclick="copyText(this, 'https://preview.saturnonfc.com.br/cury70')" class="sp-copy">
                     <i class="fa-regular fa-copy"></i><span class="copy-label">Copiar</span>
                 </button>
             </div>
 
             <div class="sp-actions sp-reveal" style="--i:4">
-                <a href="https://wa.me/?text=Conhe%C3%A7a%20o%20site%20do%20Augusto%20Cury%2070%3A%20https%3A%2F%2Faugustocury70.com.br" target="_blank" rel="noopener" class="sp-wpp">
+                <a href="https://wa.me/?text=Conhe%C3%A7a%20o%20site%20do%20Augusto%20Cury%2070%3A%20https%3A%2F%2Fpreview.saturnonfc.com.br%2Fcury70" target="_blank" rel="noopener" class="sp-wpp">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Enviar no WhatsApp
                 </a>
             </div>
@@ -2568,6 +2604,11 @@
                 layer.appendChild(s);
             }
         })();
+
+        // ===== Aviso "site não oficial" =====
+        function dismissNotice() {
+            document.body.classList.add('notice-hidden');
+        }
 
         // ===== Menu mobile =====
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
