@@ -257,26 +257,27 @@
             position: relative;
             overflow: hidden;
             border: 2px solid rgba(255,255,255,0.55);
-            background: linear-gradient(120deg, #ed7026 0%, #FFC400 50%, #ed7026 100%);
+            background: linear-gradient(120deg, #d75a17 0%, #ed7026 50%, #d75a17 100%);
             background-size: 220% 100%;
-            box-shadow: 0 12px 28px rgba(237,112,38,0.55), 0 0 26px rgba(240,192,0,0.6);
-            animation: pres70Beat 1.25s ease-in-out infinite, pres70Bg 2.4s linear infinite;
+            box-shadow: 0 12px 28px rgba(237,112,38,0.55), 0 0 26px rgba(237,112,38,0.5);
+            animation: hero70Bob 3.4s ease-in-out 1.1s infinite, pres70Bg 2.4s linear infinite;
         }
+        .pres-70:hover { animation-play-state: paused; }
         .pres-70::before {
             content: ''; position: absolute; inset: -2px; border-radius: 999px; pointer-events: none;
             box-shadow: 0 0 0 0 rgba(237,112,38,0.75), 0 0 0 0 rgba(21,166,174,0.55);
-            animation: pres70Ring 1.25s cubic-bezier(0.35,0,0.5,1) infinite;
+            animation: pres70Ring 2.8s cubic-bezier(0.35,0,0.5,1) infinite;
         }
         .pres-70::after {
-            content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; pointer-events: none;
+            content: ''; position: absolute; top: 0; bottom: 0; left: -75%; width: 45%; pointer-events: none;
             background: linear-gradient(100deg, transparent, rgba(255,255,255,0.95), transparent);
             transform: skewX(-22deg);
-            animation: pres70Shine 2s ease-in-out infinite;
+            animation: hero70Shine 3.6s ease-in-out 1.4s infinite;
         }
         .pres-70-num {
             display: inline-block;
             text-shadow: 0 0 14px rgba(255,255,255,0.7);
-            animation: pres70Num 1.25s ease-in-out infinite;
+            animation: pres70BeatSoft 2.6s ease-in-out 1.2s infinite;
         }
         @keyframes pres70Beat {
             0%, 100% { transform: scale(1) translateY(0) rotate(0deg); }
@@ -1273,8 +1274,8 @@
                         <span class="text-br-orange">Avante</span>
                     </p>
                     <div class="pres-70 inline-flex items-center gap-3 px-6 py-2.5 rounded-full mb-8 mt-2">
-                        <span class="text-xs uppercase font-extrabold text-br-blueDark tracking-[0.2em]">Presidente</span>
-                        <span class="pres-70-num text-2xl font-heading font-extrabold text-br-blueDark tracking-tighter">70</span>
+                        <span class="text-xs uppercase font-extrabold text-white tracking-[0.2em]">Presidente</span>
+                        <span class="pres-70-num text-2xl font-heading font-extrabold text-white tracking-tighter">70</span>
                     </div>
                 </div>
 
@@ -1529,9 +1530,10 @@
                             <span class="music-pulse" aria-hidden="true"></span>
                             <span class="music-pulse" aria-hidden="true"></span>
                             <div class="phone-screen">
-                                <video id="jingle-video" loop playsinline muted preload="metadata" poster="img/perfil.jpg">
-                                    <source src="video/jingle.mp4" type="video/mp4">
-                                    Seu navegador não suporta este formato. <a href="video/jingle.mp4">Baixe o jingle</a>.
+                                <video id="jingle-video" loop playsinline webkit-playsinline muted preload="metadata" poster="img/perfil.jpg">
+                                    <source src="video/jingle-h264.mp4" type="video/mp4; codecs=avc1.640028,mp4a.40.2">
+                                    <source src="video/jingle.mp4" type="video/mp4; codecs=hvc1">
+                                    Seu navegador não suporta este formato. <a href="video/jingle-h264.mp4">Baixe o jingle</a>.
                                 </video>
                                 <button type="button" id="jingle-sound-btn" class="phone-sound" aria-label="Ativar som">
                                     <i class="fa-solid fa-volume-xmark"></i>
@@ -1554,12 +1556,12 @@
                             Grave, cante junto e compartilhe nas suas redes. Quanto mais gente cantando, mais longe a nossa mensagem chega. <span class="text-br-yellow font-semibold">#Cury70</span>
                         </p>
                         <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                            <a href="video/jingle.mp4" download class="inline-flex items-center gap-2 bg-br-yellow text-br-blue font-bold px-5 py-3 rounded-full hover:bg-white transition-colors">
+                            <a href="video/jingle-h264.mp4" download="Jingle-Augusto-Cury-70.mp4" class="inline-flex items-center gap-2 bg-br-yellow text-br-blue font-bold px-5 py-3 rounded-full hover:bg-white transition-colors">
                                 <i class="fa-solid fa-download"></i> Baixar o Jingle
                             </a>
-                            <a href="https://wa.me/?text=Ou%C3%A7a%20o%20jingle%20do%20Augusto%20Cury%2070!" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white/10 border border-white/40 font-bold px-5 py-3 rounded-full hover:bg-white/20 transition-colors">
-                                <i class="fa-brands fa-whatsapp"></i> Compartilhar
-                            </a>
+                            <button type="button" onclick="shareJingle(event)" class="inline-flex items-center gap-2 bg-white/10 border border-white/40 font-bold px-5 py-3 rounded-full hover:bg-white/20 transition-colors">
+                                <i class="fa-brands fa-whatsapp"></i> <span class="share-label">Compartilhar</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1940,6 +1942,119 @@
             </div>
         </section>
 
+        <!-- INSTAGRAM (perfil) -->
+        <section id="instagram" class="py-20 bg-br-light reveal relative overflow-hidden">
+            <span class="seventy-ghost seventy-ghost--dark text-[300px] sm:text-[460px] -bottom-24 -right-16" data-parallax="0.16" data-rot="6">70</span>
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-10">
+                    <span class="inline-flex items-center gap-2 text-br-green font-bold tracking-widest uppercase text-sm mb-3">
+                        <i class="fa-brands fa-instagram"></i> Siga nas redes
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-br-blue">No <span class="text-br-yellow">Instagram</span></h2>
+                </div>
+
+                <div class="ig-phone">
+                    <div class="ig-card">
+                        <!-- Barra de status do celular -->
+                        <div class="ig-statusbar">
+                            <span>9:41</span>
+                            <span class="ig-sb-icons"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></span>
+                        </div>
+
+                        <!-- App bar -->
+                        <div class="ig-appbar">
+                            <span class="ig-user">
+                                <i class="fa-solid fa-lock text-[0.7rem]"></i>
+                                augustocury.oficial
+                                <i class="fa-solid fa-circle-check text-[#0095f6] text-[0.85rem]"></i>
+                                <i class="fa-solid fa-chevron-down text-[0.65rem] text-gray-500"></i>
+                            </span>
+                            <span class="ig-appbar-icons">
+                                <i class="fa-regular fa-square-plus"></i>
+                                <i class="fa-solid fa-bars"></i>
+                            </span>
+                        </div>
+
+                        <!-- Avatar + números -->
+                        <div class="ig-head">
+                            <div class="ig-avatar">
+                                <img src="img/perfil-instagram.jpg" alt="Augusto Cury" onerror="this.onerror=null;this.src='img/perfil.jpg'">
+                            </div>
+                            <div class="ig-stats">
+                                <span><b>5.210</b><span>publicações</span></span>
+                                <span><b>10,4 mi</b><span>seguidores</span></span>
+                                <span><b>274</b><span>seguindo</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Nome + bio -->
+                        <div class="ig-bio">
+                            <div class="ig-name">Augusto Cury 70</div>
+                            <div class="ig-cat">Figura pública</div>
+                            <div>🇧🇷 VAMOS PACIFICAR O PAÍS</div>
+                            <div>☝️ Candidato a Presidente 7️⃣0️⃣</div>
+                            <div>📚 Médico Psiquiatra + lido do mundo | Escritor | Produtor Rural | Gestor</div>
+                            <div>🧡 Marido, Pai, Avô</div>
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="ig-actions">
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-follow">Seguir</a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-follow ig-follow--ghost">Mensagem</a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-icon-btn"><i class="fa-solid fa-user-plus text-[0.8rem]"></i></a>
+                        </div>
+
+                        <!-- Destaques -->
+                        <div class="ig-highlights">
+                            <div class="ig-hl"><div class="ig-hl-ring bg-br-green"><i class="fa-solid fa-bullhorn"></i></div><span>Campanha</span></div>
+                            <div class="ig-hl"><div class="ig-hl-ring bg-br-blue"><i class="fa-solid fa-calendar-days"></i></div><span>Agenda</span></div>
+                            <div class="ig-hl"><div class="ig-hl-ring bg-br-yellow !text-br-blue"><i class="fa-solid fa-book"></i></div><span>Livros</span></div>
+                            <div class="ig-hl"><div class="ig-hl-ring bg-[#25D366]"><i class="fa-solid fa-heart"></i></div><span>Família</span></div>
+                            <div class="ig-hl"><div class="ig-hl-ring bg-gradient-to-br from-[#dc2743] to-[#bc1888]"><i class="fa-solid fa-clapperboard"></i></div><span>Bastidores</span></div>
+                            <div class="ig-hl"><div class="ig-hl-ring bg-[#efefef] !text-gray-500"><i class="fa-solid fa-plus"></i></div><span>Novo</span></div>
+                        </div>
+
+                        <!-- Abas (só ícones, como no app) -->
+                        <div class="ig-tabs">
+                            <span class="active"><i class="fa-solid fa-table-cells"></i></span>
+                            <span><i class="fa-solid fa-clapperboard"></i></span>
+                            <span><i class="fa-regular fa-address-card"></i></span>
+                        </div>
+
+                        <!-- Grade de publicações -->
+                        <div class="ig-grid">
+                            <button type="button" onclick="openReelModal()" class="ig-cell ig-cell--reel" aria-label="Abrir jingle da campanha">
+                                <span class="ig-cell-ph"><i class="fa-solid fa-clapperboard"></i><span>70</span></span>
+                                <video class="ig-reel-preview" src="video/jingle-h264.mp4" muted loop playsinline webkit-playsinline autoplay preload="metadata" poster="img/perfil.jpg"></video>
+                                <span class="ig-reel-badge"><i class="fa-solid fa-clapperboard"></i></span>
+                                <span class="ig-reel-play"><i class="fa-solid fa-play"></i></span>
+                            </button>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta2.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta3.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta4.png" alt="Publicação de Augusto Cury"></a>
+                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta5.png" alt="Publicação de Augusto Cury"></a>
+                        </div>
+
+                        <!-- Barra de navegação inferior do app -->
+                        <div class="ig-navbar">
+                            <i class="fa-solid fa-house"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-regular fa-square-plus"></i>
+                            <i class="fa-solid fa-film"></i>
+                            <span class="ig-navbar-me"><img src="img/perfil-instagram.jpg" alt="" onerror="this.onerror=null;this.src='img/perfil.jpg'"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center mt-6">
+                    <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-br-blue font-bold text-sm hover:text-br-orange transition-colors">
+                        <i class="fa-brands fa-instagram"></i> Ver perfil completo no Instagram
+                    </a>
+                </p>
+            </div>
+        </section>
+
         <!-- TRAJETÓRIA -->
         <section class="py-20 bg-white reveal">
             <div class="max-w-6xl mx-auto px-4">
@@ -2046,119 +2161,6 @@
                 </div>
 
                 <p class="text-center text-br-blue font-heading font-semibold mt-12 max-w-2xl mx-auto">Da compreensão da mente humana ao debate sobre os caminhos do Brasil.</p>
-            </div>
-        </section>
-
-        <!-- INSTAGRAM (perfil) -->
-        <section id="instagram" class="py-20 bg-br-light reveal relative overflow-hidden">
-            <span class="seventy-ghost seventy-ghost--dark text-[300px] sm:text-[460px] -bottom-24 -right-16" data-parallax="0.16" data-rot="6">70</span>
-            <div class="max-w-4xl mx-auto px-4 relative z-10">
-                <div class="text-center mb-10">
-                    <span class="inline-flex items-center gap-2 text-br-green font-bold tracking-widest uppercase text-sm mb-3">
-                        <i class="fa-brands fa-instagram"></i> Siga nas redes
-                    </span>
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-br-blue">No <span class="text-br-yellow">Instagram</span></h2>
-                </div>
-
-                <div class="ig-phone">
-                    <div class="ig-card">
-                        <!-- Barra de status do celular -->
-                        <div class="ig-statusbar">
-                            <span>9:41</span>
-                            <span class="ig-sb-icons"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></span>
-                        </div>
-
-                        <!-- App bar -->
-                        <div class="ig-appbar">
-                            <span class="ig-user">
-                                <i class="fa-solid fa-lock text-[0.7rem]"></i>
-                                augustocury.oficial
-                                <i class="fa-solid fa-circle-check text-[#0095f6] text-[0.85rem]"></i>
-                                <i class="fa-solid fa-chevron-down text-[0.65rem] text-gray-500"></i>
-                            </span>
-                            <span class="ig-appbar-icons">
-                                <i class="fa-regular fa-square-plus"></i>
-                                <i class="fa-solid fa-bars"></i>
-                            </span>
-                        </div>
-
-                        <!-- Avatar + números -->
-                        <div class="ig-head">
-                            <div class="ig-avatar">
-                                <img src="img/perfil-instagram.jpg" alt="Augusto Cury" onerror="this.onerror=null;this.src='img/perfil.jpg'">
-                            </div>
-                            <div class="ig-stats">
-                                <span><b>5.210</b><span>publicações</span></span>
-                                <span><b>10,4 mi</b><span>seguidores</span></span>
-                                <span><b>274</b><span>seguindo</span></span>
-                            </div>
-                        </div>
-
-                        <!-- Nome + bio -->
-                        <div class="ig-bio">
-                            <div class="ig-name">Augusto Cury 70</div>
-                            <div class="ig-cat">Figura pública</div>
-                            <div>🇧🇷 VAMOS PACIFICAR O PAÍS</div>
-                            <div>☝️ Candidato a Presidente 7️⃣0️⃣</div>
-                            <div>📚 Médico Psiquiatra + lido do mundo | Escritor | Produtor Rural | Gestor</div>
-                            <div>🧡 Marido, Pai, Avô</div>
-                        </div>
-
-                        <!-- Botões -->
-                        <div class="ig-actions">
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-follow">Seguir</a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-follow ig-follow--ghost">Mensagem</a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-icon-btn"><i class="fa-solid fa-user-plus text-[0.8rem]"></i></a>
-                        </div>
-
-                        <!-- Destaques -->
-                        <div class="ig-highlights">
-                            <div class="ig-hl"><div class="ig-hl-ring bg-br-green"><i class="fa-solid fa-bullhorn"></i></div><span>Campanha</span></div>
-                            <div class="ig-hl"><div class="ig-hl-ring bg-br-blue"><i class="fa-solid fa-calendar-days"></i></div><span>Agenda</span></div>
-                            <div class="ig-hl"><div class="ig-hl-ring bg-br-yellow !text-br-blue"><i class="fa-solid fa-book"></i></div><span>Livros</span></div>
-                            <div class="ig-hl"><div class="ig-hl-ring bg-[#25D366]"><i class="fa-solid fa-heart"></i></div><span>Família</span></div>
-                            <div class="ig-hl"><div class="ig-hl-ring bg-gradient-to-br from-[#dc2743] to-[#bc1888]"><i class="fa-solid fa-clapperboard"></i></div><span>Bastidores</span></div>
-                            <div class="ig-hl"><div class="ig-hl-ring bg-[#efefef] !text-gray-500"><i class="fa-solid fa-plus"></i></div><span>Novo</span></div>
-                        </div>
-
-                        <!-- Abas (só ícones, como no app) -->
-                        <div class="ig-tabs">
-                            <span class="active"><i class="fa-solid fa-table-cells"></i></span>
-                            <span><i class="fa-solid fa-clapperboard"></i></span>
-                            <span><i class="fa-regular fa-address-card"></i></span>
-                        </div>
-
-                        <!-- Grade de publicações -->
-                        <div class="ig-grid">
-                            <button type="button" onclick="openReelModal()" class="ig-cell ig-cell--reel" aria-label="Abrir jingle da campanha">
-                                <span class="ig-cell-ph"><i class="fa-solid fa-clapperboard"></i><span>70</span></span>
-                                <video class="ig-reel-preview" src="video/jingle.mp4" muted loop playsinline autoplay preload="metadata" poster="img/perfil.jpg"></video>
-                                <span class="ig-reel-badge"><i class="fa-solid fa-clapperboard"></i></span>
-                                <span class="ig-reel-play"><i class="fa-solid fa-play"></i></span>
-                            </button>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta.png" alt="Publicação de Augusto Cury"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta2.png" alt="Publicação de Augusto Cury"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta3.png" alt="Publicação de Augusto Cury"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta4.png" alt="Publicação de Augusto Cury"></a>
-                            <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="ig-cell"><span class="ig-cell-ph"><i class="fa-brands fa-instagram"></i><span>70</span></span><img data-file="img/insta5.png" alt="Publicação de Augusto Cury"></a>
-                        </div>
-
-                        <!-- Barra de navegação inferior do app -->
-                        <div class="ig-navbar">
-                            <i class="fa-solid fa-house"></i>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <i class="fa-regular fa-square-plus"></i>
-                            <i class="fa-solid fa-film"></i>
-                            <span class="ig-navbar-me"><img src="img/perfil-instagram.jpg" alt="" onerror="this.onerror=null;this.src='img/perfil.jpg'"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-center mt-6">
-                    <a href="https://instagram.com/augustocury" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-br-blue font-bold text-sm hover:text-br-orange transition-colors">
-                        <i class="fa-brands fa-instagram"></i> Ver perfil completo no Instagram
-                    </a>
-                </p>
             </div>
         </section>
 
@@ -2492,8 +2494,9 @@
             </button>
             <div class="phone-frame">
                 <div class="phone-screen">
-                    <video id="reel-modal-video" loop playsinline controls preload="none" poster="img/perfil.jpg">
-                        <source src="video/jingle.mp4" type="video/mp4">
+                    <video id="reel-modal-video" loop playsinline webkit-playsinline controls preload="none" poster="img/perfil.jpg">
+                        <source src="video/jingle-h264.mp4" type="video/mp4; codecs=avc1.640028,mp4a.40.2">
+                        <source src="video/jingle.mp4" type="video/mp4; codecs=hvc1">
                     </video>
                 </div>
             </div>
@@ -2590,6 +2593,37 @@
         // ===== Aviso "site não oficial" =====
         function dismissNotice() {
             document.body.classList.add('notice-hidden');
+        }
+
+        // ===== Compartilhar o JINGLE (envia o próprio vídeo quando o aparelho permite) =====
+        async function shareJingle(e) {
+            if (e) e.preventDefault();
+            var fileUrl = 'video/jingle-h264.mp4';
+            var pageUrl = 'https://preview.saturnonfc.com.br/cury70/video/jingle-h264.mp4';
+            var btn = e && e.currentTarget;
+            var lbl = btn && btn.querySelector('.share-label');
+            // 1) tenta enviar o arquivo de vídeo direto (celular)
+            if (navigator.canShare && navigator.share) {
+                try {
+                    if (lbl) lbl.textContent = 'Preparando…';
+                    var resp = await fetch(fileUrl);
+                    var blob = await resp.blob();
+                    var file = new File([blob], 'Jingle-Augusto-Cury-70.mp4', { type: 'video/mp4' });
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({ files: [file], title: 'Jingle Augusto Cury 70', text: 'Ouça o jingle do Augusto Cury 70!' });
+                        if (lbl) lbl.textContent = 'Compartilhar';
+                        return;
+                    }
+                } catch (err) {}
+                if (lbl) lbl.textContent = 'Compartilhar';
+            }
+            // 2) fallback: compartilha o link do vídeo
+            if (navigator.share) {
+                navigator.share({ title: 'Jingle Augusto Cury 70', text: 'Ouça o jingle do Augusto Cury 70:', url: pageUrl }).catch(function () {});
+                return;
+            }
+            // 3) desktop: abre o WhatsApp Web com o link do vídeo
+            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Ouça o jingle do Augusto Cury 70: ' + pageUrl), '_blank', 'noopener');
         }
 
         // ===== Compartilhar o site (Instagram: usa a folha de compartilhamento do aparelho) =====
@@ -3039,7 +3073,7 @@
                         }
                         setPlayUI();
                     });
-                }, { threshold: 0.5 }).observe(v);
+                }, { threshold: 0.25 }).observe(v);
             }
         })();
 
