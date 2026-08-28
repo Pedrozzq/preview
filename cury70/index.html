@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8P4BKCW70Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8P4BKCW70Q');
+    </script>
+
     <title>Augusto Cury 70 - Pré-Candidato à Presidência da República | Brasil</title>
     <!-- SEO Básico -->
     <meta name="description" content="Conheça Augusto Cury, número 70. Um projeto nacional para reconstruir o Brasil com educação, saúde emocional, economia forte e gestão honesta.">
@@ -2025,9 +2036,15 @@
 
                         <!-- Grade de publicações -->
                         <div class="ig-grid">
-                            <button type="button" onclick="openReelModal()" class="ig-cell ig-cell--reel" aria-label="Abrir jingle da campanha">
+                            <button type="button" onclick="openReelModal('video/jingle-h264.mp4')" class="ig-cell ig-cell--reel" aria-label="Abrir jingle da campanha">
                                 <span class="ig-cell-ph"><i class="fa-solid fa-clapperboard"></i><span>70</span></span>
                                 <video class="ig-reel-preview" src="video/jingle-h264.mp4" muted loop playsinline webkit-playsinline autoplay preload="metadata" poster="img/perfil.jpg"></video>
+                                <span class="ig-reel-badge"><i class="fa-solid fa-clapperboard"></i></span>
+                                <span class="ig-reel-play"><i class="fa-solid fa-play"></i></span>
+                            </button>
+                            <button type="button" onclick="openReelModal('video/insta-reel.mp4')" class="ig-cell ig-cell--reel" aria-label="Abrir vídeo da campanha">
+                                <span class="ig-cell-ph"><i class="fa-solid fa-clapperboard"></i><span>70</span></span>
+                                <video class="ig-reel-preview" src="video/insta-reel.mp4" muted loop playsinline webkit-playsinline autoplay preload="metadata" poster="img/perfil.jpg"></video>
                                 <span class="ig-reel-badge"><i class="fa-solid fa-clapperboard"></i></span>
                                 <span class="ig-reel-play"><i class="fa-solid fa-play"></i></span>
                             </button>
@@ -2204,9 +2221,9 @@
 
                     <p class="text-center text-gray-500 text-sm mt-8 mb-3">Compartilhe com os amigos:</p>
                     <div class="flex flex-wrap justify-center gap-3">
-                        <a href="https://api.whatsapp.com/send?text=Conhe%C3%A7a%20a%20campanha%20do%20Augusto%20Cury%2070%3A%20https://preview.saturnonfc.com.br/cury70" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-3 rounded-full hover:brightness-95 transition-all">
+                        <button type="button" onclick="shareArte(event)" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-3 rounded-full hover:brightness-95 transition-all">
                             <i class="fa-brands fa-whatsapp text-lg"></i> <span class="share-label">Enviar no WhatsApp</span>
-                        </a>
+                        </button>
                         <button type="button" onclick="shareSite(event)" class="inline-flex items-center gap-2 text-white font-bold px-5 py-3 rounded-full hover:brightness-95 transition-all" style="background:linear-gradient(90deg,#f58529,#dd2a7b 55%,#8134af)">
                             <i class="fa-brands fa-instagram text-lg"></i> <span class="share-label">Enviar no Instagram</span>
                         </button>
@@ -2597,6 +2614,37 @@
             document.body.classList.add('notice-hidden');
         }
 
+        // ===== Compartilhar a ARTE atual + link (envia a imagem quando o aparelho permite) =====
+        async function shareArte(e) {
+            if (e) e.preventDefault();
+            var url = 'https://preview.saturnonfc.com.br/cury70';
+            var text = 'Conheça a campanha do Augusto Cury 70:';
+            var btn = e && e.currentTarget;
+            var lbl = btn && btn.querySelector('.share-label');
+            var img = document.querySelector('#pg-stage .pg-slide.active img') ||
+                      document.querySelector('#pg-stage .pg-slide img');
+            if (img && img.currentSrc && navigator.canShare && navigator.share) {
+                try {
+                    if (lbl) lbl.textContent = 'Preparando…';
+                    var resp = await fetch(img.currentSrc);
+                    var blob = await resp.blob();
+                    var ext = ((blob.type.split('/')[1]) || 'png').replace('jpeg', 'jpg');
+                    var file = new File([blob], 'Augusto-Cury-70.' + ext, { type: blob.type || 'image/png' });
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({ files: [file], text: text + ' ' + url, title: 'Augusto Cury 70' });
+                        if (lbl) lbl.textContent = 'Enviar no WhatsApp';
+                        return;
+                    }
+                } catch (err) {}
+                if (lbl) lbl.textContent = 'Enviar no WhatsApp';
+            }
+            if (navigator.share) {
+                navigator.share({ text: text, url: url, title: 'Augusto Cury 70' }).catch(function () {});
+                return;
+            }
+            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener');
+        }
+
         // ===== Compartilhar o JINGLE (envia o próprio vídeo quando o aparelho permite) =====
         async function shareJingle(e) {
             if (e) e.preventDefault();
@@ -2895,9 +2943,15 @@
         }
 
         // ===== Modal Reel / Jingle (Instagram) =====
-        function openReelModal() {
+        function openReelModal(src) {
             const m = document.getElementById('reel-modal');
             const v = document.getElementById('reel-modal-video');
+            const want = src || 'video/jingle-h264.mp4';
+            if (v.getAttribute('src') !== want) {
+                while (v.firstChild) v.removeChild(v.firstChild);
+                v.setAttribute('src', want);
+                v.load();
+            }
             m.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             try {
