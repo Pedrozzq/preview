@@ -647,7 +647,7 @@ input,select{font:inherit}
    ============================================================ */
 
 const PRODUTOS = [
-  { id:"khamrah", nome:"Lattafa Khamrah", sub:"Parfum", marca:"Lattafa", cat:"unissex", familia:"Árabe",
+  { id:"khamrah", nome:"Lattafa Khamrah", sub:"Parfum", marca:"Lattafa", cat:"feminino", familia:"Árabe",
     preco:174.90, img:"img/khamrah.webp", tom:"claro", destaque:true,
     desc:"Um oriental cremoso e especiado, construído sobre canela, tâmara e baunilha. Rastro marcante e longa fixação — a escolha certa para noites frias e ocasiões memoráveis.",
     notas:{Topo:"Canela, noz-moscada, bergamota", Corpo:"Tâmara, praline, âmbar", Fundo:"Baunilha, tonka, madeiras"},
@@ -715,7 +715,7 @@ const PRODUTOS = [
     tamanhos:[{ml:"100 ml",mult:1},{ml:"Decant 10 ml",mult:0.2}] },
 
   { id:"azzaro-wanted", nome:"Azzaro Wanted", sub:"Eau de Parfum 100 ml", marca:"Azzaro", cat:"masculino", familia:"Especiado",
-    preco:890.00, img:"img/azzaro-wanted.webp", tom:"claro",
+    preco:890.00, img:"img/azzaro.webp", tom:"claro",
     desc:"Cítrico especiado com gengibre, cardamomo e vetiver. Energético, viril e versátil.",
     notas:{Topo:"Limão, gengibre, lavanda", Corpo:"Cardamomo, gerânio, sálvia", Fundo:"Vetiver, tonka, madeiras"},
     tamanhos:[{ml:"100 ml",mult:1},{ml:"Decant 10 ml",mult:0.2}] },
@@ -822,9 +822,11 @@ const PRODUTOS = [
 
 
 const HERO_FRASCOS = [
-  { nome:"Hawas Black", marca:"Rasasi",  img:"img/hawas-black.webp", link:"#/masculino" },
-  { nome:"Khamrah",     marca:"Lattafa", img:"img/khamrah.webp",     link:"#/unissex" },
-  { nome:"Atheeri",     marca:"Lattafa", img:"img/atheeri.webp",     link:"#/feminino" }
+  { nome:"Hawas Black",   marca:"Rasasi",           img:"img/hawas-black.webp",             link:"#/masculino" },
+  { nome:"Khamrah",       marca:"Lattafa",          img:"img/khamrah.webp",                 link:"#/feminino" },
+  { nome:"Atheeri",       marca:"Lattafa",          img:"img/atheeri.webp",                 link:"#/feminino" },
+  { nome:"Bare Vanilla",  marca:"Victoria's Secret", img:"img/vs-splash-bare-vanilla.webp", link:"#/cosmeticos" },
+  { nome:"Kit Shampoo + Condicionador", marca:"Sebastian", img:"img/sebastian-dark-oil-kit.webp", link:"#/cosmeticos" }
 ];
 
 const CATEGORIAS = {
