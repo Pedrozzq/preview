@@ -88,15 +88,23 @@ input,select{font:inherit}
 .acao:hover{color:var(--ouro);background:rgba(217,179,108,.1)}
 .acao svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5}
 .selo{position:absolute;right:1px;bottom:1px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;background:var(--ouro);color:var(--breu);border-radius:9px;font-size:10px;font-weight:600}
+/* carrinho do cabeçalho: ícone e selo em preto */
+#btnCarrinho{background:var(--ouro);color:#000}
+#btnCarrinho:hover{background:var(--ouro-claro);color:#000}
+#btnCarrinho .selo{background:#000;color:var(--ouro);border:1px solid var(--ouro)}
 .hamburguer{display:none}
 @media(max-width:1080px){.nav{gap:16px}.nav__link{font-size:11px}}
 @media(max-width:940px){
   .nav{display:none}
-  .hamburguer{display:grid;order:3;margin-left:auto}
-  .topo__linha{gap:12px;position:relative}
-  .acoes{order:1}
+  .hamburguer{display:grid;order:2;margin-left:auto}
+  .topo__linha{gap:12px;position:relative;padding:12px 0}
+  .acoes{order:3}
   #btnConta{display:none}
-  .marca{width:100px;position:absolute;left:50%;top:50%;translate:-50% -50%}
+  .marca{width:auto;position:absolute;left:50%;top:50%;translate:-50% -50%}
+  .marca img{width:auto;height:44px;display:block}
+  /* whatsapp flutuante vai para o canto inferior direito */
+  .zap{left:auto;right:16px}
+  .avisos-flutuantes{bottom:84px}
 }
 
 /* ---------- busca ---------- */
@@ -450,9 +458,6 @@ input,select{font:inherit}
       </nav>
 
       <div class="acoes">
-        <button class="acao" id="btnBusca" aria-label="Buscar produtos" aria-expanded="true">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-        </button>
         <button class="acao" id="btnConta" aria-label="Minha conta">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
         </button>
@@ -1475,12 +1480,6 @@ document.querySelectorAll("[data-drop]").forEach(d => {
 document.getElementById("btnCarrinho").addEventListener("click", () => abrirSobreposicao("gavetaCarrinho"));
 document.getElementById("btnConta").addEventListener("click", () => abrirSobreposicao("modalConta"));
 document.getElementById("btnMenu").addEventListener("click", () => abrirSobreposicao("menuMobile"));
-document.getElementById("btnBusca").addEventListener("click", () => {
-  const area = document.getElementById("areaBusca");
-  const escondida = area.classList.toggle("oculto");
-  document.getElementById("btnBusca").setAttribute("aria-expanded", String(!escondida));
-  if(!escondida) campoBusca.focus();
-});
 document.getElementById("btnEnviarBusca").addEventListener("click", buscar);
 campoBusca.addEventListener("input", sugerir);
 campoBusca.addEventListener("keydown", e => { if(e.key === "Enter") buscar(); });
