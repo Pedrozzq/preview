@@ -58,7 +58,7 @@ input,select{font:inherit}
 
 /* ---------- barra de avisos ---------- */
 .avisos{background:var(--breu);color:var(--ouro);border-bottom:1px solid rgba(217,179,108,.14)}
-.avisos__lista{display:flex;justify-content:space-around;gap:12px;padding:9px 0;margin:0;list-style:none}
+.avisos__lista{display:flex;justify-content:space-around;gap:12px;padding:5px 0;margin:0;list-style:none}
 .avisos__item{display:flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
 .avisos__item button{display:flex;align-items:center;gap:9px;letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;transition:color .2s}
 .avisos__item button:hover{color:var(--ouro-claro)}
@@ -68,12 +68,12 @@ input,select{font:inherit}
 
 /* ---------- cabeçalho ---------- */
 .topo{position:sticky;top:0;z-index:60;background:var(--breu);border-bottom:1px solid rgba(217,179,108,.16)}
-.topo__linha{display:flex;align-items:center;gap:22px;padding:10px 0}
-.marca{flex:none;width:132px}
-.marca img{width:100%}
+.topo__linha{display:flex;align-items:center;gap:22px;padding:5px 0}
+.marca{flex:none;width:172px}
+.marca img{width:100%;display:block}
 .nav{flex:1;display:flex;justify-content:center;gap:26px}
 .nav__item{position:relative}
-.nav__link{display:flex;align-items:center;gap:5px;padding:8px 2px;color:#efe6d7;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:color .22s}
+.nav__link{display:flex;align-items:center;gap:5px;padding:5px 2px;color:#efe6d7;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:color .22s}
 .nav__link:hover,.nav__link[aria-current="page"]{color:var(--ouro)}
 .nav__link::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;background:var(--ouro);transform:scaleX(0);transform-origin:left;transition:transform .28s}
 .nav__link[aria-current="page"]::after{transform:scaleX(1)}
@@ -97,20 +97,19 @@ input,select{font:inherit}
 @media(max-width:940px){
   .nav{display:none}
   .hamburguer{display:grid;order:2;margin-left:auto}
-  .topo__linha{gap:12px;position:relative;padding:12px 0}
+  .topo__linha{gap:12px;position:relative;padding:16px 0}
   .acoes{order:3}
-  #btnConta{display:none}
   .marca{width:auto;position:absolute;left:50%;top:50%;translate:-50% -50%}
-  .marca img{width:auto;height:44px;display:block}
+  .marca img{width:auto;height:62px;display:block}
   /* whatsapp flutuante vai para o canto inferior direito */
   .zap{left:auto;right:16px}
   .avisos-flutuantes{bottom:84px}
 }
 
 /* ---------- busca ---------- */
-.busca{padding:0 0 14px}
+.busca{padding:0 0 8px}
 .busca__caixa{position:relative;max-width:600px;margin-inline:auto}
-.busca__campo{width:100%;padding:13px 46px 13px 20px;background:var(--breu-3);color:#f3ece1;border:1px solid rgba(217,179,108,.3);border-radius:26px;font-size:13.5px;font-weight:300}
+.busca__campo{width:100%;padding:10px 46px 10px 20px;background:var(--breu-3);color:#f3ece1;border:1px solid rgba(217,179,108,.3);border-radius:26px;font-size:13.5px;font-weight:300}
 .busca__campo::placeholder{color:#8f8677}
 .busca__campo:focus{outline:none;border-color:var(--ouro)}
 .busca__btn{position:absolute;right:6px;top:50%;translate:0 -50%;width:36px;height:36px;display:grid;place-items:center;color:var(--ouro);border-radius:50%}
@@ -138,7 +137,7 @@ input,select{font:inherit}
 .hero__slogan{margin:2px 0 0;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.4vw,25px);font-weight:400;color:#f2e7d2;letter-spacing:.02em}
 .hero__vitrine{align-self:end;justify-self:end;width:min(400px,100%)}
 .hero__frascos{position:relative;width:100%;aspect-ratio:1/1;margin:0}
-.hero__frasco{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .9s ease;pointer-events:none}
+.hero__frasco{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .55s ease;pointer-events:none}
 .hero__frasco.is-active{opacity:1;pointer-events:auto}
 .hero__frasco img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6))}
 .hero__pontos{display:flex;gap:9px;justify-content:center;margin-top:16px}
@@ -388,6 +387,31 @@ input,select{font:inherit}
 .etapa b{display:block;font-size:12.5px;font-weight:500;letter-spacing:.06em}
 .etapa span{font-size:11.5px;color:var(--tinta-fraca)}
 
+/* ---------- carrinho em preto ---------- */
+#gavetaCarrinho{background:var(--breu);color:#f4eee2}
+#gavetaCarrinho .gaveta__pe{background:var(--breu-2);border-top-color:var(--linha)}
+#gavetaCarrinho .item{border-bottom-color:rgba(217,179,108,.14)}
+#gavetaCarrinho .item__nome,
+#gavetaCarrinho .item__preco,
+#gavetaCarrinho .total b{color:#fdf8ef}
+#gavetaCarrinho .item__var,
+#gavetaCarrinho .total-linha,
+#gavetaCarrinho .gaveta__pe p,
+#gavetaCarrinho .gaveta__vazio{color:#d8ccb6}
+#gavetaCarrinho .qtd{border-color:var(--linha)}
+#gavetaCarrinho .qtd button{color:#e4d9c2}
+#gavetaCarrinho .qtd button:hover{color:var(--ouro)}
+#gavetaCarrinho .entrega-resumo{background:var(--breu-3);border-color:var(--linha)}
+#gavetaCarrinho .entrega-resumo p{color:#e4d9c2}
+
+/* ---------- dados de entrega em preto ---------- */
+#modalEntrega .modal__painel{background:var(--breu-2);border:1px solid var(--linha);color:#f4eee2}
+#modalEntrega .modal__painel p{color:#d8ccb6}
+#modalEntrega .campo{background:var(--breu-3);border-color:var(--linha);color:#f3ece1}
+#modalEntrega .campo::placeholder{color:#8f8677}
+#modalEntrega .modal__fechar{background:rgba(3,7,14,.55);border:1px solid var(--linha);color:var(--ouro-claro)}
+#modalEntrega .modal__fechar:hover{background:var(--breu);color:#fff}
+
 /* ---------- menu mobile ---------- */
 .gaveta--esq{width:min(320px,86%);background:var(--breu);color:#e9dfcd}
 .menu-mob{padding:8px 0}
@@ -458,8 +482,8 @@ input,select{font:inherit}
       </nav>
 
       <div class="acoes">
-        <button class="acao" id="btnConta" aria-label="Minha conta">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <button class="acao" id="btnBusca" aria-label="Buscar" aria-expanded="false" aria-controls="areaBusca">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         </button>
         <button class="acao" id="btnCarrinho" aria-label="Abrir sacola">
           <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
@@ -468,7 +492,7 @@ input,select{font:inherit}
       </div>
     </div>
 
-    <div class="busca" id="areaBusca">
+    <div class="busca oculto" id="areaBusca">
       <div class="busca__caixa">
         <label class="sr" for="campoBusca">Buscar perfumes</label>
         <input class="busca__campo" id="campoBusca" type="search" placeholder="Buscar perfumes, ocasião, cosméticos..." autocomplete="off">
@@ -595,23 +619,6 @@ input,select{font:inherit}
   </div>
 </div>
 
-<div class="modal" id="modalConta" role="dialog" aria-modal="true" aria-label="Minha conta">
-  <div class="modal__painel simples" style="display:block">
-    <button class="modal__fechar" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <h2>Minha conta</h2>
-    <p>Entre para acompanhar pedidos, favoritos e ofertas reservadas.</p>
-    <label class="sr" for="contaEmail">E-mail</label>
-    <input class="campo" id="contaEmail" type="email" placeholder="E-mail" autocomplete="email">
-    <label class="sr" for="contaSenha">Senha</label>
-    <input class="campo" id="contaSenha" type="password" placeholder="Senha" autocomplete="current-password">
-    <button class="btn-ouro" id="btnEntrar" type="button">Entrar</button>
-    <p class="aviso-form" id="avisoConta" role="status"></p>
-    <p style="margin:14px 0 0;text-align:center;font-size:12.5px">
-      Ainda não tem conta? <a href="https://wa.me/5521996931199" target="_blank" rel="noopener" style="color:var(--ouro-forte);text-decoration:underline">Criar pelo WhatsApp</a>
-    </p>
-  </div>
-</div>
-
 <div class="modal" id="modalEntrega" role="dialog" aria-modal="true" aria-label="Dados de entrega">
   <div class="modal__painel simples" style="display:block">
     <button class="modal__fechar" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -671,12 +678,6 @@ const PRODUTOS = [
     notas:{Topo:"Pêssego, pera", Corpo:"Flor de laranjeira, peônia", Fundo:"Almíscar branco, cedro"},
     tamanhos:[{ml:"100 ml",mult:1},{ml:"Decant 10 ml",mult:0.2}] },
 
-  { id:"biodorais", nome:"Biodoraïs Creme Hidratante", sub:"Hidratante facial 50 g", marca:"Biodoraïs", cat:"cosmeticos", familia:"Facial",
-    preco:219.90, img:"img/biodorais.webp", tom:"claro",
-    desc:"Creme rico em manteigas vegetais e ácido hialurônico. Restaura a barreira cutânea e mantém a hidratação por até 24 horas.",
-    notas:{Uso:"Manhã e noite", Ativos:"Ácido hialurônico, manteiga de karité", Pele:"Normal a seca"},
-    tamanhos:[{ml:"50 g",mult:1},{ml:"100 g",mult:1.7}] },
-
   /* --- itens acrescentados (sem controle de estoque; preços de referência) --- */
   { id:"sebastian-dark-oil-kit", nome:"Sebastian Dark Oil Kit", sub:"Shampoo + Condicionador 1 L", marca:"Sebastian", cat:"cosmeticos", familia:"Cabelo",
     preco:650.00, img:"img/sebastian-dark-oil-kit.webp", tom:"claro",
@@ -690,19 +691,19 @@ const PRODUTOS = [
     notas:{Uso:"1 a 2 vezes por semana", Ativos:"Óleo de argan, antioxidantes", Cabelo:"Ressecados a normais"},
     tamanhos:[{ml:"500 ml",mult:1},{ml:"250 ml",mult:0.6}] },
 
-  { id:"vs-splash-bare-vanilla", nome:"Victoria's Secret Bare Vanilla", sub:"Fragrance Mist 250 ml", marca:"Victoria's Secret", cat:"cosmeticos", familia:"Body Splash",
+  { id:"vs-splash-bare-vanilla", nome:"Victoria's Secret Bare Vanilla", sub:"Fragrance Mist 250 ml", marca:"Victoria's Secret", cat:"cosmeticos", extra:["feminino"], familia:"Corpo",
     preco:149.00, img:"img/vs-splash-bare-vanilla.webp", tom:"claro",
     desc:"Body splash cremoso de baunilha e cashmere. Aconchegante, doce na medida e perfeito para reaplicar.",
     notas:{Topo:"Baunilha, coco", Corpo:"Flor de baunilha, cashmere", Fundo:"Almíscar, madeiras claras"},
     tamanhos:[{ml:"250 ml",mult:1}] },
 
-  { id:"vs-splash-midnight-bloom", nome:"Victoria's Secret Midnight Bloom", sub:"Fragrance Mist 250 ml", marca:"Victoria's Secret", cat:"cosmeticos", familia:"Body Splash",
+  { id:"vs-splash-midnight-bloom", nome:"Victoria's Secret Midnight Bloom", sub:"Fragrance Mist 250 ml", marca:"Victoria's Secret", cat:"cosmeticos", extra:["feminino"], familia:"Corpo",
     preco:149.00, img:"img/vs-splash-midnight-bloom.webp", tom:"claro",
     desc:"Floral frutado com ameixa e pêssego sobre flores escuras. Sedutor e marcante para a noite.",
     notas:{Topo:"Ameixa, pêssego", Corpo:"Peônia negra, jasmim", Fundo:"Âmbar, baunilha"},
     tamanhos:[{ml:"250 ml",mult:1}] },
 
-  { id:"vs-splash-pure-seduction", nome:"Victoria's Secret Pure Seduction", sub:"Fragrance Mist 250 ml", marca:"Victoria's Secret", cat:"cosmeticos", familia:"Body Splash",
+  { id:"vs-splash-pure-seduction", nome:"Victoria's Secret Pure Seduction", sub:"Fragrance Mist 250 ml", marca:"Victoria's Secret", cat:"cosmeticos", extra:["feminino"], familia:"Corpo",
     preco:149.00, img:"img/vs-splash-pure-seduction.webp", tom:"claro",
     desc:"O clássico da marca: ameixa vermelha e frésia em um splash fresco, jovem e viciante.",
     notas:{Topo:"Ameixa vermelha, frésia", Corpo:"Lírio, pêssego", Fundo:"Âmbar claro"},
@@ -853,6 +854,11 @@ const estado = {
   carrinho:[], favoritos:new Set(), logado:false, entrega:null
 };
 
+// casas árabes (para as subseções Importados x Árabes)
+const MARCAS_ARABES = ["Lattafa","Rasasi","Afnan","Orientica","Al Haramain","Armaf","Maison Alhambra","Lattafa Perfumes"];
+// subseções de Cosméticos ainda sem catálogo — mostram bloco "Em breve"
+const COSMETICOS_EM_BREVE = ["Facial"];
+
 const dinheiro = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const parcela = v => `6x de ${dinheiro(v/6)}`;
 const acharProduto = id => PRODUTOS.find(p => p.id === id);
@@ -943,7 +949,7 @@ function pintarCarrinho(){
     <div class="total-linha"><span>Subtotal</span><span>${dinheiro(total)}</span></div>
     <div class="total-linha"><span>Frete</span><span>${frete === 0 ? "Grátis" : dinheiro(frete)}</span></div>
     <div class="total"><span>Total</span><b>${dinheiro(total+frete)}</b></div>
-    <p style="margin:0 0 12px;font-size:12px;color:var(--tinta-fraca)">ou ${parcela(total+frete)} sem juros</p>
+    <p style="margin:0 0 12px;font-size:12px;color:#d8ccb6">ou ${parcela(total+frete)} sem juros</p>
     ${blocoEntrega}
     <button class="btn-ouro" type="button" id="btnFinalizar" style="width:100%;text-align:center">${temEntrega ? "Enviar pedido pelo WhatsApp" : "Finalizar compra"}</button>
     <button class="btn-vazado" type="button" data-fechar style="width:100%;text-align:center;margin-top:8px">Continuar comprando</button>`;
@@ -1061,9 +1067,12 @@ function listarProdutos(){
     const q = semAcento(params.q || "");
     lista = lista.filter(p => semAcento(p.nome+" "+p.marca+" "+p.familia+" "+p.sub+" "+p.desc).includes(q));
   }
-  else if(["masculino","feminino","unissex","cosmeticos"].includes(rota)) lista = lista.filter(p => p.cat === rota);
+  else if(["masculino","feminino","unissex","cosmeticos"].includes(rota)) lista = lista.filter(p => p.cat === rota || (p.extra && p.extra.includes(rota)));
 
-  if(params.familia) lista = lista.filter(p => p.familia === params.familia);
+  if(params.familia === "importados") lista = lista.filter(p => p.cat === rota && (rota !== "masculino" || !MARCAS_ARABES.includes(p.marca)));
+  else if(params.familia === "arabes") lista = lista.filter(p => p.cat === rota && MARCAS_ARABES.includes(p.marca));
+  else if(params.familia === "bodysplash") lista = lista.filter(p => p.familia === "Corpo");
+  else if(params.familia) lista = lista.filter(p => p.familia === params.familia);
   if(params.marca) lista = lista.filter(p => p.marca === params.marca);
 
   const o = estado.ordem;
@@ -1107,12 +1116,8 @@ function vistaInicio(){
       </div>
       <div class="garantias">
         <div class="garantia">
-          <span class="garantia__icone"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 22l5-2.5L17 22l-1.5-8.5"/></svg></span>
-          <div><b>Originais e lacrados</b><span>Nota fiscal em toda compra</span></div>
-        </div>
-        <div class="garantia">
           <span class="garantia__icone"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></span>
-          <div><b>Postagem em 24h</b><span>Rastreio para todo o Brasil</span></div>
+          <div><b>Envio em 24h</b><span>Rastreio para todo o Brasil</span></div>
         </div>
       </div>
     </div>
@@ -1188,7 +1193,12 @@ function vistaCatalogo(){
   const info = CATEGORIAS[estado.rota] || CATEGORIAS.busca;
   const lista = listarProdutos();
   const familias = [...new Set(PRODUTOS.filter(p => ["masculino","feminino","unissex","cosmeticos"].includes(estado.rota) ? p.cat === estado.rota : true).map(p => p.familia))];
-  const mostrarFamilias = ["masculino","feminino","unissex","cosmeticos"].includes(estado.rota);
+  const mostrarFamilias = ["unissex","cosmeticos"].includes(estado.rota);
+  const chipsCustom = {
+    masculino: [["","Todos"],["importados","Importados"],["arabes","Árabes"]],
+    feminino:  [["","Todos"],["importados","Importados"],["bodysplash","Body Splash"]]
+  }[estado.rota];
+  const emBreve = estado.rota === "cosmeticos" && COSMETICOS_EM_BREVE.includes(estado.params.familia);
 
   const titulo = estado.rota === "busca"
     ? `Resultados para “${estado.params.q || ""}”`
@@ -1206,11 +1216,13 @@ function vistaCatalogo(){
   <section class="secao" style="padding-top:0">
     <div class="env">
       <div class="barra-filtros">
+        ${chipsCustom ? chipsCustom.map(([v,rot]) => `<button class="chip ${(estado.params.familia || "") === v ? "ativo" : ""}" type="button" data-familia="${v}">${rot}</button>`).join("") : ""}
         ${mostrarFamilias ? `<button class="chip ${!estado.params.familia ? "ativo" : ""}" type="button" data-familia="">Todos</button>
-        ${familias.map(f => `<button class="chip ${estado.params.familia === f ? "ativo" : ""}" type="button" data-familia="${f}">${f}</button>`).join("")}` : ""}
+        ${familias.map(f => `<button class="chip ${estado.params.familia === f ? "ativo" : ""}" type="button" data-familia="${f}">${f}</button>`).join("")}
+        ${estado.rota === "cosmeticos" ? COSMETICOS_EM_BREVE.map(f => `<button class="chip ${estado.params.familia === f ? "ativo" : ""}" type="button" data-familia="${f}">${f}</button>`).join("") : ""}` : ""}
         ${estado.params.marca ? `<button class="chip ativo" type="button" data-familia="">${estado.params.marca} ✕</button>` : ""}
         <div class="barra-filtros__dir">
-          <span class="contagem">${lista.length} ${lista.length === 1 ? "produto" : "produtos"}</span>
+          <span class="contagem">${emBreve ? "Em breve" : `${lista.length} ${lista.length === 1 ? "produto" : "produtos"}`}</span>
           <label class="sr" for="ordenar">Ordenar por</label>
           <select class="ordenar" id="ordenar">
             <option value="destaque" ${estado.ordem === "destaque" ? "selected" : ""}>Mais procurados</option>
@@ -1220,7 +1232,10 @@ function vistaCatalogo(){
           </select>
         </div>
       </div>
-      ${lista.length
+      ${emBreve
+        ? `<div class="vazio"><h3>Em breve</h3><p>A linha ${estado.params.familia} de cosméticos está chegando. Fique de olho — novidades em breve.</p>
+           <p style="margin-top:16px"><a class="btn-vazado" href="#/cosmeticos">Ver o catálogo atual</a></p></div>`
+        : lista.length
         ? `<div class="grade">${lista.map(cartaoProduto).join("")}</div>`
         : `<div class="vazio"><h3>Nada por aqui</h3><p>Não encontramos produtos com esses filtros. Tente outra família olfativa ou fale com a consultoria.</p>
            <p style="margin-top:16px"><a class="btn-vazado" href="#/inicio">Voltar ao início</a></p></div>`}
@@ -1345,7 +1360,7 @@ function ligarHeroFrascos(){
   };
   const proximo = () => ir((atual + 1) % fotos.length);
   const parar = () => { if(timer){ clearInterval(timer); timer = null; } };
-  const iniciar = () => { parar(); timer = setInterval(proximo, 4000); };
+  const iniciar = () => { parar(); timer = setInterval(proximo, 2000); };
   bolas.forEach(b => b.addEventListener("click", () => { ir(Number(b.dataset.index)); iniciar(); }));
   palco.addEventListener("mouseenter", parar);
   palco.addEventListener("mouseleave", iniciar);
@@ -1357,6 +1372,16 @@ function ligarHeroFrascos(){
    ============================================================ */
 const campoBusca = document.getElementById("campoBusca");
 const caixaSugestoes = document.getElementById("sugestoes");
+const btnBusca = document.getElementById("btnBusca");
+const areaBusca = document.getElementById("areaBusca");
+
+function alternarBusca(forcar){
+  const abrir = typeof forcar === "boolean" ? forcar : areaBusca.classList.contains("oculto");
+  areaBusca.classList.toggle("oculto", !abrir);
+  btnBusca.setAttribute("aria-expanded", String(abrir));
+  if(abrir){ campoBusca.focus(); }
+  else { caixaSugestoes.classList.add("oculto"); }
+}
 
 function sugerir(){
   const q = semAcento(campoBusca.value.trim());
@@ -1375,6 +1400,7 @@ function buscar(){
   const q = campoBusca.value.trim();
   caixaSugestoes.classList.add("oculto");
   if(!q) return;
+  alternarBusca(false);
   irPara(`#/busca?q=${encodeURIComponent(q)}`);
 }
 
@@ -1471,6 +1497,11 @@ document.addEventListener("click", e => {
 
   // fechar sugestões ao clicar fora
   if(!alvo.closest(".busca__caixa")) caixaSugestoes.classList.add("oculto");
+
+  // fechar a área de busca ao clicar fora dela e do botão
+  if(!areaBusca.classList.contains("oculto") && !alvo.closest("#areaBusca") && !alvo.closest("#btnBusca")){
+    alternarBusca(false);
+  }
 });
 
 // hover nos dropdowns
@@ -1480,11 +1511,14 @@ document.querySelectorAll("[data-drop]").forEach(d => {
 });
 
 document.getElementById("btnCarrinho").addEventListener("click", () => abrirSobreposicao("gavetaCarrinho"));
-document.getElementById("btnConta").addEventListener("click", () => abrirSobreposicao("modalConta"));
 document.getElementById("btnMenu").addEventListener("click", () => abrirSobreposicao("menuMobile"));
 document.getElementById("btnEnviarBusca").addEventListener("click", buscar);
+btnBusca.addEventListener("click", e => { e.stopPropagation(); alternarBusca(); });
 campoBusca.addEventListener("input", sugerir);
-campoBusca.addEventListener("keydown", e => { if(e.key === "Enter") buscar(); });
+campoBusca.addEventListener("keydown", e => {
+  if(e.key === "Enter") buscar();
+  if(e.key === "Escape") alternarBusca(false);
+});
 
 document.addEventListener("change", e => {
   if(e.target.id === "ordenar"){ estado.ordem = e.target.value; navegar(); }
@@ -1523,19 +1557,6 @@ document.getElementById("formEntrega").addEventListener("submit", e => {
   abrirSobreposicao("gavetaCarrinho");
   pintarCarrinho();
   avisar("Endereço salvo — revise e envie o pedido");
-});
-
-// login simulado
-document.getElementById("btnEntrar").addEventListener("click", () => {
-  const email = document.getElementById("contaEmail").value.trim();
-  const senha = document.getElementById("contaSenha").value;
-  const aviso = document.getElementById("avisoConta");
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || senha.length < 4){
-    aviso.className = "aviso-form erro"; aviso.textContent = "Verifique o e-mail e a senha (mínimo 4 caracteres)."; return;
-  }
-  estado.logado = true;
-  aviso.className = "aviso-form ok"; aviso.textContent = "Bem-vindo de volta!";
-  setTimeout(() => { fecharTudo(); avisar("Sessão iniciada"); }, 700);
 });
 
 // rastreio simulado
