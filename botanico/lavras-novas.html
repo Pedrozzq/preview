@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botânico Lavras Novas | Chocolateria &amp; Gelateria</title>
+<meta name="description" content="Botânico Lavras Novas — chocolateria e gelateria artesanal na vila. Bombons, trufas, gelatos e caixas presente, entre folhas e cerejeiras.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2c1c'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Petit+Formal+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        mata: '#0f2c1c', mataEsc: '#0a2014',
+        folha: '#2f6b3f', folhaClara: '#4c9a5e', musgo: '#6b8f4e',
+        creme: '#f7f3e8', cremeEsc: '#efe7d3',
+        cacau: '#3a2418', terracota: '#cc6b3d', rosa: '#e7b8c5'
+      },
+      fontFamily: {
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        body: ['Poppins', 'system-ui', 'sans-serif'],
+        script: ['"Petit Formal Script"', 'cursive']
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; }
+  .leaf-field::before, .leaf-field::after {
+    content: ""; position: absolute; width: 52vmin; height: 52vmin;
+    background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%234c9a5e' d='M100 8c40 26 62 66 62 108 0 40-28 68-62 76-34-8-62-36-62-76C38 74 60 34 100 8Zm0 24c-26 22-40 52-40 84 0 26 16 46 40 54 24-8 40-28 40-54 0-32-14-62-40-84Z'/%3E%3Cpath fill='%234c9a5e' d='M97 44h6v130h-6z'/%3E%3C/svg%3E");
+    opacity: .07; pointer-events: none;
+  }
+  .leaf-field::before { top: -12vmin; left: -10vmin; transform: rotate(-18deg); }
+  .leaf-field::after  { bottom: -14vmin; right: -10vmin; transform: rotate(150deg); }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+  .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+  .faq-item.open .faq-ico { transform: rotate(45deg); }
+</style>
+</head>
+<body class="font-body bg-creme text-cacau">
+
+<!-- ===== Top bar ===== -->
+<header id="bar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="mt-3 flex items-center justify-between rounded-full border border-cacau/10 bg-creme/85 backdrop-blur px-4 sm:px-5 py-2.5 shadow-sm">
+      <a href="index.html" class="flex items-center group">
+        <img src="img/logo-dark.png" alt="Botânico" class="h-8 sm:h-9 w-auto">
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm">
+        <a href="#chocolateria" class="hover:text-folha transition-colors">Chocolateria</a>
+        <a href="#gelateria" class="hover:text-folha transition-colors">Gelateria</a>
+        <a href="#catalogo" class="hover:text-folha transition-colors">Catálogo</a>
+        <a href="#espaco" class="hover:text-folha transition-colors">O espaço</a>
+        <a href="#contato" class="hover:text-folha transition-colors">Onde estamos</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="index.html" class="hidden sm:inline text-xs text-cacau/60 hover:text-folha transition-colors">trocar unidade</a>
+        <a href="https://wa.me/5531000000000" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 rounded-full bg-folha text-creme text-sm px-4 py-2 hover:bg-mata transition-colors">
+          <i class="fa-brands fa-whatsapp"></i><span class="hidden sm:inline">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Seção 1 — Linktree ===== -->
+<section class="leaf-field relative bg-mata text-creme overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20">
+  <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(60% 45% at 50% 30%, rgba(76,154,94,.22), transparent 70%)"></div>
+  <div class="relative mx-auto w-full max-w-md px-6 text-center">
+
+    <!-- logo -->
+    <h1 class="sr-only">Botânico — chocolateria &amp; gelateria · Lavras Novas</h1>
+    <img src="img/logo.png" alt="Botânico — chocolateria &amp; gelateria" class="mx-auto w-64 sm:w-80 max-w-full">
+
+    <p class="mt-5 inline-block rounded-full border border-creme/20 px-4 py-1 text-xs tracking-wide text-creme/80">
+      <i class="fa-solid fa-location-dot text-folhaClara"></i> Unidade Lavras Novas
+    </p>
+
+    <div class="hours-widget mx-auto mt-4 w-full max-w-xs text-left" data-hours>
+      <button type="button" class="hours-toggle flex w-full items-center justify-between gap-3 rounded-2xl border border-creme/20 bg-creme/[0.06] px-4 py-3 text-sm transition-colors hover:bg-creme/10">
+        <span class="flex items-center gap-2">
+          <span class="hours-dot inline-block h-2.5 w-2.5 rounded-full bg-creme/40"></span>
+          <span class="hours-status font-medium">Aberto agora</span>
+        </span>
+        <span class="flex items-center gap-2 text-creme/60">
+          <span class="hours-sub text-xs"></span>
+          <i class="fa-solid fa-chevron-down hours-caret text-[0.7rem] transition-transform"></i>
+        </span>
+      </button>
+      <div class="hours-list hidden mt-2 rounded-2xl border border-creme/15 bg-mataEsc/70 px-4 py-3 text-xs text-creme/75">
+        <ul class="space-y-1.5"></ul>
+        <p class="mt-3 border-t border-creme/10 pt-2 text-creme/45">Fechado em feriados · os horários podem variar</p>
+      </div>
+    </div>
+
+    <!-- linktree buttons -->
+    <div class="mt-9 space-y-3.5 text-left">
+      <a href="#catalogo"
+         class="lk group"><i class="fa-solid fa-book-open lk-i"></i><span class="lk-t">Cardápio digital</span><i class="fa-solid fa-arrow-down lk-a"></i></a>
+
+      <a href="https://wa.me/5531000000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Bot%C3%A2nico%20Lavras%20Novas." target="_blank" rel="noopener"
+         class="lk group"><i class="fa-brands fa-whatsapp lk-i"></i><span class="lk-t">WhatsApp · pedidos &amp; encomendas</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
+
+      <a href="https://instagram.com/botanico.lavrasnovas" target="_blank" rel="noopener"
+         class="lk group"><i class="fa-brands fa-instagram lk-i"></i><span class="lk-t">Instagram @botanico.lavrasnovas</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
+
+      <a href="https://www.google.com/maps/search/?api=1&query=Bot%C3%A2nico%20Lavras%20Novas%20Ouro%20Preto" target="_blank" rel="noopener"
+         class="lk group"><i class="fa-solid fa-map-location-dot lk-i"></i><span class="lk-t">Como chegar · Google Maps</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
+
+      <a href="https://www.google.com/search?q=botanico+lavras+novas&oq=botanico+lavras+novas&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener"
+         class="lk group"><i class="fa-brands fa-google lk-i"></i><span class="lk-t">Avaliar no Google</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
+
+      <a href="#boasvindas"
+         class="lk lk--solid group"><i class="fa-solid fa-mug-hot lk-i"></i><span class="lk-t">Conhecer a loja</span><i class="fa-solid fa-arrow-down lk-a"></i></a>
+    </div>
+
+    <p class="mt-8 text-[0.7rem] text-creme/45">Botânico · chocolateria &amp; gelateria artesanal</p>
+
+    <div class="mx-auto mt-4 flex w-full max-w-xs items-center justify-center gap-2 text-sm">
+      <span class="font-display text-lg font-semibold text-creme">4,3</span>
+      <span class="flex text-terracota" aria-hidden="true">
+        <i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star-half-stroke text-xs"></i>
+      </span>
+      <span class="text-creme/55">63 avaliações</span>
+    </div>
+
+    <a href="https://www.google.com/search?q=botanico+lavras+novas&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_1JGdAPN_xHii7zeZVPl9u08h5N4Ak5lKb_ZWONMiJ7AT-4AvHmRnCtNP5jZ-zcmZlVkriJtgkeDJV97QFPq2kXZcwWpQH2Y9aUbNcuck1XOAQHbYQ%3D%3D#lrd=0xa3f5004a5054e5:0x986f517ffce4c77a,3,,,," target="_blank" rel="noopener"
+       class="mx-auto mt-2 inline-flex items-center gap-1.5 text-xs text-creme/55 underline decoration-creme/25 underline-offset-4 transition-colors hover:text-creme">
+      <i class="fa-regular fa-star text-[0.7rem]"></i> Avalie agora
+    </a>
+  </div>
+</section>
+
+<style>
+  .lk{display:flex;align-items:center;gap:.9rem;width:100%;border:1px solid rgba(247,243,232,.22);
+      background:rgba(247,243,232,.05);border-radius:9999px;padding:.9rem 1.15rem;font-size:.9rem;
+      transition:all .2s ease}
+  .lk:hover{background:#f7f3e8;color:#0f2c1c;transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(0,0,0,.55)}
+  .lk--solid{background:#cc6b3d;border-color:#cc6b3d;color:#f7f3e8}
+  .lk--solid:hover{background:#f7f3e8;color:#cc6b3d}
+  .lk-i{width:1.4rem;text-align:center;font-size:1rem;color:#4c9a5e}
+  .lk:hover .lk-i{color:#cc6b3d}
+  .lk--solid .lk-i{color:#f7f3e8}
+  .lk-t{flex:1;font-weight:400}
+  .lk-a{font-size:.7rem;opacity:.4}
+  .lk:hover .lk-a{opacity:1}
+</style>
+
+<!-- ===== Boas-vindas ===== -->
+<section id="boasvindas" class="py-20 sm:py-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div class="reveal relative">
+      <img src="img/fachada-anoitecer.jpg" alt="Fachada da Botânico Lavras Novas ao anoitecer, com plantas e luminárias de palha" loading="lazy"
+           class="rounded-[2rem] shadow-2xl w-full object-cover aspect-[4/5]">
+      <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-creme border border-cacau/10 rounded-2xl shadow-xl px-5 py-4 max-w-[15rem]">
+        <p class="font-script text-2xl text-terracota leading-none">na vila</p>
+        <p class="text-xs text-cacau/70 mt-1">a pausa doce depois da trilha, do cavalo ou da cachoeira</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-4">Botânico · Lavras Novas</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Uma chocolateria dentro de um jardim.</h2>
+      <div class="mt-6 space-y-4 text-cacau/75 leading-relaxed">
+        <p>Em plena vila de <strong>Lavras Novas</strong>, o Botânico é uma varanda de madeira coberta por trepadeiras, luminárias de palha e uma parede de cerejeiras. No balcão, uma vitrine com dezenas de bombons e trufas feitos à mão; ao lado, gelatos cremosos e um empório de doces mineiros.</p>
+        <p>É pra chegar sem pressa, montar a sua caixa bombom a bombom e tomar um chocolate quente enquanto o friozinho da serra cai lá fora.</p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm">
+        <span class="rounded-full bg-cremeEsc px-4 py-2"><i class="fa-solid fa-mortar-pestle text-folha"></i> Feito à mão</span>
+        <span class="rounded-full bg-cremeEsc px-4 py-2"><i class="fa-solid fa-leaf text-folha"></i> Cacau selecionado</span>
+        <span class="rounded-full bg-cremeEsc px-4 py-2"><i class="fa-solid fa-ice-cream text-folha"></i> Gelato artesanal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Chocolateria — a vitrine ===== -->
+<section id="chocolateria" class="py-20 sm:py-28 bg-mata text-creme leaf-field relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
+    <div class="reveal max-w-2xl">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folhaClara mb-4">A vitrine</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Bombons &amp; trufas, um por um</h2>
+      <p class="mt-4 text-creme/70">Mais de 40 sabores no balcão. Você escolhe com a pinça, a gente monta a caixa. Role para o lado.</p>
+    </div>
+  </div>
+
+  <div id="vitrine" class="mt-12 flex gap-5 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-72rem)/2))] pb-2">
+    <!-- card -->
+    <article class="snap-start shrink-0 w-72 sm:w-80 rounded-3xl overflow-hidden bg-creme text-cacau shadow-xl">
+      <img src="img/vitrine-bombons.jpg" alt="Bandejas de trufas variadas na vitrine" loading="lazy" class="h-56 w-full object-cover">
+      <div class="p-6">
+        <h3 class="font-display text-2xl font-semibold">Trufas</h3>
+        <p class="text-sm text-cacau/70 mt-2">Cacau, ninho, ao leite, laranja, café e maracujá. Casquinha fina, recheio cremoso.</p>
+        <p class="mt-4 text-sm font-medium text-folha">a partir de R$ 6 <span class="text-cacau/50 font-normal">/ un.</span></p>
+      </div>
+    </article>
+    <article class="snap-start shrink-0 w-72 sm:w-80 rounded-3xl overflow-hidden bg-creme text-cacau shadow-xl">
+      <img src="img/vitrine-bombons-2.jpg" alt="Bombons recheados de chocolate na vitrine" loading="lazy" class="h-56 w-full object-cover">
+      <div class="p-6">
+        <h3 class="font-display text-2xl font-semibold">Bombons recheados</h3>
+        <p class="text-sm text-cacau/70 mt-2">Casca de chocolate nobre com recheios de brigadeiro, pistache, doce de leite e frutas.</p>
+        <p class="mt-4 text-sm font-medium text-folha">a partir de R$ 6 <span class="text-cacau/50 font-normal">/ un.</span></p>
+      </div>
+    </article>
+    <article class="snap-start shrink-0 w-72 sm:w-80 rounded-3xl overflow-hidden bg-creme text-cacau shadow-xl">
+      <img src="img/vitrine-bombons-3.jpg" alt="Drageados e amêndoas cobertas de chocolate" loading="lazy" class="h-56 w-full object-cover">
+      <div class="p-6">
+        <h3 class="font-display text-2xl font-semibold">Drageados</h3>
+        <p class="text-sm text-cacau/70 mt-2">Amêndoa, castanha-de-caju, uva-passa ao rum e café em grão cobertos de chocolate.</p>
+        <p class="mt-4 text-sm font-medium text-folha">R$ 12 <span class="text-cacau/50 font-normal">/ 100g</span></p>
+      </div>
+    </article>
+    <article class="snap-start shrink-0 w-72 sm:w-80 rounded-3xl overflow-hidden bg-creme text-cacau shadow-xl">
+      <img src="img/vitrine-bombons-4.jpg" alt="Bombons de flor de sal" loading="lazy" class="h-56 w-full object-cover">
+      <div class="p-6">
+        <h3 class="font-display text-2xl font-semibold">Flor de sal</h3>
+        <p class="text-sm text-cacau/70 mt-2">Ganache intensa de cacau 70% com um toque de flor de sal. O queridinho da casa.</p>
+        <p class="mt-4 text-sm font-medium text-folha">R$ 7 <span class="text-cacau/50 font-normal">/ un.</span></p>
+      </div>
+    </article>
+    <article class="snap-start shrink-0 w-72 sm:w-80 rounded-3xl overflow-hidden bg-creme text-cacau shadow-xl">
+      <img src="img/escolha-caixa.jpg" alt="Cliente montando uma caixa de bombons" loading="lazy" class="h-56 w-full object-cover">
+      <div class="p-6">
+        <h3 class="font-display text-2xl font-semibold">Monte a sua caixa</h3>
+        <p class="text-sm text-cacau/70 mt-2">4, 6, 9 ou 12 unidades. Você escolhe cada bombom; a gente embala com a estampa Botânico.</p>
+        <p class="mt-4 text-sm font-medium text-folha">caixa de 9 · R$ 55</p>
+      </div>
+    </article>
+    <article class="snap-start shrink-0 w-72 sm:w-80 rounded-3xl overflow-hidden bg-creme text-cacau shadow-xl">
+      <img src="img/chocolateria-parede-2.jpg" alt="Barras e tabletes de chocolate Botânico" loading="lazy" class="h-56 w-full object-cover">
+      <div class="p-6">
+        <h3 class="font-display text-2xl font-semibold">Barras &amp; tabletes</h3>
+        <p class="text-sm text-cacau/70 mt-2">70% puro, ao leite, branco com matcha e a barra recheada da semana.</p>
+        <p class="mt-4 text-sm font-medium text-folha">a partir de R$ 18</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10">
+    <a href="https://wa.me/5531000000000?text=Ol%C3%A1!%20Quero%20encomendar%20uma%20caixa%20de%20bombons%20na%20Bot%C3%A2nico%20Lavras%20Novas."
+       target="_blank" rel="noopener"
+       class="reveal inline-flex items-center gap-3 rounded-full bg-terracota text-creme px-7 py-4 hover:bg-creme hover:text-terracota transition-colors">
+      <i class="fa-brands fa-whatsapp text-lg"></i> Encomendar uma caixa
+    </a>
+  </div>
+</section>
+
+<!-- ===== Gelateria ===== -->
+<section id="gelateria" class="py-20 sm:py-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-4">Gelateria</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Gelato feito no dia</h2>
+      <p class="mt-4 text-cacau/70">Base cremosa, pouco ar, fruta de verdade. A carta muda com a estação — estes são os fixos.</p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #c7e08a, #7fae3c 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Pistache</p>
+        <p class="text-xs text-cacau/55">siciliano, torrado na casa</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #6b4326, #2e1a0e 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Chocolate 70%</p>
+        <p class="text-xs text-cacau/55">cacau belga, intenso</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #e6b06a, #b06f2f 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Doce de leite</p>
+        <p class="text-xs text-cacau/55">mineiro, com raspas</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #f0d98f, #d7a63f 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Flor de sal &amp; caramelo</p>
+        <p class="text-xs text-cacau/55">doce e salgado</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #dce8a6, #a9c66a 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Manjericão &amp; limão</p>
+        <p class="text-xs text-cacau/55">herbal, refrescante</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #f3e6c8, #e0c48c 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Cupuaçu</p>
+        <p class="text-xs text-cacau/55">amazônico, levemente ácido</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #e58f97, #c14f5a 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Morango do campo</p>
+        <p class="text-xs text-cacau/55">só fruta e leite</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="mx-auto w-24 h-24 rounded-full shadow-lg" style="background:radial-gradient(circle at 32% 28%, #f0e7d0, #cbb389 70%)"></div>
+        <p class="mt-3 font-display text-xl font-semibold">Coco queimado</p>
+        <p class="text-xs text-cacau/55">com lascas caramelizadas</p>
+      </div>
+    </div>
+
+    <p class="reveal mt-12 text-sm text-cacau/60"><i class="fa-solid fa-circle-info text-folha"></i> Casquinha, copo ou <em>affogato</em> com um shot de espresso. Peça também o gelato entre dois biscoitos de cacau.</p>
+  </div>
+</section>
+
+<!-- ===== Catálogo completo (WhatsApp) ===== -->
+<section id="catalogo" class="py-20 sm:py-28 bg-cremeEsc">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-4">Catálogo</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Tudo o que sai da nossa vitrine</h2>
+      <p class="mt-4 text-cacau/70">50 itens entre chocolates, doces de leite, compotas, cafés e presentes. Preços de referência — disponibilidade e sabores podem variar, confirme no WhatsApp.</p>
+    </div>
+
+    <div class="reveal mt-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div id="cat-filtros" class="flex flex-wrap gap-2">
+        <button type="button" class="cat-chip is-on" data-filtro="todos">Tudo <span class="opacity-50">50</span></button><button type="button" class="cat-chip" data-filtro="chocolates">Chocolates <span class="opacity-50">20</span></button><button type="button" class="cat-chip" data-filtro="alfajores">Alfajores <span class="opacity-50">5</span></button><button type="button" class="cat-chip" data-filtro="doces">Doces &amp; compotas <span class="opacity-50">6</span></button><button type="button" class="cat-chip" data-filtro="docedeleite">Doces de leite <span class="opacity-50">6</span></button><button type="button" class="cat-chip" data-filtro="cafe">Café &amp; bebidas <span class="opacity-50">5</span></button><button type="button" class="cat-chip" data-filtro="gelateria">Gelateria <span class="opacity-50">1</span></button><button type="button" class="cat-chip" data-filtro="presentes">Presentes &amp; kits <span class="opacity-50">7</span></button>
+      </div>
+      <label class="relative w-full lg:w-72">
+        <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xs text-cacau/40"></i>
+        <input id="cat-busca" type="search" placeholder="Buscar produto ou sabor…" autocomplete="off"
+               class="w-full rounded-full border border-cacau/15 bg-creme py-2.5 pl-10 pr-4 text-sm outline-none transition-colors focus:border-folha">
+      </label>
+    </div>
+
+    <div id="cat-grid" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="docinhos brizon  sabores variados   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/docinhos-brizon-sabores-variados.webp" alt="Docinhos Brizon — sabores variados" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Docinhos Brizon — sabores variados</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 12,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Docinhos%20Brizon%20%E2%80%94%20sabores%20variados" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="kit ouropretana 330ml   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/kit-ouropretana-330ml.webp" alt="Kit Ouropretana 330ml" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Kit Ouropretana 330ml</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 60,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20Ouropretana%20330ml" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="kit ouropretana 500ml   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/kit-ouropretana-de-500ml.webp" alt="Kit Ouropretana 500ml" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Kit Ouropretana 500ml</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 70,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20Ouropretana%20500ml" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="barra recheada de chocolate branco com pistache   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/barra-recheada-de-chocolate-branco-com-pistache.webp" alt="Barra recheada de chocolate branco com pistache" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Barra recheada de chocolate branco com pistache</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 42,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Barra%20recheada%20de%20chocolate%20branco%20com%20pistache" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="barra recheada de chocolate ao leite com pistache   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/barra-recheada-de-chocolate-ao-leite-com-pistach.webp" alt="Barra recheada de chocolate ao leite com pistache" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Barra recheada de chocolate ao leite com pistache</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 42,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Barra%20recheada%20de%20chocolate%20ao%20leite%20com%20pistache" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="alfajores" data-busca="alfajor comanz  cafe   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/alfajor-comanz-cafe.webp" alt="Alfajor Comanz — Café" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Alfajores</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Alfajor Comanz — Café</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 18,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Alfajor%20Comanz%20%E2%80%94%20Caf%C3%A9" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="alfajores" data-busca="alfajor comanz  goiabada   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/alfajor-comanz-goiabada.webp" alt="Alfajor Comanz — Goiabada" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Alfajores</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Alfajor Comanz — Goiabada</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 18,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Alfajor%20Comanz%20%E2%80%94%20Goiabada" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="alfajores" data-busca="alfajor comanz  frutas vermelhas   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/alfajor-comanz-frutas-vermelhas.webp" alt="Alfajor Comanz — Frutas vermelhas" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Alfajores</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Alfajor Comanz — Frutas vermelhas</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 18,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Alfajor%20Comanz%20%E2%80%94%20Frutas%20vermelhas" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="alfajores" data-busca="alfajor comanz tradicional   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/alfajor-comanz-tradicional.webp" alt="Alfajor Comanz tradicional" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Alfajores</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Alfajor Comanz tradicional</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 18,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Alfajor%20Comanz%20tradicional" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="alfajores" data-busca="alfajor comanz tradicional zero acucar   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/alfajor-comanz-tradicional-zero-acucar.webp" alt="Alfajor Comanz tradicional zero açúcar" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Alfajores</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Alfajor Comanz tradicional zero açúcar</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 21,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Alfajor%20Comanz%20tradicional%20zero%20a%C3%A7%C3%BAcar" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="caixa ouro preto sabores disponiveis: 72% cacau ao leite ao leite c/ cafe zero acucar ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/cx-ouro-preto.webp" alt="Caixa Ouro Preto" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Caixa Ouro Preto</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">72% cacau</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Ao leite</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Ao leite c/ café</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Zero açúcar</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 25,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Caixa%20Ouro%20Preto" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cafe" data-busca="drip coffee   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/dripe-coffe.webp" alt="Drip coffee" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Café &amp; bebidas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Drip coffee</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 8,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Drip%20coffee" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="lingua de gato ao leite, zero acucar e branco.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/lingua-de-gato.webp" alt="Língua de gato" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Língua de gato</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Ao leite, zero açúcar e branco.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 25,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20L%C3%ADngua%20de%20gato" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="cocada cremosa conquista   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/cocada-cremosa-conquista.webp" alt="Cocada cremosa Conquista" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Cocada cremosa Conquista</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 45,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Cocada%20cremosa%20Conquista" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="doces na palha sabores disponiveis: tradicional ao leite cafe gengibre chocolate goiaba ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/doces-na-palha.webp" alt="Doces na palha" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Doces na palha</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Tradicional ao leite</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Café</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Gengibre</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Chocolate</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Goiaba</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 25,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Doces%20na%20palha" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="compotas sabores disponiveis: figo em calda goiaba em calda goiaba cremosa frutas mistas personalizadas laranja da terra em calda jabuticaba em calda compota 680g compota 320g">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/compotas.webp" alt="Compotas" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Compotas</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Figo em calda</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Goiaba em calda</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Goiaba cremosa</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Frutas mistas personalizadas</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Laranja da terra em calda</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Jabuticaba em calda</li>
+          </ul>
+          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
+            <div class="flex justify-between gap-3"><dt>Compota 680g</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 56,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Compota 320g</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 32,00</dd></div>
+          </dl>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 32,00</span></p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Compotas" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="docinhos 100g sabores disponiveis: bala de leite com nozes bala de leite beijinho cajuzinho napolitano casadinho doce de leite doce de leite com cafe ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/docinhos-100g.webp" alt="Docinhos 100g" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Docinhos 100g</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Bala de leite com nozes</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Bala de leite</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Beijinho</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Cajuzinho</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Napolitano</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Casadinho</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Doce de leite</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Doce de leite com café</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 12,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Docinhos%20100g" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="kit maquiagem ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/kit-maquiagem-ao-leite.webp" alt="Kit maquiagem ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Kit maquiagem ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 40,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20maquiagem%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="bisnaga personagens sabor brigadeiro, personagens variados.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/bisnaga-personagens.webp" alt="Bisnaga personagens" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Bisnaga personagens</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabor brigadeiro, personagens variados.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 14,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Bisnaga%20personagens" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="smartphone ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/smartphone-ao-leite.webp" alt="Smartphone ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Smartphone ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 25,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Smartphone%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="tabletinho mensagem mensagens disponiveis: te amo! porcao de carinho saudade obrigado(a)! felicidade ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/tabletinho-mensagem.webp" alt="Tabletinho mensagem" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Tabletinho mensagem</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Mensagens disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Te amo!</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Porção de carinho</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Saudade</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Obrigado(a)!</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Felicidade</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 9,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Tabletinho%20mensagem" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cafe" data-busca="pacote de chocolate quente   chocolate quente 200g chocolate quente monodose">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/pacote-de-chocolate-quente.webp" alt="Pacote de chocolate quente" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Café &amp; bebidas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Pacote de chocolate quente</h3>
+          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
+            <div class="flex justify-between gap-3"><dt>Chocolate quente 200g</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 35,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Chocolate quente monodose</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 8,00</dd></div>
+          </dl>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 8,00</span></p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Pacote%20de%20chocolate%20quente" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="kit ferramentas   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/kit-ferramentas.webp" alt="Kit ferramentas" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Kit ferramentas</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 35,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20ferramentas" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="docedeleite" data-busca="doce de leite rocca   rocca tradicional rocca com pistache rocca com coco rocca com cafe rocca com avela rocca baby pistache rocca baby coco rocca baby cafe rocca baby avela rocca baby tradicional">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/doces-de-leite-rocca.webp" alt="Doce de leite Rocca" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces de leite</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Doce de leite Rocca</h3>
+          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
+            <div class="flex justify-between gap-3"><dt>Rocca tradicional</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 40,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca com pistache</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 50,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca com coco</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 40,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca com café</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 40,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca com avelã</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 46,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca baby pistache</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 15,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca baby coco</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 13,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca baby café</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 13,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca baby avelã</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 13,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Rocca baby tradicional</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 13,00</dd></div>
+          </dl>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 13,00</span></p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Doce%20de%20leite%20Rocca" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="docedeleite" data-busca="doce de leite natomatto produzido com leite de bufala e apenas 8% de acucar.  natomatto 400g natomatto baby">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/doce-de-leite-natomatto.webp" alt="Doce de leite Natomatto" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces de leite</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Doce de leite Natomatto</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Produzido com leite de búfala e apenas 8% de açúcar.</p>
+          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
+            <div class="flex justify-between gap-3"><dt>Natomatto 400g</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 49,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Natomatto baby</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 16,00</dd></div>
+          </dl>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 16,00</span></p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Doce%20de%20leite%20Natomatto" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cafe" data-busca="pacote de cha sabores disponiveis: hibisco, laranja e banana.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/pacote-de-cha.webp" alt="Pacote de chá" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Café &amp; bebidas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Pacote de chá</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis: hibisco, laranja e banana.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 20,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Pacote%20de%20ch%C3%A1" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="brownie recheado sabores: creme de avela, ninho, ninho com nutella, doce de leite e pistache  consultar disponibilidade.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/brownie-recheado.webp" alt="Brownie recheado" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Brownie recheado</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores: creme de avelã, ninho, ninho com Nutella, doce de leite e pistache — consultar disponibilidade.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 16,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Brownie%20recheado" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="celular ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/celular-ao-leite.webp" alt="Celular ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Celular ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 14,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Celular%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="mini game   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/mini-game.webp" alt="Mini game" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Mini game</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 24,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Mini%20game" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="fusca ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/fusca-ao-leite.webp" alt="Fusca ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Fusca ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 46,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Fusca%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="canecas personalizadas ouro preto   caneca media caneca grande">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/canecas-personalizadas-ouro-preto.webp" alt="Canecas personalizadas “Ouro Preto”" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Canecas personalizadas “Ouro Preto”</h3>
+          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
+            <div class="flex justify-between gap-3"><dt>Caneca média</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 25,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Caneca grande</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 38,00</dd></div>
+          </dl>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 25,00</span></p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Canecas%20personalizadas%20%E2%80%9COuro%20Preto%E2%80%9D" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="lata personalizada botanico   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/lata-personalizada-botanico.webp" alt="Lata personalizada “Botânico”" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Lata personalizada “Botânico”</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 35,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Lata%20personalizada%20%E2%80%9CBot%C3%A2nico%E2%80%9D" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="rosa ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/rosa-ao-leite.webp" alt="Rosa ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Rosa ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 15,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Rosa%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="caixas personalizadas botanico   caixa p caixa m caixa g">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/caixas-personalizadas-botanico.webp" alt="Caixas personalizadas “Botânico”" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Caixas personalizadas “Botânico”</h3>
+          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
+            <div class="flex justify-between gap-3"><dt>Caixa P</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 6,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Caixa M</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 7,00</dd></div>
+            <div class="flex justify-between gap-3"><dt>Caixa G</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 8,00</dd></div>
+          </dl>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 6,00</span></p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Caixas%20personalizadas%20%E2%80%9CBot%C3%A2nico%E2%80%9D" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="trufa de pistache ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/trufa-de-pistache-ao-leite.webp" alt="Trufa de pistache ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Trufa de pistache ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 11,50</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Trufa%20de%20pistache%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="trufas sabores disponiveis: cereja maracuja avela cafe coco tradicional ao leite ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/trufas.webp" alt="Trufas" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Trufas</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Cereja</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Maracujá</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Avelã</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Café</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Coco</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Tradicional ao leite</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 9,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Trufas" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="docedeleite" data-busca="balas de doce de leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/balas-de-doce-de-leite.webp" alt="Balas de doce de leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces de leite</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Balas de doce de leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 6,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Balas%20de%20doce%20de%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="saquinhos sem lactose, sem gluten, sem acucar e 72% sabores disponiveis: castanha de caju uva passa damasco banana amendoa ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/saquinhos-sem-lactose-sem-gluten-sem-acucar-e-72.webp" alt="Saquinhos sem lactose, sem glúten, sem açúcar e 72%" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Saquinhos sem lactose, sem glúten, sem açúcar e 72%</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Castanha de caju</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Uva passa</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Damasco</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Banana</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Amêndoa</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 23,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Saquinhos%20sem%20lactose%2C%20sem%20gl%C3%BAten%2C%20sem%20a%C3%A7%C3%BAcar%20e%2072%25" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="tabletes 55g sabores disponiveis: castanha de caju branco crocante branco puro nozes rajado ao leite crocante ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/tabletes-55g.webp" alt="Tabletes 55g" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Tabletes 55g</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Castanha de caju</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Branco crocante</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Branco puro</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Nozes</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Rajado</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Ao leite crocante</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 15,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Tabletes%2055g" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="barras recheadas sabores disponiveis: meio amargo morango maracuja nozes brigadeiro doce de leite nutella coco ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/barras-recheadas.webp" alt="Barras recheadas" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Barras recheadas</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Sabores disponíveis:</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Meio amargo</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Morango</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Maracujá</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Nozes</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Brigadeiro</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Doce de leite</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Nutella</li>
+            <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Coco</li>
+          </ul>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 29,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Barras%20recheadas" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="chocolate a quilo r$ 29,90 a cada 100g.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/chocolate-kg.webp" alt="Chocolate a quilo" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Chocolate a quilo</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">R$ 29,90 a cada 100g.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 29,90</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Chocolate%20a%20quilo" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="gelateria" data-busca="gelato a quilo r$ 15,90 a cada 100g. self service.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/gelato-kg.webp" alt="Gelato a quilo" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Gelateria</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Gelato a quilo</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">R$ 15,90 a cada 100g. Self service.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 15,90</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Gelato%20a%20quilo" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="coracao recheado de brigadeiro   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/coracao-recheado-de-brigadeiro.webp" alt="Coração recheado de brigadeiro" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Coração recheado de brigadeiro</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 20,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Cora%C3%A7%C3%A3o%20recheado%20de%20brigadeiro" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="kit hello kitty ao leite   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/kit-hello-kitty-ao-leite.webp" alt="Kit Hello Kitty ao leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Kit Hello Kitty ao leite</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 57,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20Hello%20Kitty%20ao%20leite" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cafe" data-busca="cappuccino premium monodose   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/cappuccino-premium-monodose.webp" alt="Cappuccino premium monodose" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Café &amp; bebidas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Cappuccino premium monodose</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 8,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Cappuccino%20premium%20monodose" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cafe" data-busca="cafe especial botanico  moido e em graos com notas de chocolate intenso.  ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/cafe-especial-botanico-moido-e-em-graos.webp" alt="Café especial Botânico — moído e em grãos" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Café &amp; bebidas</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Café especial Botânico — moído e em grãos</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Com notas de chocolate intenso.</p>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 50,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Caf%C3%A9%20especial%20Bot%C3%A2nico%20%E2%80%94%20mo%C3%ADdo%20e%20em%20gr%C3%A3os" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="tablete de chocolate com pimenta   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/tablete-chocolate-com-pimenta.webp" alt="Tablete de chocolate com pimenta" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Chocolates</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Tablete de chocolate com pimenta</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 9,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Tablete%20de%20chocolate%20com%20pimenta" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="docedeleite" data-busca="doce de leite conquista  com limao   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/doce-de-leite-conquista-com-limao.webp" alt="Doce de leite Conquista — com limão" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces de leite</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Doce de leite Conquista — com limão</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 45,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Doce%20de%20leite%20Conquista%20%E2%80%94%20com%20lim%C3%A3o" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="docedeleite" data-busca="bala de doce de leite conquista   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/bala-de-doce-de-leite-conquista.webp" alt="Bala de doce de leite Conquista" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces de leite</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Bala de doce de leite Conquista</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 42,50</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Bala%20de%20doce%20de%20leite%20Conquista" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="docedeleite" data-busca="doce de leite conquista  tipo argentino   ">
+        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
+          <img src="img/produtos/doce-de-leite-conquista-tipo-argentino.webp" alt="Doce de leite Conquista — tipo argentino" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces de leite</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-xl font-semibold leading-tight">Doce de leite Conquista — tipo argentino</h3>
+          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+            <p class="font-display text-2xl font-semibold text-folha">R$ 45,00</p>
+            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Doce%20de%20leite%20Conquista%20%E2%80%94%20tipo%20argentino" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p id="cat-vazio" class="mt-12 hidden text-center text-sm text-cacau/60">Nada encontrado com esse termo. Tente outro sabor — ou chame a gente no WhatsApp.</p>
+
+    <div class="mt-14 rounded-3xl bg-mata px-6 py-10 text-center text-creme sm:px-10">
+      <p class="font-script text-3xl text-rosa">encomendas</p>
+      <h3 class="mt-2 font-display text-2xl font-semibold sm:text-3xl">Monta a sua caixa do jeito que quiser</h3>
+      <p class="mx-auto mt-3 max-w-xl text-sm text-creme/70">Caixas personalizadas, lembrancinhas e kits corporativos. Manda a ideia que a gente monta o orçamento.</p>
+      <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Queria%20montar%20uma%20encomenda%20personalizada." target="_blank" rel="noopener"
+         class="mt-6 inline-flex items-center gap-3 rounded-full bg-terracota px-7 py-3.5 text-creme transition-colors hover:bg-creme hover:text-terracota">
+        <i class="fa-brands fa-whatsapp text-lg"></i> Falar com a loja
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cat-chip { border:1px solid rgba(58,36,24,.15); background:#f7f3e8; border-radius:9999px;
+               padding:.5rem 1rem; font-size:.8rem; transition:all .2s ease; }
+  .cat-chip:hover { border-color:#2f6b3f; color:#2f6b3f; }
+  .cat-chip.is-on { background:#0f2c1c; border-color:#0f2c1c; color:#f7f3e8; }
+  .prod-card.is-hidden { display:none; }
+</style>
+
+<script>
+(function () {
+  const grid = document.getElementById('cat-grid');
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.prod-card'));
+  const chips = Array.from(document.querySelectorAll('#cat-filtros .cat-chip'));
+  const busca = document.getElementById('cat-busca');
+  const vazio = document.getElementById('cat-vazio');
+  let filtro = 'todos';
+
+  const semAcento = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+  function aplicar() {
+    const termo = semAcento((busca.value || '').trim());
+    let visiveis = 0;
+    cards.forEach(c => {
+      const okCat = filtro === 'todos' || c.dataset.cat === filtro;
+      const okTermo = !termo || (c.dataset.busca || '').includes(termo);
+      const mostrar = okCat && okTermo;
+      c.classList.toggle('is-hidden', !mostrar);
+      if (mostrar) visiveis++;
+    });
+    vazio.classList.toggle('hidden', visiveis > 0);
+  }
+
+  chips.forEach(ch => ch.addEventListener('click', () => {
+    chips.forEach(o => o.classList.remove('is-on'));
+    ch.classList.add('is-on');
+    filtro = ch.dataset.filtro;
+    aplicar();
+  }));
+  busca.addEventListener('input', aplicar);
+})();
+</script>
+
+<!-- ===== Presentes & caixas ===== -->
+<section class="py-20 sm:py-28 bg-cremeEsc">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal order-2 lg:order-1">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-4">Presentes</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Leve a serra na bagagem</h2>
+      <div class="mt-6 space-y-4 text-cacau/75 leading-relaxed">
+        <p>Nossas caixas presente vêm com a estampa botânica da casa — folhas, estrelícias e cacau. Do bombom avulso à caixa de 12, tudo embrulhado na hora.</p>
+        <p>Tem também a <strong>sacola de tecido Botânico</strong>, o kit chocolate quente e cestas para presentear pousada, anfitrião ou aquele cliente especial.</p>
+      </div>
+      <div class="mt-8 grid grid-cols-3 gap-4 text-center text-sm">
+        <div class="rounded-2xl bg-creme p-4"><i class="fa-solid fa-box-open text-folha text-xl"></i><p class="mt-2">Caixas 4–12</p></div>
+        <div class="rounded-2xl bg-creme p-4"><i class="fa-solid fa-bag-shopping text-folha text-xl"></i><p class="mt-2">Sacola de tecido</p></div>
+        <div class="rounded-2xl bg-creme p-4"><i class="fa-solid fa-gift text-folha text-xl"></i><p class="mt-2">Cestas &amp; kits</p></div>
+      </div>
+    </div>
+    <div class="reveal order-1 lg:order-2 grid grid-cols-2 gap-4">
+      <img src="img/escolha-caixa-2.jpg" alt="Caixa de bombons com estampa botânica" loading="lazy" class="rounded-2xl shadow-xl w-full h-72 object-cover translate-y-6">
+      <img src="img/botanico-sacola.jpg" alt="Sacola de tecido Botânico chocolateria e gelateria" loading="lazy" class="rounded-2xl shadow-xl w-full h-72 object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- ===== Empório ===== -->
+<section class="py-20 sm:py-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <img src="img/doces-conserva.jpg" alt="Prateleira com compotas e doces artesanais em conserva" loading="lazy" class="rounded-[2rem] shadow-2xl w-full object-cover aspect-[4/3]">
+    </div>
+    <div class="reveal">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-4">Empório Botânico</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Doçaria mineira, de produtor</h2>
+      <div class="mt-6 space-y-4 text-cacau/75 leading-relaxed">
+        <p>Além do chocolate, a loja é um pequeno empório: compotas e doces de tacho artesanais, balas de leite, goiabada cascão, licores e cachaças envelhecidas da região.</p>
+        <p>Tudo escolhido de pequenos produtores das montanhas de Minas — pra levar pra casa ou provar ali mesmo com um café.</p>
+      </div>
+      <ul class="mt-8 grid grid-cols-2 gap-3 text-sm text-cacau/80">
+        <li><i class="fa-solid fa-jar text-folha"></i> Compotas &amp; doces de tacho</li>
+        <li><i class="fa-solid fa-candy-cane text-folha"></i> Balas de leite mineiras</li>
+        <li><i class="fa-solid fa-wine-bottle text-folha"></i> Licores &amp; cachaças</li>
+        <li><i class="fa-solid fa-mug-saucer text-folha"></i> Café coado na hora</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== O espaço ===== -->
+<section id="espaco" class="py-20 sm:py-28 bg-mata text-creme">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folhaClara mb-4">O espaço</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Uma varanda entre folhas</h2>
+      <p class="mt-4 text-creme/70">Madeira, palha, cerejeiras e o silêncio da vila. De dia pro café; ao entardecer, com as luminárias acesas.</p>
+    </div>
+    <div class="reveal mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <img src="img/varanda-cerejeira.jpg" alt="Varanda coberta com parede de cerejeiras" loading="lazy" class="rounded-2xl object-cover h-full w-full aspect-[3/4] col-span-2 row-span-2">
+      <img src="img/fachada-arvore.jpg" alt="Fachada da Botânico vista por entre uma árvore" loading="lazy" class="rounded-2xl object-cover h-full w-full aspect-square">
+      <img src="img/loja-prateleira.jpg" alt="Prateleiras internas com produtos e sacola Botânico" loading="lazy" class="rounded-2xl object-cover h-full w-full aspect-square">
+      <img src="img/fachada-rua.jpg" alt="Botânico Lavras Novas vista da rua de pedra" loading="lazy" class="rounded-2xl object-cover h-full w-full aspect-[2/1] col-span-2">
+      <img src="img/varanda-cerejeira-2.jpg" alt="Detalhe da varanda com banco verde e luminárias de palha" loading="lazy" class="rounded-2xl object-cover h-full w-full aspect-square">
+      <img src="img/chocolateria-parede.jpg" alt="Parede com o letreiro Chocolateria e a vitrine de bombons" loading="lazy" class="rounded-2xl object-cover h-full w-full aspect-square">
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contato ===== -->
+<section id="contato" class="py-20 sm:py-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12">
+    <div class="reveal">
+      <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-4">Onde nos encontrar</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Botânico Lavras Novas</h2>
+
+      <dl class="mt-8 space-y-5 text-cacau/80">
+        <div class="flex gap-4">
+          <i class="fa-solid fa-location-dot text-folha mt-1"></i>
+          <div>
+            <dt class="font-medium">Endereço</dt>
+            <dd class="text-sm">Vila de Lavras Novas — Ouro Preto/MG<br><span class="text-cacau/50">[ conferir número e rua ]</span></dd>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <i class="fa-solid fa-clock text-folha mt-1"></i>
+          <div>
+            <dt class="font-medium">Horário</dt>
+            <dd class="text-sm">Quarta a segunda · 12h às 21h<br><span class="text-cacau/50">[ confirmar horário real ]</span></dd>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <i class="fa-brands fa-instagram text-folha mt-1"></i>
+          <div>
+            <dt class="font-medium">Redes</dt>
+            <dd class="text-sm"><a href="https://instagram.com/botanico.lavrasnovas" target="_blank" rel="noopener" class="underline hover:text-folha">@botanico.lavrasnovas</a></dd>
+          </div>
+        </div>
+      </dl>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="https://wa.me/5531000000000" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-folha text-creme px-6 py-3 hover:bg-mata transition-colors"><i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Bot%C3%A2nico%20Lavras%20Novas%20Ouro%20Preto" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-cacau/20 px-6 py-3 hover:border-folha hover:text-folha transition-colors"><i class="fa-solid fa-map-location-dot"></i> Abrir no mapa</a>
+      </div>
+    </div>
+
+    <div class="reveal rounded-[2rem] overflow-hidden shadow-2xl min-h-[22rem] bg-cremeEsc">
+      <iframe title="Mapa — Lavras Novas, Ouro Preto"
+        src="https://www.google.com/maps?q=Lavras+Novas,+Ouro+Preto+-+MG&output=embed"
+        class="w-full h-full min-h-[22rem] border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="py-20 sm:py-28 bg-cremeEsc">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <h2 class="reveal font-display text-4xl sm:text-5xl font-semibold text-center">Perguntas frequentes</h2>
+    <div class="mt-12 space-y-3">
+      <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+          <span class="font-medium">Precisa reservar mesa?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
+        </button>
+        <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">O atendimento é por ordem de chegada. Para grupos grandes ou eventos, fale com a gente antes pelo WhatsApp que a gente organiza.</p></div></div>
+      </div>
+      <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+          <span class="font-medium">Fazem caixas para presente e eventos?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
+        </button>
+        <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">Sim. Você monta a sua caixa na loja ou encomenda pelo WhatsApp — casamentos, aniversários, lembrancinhas e cestas corporativas.</p></div></div>
+      </div>
+      <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+          <span class="font-medium">O chocolate aguenta a viagem de volta?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
+        </button>
+        <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">Embalamos para transporte. Em dias quentes, peça a caixa térmica no balcão e evite deixar o carro no sol.</p></div></div>
+      </div>
+      <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+          <span class="font-medium">Têm opções sem lactose ou sem açúcar?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
+        </button>
+        <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">Alguns bombons, barras e gelatos têm versão sem lactose ou adoçados sem açúcar. Pergunte no balcão quais estão disponíveis no dia.</p></div></div>
+      </div>
+      <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+          <span class="font-medium">Quais as formas de pagamento?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
+        </button>
+        <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">Pix, débito e crédito. Para encomendas, combinamos o sinal pelo WhatsApp.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="bg-mataEsc text-creme/80 pt-16 pb-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid sm:grid-cols-3 gap-10">
+      <div>
+        <img src="img/logo.png" alt="Botânico — chocolateria &amp; gelateria" class="w-48 max-w-full rounded-lg">
+        <p class="mt-4 text-sm text-creme/60 max-w-xs">Bombons e trufas feitos à mão, gelato do dia e doçaria mineira — entre folhas, na serra.</p>
+      </div>
+      <div class="text-sm">
+        <p class="uppercase tracking-[0.3em] text-[0.65rem] text-creme/45 mb-3">Unidades</p>
+        <ul class="space-y-2">
+          <li><a href="ouro-preto.html" class="hover:text-creme transition-colors">Botânico Ouro Preto</a></li>
+          <li><a href="lavras-novas.html" class="text-creme">Botânico Lavras Novas</a></li>
+          <li><a href="index.html" class="text-creme/50 hover:text-creme transition-colors">← trocar unidade</a></li>
+        </ul>
+      </div>
+      <div class="text-sm">
+        <p class="uppercase tracking-[0.3em] text-[0.65rem] text-creme/45 mb-3">Contato</p>
+        <ul class="space-y-2">
+          <li><a href="https://instagram.com/botanico.lavrasnovas" target="_blank" rel="noopener" class="hover:text-creme transition-colors"><i class="fa-brands fa-instagram"></i> @botanico.lavrasnovas</a></li>
+          <li><a href="https://wa.me/5531000000000" target="_blank" rel="noopener" class="hover:text-creme transition-colors"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+          <li class="text-creme/55">Vila de Lavras Novas · Ouro Preto/MG</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-creme/10 text-xs text-creme/40 flex flex-col sm:flex-row gap-2 justify-between">
+      <p>© <span id="ano"></span> Botânico Chocolateria &amp; Gelateria. Todos os direitos reservados.</p>
+      <p>Feito com cacau &amp; folhas 🌿</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ano
+  document.getElementById('ano').textContent = new Date().getFullYear();
+
+  // top bar shadow / condense
+  const bar = document.getElementById('bar');
+  const onScroll = () => bar.firstElementChild.firstElementChild.classList.toggle('shadow-lg', window.scrollY > 20);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+  // reveal on scroll into view, with a failsafe so content is never stuck hidden
+  const reveals = Array.from(document.querySelectorAll('.reveal'));
+  const show = el => el.classList.add('in');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+    setTimeout(() => reveals.forEach(show), 2500);
+  } else {
+    reveals.forEach(show);
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!open) item.classList.add('open');
+    });
+  });
+
+  // drag-to-scroll for the vitrine
+  const v = document.getElementById('vitrine');
+  let down = false, startX, sl;
+  v.addEventListener('pointerdown', e => { down = true; startX = e.pageX; sl = v.scrollLeft; v.setPointerCapture(e.pointerId); });
+  v.addEventListener('pointermove', e => { if (down) v.scrollLeft = sl - (e.pageX - startX); });
+  v.addEventListener('pointerup', () => down = false);
+  v.addEventListener('pointercancel', () => down = false);
+</script>
+
+<!-- ===== Carrinho ===== -->
+<button id="cart-fab" type="button" aria-label="Abrir carrinho"
+  class="hidden fixed bottom-5 right-5 z-[60] items-center gap-2 rounded-full bg-mata text-creme shadow-2xl shadow-black/30 px-5 py-3.5 transition-transform hover:-translate-y-0.5">
+  <i class="fa-solid fa-basket-shopping text-lg"></i>
+  <span class="text-sm font-medium">Carrinho</span>
+  <span id="cart-count" class="ml-1 grid min-w-[1.4rem] h-6 place-items-center rounded-full bg-terracota px-1.5 text-xs font-semibold">0</span>
+</button>
+
+<div id="cart-overlay" class="fixed inset-0 z-[70] bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<aside id="cart-panel" aria-label="Carrinho de compras"
+  class="fixed inset-y-0 right-0 z-[80] flex w-full max-w-md translate-x-full flex-col bg-creme text-cacau shadow-2xl transition-transform duration-300 ease-out">
+  <header class="flex items-center justify-between border-b border-cacau/10 px-5 py-4">
+    <div class="flex items-center gap-2">
+      <i class="fa-solid fa-basket-shopping text-folha"></i>
+      <h2 class="font-display text-xl font-semibold">Seu carrinho</h2>
+    </div>
+    <button id="cart-close" type="button" aria-label="Fechar carrinho" class="grid h-9 w-9 place-items-center rounded-full hover:bg-cacau/5">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </header>
+
+  <div id="cart-empty" class="flex flex-1 flex-col items-center justify-center gap-3 px-6 text-center text-cacau/45">
+    <i class="fa-solid fa-basket-shopping text-3xl"></i>
+    <p class="text-sm leading-relaxed">Seu carrinho está vazio.<br>Adicione produtos do catálogo.</p>
+  </div>
+
+  <div id="cart-items" class="hidden flex-1 overflow-y-auto px-5 py-4 space-y-4"></div>
+
+  <footer class="border-t border-cacau/10 px-5 py-4 space-y-3">
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-cacau/60">Total</span>
+      <span id="cart-total" class="font-display text-2xl font-semibold text-folha">R$ 0,00</span>
+    </div>
+    <a id="cart-checkout" href="#" target="_blank" rel="noopener"
+      class="flex items-center justify-center gap-2 rounded-full bg-folha px-5 py-3.5 text-sm font-medium text-creme transition-colors hover:bg-mata">
+      <i class="fa-brands fa-whatsapp text-base"></i> Finalizar pedido no WhatsApp
+    </a>
+    <p class="text-center text-[0.7rem] text-cacau/45">Pagamento e entrega são combinados na conversa do WhatsApp.</p>
+  </footer>
+</aside>
+
+<script>
+(function () {
+  const grid = document.getElementById('cat-grid');
+  if (!grid) return;
+
+  const UNIDADE = 'Lavras Novas';
+  const WHATS   = '553198502386';
+  const KEY     = 'botanico-carrinho-lavras-novas';
+
+  const brl = n => 'R$ ' + n.toFixed(2).replace('.', ',');
+  const parsePreco = t => {
+    const n = parseFloat((t || '').replace(/[^\d,]/g, '').replace(',', '.'));
+    return isNaN(n) ? 0 : n;
+  };
+  const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  let cart = [];
+  try { cart = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) {} };
+
+  const $items    = document.getElementById('cart-items');
+  const $empty    = document.getElementById('cart-empty');
+  const $total    = document.getElementById('cart-total');
+  const $count    = document.getElementById('cart-count');
+  const $fab      = document.getElementById('cart-fab');
+  const $panel    = document.getElementById('cart-panel');
+  const $overlay  = document.getElementById('cart-overlay');
+  const $checkout = document.getElementById('cart-checkout');
+
+  // --- turn every catalog card into an "add to cart" card ---
+  grid.querySelectorAll('.prod-card').forEach(card => {
+    const nome    = ((card.querySelector('h3') || {}).textContent || '').trim();
+    const precoEl = card.querySelector('p.text-folha');
+    const preco   = parsePreco(precoEl && precoEl.textContent);
+    const imgEl   = card.querySelector('img');
+    const img     = imgEl ? imgEl.getAttribute('src') : '';
+    const id      = slug(nome);
+    if (!id) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-cart inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata';
+    btn.innerHTML = '<i class="fa-solid fa-plus"></i> Adicionar';
+    btn.addEventListener('click', () => add(id, nome, preco, img, btn));
+
+    const link = card.querySelector('a[href*="wa.me"]');
+    if (link) link.replaceWith(btn);
+    else (card.querySelector('.mt-auto') || card).appendChild(btn);
+  });
+
+  const totalItens = () => cart.reduce((s, x) => s + x.qtd, 0);
+  const totalGeral = () => cart.reduce((s, x) => s + x.preco * x.qtd, 0);
+
+  function add(id, nome, preco, img, btn) {
+    const item = cart.find(x => x.id === id);
+    if (item) item.qtd++;
+    else cart.push({ id, nome, preco, img, qtd: 1 });
+    save(); render(); open();
+    if (btn) {
+      const html = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Adicionado';
+      setTimeout(() => { btn.innerHTML = html; }, 1000);
+    }
+  }
+
+  function waLink() {
+    let msg = 'Ola! Meu pedido pelo site da Botanico ' + UNIDADE + ':\n\n';
+    cart.forEach(x => { msg += '• ' + x.qtd + 'x ' + x.nome + ' — ' + brl(x.preco * x.qtd) + '\n'; });
+    msg += '\nTotal: ' + brl(totalGeral());
+    return 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(msg);
+  }
+
+  function render() {
+    $count.textContent = totalItens();
+
+    const vazio = cart.length === 0;
+    $fab.classList.toggle('hidden', vazio);
+    $fab.classList.toggle('inline-flex', !vazio);
+    $empty.classList.toggle('hidden', !vazio);
+    $items.classList.toggle('hidden', vazio);
+
+    $items.innerHTML = '';
+    cart.forEach(x => {
+      const row = document.createElement('div');
+      row.className = 'flex gap-3';
+      row.innerHTML =
+        (x.img ? '<img src="' + esc(x.img) + '" alt="" loading="lazy" class="h-16 w-16 shrink-0 rounded-xl object-cover bg-cremeEsc">' : '') +
+        '<div class="flex-1">' +
+          '<p class="text-sm font-medium leading-snug">' + esc(x.nome) + '</p>' +
+          '<p class="mt-0.5 text-xs text-cacau/55">' + brl(x.preco) + ' un.</p>' +
+          '<div class="mt-2 inline-flex items-center rounded-full border border-cacau/15">' +
+            '<button type="button" data-act="dec" data-id="' + x.id + '" aria-label="Diminuir" class="grid h-7 w-7 place-items-center text-base text-cacau/60 hover:text-folha">−</button>' +
+            '<span class="w-7 text-center text-sm">' + x.qtd + '</span>' +
+            '<button type="button" data-act="inc" data-id="' + x.id + '" aria-label="Aumentar" class="grid h-7 w-7 place-items-center text-base text-cacau/60 hover:text-folha">+</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="flex flex-col items-end justify-between">' +
+          '<button type="button" data-act="del" data-id="' + x.id + '" aria-label="Remover" class="text-cacau/40 hover:text-terracota"><i class="fa-solid fa-trash-can text-xs"></i></button>' +
+          '<p class="font-display text-lg font-semibold text-folha">' + brl(x.preco * x.qtd) + '</p>' +
+        '</div>';
+      $items.appendChild(row);
+    });
+
+    $total.textContent = brl(totalGeral());
+    $checkout.href = vazio ? '#' : waLink();
+    $checkout.style.opacity = vazio ? '.5' : '';
+    $checkout.style.pointerEvents = vazio ? 'none' : '';
+  }
+
+  $items.addEventListener('click', e => {
+    const b = e.target.closest('button[data-act]');
+    if (!b) return;
+    const x = cart.find(i => i.id === b.dataset.id);
+    if (!x) return;
+    if (b.dataset.act === 'inc') x.qtd++;
+    if (b.dataset.act === 'dec') x.qtd--;
+    if (b.dataset.act === 'del') x.qtd = 0;
+    if (x.qtd <= 0) cart = cart.filter(i => i.id !== x.id);
+    save(); render();
+  });
+
+  function open() {
+    $panel.classList.remove('translate-x-full');
+    $overlay.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    $panel.classList.add('translate-x-full');
+    $overlay.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+  }
+  $fab.addEventListener('click', open);
+  document.getElementById('cart-close').addEventListener('click', close);
+  $overlay.addEventListener('click', close);
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  render();
+})();
+</script>
+
+<script>
+(function () {
+  const boxes = document.querySelectorAll('[data-hours]');
+  if (!boxes.length) return;
+
+  // Domingo … Sábado (Date.getDay() 0-6)
+  const SCHED = [
+    ['09:00', '20:00'],
+    ['09:00', '20:00'],
+    ['09:00', '20:00'],
+    ['09:00', '20:00'],
+    ['09:00', '20:00'],
+    ['09:00', '22:00'],
+    ['09:00', '22:00']
+  ];
+  const DIAS = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+  const toMin = t => { const p = t.split(':'); return (+p[0]) * 60 + (+p[1]); };
+  const VERDE = '#4c9a5e', VERMELHO = '#d9534f', AMARELO = '#e0a72c';
+
+  function estado(now) {
+    const d = now.getDay();
+    const cur = now.getHours() * 60 + now.getMinutes();
+    const ab = toMin(SCHED[d][0]), fe = toMin(SCHED[d][1]);
+
+    if (cur >= ab && cur < fe) {
+      const falta = fe - cur;
+      if (falta <= 30) return { cor: AMARELO, txt: 'Fecha em ' + falta + ' min', sub: 'fecha às ' + SCHED[d][1] };
+      return { cor: VERDE, txt: 'Aberto agora', sub: 'fecha às ' + SCHED[d][1] };
+    }
+    if (cur < ab) {
+      const falta = ab - cur;
+      if (falta <= 30) return { cor: AMARELO, txt: 'Abre em ' + falta + ' min', sub: 'abre às ' + SCHED[d][0] };
+      return { cor: VERMELHO, txt: 'Fechado', sub: 'abre hoje às ' + SCHED[d][0] };
+    }
+    const nd = (d + 1) % 7;
+    return { cor: VERMELHO, txt: 'Fechado', sub: 'abre amanhã às ' + SCHED[nd][0] };
+  }
+
+  const _sty = document.createElement('style');
+  _sty.textContent = '@keyframes hoursPulse{0%{box-shadow:0 0 0 0 var(--pc)}70%{box-shadow:0 0 0 8px rgba(0,0,0,0)}100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}}.hours-dot.pulse{animation:hoursPulse 1.8s ease-out infinite}';
+  document.head.appendChild(_sty);
+
+  function pintar(box) {
+    const s = estado(new Date());
+    const dot = box.querySelector('.hours-dot');
+    const st  = box.querySelector('.hours-status');
+    const sub = box.querySelector('.hours-sub');
+    st.textContent = s.txt;
+    sub.textContent = s.sub;
+    st.style.color = s.cor;
+    dot.style.background = s.cor;
+    const aberto = s.txt === 'Aberto agora';
+    dot.style.setProperty('--pc', s.cor);
+    dot.classList.toggle('pulse', aberto);
+    dot.style.boxShadow = aberto ? '' : '0 0 0 4px ' + s.cor + '33';
+  }
+
+  boxes.forEach(box => {
+    const ul = box.querySelector('.hours-list ul');
+    const hoje = new Date().getDay();
+    DIAS.forEach((nome, i) => {
+      const li = document.createElement('li');
+      li.className = 'flex justify-between gap-4' + (i === hoje ? ' text-creme font-medium' : '');
+      li.innerHTML = '<span>' + nome + '</span><span>' + SCHED[i][0] + '–' + SCHED[i][1] + '</span>';
+      ul.appendChild(li);
+    });
+    const toggle = box.querySelector('.hours-toggle');
+    const list   = box.querySelector('.hours-list');
+    const caret  = box.querySelector('.hours-caret');
+    toggle.addEventListener('click', () => {
+      const aberto = list.classList.toggle('hidden') === false;
+      caret.style.transform = aberto ? 'rotate(180deg)' : '';
+    });
+    pintar(box);
+    setInterval(() => pintar(box), 60000);
+  });
+})();
+</script>
+
+</body>
+</html>
