@@ -50,17 +50,17 @@
                            acento = amarelo | grafite só para peças fotográficas.
                            (chaves 'green'/'yellow' mantidas como alias internos) */
                         br: {
-                            green: '#5B21B6',      // TURQUESA (protagonista)
-                            greenDark: '#3B0764',  // turquesa sombreado
+                            green: '#5B21B6',      // ROXO (protagonista)
+                            greenDark: '#3B0764',  // roxo sombreado
                             greenLight: '#8B5CF6',
                             turq: '#5B21B6',
                             turqDark: '#3B0764',
-                            yellow: '#FBBF24',     // LARANJA (energia / destaque)
+                            yellow: '#FBBF24',     // dourado (energia / destaque)
                             yellowDark: '#FBBF24',
                             orange: '#FBBF24',
                             orangeDark: '#FBBF24',
-                            blue: '#4C1D95',       // azul médio, um pouco mais escuro (institucional / apoio)
-                            blueDark: '#2E1065',   // azul profundo (contraste / sobriedade)
+                            blue: '#4C1D95',       // roxo médio, um pouco mais escuro (institucional / apoio)
+                            blueDark: '#2E1065',   // roxo profundo (contraste / sobriedade)
                             amber: '#FBBF24',      // amarelo quente - só pequeno acento
                             light: '#F4F5F5',      // branco levemente frio (respiro)
                             paper: '#FCFCFB',      // branco puro (tipografia sobre escuro)
@@ -117,12 +117,10 @@
     </script>
 
     <style>
-        html { scroll-behavior: auto; background-color: #8B5CF6; }
+        html { scroll-behavior: auto; background-color: #5B21B6; }
         body {
-            background-color: #8B5CF6;
-            background-image:
-                linear-gradient(rgba(74,159,169,0.93), rgba(74,159,169,0.96)),
-                url('img/7070.jpeg');
+            background-color: #5B21B6;
+            background-image: none;
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
@@ -170,7 +168,7 @@
             position: relative;
             font-family: 'Poppins', sans-serif; font-weight: 800; line-height: 1;
             font-size: clamp(84px, 22vw, 156px);
-            color: #2E1065;
+            color: #5B21B6;
             text-shadow: 0 6px 0 rgba(0,0,0,0.10), 0 16px 30px rgba(0,0,0,0.15);
             animation: seventyBeat 1.5s ease-in-out infinite, seventyAlt 3s ease-in-out infinite;
         }
@@ -180,7 +178,7 @@
             55%      { transform: scale(0.98) rotate(2deg); }
         }
         @keyframes seventyAlt {
-            0%, 100% { color: #2E1065; text-shadow: 0 6px 0 rgba(0,0,0,0.10), 0 16px 30px rgba(0,0,0,0.15); }
+            0%, 100% { color: #5B21B6; text-shadow: 0 6px 0 rgba(0,0,0,0.10), 0 16px 30px rgba(0,0,0,0.15); }
             50%      { color: #FBBF24; text-shadow: 0 6px 0 rgba(0,0,0,0.12), 0 16px 34px rgba(237,112,38,0.4); }
         }
         .pl-seventy-label {
@@ -228,7 +226,7 @@
             content: '';
             position: absolute; top: 0; left: -75%;
             width: 45%; height: 100%;
-            background: linear-gradient(100deg, transparent, rgba(237,112,38,0.22), transparent);
+            background: linear-gradient(100deg, transparent, rgba(184,166,232,0.35), transparent);
             transform: skewX(-18deg);
             animation: hero70Shine 3.6s ease-in-out 1.4s infinite;
             pointer-events: none;
@@ -389,7 +387,7 @@
             background: linear-gradient(90deg,
                 #5B21B6 0%, #5B21B6 33.33%,
                 #FBBF24 33.33%, #FBBF24 66.66%,
-                #2E1065 66.66%, #2E1065 100%);
+                #5B21B6 66.66%, #5B21B6 100%);
         }
         .flag-stripe-thin { height: 4px; }
 
@@ -475,7 +473,7 @@
         /* --- Botões: características distintas por tipo --- */
         .action-card { border-left: 4px solid #e2e8f0; padding-left: 1.1rem; }
         .ac-green  { border-left-color: #5B21B6; }
-        .ac-blue   { border-left-color: #2E1065; }
+        .ac-blue   { border-left-color: #5B21B6; }
         .ac-yellow { border-left-color: #FBBF24; }
         .ac-zap    { border-left-color: #25D366; }
         /* fundo colorido por tipo (seção 1) */
@@ -484,12 +482,12 @@
         .ac-yellow { background: #FEF3C7; }
         .ac-zap    { background: #eafaf0; }
         .ac-green  .icon-wrapper { background: #ffffff; color: #5B21B6; }
-        .ac-blue   .icon-wrapper { background: #ffffff; color: #2E1065; }
+        .ac-blue   .icon-wrapper { background: #ffffff; color: #5B21B6; }
         .ac-yellow .icon-wrapper { background: #ffffff; color: #FBBF24; }
         .ac-zap    .icon-wrapper { background: #ffffff; color: #1c9e50; }
         .action-card:hover.ac-green  { box-shadow: 0 15px 30px -5px rgba(21,166,174,0.28); border-color: #5B21B6; }
-        .action-card:hover.ac-blue   { box-shadow: 0 15px 30px -5px rgba(14,47,88,0.28);  border-color: #2E1065; }
-        .action-card:hover.ac-blue::after  { background: #2E1065; }
+        .action-card:hover.ac-blue   { box-shadow: 0 15px 30px -5px rgba(14,47,88,0.28);  border-color: #5B21B6; }
+        .action-card:hover.ac-blue::after  { background: #5B21B6; }
         .action-card:hover.ac-yellow { box-shadow: 0 15px 30px -5px rgba(237,112,38,0.30); border-color: #FBBF24; }
         .action-card:hover.ac-yellow::after { background: #FBBF24; }
         .action-card:hover.ac-yellow .text-title,
@@ -503,7 +501,7 @@
             border: 1px solid currentColor; line-height: 1.4;
         }
         .ac-badge--green  { color: #5B21B6; background: #EDE9FE; }
-        .ac-badge--blue   { color: #2E1065; background: #EDE9FE; }
+        .ac-badge--blue   { color: #5B21B6; background: #EDE9FE; }
         .ac-badge--yellow { color: #FBBF24; background: #FEF3C7; }
         .ac-badge--zap    { color: #128C4B; background: #e4f8ec; }
         .ac-badge--red    { color: #3B0764; background: #EDE9FE; }
@@ -515,7 +513,7 @@
             content: '';
             position: absolute;
             top: 0; left: 1.5rem; height: 100%; width: 4px;
-            background: linear-gradient(to bottom, #5B21B6, #FBBF24, #2E1065);
+            background: linear-gradient(to bottom, #5B21B6, #FBBF24, #5B21B6);
             border-radius: 2px;
         }
         @media (min-width: 768px) {
@@ -536,8 +534,8 @@
             padding-top: 0.5rem !important;
             padding-bottom: 0.5rem !important;
         }
-        .navbar-scrolled .nav-link { color: #2E1065 !important; }
-        .navbar-scrolled .logo-text { color: #2E1065 !important; }
+        .navbar-scrolled .nav-link { color: #5B21B6 !important; }
+        .navbar-scrolled .logo-text { color: #5B21B6 !important; }
 
         /* Bandeira ondulando (hero) */
         .waving-flag {
@@ -566,10 +564,19 @@
         .accordion-body.open { max-height: 1200px; }
 
         /* Eixos do Plano de Governo */
-        .eixo-card { transition: box-shadow .25s ease, border-color .25s ease; }
+        .eixo-card { transition: box-shadow .25s ease, transform .25s ease; }
+        .eixo-card:hover { transform: translateY(-2px); }
         .eixo-head { transition: background-color .2s ease; }
         .eixo-head:hover { background-color: #F5F3FF; }
-        .eixo-card:has(.accordion-body.open) { border-color: #5B21B6; box-shadow: 0 10px 30px -12px rgba(21,166,174,0.35); }
+        .eixo-card:has(.accordion-body.open) { box-shadow: 0 14px 34px -14px rgba(91,33,182,0.35); }
+        .eixo-card:has(.accordion-body.open) .eixo-chevron { color: #5B21B6; }
+        .eixo-num {
+            position: absolute; top: -0.5rem; right: 1rem;
+            font-family: 'Poppins', sans-serif; font-weight: 800;
+            font-size: clamp(3.5rem, 8vw, 5.5rem);
+            color: #F4F5F5; line-height: 1;
+            pointer-events: none; z-index: 0; user-select: none;
+        }
         .eixo-list {
             list-style: none;
             margin: 0 1rem 1.1rem;
@@ -702,7 +709,7 @@
         .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
         .ig-cell { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #000; display: block; }
         .ig-cell-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem;
-            background: linear-gradient(135deg, #5B21B6 0%, #3B0764 45%, #2E1065 100%); color: rgba(255,255,255,0.55);
+            background: linear-gradient(135deg, #5B21B6 0%, #3B0764 45%, #5B21B6 100%); color: rgba(255,255,255,0.55);
             font-family: 'Poppins', sans-serif; font-weight: 800; }
         .ig-cell-ph i { font-size: 1.3rem; }
         .ig-cell-ph span { font-size: 1.1rem; }
@@ -722,7 +729,7 @@
         .pg-wrap { max-width: 560px; margin: 0 auto; }
         .pg-stage {
             position: relative; aspect-ratio: 1 / 1; width: 100%;
-            border-radius: 22px; overflow: hidden; background: #2E1065;
+            border-radius: 22px; overflow: hidden; background: #5B21B6;
             box-shadow: 0 40px 70px -25px rgba(14,47,88,0.4), 0 10px 25px -10px rgba(0,0,0,0.15);
         }
         .pg-slide {
@@ -733,11 +740,11 @@
             will-change: clip-path;
         }
         .pg-slide.active { clip-path: circle(150% at 50% 50%); opacity: 1; z-index: 2; }
-        .pg-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #2E1065; z-index: 1; }
+        .pg-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #5B21B6; z-index: 1; }
         .pg-ph {
             position: absolute; inset: 0; z-index: 0;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem;
-            background: linear-gradient(150deg, #5B21B6 0%, #3B0764 45%, #2E1065 100%);
+            background: linear-gradient(150deg, #5B21B6 0%, #3B0764 45%, #5B21B6 100%);
             color: rgba(255,255,255,0.7); text-align: center; padding: 1.5rem;
             font-family: 'Poppins', sans-serif; font-weight: 800;
         }
@@ -769,12 +776,12 @@
             position: relative; width: 38px; height: 38px; border-radius: 50%; overflow: hidden;
             border: 2px solid #cbd5e1; cursor: pointer; opacity: 0.55;
             transition: transform 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
-            padding: 0; background: #2E1065;
+            padding: 0; background: #5B21B6;
         }
         .pg-dot:hover { opacity: 0.9; }
         .pg-dot.active { transform: scale(1.28); border-color: #FBBF24; opacity: 1; }
         .pg-dot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
-        .pg-dot .pg-dot-ph { position: absolute; inset: 0; z-index: 0; background: linear-gradient(135deg, #5B21B6, #2E1065); }
+        .pg-dot .pg-dot-ph { position: absolute; inset: 0; z-index: 0; background: linear-gradient(135deg, #5B21B6, #5B21B6); }
         @media (prefers-reduced-motion: reduce) { .pg-slide { transition: opacity 0.3s ease; } }
 
         /* ===== Efeitos visuais de música (seção do Jingle) ===== */
@@ -960,7 +967,7 @@
             transition: background .2s, box-shadow .2s, transform .1s;
             box-shadow: 0 0 0 0 rgba(36,80,127,0.5);
         }
-        #share-pop .sp-copy:hover { background: #2E1065; box-shadow: 0 0 0 6px rgba(36,80,127,0.15); }
+        #share-pop .sp-copy:hover { background: #5B21B6; box-shadow: 0 0 0 6px rgba(36,80,127,0.15); }
         #share-pop .sp-copy:active { transform: scale(.94); }
 
         #share-pop .sp-actions { margin-top: .8rem; }
@@ -1105,7 +1112,7 @@
             position: absolute; right: calc(100% + 14px); top: 50%;
             transform: translateY(-50%);
             white-space: nowrap;
-            background: #fff; color: #2E1065;
+            background: #fff; color: #5B21B6;
             font-family: 'Poppins', sans-serif; font-weight: 700; font-size: .82rem;
             padding: .5rem .8rem; border-radius: .8rem;
             box-shadow: 0 8px 22px -6px rgba(0,0,0,0.3);
@@ -1235,15 +1242,13 @@
         <header id="mobilizacao" class="relative min-h-[95vh] flex items-center overflow-hidden bg-br-green pt-24 sm:pt-20">
             <!-- Efeitos de Fundo -->
             <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                <!-- Foto do candidato como textura de fundo -->
-                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-45" style="background-image: url('img/7070.jpeg');"></div>
                 <div class="absolute inset-0 bg-gradient-to-b from-br-green/50 via-br-green/45 to-br-green"></div>
                 <div class="absolute -top-40 -right-40 w-96 h-96 bg-br-greenDark rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
                 <div class="absolute top-40 -left-24 w-80 h-80 bg-br-yellow rounded-full mix-blend-multiply filter blur-3xl opacity-25 animate-blob [animation-delay:2s]"></div>
                 <div class="absolute -bottom-24 right-16 w-96 h-96 bg-br-blue rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob [animation-delay:4s]"></div>
                 <!-- Bandeira ondulando -->
                 <div class="waving-flag absolute -bottom-32 -left-32 w-[420px] h-[420px] rounded-[40%] opacity-20 filter blur-2xl"></div>
-                <!-- "70" flutuante -->
+                <!-- "43123" flutuante -->
                 <span class="seventy-ghost text-[220px] sm:text-[340px] top-10 right-4 sm:right-16" data-parallax="0.25" data-rot="-8">43123</span>
                 <span class="seventy-ghost text-[160px] sm:text-[240px] bottom-24 left-2 !text-white/[0.05]" data-parallax="-0.18" data-rot="6">43123</span>
             </div>
@@ -1615,99 +1620,134 @@
         </section>
 
         <!-- 5 COMPROMISSOS PARA 2027-2031 -->
-        <section id="plano" class="py-20 bg-white reveal">
-            <div class="max-w-5xl mx-auto px-4">
+        <section id="plano" class="py-20 bg-br-light reveal relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 relative z-10">
                 <div class="text-center mb-14">
                     <span class="text-br-green font-bold tracking-widest uppercase text-sm">Plano de Governo</span>
                     <h2 class="text-3xl md:text-4xl font-heading font-bold text-br-blue mb-4">5 Compromissos para <span class="text-br-yellow">2027&ndash;2031</span></h2>
                     <div class="flag-stripe max-w-xs mx-auto rounded-full mt-4"></div>
-                    <p class="text-gray-500 max-w-2xl mx-auto mt-5">Cada compromisso começa por um problema real e termina no que dá para fazer. Clique em cada um para abrir.</p>
+                    <p class="text-gray-500 max-w-2xl mx-auto mt-5">Cada compromisso começa por um problema real e termina no que dá para fazer. Toque para abrir.</p>
                 </div>
 
-                <div class="space-y-3" id="eixos-accordion">
+                <div class="space-y-5" id="eixos-accordion">
 
-                    <div class="eixo-card border border-gray-200 rounded-2xl overflow-hidden bg-white">
-                        <button type="button" onclick="toggleEixo(this)" class="eixo-head w-full flex items-center gap-3 p-4 text-left">
-                            <span class="w-11 h-11 rounded-xl bg-br-green text-white flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <div class="eixo-card group relative rounded-2xl overflow-hidden bg-white shadow-sm border-l-4" style="border-color:#5B21B6">
+                        <span class="eixo-num" aria-hidden="true">01</span>
+                        <button type="button" onclick="toggleEixo(this)" class="eixo-head relative w-full flex items-center gap-4 p-5 sm:p-6 text-left">
+                            <span class="w-12 h-12 rounded-full flex items-center justify-center text-lg shrink-0 shadow-sm" style="background:#5B21B6" ><i class="fa-solid fa-graduation-cap text-white"></i></span>
                             <span class="flex-1 min-w-0">
-                                <span class="block text-[11px] font-bold text-br-green uppercase tracking-widest">Compromisso 01</span>
-                                <span class="block text-base sm:text-lg font-heading font-bold text-br-blue leading-tight">Educação</span>
+                                <span class="block text-[11px] font-bold uppercase tracking-[0.2em]" style="color:#5B21B6">Compromisso 01</span>
+                                <span class="block text-xl sm:text-2xl font-heading font-bold text-br-blue leading-tight">Educação</span>
                             </span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 eixo-chevron transition-transform shrink-0"></i>
+                            <i class="fa-solid fa-plus text-gray-400 eixo-chevron transition-transform shrink-0"></i>
                         </button>
                         <div class="accordion-body">
-                            <ul class="eixo-list">
-                                <li><span class="eixo-proj">O problema</span>A relação entre o magistério mineiro e o Governo do Estado volta a se desgastar a cada impasse.</li>
-                                <li><span class="eixo-proj">O que vou fazer</span>Retomar a mediação entre professores e Governo, como já fiz durante a greve do magistério, e manter a pauta da educação com trâmite prioritário na Assembleia.</li>
-                            </ul>
+                            <div class="px-5 sm:px-6 pb-6 space-y-4">
+                                <div class="flex gap-3 rounded-xl bg-gray-50 p-4">
+                                    <i class="fa-solid fa-triangle-exclamation text-gray-400 mt-0.5 shrink-0"></i>
+                                    <p class="text-sm text-gray-600 leading-relaxed"><span class="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">O problema</span>A relação entre o magistério mineiro e o Governo do Estado volta a se desgastar a cada impasse.</p>
+                                </div>
+                                <div class="flex gap-3 rounded-xl p-4" style="background:#F5F3FF">
+                                    <i class="fa-solid fa-circle-check mt-0.5 shrink-0" style="color:#5B21B6"></i>
+                                    <p class="text-sm text-br-blue leading-relaxed font-medium"><span class="block text-[11px] font-bold uppercase tracking-widest mb-1" style="color:#5B21B6">O que vou fazer</span>Retomar a mediação entre professores e Governo, como já fiz durante a greve do magistério, e manter a pauta da educação com trâmite prioritário na Assembleia.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="eixo-card border border-gray-200 rounded-2xl overflow-hidden bg-white">
-                        <button type="button" onclick="toggleEixo(this)" class="eixo-head w-full flex items-center gap-3 p-4 text-left">
-                            <span class="w-11 h-11 rounded-xl bg-br-yellow text-br-blue flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-road"></i></span>
+                    <div class="eixo-card group relative rounded-2xl overflow-hidden bg-white shadow-sm border-l-4" style="border-color:#FBBF24">
+                        <span class="eixo-num" aria-hidden="true">02</span>
+                        <button type="button" onclick="toggleEixo(this)" class="eixo-head relative w-full flex items-center gap-4 p-5 sm:p-6 text-left">
+                            <span class="w-12 h-12 rounded-full flex items-center justify-center text-lg shrink-0 shadow-sm" style="background:#FBBF24"><i class="fa-solid fa-road text-br-blue"></i></span>
                             <span class="flex-1 min-w-0">
-                                <span class="block text-[11px] font-bold text-br-green uppercase tracking-widest">Compromisso 02</span>
-                                <span class="block text-base sm:text-lg font-heading font-bold text-br-blue leading-tight">Infraestrutura regional</span>
+                                <span class="block text-[11px] font-bold uppercase tracking-[0.2em]" style="color:#B45309">Compromisso 02</span>
+                                <span class="block text-xl sm:text-2xl font-heading font-bold text-br-blue leading-tight">Infraestrutura regional</span>
                             </span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 eixo-chevron transition-transform shrink-0"></i>
+                            <i class="fa-solid fa-plus text-gray-400 eixo-chevron transition-transform shrink-0"></i>
                         </button>
                         <div class="accordion-body">
-                            <ul class="eixo-list">
-                                <li><span class="eixo-proj">O problema</span>Rodovias saturadas travam a economia do interior e encarecem tudo o que Minas produz.</li>
-                                <li><span class="eixo-proj">O que vou fazer</span>Seguir na frente parlamentar da duplicação da BR-262, no trecho João Monlevade&ndash;Martins Soares, e na do Rodoanel Metropolitano de BH.</li>
-                            </ul>
+                            <div class="px-5 sm:px-6 pb-6 space-y-4">
+                                <div class="flex gap-3 rounded-xl bg-gray-50 p-4">
+                                    <i class="fa-solid fa-triangle-exclamation text-gray-400 mt-0.5 shrink-0"></i>
+                                    <p class="text-sm text-gray-600 leading-relaxed"><span class="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">O problema</span>Rodovias saturadas travam a economia do interior e encarecem tudo o que Minas produz.</p>
+                                </div>
+                                <div class="flex gap-3 rounded-xl p-4" style="background:#FEF3C7">
+                                    <i class="fa-solid fa-circle-check mt-0.5 shrink-0" style="color:#B45309"></i>
+                                    <p class="text-sm text-br-blue leading-relaxed font-medium"><span class="block text-[11px] font-bold uppercase tracking-widest mb-1" style="color:#B45309">O que vou fazer</span>Seguir na frente parlamentar da duplicação da BR-262, no trecho João Monlevade&ndash;Martins Soares, e na do Rodoanel Metropolitano de BH.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="eixo-card border border-gray-200 rounded-2xl overflow-hidden bg-white">
-                        <button type="button" onclick="toggleEixo(this)" class="eixo-head w-full flex items-center gap-3 p-4 text-left">
-                            <span class="w-11 h-11 rounded-xl bg-br-blue text-white flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-shield-halved"></i></span>
+                    <div class="eixo-card group relative rounded-2xl overflow-hidden bg-white shadow-sm border-l-4" style="border-color:#5B21B6">
+                        <span class="eixo-num" aria-hidden="true">03</span>
+                        <button type="button" onclick="toggleEixo(this)" class="eixo-head relative w-full flex items-center gap-4 p-5 sm:p-6 text-left">
+                            <span class="w-12 h-12 rounded-full flex items-center justify-center text-lg shrink-0 shadow-sm" style="background:#5B21B6"><i class="fa-solid fa-shield-halved text-white"></i></span>
                             <span class="flex-1 min-w-0">
-                                <span class="block text-[11px] font-bold text-br-green uppercase tracking-widest">Compromisso 03</span>
-                                <span class="block text-base sm:text-lg font-heading font-bold text-br-blue leading-tight">Segurança e Guardas Municipais</span>
+                                <span class="block text-[11px] font-bold uppercase tracking-[0.2em]" style="color:#5B21B6">Compromisso 03</span>
+                                <span class="block text-xl sm:text-2xl font-heading font-bold text-br-blue leading-tight">Segurança e Guardas Municipais</span>
                             </span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 eixo-chevron transition-transform shrink-0"></i>
+                            <i class="fa-solid fa-plus text-gray-400 eixo-chevron transition-transform shrink-0"></i>
                         </button>
                         <div class="accordion-body">
-                            <ul class="eixo-list">
-                                <li><span class="eixo-proj">O problema</span>As Guardas Municipais atuam na ponta sem o reconhecimento e a estrutura que o trabalho exige.</li>
-                                <li><span class="eixo-proj">O que vou fazer</span>Manter a frente parlamentar de valorização das Guardas Municipais e o apoio ao Gabinete Militar do Governador e à Defesa Civil (CEDEC).</li>
-                            </ul>
+                            <div class="px-5 sm:px-6 pb-6 space-y-4">
+                                <div class="flex gap-3 rounded-xl bg-gray-50 p-4">
+                                    <i class="fa-solid fa-triangle-exclamation text-gray-400 mt-0.5 shrink-0"></i>
+                                    <p class="text-sm text-gray-600 leading-relaxed"><span class="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">O problema</span>As Guardas Municipais atuam na ponta sem o reconhecimento e a estrutura que o trabalho exige.</p>
+                                </div>
+                                <div class="flex gap-3 rounded-xl p-4" style="background:#F5F3FF">
+                                    <i class="fa-solid fa-circle-check mt-0.5 shrink-0" style="color:#5B21B6"></i>
+                                    <p class="text-sm text-br-blue leading-relaxed font-medium"><span class="block text-[11px] font-bold uppercase tracking-widest mb-1" style="color:#5B21B6">O que vou fazer</span>Manter a frente parlamentar de valorização das Guardas Municipais e o apoio ao Gabinete Militar do Governador e à Defesa Civil (CEDEC).</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="eixo-card border border-gray-200 rounded-2xl overflow-hidden bg-white">
-                        <button type="button" onclick="toggleEixo(this)" class="eixo-head w-full flex items-center gap-3 p-4 text-left">
-                            <span class="w-11 h-11 rounded-xl bg-br-green text-white flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-building-columns"></i></span>
+                    <div class="eixo-card group relative rounded-2xl overflow-hidden bg-white shadow-sm border-l-4" style="border-color:#FBBF24">
+                        <span class="eixo-num" aria-hidden="true">04</span>
+                        <button type="button" onclick="toggleEixo(this)" class="eixo-head relative w-full flex items-center gap-4 p-5 sm:p-6 text-left">
+                            <span class="w-12 h-12 rounded-full flex items-center justify-center text-lg shrink-0 shadow-sm" style="background:#FBBF24"><i class="fa-solid fa-building-columns text-br-blue"></i></span>
                             <span class="flex-1 min-w-0">
-                                <span class="block text-[11px] font-bold text-br-green uppercase tracking-widest">Compromisso 04</span>
-                                <span class="block text-base sm:text-lg font-heading font-bold text-br-blue leading-tight">Modernização da administração pública</span>
+                                <span class="block text-[11px] font-bold uppercase tracking-[0.2em]" style="color:#B45309">Compromisso 04</span>
+                                <span class="block text-xl sm:text-2xl font-heading font-bold text-br-blue leading-tight">Modernização da administração pública</span>
                             </span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 eixo-chevron transition-transform shrink-0"></i>
+                            <i class="fa-solid fa-plus text-gray-400 eixo-chevron transition-transform shrink-0"></i>
                         </button>
                         <div class="accordion-body">
-                            <ul class="eixo-list">
-                                <li><span class="eixo-proj">O problema</span>Convênios e parcerias do Estado se perdem entre etapas, e o município espera demais pelo que já foi acordado.</li>
-                                <li><span class="eixo-proj">O que vou fazer</span>Usar a presidência da Comissão de Administração Pública para acompanhar convênios e parcerias do Estado do começo ao fim.</li>
-                            </ul>
+                            <div class="px-5 sm:px-6 pb-6 space-y-4">
+                                <div class="flex gap-3 rounded-xl bg-gray-50 p-4">
+                                    <i class="fa-solid fa-triangle-exclamation text-gray-400 mt-0.5 shrink-0"></i>
+                                    <p class="text-sm text-gray-600 leading-relaxed"><span class="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">O problema</span>Convênios e parcerias do Estado se perdem entre etapas, e o município espera demais pelo que já foi acordado.</p>
+                                </div>
+                                <div class="flex gap-3 rounded-xl p-4" style="background:#FEF3C7">
+                                    <i class="fa-solid fa-circle-check mt-0.5 shrink-0" style="color:#B45309"></i>
+                                    <p class="text-sm text-br-blue leading-relaxed font-medium"><span class="block text-[11px] font-bold uppercase tracking-widest mb-1" style="color:#B45309">O que vou fazer</span>Usar a presidência da Comissão de Administração Pública para acompanhar convênios e parcerias do Estado do começo ao fim.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="eixo-card border border-gray-200 rounded-2xl overflow-hidden bg-white">
-                        <button type="button" onclick="toggleEixo(this)" class="eixo-head w-full flex items-center gap-3 p-4 text-left">
-                            <span class="w-11 h-11 rounded-xl bg-br-yellow text-br-blue flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-map-location-dot"></i></span>
+                    <div class="eixo-card group relative rounded-2xl overflow-hidden bg-white shadow-sm border-l-4" style="border-color:#5B21B6">
+                        <span class="eixo-num" aria-hidden="true">05</span>
+                        <button type="button" onclick="toggleEixo(this)" class="eixo-head relative w-full flex items-center gap-4 p-5 sm:p-6 text-left">
+                            <span class="w-12 h-12 rounded-full flex items-center justify-center text-lg shrink-0 shadow-sm" style="background:#5B21B6"><i class="fa-solid fa-map-location-dot text-white"></i></span>
                             <span class="flex-1 min-w-0">
-                                <span class="block text-[11px] font-bold text-br-green uppercase tracking-widest">Compromisso 05</span>
-                                <span class="block text-base sm:text-lg font-heading font-bold text-br-blue leading-tight">Voz para as regiões esquecidas</span>
+                                <span class="block text-[11px] font-bold uppercase tracking-[0.2em]" style="color:#5B21B6">Compromisso 05</span>
+                                <span class="block text-xl sm:text-2xl font-heading font-bold text-br-blue leading-tight">Voz para as regiões esquecidas</span>
                             </span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 eixo-chevron transition-transform shrink-0"></i>
+                            <i class="fa-solid fa-plus text-gray-400 eixo-chevron transition-transform shrink-0"></i>
                         </button>
                         <div class="accordion-body">
-                            <ul class="eixo-list">
-                                <li><span class="eixo-proj">O problema</span>Vales inteiros de Minas seguem fora do mapa das decisões tomadas na capital.</li>
-                                <li><span class="eixo-proj">O que vou fazer</span>Levar Rio Doce, Jequitinhonha, Mucuri, Central e Zona da Mata para dentro do debate orçamentário e das comissões que decidem.</li>
-                            </ul>
+                            <div class="px-5 sm:px-6 pb-6 space-y-4">
+                                <div class="flex gap-3 rounded-xl bg-gray-50 p-4">
+                                    <i class="fa-solid fa-triangle-exclamation text-gray-400 mt-0.5 shrink-0"></i>
+                                    <p class="text-sm text-gray-600 leading-relaxed"><span class="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">O problema</span>Vales inteiros de Minas seguem fora do mapa das decisões tomadas na capital.</p>
+                                </div>
+                                <div class="flex gap-3 rounded-xl p-4" style="background:#F5F3FF">
+                                    <i class="fa-solid fa-circle-check mt-0.5 shrink-0" style="color:#5B21B6"></i>
+                                    <p class="text-sm text-br-blue leading-relaxed font-medium"><span class="block text-[11px] font-bold uppercase tracking-widest mb-1" style="color:#5B21B6">O que vou fazer</span>Levar Rio Doce, Jequitinhonha, Mucuri, Central e Zona da Mata para dentro do debate orçamentário e das comissões que decidem.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1808,6 +1848,48 @@
             </div>
         </section>
 
+        <!-- CARTÃO NFC -->
+        <section id="cartao-nfc" class="py-20 bg-white reveal relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-14">
+                    <span class="text-br-green font-bold tracking-widest uppercase text-sm">Tecnologia</span>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-br-blue mb-4">Como funciona o <span style="color:#8B5CF6">Cartão NFC</span></h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto mt-3">Este site também vive dentro de um cartão físico. É só aproximar do celular para abrir — sem aplicativo, sem QR code.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="relative">
+                        <div class="absolute -inset-3 rounded-3xl opacity-30 blur-lg" style="background:linear-gradient(135deg,#8B5CF6,#8B5CF6)"></div>
+                        <img src="img/eacf9996-dc09-4068-8443-7409a7f48c38.png" alt="Cartão NFC de Adalclever Lopes 43123" class="relative w-full rounded-2xl shadow-2xl border-4 border-white">
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-lg font-heading font-bold text-white" style="background:#5B21B6">1</span>
+                            <div>
+                                <h3 class="font-heading font-bold text-br-blue">Aproxime o celular</h3>
+                                <p class="text-gray-600 text-sm mt-1">Encoste o celular no cartão por 1 segundo. A tecnologia NFC &mdash; a mesma dos pagamentos por aproximação &mdash; transmite o link automaticamente.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-lg font-heading font-bold text-white" style="background:#5B21B6">2</span>
+                            <div>
+                                <h3 class="font-heading font-bold text-br-blue">O site abre na hora</h3>
+                                <p class="text-gray-600 text-sm mt-1">O navegador do celular abre esta página sozinho, sem precisar instalar nenhum aplicativo.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-lg font-heading font-bold text-white" style="background:#5B21B6">3</span>
+                            <div>
+                                <h3 class="font-heading font-bold text-br-blue">Compartilhe e leve adiante</h3>
+                                <p class="text-gray-600 text-sm mt-1">Peça para a pessoa encostar o próprio celular no mesmo cartão e repita: é assim que a mensagem chega mais longe.</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-400 pt-2">Compatível com a maioria dos celulares Android e iPhone (a partir do iOS 14) com NFC ativado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -2282,7 +2364,7 @@
             canvas.width = W * DPR; canvas.height = H * DPR;
             ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-            const colors = ['#5B21B6', '#FBBF24', '#4C1D95', '#2E1065', '#FBBF24', '#FCFCFB'];
+            const colors = ['#5B21B6', '#FBBF24', '#4C1D95', '#5B21B6', '#FBBF24', '#FCFCFB'];
             let ox = W / 2, oy = H * 0.38;
             if (e && (e.clientX || e.clientY)) { ox = e.clientX; oy = e.clientY; }
 
@@ -2344,10 +2426,10 @@
             const chevron = btn.querySelector('.eixo-chevron');
             const isOpen = body.classList.contains('open');
             document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
-            document.querySelectorAll('.eixo-chevron').forEach(c => c.classList.remove('rotate-180'));
+            document.querySelectorAll('.eixo-chevron').forEach(c => c.classList.remove('rotate-45'));
             if (!isOpen) {
                 body.classList.add('open');
-                chevron.classList.add('rotate-180');
+                chevron.classList.add('rotate-45');
             }
         }
 
