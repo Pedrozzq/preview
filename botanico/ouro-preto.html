@@ -47,8 +47,10 @@ tailwind.config = {
   .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
   .faq-item.open .faq-answer { grid-template-rows: 1fr; }
   .faq-item.open .faq-ico { transform: rotate(45deg); }
-  .lk{display:flex;align-items:center;gap:.9rem;width:100%;border:1px solid rgba(247,243,232,.22);
-      background:rgba(247,243,232,.05);border-radius:9999px;padding:.9rem 1.15rem;font-size:.9rem;transition:all .2s ease}
+  .lk{display:flex;align-items:center;gap:.9rem;width:100%;border:1px solid rgba(247,243,232,.45);
+      background:rgba(15,44,28,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      border-radius:9999px;padding:.9rem 1.15rem;font-size:.9rem;
+      box-shadow:0 8px 20px -10px rgba(0,0,0,.6);transition:all .2s ease}
   .lk:hover{background:#f7f3e8;color:#0f2c1c;transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(0,0,0,.55)}
   .lk--solid{background:#cc6b3d;border-color:#cc6b3d;color:#f7f3e8}
   .lk--solid:hover{background:#f7f3e8;color:#cc6b3d}
@@ -128,7 +130,7 @@ tailwind.config = {
       <a href="https://instagram.com/botanico.ouropreto" target="_blank" rel="noopener"
          class="lk group"><i class="fa-brands fa-instagram lk-i"></i><span class="lk-t">Instagram @botanico.ouropreto</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
 
-      <a href="https://www.google.com/maps/search/?api=1&query=Bot%C3%A2nico%20Chocolateria%20Ouro%20Preto" target="_blank" rel="noopener"
+      <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener"
          class="lk group"><i class="fa-solid fa-map-location-dot lk-i"></i><span class="lk-t">Como chegar · Google Maps</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
 
       <a href="https://www.google.com/search?q=botanico+ouro+preto&oq=botanico+ouro+preto&sourceid=chrome&ie=UTF-8#lrd=0xa40ba7ea9f19f1:0xc45ae88a19cff925,3,,,," target="_blank" rel="noopener"
@@ -1361,14 +1363,14 @@ tailwind.config = {
           <i class="fa-solid fa-location-dot text-folha mt-1"></i>
           <div>
             <dt class="font-medium">Endereço</dt>
-            <dd class="text-sm">Centro Histórico — Ouro Preto/MG<br><span class="text-cacau/50">[ conferir rua e número ]</span></dd>
+            <dd class="text-sm">Rua Conde de Bobadela, 26 — Centro, Ouro Preto/MG</dd>
           </div>
         </div>
         <div class="flex gap-4">
           <i class="fa-solid fa-clock text-folha mt-1"></i>
           <div>
             <dt class="font-medium">Horário</dt>
-            <dd class="text-sm">Todos os dias · 11h às 20h<br><span class="text-cacau/50">[ confirmar horário real ]</span></dd>
+            <dd class="text-sm">Domingo a quinta · 9h às 20h<br>Sexta e sábado · 9h às 22h</dd>
           </div>
         </div>
         <div class="flex gap-4">
@@ -1382,13 +1384,13 @@ tailwind.config = {
 
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="https://wa.me/553198502386" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-folha text-creme px-6 py-3 hover:bg-mata transition-colors"><i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp</a>
-        <a href="https://www.google.com/maps/search/?api=1&query=Bot%C3%A2nico%20Chocolateria%20Ouro%20Preto" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-cacau/20 px-6 py-3 hover:border-folha hover:text-folha transition-colors"><i class="fa-solid fa-map-location-dot"></i> Abrir no mapa</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-cacau/20 px-6 py-3 hover:border-folha hover:text-folha transition-colors"><i class="fa-solid fa-map-location-dot"></i> Abrir no mapa</a>
       </div>
     </div>
 
     <div class="reveal rounded-[2rem] overflow-hidden shadow-2xl min-h-[22rem] bg-cremeEsc">
       <iframe title="Mapa — Centro de Ouro Preto"
-        src="https://www.google.com/maps?q=Pra%C3%A7a+Tiradentes,+Ouro+Preto+-+MG&output=embed"
+        src="https://www.google.com/maps?q=Rua+Conde+de+Bobadela,+26+-+Ouro+Preto+-+MG&output=embed"
         class="w-full h-full min-h-[22rem] border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
