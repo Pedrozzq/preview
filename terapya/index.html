@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050505" />
+  <meta name="description" content="Terapya Bar — a noite mais quente de Ouro Preto. Drinks autorais, chapas, happy hour e boa música. Rua José Trindade, 5, Bauxita." />
+  <title>TERAPYA — A noite mais quente de Ouro Preto</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#050505;
+      --bg2:#0B0B0D;
+      --card:#141418;
+      --text:#F5F5F5;
+      --muted:rgba(245,245,245,.62);
+      --line:rgba(255,255,255,.08);
+      --purple:#22D3EE;
+      --blue:#06B6D4;
+      --magenta:#FF3B4E;
+      --pink:#FF4D6D;
+      --red:#FF4D5A;
+      --success:#55F59D;
+      --radius:24px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --mx:50vw;
+      --my:30vh;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(34,211,238,.10), transparent 25rem),
+        radial-gradient(circle at 85% 10%, rgba(6,182,212,.06), transparent 24rem),
+        linear-gradient(180deg, #050505 0%, #070708 35%, #050505 100%);
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      pointer-events:none;
+      z-index:100;
+      opacity:.05;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");
+      mix-blend-mode:soft-light;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button{font:inherit}
+    ::selection{background:rgba(34,211,238,.35);color:#fff}
+
+    .site-shell{
+      width:min(100%, 1180px);
+      margin-inline:auto;
+      padding:0 18px 90px;
+      position:relative;
+      z-index:2;
+    }
+
+    .ambient-orb{
+      position:fixed;
+      width:330px;height:330px;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.13;
+      pointer-events:none;
+      z-index:0;
+      animation:orbMove 14s ease-in-out infinite alternate;
+    }
+    .orb-1{background:var(--purple);top:7%;left:-120px}
+    .orb-2{background:var(--blue);right:-160px;top:42%;animation-delay:-4s}
+    .orb-3{background:var(--magenta);left:30%;bottom:-180px;animation-delay:-8s}
+    @keyframes orbMove{
+      from{transform:translate3d(0,0,0) scale(1)}
+      to{transform:translate3d(45px,35px,0) scale(1.12)}
+    }
+
+    /* LOADER */
+    #loader{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      background:#000;
+      transition:opacity .8s var(--ease), visibility .8s var(--ease), filter .8s var(--ease);
+    }
+    #loader.hidden{
+      opacity:0;
+      visibility:hidden;
+      filter:blur(12px);
+    }
+    .loader-content{
+      width:min(78vw,420px);
+      text-align:center;
+      animation:loaderIn 1s var(--ease) both;
+    }
+    @keyframes loaderIn{
+      from{opacity:0;transform:scale(.96);filter:blur(12px)}
+      to{opacity:1;transform:scale(1);filter:blur(0)}
+    }
+    .loader-logo{
+      position:relative;
+      width:94px;height:94px;
+      margin:0 auto 24px;
+      display:grid;place-items:center;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.1);
+      background:#000;
+      box-shadow:0 0 60px rgba(34,211,238,.13);
+      overflow:hidden;
+    }
+    .loader-logo img{width:100%;height:100%;object-fit:cover}
+    .loader-logo::before,.loader-logo::after{
+      content:"";
+      position:absolute;inset:-1px;
+      border-radius:inherit;
+      pointer-events:none;
+      border:1px solid transparent;
+      background:linear-gradient(135deg, rgba(34,211,238,.45), transparent 35%, rgba(6,182,212,.28)) border-box;
+      -webkit-mask:linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+    }
+    .loader-logo.flash{animation:logoFlash .6s ease both}
+    @keyframes logoFlash{
+      50%{transform:scale(1.06);box-shadow:0 0 90px rgba(34,211,238,.42),0 0 140px rgba(6,182,212,.18)}
+    }
+    .loader-copy{
+      color:rgba(255,255,255,.58);
+      font-size:13px;
+      letter-spacing:.04em;
+      margin-bottom:22px;
+    }
+    .loader-track{
+      height:2px;
+      background:rgba(255,255,255,.08);
+      overflow:hidden;
+      border-radius:99px;
+    }
+    .loader-bar{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,var(--purple),var(--blue),var(--magenta));
+      box-shadow:0 0 18px rgba(34,211,238,.65);
+      transition:width .35s var(--ease);
+    }
+    .loader-percent{
+      margin-top:12px;
+      font:600 12px/1 Sora,sans-serif;
+      color:rgba(255,255,255,.72);
+      letter-spacing:.08em;
+    }
+
+    /* CURSOR */
+    .cursor-dot,.cursor-glow{
+      position:fixed;
+      left:0;top:0;
+      pointer-events:none;
+      z-index:999;
+      opacity:0;
+      transition:opacity .25s ease;
+    }
+    .cursor-dot{
+      width:12px;height:12px;
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:50%;
+      margin:-6px 0 0 -6px;
+      transition:width .25s var(--ease),height .25s var(--ease),margin .25s var(--ease),border-color .25s ease;
+    }
+    .cursor-dot.active{
+      width:38px;height:38px;margin:-19px 0 0 -19px;
+      border-color:rgba(34,211,238,.7);
+    }
+    .cursor-glow{
+      width:160px;height:160px;
+      border-radius:50%;
+      margin:-80px 0 0 -80px;
+      background:radial-gradient(circle,rgba(34,211,238,.10),transparent 66%);
+      filter:blur(4px);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100svh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:54px 0 38px;
+      position:relative;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background-image:
+        linear-gradient(180deg, rgba(5,5,5,.60) 0%, rgba(5,5,5,.72) 45%, rgba(5,5,5,.97) 100%),
+        url("img/fachada-noite.webp");
+      background-repeat:no-repeat, no-repeat;
+      background-position:center, center 28%;
+      background-size:auto, cover;
+    }
+    @media(max-width:679px){
+      .hero::before{
+        background-position:center, top center;
+        background-size:auto, 100% auto;
+      }
+    }
+    .hero-inner{
+      width:min(100%,720px);
+      margin-inline:auto;
+      text-align:center;
+    }
+    .brand-mark{
+      width:86px;height:86px;
+      margin:0 auto 22px;
+      border-radius:25px;
+      display:grid;place-items:center;
+      font:700 31px/1 Sora,sans-serif;
+      letter-spacing:-.08em;
+      background:#000;
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:
+        0 18px 50px rgba(0,0,0,.44),
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 0 45px rgba(34,211,238,.07);
+      position:relative;
+      overflow:hidden;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:cover}
+    .brand-mark .nfc-wave{
+      position:absolute;
+      inset:-16px;
+      border:1px solid rgba(34,211,238,.30);
+      border-radius:50%;
+      opacity:0;
+    }
+    .brand-mark.connected .nfc-wave:nth-child(1){animation:nfc 1s ease-out .05s}
+    .brand-mark.connected .nfc-wave:nth-child(2){animation:nfc 1s ease-out .18s}
+    .brand-mark.connected .nfc-wave:nth-child(3){animation:nfc 1s ease-out .31s}
+    @keyframes nfc{
+      0%{opacity:.55;transform:scale(.6)}
+      100%{opacity:0;transform:scale(1.85)}
+    }
+    .connected-label{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-bottom:18px;
+      color:rgba(255,255,255,.52);
+      font-size:11px;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .connected-label i{
+      width:6px;height:6px;border-radius:50%;
+      background:var(--purple);
+      box-shadow:0 0 16px rgba(34,211,238,.7);
+    }
+    .eyebrow{
+      font:600 11px/1 Sora,sans-serif;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.42);
+      margin-bottom:14px;
+    }
+    .hero h1{
+      margin:0;
+      font:700 clamp(38px,9vw,76px)/.98 Sora,sans-serif;
+      letter-spacing:-.055em;
+    }
+    .hero h1 span{
+      background:linear-gradient(110deg,#fff 15%,#c8c5ff 50%,#fff 82%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero p{
+      max-width:590px;
+      margin:18px auto 0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.7;
+    }
+    .hero-meta{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:23px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:34px;
+      padding:0 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.07);
+      color:rgba(255,255,255,.66);
+      font-size:11px;
+      backdrop-filter:blur(14px);
+    }
+    .open-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--success);
+      box-shadow:0 0 14px rgba(85,245,157,.42);
+      animation:pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      50%{opacity:.45;transform:scale(.82)}
+    }
+    .open-dot.is-closed{
+      background:var(--magenta);
+      box-shadow:0 0 14px rgba(255,59,78,.42);
+      animation:none;
+    }
+
+    .primary-links{
+      margin-top:34px;
+      display:grid;
+      gap:12px;
+      width:min(100%,650px);
+      margin-inline:auto;
+    }
+    .action-card{
+      --card-x:50%;
+      --card-y:50%;
+      position:relative;
+      display:grid;
+      grid-template-columns:50px 1fr auto;
+      gap:14px;
+      align-items:center;
+      min-height:86px;
+      padding:14px 16px 14px 14px;
+      border-radius:22px;
+      background:
+        radial-gradient(circle at var(--card-x) var(--card-y), rgba(34,211,238,.10), transparent 130px),
+        rgba(255,255,255,.028);
+      border:1px solid rgba(255,255,255,.075);
+      box-shadow:0 12px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.025);
+      backdrop-filter:blur(16px);
+      overflow:hidden;
+      transition:transform .3s var(--ease),border-color .3s ease,background .3s ease,box-shadow .3s ease;
+    }
+    .action-card::before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.026),transparent);
+      transform:translateX(-100%);
+      transition:transform .7s var(--ease);
+      pointer-events:none;
+    }
+    .action-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(34,211,238,.30);
+      box-shadow:0 18px 50px rgba(0,0,0,.30), 0 0 40px rgba(34,211,238,.05);
+    }
+    .action-card:hover::before{transform:translateX(100%)}
+    .action-card.featured{
+      background:
+        linear-gradient(180deg,rgba(34,211,238,.10),rgba(255,255,255,.025)),
+        rgba(255,255,255,.025);
+      border-color:rgba(34,211,238,.22);
+    }
+    .action-card.gold{
+      background:
+        linear-gradient(180deg,rgba(255,196,64,.12),rgba(255,255,255,.025)),
+        rgba(255,255,255,.025);
+      border-color:rgba(255,196,64,.38);
+    }
+    .action-card.gold:hover{
+      border-color:rgba(255,196,64,.58);
+      box-shadow:0 18px 50px rgba(0,0,0,.30), 0 0 40px rgba(255,196,64,.12);
+    }
+    .action-card.gold .icon-wrap{
+      background:rgba(255,196,64,.14);
+      border-color:rgba(255,196,64,.32);
+      color:#FFC640;
+    }
+    .action-card.gold:hover .icon-wrap{background:rgba(255,196,64,.22)}
+    .icon-wrap{
+      width:50px;height:50px;
+      border-radius:16px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+      color:#fff;
+      transition:transform .3s var(--ease),background .3s ease;
+    }
+    .action-card:hover .icon-wrap{transform:translateX(2px) scale(1.03);background:rgba(34,211,238,.10)}
+    .icon-wrap svg{width:21px;height:21px;stroke-width:1.7}
+    .action-copy{text-align:left}
+    .action-copy strong{
+      display:block;
+      font:650 13px/1.2 Manrope,sans-serif;
+      letter-spacing:.02em;
+    }
+    .action-copy span{
+      display:block;
+      margin-top:5px;
+      font-size:11px;
+      color:rgba(255,255,255,.48);
+      line-height:1.35;
+    }
+    .arrow{
+      font-size:22px;
+      color:rgba(255,255,255,.34);
+      transition:transform .3s var(--ease),color .3s ease;
+    }
+    .action-card:hover .arrow{transform:translateX(4px);color:#fff}
+
+    .secondary-grid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      width:min(100%,650px);
+      margin-inline:auto;
+    }
+    .small-link{
+      display:grid;
+      grid-template-columns:22px 1fr auto;
+      align-items:center;
+      gap:12px;
+      min-height:50px;
+      padding:12px 4px;
+      border-radius:0;
+      border:none;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      background:transparent;
+      transition:.3s var(--ease);
+    }
+    .small-link:hover{
+      background:rgba(255,255,255,.02);
+      border-color:rgba(6,182,212,.24);
+    }
+    .small-link .icon-wrap{width:22px;height:22px;border-radius:0;background:none;border:none;color:rgba(255,255,255,.46)}
+    .small-link:hover .icon-wrap{color:var(--purple)}
+    .small-link .icon-wrap svg{width:17px;height:17px;stroke-width:1.5}
+    .small-link strong{display:block;font:600 12px/1.2 Manrope,sans-serif;letter-spacing:.01em}
+    .small-link span{display:block;margin-top:3px;font-size:10px;color:rgba(255,255,255,.4)}
+    .small-link .arrow{color:rgba(255,255,255,.26);font-size:15px}
+    .small-link.gold{border-color:rgba(255,196,64,.20)}
+    .small-link.gold .icon-wrap{color:#FFC640}
+    .small-link.gold:hover{background:rgba(255,196,64,.05);border-color:rgba(255,196,64,.45)}
+    .small-link.gold:hover .icon-wrap{color:#FFC640}
+    .small-link.whatsapp{border-color:rgba(37,211,102,.20)}
+    .small-link.whatsapp .icon-wrap{color:#25D366}
+    .small-link.whatsapp:hover{background:rgba(37,211,102,.05);border-color:rgba(37,211,102,.45)}
+    .small-link.whatsapp:hover .icon-wrap{color:#25D366}
+    .small-link.orange{border-color:rgba(255,138,30,.20)}
+    .small-link.orange .icon-wrap{color:#FF8A1E}
+    .small-link.orange:hover{background:rgba(255,138,30,.05);border-color:rgba(255,138,30,.45)}
+    .small-link.orange:hover .icon-wrap{color:#FF8A1E}
+
+    /* SECTIONS */
+    .section{
+      padding:74px 0 0;
+    }
+    .section-heading{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:24px;
+    }
+    .section-heading h2{
+      margin:0;
+      font:700 clamp(27px,6vw,46px)/1.05 Sora,sans-serif;
+      letter-spacing:-.045em;
+    }
+    .section-heading p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      max-width:560px;
+      line-height:1.6;
+    }
+
+    .event-grid{
+      display:grid;
+      gap:13px;
+      grid-template-columns:1fr;
+    }
+    .event-card{
+      position:relative;
+      min-height:270px;
+      overflow:hidden;
+      border-radius:25px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0d0d10;
+      isolation:isolate;
+      cursor:pointer;
+    }
+    .event-card img{
+      position:absolute;inset:0;
+      width:100%;height:100%;object-fit:cover;
+      z-index:-3;
+      filter:saturate(.82) contrast(1.06) brightness(.64);
+      transition:transform .7s var(--ease),filter .7s var(--ease);
+    }
+    .event-card::before{
+      content:"";position:absolute;inset:0;z-index:-2;
+      background:linear-gradient(180deg,rgba(5,5,5,.18),rgba(5,5,5,.15) 35%,rgba(5,5,5,.92));
+    }
+    .event-card::after{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:radial-gradient(circle at 80% 10%, rgba(34,211,238,.2), transparent 38%);
+    }
+    .event-card:hover img{transform:scale(1.045);filter:saturate(.95) contrast(1.08) brightness(.70)}
+    .event-top{
+      display:flex;justify-content:space-between;align-items:flex-start;
+      padding:18px;
+    }
+    .date-box{
+      min-width:72px;
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(8,8,10,.5);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(12px);
+    }
+    .date-box strong{display:block;font:700 16px/1 Manrope,sans-serif}
+    .date-box span{display:block;margin-top:6px;font-size:10px;color:rgba(255,255,255,.58)}
+    .event-bottom{
+      position:absolute;left:18px;right:18px;bottom:18px;
+    }
+    .event-bottom small{color:rgba(255,255,255,.48);letter-spacing:.13em;text-transform:uppercase;font-size:9px}
+    .event-bottom h3{margin:7px 0 0;font:700 22px/1.1 Sora,sans-serif;letter-spacing:-.03em}
+
+    .promo-card{
+      min-height:300px;
+      border-radius:28px;
+      border:1px solid rgba(255,59,78,.17);
+      background:
+        linear-gradient(145deg,rgba(34,211,238,.13),rgba(255,255,255,.025) 42%,rgba(255,59,78,.07)),
+        rgba(255,255,255,.022);
+      overflow:hidden;
+      position:relative;
+      padding:28px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 80px rgba(0,0,0,.24);
+    }
+    .promo-card::after{
+      content:"";position:absolute;
+      width:260px;height:260px;border-radius:50%;
+      background:rgba(255,59,78,.12);
+      filter:blur(80px);right:-70px;top:-90px;
+    }
+    .promo-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 11px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.68);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+    }
+    .promo-card h3{
+      margin:58px 0 7px;
+      font:700 clamp(40px,10vw,74px)/.9 Sora,sans-serif;
+      letter-spacing:-.06em;
+    }
+    .promo-time{
+      color:#d8cfff;
+      font:600 14px/1 Sora,sans-serif;
+      letter-spacing:.08em;
+    }
+    .promo-card p{
+      margin:13px 0 0;
+      color:var(--muted);
+      max-width:450px;
+      line-height:1.6;font-size:13px;
+    }
+
+    .ig-profile{
+      display:block;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.022);
+      transition:transform .3s var(--ease),border-color .3s ease;
+    }
+    .ig-profile:hover{transform:translateY(-3px);border-color:rgba(34,211,238,.28)}
+    .ig-profile__head{
+      display:flex;align-items:center;gap:18px;
+      padding:20px 18px 4px;
+    }
+    .ig-profile__avatar{
+      width:66px;height:66px;border-radius:50%;object-fit:cover;
+      border:2px solid rgba(34,211,238,.55);
+      padding:2px;background:#000;
+    }
+    .ig-profile__stats{display:flex;gap:20px;flex:1}
+    .ig-profile__stats div{text-align:center}
+    .ig-profile__stats strong{display:block;font:700 15px/1.2 Manrope,sans-serif}
+    .ig-profile__stats span{display:block;margin-top:2px;font-size:10px;color:rgba(255,255,255,.5)}
+    .ig-profile__bio{padding:12px 18px 16px;font-size:12px;line-height:1.55}
+    .ig-profile__bio strong{font:650 13px/1.2 Manrope,sans-serif}
+    .ig-profile__cat{color:rgba(255,255,255,.48);font-size:11px}
+    .ig-profile__bio p{margin:6px 0 0;color:rgba(255,255,255,.78)}
+    .ig-profile__followbtn{
+      display:block;
+      margin:2px 18px 16px;
+      padding:9px;
+      text-align:center;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--purple),var(--blue));
+      color:#04181b;
+      font:700 13px/1 Manrope,sans-serif;
+      letter-spacing:.01em;
+    }
+    .ig-profile__grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2px;
+      background:rgba(255,255,255,.06);
+    }
+    .ig-profile__grid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .ig-profile__footer{
+      display:flex;align-items:center;gap:9px;justify-content:center;
+      padding:15px;
+      font:600 12px/1 Manrope,sans-serif;
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,.07);
+      background:rgba(34,211,238,.06);
+    }
+    .ig-profile__footer svg{width:16px;height:16px;stroke-width:1.7}
+    .ig-profile__footer .arrow{color:rgba(255,255,255,.5);font-size:15px}
+
+    .reel-card{
+      position:relative;
+      width:min(78%,260px);
+      aspect-ratio:9/16;
+      margin:0 auto 16px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      background:#000;
+      box-shadow:0 24px 60px rgba(0,0,0,.45), 0 0 40px rgba(34,211,238,.08);
+    }
+    .reel-card video{width:100%;height:100%;object-fit:cover;display:block}
+    .reel-tag{
+      position:absolute;left:12px;bottom:12px;z-index:2;
+      font:600 10px/1.3 Manrope,sans-serif;
+      letter-spacing:.04em;
+      color:#fff;
+      background:rgba(0,0,0,.5);
+      padding:6px 10px;
+      border-radius:999px;
+      backdrop-filter:blur(8px);
+    }
+    .reel-mute{
+      position:absolute;top:10px;right:10px;z-index:2;
+      width:34px;height:34px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.5);
+      color:#fff;
+      display:grid;place-items:center;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      font-size:14px;
+      padding:0;
+    }
+
+    /* PARALLAX GALLERY — efeito 3D de "unfurl" ao rolar, com as fotos do bar */
+    .parallax-wrap{
+      position:relative;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      height:300vh;
+      background:#050505;
+    }
+    .parallax-sticky{
+      position:sticky;
+      top:0;
+      height:100svh;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .parallax-banner{
+      position:relative;
+      width:90vw;
+      height:80vh;
+      border-radius:48px;
+      background:#000;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      max-width:1920px;
+      margin-inline:auto;
+      border-style:solid;
+      border-width:4px;
+      border-color:#22242c;
+      will-change:width,height,border-radius;
+    }
+    .parallax-perspective{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      pointer-events:none;
+      perspective:1000px;
+    }
+    .parallax-vignette{position:absolute;inset:0;z-index:20;pointer-events:none}
+    .parallax-vignette.v{box-shadow:inset 0 100px 150px -50px rgba(0,0,0,1),inset 0 -100px 150px -50px rgba(0,0,0,1)}
+    .parallax-vignette.h{box-shadow:inset 150px 0 150px -50px rgba(0,0,0,1),inset -150px 0 150px -50px rgba(0,0,0,1)}
+    .parallax-grid{
+      display:flex;gap:14px;
+      justify-content:center;align-items:center;
+      width:120vw;height:150vh;
+      transform-style:preserve-3d;
+      backface-visibility:hidden;
+      will-change:transform;
+    }
+    .parallax-col{
+      display:flex;flex-direction:column;gap:14px;
+      width:clamp(150px,22vw,300px);
+      pointer-events:auto;
+      will-change:transform;
+    }
+    .parallax-item{
+      width:100%;
+      height:190px;
+      flex-shrink:0;
+      background:#111;
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+    }
+    .parallax-item img{
+      width:100%;height:100%;object-fit:cover;
+      opacity:.82;
+      transition:opacity .3s ease,transform .4s var(--ease);
+    }
+    .parallax-item:hover img{opacity:1;transform:scale(1.04)}
+    @media(min-width:640px){
+      .parallax-grid,.parallax-col{gap:20px}
+      .parallax-item{height:290px}
+    }
+    @media(min-width:1024px){
+      .parallax-grid,.parallax-col{gap:24px}
+      .parallax-item{height:380px}
+    }
+
+    .info-grid{
+      display:grid;gap:12px;grid-template-columns:1fr;
+    }
+    .info-card{
+      padding:22px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.022);
+    }
+    .info-card .icon-wrap{margin-bottom:18px}
+    .info-card h3{margin:0;font:650 18px/1.2 Manrope,sans-serif}
+    .info-card p{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
+
+    /* FOOTER */
+    footer{
+      padding:84px 0 24px;
+    }
+    .footer-card{
+      border-radius:28px;
+      padding:26px;
+      border:1px solid rgba(255,255,255,.07);
+      background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.012));
+    }
+    .footer-top{
+      display:flex;
+      flex-direction:column;
+      gap:26px;
+    }
+    .footer-brand{
+      display:flex;align-items:center;gap:14px;
+    }
+    .footer-brand .brand-mark{
+      margin:0;width:55px;height:55px;border-radius:17px;font-size:21px;
+    }
+    .footer-brand h3{margin:0;font:700 19px/1.2 Sora,sans-serif}
+    .brand-glow{
+      background:linear-gradient(90deg,
+        var(--logo-c1,#6FF3FF), var(--logo-c2,#FF4D3D),
+        var(--logo-c1,#6FF3FF), var(--logo-c2,#FF4D3D));
+      background-size:300% auto;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:brandGlow 6s linear infinite;
+      filter:drop-shadow(0 0 14px color-mix(in srgb, var(--logo-c1,#6FF3FF) 45%, transparent));
+    }
+    @keyframes brandGlow{
+      to{background-position:300% center}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .brand-glow{animation:none}
+    }
+    .footer-brand p{margin:5px 0 0;font-size:11px;color:var(--muted)}
+    .footer-links{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px 18px;
+      color:rgba(255,255,255,.58);
+      font-size:11px;
+    }
+    .footer-links a:hover{color:#fff}
+    .footer-bottom{
+      margin-top:28px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.06);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      font-size:10px;
+      color:rgba(255,255,255,.34);
+    }
+    .saturno{
+      color:rgba(255,255,255,.62);
+    }
+
+    /* REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(20px);
+      filter:blur(8px);
+      transition:opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease);
+      transition-delay:var(--delay,0ms);
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+      filter:blur(0);
+    }
+
+    @media(min-width:680px){
+      .site-shell{padding-inline:28px}
+      .secondary-grid{grid-template-columns:1fr 1fr}
+      .event-grid{grid-template-columns:repeat(2,1fr)}
+      .event-card{min-height:330px}
+      .info-grid{grid-template-columns:repeat(3,1fr)}
+      .footer-top{flex-direction:row;align-items:flex-start;justify-content:space-between}
+      .footer-links{grid-template-columns:repeat(2,minmax(130px,1fr))}
+      .footer-bottom{flex-direction:row;justify-content:space-between}
+    }
+
+    @media(min-width:980px){
+      .hero{min-height:940px}
+      .primary-links{grid-template-columns:repeat(3,1fr);width:100%}
+      .action-card{
+        grid-template-columns:1fr auto;
+        grid-template-rows:auto auto;
+        min-height:188px;
+        padding:20px;
+        align-content:space-between;
+      }
+      .action-card .icon-wrap{grid-column:1;grid-row:1}
+      .action-card .arrow{grid-column:2;grid-row:1}
+      .action-card .action-copy{grid-column:1/3;grid-row:2}
+      .action-copy strong{font-size:14px}
+      .action-copy span{font-size:11px}
+      .secondary-grid{grid-template-columns:repeat(3,1fr);width:100%}
+      .ig-profile{max-width:420px;margin-inline:auto}
+    }
+
+    @media(max-width:979px){
+      .cursor-dot,.cursor-glow{display:none}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+  <div id="loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo" id="loaderLogo"><img src="img/logo.jpg" alt="Terapya"></div>
+      <div class="loader-copy">Preparando sua terapia...</div>
+      <div class="loader-track"><div class="loader-bar" id="loaderBar"></div></div>
+      <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
+  </div>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+
+  <main class="site-shell">
+    <section class="hero" id="inicio">
+      <div class="hero-inner">
+        <div class="brand-mark reveal connected" id="brandMark" style="--delay:100ms">
+          <img src="img/logo.jpg" alt="Terapya">
+          <span class="nfc-wave"></span>
+          <span class="nfc-wave"></span>
+          <span class="nfc-wave"></span>
+        </div>
+
+        <div class="eyebrow reveal" style="--delay:250ms"><span class="brand-glow">TERAPYA BAR</span> • OURO PRETO</div>
+
+        <h1 class="reveal" style="--delay:320ms">
+          <span>A noite mais quente<br>de Ouro Preto.</span>
+        </h1>
+
+        <div class="hero-meta reveal" style="--delay:470ms">
+          <span class="pill"><span class="open-dot" id="statusDot"></span> <span id="statusText">ABERTO AGORA</span></span>
+          <span class="pill">⭐ 4,8 • 107 avaliações no Google</span>
+        </div>
+
+        <div class="primary-links reveal" style="--delay:560ms">
+          <a class="action-card featured interactive-card" href="cardapio.html">
+            <div class="icon-wrap">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M4 3h16l-6 7v7l-4 2v-9L4 3Z"/>
+              </svg>
+            </div>
+            <div class="action-copy">
+              <strong>VER CARDÁPIO</strong>
+              <span>Chapas, picanhas, drinks e petiscos.</span>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="action-card interactive-card" href="https://wa.me/5531985220592?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20no%20Terapya." target="_blank" rel="noopener">
+            <div class="icon-wrap">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="16" rx="3"/>
+                <path d="M8 3v4M16 3v4M3 10h18"/>
+              </svg>
+            </div>
+            <div class="action-copy">
+              <strong>RESERVAR MESA</strong>
+              <span>Fale com a gente no WhatsApp.</span>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="action-card interactive-card" href="https://www.google.com/maps/search/?api=1&query=Terapya+Bar+Ouro+Preto" target="_blank" rel="noopener">
+            <div class="icon-wrap">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                <circle cx="12" cy="10" r="2.5"/>
+              </svg>
+            </div>
+            <div class="action-copy">
+              <strong>COMO CHEGAR</strong>
+              <span>Rua José Trindade, 5 — Bauxita.</span>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="secondary-grid reveal" style="--delay:650ms">
+          <a class="small-link whatsapp" href="https://wa.me/5531985220592" target="_blank" rel="noopener">
+            <div class="icon-wrap">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.14h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.02h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.08.78.83-3-.2-.31a8.07 8.07 0 0 1-1.24-4.28c0-4.47 3.64-8.11 8.13-8.11 4.48 0 8.12 3.64 8.12 8.12 0 4.48-3.64 8.11-8.12 8.11zm4.44-6.09c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+            </div>
+            <div><strong>WHATSAPP</strong><span>Fale diretamente com nossa equipe.</span></div><span class="arrow">›</span>
+          </a>
+          <a class="small-link orange" href="#promocoes">
+            <div class="icon-wrap">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.41l9 9c.36.36.86.59 1.41.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.05-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+            </div>
+            <div><strong>PROMOÇÕES</strong><span>Terça a quinta: ganhe +1 Heineken.</span></div><span class="arrow">›</span>
+          </a>
+          <a class="small-link gold" href="https://www.google.com/search?q=terapya+bar&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=terapya+bar&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIGCAEQIxgnMgYIAhAjGCcyBwgDEAAYgAQyEAgEEC4YrwEYxwEYgAQYjgUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgxNTI1ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40b001bc30241:0xfb6ab6ae3077d5ad,3,,,," target="_blank" rel="noopener">
+            <div class="icon-wrap">
+              <svg fill="currentColor" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="m12 3 2.4 5 5.6.8-4 3.9.9 5.6-4.9-2.7-4.9 2.7.9-5.6-4-3.9 5.6-.8L12 3Z"/></svg>
+            </div>
+            <div><strong>AVALIAR NO GOOGLE</strong><span>4,8 ★ em 107 avaliações — deixe a sua!</span></div><span class="arrow">›</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cardapio">
+      <div class="reel-card reveal" style="--delay:60ms">
+        <video id="reelVideo" src="video/reel-terapya.mp4" loop playsinline preload="metadata"></video>
+        <button type="button" class="reel-mute" id="reelMuteBtn" aria-label="Desativar som do vídeo">🔊</button>
+        <span class="reel-tag">REEL • @terapyabarop</span>
+      </div>
+
+      <div class="parallax-wrap" id="parallaxGallery">
+        <div class="parallax-sticky">
+          <div class="parallax-banner">
+            <div class="parallax-perspective">
+              <div class="parallax-vignette v"></div>
+              <div class="parallax-vignette h"></div>
+              <div class="parallax-grid">
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-mesa.webp" alt="Chapa Terapya servida na mesa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-01.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-9.jpg" alt="Drink no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-mesa.webp" alt="Chapa Terapya servida na mesa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-01.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-9.jpg" alt="Drink no Terapya"></div>
+                </div>
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-terapya.webp" alt="Chapa Terapya Mista"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-02.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_2.png" alt="Cliente com drink no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-terapya.webp" alt="Chapa Terapya Mista"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-02.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_2.png" alt="Cliente com drink no Terapya"></div>
+                </div>
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/picanha.webp" alt="Picanha Argentina do Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-4.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_1.png" alt="Drink no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/picanha.webp" alt="Picanha Argentina do Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-4.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_1.png" alt="Drink no Terapya"></div>
+                </div>
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="action-card featured interactive-card reveal" href="cardapio.html" style="--delay:120ms">
+        <div class="icon-wrap">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4 3h16l-6 7v7l-4 2v-9L4 3Z"/>
+          </svg>
+        </div>
+        <div class="action-copy">
+          <strong>VER CARDÁPIO COMPLETO</strong>
+          <span>Chapas, picanhas, porções e drinks com nomes que só o Terapya tem coragem de dar.</span>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </section>
+
+    <section class="section" id="programacao">
+      <div class="section-heading reveal">
+        <div>
+          <div class="eyebrow">PRÓXIMAS EXPERIÊNCIAS</div>
+          <h2>A noite começa aqui.</h2>
+          <p>Happy hour e jogos ao vivo — sempre de terça a domingo.</p>
+        </div>
+      </div>
+
+      <div class="event-grid">
+        <article class="event-card reveal">
+          <img loading="lazy" src="img/ambiente-neon.webp" alt="Ambiente Terapya com letreiro neon" />
+          <div class="event-top"><div class="date-box"><strong>TER</strong><span>17:00</span></div></div>
+          <div class="event-bottom"><small>Terça a quinta</small><h3>HAPPY HOUR</h3></div>
+        </article>
+
+        <article class="event-card reveal" style="--delay:100ms">
+          <img loading="lazy" src="img/fachada-noite.webp" alt="Fachada do Terapya à noite" />
+          <div class="event-top"><div class="date-box"><strong>SEX</strong><span>17:00</span></div></div>
+          <div class="event-bottom"><small>Fim de semana</small><h3>JOGOS AO VIVO</h3></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="promocoes">
+      <div class="promo-card reveal">
+        <span class="promo-badge"><span class="open-dot"></span> Promoção ativa</span>
+        <h3>GANHE<br>+1 HEINEKEN</h3>
+        <div class="promo-time">TERÇA A QUINTA</div>
+        <p>Peça uma Heineken 600ml e ganhe outra — só de terça a quinta, direto no Terapya.</p>
+      </div>
+    </section>
+
+    <section class="section" id="reservas">
+      <div class="section-heading reveal">
+        <div>
+          <div class="eyebrow">RESERVAS</div>
+          <h2>Seu lugar, sua noite.</h2>
+          <p>Reserve uma mesa com antecedência e tenha uma experiência mais fluida desde a chegada.</p>
+        </div>
+      </div>
+      <a class="action-card featured interactive-card reveal" href="https://wa.me/5531985220592?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20no%20Terapya." target="_blank" rel="noopener">
+        <div class="icon-wrap">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+        </div>
+        <div class="action-copy">
+          <strong>RESERVAR PELO WHATSAPP</strong>
+          <span>Atendimento direto com nossa equipe.</span>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </section>
+
+    <section class="section" id="instagram">
+      <div class="section-heading reveal">
+        <div>
+          <div class="eyebrow">ACOMPANHE A EXPERIÊNCIA</div>
+          <h2>Uma noite que continua no feed.</h2>
+          <p>Drinks, chapas, jogos e a atmosfera da casa — acompanhe @terapyabarop e seus 7.116 seguidores.</p>
+        </div>
+      </div>
+
+      <a class="ig-profile reveal" style="--delay:60ms" href="https://www.instagram.com/terapyabarop/" target="_blank" rel="noopener" aria-label="Abrir perfil @terapyabarop no Instagram">
+        <div class="ig-profile__head">
+          <img class="ig-profile__avatar" src="img/logo.jpg" alt="Terapya">
+          <div class="ig-profile__stats">
+            <div><strong>231</strong><span>publicações</span></div>
+            <div><strong>7.116</strong><span>seguidores</span></div>
+            <div><strong>6</strong><span>seguindo</span></div>
+          </div>
+        </div>
+        <div class="ig-profile__bio">
+          <strong>terapyabarop</strong> <span class="ig-profile__cat">Bar</span>
+          <p>A gente precisa de terapia e de Terapya 🍸<br>
+          A noite mais quente de Ouro Preto 🔥🍸🍾<br>
+          Confiram nossos próximos eventos. 📋<br>
+          De Terça a Domingo. Reservas 👇</p>
+        </div>
+        <span class="ig-profile__followbtn">Seguir</span>
+        <div class="ig-profile__grid">
+          <img loading="lazy" src="img/instagram/post-1.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-2.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-3.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-4.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-5.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-6.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-7.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-8.jpg" alt="Post Terapya">
+          <img loading="lazy" src="img/instagram/post-9.jpg" alt="Post Terapya">
+        </div>
+        <div class="ig-profile__footer">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Ver perfil completo no Instagram
+          <span class="arrow">↗</span>
+        </div>
+      </a>
+    </section>
+
+    <section class="section" id="eventos">
+      <div class="section-heading reveal">
+        <div>
+          <div class="eyebrow">EVENTOS PRIVADOS</div>
+          <h2>Comemore do seu jeito.</h2>
+          <p>Aniversários, encontros, confraternizações e experiências personalizadas em um ambiente preparado para receber.</p>
+        </div>
+      </div>
+      <div class="info-grid">
+        <article class="info-card reveal">
+          <div class="icon-wrap">01</div>
+          <h3>Aniversários</h3>
+          <p>Mesas reservadas, atendimento personalizado e condições especiais para grupos.</p>
+        </article>
+        <article class="info-card reveal" style="--delay:120ms">
+          <div class="icon-wrap">02</div>
+          <h3>Corporativo</h3>
+          <p>Happy hours, celebrações de equipe, encontros e confraternizações.</p>
+        </article>
+        <article class="info-card reveal" style="--delay:220ms">
+          <div class="icon-wrap">03</div>
+          <h3>Experiência exclusiva</h3>
+          <p>Possibilidade de personalizar música, drinks, ambientação e formato do evento.</p>
+        </article>
+      </div>
+      <a class="action-card gold interactive-card reveal" href="https://www.google.com/search?q=terapya+bar&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=terapya+bar&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIGCAEQIxgnMgYIAhAjGCcyBwgDEAAYgAQyEAgEEC4YrwEYxwEYgAQYjgUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgxNTI1ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40b001bc30241:0xfb6ab6ae3077d5ad,3,,,," target="_blank" rel="noopener" style="margin-top:12px">
+        <div class="icon-wrap">
+          <svg fill="currentColor" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="m12 3 2.4 5 5.6.8-4 3.9.9 5.6-4.9-2.7-4.9 2.7.9-5.6-4-3.9 5.6-.8L12 3Z"/></svg>
+        </div>
+        <div class="action-copy">
+          <strong>AVALIAR NO GOOGLE</strong>
+          <span>4,8 ★ em 107 avaliações — deixe a sua!</span>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </section>
+
+    <footer>
+      <div class="footer-card reveal">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="brand-mark"><img src="img/logo.jpg" alt="Terapya"></div>
+            <div>
+              <h3 class="brand-glow" id="brandGlowText">TERAPYA BAR</h3>
+              <p>A noite mais quente de Ouro Preto 🍸</p>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=Terapya+Bar+Ouro+Preto" target="_blank" rel="noopener">Google Maps</a>
+            <a href="https://www.instagram.com/terapyabarop/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://wa.me/5531985220592" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="#programacao">Programação</a>
+            <span>Ter–Sex 17h–00h30 • Sáb 16h–00h30 • Dom 15h–23h30</span>
+            <span>Rua José Trindade, 5 — Bauxita, Ouro Preto/MG</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 TERAPYA BAR. Todos os direitos reservados.</span>
+          <span class="saturno">Experiência digital desenvolvida por Saturno NFC</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // LOADER CINEMATOGRÁFICO
+    const loader = document.getElementById('loader');
+    const loaderBar = document.getElementById('loaderBar');
+    const loaderPercent = document.getElementById('loaderPercent');
+    const loaderLogo = document.getElementById('loaderLogo');
+
+    const steps = [0, 24, 47, 73, 100];
+    let stepIndex = 0;
+
+    function nextLoadStep(){
+      const value = steps[stepIndex];
+      loaderBar.style.width = value + '%';
+      loaderPercent.textContent = value + '%';
+
+      if(value === 100){
+        loaderLogo.classList.add('flash');
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          document.body.classList.add('loaded');
+          startReveals();
+        }, 650);
+        return;
+      }
+
+      stepIndex++;
+      setTimeout(nextLoadStep, 330 + Math.random()*190);
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(nextLoadStep, 280);
+    });
+
+    // STATUS ABERTO/FECHADO — horário real do Terapya (0=domingo ... 6=sábado)
+    // fim em minutos pode passar de 24h (ex.: 00:30 = 1470) para indicar que fecha na madrugada
+    const HORARIOS = {
+      0: [15*60, 23*60+30], // domingo 15:00–23:30
+      1: null,               // segunda fechado
+      2: [17*60, 24*60+30], // terça 17:00–00:30
+      3: [17*60, 24*60+30], // quarta 17:00–00:30
+      4: [17*60, 24*60+30], // quinta 17:00–00:30
+      5: [17*60, 24*60+30], // sexta 17:00–00:30
+      6: [16*60, 24*60+30], // sábado 16:00–00:30
+    };
+
+    function statusAgora(agora){
+      const dia = agora.getDay();
+      const minutos = agora.getHours()*60 + agora.getMinutes();
+      const hoje = HORARIOS[dia];
+
+      if(hoje && minutos >= hoje[0] && minutos < hoje[1]){
+        return {aberto:true};
+      }
+      const ontem = HORARIOS[(dia+6)%7];
+      if(ontem && ontem[1] > 24*60 && minutos < ontem[1]-24*60){
+        return {aberto:true};
+      }
+      if(hoje && minutos < hoje[0]){
+        return {aberto:false, abreAs:hoje[0]};
+      }
+      return {aberto:false, abreAs:null};
+    }
+
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    if(statusDot && statusText){
+      const st = statusAgora(new Date());
+      if(st.aberto){
+        statusText.textContent = 'ABERTO AGORA';
+      } else {
+        statusDot.classList.add('is-closed');
+        statusText.textContent = st.abreAs != null
+          ? 'ABRE ÀS ' + Math.floor(st.abreAs/60) + 'H'
+          : 'FECHADO HOJE';
+      }
+    }
+
+    // COR DO LOGO AO VIVO — extrai as cores neon do logo.jpg e alimenta o efeito do texto "TERAPYA BAR"
+    function extractLogoColors(imgEl){
+      try{
+        const size = 48;
+        const canvas = document.createElement('canvas');
+        canvas.width = size; canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imgEl, 0, 0, size, size);
+        const data = ctx.getImageData(0, 0, size, size).data;
+
+        let cool = null, coolSat = -1;
+        let warm = null, warmSat = -1;
+
+        for(let i = 0; i < data.length; i += 4){
+          const r = data[i], g = data[i+1], b = data[i+2], a = data[i+3];
+          if(a < 200) continue;
+          const max = Math.max(r,g,b), min = Math.min(r,g,b);
+          const sat = max - min;
+          if(max < 60) continue; // ignora o fundo escuro
+
+          if(b >= r){
+            if(sat > coolSat){ coolSat = sat; cool = `rgb(${r},${g},${b})`; }
+          } else {
+            if(sat > warmSat){ warmSat = sat; warm = `rgb(${r},${g},${b})`; }
+          }
+        }
+
+        const root = document.documentElement.style;
+        if(cool) root.setProperty('--logo-c1', cool);
+        if(warm) root.setProperty('--logo-c2', warm);
+      }catch(e){
+        // canvas bloqueado (ex.: abrindo via file:// sem servidor) — mantém as cores padrão
+      }
+    }
+
+    const logoImg = document.querySelector('img[src="img/logo.jpg"]');
+    if(logoImg){
+      if(logoImg.complete && logoImg.naturalWidth) extractLogoColors(logoImg);
+      else logoImg.addEventListener('load', () => extractLogoColors(logoImg), {once:true});
+    }
+
+    // NFC - usa ?nfc=1 para ativar explicitamente
+    const brandMark = document.getElementById('brandMark');
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('nfc') === '1'){
+      brandMark.classList.remove('connected');
+      requestAnimationFrame(() => setTimeout(() => brandMark.classList.add('connected'), 1200));
+    }
+
+    // REVEAL ON SCROLL
+    const revealEls = [...document.querySelectorAll('.reveal')];
+
+    function startReveals(){
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+
+      revealEls.forEach(el => observer.observe(el));
+    }
+
+    // CURSOR PREMIUM
+    const dot = document.querySelector('.cursor-dot');
+    const glow = document.querySelector('.cursor-glow');
+    let tx = innerWidth/2, ty = innerHeight/2, gx = tx, gy = ty;
+
+    function animateCursor(){
+      gx += (tx - gx) * .14;
+      gy += (ty - gy) * .14;
+      dot.style.transform = `translate3d(${tx}px,${ty}px,0)`;
+      glow.style.transform = `translate3d(${gx}px,${gy}px,0)`;
+      requestAnimationFrame(animateCursor);
+    }
+
+    if(matchMedia('(pointer:fine)').matches){
+      dot.style.opacity = 1;
+      glow.style.opacity = 1;
+      animateCursor();
+
+      window.addEventListener('mousemove', e => {
+        tx = e.clientX; ty = e.clientY;
+        document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+        document.documentElement.style.setProperty('--my', e.clientY + 'px');
+      });
+
+      document.querySelectorAll('a,button,.event-card').forEach(el => {
+        el.addEventListener('mouseenter', () => dot.classList.add('active'));
+        el.addEventListener('mouseleave', () => dot.classList.remove('active'));
+      });
+    }
+
+    // GLOW QUE ACOMPANHA O CURSOR NOS CARDS
+    document.querySelectorAll('.interactive-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--card-x', (e.clientX-r.left) + 'px');
+        card.style.setProperty('--card-y', (e.clientY-r.top) + 'px');
+      });
+    });
+
+    // REEL — toca sozinho COM SOM ao entrar na seção, pausa ao sair
+    const reelVideo = document.getElementById('reelVideo');
+    const reelMuteBtn = document.getElementById('reelMuteBtn');
+    if(reelVideo){
+      const reelObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            reelVideo.muted = false;
+            reelVideo.play().catch(() => {
+              // navegador bloqueou autoplay com som — cai para mudo e deixa o botão ativar depois
+              reelVideo.muted = true;
+              reelVideo.play().catch(() => {});
+            }).finally(() => {
+              if(reelMuteBtn) reelMuteBtn.textContent = reelVideo.muted ? '🔇' : '🔊';
+            });
+          } else {
+            reelVideo.pause();
+          }
+        });
+      }, {threshold:.5});
+      reelObserver.observe(reelVideo);
+    }
+    if(reelMuteBtn && reelVideo){
+      reelMuteBtn.addEventListener('click', () => {
+        reelVideo.muted = !reelVideo.muted;
+        reelMuteBtn.textContent = reelVideo.muted ? '🔇' : '🔊';
+      });
+    }
+
+    // FEEDBACK MOBILE
+    document.querySelectorAll('.action-card,.small-link').forEach(el => {
+      el.addEventListener('touchstart', () => el.style.transform='scale(.985)', {passive:true});
+      el.addEventListener('touchend', () => el.style.transform='', {passive:true});
+    });
+
+    // PARALLAX GALLERY — versão vanilla do efeito de scroll 3D (sem framer-motion/React)
+    (function(){
+      const wrap = document.getElementById('parallaxGallery');
+      if(!wrap) return;
+
+      const banner = wrap.querySelector('.parallax-banner');
+      const grid = wrap.querySelector('.parallax-grid');
+      const cols = [...wrap.querySelectorAll('.parallax-col')];
+      const colRanges = [[0,-40],[-40,10],[0,-40],[-30,20]];
+
+      const lerp = (a,b,t) => a + (b-a)*t;
+      const clamp01 = v => Math.max(0, Math.min(1, v));
+
+      let raw = 0, smooth = 0, active = false, rafId = null;
+
+      function render(){
+        smooth += (raw - smooth) * 0.12;
+
+        const t1 = clamp01(smooth / 0.15);
+        banner.style.width = lerp(90,100,t1) + 'vw';
+        banner.style.height = lerp(80,100,t1) + 'vh';
+        banner.style.borderRadius = lerp(48,0,t1) + 'px';
+        banner.style.borderWidth = lerp(4,0,t1) + 'px';
+
+        const t2 = clamp01((smooth - 0.15) / 0.85);
+        const rotY = lerp(-45,-8,t2), rotX = lerp(25,4,t2), rotZ = lerp(15,2,t2), tz = lerp(-800,0,t2);
+        grid.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) translateZ(${tz}px)`;
+
+        cols.forEach((col, i) => {
+          const [from, to] = colRanges[i];
+          col.style.transform = `translateY(${lerp(from,to,t2)}%)`;
+        });
+
+        if(active || Math.abs(raw - smooth) > 0.0005){
+          rafId = requestAnimationFrame(render);
+        } else {
+          rafId = null;
+        }
+      }
+
+      function measure(){
+        const rect = wrap.getBoundingClientRect();
+        const scrollable = rect.height - innerHeight;
+        raw = scrollable > 0 ? clamp01(-rect.top / scrollable) : 0;
+        if(!rafId) rafId = requestAnimationFrame(render);
+      }
+
+      new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          active = entry.isIntersecting;
+          if(active) measure();
+        });
+      }, {threshold:0}).observe(wrap);
+
+      window.addEventListener('scroll', measure, {passive:true});
+      window.addEventListener('resize', measure);
+      measure();
+    })();
+  </script>
+</body>
+</html>
