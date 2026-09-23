@@ -191,6 +191,104 @@
     }
     footer.menu-footer{margin-top:40px;padding:26px 0 10px;text-align:center;color:rgba(255,255,255,.32);font-size:10.5px}
 
+    /* PRODUCT DETAIL (premium modal) */
+    .prod-card{cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
+    .prod-card:focus-visible{outline:none;border-color:rgba(34,211,238,.5);box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+    .prod-card:active{transform:scale(.985)}
+    .prod-media img{transition:transform .6s var(--ease)}
+    .prod-card:hover .prod-media img{transform:scale(1.06)}
+    .prod-card.is-source .prod-media{visibility:hidden}
+
+    body.pm-lock{overflow:hidden}
+    .pm{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;visibility:hidden;pointer-events:none}
+    .pm.open{visibility:visible;pointer-events:auto}
+    .pm-backdrop{
+      position:absolute;inset:0;
+      background:radial-gradient(circle at 50% 30%,rgba(8,20,24,.72),rgba(0,0,0,.9));
+      -webkit-backdrop-filter:blur(14px) saturate(120%);backdrop-filter:blur(14px) saturate(120%);
+      opacity:0;transition:opacity .45s var(--ease);
+    }
+    .pm.open .pm-backdrop{opacity:1}
+    .pm-dialog{
+      position:relative;width:min(100%,440px);max-height:calc(100dvh - 32px);
+      display:flex;flex-direction:column;overflow:hidden;
+      border-radius:28px;
+      background:linear-gradient(180deg,#101014 0%,#0a0a0c 100%);
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 1px rgba(34,211,238,.06),0 0 80px rgba(34,211,238,.07);
+      opacity:0;transition:opacity .45s var(--ease);
+    }
+    .pm.open .pm-dialog{opacity:1}
+    .pm-dialog::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:3;
+      background:linear-gradient(160deg,rgba(124,242,255,.35),transparent 30%,transparent 70%,rgba(255,59,78,.25));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;
+    }
+    .pm-media{
+      position:relative;flex:none;height:min(50dvh,400px);overflow:hidden;
+      background:linear-gradient(160deg,rgba(34,211,238,.16),rgba(255,59,78,.12));
+      display:grid;place-items:center;
+    }
+    .pm-media img{width:100%;height:100%;object-fit:cover}
+    .pm-media .pm-ph{font-size:120px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+    .pm-media::after{
+      content:"";position:absolute;inset:auto 0 0 0;height:45%;pointer-events:none;
+      background:linear-gradient(180deg,transparent,rgba(16,16,20,.55) 55%,#101014);
+    }
+    .pm-media.hidden{visibility:hidden}
+    .pm-close{
+      position:absolute;top:14px;right:14px;z-index:4;
+      width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.16);color:#fff;cursor:pointer;
+      background:rgba(5,5,5,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+      font:400 20px/1 Inter,sans-serif;transition:.25s var(--ease);
+    }
+    .pm-close:hover{background:rgba(255,255,255,.12);transform:rotate(90deg)}
+    .pm-close:focus-visible{outline:2px solid #7CF2FF;outline-offset:2px}
+    .pm-body{position:relative;padding:4px 26px 26px;margin-top:-34px;overflow-y:auto;z-index:2}
+    .pm-body > *{opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+    .pm.open .pm-body > *{opacity:1;transform:none}
+    .pm.open .pm-body > :nth-child(1){transition-delay:.12s}
+    .pm.open .pm-body > :nth-child(2){transition-delay:.17s}
+    .pm.open .pm-body > :nth-child(3){transition-delay:.22s}
+    .pm.open .pm-body > :nth-child(4){transition-delay:.26s}
+    .pm.open .pm-body > :nth-child(5){transition-delay:.3s}
+    .pm.open .pm-body > :nth-child(6){transition-delay:.34s}
+    .pm-eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font:600 10px/1 Sora,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:rgba(124,242,255,.85);
+    }
+    .pm-eyebrow::before{content:"";width:22px;height:1px;background:linear-gradient(90deg,transparent,#7CF2FF)}
+    .pm-body h3{margin:12px 0 0;font:700 clamp(24px,6vw,30px)/1.1 Sora,sans-serif;letter-spacing:-.035em}
+    .pm-body h3 small{font-size:.5em;font-weight:500;opacity:.55;letter-spacing:0}
+    .pm-tagline{margin:10px 0 0;font:500 italic 14px/1.5 Manrope,sans-serif;color:rgba(255,255,255,.62)}
+    .pm-tagline:empty{display:none}
+    .pm-rule{height:1px;margin:20px 0 18px;background:linear-gradient(90deg,rgba(124,242,255,.45),rgba(255,255,255,.08) 45%,transparent)}
+    .pm-desc{margin:0;font-size:14px;line-height:1.75;color:rgba(245,245,245,.78)}
+    .pm-foot{
+      margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);
+      display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+    }
+    .pm-label{display:block;font:600 9.5px/1 Sora,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:8px}
+    .pm-price{
+      font:700 26px/1 Sora,sans-serif;letter-spacing:-.03em;color:#7CF2FF;
+      text-shadow:0 0 24px rgba(34,211,238,.35);
+    }
+    .pm-mark{width:34px;height:34px;border-radius:10px;overflow:hidden;opacity:.85;border:1px solid rgba(255,255,255,.1)}
+    .pm-mark img{width:100%;height:100%;object-fit:cover}
+    .pm-ghost{position:fixed;z-index:101;margin:0;overflow:hidden;pointer-events:none;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+    @media(max-width:520px){
+      .pm{align-items:end;padding:10px}
+      .pm-dialog{border-radius:26px;max-height:calc(100dvh - 20px)}
+      .pm-media{height:min(46dvh,360px)}
+      .pm-body{padding:4px 22px 24px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .pm-dialog,.pm-backdrop,.pm-body > *{transition:opacity .2s linear!important;transform:none!important}
+      .prod-card:hover .prod-media img{transform:none}
+    }
+
     .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--delay,0ms)}
     .reveal.visible{opacity:1;transform:translateY(0)}
   </style>
@@ -507,14 +605,56 @@
         <div class="eyebrow">Geladinhas</div>
         <h2>Chopp & cervejas</h2>
       </div>
-      <div class="compact-list">
-        <div class="compact-row"><div><strong>Chopp Amstel</strong><span class="sub">300 ml</span></div><span class="price">R$ 8,00</span></div>
-        <div class="compact-row"><div><strong>Chopp Amstel</strong><span class="sub">500 ml</span></div><span class="price">R$ 11,00</span></div>
-        <div class="compact-row"><div><strong>Long Neck Heineken</strong></div><span class="price">R$ 13,00</span></div>
-        <div class="compact-row"><div><strong>Long Neck Heineken 0.0</strong></div><span class="price">R$ 13,00</span></div>
-        <div class="compact-row"><div><strong>Long Neck Amstel Ultra</strong></div><span class="price">R$ 10,00</span></div>
-        <div class="compact-row"><div><strong>Cerveja Heineken</strong><span class="sub">600 ml</span></div><span class="price">R$ 17,00</span></div>
-        <div class="compact-row"><div><strong>Cerveja Amstel</strong><span class="sub">600 ml</span></div><span class="price">R$ 12,00</span></div>
+      <div class="prod-grid">
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/chopp-300.jpg" alt="Chopp Amstel 300 ml" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Chopp Amstel — 300 ml</h3><span class="prod-price">R$ 8,00</span></div>
+            <p class="prod-desc">Tirado na hora, trincando de gelado, com colarinho cremoso.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/chopp-500.jpg" alt="Chopp Amstel 500 ml" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Chopp Amstel — 500 ml</h3><span class="prod-price">R$ 11,00</span></div>
+            <p class="prod-desc">A dose generosa do chopp da casa, pra quem não quer levantar da mesa.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/heineken-ln.jpg" alt="Long Neck Heineken" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Long Neck Heineken</h3><span class="prod-price">R$ 13,00</span></div>
+            <p class="prod-desc">Puro malte lager, servida estupidamente gelada.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/heineken-zero.jpg" alt="Long Neck Heineken 0.0" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Long Neck Heineken 0.0</h3><span class="prod-price">R$ 13,00</span></div>
+            <p class="prod-desc">Todo o sabor da Heineken, zero álcool.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/amstel-ultra.jpg" alt="Long Neck Amstel Ultra" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Long Neck Amstel Ultra</h3><span class="prod-price">R$ 10,00</span></div>
+            <p class="prod-desc">Leve, refrescante e com menos calorias.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/heineken-600ml.webp" alt="Cerveja Heineken 600 ml" loading="lazy" style="object-fit:contain;padding:6px 0"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Cerveja Heineken — 600 ml</h3><span class="prod-price">R$ 17,00</span></div>
+            <p class="prod-desc">A garrafa clássica pra dividir com a mesa.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/amstel-600.jpg" alt="Cerveja Amstel 600 ml" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Cerveja Amstel — 600 ml</h3><span class="prod-price">R$ 12,00</span></div>
+            <p class="prod-desc">Lager encorpada na medida, perfeita pra acompanhar a chapa.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -524,16 +664,70 @@
         <div class="eyebrow">Puro ou de mistura</div>
         <h2>Doses</h2>
       </div>
-      <div class="compact-list">
-        <div class="compact-row"><strong>Vodka Smirnoff</strong><span class="price">R$ 12,00</span></div>
-        <div class="compact-row"><strong>Cachaça da Roça</strong><span class="price">R$ 8,00</span></div>
-        <div class="compact-row"><strong>Gin Tanqueray</strong><span class="price">R$ 17,00</span></div>
-        <div class="compact-row"><strong>Campari</strong><span class="price">R$ 11,00</span></div>
-        <div class="compact-row"><strong>Rum (ouro ou prata)</strong><span class="price">R$ 10,00</span></div>
-        <div class="compact-row"><strong>Tequila</strong><span class="price">R$ 17,00</span></div>
-        <div class="compact-row"><strong>Licor 43</strong><span class="price">R$ 25,00</span></div>
-        <div class="compact-row"><strong>Whisky Red Label</strong><span class="price">R$ 17,00</span></div>
-        <div class="compact-row"><strong>Whisky Jack Daniel's</strong><span class="price">R$ 22,00</span></div>
+      <div class="prod-grid">
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/vodka.jpg" alt="Vodka Smirnoff" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Vodka Smirnoff</h3><span class="prod-price">R$ 12,00</span></div>
+            <p class="prod-desc">Pura, gelada ou na base do seu drink favorito.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/cachaca.jpg" alt="Cachaça da Roça" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Cachaça da Roça</h3><span class="prod-price">R$ 8,00</span></div>
+            <p class="prod-desc">A mineira de respeito, do jeitinho que a roça faz.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/gin.jpg" alt="Gin Tanqueray" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Gin Tanqueray</h3><span class="prod-price">R$ 17,00</span></div>
+            <p class="prod-desc">London Dry com zimbro marcante, seco e elegante.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/campari.jpg" alt="Campari" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Campari</h3><span class="prod-price">R$ 11,00</span></div>
+            <p class="prod-desc">O amargo italiano de cor rubi, com notas cítricas e de ervas.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/rum.jpg" alt="Rum ouro ou prata" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Rum <small style="opacity:.55">(ouro ou prata)</small></h3><span class="prod-price">R$ 10,00</span></div>
+            <p class="prod-desc">Prata, leve e limpo; ouro, mais redondo e amadeirado. Você escolhe.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/tequila.jpg" alt="Tequila" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Tequila</h3><span class="prod-price">R$ 17,00</span></div>
+            <p class="prod-desc">Com sal e limão, do jeito certo.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/licor-43.jpg" alt="Licor 43" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Licor 43</h3><span class="prod-price">R$ 25,00</span></div>
+            <p class="prod-desc">O licor espanhol de baunilha e cítricos, doce e aveludado.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/red-label.jpg" alt="Whisky Red Label" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Whisky Red Label</h3><span class="prod-price">R$ 17,00</span></div>
+            <p class="prod-desc">Blended escocês vibrante, com toque defumado.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/jack.jpg" alt="Whisky Jack Daniel's" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Whisky Jack Daniel's</h3><span class="prod-price">R$ 22,00</span></div>
+            <p class="prod-desc">Tennessee whiskey filtrado no carvão de bordo, suave e marcante.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -543,13 +737,50 @@
         <div class="eyebrow">Pra dividir</div>
         <h2>Combos</h2>
       </div>
-      <div class="compact-list">
-        <div class="compact-row"><div><strong>Combo Heineken</strong><span class="sub">6 unidades</span></div><span class="price">R$ 69,00</span></div>
-        <div class="compact-row"><div><strong>Combo Amstel Ultra</strong><span class="sub">6 unidades</span></div><span class="price">R$ 55,00</span></div>
-        <div class="compact-row"><div><strong>Gin Tanqueray + 5 Tônicas</strong></div><span class="price">R$ 230,00</span></div>
-        <div class="compact-row"><div><strong>Gin Tanqueray + 5 Red Bull</strong></div><span class="price">R$ 250,00</span></div>
-        <div class="compact-row"><div><strong>Red Label + 5 Red Bull</strong></div><span class="price">R$ 250,00</span></div>
-        <div class="compact-row"><div><strong>Jack Daniel's + 5 Red Bull</strong><span class="sub">sabor apple</span></div><span class="price">R$ 325,00</span></div>
+      <div class="prod-grid">
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/heineken-ln.jpg" alt="Combo Heineken" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Combo Heineken</h3><span class="prod-price">R$ 69,00</span></div>
+            <p class="prod-desc">6 long necks Heineken bem geladas pra dividir com a mesa.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/combo-amstel.jpg" alt="Combo Amstel Ultra" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Combo Amstel Ultra</h3><span class="prod-price">R$ 55,00</span></div>
+            <p class="prod-desc">6 long necks Amstel Ultra bem geladas pra dividir com a mesa.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/combo-gin-tonica.jpg" alt="Gin Tanqueray + 5 Tônicas" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Gin Tanqueray + 5 Tônicas</h3><span class="prod-price">R$ 230,00</span></div>
+            <p class="prod-desc">Garrafa de Tanqueray acompanhada de 5 águas tônicas.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/combo-gin-redbull.jpg" alt="Gin Tanqueray + 5 Red Bull" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Gin Tanqueray + 5 Red Bull</h3><span class="prod-price">R$ 250,00</span></div>
+            <p class="prod-desc">Garrafa de Tanqueray com 5 Red Bull pra noite render.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/combo-redlabel.jpg" alt="Red Label + 5 Red Bull" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Red Label + 5 Red Bull</h3><span class="prod-price">R$ 250,00</span></div>
+            <p class="prod-desc">Garrafa de Red Label acompanhada de 5 Red Bull.</p>
+          </div>
+        </article>
+        <article class="prod-card">
+          <div class="prod-media"><img src="img/bebidas/jack.jpg" alt="Jack Daniel's + 5 Red Bull" loading="lazy"></div>
+          <div class="prod-info">
+            <div class="prod-top"><h3>Jack Daniel's + 5 Red Bull</h3><span class="prod-price">R$ 325,00</span></div>
+            <p class="prod-tagline">Sabor apple</p>
+            <p class="prod-desc">Garrafa de Jack Daniel's Apple com 5 Red Bull.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -583,6 +814,25 @@
       © 2026 TERAPYA BAR — Rua José Trindade, 5, Bauxita, Ouro Preto/MG
     </footer>
   </main>
+
+  <div class="pm" id="pm" aria-hidden="true">
+    <div class="pm-backdrop" data-close></div>
+    <div class="pm-dialog" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+      <button class="pm-close" type="button" data-close aria-label="Fechar">✕</button>
+      <div class="pm-media" id="pmMedia"></div>
+      <div class="pm-body">
+        <div class="pm-eyebrow" id="pmCat"></div>
+        <h3 id="pmTitle"></h3>
+        <p class="pm-tagline" id="pmTag"></p>
+        <div class="pm-rule"></div>
+        <p class="pm-desc" id="pmDesc"></p>
+        <div class="pm-foot">
+          <div><span class="pm-label">Valor</span><span class="pm-price" id="pmPrice"></span></div>
+          <div class="pm-mark"><img src="img/logo.jpg" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Extrai as cores neon do logo ao vivo, igual ao index
@@ -639,6 +889,117 @@
       });
     }, {rootMargin:'-40% 0px -50% 0px'});
     sections.forEach(sec => sec && navObserver.observe(sec));
+
+    // Detalhe do produto: a imagem do card expande até o painel
+    const pm = document.getElementById('pm');
+    const pmMedia = document.getElementById('pmMedia');
+    const pmClose = pm.querySelector('.pm-close');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let activeCard = null, busy = false;
+
+    function rectStyle(r, radius){
+      return {left:r.left+'px', top:r.top+'px', width:r.width+'px', height:r.height+'px', borderRadius:radius};
+    }
+
+    // Clona a mídia de origem num elemento fixo e anima de um retângulo ao outro
+    function flyMedia(fromEl, toEl, fromRadius, toRadius, reverse){
+      const from = fromEl.getBoundingClientRect(), to = toEl.getBoundingClientRect();
+      const ghost = (reverse ? toEl : fromEl).cloneNode(true);
+      ghost.classList.add('pm-ghost');
+      ghost.removeAttribute('id');
+      const ph = ghost.querySelector('.ph, .pm-ph');
+      Object.assign(ghost.style, rectStyle(from, fromRadius), {display:'grid', placeItems:'center', visibility:'visible'});
+      document.body.appendChild(ghost);
+      const frames = [rectStyle(from, fromRadius), rectStyle(to, toRadius)];
+      const opts = {duration: reduceMotion.matches ? 380 : 620, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards'};
+      if(ph) ph.animate([{fontSize: reverse ? '120px' : '30px'}, {fontSize: reverse ? '30px' : '120px'}], opts);
+      return ghost.animate(frames, opts).finished.then(() => ghost);
+    }
+
+    function fillModal(card){
+      const media = card.querySelector('.prod-media');
+      const img = media.querySelector('img');
+      pmMedia.innerHTML = '';
+      if(img){
+        const big = document.createElement('img');
+        big.src = img.currentSrc || img.src;
+        big.alt = img.alt;
+        if(getComputedStyle(img).objectFit === 'contain'){ big.style.objectFit = 'contain'; big.style.padding = '28px 0 40px'; }
+        pmMedia.appendChild(big);
+      }else{
+        const ph = document.createElement('span');
+        ph.className = 'pm-ph';
+        ph.textContent = media.textContent.trim();
+        pmMedia.appendChild(ph);
+      }
+      const h3 = card.querySelector('h3');
+      document.getElementById('pmTitle').innerHTML = h3.innerHTML;
+      document.getElementById('pmPrice').textContent = card.querySelector('.prod-price').textContent;
+      const tag = card.querySelector('.prod-tagline');
+      document.getElementById('pmTag').textContent = tag ? tag.textContent : '';
+      const desc = card.querySelector('.prod-desc');
+      document.getElementById('pmDesc').textContent = desc ? desc.textContent : '';
+      const sec = card.closest('.cat-section');
+      document.getElementById('pmCat').textContent = sec ? sec.querySelector('h2').textContent : 'Terapya';
+    }
+
+    async function openProduct(card){
+      if(busy || activeCard) return;
+      busy = true; activeCard = card;
+      fillModal(card);
+      const scrollbar = innerWidth - document.documentElement.clientWidth;
+      document.body.style.paddingRight = scrollbar ? scrollbar + 'px' : '';
+      document.body.classList.add('pm-lock');
+      pm.setAttribute('aria-hidden', 'false');
+      pm.classList.add('open');
+      pmClose.focus({preventScroll:true});
+
+      pmMedia.classList.add('hidden');
+      card.classList.add('is-source');
+      const ghost = await flyMedia(card.querySelector('.prod-media'), pmMedia, '14px', '28px 28px 0 0', false);
+      pmMedia.classList.remove('hidden');
+      ghost.remove();
+      busy = false;
+    }
+
+    async function closeProduct(){
+      if(busy || !activeCard) return;
+      busy = true;
+      const card = activeCard;
+      const src = card.querySelector('.prod-media');
+      const visible = src.getBoundingClientRect().bottom > 0 && src.getBoundingClientRect().top < innerHeight;
+      let flight = null;
+      if(visible){
+        flight = flyMedia(pmMedia, src, '28px 28px 0 0', '14px', true);
+        pmMedia.classList.add('hidden');
+      }
+      pm.classList.remove('open');
+      pm.setAttribute('aria-hidden', 'true');
+      if(flight){ const ghost = await flight; ghost.remove(); }
+      else await new Promise(r => setTimeout(r, 300));
+      card.classList.remove('is-source');
+      pmMedia.classList.remove('hidden');
+      document.body.classList.remove('pm-lock');
+      document.body.style.paddingRight = '';
+      card.focus({preventScroll:true});
+      activeCard = null; busy = false;
+    }
+
+    document.querySelectorAll('.prod-card').forEach(card => {
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-haspopup', 'dialog');
+      card.addEventListener('click', () => openProduct(card));
+      card.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openProduct(card); }
+      });
+    });
+    pm.addEventListener('click', e => { if(e.target.closest('[data-close]')) closeProduct(); });
+    document.addEventListener('keydown', e => {
+      if(!activeCard) return;
+      if(e.key === 'Escape') closeProduct();
+      if(e.key === 'Tab'){ e.preventDefault(); pmClose.focus(); }
+    });
   </script>
 </body>
 </html>
