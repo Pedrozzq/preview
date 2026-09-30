@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#090a0b" />
+  <meta name="description" content="Zoo Tabacaria — acessórios e conveniência com entrega em Ouro Preto, MG." />
+  <title>Zoo Tabacaria | Ouro Preto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="age-gate" id="ageGate" aria-hidden="true">
+    <div class="age-card">
+      <div class="brand-mark small">Z</div>
+      <p class="eyebrow">ZOO TABACARIA</p>
+      <h2>Conteúdo para maiores de 18 anos</h2>
+      <p>Ao continuar, você confirma que tem 18 anos ou mais.</p>
+      <button class="btn btn-primary btn-full" id="confirmAge">Tenho 18 anos ou mais</button>
+      <button class="btn btn-ghost btn-full" id="leaveSite">Sair</button>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Zoo Tabacaria">
+      <div class="brand-mark">Z</div>
+      <div>
+        <strong>ZOO</strong>
+        <span>TABACARIA</span>
+      </div>
+    </a>
+    <!-- Aberto/fechado conforme o horário (19h às 01h), atualizado pelo script.js -->
+    <span class="open-status" id="openStatus" aria-live="polite"><i></i><b id="openStatusText">ABERTO AGORA</b></span>
+
+    <div class="top-actions">
+      <button class="location-pill" id="openAddress" type="button">
+        <span class="dot"></span>
+        <span id="locationLabel">Entregar em Ouro Preto</span>
+      </button>
+      <button class="cart-button" id="openCart" type="button" aria-label="Abrir carrinho">
+        <svg class="cart-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 8h14l-1.2 10.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/>
+          <path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+        </svg>
+        <span class="cart-label">Carrinho</span>
+        <b id="cartCount">0</b>
+      </button>
+      <!-- Balão "Produto adicionado" (aparece por alguns segundos, preso ao carrinho) -->
+      <div class="cart-bubble" id="cartBubble" role="status" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Atalhos das categorias: cada um leva até a seção correspondente (montado pelo script.js) -->
+    <nav class="cat-shortcuts" id="catShortcuts" aria-label="Categorias de produtos"></nav>
+
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <div class="status status-pulse"><span></span> ENTREGA TODOS OS DIAS · 19H ÀS 01H</div>
+        <h1>Seu pedido em <em>Ouro Preto</em>, até 1h da manhã.</h1>
+        <p>Sedas, tabacos, piteiras, isqueiros e acessórios com entrega rápida em Ouro Preto.</p>
+        <!-- No celular os atalhos aparecem aqui, logo abaixo do texto de apresentação -->
+        <div class="cat-mobile-wrap">
+          <p class="cat-mobile-title">Escolha por categoria</p>
+          <nav class="cat-shortcuts cat-shortcuts-mobile" id="catShortcutsMobile" aria-label="Categorias de produtos"></nav>
+        </div>
+        <div class="trust-row">
+          <span>⚡ Compra rápida</span>
+          <span>📍 Ouro Preto — MG</span>
+          <span>🌙 19h às 01h</span>
+        </div>
+        <p class="wa-note"><span class="wa-dot" aria-hidden="true"></span> Os pedidos realizados no site são encaminhados para o nosso WhatsApp.</p>
+      </div>
+      <div class="hero-art">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <!-- Vitrine: produtos em destaque no lugar do cartão (montada pelo script.js) -->
+        <div class="hero-showcase" id="heroShowcase"></div>
+        <button class="btn btn-secondary hero-address-btn" id="heroAddress" type="button">Cadastrar endereço</button>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <article><b>Entrega local</b><span>Atendimento focado em Ouro Preto.</span></article>
+      <article><b>Pedido pelo WhatsApp</b><span>Escolha, salve o endereço e o pedido segue para o nosso WhatsApp.</span></article>
+      <article><b>Kits e complementos</b><span>Combos pensados para facilitar a compra.</span></article>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LOJA</p>
+          <h2>Escolha por categoria</h2>
+        </div>
+        <div class="filters" id="filters"></div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="combo-section">
+      <div class="combo-copy">
+        <p class="eyebrow">AUMENTE O TICKET</p>
+        <h2>Combos prontos convertem melhor.</h2>
+        <p>Ofereça kits de acessórios e conveniência com desconto pequeno sobre a compra avulsa. O cliente decide mais rápido e leva mais itens.</p>
+        <button class="btn btn-primary" id="addCombo" type="button">Adicionar Combo Zoo</button>
+      </div>
+      <div class="combo-box">
+        <div class="combo-badge">COMBO</div>
+        <h3>Zoo Night Kit</h3>
+        <ul>
+          <li>1 Seda premium</li>
+          <li>1 Piteira</li>
+          <li>1 Isqueiro</li>
+          <li>1 Chocolate</li>
+        </ul>
+        <div class="combo-price"><span>kit demonstrativo</span><strong>R$ 29,90</strong></div>
+      </div>
+    </section>
+
+    <section class="delivery-section">
+      <div>
+        <p class="eyebrow">DELIVERY</p>
+        <h2>Endereço salvo para pedir mais rápido.</h2>
+        <p>O site guarda os dados do endereço neste dispositivo. Para operação real, conecte a um backend para cadastro seguro de clientes e pedidos.</p>
+      </div>
+      <button class="btn btn-secondary" id="deliveryAddress" type="button">Cadastrar meu endereço</button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand footer-brand">
+      <div class="brand-mark">Z</div>
+      <div><strong>ZOO</strong><span>TABACARIA</span></div>
+    </div>
+    <p>Ouro Preto — MG · Entregas todos os dias das 19h à 01h</p>
+    <p class="legal">Venda proibida para menores de 18 anos. O Ministério da Saúde adverte: fumar causa câncer e outras doenças graves. Imagens meramente ilustrativas.</p>
+  </footer>
+
+  <aside class="drawer" id="cartDrawer" aria-hidden="true">
+    <!-- Frete grátis a partir de R$ 35; abaixo disso, frete de R$ 9,90 (atualizado pelo script.js) -->
+    <div class="ship-banner" id="shipBanner">
+      <p id="shipText"><b>Frete grátis</b> em pedidos a partir de R$ 35,00</p>
+      <div class="ship-bar"><span id="shipBar"></span></div>
+    </div>
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">SEU PEDIDO</p>
+        <h2>Carrinho</h2>
+      </div>
+      <button class="icon-btn" id="closeCart" type="button">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty">
+      <div>🛒</div>
+      <h3>Seu carrinho está vazio</h3>
+      <p>Adicione alguns produtos para começar.</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-line"><span>Subtotal</span><span id="subtotal">R$ 0,00</span></div>
+      <div class="cart-line"><span>Frete</span><span id="shippingFee">R$ 0,00</span></div>
+      <div class="subtotal"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+      <p class="fee-note">Frete grátis a partir de R$ 35,00. O pedido é encaminhado para o nosso WhatsApp.</p>
+      <button class="btn btn-primary btn-full" id="checkoutBtn" type="button">Continuar pedido</button>
+    </div>
+  </aside>
+
+  <div class="modal-backdrop" id="backdrop"></div>
+
+  <section class="modal" id="addressModal" aria-hidden="true">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">ENTREGA E PAGAMENTO</p>
+        <h2>Finalizar pedido</h2>
+      </div>
+      <button class="icon-btn" data-close="addressModal" type="button">✕</button>
+    </div>
+    <form id="addressForm">
+      <div class="form-grid">
+        <label class="full">Nome
+          <input name="name" required autocomplete="name" placeholder="Seu nome" />
+        </label>
+        <!-- Preenchimento automático pela localização do aparelho -->
+        <div class="full geo-row">
+          <button class="geo-btn" id="geoFill" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+            <span>Usar minha localização</span>
+          </button>
+          <small class="geo-hint" id="geoHint">Preenche o endereço automaticamente</small>
+        </div>
+        <label class="full">CEP
+          <input name="cep" inputmode="numeric" maxlength="9" autocomplete="postal-code" placeholder="00000-000" />
+          <small class="cep-hint" id="cepHint">Digite o CEP e o endereço é preenchido automaticamente.</small>
+        </label>
+        <label class="full">Rua
+          <input name="street" required autocomplete="street-address" placeholder="Rua / avenida" />
+        </label>
+        <label>Número
+          <input name="number" required placeholder="123" />
+        </label>
+        <label>Bairro
+          <input name="district" required placeholder="Bairro" />
+        </label>
+        <label class="full">Cidade
+          <input name="city" required value="Ouro Preto" />
+        </label>
+        <label class="full">Referência
+          <input name="reference" placeholder="Ex.: portão preto, próximo à praça..." />
+        </label>
+      </div>
+      <div class="order-mini" id="orderMini"></div>
+      <!-- Forma de pagamento: vai junto na mensagem do WhatsApp -->
+      <fieldset class="pay-options">
+        <legend>Forma de pagamento</legend>
+        <div class="pay-row">
+          <label class="pay-opt"><input type="radio" name="payment" value="Pix" required><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z"/><path d="M8.5 9.2 12 12.7l3.5-3.5"/><path d="M8.5 14.8 12 11.3l3.5 3.5"/></svg></span><b>Pix</b></span></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="Crédito"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 14.5h4"/></svg></span><b>Crédito</b></span></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="Débito"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><rect x="6" y="9" width="4" height="3.2" rx=".6"/><path d="M13 14.5h5"/></svg></span><b>Débito</b></span></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="Dinheiro"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.4"/><path d="M6 10v4M18 10v4"/></svg></span><b>Dinheiro</b></span></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary btn-full" type="submit">Enviar pedido</button>
+    </form>
+  </section>
+
+  <section class="modal checkout-modal" id="checkoutModal" aria-hidden="true">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">FINALIZAÇÃO</p>
+        <h2>Resumo do pedido</h2>
+      </div>
+      <button class="icon-btn" data-close="checkoutModal" type="button">✕</button>
+    </div>
+    <div id="checkoutSummary"></div>
+    <div class="notice">
+      O pedido é enviado pelo WhatsApp com os itens, o endereço e seus dados. A loja confirma taxa de entrega e disponibilidade por lá.
+    </div>
+    <button class="btn btn-primary btn-full" id="sendOrder" type="button">Enviar pedido pelo WhatsApp</button>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
