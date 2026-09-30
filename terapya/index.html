@@ -900,7 +900,7 @@
       .action-card .action-copy{grid-column:1/3;grid-row:2}
       .action-copy strong{font-size:14px}
       .action-copy span{font-size:11px}
-      .secondary-grid{grid-template-columns:repeat(3,1fr);width:100%}
+      .secondary-grid{grid-template-columns:1fr 1fr}
       .ig-profile{max-width:420px;margin-inline:auto}
     }
 
@@ -911,6 +911,165 @@
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
     }
+    /* Botão flutuante "Avaliar no Google": redondo, fixo no canto inferior
+       direito, com anel dourado pulsando e etiqueta curta de chamada */
+    .review-fab{
+      position:fixed;
+      right:calc(18px + env(safe-area-inset-right));
+      bottom:calc(18px + env(safe-area-inset-bottom));
+      z-index:900;
+      display:flex;align-items:center;gap:10px;
+      text-decoration:none;
+    }
+    .review-fab__btn{
+      position:relative;
+      width:58px;height:58px;border-radius:50%;
+      display:grid;place-items:center;
+      background:#fff;
+      border:2px solid #FFC640;
+      animation:reviewGlow 2.4s ease-in-out infinite;
+      transition:transform .3s var(--ease);
+    }
+    @keyframes reviewGlow{
+      0%,100%{border-color:#FFC640;box-shadow:0 10px 26px rgba(0,0,0,.5),0 0 10px rgba(255,198,64,.35)}
+      50%{border-color:#FFE08A;box-shadow:0 10px 26px rgba(0,0,0,.5),0 0 26px rgba(255,198,64,.8),0 0 0 4px rgba(255,198,64,.18)}
+    }
+    .review-fab__btn svg{width:28px;height:28px}
+    .review-fab__btn::before,.review-fab__btn::after{
+      content:"";position:absolute;inset:-2px;border-radius:50%;
+      border:2px solid rgba(255,198,64,.75);
+      animation:reviewPulse 2.4s var(--ease) infinite;
+      pointer-events:none;
+    }
+    .review-fab__btn::after{animation-delay:1.2s}
+    @keyframes reviewPulse{
+      0%{transform:scale(1);opacity:.8}
+      100%{transform:scale(1.6);opacity:0}
+    }
+    /* Balão de conversa compacto: avatar, "digitando…" e uma linha de mensagem */
+    .review-fab{align-items:center}
+    .review-chat{
+      position:relative;
+      display:flex;align-items:center;gap:8px;
+      padding:6px 8px 6px 6px;
+      border-radius:999px 999px 6px 999px;
+      background:rgba(20,20,24,.92);
+      border:1px solid rgba(255,198,64,.25);
+      box-shadow:0 10px 26px rgba(0,0,0,.5);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      color:var(--text);white-space:nowrap;
+      opacity:0;transform:translateX(8px) scale(.96);transform-origin:100% 50%;
+      pointer-events:none;
+      transition:opacity .35s var(--ease),transform .35s var(--ease);
+    }
+    .review-fab.show-label .review-chat,
+    .review-fab:hover .review-chat,
+    .review-fab:focus-visible .review-chat{opacity:1;transform:none;pointer-events:auto}
+    .review-chat__avatar{position:relative;width:22px;height:22px;flex:none}
+    .review-chat__avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+    .review-chat__avatar::after{
+      content:"";position:absolute;right:-1px;bottom:-1px;width:7px;height:7px;border-radius:50%;
+      background:var(--success);border:1.5px solid #141418;
+    }
+    .review-chat__msg{font:600 12px/1 'Manrope',sans-serif}
+    .review-chat__msg b{color:#FFC640;font-weight:800}
+    .review-chat__typing{display:none;gap:3px;padding:0 4px}
+    .review-chat__typing i{width:4px;height:4px;border-radius:50%;background:var(--muted);animation:chatDot 1.1s ease-in-out infinite}
+    .review-chat__typing i:nth-child(2){animation-delay:.15s}
+    .review-chat__typing i:nth-child(3){animation-delay:.3s}
+    @keyframes chatDot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-3px);opacity:1}}
+    .review-chat.typing .review-chat__typing{display:flex}
+    .review-chat.typing .review-chat__msg{display:none}
+    .review-chat__close{
+      width:16px;height:16px;border-radius:50%;flex:none;padding:0;
+      display:grid;place-items:center;font-size:12px;line-height:1;
+      color:var(--muted);background:transparent;border:0;cursor:pointer;
+    }
+    .review-chat__close:hover{color:#fff}
+    .review-fab__badge{
+      position:absolute;top:-3px;right:-3px;z-index:1;
+      min-width:18px;height:18px;padding:0 5px;border-radius:999px;
+      display:grid;place-items:center;
+      font:800 10px/1 'Manrope',sans-serif;color:#fff;
+      background:var(--red);border:2px solid #0b0b0d;
+      transition:transform .3s var(--ease),opacity .3s ease;
+    }
+    .review-fab.seen .review-fab__badge{transform:scale(0);opacity:0}
+    .review-fab:hover .review-fab__btn{transform:scale(1.08)}
+    .review-fab:focus-visible{outline:none}
+    .review-fab:focus-visible .review-fab__btn{outline:2px solid #FFC640;outline-offset:3px}
+    /* "Role para baixo" abaixo dos botões do topo */
+    .scroll-cue{
+      margin:26px auto 0;width:max-content;
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+      font:700 11px/1 'Manrope',sans-serif;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--muted);text-decoration:none;
+      transition:color .3s ease;
+    }
+    .scroll-cue:hover{color:var(--text)}
+    .scroll-cue__mouse{
+      position:relative;width:22px;height:34px;border-radius:12px;
+      border:1.5px solid rgba(255,255,255,.35);
+    }
+    .scroll-cue__mouse span{
+      position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;
+      background:var(--purple);
+      animation:scrollWheel 1.8s var(--ease) infinite;
+    }
+    @keyframes scrollWheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+    /* Modal de reserva: formulário que monta a mensagem para o WhatsApp */
+    .rsv-modal{
+      position:fixed;inset:0;z-index:1000;
+      display:grid;place-items:center;padding:18px;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      opacity:0;visibility:hidden;
+      transition:opacity .3s var(--ease),visibility .3s var(--ease);
+    }
+    .rsv-modal.open{opacity:1;visibility:visible}
+    .rsv-box{
+      position:relative;width:100%;max-width:420px;max-height:calc(100dvh - 36px);overflow-y:auto;
+      padding:26px 22px 22px;border-radius:var(--radius);
+      background:linear-gradient(180deg,#16161b,#0e0e11);
+      border:1px solid rgba(34,211,238,.22);
+      box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 40px rgba(34,211,238,.08);
+      transform:translateY(16px) scale(.98);
+      transition:transform .35s var(--ease);
+    }
+    .rsv-modal.open .rsv-box{transform:none}
+    .rsv-close{
+      position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;font-size:20px;line-height:1;
+      color:var(--muted);background:rgba(255,255,255,.05);border:1px solid var(--line);cursor:pointer;
+    }
+    .rsv-close:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+    .rsv-box h3{margin:0 0 4px;font:800 20px/1.2 'Sora',sans-serif;letter-spacing:.02em}
+    .rsv-box > p{margin:0 0 18px;color:var(--muted);font-size:13px}
+    .rsv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .rsv-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .rsv-field.full{grid-column:1/-1}
+    .rsv-field label{font:700 11px/1 'Manrope',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .rsv-field input,.rsv-field select,.rsv-field textarea{
+      width:100%;padding:12px 13px;border-radius:14px;
+      font:500 15px/1.3 'Inter',sans-serif;color:var(--text);
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+      outline:none;color-scheme:dark;
+      transition:border-color .2s ease,box-shadow .2s ease;
+    }
+    .rsv-field textarea{resize:vertical;min-height:70px}
+    .rsv-field select option{background:#141418}
+    .rsv-field input:focus,.rsv-field select:focus,.rsv-field textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+    .rsv-hint{min-height:18px;margin:12px 0 0;font-size:12px;color:var(--red);text-align:center}
+    .rsv-submit{
+      width:100%;margin-top:8px;padding:14px;border:0;border-radius:16px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      font:800 14px/1 'Manrope',sans-serif;letter-spacing:.06em;color:#04130a;
+      background:linear-gradient(135deg,#34e27a,#25D366);
+      box-shadow:0 12px 30px rgba(37,211,102,.25);
+      transition:transform .2s ease,box-shadow .2s ease;
+    }
+    .rsv-submit:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(37,211,102,.35)}
+    .rsv-submit svg{width:18px;height:18px}
   </style>
 </head>
 <body>
@@ -1007,13 +1166,12 @@
             </div>
             <div><strong>PROMOÇÕES</strong><span>Terça a quinta: compre 3 Heineken 600ml e ganhe +1.</span></div><span class="arrow">›</span>
           </a>
-          <a class="small-link gold" href="https://www.google.com/search?q=terapya+bar&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=terapya+bar&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIGCAEQIxgnMgYIAhAjGCcyBwgDEAAYgAQyEAgEEC4YrwEYxwEYgAQYjgUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgxNTI1ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40b001bc30241:0xfb6ab6ae3077d5ad,3,,,," target="_blank" rel="noopener">
-            <div class="icon-wrap">
-              <svg fill="currentColor" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="m12 3 2.4 5 5.6.8-4 3.9.9 5.6-4.9-2.7-4.9 2.7.9-5.6-4-3.9 5.6-.8L12 3Z"/></svg>
-            </div>
-            <div><strong>AVALIAR NO GOOGLE</strong><span>4,8 ★ em 107 avaliações — deixe a sua!</span></div><span class="arrow">›</span>
-          </a>
         </div>
+
+        <a class="scroll-cue reveal" href="#cardapio" style="--delay:800ms">
+          <span>Role para baixo para conhecer mais</span>
+          <span class="scroll-cue__mouse" aria-hidden="true"><span></span></span>
+        </a>
       </div>
     </section>
 
@@ -1521,6 +1679,180 @@
       window.addEventListener('scroll', measure, {passive:true});
       window.addEventListener('resize', measure);
       measure();
+    })();
+  </script>
+  <!-- Modal de reserva: data, horário e envio por WhatsApp -->
+  <div class="rsv-modal" id="rsvModal" role="dialog" aria-modal="true" aria-labelledby="rsvTitle">
+    <form class="rsv-box" id="rsvForm" novalidate>
+      <button type="button" class="rsv-close" data-rsv-close aria-label="Fechar">&times;</button>
+      <h3 id="rsvTitle">Reservar mesa</h3>
+      <p>Escolha o dia e o horário. A gente confirma pelo WhatsApp.</p>
+      <div class="rsv-grid">
+        <div class="rsv-field full">
+          <label for="rsvName">Nome</label>
+          <input type="text" id="rsvName" autocomplete="name" placeholder="Seu nome">
+        </div>
+        <div class="rsv-field">
+          <label for="rsvDate">Data</label>
+          <input type="date" id="rsvDate">
+        </div>
+        <div class="rsv-field">
+          <label for="rsvTime">Horário</label>
+          <input type="time" id="rsvTime" step="900">
+        </div>
+        <div class="rsv-field full">
+          <label for="rsvPeople">Pessoas</label>
+          <select id="rsvPeople">
+            <option value="1">1 pessoa</option>
+            <option value="2" selected>2 pessoas</option>
+            <option value="3">3 pessoas</option>
+            <option value="4">4 pessoas</option>
+            <option value="5">5 pessoas</option>
+            <option value="6">6 pessoas</option>
+            <option value="7">7 pessoas</option>
+            <option value="8">8 pessoas</option>
+            <option value="9">9 pessoas</option>
+            <option value="10 ou mais">10 ou mais</option>
+          </select>
+        </div>
+        <div class="rsv-field full">
+          <label for="rsvNote">Observação <span style="text-transform:none;letter-spacing:0">(opcional)</span></label>
+          <textarea id="rsvNote" rows="2" placeholder="Aniversário, mesa na área externa…"></textarea>
+        </div>
+      </div>
+      <p class="rsv-hint" id="rsvHint" aria-live="polite"></p>
+      <button type="submit" class="rsv-submit">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg>
+        ENVIAR PELO WHATSAPP
+      </button>
+    </form>
+  </div>
+  <script>
+    /* Reserva: os botões "Reservar" abrem o formulário; ao enviar, monta a
+       mensagem e abre o WhatsApp do bar. O link original fica como plano B. */
+    (function(){
+      var modal = document.getElementById('rsvModal');
+      var form = document.getElementById('rsvForm');
+      if (!modal || !form) return;
+      var WA = '5531985220592';
+      var F = function(id){ return document.getElementById(id); };
+      var hint = F('rsvHint');
+      var DIAS = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+      var H = (typeof HORARIOS !== 'undefined') ? HORARIOS : null;
+      var lastFocus = null;
+
+      function hoje(){
+        var d = new Date();
+        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+        return d.toISOString().slice(0, 10);
+      }
+      function hm(m){
+        m = m % 1440;
+        return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+      }
+      function abrir(e){
+        e.preventDefault();
+        lastFocus = document.activeElement;
+        F('rsvDate').min = hoje();
+        hint.textContent = '';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function(){ F('rsvName').focus(); }, 250);
+      }
+      function fechar(){
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('a[href*="wa.me/' + WA + '?text="][href*="reservar"]').forEach(function(a){
+        a.addEventListener('click', abrir);
+      });
+      modal.addEventListener('click', function(e){
+        if (e.target === modal || e.target.closest('[data-rsv-close]')) fechar();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && modal.classList.contains('open')) fechar();
+      });
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var nome = F('rsvName').value.trim();
+        var data = F('rsvDate').value;
+        var hora = F('rsvTime').value;
+        if (!nome || !data || !hora) { hint.textContent = 'Preencha nome, data e horário.'; return; }
+        if (data < hoje()) { hint.textContent = 'Escolha uma data a partir de hoje.'; return; }
+
+        var p = data.split('-');
+        var dia = new Date(+p[0], p[1] - 1, +p[2]).getDay();
+        if (H) {
+          var faixa = H[dia];
+          if (!faixa) { hint.textContent = 'Não abrimos às ' + DIAS[dia] + 's. Escolha outro dia.'; return; }
+          var t = hora.split(':');
+          var min = (+t[0]) * 60 + (+t[1]);
+          // horários depois da meia-noite contam como madrugada do mesmo dia
+          var ok = (min >= faixa[0] && min <= faixa[1]) || (min + 1440 <= faixa[1]);
+          if (!ok) { hint.textContent = 'Nesse dia funcionamos das ' + hm(faixa[0]) + ' às ' + hm(faixa[1]) + '.'; return; }
+        }
+
+        var obs = F('rsvNote').value.trim();
+        var msg = 'Olá! Quero reservar uma mesa no Terapya.\n\n'
+          + '*Nome:* ' + nome + '\n'
+          + '*Data:* ' + p[2] + '/' + p[1] + '/' + p[0] + ' (' + DIAS[dia] + ')\n'
+          + '*Horário:* ' + hora + '\n'
+          + '*Pessoas:* ' + F('rsvPeople').value
+          + (obs ? '\n*Observação:* ' + obs : '');
+        window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+        fechar();
+        form.reset();
+      });
+    })();
+  </script>
+  <!-- Botão flutuante: avaliar no Google (acompanha a página toda) -->
+  <a class="review-fab" id="reviewFab" href="https://www.google.com/search?q=terapya+bar&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=terapya+bar&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIGCAEQIxgnMgYIAhAjGCcyBwgDEAAYgAQyEAgEEC4YrwEYxwEYgAQYjgUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgxNTI1ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40b001bc30241:0xfb6ab6ae3077d5ad,3,,,," target="_blank" rel="noopener" aria-label="Avaliar o Terapya no Google">
+    <span class="review-chat" id="reviewChat" role="status">
+      <span class="review-chat__avatar"><img src="img/logo.jpg" alt=""></span>
+      <span class="review-chat__typing" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="review-chat__msg">Curtiu? <b>Avalie no Google ★</b></span>
+      <button type="button" class="review-chat__close" id="reviewChatClose" aria-label="Fechar mensagem">&times;</button>
+    </span>
+    <span class="review-fab__btn">
+      <span class="review-fab__badge" aria-hidden="true">1</span>
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/>
+        <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+        <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+        <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/>
+      </svg>
+    </span>
+  </a>
+  <script>
+    /* Balão de conversa do botão de avaliação: aparece "digitando…",
+       depois a mensagem; some sozinho ou pelo X */
+    (function(){
+      var fab = document.getElementById('reviewFab');
+      var chat = document.getElementById('reviewChat');
+      var close = document.getElementById('reviewChatClose');
+      if (!fab || !chat) return;
+      var hideTimer;
+      function hide(){ fab.classList.remove('show-label'); }
+      setTimeout(function(){
+        chat.classList.add('typing');
+        fab.classList.add('show-label');
+        setTimeout(function(){
+          chat.classList.remove('typing');
+          hideTimer = setTimeout(hide, 6000);
+        }, 1400);
+      }, 4000);
+      if (close) close.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        clearTimeout(hideTimer);
+        chat.classList.remove('typing');
+        hide();
+        fab.classList.add('seen');
+        fab.blur();
+      });
+      fab.addEventListener('click', function(){ fab.classList.add('seen'); });
     })();
   </script>
 </body>

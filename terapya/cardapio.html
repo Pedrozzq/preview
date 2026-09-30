@@ -291,9 +291,30 @@
 
     .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--delay,0ms)}
     .reveal.visible{opacity:1;transform:translateY(0)}
+    /* Faixa de preview para aprovação (Saturno NFC) */
+    .preview-bar{
+      position:relative;z-index:50;
+      display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 10px;
+      padding:9px 16px;text-align:center;
+      font:700 11px/1.3 'Manrope',sans-serif;letter-spacing:.14em;text-transform:uppercase;
+      color:#04181b;
+      background:linear-gradient(90deg,var(--purple),#8b5cf6);
+    }
+    .preview-bar b{font-weight:800}
+    .preview-bar .dot{width:7px;height:7px;border-radius:50%;background:#04181b;animation:previewBlink 1.6s ease-in-out infinite}
+    .preview-bar .sep{opacity:.5}
+    @keyframes previewBlink{0%,100%{opacity:1}50%{opacity:.25}}
+    .photo-note{margin:0;padding:5px 16px;text-align:center;font-size:10.5px;letter-spacing:.04em;color:var(--muted);background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
   </style>
 </head>
 <body>
+  <div class="preview-bar" role="note">
+    <span class="dot" aria-hidden="true"></span>
+    <span><b>Modelo preview</b> para aprovação</span>
+    <span class="sep" aria-hidden="true">•</span>
+    <span>Desenvolvimento Saturno NFC</span>
+  </div>
+  <p class="photo-note">Algumas fotos podem ser genéricas e meramente ilustrativas.</p>
   <div class="ambient-orb orb-1"></div>
   <div class="ambient-orb orb-2"></div>
 
@@ -361,21 +382,21 @@
       </div>
       <div class="prod-grid">
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🥟</span></div>
+          <div class="prod-media"><img src="img/cardapio/croquete-costela.jpg" alt="Croquete de Costela" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Croquete de Costela</h3><span class="prod-price">R$ 44,90</span></div>
             <p class="prod-desc">9 unidades. Croquete de costela crocante com queijo e molho especial da casa.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🥟</span></div>
+          <div class="prod-media"><img src="img/cardapio/pastel-angu.jpg" alt="Pastel de Angu" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Pastel de Angu</h3><span class="prod-price">R$ 42,00</span></div>
             <p class="prod-desc">4 unidades. Alho Pará com requeijão, palmito com queijo, carne seca com requeijão, frango com requeijão.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍲</span></div>
+          <div class="prod-media"><img src="img/cardapio/carne-panela.jpg" alt="Carne de Panela" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Carne de Panela</h3><span class="prod-price">R$ 45,00</span></div>
             <p class="prod-desc">Carne de panela defumada com batata bolinha, acompanha torrada.</p>
@@ -399,35 +420,35 @@
       </div>
       <div class="prod-grid">
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍖</span></div>
+          <div class="prod-media"><img src="img/cardapio/costelinha.jpg" alt="Costelinha Terapya" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Costelinha Terapya</h3><span class="prod-price">R$ 61 / R$ 104</span></div>
             <p class="prod-desc">P (400g) R$ 61,00 · G (800g) R$ 104,00. Defumada com molho barbecue caseiro, acompanha batata artesanal, mussarela e cheddar.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🌭</span></div>
+          <div class="prod-media"><img src="img/cardapio/chorizo-terapya.jpg" alt="Chorizo Terapya" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Chorizo Terapya</h3><span class="prod-price">R$ 97,00</span></div>
             <p class="prod-desc">Rolo de chorizo na brasa com batata frita artesanal e queijo.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍗</span></div>
+          <div class="prod-media"><img src="img/cardapio/familia.jpg" alt="Família Terapya" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Família Terapya</h3><span class="prod-price">R$ 156,00</span></div>
             <p class="prod-desc">Contra filé acebolado, filé de frango ao catupiry, torresmo, lombo e coração de galinha, com batata artesanal, queijo e cheddar.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🐟</span></div>
+          <div class="prod-media"><img src="img/cardapio/tilapia.jpg" alt="Filé de Tilápia" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Filé de Tilápia</h3><span class="prod-price">R$ 55 / R$ 95</span></div>
             <p class="prod-desc">P (400g) R$ 55,00 · G (900g) R$ 95,00. Com molho da casa, acompanha batata frita artesanal.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍟</span></div>
+          <div class="prod-media"><img src="img/cardapio/fritas.jpg" alt="Fritas Artesanais" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Fritas Artesanais</h3><span class="prod-price">R$ 45,00</span></div>
             <p class="prod-desc">Batata frita acompanhada de queijo, bacon e cheddar.</p>
@@ -458,7 +479,7 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🥩</span></div>
+          <div class="prod-media"><img src="img/cardapio/chorizo-500.jpg" alt="Chorizo 500g" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Chorizo 500g</h3><span class="prod-price">R$ 130,00</span></div>
             <p class="prod-desc">Chorizo na brasa, arroz ao alho, vinagrete, farofa da casa, tropeiro, mandioca na manteiga de garrafa, fritas, queijo e bacon.</p>
@@ -493,7 +514,7 @@
       </div>
       <div class="prod-grid">
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍸</span></div>
+          <div class="prod-media"><img src="img/cardapio/rivotril.jpg" alt="Rivotril" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Rivotril</h3><span class="prod-price">R$ 32,00</span></div>
             <p class="prod-tagline">"Em qualquer dose, ele vai virar o seu problema."</p>
@@ -501,7 +522,7 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍸</span></div>
+          <div class="prod-media"><img src="img/cardapio/dr-freud.jpg" alt="Dr. Freud" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Dr. Freud</h3><span class="prod-price">R$ 34,00</span></div>
             <p class="prod-tagline">"Complexo, cheio de camadas e adora analisar você."</p>
@@ -509,7 +530,7 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍹</span></div>
+          <div class="prod-media"><img src="img/cardapio/terapya-intensiva.jpg" alt="Terapya Intensiva" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Terapya Intensiva</h3><span class="prod-price">R$ 25,00</span></div>
             <p class="prod-tagline">"Todos sabíamos, indicado para sessões prolongadas."</p>
@@ -525,28 +546,28 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍹</span></div>
+          <div class="prod-media"><img src="img/cardapio/seakalm.jpg" alt="Seakalm" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Seakalm</h3><span class="prod-price">R$ 25,00</span></div>
             <p class="prod-desc">Vodka, maracujá, suco de laranja e syrup de manga.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🥂</span></div>
+          <div class="prod-media"><img src="img/cardapio/alprazolam-spritz.jpg" alt="Alprazolam Spritz" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Alprazolam Spritz</h3><span class="prod-price">R$ 32,00</span></div>
             <p class="prod-desc">Aperol, espumante e água com gás.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍋</span></div>
+          <div class="prod-media"><img src="img/cardapio/calma-clinica.jpg" alt="Calma Clínica" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Calma Clínica <small style="opacity:.55">(sem álcool)</small></h3><span class="prod-price">R$ 16,00</span></div>
             <p class="prod-desc">Suco de limão, hortelã, xarope de açúcar e água com gás.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍸</span></div>
+          <div class="prod-media"><img src="img/cardapio/efeito-placebo.jpg" alt="Efeito Placebo" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Efeito Placebo</h3><span class="prod-price">R$ 20,00</span></div>
             <p class="prod-tagline">"Você acha que vai funcionar... daí funciona."</p>
@@ -554,7 +575,7 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍷</span></div>
+          <div class="prod-media"><img src="img/cardapio/antidepressiva.jpg" alt="Antidepressiva" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Antidepressiva</h3><span class="prod-price">R$ 25,00</span></div>
             <p class="prod-desc">Vinho tinto, syrup de limão siciliano e frutas vermelhas.</p>
@@ -569,28 +590,28 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍸</span></div>
+          <div class="prod-media"><img src="img/cardapio/serotonina.jpg" alt="Serotonina" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Serotonina</h3><span class="prod-price">R$ 35,00</span></div>
             <p class="prod-desc">Gin, syrup de gengibre, suco de limão e água tônica.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍏</span></div>
+          <div class="prod-media"><img src="img/cardapio/ginzepam.jpg" alt="Ginzepam" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Ginzepam</h3><span class="prod-price">R$ 32,00</span></div>
             <p class="prod-desc">Gin, maçã e água tônica.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🍏</span></div>
+          <div class="prod-media"><img src="img/cardapio/psicologo.jpg" alt="Psicólogo" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Psicólogo</h3><span class="prod-price">R$ 27,00</span></div>
             <p class="prod-desc">Vodka, Monin maçã verde, suco de limão e soda.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><span class="ph">🫐</span></div>
+          <div class="prod-media"><img src="img/cardapio/fluxo-cognitivo.jpg" alt="Fluxo Cognitivo" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Fluxo Cognitivo <small style="opacity:.55">(sem álcool)</small></h3><span class="prod-price">R$ 16,00</span></div>
             <p class="prod-desc">Monin de amora, suco de laranja e soda.</p>
@@ -607,14 +628,14 @@
       </div>
       <div class="prod-grid">
         <article class="prod-card">
-          <div class="prod-media"><img src="img/bebidas/chopp-300.jpg" alt="Chopp Amstel 300 ml" loading="lazy"></div>
+          <div class="prod-media"><img src="img/cardapio/chopp-amstel-300.jpg" alt="Chopp Amstel 300 ml" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Chopp Amstel — 300 ml</h3><span class="prod-price">R$ 8,00</span></div>
             <p class="prod-desc">Tirado na hora, trincando de gelado, com colarinho cremoso.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><img src="img/bebidas/chopp-500.jpg" alt="Chopp Amstel 500 ml" loading="lazy"></div>
+          <div class="prod-media"><img src="img/cardapio/chopp-amstel-500.jpg" alt="Chopp Amstel 500 ml" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Chopp Amstel — 500 ml</h3><span class="prod-price">R$ 11,00</span></div>
             <p class="prod-desc">A dose generosa do chopp da casa, pra quem não quer levantar da mesa.</p>
@@ -628,14 +649,14 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><img src="img/bebidas/heineken-zero.jpg" alt="Long Neck Heineken 0.0" loading="lazy"></div>
+          <div class="prod-media"><img src="img/cardapio/heineken-zero.jpg" alt="Long Neck Heineken 0.0" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Long Neck Heineken 0.0</h3><span class="prod-price">R$ 13,00</span></div>
             <p class="prod-desc">Todo o sabor da Heineken, zero álcool.</p>
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><img src="img/bebidas/amstel-ultra.jpg" alt="Long Neck Amstel Ultra" loading="lazy"></div>
+          <div class="prod-media"><img src="img/cardapio/amstel-ultra.jpg" alt="Long Neck Amstel Ultra" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Long Neck Amstel Ultra</h3><span class="prod-price">R$ 10,00</span></div>
             <p class="prod-desc">Leve, refrescante e com menos calorias.</p>
@@ -649,7 +670,7 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><img src="img/bebidas/amstel-600.jpg" alt="Cerveja Amstel 600 ml" loading="lazy"></div>
+          <div class="prod-media"><img src="img/cardapio/amstel-600.jpg" alt="Cerveja Amstel 600 ml" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Cerveja Amstel — 600 ml</h3><span class="prod-price">R$ 12,00</span></div>
             <p class="prod-desc">Lager encorpada na medida, perfeita pra acompanhar a chapa.</p>
@@ -746,7 +767,7 @@
           </div>
         </article>
         <article class="prod-card">
-          <div class="prod-media"><img src="img/bebidas/combo-amstel.jpg" alt="Combo Amstel Ultra" loading="lazy"></div>
+          <div class="prod-media"><img src="img/cardapio/amstel-ultra.jpg" alt="Combo Amstel Ultra" loading="lazy"></div>
           <div class="prod-info">
             <div class="prod-top"><h3>Combo Amstel Ultra</h3><span class="prod-price">R$ 55,00</span></div>
             <p class="prod-desc">6 long necks Amstel Ultra bem geladas pra dividir com a mesa.</p>
