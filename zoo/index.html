@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
   <div class="age-gate" id="ageGate" aria-hidden="true">
@@ -53,7 +53,7 @@
   </header>
 
   <main>
-    <!-- Atalhos das categorias: cada um leva até a seção correspondente (montado pelo script.js) -->
+    <!-- Atalhos das categorias: cada um abre a categoria logo abaixo (montado pelo script.js) -->
     <nav class="cat-shortcuts" id="catShortcuts" aria-label="Categorias de produtos"></nav>
 
     <section class="hero" id="inicio">
@@ -63,29 +63,23 @@
         <p>Sedas, tabacos, piteiras, isqueiros e acessórios com entrega rápida em Ouro Preto.</p>
         <!-- No celular os atalhos aparecem aqui, logo abaixo do texto de apresentação -->
         <div class="cat-mobile-wrap">
-          <p class="cat-mobile-title">Escolha por categoria</p>
+          <p class="cat-mobile-title">Escolha por categoria<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></p>
           <nav class="cat-shortcuts cat-shortcuts-mobile" id="catShortcutsMobile" aria-label="Categorias de produtos"></nav>
         </div>
         <div class="trust-row">
-          <span>⚡ Compra rápida</span>
-          <span>📍 Ouro Preto — MG</span>
-          <span>🌙 19h às 01h</span>
+          <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg>Compra rápida</span>
+          <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11.2-6.5 11.2Z"/><circle cx="12" cy="10.2" r="2.4"/></svg>Ouro Preto — MG</span>
+          <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>19h às 01h</span>
         </div>
         <p class="wa-note"><span class="wa-dot" aria-hidden="true"></span> Os pedidos realizados no site são encaminhados para o nosso WhatsApp.</p>
       </div>
       <div class="hero-art">
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
-        <!-- Vitrine: produtos em destaque no lugar do cartão (montada pelo script.js) -->
+        <!-- Vitrine: produtos em destaque (montada pelo script.js) -->
         <div class="hero-showcase" id="heroShowcase"></div>
-        <button class="btn btn-secondary hero-address-btn" id="heroAddress" type="button">Cadastrar endereço</button>
+        <button class="btn btn-address hero-address-btn" id="heroAddress" type="button"><span class="pin-badge"><svg class="pin-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11.2-6.5 11.2Z"/><circle cx="12" cy="10.2" r="2.4"/></svg></span>Cadastrar endereço</button>
       </div>
-    </section>
-
-    <section class="benefits">
-      <article><b>Entrega local</b><span>Atendimento focado em Ouro Preto.</span></article>
-      <article><b>Pedido pelo WhatsApp</b><span>Escolha, salve o endereço e o pedido segue para o nosso WhatsApp.</span></article>
-      <article><b>Kits e complementos</b><span>Combos pensados para facilitar a compra.</span></article>
     </section>
 
     <section class="section" id="produtos">
@@ -125,7 +119,7 @@
         <h2>Endereço salvo para pedir mais rápido.</h2>
         <p>O site guarda os dados do endereço neste dispositivo. Para operação real, conecte a um backend para cadastro seguro de clientes e pedidos.</p>
       </div>
-      <button class="btn btn-secondary" id="deliveryAddress" type="button">Cadastrar meu endereço</button>
+      <button class="btn btn-address" id="deliveryAddress" type="button"><span class="pin-badge"><svg class="pin-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11.2-6.5 11.2Z"/><circle cx="12" cy="10.2" r="2.4"/></svg></span>Cadastrar meu endereço</button>
     </section>
   </main>
 
@@ -149,11 +143,11 @@
         <p class="eyebrow">SEU PEDIDO</p>
         <h2>Carrinho</h2>
       </div>
-      <button class="icon-btn" id="closeCart" type="button">✕</button>
+      <button class="icon-btn" id="closeCart" type="button" aria-label="Fechar carrinho"><svg class="x-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-empty" id="cartEmpty">
-      <div>🛒</div>
+      <div class="empty-icon"><svg class="empty-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 10.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></div>
       <h3>Seu carrinho está vazio</h3>
       <p>Adicione alguns produtos para começar.</p>
     </div>
@@ -168,30 +162,27 @@
 
   <div class="modal-backdrop" id="backdrop"></div>
 
-  <section class="modal" id="addressModal" aria-hidden="true">
+  <!-- Formulário de endereço: "Cadastrar endereço" só salva; pelo carrinho vira "Finalizar pedido" -->
+  <section class="modal" id="addressModal" aria-hidden="true" data-mode="save">
     <div class="modal-head">
       <div>
-        <p class="eyebrow">ENTREGA E PAGAMENTO</p>
-        <h2>Finalizar pedido</h2>
+        <p class="eyebrow" id="addressEyebrow">ENTREGA</p>
+        <h2 id="addressTitle">Seu endereço</h2>
       </div>
-      <button class="icon-btn" data-close="addressModal" type="button">✕</button>
+      <button class="icon-btn" data-close="addressModal" type="button" aria-label="Fechar"><svg class="x-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
     <form id="addressForm">
       <div class="form-grid">
         <label class="full">Nome
           <input name="name" required autocomplete="name" placeholder="Seu nome" />
         </label>
-        <!-- Preenchimento automático pela localização do aparelho -->
-        <div class="full geo-row">
-          <button class="geo-btn" id="geoFill" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>
-            <span>Usar minha localização</span>
-          </button>
-          <small class="geo-hint" id="geoHint">Preenche o endereço automaticamente</small>
-        </div>
         <label class="full">CEP
+          <span class="cep-tip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg>
+            Digite seu CEP e o endereço é preenchido automaticamente.
+          </span>
           <input name="cep" inputmode="numeric" maxlength="9" autocomplete="postal-code" placeholder="00000-000" />
-          <small class="cep-hint" id="cepHint">Digite o CEP e o endereço é preenchido automaticamente.</small>
+          <small class="cep-hint" id="cepHint"></small>
         </label>
         <label class="full">Rua
           <input name="street" required autocomplete="street-address" placeholder="Rua / avenida" />
@@ -214,33 +205,34 @@
       <fieldset class="pay-options">
         <legend>Forma de pagamento</legend>
         <div class="pay-row">
-          <label class="pay-opt"><input type="radio" name="payment" value="Pix" required><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z"/><path d="M8.5 9.2 12 12.7l3.5-3.5"/><path d="M8.5 14.8 12 11.3l3.5 3.5"/></svg></span><b>Pix</b></span></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="Pix"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z"/><path d="M8.5 9.2 12 12.7l3.5-3.5"/><path d="M8.5 14.8 12 11.3l3.5 3.5"/></svg></span><b>Pix</b></span></label>
           <label class="pay-opt"><input type="radio" name="payment" value="Crédito"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 14.5h4"/></svg></span><b>Crédito</b></span></label>
           <label class="pay-opt"><input type="radio" name="payment" value="Débito"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><rect x="6" y="9" width="4" height="3.2" rx=".6"/><path d="M13 14.5h5"/></svg></span><b>Débito</b></span></label>
           <label class="pay-opt"><input type="radio" name="payment" value="Dinheiro"><span><span class="pay-icon"><svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.4"/><path d="M6 10v4M18 10v4"/></svg></span><b>Dinheiro</b></span></label>
         </div>
       </fieldset>
-      <button class="btn btn-primary btn-full" type="submit">Enviar pedido</button>
+      <button class="btn btn-primary btn-full" id="addressSubmit" type="submit">Salvar endereço</button>
     </form>
   </section>
 
+  <!-- Resumo antigo (não usado no fluxo atual; mantido porque o script.js ainda liga o botão #sendOrder) -->
   <section class="modal checkout-modal" id="checkoutModal" aria-hidden="true">
     <div class="modal-head">
       <div>
         <p class="eyebrow">FINALIZAÇÃO</p>
         <h2>Resumo do pedido</h2>
       </div>
-      <button class="icon-btn" data-close="checkoutModal" type="button">✕</button>
+      <button class="icon-btn" data-close="checkoutModal" type="button" aria-label="Fechar"><svg class="x-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
     <div id="checkoutSummary"></div>
     <div class="notice">
-      O pedido é enviado pelo WhatsApp com os itens, o endereço e seus dados. A loja confirma taxa de entrega e disponibilidade por lá.
+      O pedido é enviado pelo WhatsApp com os itens, o endereço e seus dados.
     </div>
     <button class="btn btn-primary btn-full" id="sendOrder" type="button">Enviar pedido pelo WhatsApp</button>
   </section>
 
   <div class="toast" id="toast"></div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

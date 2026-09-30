@@ -211,7 +211,6 @@
 .cat-mobile-title{display:inline-flex!important;align-items:center;gap:8px;padding:9px 14px!important;border-radius:999px;
   background:#c8ff00;color:#070807!important;font-size:11px!important;letter-spacing:.14em!important;
   box-shadow:0 0 0 0 rgba(200,255,0,.55);animation:chooseBtnPulse 1.8s ease-out infinite!important;text-shadow:none!important;opacity:1!important}
-.cat-mobile-title:after{content:"↓";font-size:12px;letter-spacing:0}
 @keyframes chooseBtnPulse{0%{box-shadow:0 0 0 0 rgba(200,255,0,.55)}70%{box-shadow:0 0 0 12px rgba(200,255,0,0)}100%{box-shadow:0 0 0 0 rgba(200,255,0,0)}}
 @media(max-width:560px){.cat-mobile-title{margin-bottom:14px!important}}
 /* Balão "Produto adicionado" preso ao carrinho */
@@ -231,15 +230,6 @@
 /* Ajustes do painel de categoria */
 .cat-panel .cat-head{flex-direction:row!important;align-items:center;justify-content:space-between}
 @media(max-width:560px){#catShortcuts + .cat-panel{display:none}}
-/* Botão minimalista de localização (acima do CEP) */
-.geo-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.geo-btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:999px;cursor:pointer;
-  border:1px solid rgba(200,255,0,.35);background:rgba(200,255,0,.06);color:#c8ff00;font:600 12px Inter;transition:background .2s,border-color .2s}
-.geo-btn:hover{background:rgba(200,255,0,.12);border-color:#c8ff00}
-.geo-btn:disabled{opacity:.6;cursor:progress}
-.geo-btn svg{width:16px;height:16px}
-.geo-hint{font-size:11px;color:#7f878c}
-.geo-hint.ok{color:#c8ff00}.geo-hint.error{color:#ff7a6b}
 /* Resumo curto do pedido */
 .order-mini{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 0;padding:12px 14px;border-radius:12px;background:#151719;border:1px solid #24282b;font-size:12px;color:#9aa1a5}
 .order-mini strong{color:#fff;font-size:14px}
@@ -272,3 +262,49 @@
 .pay-opt input:checked+span .pay-icon{border-color:#c8ff00!important;box-shadow:0 0 20px rgba(200,255,0,.4)}
 .pay-opt input:checked+span b{color:#c8ff00}
 .pay-opt span.pay-icon{width:34px;height:34px;flex:none;color:#c8ff00;white-space:normal}
+/* Botão "Mais vendidos" abaixo das categorias (celular) */
+.best-btn{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px;height:46px;border-radius:14px;cursor:pointer;
+  border:1px solid rgba(200,255,0,.4);background:linear-gradient(90deg,rgba(200,255,0,.14),rgba(200,255,0,.04));color:#eef4e5;font:700 13px Inter;letter-spacing:.02em;transition:.2s}
+.best-btn:hover{border-color:#c8ff00}
+.best-btn.active{background:#151a06;border-color:#c8ff00}
+.best-btn b{font-weight:700}
+.best-btn-icon{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;color:#c8ff00;background:#121517;border:1px solid rgba(200,255,0,.3);box-shadow:0 0 12px rgba(200,255,0,.18)}
+.best-btn-icon .cat-svg{width:16px;height:16px}
+.best-btn-arrow{color:#c8ff00;transition:transform .25s}
+.best-btn.active .best-btn-arrow{transform:rotate(180deg)}
+/* Instrução acima do CEP */
+.cep-tip{display:flex;align-items:center;gap:7px;margin:8px 0 2px;padding:8px 11px;border-radius:10px;
+  font-size:11.5px;font-weight:500;line-height:1.35;color:#d9f59a;background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.22)}
+.cep-tip svg{width:14px;height:14px;flex:none;color:#c8ff00}
+.cep-hint:empty{display:none}
+/* Modo "salvar endereço": sem resumo nem pagamento */
+#addressModal[data-mode="save"] .order-mini,#addressModal[data-mode="save"] .pay-options{display:none}
+/* Resumo do pedido com frete detalhado */
+.order-mini{display:block}
+.om-line{display:flex;justify-content:space-between;padding:3px 0}
+.om-free{color:#4ade80;font-weight:700}
+.om-total{margin-top:5px;padding-top:8px;border-top:1px solid #24282b;color:#fff}
+.om-total strong{font-size:15px}
+/* Botão "Cadastrar endereço": branco com pin de localização */
+.btn-address{gap:10px;background:#f5f7f2;color:#0b0c0d;border:1px solid #fff;
+  box-shadow:0 10px 26px rgba(0,0,0,.35),inset 0 -2px 0 rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s,background .2s}
+.btn-address:hover{background:#fff;box-shadow:0 14px 30px rgba(0,0,0,.4),0 0 0 3px rgba(200,255,0,.35)}
+.pin-badge{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:#0b0c0d;color:#c8ff00;flex:none}
+.pin-svg{width:16px;height:16px}
+.btn-address:hover .pin-svg{animation:pinBounce .6s ease}
+@keyframes pinBounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-3px)}70%{transform:translateY(1px)}}
+/* Ícones de linha no lugar dos emojis */
+.trust-item{display:inline-flex;align-items:center;gap:6px}
+.ui-svg{width:14px;height:14px;flex:none;color:#c8ff00}
+.x-svg{width:16px;height:16px;display:block;margin:auto}
+.icon-btn,.cat-panel-close{display:grid;place-items:center;padding:0}
+.empty-icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 6px;border-radius:22px;color:#c8ff00;
+  background:radial-gradient(circle at 30% 25%,rgba(200,255,0,.18),rgba(200,255,0,.03) 65%),#121517;border:1px solid rgba(200,255,0,.25)}
+.empty-svg{width:34px;height:34px}
+.cat-mobile-title:after{content:none!important}
+.cat-mobile-title .ui-svg{width:13px;height:13px;color:#070807}
+.best-btn-arrow .ui-svg{width:15px;height:15px;display:block}
+.best-btn-arrow{display:grid;place-items:center}
+.cart-icon .cat-svg{width:22px;height:22px;color:#c8ff00}
+/* Pin do "Cadastrar endereço" com fundo branco */
+.pin-badge{background:#fff;color:#0b0c0d;border:1px solid #dfe3da;box-shadow:0 1px 3px rgba(0,0,0,.12)}
