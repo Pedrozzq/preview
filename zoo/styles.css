@@ -344,3 +344,107 @@
 
 /* Categoria ainda sem produtos */
 .cat-empty{margin:0;padding:22px;border-radius:16px;border:1px dashed #2c3134;background:#0e1011;color:#8f979b;font-size:13px;text-align:center}
+
+/* Loja > Todos: todos os produtos numa faixa com rolagem lateral e setas */
+.strip-nav{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:-6px 0 14px}
+.strip-nav span{margin-right:auto;color:#7f878c;font-size:12px}
+.strip-nav button{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;border:0;background:#c8ff00;color:#0b0c0d;cursor:pointer;transition:transform .2s}
+.strip-nav button:hover{transform:scale(1.08)}
+.strip-nav .ui-svg{width:18px;height:18px;color:#0b0c0d}
+.strip-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}
+.strip-track::-webkit-scrollbar{display:none}
+.strip-track .product{flex:0 0 calc((100% - 48px)/4);scroll-snap-align:start}
+@media(max-width:900px){.strip-track .product{flex-basis:calc((100% - 16px)/2)}}
+@media(max-width:560px){.strip-track{gap:10px}.strip-track .product{flex-basis:calc((100% - 10px)/2)}.strip-nav button{width:36px;height:36px}}
+/* Troca de seção: cards entram em cascata e uma fumaça leve sobe do ícone */
+.cat-panel.open .product{animation:cardIn .55s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0)*55ms + 80ms)}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.cat-head-icon{position:relative}
+.smoke{position:absolute;left:50%;bottom:70%;width:0;height:0;pointer-events:none;z-index:1}
+.smoke i{position:absolute;left:-9px;bottom:0;width:18px;height:18px;border-radius:50%;
+  background:radial-gradient(circle,rgba(220,230,210,.55),rgba(200,255,0,.12) 55%,transparent 72%);filter:blur(3px);opacity:0;
+  animation:smokeUp 2.2s ease-out forwards}
+.smoke i:nth-child(2){animation-delay:.25s;--dx:-10px}
+.smoke i:nth-child(3){animation-delay:.5s;--dx:8px}
+@keyframes smokeUp{0%{opacity:0;transform:translate(0,0) scale(.5)}20%{opacity:.85}
+  60%{opacity:.4;transform:translate(calc(var(--dx,6px)*.6),-30px) scale(1.4)}
+  100%{opacity:0;transform:translate(var(--dx,6px),-56px) scale(2.2)}}
+@media(prefers-reduced-motion:reduce){.cat-panel.open .product{animation:none}.smoke{display:none}}
+
+/* Combo da casa: fotos dos itens + preço avulso riscado */
+.combo-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative}
+.combo-save{font-size:11px;font-weight:800;color:#c8ff00;background:rgba(200,255,0,.1);border:1px solid rgba(200,255,0,.3);border-radius:999px;padding:6px 10px}
+.combo-items{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative}
+.combo-item{position:relative;text-align:center}
+.combo-thumb{aspect-ratio:1;border-radius:16px;background:radial-gradient(circle at 50% 30%,#22272a,#0e1011 72%);border:1px solid #23272a;display:grid;place-items:center;overflow:hidden}
+.combo-thumb img{width:100%;height:100%;object-fit:contain;padding:8px}
+.combo-item b{display:block;margin-top:8px;font-size:11px;line-height:1.3;color:#cfd4d6}
+.combo-plus{position:absolute;left:-12px;top:calc(50% - 22px);transform:translateY(-50%);z-index:1;width:16px;height:16px;border-radius:50%;background:#c8ff00;color:#0b0c0d;font:800 12px/16px Inter;text-align:center}
+.combo-price{position:relative}
+.combo-price span{display:flex;flex-direction:column;gap:4px}
+.combo-price s{color:#8f979b}
+.combo-price em{font-style:normal;color:#c8ff00;font-size:11px;font-weight:700}
+.combo-price strong{font-size:30px;color:#c8ff00}
+@media(max-width:560px){.combo-items{gap:8px}.combo-item b{font-size:10px}.combo-price strong{font-size:26px}}
+.combo-thumb-icon{color:#c8ff00}.combo-thumb-icon .cat-svg{width:30px;height:30px}
+
+/* Instrução em verde neon acima do menu de categorias */
+.menu-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin:0;color:#c8ff00;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;
+  text-shadow:0 0 10px rgba(200,255,0,.55),0 0 22px rgba(200,255,0,.25)}
+.menu-hint .ui-svg{width:14px;height:14px;animation:hintBounce 1.4s ease-in-out infinite}
+.menu-hint-dot{width:7px;height:7px;border-radius:50%;background:#c8ff00;box-shadow:0 0 10px #c8ff00;animation:hintPulse 1.6s ease-in-out infinite}
+.menu-hint-desktop{padding:14px 7vw 0;background:#0b0c0d}
+.menu-hint-mobile{display:none}
+@keyframes hintBounce{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@keyframes hintPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.7)}}
+@media(max-width:560px){.menu-hint-desktop{display:none}.menu-hint-mobile{display:flex;justify-content:flex-start;margin:14px 0 10px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.menu-hint .ui-svg,.menu-hint-dot{animation:none}}
+.hero p.menu-hint{color:#c8ff00;font:700 11px/1.3 Inter;letter-spacing:.06em;max-width:none}
+
+/* Combo: escolha do energético */
+.combo-choose{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px}
+.combo-choose span{width:100%;font-size:11px;font-weight:700;color:#8f979b;text-transform:uppercase;letter-spacing:.08em}
+.combo-opt{padding:8px 12px;border-radius:999px;border:1px solid #2b3033;background:#101213;color:#cfd4d6;font:700 12px Inter;cursor:pointer;transition:.2s}
+.combo-opt:hover{border-color:#c8ff00}
+.combo-opt.active{background:#c8ff00;color:#0b0c0d;border-color:#c8ff00;box-shadow:0 0 14px rgba(200,255,0,.35)}
+.combo-item.is-choice .combo-thumb{border-color:rgba(200,255,0,.5)}
+.combo-add{position:relative;margin-top:18px}
+
+/* Loja > Todos: botão "Mais vendidos" abaixo da faixa, abre a grade de destaques */
+.all-best-btn{width:100%;margin-top:18px}
+.all-best{margin-top:16px}
+.all-best .product{animation:cardIn .5s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0)*55ms)}
+@media(prefers-reduced-motion:reduce){.all-best .product{animation:none}}
+/* Todos os produtos: no celular/tablet mostra 4 por vez (2 colunas × 2 linhas), rolando para o lado */
+@media(max-width:900px){
+  .strip-track{display:grid;grid-template-rows:repeat(2,auto);grid-auto-flow:column;grid-auto-columns:calc((100% - 16px)/2);gap:16px}
+  .strip-track .product{flex:none}
+  .strip-track .product:nth-child(4n+1){scroll-snap-align:start}
+  .strip-track .product:not(:nth-child(4n+1)){scroll-snap-align:none}
+}
+@media(max-width:560px){.strip-track{grid-auto-columns:calc((100% - 10px)/2);gap:10px}}
+@media(max-width:900px){.strip-track .product{order:var(--o,0)}}
+/* Sem zoom por toque duplo no celular */
+html,body{touch-action:manipulation}
+
+/* Foto do produto em tela cheia */
+.product-visual img,.combo-thumb img{cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;
+  background:rgba(5,6,6,.94);backdrop-filter:blur(6px);opacity:0;transition:opacity .2s}
+.lightbox.show{opacity:1}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:min(92vw,900px);max-height:78vh;width:auto;height:auto;object-fit:contain;transform:scale(.96);transition:transform .25s;
+  filter:drop-shadow(0 20px 50px rgba(0,0,0,.6))}
+.lightbox.show img{transform:none}
+.lightbox p{margin:0;color:#eef4e5;font:700 15px Inter;text-align:center}
+.lightbox-close{position:absolute;top:16px;right:16px;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;border:1px solid #2b3033;background:#151719;color:#fff;cursor:pointer}
+.lightbox-close .x-svg{width:20px;height:20px}
+.lightbox-add{gap:8px;min-width:240px;padding:15px 22px;font-size:15px}.lightbox-add .ui-svg{width:18px;height:18px;color:#070807}.lightbox-add[hidden]{display:none}
+/* Kit no carrinho: logo da Zoo no lugar da foto */
+.cart-brand{width:100%;height:100%;border-radius:14px;font-size:26px;box-shadow:0 0 16px rgba(200,255,0,.35)}
+
+/* Entrega Full: linha minimalista abaixo do título da Loja */
+.section p.fast-delivery{display:flex;align-items:center;gap:7px;margin:14px 0 0;font:500 12px/1 Inter;color:#8f979b;letter-spacing:.02em;max-width:none}
+.fast-delivery .ui-svg{width:13px;height:13px}
+.fast-delivery b{color:#eef4e5;font-weight:700}
+.fast-delivery span:before{content:"·";margin-right:7px;color:#4a5054}

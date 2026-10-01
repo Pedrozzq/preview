@@ -2,14 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <meta name="theme-color" content="#090a0b" />
   <meta name="description" content="Zoo Tabacaria — acessórios e conveniência com entrega em Ouro Preto, MG." />
   <title>Zoo Tabacaria | Ouro Preto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=24" />
 </head>
 <body>
   <div class="age-gate" id="ageGate" aria-hidden="true">
@@ -54,6 +54,8 @@
 
   <main>
     <!-- Atalhos das categorias: cada um abre a categoria logo abaixo (montado pelo script.js) -->
+    <!-- Instrução em verde neon acima do menu de categorias -->
+    <p class="menu-hint menu-hint-desktop"><span class="menu-hint-dot" aria-hidden="true"></span>Clique em uma categoria para ver os produtos<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg></p>
     <nav class="cat-shortcuts" id="catShortcuts" aria-label="Categorias de produtos"></nav>
 
     <section class="hero" id="inicio">
@@ -64,11 +66,12 @@
         <!-- No celular os atalhos aparecem aqui, logo abaixo do texto de apresentação -->
         <div class="cat-mobile-wrap">
           <p class="cat-mobile-title">Escolha por categoria<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></p>
+          <p class="menu-hint menu-hint-mobile"><span class="menu-hint-dot" aria-hidden="true"></span>Toque numa categoria para ver<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg></p>
           <nav class="cat-shortcuts cat-shortcuts-mobile" id="catShortcutsMobile" aria-label="Categorias de produtos"></nav>
         </div>
         <p class="wa-note"><span class="wa-dot" aria-hidden="true"></span> Os pedidos realizados no site são encaminhados para o nosso WhatsApp.</p>
         <div class="trust-row">
-          <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg>Compra rápida</span>
+          <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg>Entrega rápida</span>
           <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11.2-6.5 11.2Z"/><circle cx="12" cy="10.2" r="2.4"/></svg>Ouro Preto — MG</span>
           <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>19h às 01h</span>
         </div>
@@ -85,6 +88,7 @@
         <div>
           <p class="eyebrow">LOJA</p>
           <h2>Escolha por categoria</h2>
+          <p class="fast-delivery"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg><b>Entrega Full</b><span>10–15 minutos</span></p>
         </div>
         <div class="filters" id="filters"></div>
       </div>
@@ -93,22 +97,12 @@
 
     <section class="combo-section">
       <div class="combo-copy">
-        <p class="eyebrow">AUMENTE O TICKET</p>
-        <h2>Combos prontos convertem melhor.</h2>
-        <p>Ofereça kits de acessórios e conveniência com desconto pequeno sobre a compra avulsa. O cliente decide mais rápido e leva mais itens.</p>
-        <button class="btn btn-primary" id="addCombo" type="button">Adicionar Combo Zoo</button>
+        <p class="eyebrow">MONTE SEU KIT</p>
+        <h2>Monte seu kit do seu jeito.</h2>
+        <p>Escolha a seda, o maço de palha, o isqueiro e o energético. O kit sai mais barato do que comprar separado — e acima de R$ 35 o frete é grátis.</p>
       </div>
-      <div class="combo-box">
-        <div class="combo-badge">COMBO</div>
-        <h3>Zoo Night Kit</h3>
-        <ul>
-          <li>1 Seda premium</li>
-          <li>1 Piteira</li>
-          <li>1 Isqueiro</li>
-          <li>1 Chocolate</li>
-        </ul>
-        <div class="combo-price"><span>kit demonstrativo</span><strong>R$ 29,90</strong></div>
-      </div>
+      <!-- Itens, fotos e preços do combo montados pelo script.js (renderCombo) -->
+      <div class="combo-box" id="comboBox"></div>
     </section>
 
     <!-- Sugestão de produto: a pessoa escreve e envia pelo WhatsApp (script.js) -->
@@ -244,7 +238,14 @@
   </section>
 
   <div class="toast" id="toast"></div>
+  <!-- Foto do produto em tela cheia (abre ao tocar na imagem; script.js) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto do produto" hidden>
+    <button class="lightbox-close" type="button" aria-label="Fechar foto"><svg class="x-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <img id="lightboxImg" alt="">
+    <p id="lightboxCap"></p>
+    <button class="btn btn-primary lightbox-add" id="lightboxAdd" type="button"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/><path d="M12 11v5M9.5 13.5h5"/></svg>Adicionar ao carrinho</button>
+  </div>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=23"></script>
 </body>
 </html>
