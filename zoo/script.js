@@ -10,10 +10,10 @@ const shippingFee = subtotal => subtotal>0 && subtotal<FREE_SHIPPING_FROM ? SHIP
 const products = [
   {id:"seda-king",name:"Seda King",category:"Sedas",price:8.50,icon:"",img:"img/produtos/sem-fundo/seda-king.png",tag:"PRA TODO CORRE",desc:"33 folhas · King Size"},
   {id:"seda-elements",name:"Seda Elements",category:"Sedas",price:14.00,icon:"",img:"img/produtos/sem-fundo/seda-elements.png",tag:"PREMIUM",desc:"32 folhas · King Size Slim"},
-  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:17.50,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",tag:"NATURAL",desc:"32 folhas + 32 piteiras · King Size Slim"},
+  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:17.50,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",tag:"NATURAL",desc:"32 folhas · King Size Slim"},
   {id:"combo-seda-king",name:"Combo 3 Sedas King",category:"Sedas",bundle:{"seda-king":3},icon:"",img:"img/produtos/sem-fundo/combo-seda-king.png",tag:"PROMOÇÃO",desc:"3 livretos King Size (99 folhas)"},
-  {id:"piteira",name:"Piteiras de Papel",category:"Piteiras & Boladores",price:6.90,icon:"",tag:"COMPLEMENTO",desc:"1 bloco"},
-  {id:"bolador",name:"Bolador 78mm",category:"Piteiras & Boladores",price:12.90,icon:"",img:"img/produtos/sem-fundo/bolador.png",tag:"PRÁTICO",desc:"1 unidade · 78 mm"},
+  {id:"piteira-tatu",name:"Piteira Tatu do Bem",category:"Piteiras",price:9.90,icon:"",img:"img/produtos/sem-fundo/piteira-tatu.png",tag:"COMPLEMENTO",desc:"50 piteiras"},
+  {id:"piteira-cremaria",name:"Piteira Cremaria",category:"Piteiras",price:8.90,icon:"",img:"img/produtos/sem-fundo/piteira-cremaria.png",tag:"COMPLEMENTO",desc:"50 piteiras"},
   // Tabacos: sem fotos de marca; preços de exemplo, a loja deve ajustar
   {id:"tabaco-25",name:"Tabaco para Enrolar 25g",category:"Tabacos",price:24.90,icon:"",tag:"TABACO",desc:"25 g"},
   {id:"tabaco-aroma",name:"Tabaco Aromatizado 25g",category:"Tabacos",price:27.90,icon:"",tag:"TABACO",desc:"25 g"},
@@ -68,7 +68,7 @@ const CATEGORY_INFO = {
   "Tabacos":{icon:ICONS.tabacos,sub:"Tabaco para enrolar, natural e aromatizado."},
   "Cigarros":{icon:ICONS.cigarros,sub:"Cigarros de palha Yanking e Porto Faria, no maço ou avulso."},
   "Isqueiros":{icon:ICONS.isqueiros,sub:"Max, BIC e Clipper recarregável — todos em cores e estampas sortidas."},
-  "Piteiras & Boladores":{icon:ICONS.piteiras,short:"Piteiras",sub:"Complementos para o kit ficar completo."},
+  "Piteiras":{icon:ICONS.piteiras,sub:"Piteiras Tatu do Bem e Cremaria para completar o kit."},
   "Dichavadores":{icon:ICONS.dichavadores,sub:"Dichavadores de metal Amsterdam e Gold."},
   "Incensos":{icon:ICONS.incensos,sub:"Incensos para deixar o ambiente perfumado."},
   "Conveniência":{icon:ICONS.conveniencia,short:"Bebidas",sub:"Energéticos, Coca-Cola e água Crystal gelados."}
@@ -179,7 +179,7 @@ function productCard(p){
 // "Mais vendidos" (botão abaixo das categorias no celular): ordem de exibição
 const BEST_KEY = "__mais-vendidos";
 const ALL_KEY = "__todos";
-const BEST_SELLERS = ["seda-elements","clipper-caveira","raw-classic","bic","piteira","seda-king"];
+const BEST_SELLERS = ["seda-elements","clipper-caveira","raw-classic","bic","seda-king"];
 // Conteúdo do "Todos": todos os produtos numa faixa que rola para o lado, com setas
 function allProductsHTML(){
   const arrow=d=>`<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
