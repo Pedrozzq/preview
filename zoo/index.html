@@ -66,16 +66,14 @@
           <p class="cat-mobile-title">Escolha por categoria<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></p>
           <nav class="cat-shortcuts cat-shortcuts-mobile" id="catShortcutsMobile" aria-label="Categorias de produtos"></nav>
         </div>
+        <p class="wa-note"><span class="wa-dot" aria-hidden="true"></span> Os pedidos realizados no site são encaminhados para o nosso WhatsApp.</p>
         <div class="trust-row">
           <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg>Compra rápida</span>
           <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11.2-6.5 11.2Z"/><circle cx="12" cy="10.2" r="2.4"/></svg>Ouro Preto — MG</span>
           <span class="trust-item"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>19h às 01h</span>
         </div>
-        <p class="wa-note"><span class="wa-dot" aria-hidden="true"></span> Os pedidos realizados no site são encaminhados para o nosso WhatsApp.</p>
       </div>
       <div class="hero-art">
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
         <!-- Vitrine: produtos em destaque (montada pelo script.js) -->
         <div class="hero-showcase" id="heroShowcase"></div>
         <button class="btn btn-address hero-address-btn" id="heroAddress" type="button"><span class="pin-badge"><svg class="pin-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11.2-6.5 11.2Z"/><circle cx="12" cy="10.2" r="2.4"/></svg></span>Cadastrar endereço</button>
@@ -90,15 +88,8 @@
         </div>
         <div class="filters" id="filters"></div>
       </div>
-      <div class="product-grid" id="productGrid"></div>
     </section>
 
-    <!-- Cartão da Zoo (imagem de marca abaixo dos produtos) -->
-    <section class="brand-card-section" aria-label="Cartão Zoo Tabacaria">
-      <figure class="brand-card">
-        <img src="img/cartao-zoo.jpg" alt="Cartão da Zoo Tabacaria: entrega em Ouro Preto das 19h às 01h — sedas, tabacos, piteiras, isqueiros e acessórios" loading="lazy" width="1448" height="1086">
-      </figure>
-    </section>
 
     <section class="combo-section">
       <div class="combo-copy">
@@ -120,6 +111,20 @@
       </div>
     </section>
 
+    <!-- Sugestão de produto: a pessoa escreve e envia pelo WhatsApp (script.js) -->
+    <section class="suggest-section" aria-label="Sugerir produto">
+      <button class="suggest-btn" id="suggestToggle" type="button" aria-expanded="false" aria-controls="suggestForm">
+        <span class="suggest-icon"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3Z"/></svg></span>
+        <span class="suggest-text"><b>Sugira um produto</b><small>Não achou o que procura? Conta pra gente que a Zoo traz.</small></span>
+        <span class="suggest-arrow"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <form class="suggest-form" id="suggestForm" hidden>
+        <label for="suggestText">Qual produto você quer ver no catálogo?</label>
+        <textarea id="suggestText" rows="3" maxlength="300" required placeholder="Ex.: Seda Bem Bolado Brown, isqueiro Zippo, piteira de vidro…"></textarea>
+        <button class="btn btn-primary btn-full suggest-send" type="submit"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>Enviar Sugestão</button>
+      </form>
+    </section>
+
     <section class="delivery-section">
       <div>
         <p class="eyebrow">DELIVERY</p>
@@ -136,7 +141,7 @@
       <div><strong>ZOO</strong><span>TABACARIA</span></div>
     </div>
     <p>Ouro Preto — MG · Entregas todos os dias das 19h à 01h</p>
-    <p class="legal">Venda proibida para menores de 18 anos. O Ministério da Saúde adverte: fumar causa câncer e outras doenças graves. Imagens meramente ilustrativas.</p>
+    <p class="legal">Venda proibida para menores de 18 anos. O Ministério da Saúde adverte: fumar causa câncer e outras doenças graves.</p>
   </footer>
 
   <aside class="drawer" id="cartDrawer" aria-hidden="true">

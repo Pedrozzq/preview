@@ -8,29 +8,32 @@ const shippingFee = subtotal => subtotal>0 && subtotal<FREE_SHIPPING_FROM ? SHIP
 
 // img: foto ilustrativa em img/produtos (ver CREDITOS.txt); sem img, o card usa o ícone
 const products = [
-  {id:"smoking-deluxe",name:"Seda Smoking Deluxe King Size",category:"Sedas",price:8.90,icon:"",img:"img/produtos/smoking-deluxe.jpg",tag:"MAIS PEDIDO",desc:"Papel ultrafino de queima lenta e uniforme. A preferida da casa."},
-  {id:"smoking-gold",name:"Seda Smoking Gold King Size Slim",category:"Sedas",price:7.90,icon:"",img:"img/produtos/smoking-gold.jpg",fit:"contain",tag:"CLÁSSICA",desc:"Formato slim, fino e fácil de enrolar. Livreto com 33 folhas."},
-  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:9.90,icon:"",img:"img/produtos/raw-classic.jpg",pos:"50% 78%",tag:"NATURAL",desc:"Papel sem branqueamento, de fibras naturais. Sabor mais puro."},
-  {id:"ocb-slim",name:"Seda OCB Premium Slim",category:"Sedas",price:8.90,icon:"",img:"img/produtos/ocb-slim.jpg",tag:"PREMIUM",desc:"Papel francês fininho, com goma natural de acácia."},
-  // Tabacos e cigarros: sem fotos de marca; preços de exemplo, a loja deve ajustar
-  {id:"tabaco-25",name:"Tabaco para Enrolar 25g",category:"Tabacos",price:24.90,icon:"",tag:"TABACO",desc:"Tabaco desfiado para enrolar. Consulte as marcas disponíveis."},
-  {id:"tabaco-50",name:"Tabaco para Enrolar 50g",category:"Tabacos",price:42.90,icon:"",tag:"TABACO",desc:"Embalagem maior, mais rendimento. Consulte as marcas disponíveis."},
-  {id:"tabaco-aroma",name:"Tabaco Aromatizado 25g",category:"Tabacos",price:27.90,icon:"",tag:"TABACO",desc:"Versões aromatizadas. Consulte os sabores disponíveis."},
-  {id:"cigarro-maco",name:"Cigarro Maço 20un",category:"Cigarros",price:12.00,icon:"",tag:"CIGARRO",desc:"Maço tradicional. Informe a marca desejada no pedido."},
-  {id:"cigarro-box",name:"Cigarro Box 20un",category:"Cigarros",price:13.50,icon:"",tag:"CIGARRO",desc:"Embalagem box. Informe a marca desejada no pedido."},
-  {id:"cigarro-palha",name:"Cigarro de Palha",category:"Cigarros",price:15.00,icon:"",tag:"CIGARRO",desc:"Maço de cigarro de palha. Consulte as marcas disponíveis."},
-  {id:"clipper-classico",name:"Isqueiro Clipper Clássico",category:"Isqueiros",price:14.90,icon:"",img:"img/produtos/clipper-classico.jpg",tag:"RECARREGÁVEL",desc:"O isqueiro recarregável mais famoso do mundo. Pedra removível."},
-  {id:"clipper-estampado",name:"Isqueiro Clipper Estampado",category:"Isqueiros",price:16.90,icon:"",img:"img/produtos/clipper-estampado.jpg",tag:"COLECIONÁVEL",desc:"Clipper com estampas exclusivas. Escolha a sua na entrega."},
-  {id:"bic-maxi",name:"Isqueiro BIC Maxi",category:"Isqueiros",price:9.90,icon:"",img:"img/produtos/bic-maxi.jpg",pos:"50% 22%",tag:"ESSENCIAL",desc:"Chama confiável e duradoura, até 3.000 acendimentos."},
-  {id:"macarico",name:"Isqueiro Maçarico",category:"Isqueiros",price:29.90,icon:"",img:"img/produtos/macarico.jpg",fit:"cover",tag:"PREMIUM",desc:"Chama azul à prova de vento, recarregável."},
-  {id:"bolador",name:"Bolador 78mm",category:"Piteiras & Boladores",price:12.90,icon:"",img:"img/produtos/bolador.jpg",tag:"PRÁTICO",desc:"Enrola por você, rápido e no tamanho certo das sedas king size."},
-  {id:"piteira",name:"Piteiras de Papel",category:"Piteiras & Boladores",price:6.90,icon:"",tag:"COMPLEMENTO",desc:"Bloco de piteiras picotadas. Item fácil de adicionar ao pedido."},
-  {id:"cinzeiro",name:"Cinzeiro de Vidro",category:"Acessórios",price:19.90,icon:"",img:"img/produtos/cinzeiro.jpg",tag:"CASA",desc:"Vidro grosso e pesado, bonito na mesa. Ótimo para presente."},
-  {id:"bandeja",name:"Bandeja Zoo",category:"Acessórios",price:29.90,icon:"",tag:"EXCLUSIVO",desc:"Bandeja de metal com a identidade da Zoo."},
-  {id:"case",name:"Case Porta-Acessórios",category:"Acessórios",price:34.90,icon:"",tag:"UPSELL",desc:"Guarda seda, isqueiro e piteiras num lugar só."},
-  {id:"kitkat",name:"Chocolate KitKat",category:"Conveniência",price:6.90,icon:"",img:"img/produtos/kitkat.jpg",tag:"IMPULSO",desc:"Conveniência noturna: o complemento de última hora."},
-  {id:"refrigerante",name:"Refrigerante Lata",category:"Conveniência",price:7.00,icon:"",tag:"GELADO",desc:"Lata 350 ml bem gelada para completar o pedido."},
-  {id:"agua",name:"Água Mineral",category:"Conveniência",price:4.50,icon:"",img:"img/produtos/agua.jpg",tag:"GELADA",desc:"Garrafa 500 ml, sem gás."}
+  {id:"seda-king",name:"Seda King",category:"Sedas",price:8.50,icon:"",img:"img/produtos/sem-fundo/seda-king.png",tag:"PRA TODO CORRE",desc:"33 folhas"},
+  {id:"seda-elements",name:"Seda Elements",category:"Sedas",price:14.00,icon:"",img:"img/produtos/sem-fundo/seda-elements.png",tag:"PREMIUM",desc:"32 folhas"},
+  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:17.50,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",tag:"NATURAL",desc:"32 folhas + 32 piteiras"},
+  {id:"combo-seda-king",name:"Combo 3 Sedas King",category:"Sedas",price:22.50,oldPrice:25.50,icon:"",img:"img/produtos/sem-fundo/combo-seda-king.png",tag:"PROMOÇÃO",desc:"3 livretos (99 folhas)"},
+  {id:"piteira",name:"Piteiras de Papel",category:"Piteiras & Boladores",price:6.90,icon:"",tag:"COMPLEMENTO",desc:"1 bloco"},
+  {id:"bolador",name:"Bolador 78mm",category:"Piteiras & Boladores",price:12.90,icon:"",img:"img/produtos/sem-fundo/bolador.png",tag:"PRÁTICO",desc:"1 unidade"},
+  // Tabacos: sem fotos de marca; preços de exemplo, a loja deve ajustar
+  {id:"tabaco-25",name:"Tabaco para Enrolar 25g",category:"Tabacos",price:24.90,icon:"",tag:"TABACO",desc:"25 g"},
+  {id:"tabaco-aroma",name:"Tabaco Aromatizado 25g",category:"Tabacos",price:27.90,icon:"",tag:"TABACO",desc:"25 g"},
+  {id:"tabaco-50",name:"Tabaco para Enrolar 50g",category:"Tabacos",price:42.90,icon:"",tag:"TABACO",desc:"50 g"},
+  {id:"yanking-un",name:"Cigarro de Palha Yanking (unidade)",category:"Cigarros",price:2.50,icon:"",img:"img/produtos/sem-fundo/yanking.png",tag:"AVULSO",desc:"1 unidade"},
+  {id:"porto-faria-un",name:"Cigarro de Palha Porto Faria (unidade)",category:"Cigarros",price:3.00,icon:"",img:"img/produtos/sem-fundo/porto-faria.png",tag:"AVULSO",desc:"1 unidade"},
+  {id:"yanking-maco",name:"Cigarro de Palha Yanking (maço)",category:"Cigarros",price:27.50,icon:"",img:"img/produtos/sem-fundo/yanking.png",tag:"MAÇO",desc:"1 maço"},
+  {id:"porto-faria-maco",name:"Cigarro de Palha Porto Faria (maço)",category:"Cigarros",price:35.00,icon:"",img:"img/produtos/sem-fundo/porto-faria.png",tag:"MAÇO",desc:"1 maço"},
+  {id:"bic-maxi",name:"Isqueiro BIC Maxi",category:"Isqueiros",price:9.90,icon:"",img:"img/produtos/sem-fundo/bic-maxi.png",tag:"ESSENCIAL",desc:"1 unidade"},
+  {id:"clipper-classico",name:"Isqueiro Clipper Clássico",category:"Isqueiros",price:14.90,icon:"",img:"img/produtos/sem-fundo/clipper-classico.png",tag:"RECARREGÁVEL",desc:"1 unidade"},
+  {id:"clipper-estampado",name:"Isqueiro Clipper Estampado",category:"Isqueiros",price:16.90,icon:"",img:"img/produtos/sem-fundo/clipper-estampado.png",tag:"COLECIONÁVEL",desc:"1 unidade"},
+  {id:"macarico",name:"Isqueiro Maçarico",category:"Isqueiros",price:29.90,icon:"",img:"img/produtos/sem-fundo/macarico.png",tag:"PREMIUM",desc:"1 unidade"},
+  {id:"cinzeiro",name:"Cinzeiro de Vidro",category:"Acessórios",price:19.90,icon:"",img:"img/produtos/sem-fundo/cinzeiro.png",tag:"CASA",desc:"1 unidade"},
+  {id:"bandeja",name:"Bandeja Zoo",category:"Acessórios",price:29.90,icon:"",tag:"EXCLUSIVO",desc:"1 unidade"},
+  {id:"case",name:"Case Porta-Acessórios",category:"Acessórios",price:34.90,icon:"",tag:"UPSELL",desc:"1 unidade"},
+  {id:"agua",name:"Água Mineral Crystal",category:"Conveniência",price:5.00,icon:"",img:"img/produtos/sem-fundo/agua.png",tag:"GELADA",desc:"500 ml"},
+  {id:"coca-cola",name:"Coca-Cola Lata",category:"Conveniência",price:8.00,icon:"",img:"img/produtos/sem-fundo/coca-cola.png",tag:"GELADA",desc:"350 ml"},
+  {id:"red-bull",name:"Red Bull Energy Drink",category:"Conveniência",price:15.00,icon:"",img:"img/produtos/sem-fundo/red-bull.png",tag:"ENERGÉTICO",desc:"250 ml"},
+  {id:"monster",name:"Monster Energy",category:"Conveniência",price:16.00,icon:"",img:"img/produtos/sem-fundo/monster.png",tag:"ENERGÉTICO",desc:"473 ml"},
+  {id:"monster-branco",name:"Monster Branco (Ultra)",category:"Conveniência",price:16.00,icon:"",img:"img/produtos/sem-fundo/monster-branco.png",tag:"ZERO AÇÚCAR",desc:"473 ml"},
 ];
 
 // Ícones de linha das categorias (SVG, herdam a cor do texto)
@@ -53,20 +56,23 @@ const ICONS = {
   combo: svgIcon(`<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18v-1.5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1V9Z"/><path d="M12 6.5V20"/><path d="M12 6.5C10.5 3.5 7 4 8 6.2M12 6.5C13.5 3.5 17 4 16 6.2"/>`),
   // estrela (mais vendidos)
   best: svgIcon(`<path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8L12 3.5Z"/>`),
+  // vareta de incenso com fumaça
+  incensos: svgIcon(`<path d="M5 21 17 9"/><path d="M4 21h5"/><path d="M18 7c1.2-1.2-.6-2.2.6-3.4"/><path d="M20.5 8.5c1-1-.4-1.8.6-2.8"/>`),
   conveniencia: svgIcon(`<path d="M6 8h12l-1.3 11.2a2 2 0 0 1-2 1.8H9.3a2 2 0 0 1-2-1.8L6 8Z"/><path d="M5 8h14"/><path d="M13 8l2-5h3"/><path d="M7.6 13h8.8"/>`)
 };
 const iconFor = p => (CATEGORY_INFO[p.category]?.icon) || ICONS.combo;
 const CATEGORY_INFO = {
-  "Sedas":{icon:ICONS.sedas,sub:"Smoking, RAW e OCB — as marcas mais pedidas."},
+  "Sedas":{icon:ICONS.sedas,sub:"Elements, King e RAW — as marcas mais pedidas."},
   "Tabacos":{icon:ICONS.tabacos,sub:"Tabaco para enrolar, natural e aromatizado."},
-  "Cigarros":{icon:ICONS.cigarros,sub:"Informe a marca desejada no pedido."},
+  "Cigarros":{icon:ICONS.cigarros,sub:"Cigarros de palha Yanking e Porto Faria, no maço ou avulso."},
   "Isqueiros":{icon:ICONS.isqueiros,sub:"Clipper, BIC e maçarico para toda hora."},
   "Piteiras & Boladores":{icon:ICONS.piteiras,short:"Piteiras",sub:"Complementos para o kit ficar completo."},
   "Acessórios":{icon:ICONS.acessorios,sub:"Cinzeiros, bandejas e cases."},
-  "Conveniência":{icon:ICONS.conveniencia,short:"Bebidas",sub:"Chocolate, refrigerante e água gelada."}
+  "Incensos":{icon:ICONS.incensos,sub:"Incensos para deixar o ambiente perfumado."},
+  "Conveniência":{icon:ICONS.conveniencia,short:"Bebidas",sub:"Energéticos, Coca-Cola e água Crystal gelados."}
 };
 
-const combo = {id:"combo-zoo",name:"Zoo Night Kit",category:"Combos",price:29.90,icon:"",tag:"COMBO",desc:"Seda + piteira + isqueiro + chocolate."};
+const combo = {id:"combo-zoo",name:"Zoo Night Kit",category:"Combos",price:29.90,icon:"",tag:"COMBO",desc:"4 itens"};
 
 let cart = JSON.parse(localStorage.getItem("zoo_cart") || "{}");
 let address = JSON.parse(localStorage.getItem("zoo_address") || "null");
@@ -74,12 +80,21 @@ let activeCategory = "Todos";
 
 const $ = s => document.querySelector(s);
 const money = n => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+// Preço com o valor antigo riscado quando o produto está em promoção (oldPrice)
+const priceHTML = p => p.oldPrice?`<span class="price-promo"><s>${money(p.oldPrice)}</s><strong>${money(p.price)}</strong></span>`:`<strong>${money(p.price)}</strong>`;
 
 function saveCart(){ localStorage.setItem("zoo_cart",JSON.stringify(cart)); renderCart(); }
 function toast(msg){ const t=$("#toast"); t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800); }
 
+// Categorias que aparecem mesmo sem produtos cadastrados ainda (mostram "Em breve")
+const EMPTY_CATEGORIES = [["Incensos","Conveniência"]]; // [categoria, aparece antes de]
 function categories(){
-  return ["Todos",...new Set(products.map(p=>p.category))];
+  const list=[...new Set(products.map(p=>p.category))];
+  EMPTY_CATEGORIES.forEach(([c,before])=>{
+    if(list.includes(c))return;
+    const i=list.indexOf(before); list.splice(i<0?list.length:i,0,c);
+  });
+  return ["Todos",...list];
 }
 const slug = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 function productVisual(p){
@@ -98,7 +113,7 @@ function productCard(p){
           ${productVisual(p)}
           <div class="product-body">
             <h3>${p.name}</h3><p>${p.desc}</p>
-            <div class="product-bottom"><strong>${money(p.price)}</strong><button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}">+</button></div>
+            <div class="product-bottom">${priceHTML(p)}<button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}">+</button></div>
           </div>
         </article>`;
 }
@@ -106,7 +121,7 @@ function productCard(p){
 // clicar de novo na mesma categoria fecha o painel.
 // "Mais vendidos" (botão abaixo das categorias no celular): ordem de exibição
 const BEST_KEY = "__mais-vendidos";
-const BEST_SELLERS = ["smoking-deluxe","clipper-classico","raw-classic","bic-maxi","piteira","ocb-slim"];
+const BEST_SELLERS = ["seda-elements","clipper-classico","raw-classic","bic-maxi","piteira","seda-king"];
 function setupCategoryPanels(){
   [["#catShortcuts",null],["#catShortcutsMobile",null],["#filters",".section-heading"]].forEach(([sel,anchorSel])=>{
     const nav=$(sel); if(!nav)return;
@@ -131,7 +146,7 @@ function setupCategoryPanels(){
             <h3><span class="cat-head-icon">${isBest?ICONS.best:(CATEGORY_INFO[c]?.icon||"")}</span>${title}</h3>
             <button class="cat-panel-close" type="button" aria-label="Fechar ${title}"><svg class="x-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
           </div>
-          <div class="cat-grid">${list.map(productCard).join("")}</div>
+          ${list.length?`<div class="cat-grid">${list.map(productCard).join("")}</div>`:`<p class="cat-empty">Em breve: novos produtos chegando nessa categoria.</p>`}
         </div>`;
       panel.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
       panel.querySelector(".cat-panel-close").onclick=()=>{panel.classList.remove("open");panel.dataset.cat="";nav.querySelectorAll("[data-cat]").forEach(a=>a.classList.remove("active"));};
@@ -140,20 +155,27 @@ function setupCategoryPanels(){
   });
 }
 // Produtos em destaque na vitrine do topo
-const HERO_PRODUCTS = ["smoking-deluxe","clipper-estampado","raw-classic","ocb-slim"];
+const HERO_PRODUCTS = ["seda-elements","clipper-estampado","raw-classic","seda-king"];
 function renderHeroShowcase(){
   const el=$("#heroShowcase"); if(!el)return;
   el.innerHTML=HERO_PRODUCTS.map(id=>products.find(p=>p.id===id)).filter(Boolean).map((p,i)=>`
     <article class="hero-product hp-${i}">
-      <a href="#cat-${slug(p.category)}" class="hero-product-media">
+      <a href="#produtos" class="hero-product-media" data-cat="${p.category}">
         ${p.img?`<img src="${p.img}" alt="${p.name}" class="${p.fit==="contain"?"fit-contain":""}"${p.pos?` style="object-position:${p.pos}"`:""}>`:`<span class="product-icon-svg">${iconFor(p)}</span>`}
       </a>
       <div class="hero-product-info">
         <b>${p.name}</b>
-        <div><strong>${money(p.price)}</strong><button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}">+</button></div>
+        <div>${priceHTML(p)}<button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}">+</button></div>
       </div>
     </article>`).join("");
   el.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
+  // clicar na foto leva até a Loja com a categoria do produto aberta
+  el.querySelectorAll(".hero-product-media").forEach(a=>a.onclick=e=>{
+    e.preventDefault();
+    const chip=$(`#filters [data-cat="${a.dataset.cat}"]`);
+    if(chip&&!chip.classList.contains("active"))chip.click();
+    $("#produtos").scrollIntoView({behavior:"smooth"});
+  });
 }
 function renderShortcuts(){
   const targets=[$("#catShortcuts"),$("#catShortcutsMobile")].filter(Boolean);
@@ -162,7 +184,7 @@ function renderShortcuts(){
     const n=products.filter(p=>p.category===c).length;
     return `<a class="cat-tile" href="#cat-${slug(c)}" data-cat="${c}">
       <span class="cat-tile-icon">${CATEGORY_INFO[c]?.icon||""}</span>
-      <span class="cat-tile-text"><b>${c}</b><i class="cat-tile-short">${CATEGORY_INFO[c]?.short||c}</i><small>${n} ${n===1?"item":"itens"}</small></span>
+      <span class="cat-tile-text"><b>${c}</b><i class="cat-tile-short">${CATEGORY_INFO[c]?.short||c}</i><small>${n?`${n} ${n===1?"item":"itens"}`:"Em breve"}</small></span>
       
     </a>`;
   }).join("");
@@ -172,21 +194,6 @@ function renderShortcuts(){
   if(mob) mob.insertAdjacentHTML("beforeend",`<button type="button" class="best-btn" data-cat="${BEST_KEY}">
       <span class="best-btn-icon">${ICONS.best}</span><b>Mais vendidos</b><span class="best-btn-arrow"><svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
     </button>`);
-}
-function renderProducts(){
-  $("#productGrid").innerHTML=categories().filter(c=>c!=="Todos").map(c=>{
-    const list=products.filter(p=>p.category===c);
-    return `
-    <section class="cat-section" id="cat-${slug(c)}">
-      <div class="cat-head">
-        <h3><span class="cat-head-icon">${CATEGORY_INFO[c]?.icon||""}</span>${c}</h3>
-        <span>${CATEGORY_INFO[c]?.sub||""}</span>
-      </div>
-      <div class="cat-grid">${list.map(productCard).join("")}
-      </div>
-    </section>`;
-  }).join("");
-  document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
 }
 function allProducts(){return [...products,combo]}
 function addToCart(id){
@@ -323,7 +330,7 @@ function orderMessage(){
   const entries=cartEntries();
   const subtotal=entries.reduce((a,{p,qty})=>a+p.price*qty,0);
   const lines=entries.map(({p,qty})=>`• ${qty}x ${p.name} — ${money(p.price*qty)}`).join("\n");
-  return `Olá, Zoo Tabacaria! Quero fazer este pedido:\n\n*Itens*\n${lines}\n\n*Subtotal:* ${money(subtotal)}\n*Frete:* ${shippingFee(subtotal)?money(shippingFee(subtotal)):"Grátis"}\n*Total:* ${money(subtotal+shippingFee(subtotal))}\n\n*Entrega*\n*Nome:* ${address.name}\n*CEP:* ${address.cep||"-"}\n*Rua:* ${address.street}, ${address.number}\n*Bairro:* ${address.district}\n*Cidade:* ${address.city}\n*Referência:* ${address.reference||"-"}\n\n*Pagamento:* ${address.payment||"-"}\n\nConfirmem, por favor, a disponibilidade dos itens.`;
+  return `Olá, Zoo Tabacaria! Quero fazer este pedido:\n\n*Itens*\n${lines}\n\n*Subtotal:* ${money(subtotal)}\n*Frete:* ${shippingFee(subtotal)?money(shippingFee(subtotal)):"Grátis"}\n*Total:* ${money(subtotal+shippingFee(subtotal))}\n\n*Entrega*\n*Nome:* ${address.name}\n*CEP:* ${address.cep||"-"}\n*Rua:* ${address.street}, ${address.number}\n*Bairro:* ${address.district}\n*Cidade:* ${address.city}\n*Referência:* ${address.reference||"-"}\n\n*Pagamento:* ${address.payment||"-"}`;
 }
 function sendOrder(){
   if(!address||!cartEntries().length){toast("Carrinho ou endereço incompleto");return;}
@@ -332,6 +339,22 @@ function sendOrder(){
   window.open(url,"_blank","noopener");
   toast("Abrindo o WhatsApp…");
 }
+
+// Sugestão de produto: abre o campo e envia o texto pelo WhatsApp da loja
+$("#suggestToggle").onclick=()=>{
+  const form=$("#suggestForm"), btn=$("#suggestToggle"), open=form.hidden;
+  form.hidden=!open; btn.setAttribute("aria-expanded",open); btn.classList.toggle("open",open);
+  if(open)$("#suggestText").focus();
+};
+$("#suggestForm").onsubmit=e=>{
+  e.preventDefault();
+  const idea=$("#suggestText").value.trim(); if(!idea)return;
+  const text=encodeURIComponent(`Olá, Zoo Tabacaria! Tenho uma sugestão de produto para o catálogo do site:
+
+${idea}`);
+  window.open(WHATSAPP_NUMBER?`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`:`https://wa.me/?text=${text}`,"_blank","noopener");
+  $("#suggestText").value=""; toast("Abrindo o WhatsApp…");
+};
 
 $("#openCart").onclick=openDrawer;
 $("#closeCart").onclick=closeDrawer;
@@ -361,22 +384,36 @@ $("#leaveSite").onclick=()=>{window.location.href="https://www.google.com";};
 
 // Aberto/fechado: funcionamento das 19h à 01h, sempre no horário de Brasília
 const OPEN_FROM = 19*60, OPEN_UNTIL = 1*60; // minutos do dia; fecha à 01h da madrugada
-function brasiliaMinutes(){
-  const parts=new Intl.DateTimeFormat("pt-BR",{timeZone:"America/Sao_Paulo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
+const CLOSING_WARN = 30*60; // últimos 30 min: selo amarelo com contagem regressiva
+function brasiliaSeconds(){
+  const parts=new Intl.DateTimeFormat("pt-BR",{timeZone:"America/Sao_Paulo",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
   const get=t=>Number(parts.find(p=>p.type===t).value);
-  return get("hour")*60+get("minute");
+  return get("hour")*3600+get("minute")*60+get("second");
 }
 function updateOpenStatus(){
   const el=$("#openStatus"), txt=$("#openStatusText"); if(!el||!txt)return;
-  const m=brasiliaMinutes();
+  const s=brasiliaSeconds(), m=Math.floor(s/60);
   const open=m>=OPEN_FROM||m<OPEN_UNTIL;
+  // segundos até fechar (01h); antes da meia-noite soma o resto do dia
+  const left=open?(s<OPEN_UNTIL*60?OPEN_UNTIL*60-s:86400-s+OPEN_UNTIL*60):0;
+  const closing=open&&left<=CLOSING_WARN;
   el.classList.toggle("closed",!open);
+  el.classList.toggle("closing",closing);
+  if(closing){
+    const t=`${String(Math.floor(left/60)).padStart(2,"0")}:${String(left%60).padStart(2,"0")}`;
+    txt.innerHTML=`<span class="os-full">FECHA EM ${t}</span><span class="os-short">FECHA ${t}</span>`;
+    el.setAttribute("aria-label",`Fechando em ${Math.ceil(left/60)} minutos`);
+    return;
+  }
   // texto completo no computador, curto no celular (para não encostar no carrinho)
   txt.innerHTML=open
     ? `<span class="os-full">ABERTO AGORA</span><span class="os-short">ABERTO</span>`
     : `<span class="os-full">FECHADO · ABRE ÀS 19H</span><span class="os-short">ABRE ÀS 19H</span>`;
   el.setAttribute("aria-label",open?"Aberto agora":"Fechado, abre às 19h");
 }
-updateOpenStatus(); setInterval(updateOpenStatus,60000);
+updateOpenStatus(); setInterval(updateOpenStatus,1000);
 
-renderFilters();renderHeroShowcase();renderShortcuts();renderProducts();setupCategoryPanels();renderCart();fillAddress();
+renderFilters();renderHeroShowcase();renderShortcuts();setupCategoryPanels();renderCart();fillAddress();
+// Categorias pré-selecionadas: "Escolha por categoria" (celular) abre com Sedas; a Loja abre com Cigarros
+$('#catShortcutsMobile [data-cat="Sedas"]')?.click();
+$('#filters [data-cat="Cigarros"]')?.click();
