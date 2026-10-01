@@ -8,12 +8,12 @@ const shippingFee = subtotal => subtotal>0 && subtotal<FREE_SHIPPING_FROM ? SHIP
 
 // img: foto ilustrativa em img/produtos (ver CREDITOS.txt); sem img, o card usa o ícone
 const products = [
-  {id:"seda-king",name:"Seda King",category:"Sedas",price:8.50,icon:"",img:"img/produtos/sem-fundo/seda-king.png",tag:"PRA TODO CORRE",desc:"33 folhas"},
-  {id:"seda-elements",name:"Seda Elements",category:"Sedas",price:14.00,icon:"",img:"img/produtos/sem-fundo/seda-elements.png",tag:"PREMIUM",desc:"32 folhas"},
-  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:17.50,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",tag:"NATURAL",desc:"32 folhas + 32 piteiras"},
-  {id:"combo-seda-king",name:"Combo 3 Sedas King",category:"Sedas",bundle:{"seda-king":3},icon:"",img:"img/produtos/sem-fundo/combo-seda-king.png",tag:"PROMOÇÃO",desc:"3 livretos (99 folhas)"},
+  {id:"seda-king",name:"Seda King",category:"Sedas",price:8.50,icon:"",img:"img/produtos/sem-fundo/seda-king.png",tag:"PRA TODO CORRE",desc:"33 folhas · King Size"},
+  {id:"seda-elements",name:"Seda Elements",category:"Sedas",price:14.00,icon:"",img:"img/produtos/sem-fundo/seda-elements.png",tag:"PREMIUM",desc:"32 folhas · King Size Slim"},
+  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:17.50,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",tag:"NATURAL",desc:"32 folhas + 32 piteiras · King Size Slim"},
+  {id:"combo-seda-king",name:"Combo 3 Sedas King",category:"Sedas",bundle:{"seda-king":3},icon:"",img:"img/produtos/sem-fundo/combo-seda-king.png",tag:"PROMOÇÃO",desc:"3 livretos King Size (99 folhas)"},
   {id:"piteira",name:"Piteiras de Papel",category:"Piteiras & Boladores",price:6.90,icon:"",tag:"COMPLEMENTO",desc:"1 bloco"},
-  {id:"bolador",name:"Bolador 78mm",category:"Piteiras & Boladores",price:12.90,icon:"",img:"img/produtos/sem-fundo/bolador.png",tag:"PRÁTICO",desc:"1 unidade"},
+  {id:"bolador",name:"Bolador 78mm",category:"Piteiras & Boladores",price:12.90,icon:"",img:"img/produtos/sem-fundo/bolador.png",tag:"PRÁTICO",desc:"1 unidade · 78 mm"},
   // Tabacos: sem fotos de marca; preços de exemplo, a loja deve ajustar
   {id:"tabaco-25",name:"Tabaco para Enrolar 25g",category:"Tabacos",price:24.90,icon:"",tag:"TABACO",desc:"25 g"},
   {id:"tabaco-aroma",name:"Tabaco Aromatizado 25g",category:"Tabacos",price:27.90,icon:"",tag:"TABACO",desc:"25 g"},
@@ -27,11 +27,11 @@ const products = [
   {id:"clipper-caveira",name:"Isqueiro Clipper Caveira Recarregável",category:"Isqueiros",price:13.00,icon:"",img:"img/produtos/sem-fundo/clipper-caveira.png",tag:"RECARREGÁVEL",desc:"1 unidade · cores sortidas"},
   {id:"dichavador-amsterdam",name:"Dichavador Amsterdam",category:"Dichavadores",price:70.00,icon:"",img:"img/produtos/sem-fundo/dichavador-amsterdam.png",tag:"METAL",desc:"1 unidade"},
   {id:"dichavador-gold",name:"Dichavador Gold",category:"Dichavadores",price:85.00,icon:"",img:"img/produtos/sem-fundo/dichavador-gold.png",tag:"METAL",desc:"4 partes"},
-  {id:"agua",name:"Água Mineral Crystal",category:"Conveniência",price:5.00,icon:"",img:"img/produtos/sem-fundo/agua.png?v=2",tag:"GELADA",desc:"500 ml"},
-  {id:"coca-cola",name:"Coca-Cola Lata",category:"Conveniência",price:8.00,icon:"",img:"img/produtos/sem-fundo/coca-cola.png",tag:"GELADA",desc:"350 ml"},
-  {id:"red-bull",name:"Red Bull Energy Drink",category:"Conveniência",price:15.00,icon:"",img:"img/produtos/sem-fundo/red-bull.png?v=2",tag:"ENERGÉTICO",desc:"250 ml"},
-  {id:"monster",name:"Monster Energy",category:"Conveniência",price:16.00,icon:"",img:"img/produtos/sem-fundo/monster.png?v=2",tag:"ENERGÉTICO",desc:"473 ml"},
-  {id:"monster-branco",name:"Monster Branco (Ultra)",category:"Conveniência",price:16.00,icon:"",img:"img/produtos/sem-fundo/monster-branco.png?v=2",tag:"ZERO AÇÚCAR",desc:"473 ml"},
+  {id:"agua",name:"Água Mineral Crystal",category:"Conveniência",price:5.00,icon:"",img:"img/produtos/sem-fundo/agua.png?v=2",tag:"GELADA",desc:"Garrafa 500 ml"},
+  {id:"coca-cola",name:"Coca-Cola Lata",category:"Conveniência",price:8.00,icon:"",img:"img/produtos/sem-fundo/coca-cola.png",tag:"GELADA",desc:"Lata 350 ml"},
+  {id:"red-bull",name:"Red Bull Energy Drink",category:"Conveniência",price:14.00,icon:"",img:"img/produtos/sem-fundo/red-bull.png?v=2",tag:"ENERGÉTICO",desc:"Lata 250 ml"},
+  {id:"monster",name:"Monster Energy",category:"Conveniência",price:15.00,icon:"",img:"img/produtos/sem-fundo/monster.png?v=2",tag:"ENERGÉTICO",desc:"Lata 473 ml"},
+  {id:"monster-branco",name:"Monster Branco (Ultra)",category:"Conveniência",price:15.00,icon:"",img:"img/produtos/sem-fundo/monster-branco.png?v=2",tag:"ZERO AÇÚCAR",desc:"Lata 473 ml"},
 ];
 
 // Ícones de linha das categorias (SVG, herdam a cor do texto)
