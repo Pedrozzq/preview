@@ -450,3 +450,19 @@ html,body{touch-action:manipulation}
 .fast-delivery span:before{content:"·";margin-right:7px;color:#4a5054}
 /* Mais vendidos (abaixo de Todos): no celular abre só os 4 primeiros, em 2×2 */
 @media(max-width:560px){.all-best .product:nth-child(n+5){display:none}}
+
+.add{display:inline-grid;place-items:center;padding:0}.add-cart-svg{width:20px;height:20px}.hero-product .add .add-cart-svg{width:17px;height:17px}
+
+/* Subseções dentro de uma categoria (ex.: Conveniência → Bebidas, Vinhos, Café): botões logo abaixo do título */
+.sub-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.sub-tab{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;border:1px solid #2b3033;background:#101213;color:#aab1b5;font:700 12px Inter;cursor:pointer;transition:.15s}
+.sub-tab small{font-size:10px;font-weight:700;color:#6f777b}
+.sub-tab:hover{border-color:#c8ff00;color:#eef4e5}
+.sub-tab.active{background:#c8ff00;border-color:#c8ff00;color:#070807}
+.sub-tab.active small{color:#3c4a00}
+/* Produtos com várias fotos: alternam com fade */
+.product-visual .pv-slide{opacity:0;pointer-events:none;transition:opacity .6s,transform .4s}
+.product-visual .pv-slide.active{opacity:1;pointer-events:auto}
+.pv-dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:5px;z-index:1}
+.pv-dots i{width:6px;height:6px;border-radius:50%;background:#3a4044;transition:.3s}
+.pv-dots i.active{background:#c8ff00;width:14px;border-radius:3px}

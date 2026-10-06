@@ -8,30 +8,35 @@ const shippingFee = subtotal => subtotal>0 && subtotal<FREE_SHIPPING_FROM ? SHIP
 
 // img: foto ilustrativa em img/produtos (ver CREDITOS.txt); sem img, o card usa o ícone
 const products = [
-  {id:"seda-king",name:"Seda King",category:"Sedas",price:8.50,icon:"",img:"img/produtos/sem-fundo/seda-king.png",tag:"PRA TODO CORRE",desc:"33 folhas · King Size"},
-  {id:"seda-elements",name:"Seda Elements",category:"Sedas",price:14.00,icon:"",img:"img/produtos/sem-fundo/seda-elements.png",tag:"PREMIUM",desc:"32 folhas · King Size Slim"},
-  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:17.50,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",tag:"NATURAL",desc:"32 folhas · King Size Slim"},
+  {id:"seda-king",name:"Seda King",category:"Sedas",price:7.90,icon:"",img:"img/produtos/sem-fundo/seda-king.png",imgs:["img/produtos/sem-fundo/seda-king.png","img/produtos/sem-fundo/seda-king-expositor.png","img/produtos/sem-fundo/seda-king-expositor-2.png"],tag:"PRA TODO CORRE",desc:"33 folhas · King Size"},
+  {id:"seda-elements",name:"Seda Elements",category:"Sedas",price:13.90,icon:"",img:"img/produtos/sem-fundo/seda-elements.png",imgs:["img/produtos/sem-fundo/seda-elements.png","img/produtos/sem-fundo/seda-elements-expositor.png"],tag:"PREMIUM",desc:"32 folhas · King Size Slim"},
+  {id:"raw-classic",name:"Seda RAW Classic",category:"Sedas",price:15.90,icon:"",img:"img/produtos/sem-fundo/raw-classic.png",imgs:["img/produtos/sem-fundo/raw-classic.png","img/produtos/sem-fundo/raw-classic-expositor.png"],tag:"NATURAL",desc:"32 folhas · King Size Slim"},
   {id:"combo-seda-king",name:"Combo 3 Sedas King",category:"Sedas",bundle:{"seda-king":3},icon:"",img:"img/produtos/sem-fundo/combo-seda-king.png",tag:"PROMOÇÃO",desc:"3 livretos King Size (99 folhas)"},
   {id:"piteira-tatu",name:"Piteira Tatu do Bem",category:"Piteiras",price:9.90,icon:"",img:"img/produtos/sem-fundo/piteira-tatu.png",tag:"COMPLEMENTO",desc:"50 piteiras"},
   {id:"piteira-cremaria",name:"Piteira Cremaria",category:"Piteiras",price:8.90,icon:"",img:"img/produtos/sem-fundo/piteira-cremaria.png",tag:"COMPLEMENTO",desc:"50 piteiras"},
+  {id:"piteira-tonabe",name:"Piteira Tô na Bê",category:"Piteiras",price:10.90,icon:"",img:"img/produtos/sem-fundo/piteira-tonabe-vermelha.png",imgs:["img/produtos/sem-fundo/piteira-tonabe-vermelha.png","img/produtos/sem-fundo/piteira-tonabe-verde.png","img/produtos/sem-fundo/piteira-tonabe-vermelha-2.png","img/produtos/sem-fundo/piteira-tonabe-verde-2.png"],tag:"ESTAMPAS SORTIDAS",desc:"50 piteiras · estampas sortidas"},
+  {id:"piteira-squadafum",name:"Piteira Squadafum",category:"Piteiras",price:14.90,icon:"",img:"img/produtos/sem-fundo/piteira-squadafum.png",imgs:["img/produtos/sem-fundo/piteira-squadafum.png","img/produtos/sem-fundo/piteira-squadafum-2.png"],tag:"COMPLEMENTO",desc:"50 piteiras"},
   // Tabacos: sem fotos de marca; preços de exemplo, a loja deve ajustar
   {id:"tabaco-25",name:"Tabaco para Enrolar 25g",category:"Tabacos",price:24.90,icon:"",tag:"TABACO",desc:"25 g"},
   {id:"tabaco-aroma",name:"Tabaco Aromatizado 25g",category:"Tabacos",price:27.90,icon:"",tag:"TABACO",desc:"25 g"},
   {id:"tabaco-50",name:"Tabaco para Enrolar 50g",category:"Tabacos",price:42.90,icon:"",tag:"TABACO",desc:"50 g"},
-  {id:"yanking-un",name:"Cigarro de Palha Yanking (unidade)",category:"Cigarros",price:2.50,icon:"",img:"img/produtos/sem-fundo/yanking.png",tag:"AVULSO",desc:"1 unidade"},
-  {id:"porto-faria-un",name:"Cigarro de Palha Porto Faria (unidade)",category:"Cigarros",price:3.00,icon:"",img:"img/produtos/sem-fundo/porto-faria.png",tag:"AVULSO",desc:"1 unidade"},
-  {id:"yanking-maco",name:"Cigarro de Palha Yanking (maço)",category:"Cigarros",price:27.50,icon:"",img:"img/produtos/sem-fundo/yanking.png",tag:"MAÇO",desc:"1 maço"},
-  {id:"porto-faria-maco",name:"Cigarro de Palha Porto Faria (maço)",category:"Cigarros",price:35.00,icon:"",img:"img/produtos/sem-fundo/porto-faria.png",tag:"MAÇO",desc:"1 maço"},
-  {id:"isqueiro-max",name:"Isqueiro Max",category:"Isqueiros",price:6.00,icon:"",img:"img/produtos/sem-fundo/isqueiro-max.png",tag:"ECONÔMICO",desc:"1 unidade · cores sortidas"},
-  {id:"bic",name:"Isqueiro BIC",category:"Isqueiros",price:10.00,icon:"",img:"img/produtos/sem-fundo/bic.png",tag:"CLÁSSICO",desc:"1 unidade · cores sortidas"},
-  {id:"clipper-caveira",name:"Isqueiro Clipper Caveira Recarregável",category:"Isqueiros",price:13.00,icon:"",img:"img/produtos/sem-fundo/clipper-caveira.png",tag:"RECARREGÁVEL",desc:"1 unidade · cores sortidas"},
+  {id:"yanking-un",name:"Cigarro de Palha Yanking (1un)",category:"Cigarros",price:1.90,icon:"",img:"img/produtos/sem-fundo/yanking-unidade.png",tag:"AVULSO",desc:"1 unidade"},
+  {id:"porto-faria-un",name:"Cigarro de Palha Porto Faria (1un)",category:"Cigarros",price:1.90,icon:"",img:"img/produtos/sem-fundo/porto-faria-unidade.png",tag:"AVULSO",desc:"1 unidade"},
+  {id:"yanking-maco",name:"Cigarro de Palha Yanking (maço)",category:"Cigarros",price:29.90,icon:"",img:"img/produtos/sem-fundo/yanking.png",tag:"MAÇO",desc:"1 maço"},
+  {id:"porto-faria-maco",name:"Cigarro de Palha Porto Faria (maço)",category:"Cigarros",price:29.90,icon:"",img:"img/produtos/sem-fundo/porto-faria.png",tag:"MAÇO",desc:"1 maço"},
+  {id:"isqueiro-max",name:"Isqueiro Lux",category:"Isqueiros",price:5.90,icon:"",img:"img/produtos/sem-fundo/isqueiro-max.png",imgs:["img/produtos/sem-fundo/isqueiro-max.png","img/produtos/sem-fundo/isqueiro-lux-expositor.png"],tag:"ECONÔMICO",desc:"1 unidade · cores sortidas"},
+  {id:"bic",name:"Isqueiro BIC",category:"Isqueiros",price:9.90,icon:"",img:"img/produtos/sem-fundo/bic-vermelho.png",imgs:["img/produtos/sem-fundo/bic-vermelho.png","img/produtos/sem-fundo/bic.png","img/produtos/sem-fundo/bic-expositor.png"],tag:"CLÁSSICO",desc:"1 unidade · cores sortidas"},
+  {id:"clipper-caveira",name:"Isqueiro Clipper Caveira Recarregável",category:"Isqueiros",price:13.90,icon:"",img:"img/produtos/sem-fundo/clipper-caveira.png",imgs:["img/produtos/sem-fundo/clipper-caveira.png","img/produtos/sem-fundo/clipper-caveira-preto.png","img/produtos/sem-fundo/clipper-caveira-branco.png","img/produtos/sem-fundo/clipper-caveira-rosa.png"],tag:"RECARREGÁVEL",desc:"1 unidade · cores sortidas"},
   {id:"dichavador-amsterdam",name:"Dichavador Amsterdam",category:"Dichavadores",price:70.00,icon:"",img:"img/produtos/sem-fundo/dichavador-amsterdam.png",tag:"METAL",desc:"1 unidade"},
   {id:"dichavador-gold",name:"Dichavador Gold",category:"Dichavadores",price:85.00,icon:"",img:"img/produtos/sem-fundo/dichavador-gold.png",tag:"METAL",desc:"4 partes"},
-  {id:"agua",name:"Água Mineral Crystal",category:"Conveniência",price:5.00,icon:"",img:"img/produtos/sem-fundo/agua.png?v=2",tag:"GELADA",desc:"Garrafa 500 ml"},
-  {id:"coca-cola",name:"Coca-Cola Lata",category:"Conveniência",price:8.00,icon:"",img:"img/produtos/sem-fundo/coca-cola.png",tag:"GELADA",desc:"Lata 350 ml"},
-  {id:"red-bull",name:"Red Bull Energy Drink",category:"Conveniência",price:14.00,icon:"",img:"img/produtos/sem-fundo/red-bull.png?v=2",tag:"ENERGÉTICO",desc:"Lata 250 ml"},
-  {id:"monster",name:"Monster Energy",category:"Conveniência",price:15.00,icon:"",img:"img/produtos/sem-fundo/monster.png?v=2",tag:"ENERGÉTICO",desc:"Lata 473 ml"},
-  {id:"monster-branco",name:"Monster Branco (Ultra)",category:"Conveniência",price:15.00,icon:"",img:"img/produtos/sem-fundo/monster-branco.png?v=2",tag:"ZERO AÇÚCAR",desc:"Lata 473 ml"},
+  {id:"dichavador-bem-bolado",name:"Dichavador Bem Bolado",category:"Dichavadores",price:34.90,icon:"",img:"img/produtos/sem-fundo/dichavador-bem-bolado.png",imgs:["img/produtos/sem-fundo/dichavador-bem-bolado.png","img/produtos/sem-fundo/dichavador-bem-bolado-2.png","img/produtos/sem-fundo/dichavador-bem-bolado-expositor.png"],tag:"ULTRA RESISTENTE",desc:"1 unidade · 4 cm · policarbonato"},
+  {id:"cinzeiro-squadafum",name:"Cinzeiro Squadafum",category:"Cinzeiros",price:69.90,icon:"",img:"img/produtos/sem-fundo/cinzeiro-squadafum.png",tag:"SILICONE",desc:"1 unidade · silicone preto"},
+  {id:"agua",name:"Água Mineral Crystal",category:"Conveniência",price:4.90,icon:"",img:"img/produtos/sem-fundo/agua.png?v=2",tag:"GELADA",desc:"Garrafa 500 ml"},
+  {id:"coca-cola",name:"Coca-Cola Lata",category:"Conveniência",price:7.90,icon:"",img:"img/produtos/sem-fundo/coca-cola.png",tag:"GELADA",desc:"Lata 350 ml"},
+  {id:"red-bull",name:"Red Bull Energy Drink",category:"Conveniência",price:14.90,icon:"",img:"img/produtos/sem-fundo/red-bull.png?v=2",tag:"ENERGÉTICO",desc:"Lata 250 ml"},
+  {id:"monster",name:"Monster Energy",category:"Conveniência",price:14.90,icon:"",img:"img/produtos/sem-fundo/monster.png?v=2",tag:"ENERGÉTICO",desc:"Lata 473 ml"},
+  {id:"monster-branco",name:"Monster Branco (Ultra)",category:"Conveniência",price:14.90,icon:"",img:"img/produtos/sem-fundo/monster-branco.png?v=2",tag:"ZERO AÇÚCAR",desc:"Lata 473 ml"},
+  {id:"vinho-merlot",name:"Vinho Concha y Toro Reservado Merlot",category:"Conveniência",sub:"Vinhos",price:59.90,icon:"",img:"img/produtos/sem-fundo/merlot.png",imgs:["img/produtos/sem-fundo/merlot.png","img/produtos/sem-fundo/merlot-post.jpg"],tag:"VINHO TINTO",desc:"Garrafa 750 ml"},
 ];
 
 // Ícones de linha das categorias (SVG, herdam a cor do texto)
@@ -67,11 +72,14 @@ const CATEGORY_INFO = {
   "Sedas":{icon:ICONS.sedas,sub:"Elements, King e RAW — as marcas mais pedidas."},
   "Tabacos":{icon:ICONS.tabacos,sub:"Tabaco para enrolar, natural e aromatizado."},
   "Cigarros":{icon:ICONS.cigarros,sub:"Cigarros de palha Yanking e Porto Faria, no maço ou avulso."},
-  "Isqueiros":{icon:ICONS.isqueiros,sub:"Max, BIC e Clipper recarregável — todos em cores e estampas sortidas."},
-  "Piteiras":{icon:ICONS.piteiras,sub:"Piteiras Tatu do Bem e Cremaria para completar o kit."},
-  "Dichavadores":{icon:ICONS.dichavadores,sub:"Dichavadores de metal Amsterdam e Gold."},
+  "Isqueiros":{icon:ICONS.isqueiros,sub:"Lux, BIC e Clipper recarregável — todos em cores e estampas sortidas."},
+  "Piteiras":{icon:ICONS.piteiras,sub:"Piteiras Tatu do Bem, Cremaria, Tô na Bê e Squadafum para completar o kit."},
+  "Dichavadores":{icon:ICONS.dichavadores,sub:"Dichavadores Amsterdam, Gold e Bem Bolado."},
+  "Cinzeiros":{icon:ICONS.acessorios,sub:"Cinzeiro de silicone Squadafum."},
   "Incensos":{icon:ICONS.incensos,sub:"Incensos para deixar o ambiente perfumado."},
-  "Conveniência":{icon:ICONS.conveniencia,short:"Bebidas",sub:"Energéticos, Coca-Cola e água Crystal gelados."}
+  "Conveniência":{icon:ICONS.conveniencia,short:"Bebidas",sub:"Energéticos, Coca-Cola, água Crystal e vinho.",
+    // subseções: produtos sem "sub" ficam na primeira; subseção vazia mostra "Em breve"
+    subsections:["Bebidas","Vinhos","Café"]}
 };
 
 // Preço de combo = soma dos produtos avulsos com desconto leve (5%), arredondado para baixo em ",90",
@@ -92,7 +100,7 @@ const KIT_SLOTS = [
   {key:"drink",label:"Escolha o energético",               ids:["red-bull","monster","monster-branco"]},
 ].map(sl=>({...sl,ids:sl.ids.filter(id=>products.some(p=>p.id===id))}));
 const findP = id => products.find(p=>p.id===id);
-const shortName = p => p.name.replace(/^Isqueiro /,"").replace(" Energy Drink","").replace("Cigarro de Palha ","").replace(/ \((unidade|maço)\)$/,"").replace(" Recarregável","");
+const shortName = p => p.name.replace(/^Isqueiro /,"").replace(" Energy Drink","").replace("Cigarro de Palha ","").replace(/ \((1un|maço)\)$/,"").replace(" Recarregável","");
 const slotName = (sl,id) => (sl.prefix||"")+shortName(findP(id));
 // todas as combinações viram "produtos" do carrinho; a padrão mantém o id "combo-zoo"
 const kitId = items => items.every((id,i)=>id===KIT_SLOTS[i].ids[0]) ? "combo-zoo" : "kit-"+items.join("_");
@@ -154,6 +162,11 @@ function categories(){
 }
 const slug = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 function productVisual(p){
+  if(p.imgs?.length>1){
+    const slides=p.imgs.map((src,i)=>`<img src="${src}" alt="${p.name}" loading="lazy" class="pv-slide${i?"":" active"}">`).join("");
+    const dots=p.imgs.map((_,i)=>`<i class="${i?"":"active"}"></i>`).join("");
+    return `<div class="product-visual" data-gallery><span class="product-tag">${p.tag}</span>${slides}<span class="pv-dots" aria-hidden="true">${dots}</span></div>`;
+  }
   const media=p.img
     ? `<img src="${p.img}" alt="${p.name}" loading="lazy" class="${p.fit==="contain"?"fit-contain":""}"${p.pos?` style="object-position:${p.pos}"`:""}>`
     : `<span class="product-icon product-icon-svg">${iconFor(p)}</span>`;
@@ -170,20 +183,22 @@ function productCard(p){
           ${productVisual(p)}
           <div class="product-body">
             <h3>${p.name}</h3><p>${p.desc}</p>
-            <div class="product-bottom">${priceHTML(p)}<button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}">+</button></div>
+            <div class="product-bottom">${priceHTML(p)}<button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}"><svg class="add-cart-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2l1.7-7.3H6.2"/></svg></button></div>
           </div>
         </article>`;
 }
 // Clicar numa categoria abre os produtos dela logo abaixo dos atalhos (sem rolar a página);
 // clicar de novo na mesma categoria fecha o painel.
 // "Mais vendidos" (botão abaixo das categorias no celular): ordem de exibição
+// Produtos de cada seção sempre do mais barato para o mais caro
+const byPrice = list => [...list].sort((a,b)=>a.price-b.price);
 const BEST_KEY = "__mais-vendidos";
 const ALL_KEY = "__todos";
 const BEST_SELLERS = ["seda-elements","clipper-caveira","raw-classic","bic","seda-king"];
 // Conteúdo do "Todos": todos os produtos numa faixa que rola para o lado, com setas
 function allProductsHTML(){
   const arrow=d=>`<svg class="ui-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
-  const all=categories().filter(c=>c!=="Todos").flatMap(c=>products.filter(p=>p.category===c));
+  const all=categories().filter(c=>c!=="Todos").flatMap(c=>byPrice(products.filter(p=>p.category===c)));
   return `<div class="all-strip">
       <div class="strip-nav">
         <span>${all.length} produtos · deslize para o lado</span>
@@ -200,8 +215,21 @@ function allProductsHTML(){
       <span class="best-btn-icon">${ICONS.best}</span><b>Mais vendidos</b><span class="best-btn-arrow">${arrow("M6 9l6 6 6-6")}</span>
     </button>
     <div class="all-best" hidden>
-      <div class="cat-grid">${BEST_SELLERS.map(findP).filter(Boolean).map(productCard).join("")}</div>
+      <div class="cat-grid">${byPrice(BEST_SELLERS.map(findP).filter(Boolean)).map(productCard).join("")}</div>
     </div>`;
+}
+// Categoria com subseções (ex.: Conveniência → Bebidas, Vinhos, Café): botões para escolher qual mostrar
+function subsectionsHTML(c,list){
+  const subs=CATEGORY_INFO[c].subsections;
+  return `<div class="sub-tabs" role="tablist">${subs.map((sb,i)=>{
+      const n=list.filter(p=>(p.sub||subs[0])===sb).length;
+      return `<button type="button" class="sub-tab${i?"":" active"}" data-sub="${sb}" role="tab" aria-selected="${!i}">${sb}<small>${n||"em breve"}</small></button>`;
+    }).join("")}</div>`+subs.map((sb,i)=>{
+    const items=list.filter(p=>(p.sub||subs[0])===sb);
+    return `<div class="cat-sub" data-sub-panel="${sb}"${i?" hidden":""}>
+      ${items.length?`<div class="cat-grid">${items.map(productCard).join("")}</div>`:`<p class="cat-empty">Em breve: novos produtos chegando em ${sb.toLowerCase()}.</p>`}
+    </div>`;
+  }).join("");
 }
 function setupCategoryPanels(){
   [["#catShortcuts",null],["#catShortcutsMobile",null],["#filters",".section-heading"]].forEach(([sel,anchorSel])=>{
@@ -220,16 +248,21 @@ function setupCategoryPanels(){
       panel.dataset.cat=c;
       const isBest=c===BEST_KEY, isAll=c===ALL_KEY;
       const title=isBest?"Mais vendidos":isAll?"Todos os produtos":c;
-      const list=isBest?BEST_SELLERS.map(id=>products.find(p=>p.id===id)).filter(Boolean):products.filter(p=>p.category===c);
+      const list=byPrice(isBest?BEST_SELLERS.map(id=>products.find(p=>p.id===id)).filter(Boolean):products.filter(p=>p.category===c));
       panel.innerHTML=`
         <div class="cat-panel-inner">
           <div class="cat-head">
             <h3><span class="cat-head-icon">${isBest?ICONS.best:isAll?ICONS.todos:(CATEGORY_INFO[c]?.icon||"")}</span>${title}</h3>
             <button class="cat-panel-close" type="button" aria-label="Fechar ${title}"><svg class="x-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
           </div>
-          ${isAll?allProductsHTML():list.length?`<div class="cat-grid">${list.map(productCard).join("")}</div>`:`<p class="cat-empty">Em breve: novos produtos chegando nessa categoria.</p>`}
+          ${isAll?allProductsHTML():!isBest&&CATEGORY_INFO[c]?.subsections?subsectionsHTML(c,list):list.length?`<div class="cat-grid">${list.map(productCard).join("")}</div>`:`<p class="cat-empty">Em breve: novos produtos chegando nessa categoria.</p>`}
         </div>`;
       panel.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
+      // botões de subseção: mostram só a subseção escolhida
+      panel.querySelectorAll(".sub-tab").forEach(t=>t.onclick=()=>{
+        panel.querySelectorAll(".sub-tab").forEach(x=>{x.classList.toggle("active",x===t);x.setAttribute("aria-selected",x===t);});
+        panel.querySelectorAll("[data-sub-panel]").forEach(el=>el.hidden=el.dataset.subPanel!==t.dataset.sub);
+      });
       // "Mais vendidos" abaixo de Todos os produtos: abre/fecha a grade de destaques
       const bestBtn=panel.querySelector(".all-best-btn");
       if(bestBtn)bestBtn.onclick=()=>{
@@ -247,6 +280,15 @@ function setupCategoryPanels(){
     });
   });
 }
+// Produtos com mais de uma foto: alternam sozinhos (pausa enquanto o mouse está em cima)
+setInterval(()=>{
+  document.querySelectorAll(".product-visual[data-gallery]").forEach(g=>{
+    if(g.matches(":hover"))return;
+    const imgs=[...g.querySelectorAll(".pv-slide")], dots=[...g.querySelectorAll(".pv-dots i")];
+    const i=imgs.findIndex(el=>el.classList.contains("active")), n=(i+1)%imgs.length;
+    imgs.forEach((el,k)=>el.classList.toggle("active",k===n)); dots.forEach((el,k)=>el.classList.toggle("active",k===n));
+  });
+},2800);
 // Produtos em destaque na vitrine do topo
 const HERO_PRODUCTS = ["seda-elements","clipper-caveira","raw-classic","seda-king"];
 function renderHeroShowcase(){
@@ -258,7 +300,7 @@ function renderHeroShowcase(){
       </a>
       <div class="hero-product-info">
         <b>${p.name}</b>
-        <div>${priceHTML(p)}<button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}">+</button></div>
+        <div>${priceHTML(p)}<button class="add" data-add="${p.id}" aria-label="Adicionar ${p.name}"><svg class="add-cart-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2l1.7-7.3H6.2"/></svg></button></div>
       </div>
     </article>`).join("");
   el.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
