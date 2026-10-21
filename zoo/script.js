@@ -231,13 +231,18 @@ function subsectionsHTML(c,list){
     </div>`;
   }).join("");
 }
+// Entrada em cascata dos cards ao abrir uma categoria (usa --i no CSS)
+function animatePanel(panel){
+  panel.querySelectorAll(".cat-grid .product, .strip-track .product").forEach((el,i)=>el.style.setProperty("--i",Math.min(i,11)));
+}
 function setupCategoryPanels(){
-  [["#catShortcuts",null],["#catShortcutsMobile",null],["#filters",".section-heading"]].forEach(([sel,anchorSel])=>{
+  // [atalhos, onde fica o painel, posição]: no celular os produtos ficam ACIMA da instrução e das categorias
+  [["#catShortcuts",null,"afterend"],["#catShortcutsMobile",".menu-hint-mobile","beforebegin"],["#filters",".section-heading","afterend"]].forEach(([sel,anchorSel,pos])=>{
     const nav=$(sel); if(!nav)return;
-    const anchor=anchorSel?nav.closest(anchorSel):nav;
+    const anchor=anchorSel?(nav.closest(anchorSel)||document.querySelector(anchorSel)):nav;
     const panel=document.createElement("div");
     panel.className="cat-panel"; panel.setAttribute("aria-live","polite");
-    anchor.insertAdjacentElement("afterend",panel);
+    anchor.insertAdjacentElement(pos,panel);
     nav.addEventListener("click",e=>{
       const link=e.target.closest("[data-cat]"); if(!link)return;
       e.preventDefault();
@@ -277,6 +282,8 @@ function setupCategoryPanels(){
       panel.querySelector(".cat-panel-close").onclick=()=>{panel.classList.remove("open");panel.dataset.cat="";nav.querySelectorAll("[data-cat]").forEach(a=>a.classList.remove("active"));};
       panel.classList.remove("open"); void panel.offsetWidth; panel.classList.add("open");
       animatePanel(panel);
+      // celular: os produtos ficam acima das categorias, então ao tocar numa categoria a página sobe até eles
+      if(e.isTrusted&&sel==="#catShortcutsMobile")panel.scrollIntoView({behavior:"smooth",block:"start"});
     });
   });
 }
@@ -543,8 +550,9 @@ function updateOpenStatus(){
 updateOpenStatus(); setInterval(updateOpenStatus,1000);
 
 renderFilters();renderHeroShowcase();renderCombo();renderShortcuts();setupCategoryPanels();renderCart();fillAddress();
-// Categorias pré-selecionadas: "Escolha por categoria" (celular) abre com Sedas; a Loja abre em Todos
+// Categorias pré-selecionadas: Sedas já aparece na primeira seção (celular e computador); a Loja abre em Todos
 $('#catShortcutsMobile [data-cat="Sedas"]')?.click();
+$('#catShortcuts [data-cat="Sedas"]')?.click();
 $(`#filters [data-cat="${ALL_KEY}"]`)?.click();
 
 // Bloqueia zoom: pinça no iPhone (Safari ignora user-scalable=no) e Ctrl + roda/teclas no computador

@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family &amp; Friends Auto Repair | Malden, MA</title>
+    <meta name="description" content="Complete auto repair &amp; maintenance in Malden, MA. Mechanical, electrical &amp; diagnostic services with quality, technology and transparency. 17 Charles St, Malden MA 02148.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="Family &amp; Friends Auto Repair | Malden, MA">
+    <meta property="og:description" content="Complete auto repair &amp; maintenance. Mechanical, electrical &amp; diagnostic services. Quality, technology &amp; transparency.">
+    <meta property="og:image" content="img/logo.webp">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/webp" href="img/logo.webp">
+
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for high-quality icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter for body copy, Barlow Condensed for the automotive display type -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+
+    <!-- Local business structured data (helps Google show hours, phone and address) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": "Family & Friends Auto Repair",
+        "image": "img/logo.webp",
+        "telephone": "+1-781-526-5857",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "17 Charles St",
+            "addressLocality": "Malden",
+            "addressRegion": "MA",
+            "postalCode": "02148",
+            "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+        ],
+        "sameAs": ["https://www.instagram.com/ff_auto_repair/"]
+    }
+    </script>
+
+    <style>
+        :root {
+            --ff-red: #e11d2a;
+            --ff-red-dark: #9f1219;
+            --ff-ink: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ff-ink);
+            color: #f8fafc;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .font-display {
+            font-family: 'Barlow Condensed', 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        /* Subtle diagonal racing stripes + carbon texture behind the whole site */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 15% -10%, rgba(225, 29, 42, 0.22), transparent 55%),
+                radial-gradient(ellipse at 110% 110%, rgba(148, 163, 184, 0.10), transparent 50%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0 2px, transparent 2px 6px),
+                var(--ff-ink);
+            pointer-events: none;
+        }
+
+        /* Chrome / brushed-steel gradient text, echoing the gear in the logo */
+        .chrome-text {
+            background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 35%, #94a3b8 55%, #f1f5f9 70%, #64748b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Brand red gradient text, slowly animated for headline highlights */
+        .red-text-animated {
+            background: linear-gradient(90deg, #ff4d57 0%, #e11d2a 30%, #9f1219 50%, #e11d2a 70%, #ff4d57 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: redShine 6s ease-in-out infinite;
+        }
+
+        @keyframes redShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Racing stripe accent used under section badges */
+        .stripe {
+            height: 4px;
+            width: 64px;
+            background: linear-gradient(90deg, var(--ff-red) 0 60%, transparent 60% 68%, #cbd5e1 68% 100%);
+            transform: skewX(-25deg);
+        }
+
+        /* Parallax gallery showcase */
+        #pgBanner, #pgMatrix, .pg-card {
+            backface-visibility: hidden;
+        }
+        #pgCaption {
+            transition: opacity 0.6s ease;
+        }
+
+        /* Language switcher buttons */
+        .lang-btn {
+            opacity: 0.5;
+        }
+        .lang-btn:hover {
+            opacity: 0.8;
+        }
+        .lang-btn.active {
+            opacity: 1;
+            transform: scale(1.15);
+            box-shadow: 0 0 0 2px rgba(225, 29, 42, 0.7);
+        }
+
+        /* Glassmorphism effect for the buttons and cards */
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            background: rgba(38, 38, 38, 0.75);
+            transform: translateY(-2px);
+            border-color: rgba(225, 29, 42, 0.45);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Shine effect on hover for the primary CTA */
+        .primary-cta {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(225, 29, 42, 0.55);
+        }
+
+        .primary-cta::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+        }
+
+        .primary-cta:hover::after {
+            left: 150%;
+        }
+
+        /* Gentle attention pulse for the primary CTA button.
+           Combined with its entry animation here (compound selector) so the
+           shorthand `animation` property from .fade-in-up doesn't clobber it. */
+        .primary-cta.fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                       ctaPulse 1.8s ease-in-out 1s infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(225, 29, 42, 0.65);
+            }
+            50% {
+                transform: scale(1.035);
+                box-shadow: 0 0 0 16px rgba(225, 29, 42, 0);
+            }
+        }
+
+        /* Entry animation for elements */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Staggered animation delays */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+
+        /* Instagram-style story ring around the highlight bubbles */
+        .story-ring {
+            padding: 3px;
+            border-radius: 9999px;
+            background: conic-gradient(from 210deg, #e11d2a, #ff6b6b, #f8fafc, #94a3b8, #e11d2a);
+            transition: transform 0.3s ease;
+        }
+        .story-ring:hover {
+            transform: scale(1.07) rotate(-3deg);
+        }
+        .story-ring.seen {
+            background: #404040;
+        }
+
+        /* Fullscreen story viewer */
+        #storyViewer {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #storyViewer.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .story-bar {
+            flex: 1;
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+        }
+        .story-bar > span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: #fff;
+        }
+
+        /* Infinite photo marquee */
+        .marquee-track {
+            animation: marquee 60s linear infinite;
+        }
+        .marquee:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            to { transform: translateX(-50%); }
+        }
+
+        /* Modal transitions */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(0.95) translateY(10px);
+        }
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Hide scrollbar for neatness but keep functionality */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7f1d1d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e11d2a;
+        }
+
+        /* Pre-loading screen shown while the site boots */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.75rem;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #preloader.preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #preloader .preloader-logo {
+            width: 16rem;
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(225, 29, 42, 0.45));
+            animation: preloaderPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes preloaderPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.85; }
+        }
+
+        #preloader .preloader-bar-track {
+            width: 12rem;
+            height: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        #preloader .preloader-bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ff4d57 0%, #e11d2a 50%, #cbd5e1 100%);
+            animation: preloaderFill 1.2s ease forwards;
+        }
+
+        @keyframes preloaderFill {
+            to { width: 100%; }
+        }
+
+        body.preloading {
+            overflow: hidden;
+        }
+
+        /* Logo click easter-egg: the gear spins and a wrench sweeps across */
+        .logo-spin {
+            animation: logoSpin 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes logoSpin {
+            0% { transform: rotate(0) scale(1); }
+            40% { transform: rotate(-12deg) scale(1.08); }
+            70% { transform: rotate(6deg) scale(1.02); }
+            100% { transform: rotate(0) scale(1); }
+        }
+
+        /* Scroll-triggered reveal for institutional sections */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track, .red-text-animated, .primary-cta.fade-in-up { animation: none !important; }
+            .fade-in-up { opacity: 1; transform: none; animation: none; }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-red-600 selection:text-white preloading">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="img/logo.webp" alt="Family &amp; Friends Auto Repair" class="preloader-logo">
+        <div class="preloader-bar-track">
+            <div class="preloader-bar-fill"></div>
+        </div>
+    </div>
+    <script>
+        // Hide the preloader once the bar animation finishes
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (!preloader) return;
+                preloader.classList.add('preloader-hidden');
+                document.body.classList.remove('preloading');
+                preloader.addEventListener('transitionend', () => preloader.remove(), { once: true });
+            }, 1200);
+        });
+    </script>
+
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50 flex gap-1.5 bg-black/60 border border-red-500/30 rounded-full p-1.5 backdrop-blur-md">
+        <button onclick="setLanguage('en')" data-lang-btn="en" aria-label="English" class="lang-btn w-7 h-7 rounded-full overflow-hidden transition-transform shrink-0">
+            <svg viewBox="0 0 24 24" class="w-full h-full">
+                <rect width="24" height="24" fill="#B22234"/>
+                <rect y="2.7" width="24" height="2.7" fill="#fff"/>
+                <rect y="8.2" width="24" height="2.7" fill="#fff"/>
+                <rect y="13.6" width="24" height="2.7" fill="#fff"/>
+                <rect y="19.1" width="24" height="2.7" fill="#fff"/>
+                <rect width="12" height="13" fill="#3C3B6E"/>
+            </svg>
+        </button>
+        <button onclick="setLanguage('pt')" data-lang-btn="pt" aria-label="Português" class="lang-btn w-7 h-7 rounded-full overflow-hidden transition-transform shrink-0">
+            <svg viewBox="0 0 24 24" class="w-full h-full">
+                <rect width="24" height="24" fill="#009B3A"/>
+                <polygon points="12,3 22,12 12,21 2,12" fill="#FEDF00"/>
+                <circle cx="12" cy="12" r="5" fill="#002776"/>
+            </svg>
+        </button>
+        <button onclick="setLanguage('es')" data-lang-btn="es" aria-label="Español" class="lang-btn w-7 h-7 rounded-full overflow-hidden transition-transform shrink-0">
+            <svg viewBox="0 0 24 24" class="w-full h-full">
+                <rect width="24" height="24" fill="#AA151B"/>
+                <rect y="6" width="24" height="12" fill="#F1BF00"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- HERO / LINKTREE SECTION (Takes up min 100vh) -->
+    <section class="min-h-[100dvh] w-full flex flex-col items-center pt-12 pb-20 relative px-4 z-10 overflow-hidden">
+
+        <!-- Background video straight from the shop floor (Instagram reel) -->
+        <video class="absolute inset-0 w-full h-full object-cover opacity-35 pointer-events-none" src="video/hero-shop.mp4" poster="video/hero-shop.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-[#0a0a0a] pointer-events-none"></div>
+
+        <div class="relative w-full max-w-lg mx-auto flex flex-col items-center">
+
+            <!-- Profile / Brand -->
+            <header class="w-full flex flex-col items-center mb-6 fade-in-up">
+                <div class="w-full flex justify-center mb-4 group">
+                    <img id="heroLogo" src="img/logo.webp" alt="Family &amp; Friends Auto Repair" onclick="spinLogo()" class="w-60 sm:w-72 h-auto object-contain drop-shadow-[0_0_30px_rgba(225,29,42,0.45)] group-hover:scale-105 transition-transform duration-500 cursor-pointer">
+                </div>
+
+                <!-- The logo already shows the name; keep the h1 for SEO / screen readers -->
+                <h1 class="sr-only">Family &amp; Friends Auto Repair — Malden, MA</h1>
+
+                <p data-i18n="hero_subtitle" class="text-slate-300 text-sm font-medium text-center mt-3 mb-3 max-w-sm">
+                    Complete auto repair &amp; maintenance · Mechanical, electrical &amp; diagnostic services
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <!-- Live open / closed badge (Malden local time) -->
+                    <span id="openBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 backdrop-blur-sm">
+                        <span id="openDot" class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+                        <span id="openText">Open now</span>
+                    </span>
+                    <!-- Save contact -->
+                    <button onclick="downloadVCard()" class="inline-flex items-center gap-1.5 bg-white text-black hover:bg-red-500 hover:text-white text-xs font-semibold tracking-wide transition-colors px-3 py-1 rounded-full">
+                        <i class="fa-regular fa-address-book"></i>
+                        <span data-i18n="hero_saveContact">Save contact</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Story highlights (Instagram-style) -->
+            <div class="w-full fade-in-up delay-1 mb-6">
+                <div id="storyRail" class="flex gap-3 overflow-x-auto pb-2 px-1 justify-start [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>
+            </div>
+
+            <!-- Links Section -->
+            <div class="w-full flex flex-col gap-3">
+
+                <!-- 1. Principal CTA: Book a service -->
+                <a href="javascript:void(0)" onclick="openModal('bookingModal')" class="link-btn primary-cta fade-in-up delay-2 w-full bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white rounded-2xl p-4 flex items-center border border-red-400/50">
+                    <div class="w-12 h-12 rounded-full bg-black/20 flex items-center justify-center mr-4 shrink-0 shadow-inner">
+                        <i class="fa-solid fa-calendar-check text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="cta_title" class="font-bold text-lg leading-tight">Book a Service</span>
+                        <span data-i18n="cta_subtitle" class="text-white/80 text-xs font-medium">Fast reply on WhatsApp</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right ml-auto text-white/70"></i>
+                </a>
+
+                <!-- 2. Call -->
+                <a href="tel:+17815265857" class="glass-panel fade-in-up delay-3 w-full rounded-2xl p-4 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-neutral-800/80 flex items-center justify-center mr-4 shrink-0 text-red-500">
+                        <i class="fa-solid fa-phone text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="call_title" class="font-semibold text-slate-100">Call the Shop</span>
+                        <span class="text-slate-400 text-xs">(781) 526-5857</span>
+                    </div>
+                </a>
+
+                <!-- 3. Watch stories -->
+                <a href="javascript:void(0)" onclick="openStory('reels', 0)" class="glass-panel fade-in-up delay-4 w-full rounded-2xl p-4 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-neutral-800/80 flex items-center justify-center mr-4 shrink-0 text-red-500">
+                        <i class="fa-solid fa-circle-play text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="watch_title" class="font-semibold text-slate-100">Inside the Shop</span>
+                        <span data-i18n="watch_subtitle" class="text-slate-400 text-xs">Watch our reels in full screen</span>
+                    </div>
+                </a>
+
+                <!-- 4. Location -->
+                <a href="#visit" class="glass-panel fade-in-up delay-5 w-full rounded-2xl p-4 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-neutral-800/80 flex items-center justify-center mr-4 shrink-0 text-red-500">
+                        <i class="fa-solid fa-map-location-dot text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="visit_link_title" class="font-semibold text-slate-100">Hours &amp; Directions</span>
+                        <span class="text-slate-400 text-xs">17 Charles St, Malden MA 02148</span>
+                    </div>
+                </a>
+
+                <!-- 5. Google reviews -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Family+%26+Friends+Auto+Repair+17+Charles+St+Malden+MA" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-6 w-full rounded-2xl p-4 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-neutral-800/80 flex items-center justify-center mr-4 shrink-0 text-amber-400">
+                        <i class="fa-solid fa-star text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span data-i18n="review_title" class="font-semibold text-slate-100">Our Google Reviews</span>
+                        <span data-i18n="review_subtitle" class="text-slate-400 text-xs">See why drivers trust us</span>
+                    </div>
+                </a>
+
+                <!-- 6. Instagram -->
+                <a href="https://www.instagram.com/ff_auto_repair/" target="_blank" rel="noopener noreferrer" class="glass-panel fade-in-up delay-7 w-full rounded-2xl p-4 flex justify-center items-center">
+                    <i class="fa-brands fa-instagram text-2xl text-pink-500 mr-2"></i>
+                    <span class="font-semibold text-slate-100 text-sm">@ff_auto_repair</span>
+                </a>
+            </div>
+
+            <!-- Scroll Down Indicator -->
+            <a href="#site-content" class="mt-10 animate-bounce text-slate-400 hover:text-white transition-colors flex flex-col items-center text-xs tracking-widest uppercase">
+                <span data-i18n="scroll_hint" class="mb-2">Meet the Shop</span>
+                <i class="fa-solid fa-chevron-down text-lg"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- INSTITUTIONAL WEBSITE CONTENT -->
+    <main id="site-content" class="w-full relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+
+        <!-- Trust strip -->
+        <section class="bg-neutral-950/80 border-y border-neutral-800">
+            <div class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="reveal reveal-delay-1">
+                    <div class="font-display text-3xl md:text-4xl font-extrabold text-white"><i class="fa-solid fa-trophy text-amber-400 text-2xl mr-2"></i>Google</div>
+                    <p data-i18n="trust1" class="text-slate-400 text-xs uppercase tracking-wider mt-1">Top-rated in the area</p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="font-display text-3xl md:text-4xl font-extrabold text-white">15K+</div>
+                    <p data-i18n="trust2" class="text-slate-400 text-xs uppercase tracking-wider mt-1">Followers on Instagram</p>
+                </div>
+                <div class="reveal reveal-delay-3">
+                    <div class="font-display text-3xl md:text-4xl font-extrabold text-white"><i class="fa-solid fa-venus text-red-500 text-2xl mr-1"></i>Women-led</div>
+                    <p data-i18n="trust3" class="text-slate-400 text-xs uppercase tracking-wider mt-1">Family-owned shop</p>
+                </div>
+                <div class="reveal reveal-delay-4">
+                    <div class="font-display text-3xl md:text-4xl font-extrabold text-white">EN · PT · ES</div>
+                    <p data-i18n="trust4" class="text-slate-400 text-xs uppercase tracking-wider mt-1">We speak your language</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parallax Gallery Showcase -->
+        <section id="parallaxGallerySection" class="relative w-full h-[400vh] bg-[#050505]">
+            <div class="sticky top-0 h-screen w-full flex justify-center items-center overflow-hidden">
+                <div id="pgBanner" class="relative bg-black overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform">
+                    <div class="absolute inset-0 flex justify-center items-center pointer-events-none" style="perspective: 1000px;">
+                        <!-- Ambient shadow masking -->
+                        <div class="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(0,0,0,1),inset_0_-100px_150px_-50px_rgba(0,0,0,1)]"></div>
+                        <div class="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]"></div>
+
+                        <!-- 3D parallax image matrix (filled from GALLERY_COLUMNS in JS) -->
+                        <div id="pgMatrix" class="flex gap-4 md:gap-6 justify-center items-center w-[120vw] h-[150vh] origin-center will-change-transform" style="transform-style: preserve-3d;"></div>
+                    </div>
+
+                    <!-- Caption overlayed once the banner has unfurled -->
+                    <div id="pgCaption" class="absolute inset-x-0 bottom-10 z-30 text-center px-6 opacity-0 pointer-events-none">
+                        <span class="text-red-500 font-bold uppercase tracking-[0.3em] text-xs">17 Charles St · Malden</span>
+                        <h2 data-i18n="gallery_caption" class="font-display text-3xl md:text-5xl font-extrabold italic uppercase text-white mt-2 chrome-text inline-block">Every detail with purpose</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="bg-neutral-950/60 border-b border-neutral-800">
+            <div class="max-w-6xl mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="reveal flex items-center gap-3 mb-4">
+                        <span data-i18n="about_badge" class="text-red-500 text-xs font-bold uppercase tracking-[0.25em]">About Us</span>
+                        <span class="stripe"></span>
+                    </div>
+                    <h2 class="reveal font-display text-4xl md:text-5xl font-extrabold uppercase text-white leading-[0.95] mb-6">
+                        <span data-i18n="about_title_pre">Treated like</span> <span data-i18n="about_title_highlight" class="red-text-animated">family.</span><br>
+                        <span data-i18n="about_title_post" class="chrome-text">Serviced like a pro.</span>
+                    </h2>
+                    <p data-i18n="about_text" class="reveal reveal-delay-1 text-slate-400 leading-relaxed text-lg mb-6">
+                        Family &amp; Friends Auto Repair is a women-led, family-owned shop in Malden, MA. Led by our owner Alda, our team combines modern diagnostic technology with honest, transparent service — we show you what your car needs, explain why, and never push work you don't.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="reveal reveal-delay-2 flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                                <i class="fa-solid fa-magnifying-glass-chart text-white text-sm"></i>
+                            </div>
+                            <span data-i18n="about_li1" class="text-slate-300 text-sm pt-2 leading-snug">Diagnostics that look beyond the obvious.</span>
+                        </div>
+                        <div class="reveal reveal-delay-3 flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                                <i class="fa-solid fa-eye text-white text-sm"></i>
+                            </div>
+                            <span data-i18n="about_li2" class="text-slate-300 text-sm pt-2 leading-snug">Full transparency — we show you the old parts.</span>
+                        </div>
+                        <div class="reveal reveal-delay-4 flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                                <i class="fa-solid fa-shield-halved text-white text-sm"></i>
+                            </div>
+                            <span data-i18n="about_li3" class="text-slate-300 text-sm pt-2 leading-snug">Quality-checked parts on every job.</span>
+                        </div>
+                        <div class="reveal reveal-delay-5 flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+                                <i class="fa-solid fa-broom text-white text-sm"></i>
+                            </div>
+                            <span data-i18n="about_li4" class="text-slate-300 text-sm pt-2 leading-snug">A spotless, organized shop — every morning.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo stack + meet-the-owner video -->
+                <div class="reveal reveal-delay-2 relative grid grid-cols-2 gap-4">
+                    <div class="space-y-4 pt-10">
+                        <div class="rounded-2xl overflow-hidden border border-neutral-700 aspect-[3/4]">
+                            <img src="img/ig/alda-owner.webp" alt="Alda, owner of Family & Friends Auto Repair" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="rounded-2xl overflow-hidden border border-neutral-700 aspect-square">
+                            <img src="img/ig/team-celebration.webp" alt="The Family & Friends team" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <button onclick="openStory('meet', 0)" class="group relative rounded-2xl overflow-hidden border border-red-500/40 shadow-[0_0_40px_rgba(225,29,42,0.25)] aspect-[9/16] text-left">
+                        <video data-autoplay class="w-full h-full object-cover" src="video/meet-alda.mp4" poster="video/meet-alda.jpg" muted loop playsinline preload="none"></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+                        <div class="absolute top-3 left-3 w-10 h-10 rounded-full bg-white/15 backdrop-blur flex items-center justify-center group-hover:bg-red-600 transition-colors">
+                            <i class="fa-solid fa-volume-high text-white text-sm"></i>
+                        </div>
+                        <div class="absolute bottom-0 inset-x-0 p-4">
+                            <p data-i18n="meet_title" class="font-display text-2xl font-extrabold uppercase text-white leading-none">Meet Alda</p>
+                            <p data-i18n="meet_subtitle" class="text-slate-300 text-xs mt-1">Owner · Tap to watch with sound</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="bg-neutral-950/40 py-20 lg:py-28 border-b border-neutral-800">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="reveal text-center mb-14 space-y-4">
+                    <div class="flex items-center justify-center gap-3">
+                        <span data-i18n="services_badge" class="text-red-500 text-xs font-bold uppercase tracking-[0.25em]">Services</span>
+                        <span class="stripe"></span>
+                    </div>
+                    <h2 data-i18n="services_title" class="font-display text-4xl md:text-5xl font-extrabold uppercase text-white">Everything your car needs</h2>
+                    <p data-i18n="services_subtitle" class="text-slate-400 max-w-2xl mx-auto">From a quick oil change to a complete engine swap — mechanical, electrical and diagnostic work under one roof.</p>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                    <!-- Service cards are image-backed; text sits on a gradient for readability -->
+                    <div class="reveal reveal-delay-1 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/diagnostic.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-laptop-medical text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc1_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Diagnostics</h3>
+                            <p data-i18n="svc1_desc" class="text-slate-300 text-xs leading-relaxed mt-1">Computer scan, check-engine lights, electrical faults.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-2 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/brake-disc.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-circle-stop text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc2_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Brakes</h3>
+                            <p data-i18n="svc2_desc" class="text-slate-300 text-xs leading-relaxed mt-1">Pads, rotors, calipers and full brake-system checks.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-3 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/alignment-ramp.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-arrows-left-right-to-line text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc3_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Alignment &amp; Balancing</h3>
+                            <p data-i18n="svc3_desc" class="text-slate-300 text-xs leading-relaxed mt-1">High-precision 3D alignment for stability and tire life.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-4 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/brake-rotor.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-car-burst text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc4_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Suspension</h3>
+                            <p data-i18n="svc4_desc" class="text-slate-300 text-xs leading-relaxed mt-1">Control arms, sway-bar links, shocks and struts.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-1 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/oil-check.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-oil-can text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc5_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Oil &amp; Maintenance</h3>
+                            <p data-i18n="svc5_desc" class="text-slate-300 text-xs leading-relaxed mt-1">Oil changes, fluids, filters and scheduled service.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-2 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/engine-swap.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-gears text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc6_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Engine &amp; Transmission</h3>
+                            <p data-i18n="svc6_desc" class="text-slate-300 text-xs leading-relaxed mt-1">From tune-ups to complete engine swaps.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-3 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/pressure-test.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-bolt text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc7_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Electrical &amp; Fuel</h3>
+                            <p data-i18n="svc7_desc" class="text-slate-300 text-xs leading-relaxed mt-1">Battery, charging, sensors and fuel-pump pressure.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-4 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors aspect-[3/4]">
+                        <img src="img/ig/tire-service.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
+                        <div class="absolute bottom-0 p-4 md:p-5">
+                            <i class="fa-solid fa-circle-dot text-red-500 text-xl mb-2"></i>
+                            <h3 data-i18n="svc8_title" class="font-display text-xl md:text-2xl font-bold uppercase text-white leading-tight">Tires &amp; Exhaust</h3>
+                            <p data-i18n="svc8_desc" class="text-slate-300 text-xs leading-relaxed mt-1">Tire repair and rotation, flex pipes and exhaust work.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal text-center mt-10">
+                    <button onclick="openModal('bookingModal')" class="primary-cta inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white font-bold py-3.5 px-7 rounded-xl transition-colors">
+                        <i class="fa-solid fa-wrench"></i>
+                        <span data-i18n="services_cta">Get a free estimate</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reels wall -->
+        <section id="reels" class="bg-neutral-950/60 py-20 lg:py-28 border-b border-neutral-800 overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-red-500 text-xs font-bold uppercase tracking-[0.25em]"><i class="fa-brands fa-instagram mr-1"></i> Reels</span>
+                            <span class="stripe"></span>
+                        </div>
+                        <h2 data-i18n="reels_title" class="font-display text-4xl md:text-5xl font-extrabold uppercase text-white">A day at FF</h2>
+                        <p data-i18n="reels_subtitle" class="text-slate-400 mt-2 max-w-xl">Real work, real cars, real people. Tap any video to watch it full screen with sound.</p>
+                    </div>
+                    <a href="https://www.instagram.com/ff_auto_repair/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-white border border-neutral-700 hover:border-red-500 rounded-full px-4 py-2 transition-colors self-start md:self-auto">
+                        <i class="fa-brands fa-instagram text-pink-500"></i> <span data-i18n="follow_us">Follow us</span>
+                    </a>
+                </div>
+
+                <div id="reelsWall" class="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>
+            </div>
+        </section>
+
+        <!-- Photo marquee straight from the feed -->
+        <section class="py-14 border-b border-neutral-800 bg-black/40">
+            <div class="marquee overflow-hidden">
+                <div id="marqueeTrack" class="marquee-track flex gap-4 w-max"></div>
+            </div>
+        </section>
+
+        <!-- Visit / Hours / Map -->
+        <section id="visit" class="bg-neutral-950/60 py-20 lg:py-28">
+            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-stretch">
+                <div class="reveal">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span data-i18n="visit_badge" class="text-red-500 text-xs font-bold uppercase tracking-[0.25em]">Visit Us</span>
+                        <span class="stripe"></span>
+                    </div>
+                    <h2 data-i18n="visit_title" class="font-display text-4xl md:text-5xl font-extrabold uppercase text-white mb-6">Right here in Malden</h2>
+
+                    <div class="glass-panel !transform-none rounded-2xl p-6 mb-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 data-i18n="hours_title" class="text-white font-semibold flex items-center gap-2"><i class="fa-regular fa-clock text-red-500"></i> Hours</h3>
+                            <span id="openBadge2" class="text-xs font-semibold px-2.5 py-1 rounded-full"></span>
+                        </div>
+                        <ul class="text-sm divide-y divide-neutral-800">
+                            <li data-day="weekday" class="flex justify-between py-2.5"><span data-i18n="hours_weekdays" class="text-slate-300">Monday – Friday</span><span class="text-white font-medium">8:00 AM – 6:00 PM</span></li>
+                            <li data-day="sat" class="flex justify-between py-2.5"><span data-i18n="hours_saturday" class="text-slate-300">Saturday</span><span class="text-white font-medium">8:00 AM – 2:00 PM</span></li>
+                            <li data-day="sun" class="flex justify-between py-2.5"><span data-i18n="hours_sunday" class="text-slate-300">Sunday</span><span data-i18n="hours_closed" class="text-slate-500 font-medium">Closed</span></li>
+                        </ul>
+                        <p data-i18n="hours_note" class="text-xs text-slate-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> Closed on the first Saturday of every month.</p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=17+Charles+St+Malden+MA+02148" target="_blank" rel="noopener noreferrer" class="glass-panel rounded-xl p-4 flex items-center gap-3">
+                            <i class="fa-solid fa-location-arrow text-red-500 text-lg"></i>
+                            <div>
+                                <p data-i18n="directions" class="text-white text-sm font-semibold">Get directions</p>
+                                <p class="text-slate-400 text-xs">17 Charles St, Malden MA 02148</p>
+                            </div>
+                        </a>
+                        <div class="glass-panel rounded-xl p-4 flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-red-500 text-lg"></i>
+                            <div class="text-sm">
+                                <a href="tel:+17815265857" class="block text-white font-semibold hover:text-red-400">(781) 526-5857</a>
+                                <a href="tel:+17815265637" class="block text-slate-400 text-xs hover:text-red-400">(781) 526-5637</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-2 rounded-2xl overflow-hidden border border-neutral-800 min-h-[360px] relative">
+                    <iframe title="Map — 17 Charles St, Malden MA" src="https://maps.google.com/maps?q=17%20Charles%20St%2C%20Malden%2C%20MA%2002148&z=16&output=embed" class="absolute inset-0 w-full h-full grayscale-[60%] contrast-125" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="relative overflow-hidden bg-transparent pt-16 pb-8">
+            <!-- Top hairline -->
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent"></div>
+            <!-- Ambient glow blobs -->
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-slate-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="reveal grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12">
+                    <!-- Brand -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="img/logo.webp" alt="Family &amp; Friends Auto Repair" class="w-16 h-auto object-contain">
+                            <span class="font-display text-2xl font-extrabold italic uppercase leading-none"><span class="chrome-text">Family &amp; Friends</span><br><span class="text-red-500 text-base">Auto Repair</span></span>
+                        </div>
+                        <p data-i18n="footer_tagline" class="text-slate-500 text-sm leading-relaxed max-w-xs">Quality, technology &amp; transparency.</p>
+                    </div>
+
+                    <!-- Navigate -->
+                    <div>
+                        <h4 data-i18n="footer_nav_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Explore</h4>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li><a href="#about" class="hover:text-red-400 transition-colors" data-i18n="about_badge">About Us</a></li>
+                            <li><a href="#services" class="hover:text-red-400 transition-colors" data-i18n="services_badge">Services</a></li>
+                            <li><a href="#reels" class="hover:text-red-400 transition-colors">Reels</a></li>
+                            <li><a href="#visit" class="hover:text-red-400 transition-colors" data-i18n="visit_badge">Visit Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h4 data-i18n="footer_contact_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Contact</h4>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li>
+                                <a href="tel:+17815265857" class="flex items-center gap-2.5 hover:text-red-400 transition-colors">
+                                    <i class="fa-solid fa-phone text-red-500 w-4"></i> (781) 526-5857
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="waSend('wa_help')" class="flex items-center gap-2.5 hover:text-red-400 transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400 w-4"></i> WhatsApp
+                                </a>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-map-location-dot text-red-500 w-4 mt-0.5"></i> 17 Charles St<br>Malden, MA 02148
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Social -->
+                    <div>
+                        <h4 data-i18n="footer_social_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Social</h4>
+                        <div class="flex gap-3">
+                            <a href="https://www.instagram.com/ff_auto_repair/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-transparent border border-neutral-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-red-500/50 transition-colors">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="waSend('wa_help')" aria-label="WhatsApp" class="w-10 h-10 rounded-xl bg-transparent border border-neutral-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-red-500/50 transition-colors">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Family+%26+Friends+Auto+Repair+17+Charles+St+Malden+MA" target="_blank" rel="noopener noreferrer" aria-label="Google" class="w-10 h-10 rounded-xl bg-transparent border border-neutral-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-red-500/50 transition-colors">
+                                <i class="fa-brands fa-google"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom bar -->
+                <div class="mt-14 pt-6 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                    <p class="text-slate-600 text-xs">&copy; <span id="currentYear"></span> Family &amp; Friends Auto Repair. <span data-i18n="footer_rights">All rights reserved.</span></p>
+                    <p class="text-slate-600 text-xs">
+                        <span data-i18n="footer_madeBy">Developed by:</span>
+                        <a href="https://www.saturnonfc.com.br" target="_blank" rel="noopener noreferrer" class="text-red-500 hover:text-red-400 transition-colors font-medium">Saturno NFC</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="javascript:void(0)" onclick="waSend('wa_help')" data-i18n-aria="wa_aria" aria-label="Message us on WhatsApp" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-lg shadow-emerald-900/50 transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- STORY VIEWER (fullscreen, Instagram-style) -->
+    <div id="storyViewer" class="fixed inset-0 z-[60] opacity-0 invisible bg-black/95 backdrop-blur-md flex items-center justify-center" role="dialog" aria-modal="true">
+        <div class="relative h-[100dvh] w-full sm:h-[92dvh] sm:w-auto sm:aspect-[9/16] sm:rounded-2xl overflow-hidden bg-black select-none">
+            <div id="storyMedia" class="absolute inset-0"></div>
+
+            <!-- Top gradient, progress bars and header -->
+            <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent pointer-events-none"></div>
+            <div id="storyBars" class="absolute top-3 inset-x-3 flex gap-1 z-10"></div>
+            <div class="absolute top-7 inset-x-3 flex items-center gap-2 z-10">
+                <img src="img/logo.webp" alt="" class="w-9 h-9 rounded-full object-contain bg-black p-0.5 ring-2 ring-red-500">
+                <span class="text-white text-sm font-semibold">ff_auto_repair</span>
+                <span id="storyLabel" class="text-white/60 text-sm"></span>
+                <button onclick="toggleStoryMute()" class="ml-auto w-9 h-9 rounded-full flex items-center justify-center text-white hover:bg-white/10" aria-label="Mute / unmute">
+                    <i id="storyMuteIcon" class="fa-solid fa-volume-high"></i>
+                </button>
+                <button onclick="closeStory()" class="w-9 h-9 rounded-full flex items-center justify-center text-white hover:bg-white/10" aria-label="Close">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Caption + CTA -->
+            <div class="absolute inset-x-0 bottom-0 p-4 pt-16 bg-gradient-to-t from-black/85 to-transparent z-10 pointer-events-none">
+                <p id="storyCaption" class="text-white text-sm leading-snug mb-3"></p>
+                <button onclick="closeStory(); openModal('bookingModal')" class="pointer-events-auto w-full bg-white text-black font-bold rounded-xl py-3 flex items-center justify-center gap-2 hover:bg-red-500 hover:text-white transition-colors">
+                    <i class="fa-solid fa-calendar-check"></i> <span data-i18n="cta_title">Book a Service</span>
+                </button>
+            </div>
+
+            <!-- Tap zones: left = back, right = next; hold = pause -->
+            <div id="storyPrev" class="absolute left-0 top-16 bottom-28 w-1/3 z-[5] cursor-w-resize"></div>
+            <div id="storyNext" class="absolute right-0 top-16 bottom-28 w-2/3 z-[5] cursor-e-resize"></div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal fixed inset-0 z-[70] opacity-0 invisible bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-neutral-900 border border-neutral-700 rounded-2xl w-full max-w-md p-6 shadow-2xl relative overflow-hidden max-h-[92vh] overflow-y-auto">
+            <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-red-600 via-red-500 to-slate-300"></div>
+
+            <button onclick="closeModal('bookingModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-neutral-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h2 class="text-2xl font-bold text-white mb-1 flex items-center">
+                <i class="fa-solid fa-calendar-check text-red-500 mr-3"></i>
+                <span data-i18n="modal_book_title">Book a Service</span>
+            </h2>
+            <p data-i18n="modal_book_subtitle" class="text-slate-400 text-sm mb-6">Tell us about your car and we'll get back to you with availability and an estimate.</p>
+
+            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4 text-sm">
+                <div>
+                    <label data-i18n="label_name" class="block text-slate-300 mb-1.5 font-medium">Your name</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="bookName" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all placeholder-slate-600">
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="label_vehicle" class="block text-slate-300 mb-1.5 font-medium">Vehicle (year, make, model)</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-car-side absolute left-3 top-3 text-slate-500"></i>
+                        <input type="text" id="bookVehicle" required data-i18n-placeholder="placeholder_vehicle" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all placeholder-slate-600" placeholder="e.g. 2018 Honda CR-V">
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="label_service" class="block text-slate-300 mb-1.5 font-medium">Service needed</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-wrench absolute left-3 top-3 text-slate-500"></i>
+                        <select id="bookService" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all appearance-none [color-scheme:dark]">
+                            <option value="svc1_title" data-i18n="svc1_title">Diagnostics</option>
+                            <option value="svc2_title" data-i18n="svc2_title">Brakes</option>
+                            <option value="svc3_title" data-i18n="svc3_title">Alignment &amp; Balancing</option>
+                            <option value="svc4_title" data-i18n="svc4_title">Suspension</option>
+                            <option value="svc5_title" data-i18n="svc5_title">Oil &amp; Maintenance</option>
+                            <option value="svc6_title" data-i18n="svc6_title">Engine &amp; Transmission</option>
+                            <option value="svc7_title" data-i18n="svc7_title">Electrical &amp; Fuel</option>
+                            <option value="svc8_title" data-i18n="svc8_title">Tires &amp; Exhaust</option>
+                            <option value="svc_other" data-i18n="svc_other">Not sure / Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-1/2">
+                        <label data-i18n="label_date" class="block text-slate-300 mb-1.5 font-medium">Preferred date</label>
+                        <input type="date" id="bookDate" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-red-500 transition-all [color-scheme:dark]">
+                    </div>
+                    <div class="w-1/2">
+                        <label data-i18n="label_time" class="block text-slate-300 mb-1.5 font-medium">Time</label>
+                        <input type="time" id="bookTime" min="08:00" max="18:00" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-red-500 transition-all [color-scheme:dark]">
+                    </div>
+                </div>
+                <div>
+                    <label data-i18n="label_notes" class="block text-slate-300 mb-1.5 font-medium">What's going on? (optional)</label>
+                    <textarea id="bookNotes" rows="3" data-i18n-placeholder="placeholder_notes" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all placeholder-slate-600" placeholder="Noise when braking, check-engine light on..."></textarea>
+                </div>
+                <button type="submit" class="w-full mt-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 flex justify-center items-center">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                    <span data-i18n="btn_send">Send via WhatsApp</span>
+                </button>
+                <p class="text-center text-xs text-slate-500">
+                    <span data-i18n="or_call">Prefer to call?</span>
+                    <a href="tel:+17815265857" class="text-red-400 hover:text-red-300 font-semibold">(781) 526-5857</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // CONFIGURATION
+        // WhatsApp number (country code + area code + number)
+        const WHATSAPP_NUMBER = '17815265857';
+        const PHONE_MAIN = '+17815265857';
+        const PHONE_ALT = '+17815265637';
+        const COMPANY_NAME = 'Family & Friends Auto Repair';
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        /**
+         * Opens WhatsApp with a pre-filled message
+         */
+        function openWhatsApp(message) {
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(url, '_blank');
+        }
+
+        /**
+         * i18n: EN / PT / ES translations
+         */
+        const translations = {
+            en: {
+                meta_title: 'Family & Friends Auto Repair | Malden, MA',
+                hero_subtitle: 'Complete auto repair & maintenance · Mechanical, electrical & diagnostic services',
+                hero_saveContact: 'Save contact',
+                open_now: 'Open now · until {t}',
+                closed_now: 'Closed · opens {d} {t}',
+                day_today: 'today',
+                day_tomorrow: 'tomorrow',
+                days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                badge_open: 'Open',
+                badge_closed: 'Closed',
+                cta_title: 'Book a Service',
+                cta_subtitle: 'Fast reply on WhatsApp',
+                call_title: 'Call the Shop',
+                watch_title: 'Inside the Shop',
+                watch_subtitle: 'Watch our reels in full screen',
+                visit_link_title: 'Hours & Directions',
+                review_title: 'Our Google Reviews',
+                review_subtitle: 'See why drivers trust us',
+                scroll_hint: 'Meet the Shop',
+                trust1: 'Top-rated in the area',
+                trust2: 'Followers on Instagram',
+                trust3: 'Family-owned shop',
+                trust4: 'We speak your language',
+                gallery_caption: 'Every detail with purpose',
+                about_badge: 'About Us',
+                about_title_pre: 'Treated like',
+                about_title_highlight: 'family.',
+                about_title_post: 'Serviced like a pro.',
+                about_text: "Family & Friends Auto Repair is a women-led, family-owned shop in Malden, MA. Led by our owner Alda, our team combines modern diagnostic technology with honest, transparent service — we show you what your car needs, explain why, and never push work you don't.",
+                about_li1: 'Diagnostics that look beyond the obvious.',
+                about_li2: 'Full transparency — we show you the old parts.',
+                about_li3: 'Quality-checked parts on every job.',
+                about_li4: 'A spotless, organized shop — every morning.',
+                meet_title: 'Meet Alda',
+                meet_subtitle: 'Owner · Tap to watch with sound',
+                services_badge: 'Services',
+                services_title: 'Everything your car needs',
+                services_subtitle: 'From a quick oil change to a complete engine swap — mechanical, electrical and diagnostic work under one roof.',
+                svc1_title: 'Diagnostics',
+                svc1_desc: 'Computer scan, check-engine lights, electrical faults.',
+                svc2_title: 'Brakes',
+                svc2_desc: 'Pads, rotors, calipers and full brake-system checks.',
+                svc3_title: 'Alignment & Balancing',
+                svc3_desc: 'High-precision 3D alignment for stability and tire life.',
+                svc4_title: 'Suspension',
+                svc4_desc: 'Control arms, sway-bar links, shocks and struts.',
+                svc5_title: 'Oil & Maintenance',
+                svc5_desc: 'Oil changes, fluids, filters and scheduled service.',
+                svc6_title: 'Engine & Transmission',
+                svc6_desc: 'From tune-ups to complete engine swaps.',
+                svc7_title: 'Electrical & Fuel',
+                svc7_desc: 'Battery, charging, sensors and fuel-pump pressure.',
+                svc8_title: 'Tires & Exhaust',
+                svc8_desc: 'Tire repair and rotation, flex pipes and exhaust work.',
+                svc_other: 'Not sure / Other',
+                services_cta: 'Get a free estimate',
+                reels_title: 'A day at FF',
+                reels_subtitle: 'Real work, real cars, real people. Tap any video to watch it full screen with sound.',
+                follow_us: 'Follow us',
+                visit_badge: 'Visit Us',
+                visit_title: 'Right here in Malden',
+                hours_title: 'Hours',
+                hours_weekdays: 'Monday – Friday',
+                hours_saturday: 'Saturday',
+                hours_sunday: 'Sunday',
+                hours_closed: 'Closed',
+                hours_note: 'Closed on the first Saturday of every month.',
+                directions: 'Get directions',
+                footer_tagline: 'Quality, technology & transparency.',
+                footer_nav_title: 'Explore',
+                footer_contact_title: 'Contact',
+                footer_social_title: 'Social',
+                footer_rights: 'All rights reserved.',
+                footer_madeBy: 'Developed by:',
+                wa_aria: 'Message us on WhatsApp',
+                modal_book_title: 'Book a Service',
+                modal_book_subtitle: "Tell us about your car and we'll get back to you with availability and an estimate.",
+                label_name: 'Your name',
+                label_vehicle: 'Vehicle (year, make, model)',
+                placeholder_vehicle: 'e.g. 2018 Honda CR-V',
+                label_service: 'Service needed',
+                label_date: 'Preferred date',
+                label_time: 'Time',
+                label_notes: "What's going on? (optional)",
+                placeholder_notes: 'Noise when braking, check-engine light on...',
+                btn_send: 'Send via WhatsApp',
+                or_call: 'Prefer to call?',
+                story_meet: 'Meet us',
+                story_tech: 'Technology',
+                story_work: 'Our work',
+                story_feedback: 'Feedback',
+                story_shop: 'The shop',
+                story_girl: 'Girl power',
+                story_hours: 'Open hours',
+                story_reels: 'Reels',
+                cap_meet_alda: 'Alda, our owner: "Check your brakes, your tires — we are here for you."',
+                cap_alda_owner: 'Hi! I am Alda, the owner. My team and I are ready to find the best solution for your car.',
+                cap_team: 'Behind every job well done there is a team that loves what it does.',
+                cap_team2: 'Celebrating the leader who inspires our team every day.',
+                cap_dia: 'Every day at FF: hard work, attention to detail and care for every vehicle.',
+                cap_alignment: 'Our 3D alignment system — precision you can feel on the road.',
+                cap_diagnostic: 'Diagnostics that look beyond the obvious.',
+                cap_align_machine: 'Our wheel alignment machine at work. Safety first!',
+                cap_care: 'More than just repairs — complete care for your vehicle.',
+                cap_details: 'Trust is built in the details — and we don\'t miss a single one.',
+                cap_engine: 'Engine work done right, start to finish.',
+                cap_engine_swap: 'Action and precision in an engine swap.',
+                cap_reviews: 'What our customers say on Google.',
+                cap_quality: 'Feel the power of quality. Come visit us!',
+                cap_storefront: '17 Charles St, Malden — where transparency and quality drive together.',
+                cap_flags: 'A Brazilian-American family shop, proudly serving Malden.',
+                cap_morning: 'Every morning we clean and organize the shop before the first car comes in.',
+                cap_nails: 'Every nail tells a story — our board of "trophies" pulled from customers\' tires.',
+                cap_alda_tire: 'Hands-on, every day.',
+                cap_oil: 'On-time oil change, smooth engine, no worries!',
+                cap_hours: 'Mon–Fri 8 AM–6 PM · Sat 8 AM–2 PM · Closed the first Saturday of each month.',
+                wa_help: 'Hi! I would like more information about your services.',
+                wa_bookHeader: 'Service Request',
+                wa_name: 'Name',
+                wa_vehicle: 'Vehicle',
+                wa_service: 'Service',
+                wa_date: 'Preferred date',
+                wa_time: 'Time',
+                wa_notes: 'Notes',
+                wa_bookClosing: 'Hi! Could you confirm availability and an estimate?'
+            },
+            pt: {
+                meta_title: 'Family & Friends Auto Repair | Malden, MA',
+                hero_subtitle: 'Mecânica completa e manutenção · Serviços mecânicos, elétricos e diagnóstico',
+                hero_saveContact: 'Salvar contato',
+                open_now: 'Aberto agora · até {t}',
+                closed_now: 'Fechado · abre {d} {t}',
+                day_today: 'hoje',
+                day_tomorrow: 'amanhã',
+                days: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'],
+                badge_open: 'Aberto',
+                badge_closed: 'Fechado',
+                cta_title: 'Agendar Serviço',
+                cta_subtitle: 'Resposta rápida no WhatsApp',
+                call_title: 'Ligar para a Oficina',
+                watch_title: 'Por Dentro da Oficina',
+                watch_subtitle: 'Assista nossos reels em tela cheia',
+                visit_link_title: 'Horários e Como Chegar',
+                review_title: 'Avaliações no Google',
+                review_subtitle: 'Veja por que confiam na gente',
+                scroll_hint: 'Conheça a Oficina',
+                trust1: 'Melhor avaliada da região',
+                trust2: 'Seguidores no Instagram',
+                trust3: 'Empresa familiar',
+                trust4: 'Falamos a sua língua',
+                gallery_caption: 'Cada detalhe com propósito',
+                about_badge: 'Sobre Nós',
+                about_title_pre: 'Tratado como',
+                about_title_highlight: 'família.',
+                about_title_post: 'Atendido por profissionais.',
+                about_text: 'A Family & Friends Auto Repair é uma oficina familiar, liderada por mulheres, em Malden, MA. Sob o comando da nossa dona, Alda, unimos tecnologia de diagnóstico moderna a um atendimento honesto e transparente — mostramos o que o seu carro precisa, explicamos o porquê e nunca empurramos serviço desnecessário.',
+                about_li1: 'Diagnóstico que vai além do óbvio.',
+                about_li2: 'Transparência total — mostramos as peças trocadas.',
+                about_li3: 'Peças com controle de qualidade em todo serviço.',
+                about_li4: 'Oficina limpa e organizada — todas as manhãs.',
+                meet_title: 'Conheça a Alda',
+                meet_subtitle: 'Proprietária · Toque para ouvir',
+                services_badge: 'Serviços',
+                services_title: 'Tudo que seu carro precisa',
+                services_subtitle: 'Da troca de óleo rápida à troca completa de motor — serviços mecânicos, elétricos e de diagnóstico num só lugar.',
+                svc1_title: 'Diagnóstico',
+                svc1_desc: 'Scanner, luz de injeção, falhas elétricas.',
+                svc2_title: 'Freios',
+                svc2_desc: 'Pastilhas, discos, pinças e revisão completa do sistema.',
+                svc3_title: 'Alinhamento e Balanceamento',
+                svc3_desc: 'Alinhamento 3D de alta precisão para estabilidade e pneus.',
+                svc4_title: 'Suspensão',
+                svc4_desc: 'Bandejas, bieletas, amortecedores e molas.',
+                svc5_title: 'Óleo e Manutenção',
+                svc5_desc: 'Troca de óleo, fluidos, filtros e revisões.',
+                svc6_title: 'Motor e Transmissão',
+                svc6_desc: 'Da regulagem à troca completa de motor.',
+                svc7_title: 'Elétrica e Combustível',
+                svc7_desc: 'Bateria, carga, sensores e pressão da bomba.',
+                svc8_title: 'Pneus e Escapamento',
+                svc8_desc: 'Reparo e rodízio de pneus, flexíveis e escapamento.',
+                svc_other: 'Não sei / Outro',
+                services_cta: 'Peça um orçamento grátis',
+                reels_title: 'Um dia na FF',
+                reels_subtitle: 'Trabalho real, carros reais, pessoas reais. Toque em um vídeo para assistir em tela cheia com som.',
+                follow_us: 'Siga a gente',
+                visit_badge: 'Visite-nos',
+                visit_title: 'Aqui mesmo em Malden',
+                hours_title: 'Horários',
+                hours_weekdays: 'Segunda a sexta',
+                hours_saturday: 'Sábado',
+                hours_sunday: 'Domingo',
+                hours_closed: 'Fechado',
+                hours_note: 'Fechado no primeiro sábado de cada mês.',
+                directions: 'Como chegar',
+                footer_tagline: 'Qualidade, tecnologia e transparência.',
+                footer_nav_title: 'Navegue',
+                footer_contact_title: 'Contato',
+                footer_social_title: 'Redes',
+                footer_rights: 'Todos os direitos reservados.',
+                footer_madeBy: 'Desenvolvido por:',
+                wa_aria: 'Fale conosco no WhatsApp',
+                modal_book_title: 'Agendar Serviço',
+                modal_book_subtitle: 'Conte sobre o seu carro e retornamos com disponibilidade e orçamento.',
+                label_name: 'Seu nome',
+                label_vehicle: 'Veículo (ano, marca, modelo)',
+                placeholder_vehicle: 'Ex: Honda CR-V 2018',
+                label_service: 'Serviço',
+                label_date: 'Data desejada',
+                label_time: 'Horário',
+                label_notes: 'O que está acontecendo? (opcional)',
+                placeholder_notes: 'Barulho ao frear, luz de injeção acesa...',
+                btn_send: 'Enviar pelo WhatsApp',
+                or_call: 'Prefere ligar?',
+                story_meet: 'Conheça',
+                story_tech: 'Tecnologia',
+                story_work: 'Trabalhos',
+                story_feedback: 'Avaliações',
+                story_shop: 'A oficina',
+                story_girl: 'Girl power',
+                story_hours: 'Horários',
+                story_reels: 'Reels',
+                cap_meet_alda: 'Alda, nossa dona: "Cheque seus freios, seus pneus — estamos aqui por você."',
+                cap_alda_owner: 'Oi! Eu sou a Alda, dona da oficina. Eu e minha equipe estamos prontos para achar a melhor solução para o seu carro.',
+                cap_team: 'Por trás de cada serviço bem feito existe uma equipe apaixonada pelo que faz.',
+                cap_team2: 'Celebrando a líder que inspira o nosso time todos os dias.',
+                cap_dia: 'Dia a dia na FF: trabalho duro, atenção aos detalhes e cuidado com cada veículo.',
+                cap_alignment: 'Nosso alinhamento 3D — precisão que você sente na estrada.',
+                cap_diagnostic: 'Diagnóstico que vai além do óbvio.',
+                cap_align_machine: 'Nossa máquina de alinhamento em ação. Segurança em primeiro lugar!',
+                cap_care: 'Mais do que consertos — cuidado completo com o seu veículo.',
+                cap_details: 'Confiança se constrói nos detalhes — e não deixamos passar nenhum.',
+                cap_engine: 'Serviço de motor bem feito, do início ao fim.',
+                cap_engine_swap: 'Ação e precisão na troca de motor.',
+                cap_reviews: 'O que nossos clientes dizem no Google.',
+                cap_quality: 'Sinta a força da qualidade. Venha nos visitar!',
+                cap_storefront: '17 Charles St, Malden — onde transparência e qualidade andam juntas.',
+                cap_flags: 'Uma oficina de família brasileira-americana, com orgulho de atender Malden.',
+                cap_morning: 'Toda manhã limpamos e organizamos a oficina antes do primeiro carro chegar.',
+                cap_nails: 'Cada prego conta uma história — nosso quadro de "troféus" tirados dos pneus dos clientes.',
+                cap_alda_tire: 'Mão na massa, todos os dias.',
+                cap_oil: 'Troca de óleo em dia, motor suave, sem preocupação!',
+                cap_hours: 'Seg–Sex 8h–18h · Sáb 8h–14h · Fechado no primeiro sábado do mês.',
+                wa_help: 'Olá! Gostaria de mais informações sobre os serviços.',
+                wa_bookHeader: 'Solicitação de Serviço',
+                wa_name: 'Nome',
+                wa_vehicle: 'Veículo',
+                wa_service: 'Serviço',
+                wa_date: 'Data desejada',
+                wa_time: 'Horário',
+                wa_notes: 'Observações',
+                wa_bookClosing: 'Olá! Poderiam confirmar a disponibilidade e um orçamento?'
+            },
+            es: {
+                meta_title: 'Family & Friends Auto Repair | Malden, MA',
+                hero_subtitle: 'Reparación y mantenimiento completo · Servicios mecánicos, eléctricos y de diagnóstico',
+                hero_saveContact: 'Guardar contacto',
+                open_now: 'Abierto ahora · hasta {t}',
+                closed_now: 'Cerrado · abre {d} {t}',
+                day_today: 'hoy',
+                day_tomorrow: 'mañana',
+                days: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+                badge_open: 'Abierto',
+                badge_closed: 'Cerrado',
+                cta_title: 'Agendar Servicio',
+                cta_subtitle: 'Respuesta rápida por WhatsApp',
+                call_title: 'Llamar al Taller',
+                watch_title: 'Dentro del Taller',
+                watch_subtitle: 'Mira nuestros reels en pantalla completa',
+                visit_link_title: 'Horarios y Cómo Llegar',
+                review_title: 'Reseñas en Google',
+                review_subtitle: 'Mira por qué confían en nosotros',
+                scroll_hint: 'Conoce el Taller',
+                trust1: 'El mejor valorado de la zona',
+                trust2: 'Seguidores en Instagram',
+                trust3: 'Negocio familiar',
+                trust4: 'Hablamos tu idioma',
+                gallery_caption: 'Cada detalle con propósito',
+                about_badge: 'Nosotros',
+                about_title_pre: 'Tratado como',
+                about_title_highlight: 'familia.',
+                about_title_post: 'Atendido por expertos.',
+                about_text: 'Family & Friends Auto Repair es un taller familiar dirigido por mujeres en Malden, MA. Bajo el liderazgo de nuestra dueña, Alda, combinamos tecnología de diagnóstico moderna con un servicio honesto y transparente — te mostramos lo que tu auto necesita, te explicamos por qué y nunca te vendemos trabajos innecesarios.',
+                about_li1: 'Diagnóstico que va más allá de lo obvio.',
+                about_li2: 'Transparencia total — te mostramos las piezas viejas.',
+                about_li3: 'Piezas con control de calidad en cada trabajo.',
+                about_li4: 'Un taller limpio y ordenado — cada mañana.',
+                meet_title: 'Conoce a Alda',
+                meet_subtitle: 'Dueña · Toca para ver con sonido',
+                services_badge: 'Servicios',
+                services_title: 'Todo lo que tu auto necesita',
+                services_subtitle: 'Desde un cambio de aceite rápido hasta un cambio de motor completo — servicios mecánicos, eléctricos y de diagnóstico en un solo lugar.',
+                svc1_title: 'Diagnóstico',
+                svc1_desc: 'Escáner, luz de check engine, fallas eléctricas.',
+                svc2_title: 'Frenos',
+                svc2_desc: 'Pastillas, discos, cálipers y revisión completa.',
+                svc3_title: 'Alineación y Balanceo',
+                svc3_desc: 'Alineación 3D de alta precisión para estabilidad y llantas.',
+                svc4_title: 'Suspensión',
+                svc4_desc: 'Brazos de control, bieletas, amortiguadores.',
+                svc5_title: 'Aceite y Mantenimiento',
+                svc5_desc: 'Cambio de aceite, fluidos, filtros y servicios programados.',
+                svc6_title: 'Motor y Transmisión',
+                svc6_desc: 'Desde afinaciones hasta cambio completo de motor.',
+                svc7_title: 'Eléctrico y Combustible',
+                svc7_desc: 'Batería, carga, sensores y presión de bomba.',
+                svc8_title: 'Llantas y Escape',
+                svc8_desc: 'Reparación y rotación de llantas, flexibles y escape.',
+                svc_other: 'No sé / Otro',
+                services_cta: 'Pide un presupuesto gratis',
+                reels_title: 'Un día en FF',
+                reels_subtitle: 'Trabajo real, autos reales, gente real. Toca un video para verlo en pantalla completa con sonido.',
+                follow_us: 'Síguenos',
+                visit_badge: 'Visítanos',
+                visit_title: 'Aquí mismo en Malden',
+                hours_title: 'Horarios',
+                hours_weekdays: 'Lunes a viernes',
+                hours_saturday: 'Sábado',
+                hours_sunday: 'Domingo',
+                hours_closed: 'Cerrado',
+                hours_note: 'Cerrado el primer sábado de cada mes.',
+                directions: 'Cómo llegar',
+                footer_tagline: 'Calidad, tecnología y transparencia.',
+                footer_nav_title: 'Explora',
+                footer_contact_title: 'Contacto',
+                footer_social_title: 'Redes',
+                footer_rights: 'Todos los derechos reservados.',
+                footer_madeBy: 'Desarrollado por:',
+                wa_aria: 'Escríbenos por WhatsApp',
+                modal_book_title: 'Agendar Servicio',
+                modal_book_subtitle: 'Cuéntanos sobre tu auto y te responderemos con disponibilidad y presupuesto.',
+                label_name: 'Tu nombre',
+                label_vehicle: 'Vehículo (año, marca, modelo)',
+                placeholder_vehicle: 'Ej: Honda CR-V 2018',
+                label_service: 'Servicio',
+                label_date: 'Fecha preferida',
+                label_time: 'Hora',
+                label_notes: '¿Qué está pasando? (opcional)',
+                placeholder_notes: 'Ruido al frenar, luz de check engine...',
+                btn_send: 'Enviar por WhatsApp',
+                or_call: '¿Prefieres llamar?',
+                story_meet: 'Conócenos',
+                story_tech: 'Tecnología',
+                story_work: 'Trabajos',
+                story_feedback: 'Reseñas',
+                story_shop: 'El taller',
+                story_girl: 'Girl power',
+                story_hours: 'Horarios',
+                story_reels: 'Reels',
+                cap_meet_alda: 'Alda, nuestra dueña: "Revisa tus frenos, tus llantas — estamos aquí para ti."',
+                cap_alda_owner: '¡Hola! Soy Alda, la dueña. Mi equipo y yo estamos listos para encontrar la mejor solución para tu auto.',
+                cap_team: 'Detrás de cada trabajo bien hecho hay un equipo que ama lo que hace.',
+                cap_team2: 'Celebrando a la líder que inspira a nuestro equipo cada día.',
+                cap_dia: 'Cada día en FF: trabajo duro, atención al detalle y cuidado de cada vehículo.',
+                cap_alignment: 'Nuestra alineación 3D — precisión que sientes en el camino.',
+                cap_diagnostic: 'Diagnóstico que va más allá de lo obvio.',
+                cap_align_machine: 'Nuestra máquina de alineación en acción. ¡La seguridad primero!',
+                cap_care: 'Más que reparaciones — cuidado completo para tu vehículo.',
+                cap_details: 'La confianza se construye en los detalles — y no se nos escapa ninguno.',
+                cap_engine: 'Trabajo de motor bien hecho, de principio a fin.',
+                cap_engine_swap: 'Acción y precisión en un cambio de motor.',
+                cap_reviews: 'Lo que dicen nuestros clientes en Google.',
+                cap_quality: 'Siente el poder de la calidad. ¡Visítanos!',
+                cap_storefront: '17 Charles St, Malden — donde la transparencia y la calidad van juntas.',
+                cap_flags: 'Un taller familiar brasileño-americano, orgulloso de servir a Malden.',
+                cap_morning: 'Cada mañana limpiamos y ordenamos el taller antes de que llegue el primer auto.',
+                cap_nails: 'Cada clavo cuenta una historia — nuestro tablero de "trofeos" sacados de las llantas.',
+                cap_alda_tire: 'Manos a la obra, todos los días.',
+                cap_oil: '¡Cambio de aceite a tiempo, motor suave, sin preocupaciones!',
+                cap_hours: 'Lun–Vie 8 AM–6 PM · Sáb 8 AM–2 PM · Cerrado el primer sábado de cada mes.',
+                wa_help: '¡Hola! Me gustaría más información sobre sus servicios.',
+                wa_bookHeader: 'Solicitud de Servicio',
+                wa_name: 'Nombre',
+                wa_vehicle: 'Vehículo',
+                wa_service: 'Servicio',
+                wa_date: 'Fecha preferida',
+                wa_time: 'Hora',
+                wa_notes: 'Notas',
+                wa_bookClosing: '¡Hola! ¿Podrían confirmar disponibilidad y un presupuesto?'
+            }
+        };
+
+        // English by default; PT / ES only when the visitor picks them
+        let currentLang = localStorage.getItem('ff_lang') || 'en';
+
+        function t(key) {
+            return (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
+        }
+
+        function applyLanguage() {
+            document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : currentLang;
+            document.title = t('meta_title');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = t(el.getAttribute('data-i18n'));
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
+            });
+            document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+                el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria')));
+            });
+            document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === currentLang);
+            });
+
+            renderStoryRail();
+            updateOpenStatus();
+            if (storyState.open) renderStoryCaption();
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('ff_lang', lang);
+            applyLanguage();
+        }
+
+        /**
+         * Sends a pre-defined, translated WhatsApp message by key
+         */
+        function waSend(key) {
+            openWhatsApp(t(key));
+        }
+
+        /**
+         * Logo easter-egg: a quick wrench-turn wobble
+         */
+        function spinLogo() {
+            const logo = document.getElementById('heroLogo');
+            logo.classList.remove('logo-spin');
+            void logo.offsetWidth; // restart the animation
+            logo.classList.add('logo-spin');
+        }
+
+        /**
+         * Live "open now" status, computed in Malden's time zone.
+         * Mon–Fri 8–18, Sat 8–14 (closed the first Saturday of the month), Sun closed.
+         */
+        function getShopHours(date) {
+            const dow = date.getDay();
+            if (dow === 0) return null;
+            if (dow === 6) return date.getDate() <= 7 ? null : [8, 14];
+            return [8, 18];
+        }
+
+        function formatHour(h) {
+            if (currentLang === 'en') return (h % 12 || 12) + (h < 12 ? ' AM' : ' PM');
+            return h + 'h';
+        }
+
+        function updateOpenStatus() {
+            const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+            const hour = now.getHours() + now.getMinutes() / 60;
+            const today = getShopHours(now);
+            const isOpen = today && hour >= today[0] && hour < today[1];
+
+            let text;
+            if (isOpen) {
+                text = t('open_now').replace('{t}', formatHour(today[1]));
+            } else {
+                // Find the next opening day (today if before opening time)
+                let d = new Date(now), offset = 0, hrs = today && hour < today[0] ? today : null;
+                while (!hrs) {
+                    offset++;
+                    d.setDate(d.getDate() + 1);
+                    hrs = getShopHours(d);
+                }
+                const dayLabel = offset === 0 ? t('day_today') : offset === 1 ? t('day_tomorrow') : t('days')[d.getDay()];
+                text = t('closed_now').replace('{d}', dayLabel).replace('{t}', formatHour(hrs[0]));
+            }
+
+            const badge = document.getElementById('openBadge');
+            const dot = document.getElementById('openDot');
+            document.getElementById('openText').textContent = text;
+            badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border ' +
+                (isOpen ? 'bg-emerald-950/60 text-emerald-400 border-emerald-800/50' : 'bg-red-950/60 text-red-300 border-red-800/50');
+            dot.className = 'w-1.5 h-1.5 rounded-full mr-2 ' + (isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-red-500');
+
+            const badge2 = document.getElementById('openBadge2');
+            badge2.textContent = isOpen ? t('badge_open') : t('badge_closed');
+            badge2.className = 'text-xs font-semibold px-2.5 py-1 rounded-full ' + (isOpen ? 'bg-emerald-900/50 text-emerald-400' : 'bg-red-900/40 text-red-300');
+
+            // Highlight today's row in the hours table
+            const rowKey = now.getDay() === 0 ? 'sun' : now.getDay() === 6 ? 'sat' : 'weekday';
+            document.querySelectorAll('[data-day]').forEach(li => {
+                li.classList.toggle('text-red-400', li.dataset.day === rowKey);
+                li.classList.toggle('font-semibold', li.dataset.day === rowKey);
+            });
+        }
+        setInterval(updateOpenStatus, 60000);
+
+        /**
+         * Media pulled from the @ff_auto_repair Instagram feed
+         */
+        const STORIES = [
+            { id: 'meet', label: 'story_meet', icon: 'fa-solid fa-hand-wave', cover: 'img/ig/alda-owner.webp', items: [
+                { type: 'video', src: 'video/meet-alda.mp4', poster: 'video/meet-alda.jpg', cap: 'cap_meet_alda' },
+                { type: 'image', src: 'img/ig/alda-owner.webp', cap: 'cap_alda_owner' },
+                { type: 'image', src: 'img/ig/team-selfie.webp', cap: 'cap_team' },
+                { type: 'image', src: 'img/ig/team-celebration.webp', cap: 'cap_team2' }
+            ]},
+            { id: 'tech', label: 'story_tech', cover: 'img/ig/diagnostic.webp', items: [
+                { type: 'video', src: 'video/dia-a-dia.mp4', poster: 'video/dia-a-dia.jpg', cap: 'cap_dia' },
+                { type: 'video', src: 'video/alignment.mp4', poster: 'video/alignment.jpg', cap: 'cap_alignment' },
+                { type: 'image', src: 'img/ig/diagnostic.webp', cap: 'cap_diagnostic' },
+                { type: 'image', src: 'img/ig/alignment-machine.webp', cap: 'cap_align_machine' }
+            ]},
+            { id: 'work', label: 'story_work', cover: 'img/ig/engine-swap.webp', items: [
+                { type: 'video', src: 'video/complete-care.mp4', poster: 'video/complete-care.jpg', cap: 'cap_care' },
+                { type: 'video', src: 'video/details.mp4', poster: 'video/details.jpg', cap: 'cap_details' },
+                { type: 'video', src: 'video/engine.mp4', poster: 'video/engine.jpg', cap: 'cap_engine' },
+                { type: 'image', src: 'img/ig/engine-swap.webp', cap: 'cap_engine_swap' }
+            ]},
+            { id: 'feedback', label: 'story_feedback', cover: 'img/ig/porsche.webp', items: [
+                { type: 'video', src: 'video/reviews.mp4', poster: 'video/reviews.jpg', cap: 'cap_reviews' }
+            ]},
+            { id: 'shop', label: 'story_shop', cover: 'img/ig/storefront.webp', items: [
+                { type: 'video', src: 'video/quality.mp4', poster: 'video/quality.jpg', cap: 'cap_quality' },
+                { type: 'image', src: 'img/ig/storefront.webp', cap: 'cap_storefront' },
+                { type: 'image', src: 'img/ig/flags.webp', cap: 'cap_flags' },
+                { type: 'image', src: 'img/ig/morning-shop.webp', cap: 'cap_morning' }
+            ]},
+            { id: 'girl', label: 'story_girl', cover: 'img/ig/alda-nails.webp', items: [
+                { type: 'image', src: 'img/ig/alda-nails.webp', cap: 'cap_nails' },
+                { type: 'image', src: 'img/ig/alda-tire.webp', cap: 'cap_alda_tire' },
+                { type: 'image', src: 'img/ig/oil-check.webp', cap: 'cap_oil' }
+            ]},
+            { id: 'hours', label: 'story_hours', cover: 'img/ig/hours.webp', items: [
+                { type: 'image', src: 'img/ig/hours.webp', cap: 'cap_hours', contain: true }
+            ]}
+        ];
+
+        // Every reel in one sequence, for the reels wall and the "Inside the Shop" button
+        STORIES.push({ id: 'reels', label: 'story_reels', hidden: true, items:
+            STORIES.flatMap(s => s.items.filter(i => i.type === 'video'))
+        });
+
+        const GALLERY_COLUMNS = [
+            ['crv-ramp', 'alda-owner', 'mercedes-lift', 'storefront-br', 'brake-disc', 'camaro'],
+            ['shop-floor', 'engine-bay', 'team-selfie', 'alignment-cam', 'corvette', 'van-lift'],
+            ['porsche', 'alda-tire', 'sedan-lift', 'tools', 'truck', 'engine-work'],
+            ['hood-open', 'car-lift', 'mechanic', 'alignment-wheel', 'flags', 'morning-shop']
+        ];
+
+        const MARQUEE = ['corvette', 'alignment-ramp', 'team-celebration', 'brake-rotor', 'camaro', 'storefront', 'engine-bay',
+            'alda-nails', 'mercedes-lift', 'pressure-test', 'truck', 'flags', 'diagnostic', 'porsche'];
+
+        (function buildMediaSections() {
+            // Parallax matrix
+            const matrix = document.getElementById('pgMatrix');
+            matrix.innerHTML = GALLERY_COLUMNS.map((col, i) =>
+                `<div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="${i + 1}">` +
+                col.map(name => `<div class="pg-card w-full h-[260px] sm:h-[340px] md:h-[440px] shrink-0 bg-[#111] overflow-hidden rounded-lg"><img src="img/ig/${name}.webp" alt="" loading="lazy" class="w-full h-full object-cover opacity-90"></div>`).join('') +
+                `</div>`
+            ).join('');
+
+            // Reels wall
+            const reels = STORIES.find(s => s.id === 'reels').items;
+            document.getElementById('reelsWall').innerHTML = reels.map((r, i) => `
+                <button onclick="openStory('reels', ${i})" class="reveal group relative snap-start shrink-0 w-[62%] sm:w-[38%] md:w-[24%] lg:w-[19%] aspect-[9/16] rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-500/60 transition-colors bg-black text-left">
+                    <video data-autoplay class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${r.src}" poster="${r.poster}" muted loop playsinline preload="none"></video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30"></div>
+                    <i class="fa-solid fa-play absolute top-3 right-3 text-white/90 text-sm"></i>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="w-14 h-14 rounded-full bg-red-600/90 flex items-center justify-center"><i class="fa-solid fa-volume-high text-white"></i></span>
+                    </div>
+                    <p class="absolute bottom-0 inset-x-0 p-3 text-white text-xs leading-snug line-clamp-3" data-i18n="${r.cap}">${t(r.cap)}</p>
+                </button>`).join('');
+
+            // Marquee (duplicated so the loop is seamless)
+            const tiles = MARQUEE.map(name => `<div class="w-44 md:w-56 aspect-[3/4] rounded-xl overflow-hidden border border-neutral-800 shrink-0"><img src="img/ig/${name}.webp" alt="" loading="lazy" class="w-full h-full object-cover"></div>`).join('');
+            document.getElementById('marqueeTrack').innerHTML = tiles + tiles;
+        })();
+
+        function renderStoryRail() {
+            const seen = JSON.parse(localStorage.getItem('ff_seen') || '[]');
+            document.getElementById('storyRail').innerHTML = STORIES.filter(s => !s.hidden).map(s => `
+                <button onclick="openStory('${s.id}', 0)" class="flex flex-col items-center gap-1.5 shrink-0 w-[62px]">
+                    <span class="story-ring ${seen.includes(s.id) ? 'seen' : ''}">
+                        <span class="block w-14 h-14 rounded-full overflow-hidden border-[3px] border-[#0a0a0a] bg-neutral-800">
+                            <img src="${s.cover}" alt="" class="w-full h-full object-cover">
+                        </span>
+                    </span>
+                    <span class="text-[11px] text-slate-200 truncate w-full text-center">${t(s.label)}</span>
+                </button>`).join('');
+        }
+
+        /**
+         * Story viewer — tap right/left to navigate, hold to pause,
+         * arrows / Esc on desktop. Images last 5s, videos their own length.
+         */
+        const IMAGE_DURATION = 5000;
+        const storyState = { open: false, story: null, index: 0, muted: false, paused: false, start: 0, elapsed: 0, raf: null, media: null };
+
+        function openStory(id, index) {
+            storyState.story = STORIES.find(s => s.id === id);
+            storyState.open = true;
+            document.getElementById('storyViewer').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.querySelectorAll('video[data-autoplay]').forEach(v => v.pause());
+
+            const seen = JSON.parse(localStorage.getItem('ff_seen') || '[]');
+            if (!seen.includes(id)) { seen.push(id); localStorage.setItem('ff_seen', JSON.stringify(seen)); }
+
+            showStoryItem(index);
+        }
+
+        function closeStory() {
+            storyState.open = false;
+            cancelAnimationFrame(storyState.raf);
+            if (storyState.media && storyState.media.pause) storyState.media.pause();
+            document.getElementById('storyMedia').innerHTML = '';
+            document.getElementById('storyViewer').classList.remove('active');
+            document.body.style.overflow = '';
+            renderStoryRail();
+            observeAutoplayVideos();
+        }
+
+        function showStoryItem(index) {
+            const { story } = storyState;
+            if (index < 0) index = 0;
+            if (index >= story.items.length) {
+                // Continue into the next visible story, like Instagram does
+                const visible = STORIES.filter(s => !s.hidden);
+                const pos = visible.indexOf(story);
+                if (pos > -1 && pos < visible.length - 1) return openStory(visible[pos + 1].id, 0);
+                return closeStory();
+            }
+
+            storyState.index = index;
+            storyState.elapsed = 0;
+            storyState.paused = false;
+            cancelAnimationFrame(storyState.raf);
+
+            const item = story.items[index];
+            const holder = document.getElementById('storyMedia');
+            holder.innerHTML = '';
+
+            let el;
+            if (item.type === 'video') {
+                el = document.createElement('video');
+                el.src = item.src;
+                el.poster = item.poster || '';
+                el.playsInline = true;
+                el.muted = storyState.muted;
+                el.autoplay = true;
+                el.addEventListener('ended', () => showStoryItem(storyState.index + 1));
+                // Browsers may block autoplay with sound; fall back to muted
+                el.play().catch(() => { storyState.muted = true; el.muted = true; updateMuteIcon(); el.play(); });
+            } else {
+                el = document.createElement('img');
+                el.src = item.src;
+                el.alt = '';
+            }
+            el.className = 'w-full h-full ' + (item.contain ? 'object-contain' : 'object-cover');
+            holder.appendChild(el);
+            storyState.media = el;
+
+            document.getElementById('storyBars').innerHTML = story.items.map((_, i) =>
+                `<div class="story-bar"><span style="width:${i < index ? 100 : 0}%"></span></div>`).join('');
+            document.getElementById('storyLabel').textContent = '· ' + t(story.label);
+            renderStoryCaption();
+            updateMuteIcon();
+
+            storyState.start = performance.now();
+            storyState.raf = requestAnimationFrame(storyTick);
+        }
+
+        function renderStoryCaption() {
+            const item = storyState.story.items[storyState.index];
+            document.getElementById('storyCaption').textContent = t(item.cap);
+        }
+
+        function storyTick(now) {
+            if (!storyState.open) return;
+            const bar = document.querySelectorAll('#storyBars .story-bar > span')[storyState.index];
+            const media = storyState.media;
+            let progress;
+
+            if (media.tagName === 'VIDEO') {
+                progress = media.duration ? media.currentTime / media.duration : 0;
+            } else {
+                if (!storyState.paused) storyState.elapsed += now - storyState.start;
+                progress = storyState.elapsed / IMAGE_DURATION;
+                if (progress >= 1) return showStoryItem(storyState.index + 1);
+            }
+            storyState.start = now;
+            if (bar) bar.style.width = Math.min(progress * 100, 100) + '%';
+            storyState.raf = requestAnimationFrame(storyTick);
+        }
+
+        function setStoryPaused(paused) {
+            storyState.paused = paused;
+            const media = storyState.media;
+            if (media && media.tagName === 'VIDEO') paused ? media.pause() : media.play().catch(() => {});
+        }
+
+        function toggleStoryMute() {
+            storyState.muted = !storyState.muted;
+            if (storyState.media && storyState.media.tagName === 'VIDEO') storyState.media.muted = storyState.muted;
+            updateMuteIcon();
+        }
+
+        function updateMuteIcon() {
+            document.getElementById('storyMuteIcon').className = 'fa-solid ' + (storyState.muted ? 'fa-volume-xmark' : 'fa-volume-high');
+        }
+
+        // Tap = navigate, press-and-hold = pause
+        ['storyPrev', 'storyNext'].forEach(id => {
+            const zone = document.getElementById(id);
+            let downAt = 0;
+            zone.addEventListener('pointerdown', () => { downAt = Date.now(); setStoryPaused(true); });
+            zone.addEventListener('pointerup', () => {
+                const wasTap = Date.now() - downAt < 250;
+                setStoryPaused(false);
+                if (wasTap) showStoryItem(storyState.index + (id === 'storyNext' ? 1 : -1));
+            });
+            zone.addEventListener('pointerleave', () => { if (storyState.paused) setStoryPaused(false); });
+        });
+
+        // Click on the dark backdrop (desktop) closes the viewer
+        document.getElementById('storyViewer').addEventListener('click', function (e) {
+            if (e.target === this) closeStory();
+        });
+
+        /**
+         * Muted previews play only while on screen, to save data on mobile
+         */
+        let autoplayObserver = null;
+        function observeAutoplayVideos() {
+            const videos = document.querySelectorAll('video[data-autoplay]');
+            if (!('IntersectionObserver' in window)) {
+                videos.forEach(v => v.play().catch(() => {}));
+                return;
+            }
+            if (!autoplayObserver) {
+                autoplayObserver = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (storyState.open) return;
+                        if (entry.isIntersecting) entry.target.play().catch(() => {});
+                        else entry.target.pause();
+                    });
+                }, { threshold: 0.35 });
+            }
+            videos.forEach(v => { autoplayObserver.unobserve(v); autoplayObserver.observe(v); });
+        }
+
+        /**
+         * Parallax Gallery Showcase — scroll-linked 3D unfurl effect
+         * (vanilla JS/CSS port; no React/framer-motion available in this static site)
+         */
+        (function initParallaxGallery() {
+            const section = document.getElementById('parallaxGallerySection');
+            const banner = document.getElementById('pgBanner');
+            const matrix = document.getElementById('pgMatrix');
+            const caption = document.getElementById('pgCaption');
+            if (!section || !banner || !matrix) return;
+
+            const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+            const mapRange = (p, inMin, inMax, outMin, outMax) => {
+                const t = clamp((p - inMin) / (inMax - inMin), 0, 1);
+                return outMin + (outMax - outMin) * t;
+            };
+
+            const cols = matrix.querySelectorAll('.pg-col');
+
+            const target = {};
+            const current = {};
+
+            function computeTargets(p) {
+                target.bw = mapRange(p, 0, 0.15, 90, 100);      // vw
+                target.bh = mapRange(p, 0, 0.15, 80, 100);      // vh
+                target.br = mapRange(p, 0, 0.15, 48, 0);        // px
+                target.bbw = mapRange(p, 0, 0.15, 4, 0);        // px
+                target.rotY = mapRange(p, 0.15, 1, -45, -8);
+                target.rotX = mapRange(p, 0.15, 1, 25, 4);
+                target.rotZ = mapRange(p, 0.15, 1, 15, 2);
+                target.tz = mapRange(p, 0.15, 1, -800, 0);
+                target.y1 = mapRange(p, 0.15, 1, 0, -40);
+                target.y2 = mapRange(p, 0.15, 1, -40, 10);
+                target.y3 = mapRange(p, 0.15, 1, 0, -40);
+                target.y4 = mapRange(p, 0.15, 1, -30, 20);
+                target.caption = mapRange(p, 0.85, 1, 0, 1);
+            }
+
+            let initialized = false;
+            function seedCurrent() {
+                Object.keys(target).forEach(k => { current[k] = target[k]; });
+                initialized = true;
+            }
+
+            function getProgress() {
+                const rect = section.getBoundingClientRect();
+                const scrollable = rect.height - window.innerHeight;
+                if (scrollable <= 0) return rect.top <= 0 ? 1 : 0;
+                return clamp(-rect.top / scrollable, 0, 1);
+            }
+
+            function applyStyles() {
+                banner.style.width = current.bw + 'vw';
+                banner.style.height = current.bh + 'vh';
+                banner.style.borderRadius = current.br + 'px';
+                banner.style.borderStyle = 'solid';
+                banner.style.borderWidth = current.bbw + 'px';
+                banner.style.borderColor = '#7f1d1d';
+
+                matrix.style.transform =
+                    `rotateY(${current.rotY}deg) rotateX(${current.rotX}deg) rotateZ(${current.rotZ}deg) translateZ(${current.tz}px)`;
+
+                if (cols[0]) cols[0].style.transform = `translateY(${current.y1}%)`;
+                if (cols[1]) cols[1].style.transform = `translateY(${current.y2}%)`;
+                if (cols[2]) cols[2].style.transform = `translateY(${current.y3}%)`;
+                if (cols[3]) cols[3].style.transform = `translateY(${current.y4}%)`;
+
+                if (caption) caption.style.opacity = current.caption;
+            }
+
+            function tick() {
+                const p = getProgress();
+                computeTargets(p);
+                if (!initialized) seedCurrent();
+
+                Object.keys(target).forEach(k => {
+                    current[k] += (target[k] - current[k]) * 0.12;
+                });
+
+                applyStyles();
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        })();
+
+        /**
+         * Scroll-triggered section reveal animations
+         */
+        (function initScrollReveal() {
+            const revealEls = document.querySelectorAll('.reveal');
+            if (!revealEls.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                revealEls.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+            revealEls.forEach(el => observer.observe(el));
+        })();
+
+        /**
+         * Modal Logic
+         */
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // Keyboard: Escape closes modals / stories, arrows navigate stories
+        document.addEventListener('keydown', (e) => {
+            if (storyState.open) {
+                if (e.key === 'Escape') closeStory();
+                if (e.key === 'ArrowRight') showStoryItem(storyState.index + 1);
+                if (e.key === 'ArrowLeft') showStoryItem(storyState.index - 1);
+                return;
+            }
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        /**
+         * Handle Booking Form Submission
+         */
+        function submitBooking(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('bookName').value;
+            const veiculo = document.getElementById('bookVehicle').value;
+            const servico = t(document.getElementById('bookService').value);
+            const data = document.getElementById('bookDate').value;
+            const horario = document.getElementById('bookTime').value;
+            const notas = document.getElementById('bookNotes').value.trim();
+
+            // Format date to the current language's locale
+            const dataObj = new Date(data + 'T00:00:00');
+            const dataFormatada = dataObj.toLocaleDateString(currentLang === 'pt' ? 'pt-BR' : currentLang === 'es' ? 'es-US' : 'en-US');
+
+            const message = `*${t('wa_bookHeader')} - ${COMPANY_NAME}*\n\n` +
+                            `👤 *${t('wa_name')}:* ${nome}\n` +
+                            `🚗 *${t('wa_vehicle')}:* ${veiculo}\n` +
+                            `🔧 *${t('wa_service')}:* ${servico}\n` +
+                            `📅 *${t('wa_date')}:* ${dataFormatada}\n` +
+                            (horario ? `⏰ *${t('wa_time')}:* ${horario}\n` : '') +
+                            (notas ? `📝 *${t('wa_notes')}:* ${notas}\n` : '') +
+                            `\n${t('wa_bookClosing')}`;
+
+            closeModal('bookingModal');
+
+            setTimeout(() => {
+                openWhatsApp(message);
+                event.target.reset();
+            }, 300);
+        }
+
+        /**
+         * Generates and downloads a vCard (.vcf) file
+         */
+        function downloadVCard() {
+            const vCardData =
+`BEGIN:VCARD
+VERSION:3.0
+FN:${COMPANY_NAME}
+ORG:${COMPANY_NAME}
+TEL;TYPE=WORK,VOICE:${PHONE_MAIN}
+TEL;TYPE=WORK:${PHONE_ALT}
+ADR;TYPE=WORK:;;17 Charles St;Malden;MA;02148;USA
+URL:https://www.instagram.com/ff_auto_repair/
+NOTE:Complete auto repair & maintenance. Mechanical, electrical & diagnostic services.
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'family_friends_auto_repair.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Set minimum date for the booking form to today to prevent past bookings
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('bookDate');
+            if (dateInput) dateInput.setAttribute('min', today);
+
+            applyLanguage();
+            observeAutoplayVideos();
+        });
+    </script>
+</body>
+</html>
