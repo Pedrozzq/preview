@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crie sua Joia | ImperialiGems</title>
     <meta name="description" content="Crie sua joia com Topázio Imperial: escolha a pedra do nosso estoque, o modelo, o metal e veja sua peça em 3D com estimativa de preço.">
-    <link rel="icon" href="img/logo-256.jpg">
+    <link rel="icon" href="img/logo-256.webp">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +74,7 @@
     <header class="sticky top-0 z-50 bg-topazio-escuro/90 backdrop-blur border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <img src="img/logo-256.jpg" alt="ImperialiGems" class="w-10 h-10 rounded-full object-cover">
+                <img src="img/logo-256.webp" alt="ImperialiGems" class="w-10 h-10 rounded-full object-cover">
                 <span class="font-serif text-2xl tracking-wide">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
             <div class="flex items-center gap-2 sm:gap-5">
@@ -298,7 +298,8 @@
         <div id="provPalco" class="absolute inset-0 overflow-hidden">
             <video id="provVideo" playsinline muted autoplay class="absolute inset-0 w-full h-full object-cover"></video>
             <img id="provFoto" alt="" class="hidden absolute inset-0 w-full h-full object-cover">
-            <div id="provJoia" class="absolute w-[min(70vw,320px)] aspect-square cursor-move" style="touch-action:none"></div>
+            <div id="provAuto" class="absolute inset-0 pointer-events-none"></div>
+            <div id="provJoia" class="hidden absolute w-[min(70vw,320px)] aspect-square cursor-move" style="touch-action:none"></div>
         </div>
 
         <div class="absolute inset-x-0 top-0 p-3 sm:p-4 flex items-center justify-between gap-2 bg-gradient-to-b from-black/70 to-transparent">
@@ -313,6 +314,7 @@
         </div>
 
         <p id="provDica" class="absolute left-1/2 -translate-x-1/2 top-20 w-[min(92vw,440px)] text-center text-xs sm:text-sm text-white bg-black/50 px-4 py-2 rounded-full pointer-events-none"></p>
+        <p id="provStatus" class="absolute left-1/2 -translate-x-1/2 top-[8.5rem] sm:top-32 flex items-center gap-2 text-[11px] uppercase tracking-[.16em] text-topazio-escuro bg-topazio-pessego px-3 py-1.5 rounded-full pointer-events-none whitespace-nowrap"></p>
 
         <div id="provErro" class="hidden absolute inset-0 grid place-items-center p-6">
             <div class="max-w-sm text-center bg-topazio-escuro border border-white/10 p-6">
@@ -330,6 +332,10 @@
                     <i class="fa-solid fa-up-right-and-down-left-from-center w-4"></i>Tamanho
                     <input type="range" id="provTamanho" min="25" max="300" value="100" class="flex-1">
                 </label>
+                <div class="flex gap-2">
+                    <button type="button" id="provModo" class="flex-1 py-2 text-[11px] uppercase tracking-[.14em] border border-white/30 text-white"></button>
+                    <button type="button" id="provInverter" class="hidden flex-1 py-2 text-[11px] uppercase tracking-[.14em] border border-white/30 text-white"><i class="fa-solid fa-arrows-rotate mr-1"></i>Virar pedra</button>
+                </div>
                 <label class="flex items-center gap-3 text-xs text-white/80">
                     <i class="fa-solid fa-cube w-4"></i>Ângulo 3D
                     <input type="range" id="provGiro" min="-180" max="180" value="0" class="flex-1">
@@ -352,20 +358,29 @@
     /* ============================================================
        DADOS DA JOALHERIA — edite aqui
        ============================================================
-       PEDRAS: estoque de topázios lapidados. As linhas abaixo são EXEMPLOS:
-       troque pelos dados reais. A foto de cada pedra fica em
-       img/pedras/<codigo>.jpg (sem a foto, aparece um brilho na cor da pedra).
+       PEDRAS: estoque de topázios lapidados — fotos reais recortadas das fotos do estoque
+       (img/pedras/<codigo>.webp). Medidas, quilates e preços marcados com `aprox` são
+       ESTIMATIVAS tiradas das fotos: troque pelos valores reais de cada pedra.
+       As gotas IG-0213 a IG-0215 têm o peso real anotado na foto da pesagem.
          c / l = comprimento / largura em mm · ct = quilates · preco em R$ */
     const PEDRAS = [
-        { codigo:"IG-0101", tom:"Dourado",  cor:"#e8a33d", formato:"oval",       lapidacao:"Oval brilhante",    c:9,   l:7,   ct:2.10, pureza:"Limpa a olho nu",          preco:2800 },
-        { codigo:"IG-0102", tom:"Pêssego",  cor:"#f0a07a", formato:"gota",       lapidacao:"Gota (pera)",       c:10,  l:6,   ct:1.85, pureza:"Limpa a olho nu",          preco:2400 },
-        { codigo:"IG-0103", tom:"Sherry",   cor:"#d9702a", formato:"redondo",    lapidacao:"Redonda brilhante", c:6.5, l:6.5, ct:1.20, pureza:"Leve inclusão natural",    preco:1900 },
-        { codigo:"IG-0104", tom:"Rosa",     cor:"#d0607a", formato:"oval",       lapidacao:"Oval brilhante",    c:8,   l:6,   ct:1.40, pureza:"Limpa a olho nu",          preco:4200 },
-        { codigo:"IG-0105", tom:"Champanhe",cor:"#e9c48a", formato:"retangular", lapidacao:"Esmeralda",         c:9,   l:7,   ct:2.60, pureza:"Limpa a olho nu",          preco:2600 },
-        { codigo:"IG-0106", tom:"Sherry",   cor:"#c25a24", formato:"gota",       lapidacao:"Gota (pera)",       c:12,  l:8,   ct:3.40, pureza:"Limpa a olho nu",          preco:5600 },
-        { codigo:"IG-0107", tom:"Dourado",  cor:"#f2c25a", formato:"redondo",    lapidacao:"Redonda brilhante", c:5,   l:5,   ct:0.60, pureza:"Leve inclusão natural",    preco:900  },
-        { codigo:"IG-0108", tom:"Rosa",     cor:"#e88a7a", formato:"retangular", lapidacao:"Esmeralda",         c:7,   l:5,   ct:1.10, pureza:"Limpa a olho nu",          preco:2900 }
+        { codigo:"IG-0201", tom:"Rosa-salmão",      cor:"#c8665e", formato:"retangular", lapidacao:"Almofada (cushion)", c:13.5, l:9,   ct:6.80, pureza:"Limpa a olho nu", preco:9500, aprox:true },
+        { codigo:"IG-0202", tom:"Rosa",             cor:"#d9849c", formato:"retangular", lapidacao:"Almofada (cushion)", c:11.5, l:8,   ct:4.20, pureza:"Limpa a olho nu", preco:7800, aprox:true },
+        { codigo:"IG-0203", tom:"Rosa avermelhado", cor:"#c9564a", formato:"retangular", lapidacao:"Almofada (cushion)", c:11.5, l:9,   ct:5.10, pureza:"Limpa a olho nu", preco:9200, aprox:true },
+        { codigo:"IG-0204", tom:"Rosa lilás",       cor:"#c98aae", formato:"oval",       lapidacao:"Oval",               c:10,   l:7,   ct:2.60, pureza:"Limpa a olho nu", preco:3900, aprox:true },
+        { codigo:"IG-0205", tom:"Pêssego",          cor:"#e89a6e", formato:"oval",       lapidacao:"Oval",               c:8,    l:6,   ct:1.40, pureza:"Limpa a olho nu", preco:1600, aprox:true },
+        { codigo:"IG-0207", tom:"Dourado",          cor:"#e89a2a", formato:"gota",       lapidacao:"Gota (pera)",        c:15,   l:7,   ct:3.60, pureza:"Limpa a olho nu", preco:2900, aprox:true },
+        { codigo:"IG-0208", tom:"Dourado intenso",  cor:"#d9822b", formato:"oval",       lapidacao:"Oval",               c:10,   l:6,   ct:2.00, pureza:"Limpa a olho nu", preco:1900, aprox:true },
+        { codigo:"IG-0209", tom:"Champanhe",        cor:"#e6c55e", formato:"redondo",    lapidacao:"Redonda brilhante",  c:8,    l:8,   ct:2.00, pureza:"Limpa a olho nu", preco:1500, aprox:true },
+        { codigo:"IG-0210", tom:"Sherry",           cor:"#e07a2a", formato:"oval",       lapidacao:"Oval",               c:9,    l:6,   ct:1.90, pureza:"Limpa a olho nu", preco:2300, aprox:true },
+        { codigo:"IG-0211", tom:"Laranja",          cor:"#e8922e", formato:"gota",       lapidacao:"Gota (pera)",        c:7,    l:5.5, ct:1.00, pureza:"Limpa a olho nu", preco:950,  aprox:true },
+        { codigo:"IG-0213", tom:"Dourado claro",    cor:"#e0b860", formato:"gota",       lapidacao:"Gota (pera)",        c:12,   l:8,   ct:3.55, pureza:"Limpa a olho nu", preco:3200, aprox:true, ctReal:true },
+        { codigo:"IG-0214", tom:"Dourado",          cor:"#d9953a", formato:"gota",       lapidacao:"Gota (pera)",        c:13,   l:7,   ct:3.55, pureza:"Limpa a olho nu", preco:3300, aprox:true, ctReal:true },
+        { codigo:"IG-0215", tom:"Conhaque",         cor:"#c97a2a", formato:"gota",       lapidacao:"Gota (pera)",        c:14,   l:6,   ct:2.85, pureza:"Limpa a olho nu", preco:2700, aprox:true, ctReal:true }
     ];
+    /** "≈" nas medidas/peso estimados pela foto. */
+    const medidaTxt = p => `${p.aprox ? "≈ " : ""}${p.c} × ${p.l} mm`;
+    const pesoTxt = p => `${p.aprox && !p.ctReal ? "≈ " : ""}${p.ct.toFixed(2).replace(".", ",")} ct`;
 
     /* gramas = peso estimado do metal em ouro 18k (convertido para os outros metais
        pela densidade). No anel, o peso do aro é calculado pelo tamanho. */
@@ -419,7 +434,7 @@
     const estiloAtual = () => MODELOS[estado.tipo].estilos[estado.estilo];
     const NOMES_FORMATO = { oval:"Oval", gota:"Gota", redondo:"Redondo", retangular:"Retangular" };
 
-    /** Link compartilhável: #pedra=IG-0101&tipo=anel&... */
+    /** Link compartilhável: #pedra=IG-0201&tipo=anel&... */
     function lerLink(){
         const p = new URLSearchParams(location.hash.slice(1));
         const r = {};
@@ -761,7 +776,7 @@
 
     function fotoPedra(p, classe = ""){
         return `<div class="gema ${classe}" style="--c1:${p.cor};--c2:${p.cor}cc">
-            <img src="img/pedras/${p.codigo}.jpg" alt="Topázio Imperial ${p.codigo}" loading="lazy" onerror="this.remove()"></div>`;
+            <img src="img/pedras/${p.codigo}.webp" alt="Topázio Imperial ${p.codigo}" loading="lazy" onerror="this.remove()"></div>`;
     }
 
     function pintarPedras(){
@@ -773,7 +788,7 @@
                 ${fotoPedra(p, "aspect-square")}
                 <span class="block text-[11px] tracking-[.14em] text-topazio-pessego mt-2">${p.codigo}</span>
                 <span class="block text-sm">${p.tom} · ${NOMES_FORMATO[p.formato]}</span>
-                <span class="block text-xs text-topazio-claro/55">${p.c} × ${p.l} mm · ${p.ct.toFixed(2)} ct</span>
+                <span class="block text-xs text-topazio-claro/55">${medidaTxt(p)} · ${pesoTxt(p)}</span>
                 <span class="block text-sm mt-1">${brl(p.preco)}</span>
             </button>`).join("");
         const p = pedraAtual();
@@ -785,8 +800,8 @@
                     <dl class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-sm">
                         <dt class="text-topazio-claro/55">Cor</dt><dd>${p.tom} <span class="inline-block w-3 h-3 rounded-full align-middle ml-1" style="background:${p.cor}"></span></dd>
                         <dt class="text-topazio-claro/55">Lapidação</dt><dd>${p.lapidacao}</dd>
-                        <dt class="text-topazio-claro/55">Dimensões</dt><dd>${p.c} × ${p.l} mm</dd>
-                        <dt class="text-topazio-claro/55">Peso</dt><dd>${p.ct.toFixed(2)} ct</dd>
+                        <dt class="text-topazio-claro/55">Dimensões</dt><dd>${medidaTxt(p)}</dd>
+                        <dt class="text-topazio-claro/55">Peso</dt><dd>${pesoTxt(p)}${p.ctReal ? ` <span class="text-[10px] uppercase tracking-[.12em] text-topazio-pessego">pesada</span>` : ""}</dd>
                         <dt class="text-topazio-claro/55">Pureza</dt><dd>${p.pureza}</dd>
                         <dt class="text-topazio-claro/55">Origem</dt><dd>Ouro Preto, MG</dd>
                     </dl>
@@ -834,7 +849,7 @@
         const p = pedraAtual(), est = estiloAtual();
         const partes = [
             `${MODELOS[estado.tipo].nome} ${est.nome}`,
-            `Pedra ${p.codigo} — Topázio Imperial ${p.tom.toLowerCase()}, ${p.lapidacao.toLowerCase()}, ${p.c} × ${p.l} mm, ${p.ct.toFixed(2)} ct`,
+            `Pedra ${p.codigo} — Topázio Imperial ${p.tom.toLowerCase()}, ${p.lapidacao.toLowerCase()}, ${medidaTxt(p)}, ${pesoTxt(p)}`,
             `${METAIS[estado.metal].nome}, acabamento ${ACABAMENTOS[estado.acabamento].nome.toLowerCase()}`
         ];
         if (estado.tipo === "anel") partes.push(`Aro ${estado.aro}` + (estado.gravacao.trim() ? ` · gravação “${estado.gravacao.trim()}”` : ""));
@@ -1036,16 +1051,17 @@
 
     /* ---------- coleção de inspirações ----------
        Joias da marca para usar como ponto de partida. Para mostrar a foto da peça
-       produzida, salve em img/inspiracoes/<id>.jpg — sem a foto, aparece a joia em 3D. */
+       produzida, salve em img/inspiracoes/<id>.webp — sem a foto, aparece a joia em 3D. */
     const INSPIRACOES = [
-        { id:"aurora",     titulo:"Solitário Aurora",      desc:"Topázio oval dourado em ouro amarelo, com garras delicadas.", config:{ tipo:"anel", estilo:"solitario", pedra:"IG-0101", metal:"ouro18" } },
-        { id:"imperatriz", titulo:"Halo Imperatriz",       desc:"Topázio rosa cercado de pontos de brilho, em ouro rosé.",     config:{ tipo:"anel", estilo:"halo", pedra:"IG-0104", metal:"rose" } },
-        { id:"vila-rica",  titulo:"Aro Vila Rica",         desc:"Aro largo escovado com topázio champanhe embutido.",          config:{ tipo:"anel", estilo:"largo", pedra:"IG-0105", metal:"ouro18", acabamento:"escovado" } },
-        { id:"gotas",      titulo:"Gotas de Sherry",       desc:"Par de brincos gota com topázio sherry intenso.",             config:{ tipo:"brinco", estilo:"gota", pedra:"IG-0106", metal:"ouro18" } },
-        { id:"ponto",      titulo:"Ponto de Luz Dourado",  desc:"Brinco ponto de luz em ouro branco, para o dia a dia.",       config:{ tipo:"brinco", estilo:"ponto", pedra:"IG-0107", metal:"branco" } },
-        { id:"argola",     titulo:"Argola Itacolomi",      desc:"Argola em ouro rosé com topázio sherry pendente.",            config:{ tipo:"brinco", estilo:"argola", pedra:"IG-0103", metal:"rose" } },
-        { id:"moldura",    titulo:"Pingente Relicário",    desc:"Topázio rosa-pêssego emoldurado em prata, com corrente.",     config:{ tipo:"pingente", estilo:"moldura", pedra:"IG-0108", metal:"prata", corrente:true } },
-        { id:"halo-p",     titulo:"Pingente Sol de Minas", desc:"Gota pêssego com halo de brilhos em ouro amarelo.",           config:{ tipo:"pingente", estilo:"halo", pedra:"IG-0102", metal:"ouro18", corrente:true } }
+        { id:"aurora",     titulo:"Solitário Aurora",      desc:"Topázio oval dourado intenso em ouro amarelo, com garras delicadas.", config:{ tipo:"anel", estilo:"solitario", pedra:"IG-0208", metal:"ouro18" } },
+        { id:"imperatriz", titulo:"Halo Imperatriz",       desc:"Peça produzida por nós: topázio oval com halo de brilhos, em ouro amarelo.", config:{ tipo:"anel", estilo:"halo", pedra:"IG-0204", metal:"ouro18" },
+          video:"img/midia/joia-anel-halo.mp4", poster:"img/midia/joia-anel-halo.webp" },
+        { id:"vila-rica",  titulo:"Aro Vila Rica",         desc:"Aro largo escovado com topázio rosa-salmão em almofada.",      config:{ tipo:"anel", estilo:"largo", pedra:"IG-0201", metal:"ouro18", acabamento:"escovado" } },
+        { id:"gotas",      titulo:"Gotas Douradas",        desc:"Par de brincos gota com topázio dourado.",                    config:{ tipo:"brinco", estilo:"gota", pedra:"IG-0207", metal:"ouro18" } },
+        { id:"ponto",      titulo:"Ponto de Luz Champanhe", desc:"Brinco ponto de luz em ouro branco, para o dia a dia.",      config:{ tipo:"brinco", estilo:"ponto", pedra:"IG-0209", metal:"branco" } },
+        { id:"argola",     titulo:"Argola Itacolomi",      desc:"Argola em ouro rosé com topázio sherry pendente.",            config:{ tipo:"brinco", estilo:"argola", pedra:"IG-0210", metal:"rose" } },
+        { id:"moldura",    titulo:"Pingente Relicário",    desc:"Topázio rosa em almofada emoldurado em prata, com corrente.", config:{ tipo:"pingente", estilo:"moldura", pedra:"IG-0202", metal:"prata", corrente:true } },
+        { id:"halo-p",     titulo:"Pingente Sol de Minas", desc:"Gota dourada de 3,55 ct com halo de brilhos em ouro amarelo.", config:{ tipo:"pingente", estilo:"halo", pedra:"IG-0213", metal:"ouro18", corrente:true } }
     ];
     let filtroInsp = "";
     const miniaturasInsp = {};
@@ -1070,8 +1086,10 @@
             <article class="group border border-white/10 bg-white/[.02] flex flex-col">
                 <div class="relative aspect-square overflow-hidden bg-black/30">
                     <img src="${miniaturasInsp[i.id] || ""}" alt="${i.titulo}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <img src="img/inspiracoes/${i.id}.jpg" alt="${i.titulo}" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
-                    <span class="absolute top-3 left-3 text-[10px] uppercase tracking-[.18em] px-2 py-1 bg-topazio-escuro/80 text-topazio-pessego">${MODELOS[i.config.tipo].nome}</span>
+                    ${i.video
+                        ? `<video src="${i.video}" poster="${i.poster || ""}" muted loop autoplay playsinline class="absolute inset-0 w-full h-full object-cover" aria-label="${i.titulo}"></video>`
+                        : `<img src="img/inspiracoes/${i.id}.webp" alt="${i.titulo}" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">`}
+                    <span class="absolute top-3 left-3 text-[10px] uppercase tracking-[.18em] px-2 py-1 ${i.video ? "bg-topazio-pessego text-topazio-escuro font-semibold" : "bg-topazio-escuro/80 text-topazio-pessego"}">${i.video ? "Peça produzida" : MODELOS[i.config.tipo].nome}</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col">
                     <h3 class="font-serif text-2xl">${i.titulo}</h3>
@@ -1099,10 +1117,17 @@
     }
 
     /* ---------- prova virtual (câmera) ----------
-       A joia 3D aparece sobre a imagem da câmera; o cliente arrasta, aumenta e gira
-       com os dedos para posicioná-la no dedo, na orelha ou no colo. Não há rastreamento
-       automático do corpo: é uma referência visual de proporção e estilo. */
-    const prov = { pronto:false, aberto:false, stream:null, frente:false, x:.5, y:.5, s:1, r:0, toques:new Map() };
+       Modo automático: o MediaPipe (Google, roda no próprio navegador — a imagem não sai
+       do aparelho) encontra o dedo anelar, as orelhas ou os ombros e a joia 3D segue o corpo.
+       No anel, um "dedo invisível" esconde a parte de trás do aro: pedra por cima, aro por baixo.
+       Modo manual (reserva): o cliente arrasta, aumenta e gira a joia com os dedos. */
+    const prov = { pronto:false, aberto:false, stream:null, frente:false, x:.5, y:.5, s:1, r:0, toques:new Map(),
+                   auto:true, ajuste:1, giroExtra:0, inverter:false };
+    const DICAS_AUTO = {
+        anel:     "Mostre o dorso da mão para a câmera, com os dedos abertos. O anel vai para o dedo anelar.",
+        brinco:   "Olhe para a câmera com o rosto e as orelhas à mostra. Vire o rosto para ver cada brinco.",
+        pingente: "Enquadre o rosto, o pescoço e os ombros. O pingente fica no colo."
+    };
     const DICAS_PROVA = {
         anel:     "Aponte a câmera para sua mão e arraste o anel até o dedo. Com dois dedos, ajuste tamanho e inclinação.",
         brinco:   "Use a câmera frontal e posicione o brinco no lóbulo da orelha. Com dois dedos, ajuste o tamanho.",
@@ -1156,7 +1181,7 @@
         el.style.left = (prov.x * palcoP.width) + "px";
         el.style.top = (prov.y * palcoP.height) + "px";
         el.style.transform = `translate(-50%,-50%) rotate(${prov.r}rad) scale(${prov.s})`;
-        $("provTamanho").value = Math.round(prov.s * 100);
+        if (!prov.auto) $("provTamanho").value = Math.round(prov.s * 100);
     }
 
     function pararCamera(){
@@ -1200,6 +1225,7 @@
         const img = $("provFoto");
         if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);
         img.dataset.url = URL.createObjectURL(arquivo);
+        img.onload = () => { auto.fotoAnalisada = false; };
         img.src = img.dataset.url;
         img.classList.remove("hidden");
         $("provVideo").classList.add("hidden");
@@ -1213,10 +1239,14 @@
         Object.assign(prov, { x:.5, y: estado.tipo === "pingente" ? .62 : .5, s:1, r:0 });
         $("provador").classList.remove("hidden");
         travarRolagem(true);
-        $("provDica").textContent = DICAS_PROVA[estado.tipo];
         modeloProvador();
+        prepararAuto();
+        modeloAuto();
+        Object.assign(prov, { ajuste:1, giroExtra:0, inverter:false });
+        $("provTamanho").value = 100; $("provGiro").value = 0;
+        definirModo(true);
         requestAnimationFrame(posicionarJoia);
-        prov.renderer.setAnimationLoop(() => prov.renderer.render(prov.cena, prov.camera));
+        prov.renderer.setAnimationLoop(quadroProvador);
         iniciarCamera();
     }
     function fecharProvador(){
@@ -1226,6 +1256,11 @@
         prov.renderer.setAnimationLoop(null);
         $("provador").classList.add("hidden");
         travarRolagem(false);
+    }
+
+    function fotoProvadorAuto(ctx, W, H){
+        auto.renderer.render(auto.cena, auto.camera);
+        ctx.drawImage(auto.renderer.domElement, 0, 0, W, H);
     }
 
     function fotoProvador(){
@@ -1246,14 +1281,17 @@
             ctx.drawImage(fonte, (W - dw) / 2, (H - dh) / 2, dw, dh);
             ctx.restore();
         }
-        prov.renderer.render(prov.cena, prov.camera);
-        const el = $("provJoia"), lado = el.offsetWidth * escala;
-        ctx.save();
-        ctx.translate(prov.x * W, prov.y * H);
-        ctx.rotate(prov.r);
-        ctx.scale(prov.s, prov.s);
-        ctx.drawImage(prov.renderer.domElement, -lado / 2, -lado / 2, lado, lado);
-        ctx.restore();
+        if (prov.auto) fotoProvadorAuto(ctx, W, H);
+        else {
+            prov.renderer.render(prov.cena, prov.camera);
+            const el = $("provJoia"), lado = el.offsetWidth * escala;
+            ctx.save();
+            ctx.translate(prov.x * W, prov.y * H);
+            ctx.rotate(prov.r);
+            ctx.scale(prov.s, prov.s);
+            ctx.drawImage(prov.renderer.domElement, -lado / 2, -lado / 2, lado, lado);
+            ctx.restore();
+        }
         ctx.font = `${14 * escala}px Montserrat, sans-serif`;
         ctx.fillStyle = "rgba(255,255,255,.85)";
         ctx.fillText("ImperialiGems · Crie sua Joia", 16 * escala, H - 18 * escala);
@@ -1304,6 +1342,312 @@
         }, { passive: false });
         window.addEventListener("resize", () => { if (prov.aberto) posicionarJoia(); });
     })();
+
+    /* ---------- rastreamento automático (MediaPipe) ---------- */
+    const MEDIAPIPE = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14";
+    const MODELOS_IA = {
+        mao:  "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
+        pose: "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task"
+    };
+    const auto = { pronto:false, detectores:{}, carregando:{}, modoDet:{}, trocandoModo:false, suave:{}, ultimoTempo:-1, visto:0, fotoAnalisada:false };
+    /**
+     * O detector de palma falha quando a mão ocupa a tela toda (comum no celular, com a mão perto
+     * da lente). Por isso a imagem vai para ele com uma margem em volta; os pontos voltam depois
+     * para as coordenadas da imagem original.
+     */
+    const MARGEM_DETECCAO = 1.6;
+    const telaDeteccao = document.createElement("canvas");
+    function comMargem(fonte){
+        const fw = fonte.videoWidth || fonte.naturalWidth, fh = fonte.videoHeight || fonte.naturalHeight;
+        const esc = Math.min(1, 1100 / (Math.max(fw, fh) * MARGEM_DETECCAO));
+        const W = Math.round(fw * MARGEM_DETECCAO * esc), H = Math.round(fh * MARGEM_DETECCAO * esc);
+        const iw = fw * esc, ih = fh * esc, ox = (W - iw) / 2, oy = (H - ih) / 2;
+        if (telaDeteccao.width !== W || telaDeteccao.height !== H) { telaDeteccao.width = W; telaDeteccao.height = H; }
+        const ctx = telaDeteccao.getContext("2d");
+        ctx.fillStyle = "#808080"; ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(fonte, ox, oy, iw, ih);
+        const desfazer = lm => ({ ...lm, x: (lm.x * W - ox) / iw, y: (lm.y * H - oy) / ih });
+        return { tela: telaDeteccao, ajustar: r => {
+            if (!r || !r.landmarks) return r;
+            const landmarks = r.landmarks.map(l => l.map(desfazer));
+            return { ...r, landmarks, bruto: landmarks[0] };
+        } };
+    }
+
+    /** Troca o detector entre vídeo e foto (assíncrono): até terminar, pula a detecção. */
+    function modoDetector(tipo, modo){
+        if (auto.modoDet[tipo] === modo) return true;
+        if (!auto.trocandoModo) {
+            auto.trocandoModo = true;
+            auto.detectores[tipo].setOptions({ runningMode: modo }).then(() => { auto.modoDet[tipo] = modo; }).finally(() => { auto.trocandoModo = false; });
+        }
+        return false;
+    }
+
+    function prepararAuto(){
+        if (auto.pronto) return;
+        auto.renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true, preserveDrawingBuffer:true });
+        auto.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        auto.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        auto.renderer.toneMappingExposure = 1.05;
+        auto.renderer.outputColorSpace = THREE.SRGBColorSpace;
+        auto.renderer.domElement.style.cssText = "width:100%;height:100%;display:block";
+        $("provAuto").appendChild(auto.renderer.domElement);
+        auto.cena = new THREE.Scene();
+        auto.cena.environment = new THREE.PMREMGenerator(auto.renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+        const l1 = new THREE.DirectionalLight(0xffffff, 2.2); l1.position.set(200, 400, 300);
+        const l2 = new THREE.DirectionalLight(0xffe2c0, 1.2); l2.position.set(-300, 100, -200);
+        auto.cena.add(l1, l2);
+        // câmera ortográfica em pixels da tela: (x, -y) = posição na imagem
+        auto.camera = new THREE.OrthographicCamera(0, 1, 0, -1, -5000, 5000);
+        auto.camera.position.z = 1000;
+        // "dedo invisível": só grava profundidade, escondendo a parte do aro que passa por trás do dedo
+        auto.dedo = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 32), new THREE.MeshBasicMaterial({ colorWrite:false }));
+        auto.dedo.renderOrder = -1;
+        auto.cena.add(auto.dedo);
+        auto.joias = [];      // anel: [anel] · brinco: [esquerdo, direito] · pingente: [pingente]
+        auto.corrente = null;
+        new ResizeObserver(ajustarAuto).observe($("provPalco"));
+        ajustarAuto();
+        auto.pronto = true;
+    }
+    function ajustarAuto(){
+        const { width:W, height:H } = $("provPalco").getBoundingClientRect();
+        if (!W) return;
+        auto.renderer.setSize(W, H, false);
+        Object.assign(auto.camera, { left:0, right:W, top:0, bottom:-H });
+        auto.camera.updateProjectionMatrix();
+        auto.W = W; auto.H = H;
+    }
+
+    /** Cópia da joia preparada para ser presa ao corpo; `ponto` = onde ela encosta (mm, local). */
+    function modeloAuto(){
+        auto.joias.forEach(j => auto.cena.remove(j.grupo));
+        if (auto.corrente) { auto.cena.remove(auto.corrente); auto.corrente.geometry.dispose(); auto.corrente = null; }
+        auto.joias = [];
+        auto.suave = {};
+        const base = joia.clone(true);
+        const prender = (obj, ponto) => {
+            const grupo = new THREE.Group(), interno = new THREE.Group();
+            obj.position.sub(ponto);
+            interno.add(obj); grupo.add(interno);
+            grupo.visible = false;
+            auto.cena.add(grupo);
+            return { grupo, interno };
+        };
+        if (estado.tipo === "anel") {
+            auto.joias.push(prender(base, new THREE.Vector3()));              // o centro do aro fica no dedo
+        } else if (estado.tipo === "brinco") {
+            const um = base.children[0];
+            um.position.x = 0;
+            const outro = um.clone(true);      // copia antes de deslocar
+            const ponto = { ponto:new THREE.Vector3(0, 0, 0), gota:new THREE.Vector3(0, 4.6, -1), argola:new THREE.Vector3(0, 7.5, 0) }[estado.estilo];
+            auto.joias.push(prender(um, ponto.clone()), prender(outro, ponto.clone()));
+        } else {
+            if (estado.corrente) base.remove(...base.children.slice(-2));     // a corrente é refeita presa ao pescoço
+            const caixa = new THREE.Box3().setFromObject(base);
+            auto.joias.push(prender(base, new THREE.Vector3(0, caixa.max.y - 0.6, 0)));   // pendurado pelo passador
+            let mat = null;
+            base.traverse(o => { if (!mat && o.isMesh && o.material && o.material.metalness === 1) mat = o.material; });
+            auto.matCorrente = mat || materialMetal();
+        }
+        auto.dedo.visible = estado.tipo === "anel";
+        $("provInverter").classList.toggle("hidden", estado.tipo !== "anel" || !prov.auto);
+    }
+
+    async function carregarDetector(tipo){
+        if (auto.detectores[tipo]) return auto.detectores[tipo];
+        if (!auto.carregando[tipo]) auto.carregando[tipo] = (async () => {
+            const vision = await import(`${MEDIAPIPE}/vision_bundle.mjs`);
+            const arquivos = await vision.FilesetResolver.forVisionTasks(`${MEDIAPIPE}/wasm`);
+            const criar = delegate => tipo === "mao"
+                ? vision.HandLandmarker.createFromOptions(arquivos, { baseOptions:{ modelAssetPath:MODELOS_IA.mao, delegate }, runningMode:"VIDEO", numHands:1 })
+                : vision.PoseLandmarker.createFromOptions(arquivos, { baseOptions:{ modelAssetPath:MODELOS_IA.pose, delegate }, runningMode:"VIDEO", numPoses:1 });
+            let det;
+            try { det = await criar("GPU"); } catch (e) { det = await criar("CPU"); }
+            auto.detectores[tipo] = det; auto.modoDet[tipo] = "VIDEO";
+            return det;
+        })();
+        return auto.carregando[tipo];
+    }
+    const tipoDetector = () => estado.tipo === "anel" ? "mao" : "pose";
+
+    function definirModo(automatico){
+        prov.auto = automatico;
+        $("provAuto").classList.toggle("hidden", !automatico);
+        $("provJoia").classList.toggle("hidden", automatico);
+        $("provModo").innerHTML = automatico ? '<i class="fa-solid fa-hand mr-1"></i>Ajustar à mão' : '<i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Automático';
+        $("provDica").textContent = automatico ? DICAS_AUTO[estado.tipo] : DICAS_PROVA[estado.tipo];
+        $("provInverter").classList.toggle("hidden", estado.tipo !== "anel" || !automatico);
+        $("provStatus").classList.toggle("hidden", !automatico);
+        if (automatico) {
+            status("Carregando reconhecimento…", true);
+            carregarDetector(tipoDetector()).then(() => status(procurando())).catch(() => {
+                avisar("Não foi possível carregar o reconhecimento automático. Use o ajuste à mão.");
+                definirModo(false);
+            });
+        }
+    }
+    let ultimoStatus = "";
+    function status(texto, girando){
+        if (texto === ultimoStatus) return;
+        ultimoStatus = texto;
+        const icone = girando ? "fa-circle-notch fa-spin" : /encontrad/.test(texto) ? "fa-check" : "fa-magnifying-glass";
+        $("provStatus").innerHTML = `<i class="fa-solid ${icone}"></i>${texto}`;
+    }
+    const procurando = () => ({ anel:"Procurando sua mão…", brinco:"Procurando seu rosto…", pingente:"Procurando seu colo…" })[estado.tipo];
+
+    /** Ponto normalizado da imagem → pixel na tela (mesmo recorte do object-cover e espelho da câmera frontal). */
+    function paraTela(lm, fonte, espelhar){
+        const fw = fonte.videoWidth || fonte.naturalWidth, fh = fonte.videoHeight || fonte.naturalHeight;
+        const k = Math.max(auto.W / fw, auto.H / fh), dw = fw * k, dh = fh * k;
+        let x = (auto.W - dw) / 2 + lm.x * dw;
+        const y = (auto.H - dh) / 2 + lm.y * dh;
+        if (espelhar) x = auto.W - x;
+        return new THREE.Vector2(x, y);
+    }
+    const em3D = (v, z = 0) => new THREE.Vector3(v.x, -v.y, z);
+    /** Suaviza o tremor do rastreamento. */
+    function suave(chave, alvo, f = 0.45){
+        const atual = auto.suave[chave];
+        if (!atual || atual.distanceTo(alvo) > 200) { auto.suave[chave] = alvo.clone(); return alvo; }
+        return atual.lerp(alvo, f);
+    }
+
+    function colocarAnel(r, fonte, espelhar){
+        const lm = r.landmarks && r.landmarks[0];
+        if (!lm) return false;
+        const P = i => paraTela(lm[i], fonte, espelhar);
+        const base = P(13), meio = P(14);
+        const largura = (P(9).distanceTo(P(13)) + P(13).distanceTo(P(17))) / 2;   // espaço entre dedos ≈ largura do dedo
+        const raioPx = largura * 0.42;
+        const centro = suave("anel", em3D(base.clone().lerp(meio, 0.42)));
+        const dir = suave("dir", em3D(meio.clone().sub(base)).normalize(), 0.35).clone().normalize();
+        // dorso ou palma virada para a câmera: o giro pulso→indicador→mindinho combinado com o lado
+        // da mão (medido em fotos reais: palma = "Left" com giro positivo ou "Right" com giro negativo).
+        // Usa a imagem crua, sem o espelho da tela — palma ou dorso não muda com o espelho.
+        const p0 = r.bruto[0], p5 = r.bruto[5], p17 = r.bruto[17];
+        const cruz = (p5.x - p0.x) * (p17.y - p0.y) - (p5.y - p0.y) * (p17.x - p0.x);
+        const rotulo = r.handednesses && r.handednesses[0] && r.handednesses[0][0] ? r.handednesses[0][0].categoryName : "Left";
+        let dorso = (rotulo === "Left") ? cruz < 0 : cruz > 0;
+        if (prov.inverter) dorso = !dorso;
+        // eixos: Z do anel = dedo · Y (pedra) = para a câmera (dorso) ou para trás (palma)
+        const Z = dir, Y = new THREE.Vector3(0, 0, dorso ? 1 : -1), X = new THREE.Vector3().crossVectors(Y, Z).normalize();
+        Y.crossVectors(Z, X).normalize();
+        const { grupo, interno } = auto.joias[0];
+        grupo.position.copy(centro);
+        grupo.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(X, Y, Z));
+        interno.rotation.set(0, 0, prov.giroExtra);
+        grupo.scale.setScalar(raioPx / (diametroAro(estado.aro) / 2) * prov.ajuste);
+        grupo.visible = true;
+        // dedo invisível ao longo do dedo anelar
+        const comprimento = base.distanceTo(meio) * 1.8;
+        auto.dedo.position.copy(centro);
+        auto.dedo.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+        auto.dedo.scale.set(raioPx * 0.97 * prov.ajuste, comprimento, raioPx * 0.97 * prov.ajuste);
+        auto.dedo.visible = true;
+        return true;
+    }
+
+    function colocarPose(r, fonte, espelhar){
+        const lm = r.landmarks && r.landmarks[0];
+        if (!lm) return false;
+        const P = i => paraTela(lm[i], fonte, espelhar), vis = i => (lm[i].visibility ?? 1);
+        const ombroE = P(11), ombroD = P(12), larguraOmbros = ombroE.distanceTo(ombroD);
+        if (estado.tipo === "brinco") {
+            const orelhaE = P(7), orelhaD = P(8);
+            const distOrelhas = Math.max(orelhaE.distanceTo(orelhaD), vis(11) > .3 && vis(12) > .3 ? larguraOmbros * 0.4 : 0);
+            if (distOrelhas < 20) return false;
+            const linha = orelhaD.clone().sub(orelhaE).normalize();
+            let baixo = new THREE.Vector2(-linha.y, linha.x); if (baixo.y < 0) baixo.negate();
+            const escala = distOrelhas / 150 * prov.ajuste;          // ~150 mm entre as orelhas
+            const giro = Math.atan2(-linha.y, linha.x);
+            let algum = false;
+            [[7, orelhaE], [8, orelhaD]].forEach(([i, orelha], k) => {
+                const { grupo, interno } = auto.joias[k];
+                if (vis(i) < 0.55) { grupo.visible = false; return; }
+                const lobulo = orelha.clone().add(baixo.clone().multiplyScalar(distOrelhas * 0.16));
+                grupo.position.copy(suave("orelha" + k, em3D(lobulo, 40)));
+                grupo.rotation.set(0, 0, giro);
+                interno.rotation.set(0, prov.giroExtra, 0);
+                grupo.scale.setScalar(escala);
+                grupo.visible = true; algum = true;
+            });
+            return algum;
+        }
+        // pingente
+        if (vis(11) < 0.3 || vis(12) < 0.3 || larguraOmbros < 40) return false;
+        const meio = ombroE.clone().add(ombroD).multiplyScalar(0.5);
+        const linha = ombroD.clone().sub(ombroE).normalize();
+        let baixo = new THREE.Vector2(-linha.y, linha.x); if (baixo.y < 0) baixo.negate();
+        const pescoco = meio.clone().add(baixo.clone().multiplyScalar(-larguraOmbros * 0.13));
+        const ponto = suave("pingente", em3D(pescoco.clone().add(baixo.clone().multiplyScalar(larguraOmbros * 0.2)), 60));
+        const escala = larguraOmbros / 370 * prov.ajuste;           // ~370 mm de ombro a ombro
+        const { grupo, interno } = auto.joias[0];
+        grupo.position.copy(ponto);
+        grupo.rotation.set(0, 0, Math.atan2(-linha.y, linha.x));
+        interno.rotation.set(0, prov.giroExtra, 0);
+        grupo.scale.setScalar(escala);
+        grupo.visible = true;
+        // corrente: dos lados do pescoço até o passador
+        const lado = linha.clone().multiplyScalar(larguraOmbros * 0.12), sobe = baixo.clone().multiplyScalar(-larguraOmbros * 0.05);
+        const pontos = [
+            em3D(pescoco.clone().sub(lado).add(sobe), 30),
+            em3D(pescoco.clone().sub(lado.clone().multiplyScalar(0.55)).add(baixo.clone().multiplyScalar(larguraOmbros * 0.12)), 50),
+            ponto.clone(),
+            em3D(pescoco.clone().add(lado.clone().multiplyScalar(0.55)).add(baixo.clone().multiplyScalar(larguraOmbros * 0.12)), 50),
+            em3D(pescoco.clone().add(lado).add(sobe), 30)
+        ];
+        if (auto.corrente) { auto.cena.remove(auto.corrente); auto.corrente.geometry.dispose(); }
+        auto.corrente = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pontos), 80, Math.max(0.6, 0.7 * escala), 8), auto.matCorrente);
+        auto.cena.add(auto.corrente);
+        return true;
+    }
+
+    function esconderAuto(){
+        auto.joias.forEach(j => { j.grupo.visible = false; });
+        auto.dedo.visible = false;
+        if (auto.corrente) auto.corrente.visible = false;
+    }
+
+    function quadroProvador(){
+        if (!prov.auto) { prov.renderer.render(prov.cena, prov.camera); return; }
+        const tipo = tipoDetector(), det = auto.detectores[tipo];
+        const video = $("provVideo"), foto = $("provFoto");
+        const usandoFoto = !foto.classList.contains("hidden") && foto.naturalWidth;
+        if (det) {
+            let r = null, fonte = null, espelhar = false;
+            try {
+                if (usandoFoto) {
+                    if (!auto.fotoAnalisada && modoDetector(tipo, "IMAGE")) {
+                        const entrada = comMargem(foto);
+                        auto.resultadoFoto = entrada.ajustar(det.detect(entrada.tela));
+                        auto.fotoAnalisada = true;
+                        auto.suave = {};
+                    }
+                    r = auto.resultadoFoto; fonte = foto;
+                } else if (video.readyState >= 2 && video.videoWidth && modoDetector(tipo, "VIDEO")) {
+                    if (video.currentTime !== auto.ultimoTempo) {
+                        auto.ultimoTempo = video.currentTime;
+                        const entrada = comMargem(video);
+                        auto.resultado = entrada.ajustar(det.detectForVideo(entrada.tela, performance.now()));
+                    }
+                    r = auto.resultado; fonte = video; espelhar = prov.frente;
+                }
+            } catch (e) { r = null; if (!auto.erroAvisado) { auto.erroAvisado = true; console.warn("Prova virtual:", e); } }
+            let achou = false;
+            if (r && fonte) {
+                esconderAuto();
+                achou = estado.tipo === "anel" ? colocarAnel(r, fonte, espelhar) : colocarPose(r, fonte, espelhar);
+            }
+            if (achou) { auto.visto = performance.now(); status(({ anel:"Mão encontrada", brinco:"Orelhas encontradas", pingente:"Colo encontrado" })[estado.tipo]); }
+            else if (performance.now() - auto.visto > 400) { esconderAuto(); status(procurando()); }
+        }
+        auto.renderer.render(auto.cena, auto.camera);
+    }
+
+    $("provModo").addEventListener("click", () => definirModo(!prov.auto));
+    $("provInverter").addEventListener("click", () => { prov.inverter = !prov.inverter; });
 
     function textoProjeto(intencao){
         const r = calcularPreco();
@@ -1419,8 +1763,14 @@
     $("provTrocar").addEventListener("click", () => { prov.frente = !prov.frente; iniciarCamera(); });
     $("provArquivo").addEventListener("change", e => usarFotoProvador(e.target.files[0]));
     $("provArquivo2").addEventListener("change", e => usarFotoProvador(e.target.files[0]));
-    $("provTamanho").addEventListener("input", e => { prov.s = Number(e.target.value) / 100; posicionarJoia(); });
-    $("provGiro").addEventListener("input", e => { prov.giro.rotation.y = Number(e.target.value) * Math.PI / 180; });
+    $("provTamanho").addEventListener("input", e => {
+        if (prov.auto) prov.ajuste = Number(e.target.value) / 100;
+        else { prov.s = Number(e.target.value) / 100; posicionarJoia(); }
+    });
+    $("provGiro").addEventListener("input", e => {
+        const ang = Number(e.target.value) * Math.PI / 180;
+        if (prov.auto) prov.giroExtra = ang; else prov.giro.rotation.y = ang;
+    });
     $("provFotoBtn").addEventListener("click", fotoProvador);
 
     $("btnVoltar").addEventListener("click", () => irEtapa(etapa - 1));

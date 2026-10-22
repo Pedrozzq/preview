@@ -6,7 +6,7 @@
     <title>ImperialiGems | Topázio Imperial de Ouro Preto</title>
     <meta name="description" content="ImperialiGems — especialista em Topázio Imperial bruto e lapidado, direto de Ouro Preto (MG). Peças selecionadas, euclásio e minerais de coleção.">
 
-    <link rel="icon" href="img/logo-256.jpg">
+    <link rel="icon" href="img/logo-256.webp">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,11 +109,12 @@
     <header class="fixed inset-x-0 top-0 z-50 bg-topazio-escuro/80 backdrop-blur border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-3">
-                <img src="img/logo-256.jpg" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
+                <img src="img/logo-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
                 <span class="font-serif text-2xl tracking-wide max-[430px]:hidden">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
-            <nav class="hidden md:flex gap-8 text-xs uppercase tracking-[.2em] text-topazio-claro/70">
+            <nav class="hidden lg:flex gap-5 xl:gap-7 text-[11px] uppercase tracking-[.16em] whitespace-nowrap text-topazio-claro/70">
                 <a href="#pedra" class="hover:text-topazio-pessego transition">A pedra</a>
+                <a href="#processo" class="hover:text-topazio-pessego transition">Processo</a>
                 <a href="#colecao" class="hover:text-topazio-pessego transition">Coleção</a>
                 <a href="#galeria" class="hover:text-topazio-pessego transition">Galeria</a>
                 <a href="#comprar" class="hover:text-topazio-pessego transition">Como comprar</a>
@@ -124,7 +125,7 @@
                     <i class="fa-regular fa-gem mr-1.5"></i>Crie sua Joia
                 </a>
             <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20uma%20pe%C3%A7a%20de%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
-               class="hidden sm:inline-block text-xs uppercase tracking-[.18em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+               class="hidden sm:inline-block whitespace-nowrap text-xs uppercase tracking-[.18em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
                 Quero uma peça
             </a>
             </div>
@@ -134,7 +135,7 @@
     <!-- ===== HERO ===== -->
     <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden pt-16">
         <div class="absolute inset-0 bg-[radial-gradient(70%_60%_at_75%_40%,rgba(217,130,43,.28),transparent_70%)]"></div>
-        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center py-16">
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-6 md:gap-12 items-center py-10 md:py-16">
             <div>
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-5">Ouro Preto · Minas Gerais</p>
                 <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">
@@ -154,19 +155,33 @@
                     </a>
                 </div>
             </div>
-            <div class="relative mx-auto w-full max-w-sm">
+            <div class="relative mx-auto w-full max-w-[260px] md:max-w-sm order-first md:order-none">
                 <!-- brilho atrás do cristal -->
                 <div class="absolute inset-x-[12%] inset-y-[18%] rounded-full bg-topazio/35 blur-3xl"></div>
                 <!-- cristal 3D (texturas tiradas das fotos reais img/bruto-03 e bruto-04) -->
                 <div id="cristal3d" class="relative aspect-[3/4] cursor-grab active:cursor-grabbing" style="touch-action:pan-y"
                      role="img" aria-label="Cristal de Topázio Imperial bruto girando em 3D">
-                    <img id="cristalReserva" src="img/bruto-01.jpg" alt="Cristal de Topázio Imperial bruto ImperialiGems"
+                    <img id="cristalReserva" src="img/bruto-01.webp" alt="Cristal de Topázio Imperial bruto ImperialiGems"
                          class="hidden absolute inset-0 w-full h-full object-cover rounded-t-full border border-topazio-pessego/40">
                 </div>
                 <!-- sombra no chão -->
                 <div class="mx-auto -mt-4 w-1/2 h-5 rounded-full bg-black/60 blur-xl"></div>
-                <img src="img/logo-256.jpg" alt="" class="flutuar absolute -bottom-2 -left-6 w-24 h-24 rounded-full border-4 border-topazio-escuro shadow-xl">
+                <img src="img/logo-256.webp" alt="" class="hidden md:block flutuar absolute -bottom-2 -left-6 w-24 h-24 rounded-full border-4 border-topazio-escuro shadow-xl">
             </div>
+        </div>
+    </section>
+
+    <!-- ===== FAIXA DE AUTORIDADE ===== -->
+    <section class="border-y border-white/10 bg-[#140a06]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div><i class="fa-solid fa-location-dot text-topazio-pessego text-xl"></i>
+                <p class="font-serif text-xl mt-2">Ouro Preto · MG</p><p class="text-xs text-topazio-claro/55">Onde o Topázio Imperial nasce</p></div>
+            <div><i class="fa-solid fa-gem text-topazio-pessego text-xl"></i>
+                <p class="font-serif text-xl mt-2">Bruto e lapidado</p><p class="text-xs text-topazio-claro/55">Do cristal à pedra pronta</p></div>
+            <div><i class="fa-solid fa-scale-balanced text-topazio-pessego text-xl"></i>
+                <p class="font-serif text-xl mt-2">Peso e código</p><p class="text-xs text-topazio-claro/55">Cada pedra identificada</p></div>
+            <div><i class="fa-solid fa-ring text-topazio-pessego text-xl"></i>
+                <p class="font-serif text-xl mt-2">Joias sob medida</p><p class="text-xs text-topazio-claro/55">Criadas com a sua pedra</p></div>
         </div>
     </section>
 
@@ -197,6 +212,104 @@
         </div>
     </section>
 
+    <!-- ===== JOIA EM DESTAQUE ===== -->
+    <section id="destaque" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(55%_60%_at_25%_50%,rgba(217,130,43,.22),transparent_70%)]"></div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative mx-auto w-full max-w-md">
+                <div class="gema aspect-square overflow-hidden rounded-[2rem] border border-topazio-pessego/40 shadow-2xl">
+                    <video src="img/midia/joia-anel-halo.mp4" poster="img/midia/joia-anel-halo.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Anel de Topázio Imperial com halo produzido pela ImperialiGems"></video>
+                </div>
+                <span class="absolute -top-3 left-6 px-3 py-1 text-[10px] uppercase tracking-[.2em] bg-topazio-pessego text-topazio-escuro font-semibold">Peça produzida</span>
+            </div>
+            <div>
+                <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Feito por nós</p>
+                <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Da pedra de Ouro Preto à joia pronta</h2>
+                <p class="mt-5 text-topazio-claro/70 leading-relaxed">Topázio Imperial oval, envolvido por um halo de brilhos e montado em ouro. Uma peça única, feita a partir de uma pedra selecionada no nosso estoque — e você pode criar a sua do mesmo jeito.</p>
+                <ul class="mt-6 grid gap-3 text-sm text-topazio-claro/80">
+                    <li><i class="fa-solid fa-check text-topazio-pessego mr-2"></i>Pedra escolhida a dedo, com peso e procedência</li>
+                    <li><i class="fa-solid fa-check text-topazio-pessego mr-2"></i>Modelo ajustado ao seu gosto e ao seu tamanho</li>
+                    <li><i class="fa-solid fa-check text-topazio-pessego mr-2"></i>Acompanhamento por foto e vídeo até a entrega</li>
+                </ul>
+                <div class="mt-9 flex flex-wrap gap-3">
+                    <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Vi%20o%20anel%20com%20halo%20no%20site%20e%20quero%20uma%20joia%20assim." target="_blank" rel="noopener"
+                       class="px-7 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-pessego transition">
+                        <i class="fa-brands fa-whatsapp mr-2"></i>Quero uma joia assim
+                    </a>
+                    <a href="crie-sua-joia.html" class="px-7 py-4 border border-white/20 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">
+                        Criar a minha
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DO GARIMPO À JOIA ===== -->
+    <section id="processo" class="py-24 bg-[#2a1610]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto">
+                <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Nosso processo</p>
+                <h2 class="font-serif text-4xl sm:text-5xl">Do garimpo à joia</h2>
+                <p class="mt-4 text-topazio-claro/65">Acompanhamos cada pedra em todas as etapas — é por isso que sabemos exatamente o que estamos entregando.</p>
+            </div>
+            <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <article>
+                    <div class="gema aspect-[3/4] overflow-hidden"><img src="img/bruto-02.webp" alt="Cristal de Topázio Imperial bruto" loading="lazy"></div>
+                    <p class="font-serif text-4xl text-topazio-pessego mt-4">01</p>
+                    <h3 class="font-serif text-2xl">Garimpo</h3>
+                    <p class="text-sm text-topazio-claro/60 mt-1">Cristais brutos selecionados na região de Ouro Preto.</p>
+                </article>
+                <article>
+                    <div class="gema aspect-[3/4] overflow-hidden">
+                        <video src="img/snapinsta-1792706218687.mp4" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover" aria-label="Lapidação de Topázio Imperial"></video>
+                    </div>
+                    <p class="font-serif text-4xl text-topazio-pessego mt-4">02</p>
+                    <h3 class="font-serif text-2xl">Lapidação</h3>
+                    <p class="text-sm text-topazio-claro/60 mt-1">A pedra ganha forma e brilho, faceta por faceta.</p>
+                </article>
+                <article>
+                    <div class="gema aspect-[3/4] overflow-hidden"><img src="img/midia/pesagem.webp" alt="Topázios lapidados em gota com o peso anotado" loading="lazy"></div>
+                    <p class="font-serif text-4xl text-topazio-pessego mt-4">03</p>
+                    <h3 class="font-serif text-2xl">Pesagem e registro</h3>
+                    <p class="text-sm text-topazio-claro/60 mt-1">Cada pedra é pesada, medida e recebe seu código.</p>
+                </article>
+                <article>
+                    <div class="gema aspect-[3/4] overflow-hidden"><video src="img/midia/joia-anel-halo.mp4" poster="img/midia/joia-anel-halo.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Joia pronta com Topázio Imperial"></video></div>
+                    <p class="font-serif text-4xl text-topazio-pessego mt-4">04</p>
+                    <h3 class="font-serif text-2xl">Joia pronta</h3>
+                    <p class="text-sm text-topazio-claro/60 mt-1">A pedra vira anel, brinco ou pingente — sob medida.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ESTOQUE DE LAPIDADOS ===== -->
+    <section id="estoque" class="py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-wrap items-end justify-between gap-6">
+                <div class="max-w-xl">
+                    <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Estoque próprio</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Pedras lapidadas prontas para virar joia</h2>
+                    <p class="mt-4 text-topazio-claro/65">Do dourado ao pêssego e ao rosa: separamos as pedras por cor, formato e tamanho. Peça fotos e vídeos de qualquer uma delas.</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pedras%20lapidadas%20dispon%C3%ADveis%20no%20estoque." target="_blank" rel="noopener"
+                       class="px-6 py-3 bg-topazio text-topazio-escuro font-semibold text-xs uppercase tracking-[.16em] hover:bg-topazio-pessego transition">
+                        <i class="fa-brands fa-whatsapp mr-2"></i>Ver pedras disponíveis
+                    </a>
+                    <a href="crie-sua-joia.html" class="px-6 py-3 border border-white/20 text-xs uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">Escolher no Crie sua Joia</a>
+                </div>
+            </div>
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 md:h-[620px]">
+                <div class="gema col-span-2 md:row-span-2 overflow-hidden aspect-[3/4] md:aspect-auto"><img src="img/midia/estoque-completo.webp" alt="Estoque de Topázios Imperiais lapidados organizados por cor" loading="lazy"></div>
+                <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/lapidado-oval.mp4" poster="img/midia/lapidado-oval.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Topázio Imperial oval lapidado"></video></div>
+                <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/estoque-lapidados.mp4" poster="img/midia/estoque-lapidados.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Estoque de pedras lapidadas"></video></div>
+                <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/lapidados-rosa.mp4" poster="img/midia/lapidados-rosa.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Topázios lapidados em tons de rosa e pêssego"></video></div>
+                <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/pinca.mp4" poster="img/midia/pinca.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Topázio lapidado na pinça"></video></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== COLEÇÃO ===== -->
     <section id="colecao" class="py-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -206,24 +319,24 @@
                 <p class="mt-4 text-topazio-claro/65">Cada pedra é única. Fale com a gente pelo WhatsApp para ver as peças disponíveis, com fotos e vídeos.</p>
             </div>
             <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Cada cartão usa img/<nome>.jpg; sem a foto, mostra o brilho de topázio -->
+                <!-- Cada cartão usa img/<nome>.webp; sem a foto, mostra o brilho de topázio -->
                 <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Lapidados." target="_blank" rel="noopener" class="group block">
-                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/lapidados.jpg" alt="Topázio Imperial lapidado" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
+                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial lapidado" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Lapidados</h3>
                     <p class="text-sm text-topazio-claro/60">Prontos para anel, pingente e brinco.</p>
                 </a>
                 <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Top%C3%A1zio%20bruto." target="_blank" rel="noopener" class="group block">
-                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/bruto-02.jpg" alt="Topázio Imperial bruto" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
+                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial bruto" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Topázio bruto</h3>
                     <p class="text-sm text-topazio-claro/60">Cristais naturais de coleção.</p>
                 </a>
                 <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Eucl%C3%A1sio." target="_blank" rel="noopener" class="group block">
-                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/euclasio.jpg" alt="Euclásio" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
+                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/euclasio.webp" alt="Euclásio" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Euclásio</h3>
                     <p class="text-sm text-topazio-claro/60">Outra raridade das minas de Ouro Preto.</p>
                 </a>
                 <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Minerais." target="_blank" rel="noopener" class="group block">
-                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/minerais.jpg" alt="Minerais de coleção" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
+                    <div class="gema aspect-[4/5] overflow-hidden"><img src="img/minerais.webp" alt="Minerais de coleção" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Minerais</h3>
                     <p class="text-sm text-topazio-claro/60">Peças selecionadas para colecionadores.</p>
                 </a>
@@ -243,24 +356,24 @@
                     <i class="fa-brands fa-instagram mr-2"></i>@imperialigems
                 </a>
             </div>
-            <!-- Fotos (img/bruto-XX.jpg) e vídeos do Instagram; os vídeos tocam quando aparecem na tela -->
+            <!-- Fotos (img/bruto-XX.webp) e vídeos do Instagram; os vídeos tocam quando aparecem na tela -->
             <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-3">
                 <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="gema aspect-[3/4] overflow-hidden group">
-                    <img src="img/bruto-03.jpg" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
+                    <img src="img/bruto-03.webp" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
                 </a>
                 <div class="gema aspect-[3/4] overflow-hidden relative">
                     <video src="img/snapinsta-1792706166605.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
                     <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
                 </div>
                 <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="gema aspect-[3/4] overflow-hidden group">
-                    <img src="img/bruto-04.jpg" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
+                    <img src="img/bruto-04.webp" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
                 </a>
                 <div class="gema aspect-[3/4] overflow-hidden relative">
                     <video src="img/snapinsta-1792706218687.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
                     <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
                 </div>
                 <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="gema aspect-[3/4] overflow-hidden group">
-                    <img src="img/bruto-02.jpg" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
+                    <img src="img/bruto-02.webp" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
                 </a>
                 <div class="gema aspect-[3/4] overflow-hidden relative">
                     <video src="img/snapinsta-1792706251418.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
@@ -287,8 +400,8 @@
         <div class="absolute inset-0 bg-[radial-gradient(60%_70%_at_20%_50%,rgba(200,85,107,.18),transparent_70%)]"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="grid grid-cols-2 gap-3">
-                <div class="gema aspect-[3/4] overflow-hidden rounded-t-full"><img src="img/bruto-04.jpg" alt="Topázio Imperial" loading="lazy"></div>
-                <div class="gema aspect-[3/4] overflow-hidden rounded-b-full mt-10"><img src="img/bruto-03.jpg" alt="Topázio Imperial" loading="lazy"></div>
+                <div class="gema aspect-[3/4] overflow-hidden rounded-t-full"><img src="img/bruto-04.webp" alt="Topázio Imperial" loading="lazy"></div>
+                <div class="gema aspect-[3/4] overflow-hidden rounded-b-full mt-10"><img src="img/bruto-03.webp" alt="Topázio Imperial" loading="lazy"></div>
             </div>
             <div>
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Novo · Ateliê online</p>
@@ -363,7 +476,7 @@
     <footer class="py-12 border-t border-white/10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-topazio-claro/60">
             <div class="flex items-center gap-4">
-                <img src="img/logo-256.jpg" alt="" class="w-14 h-14 rounded-full">
+                <img src="img/logo-256.webp" alt="" class="w-14 h-14 rounded-full">
                 <div>
                     <p class="font-serif text-2xl text-topazio-claro">Imperiali<span class="text-topazio-pessego">Gems</span></p>
                     <p class="mt-1">Topázio Imperial · Ouro Preto, MG</p>
@@ -411,9 +524,9 @@
                 t.anisotropy = renderer.capabilities.getMaxAnisotropy();
                 return t;
             };
-            const texCorpo = carregar("img/cristal-corpo.jpg");
-            const texTopo = carregar("img/cristal-topo.jpg");
-            const texBase = carregar("img/cristal-base.jpg");
+            const texCorpo = carregar("img/cristal-corpo.webp");
+            const texTopo = carregar("img/cristal-topo.webp");
+            const texBase = carregar("img/cristal-base.webp");
 
             const vidro = (mapa, rugosidade) => new THREE.MeshPhysicalMaterial({
                 // emissiveMap = a foto brilhando por si (como o topázio contra o sol);
@@ -493,7 +606,7 @@
         const observador = new IntersectionObserver(entradas => entradas.forEach(e => {
             if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
         }), { threshold: 0.35 });
-        document.querySelectorAll("#galeria video").forEach(v => observador.observe(v));
+        document.querySelectorAll("#galeria video, video[data-auto]").forEach(v => observador.observe(v));
     </script>
 </body>
 </html>
