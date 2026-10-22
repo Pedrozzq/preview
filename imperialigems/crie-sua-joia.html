@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie sua Joia | ImperialiGems</title>
+    <meta name="description" content="Crie sua joia com Topázio Imperial: escolha a pedra do nosso estoque, o modelo, o metal e veja sua peça em 3D com estimativa de preço.">
+    <link rel="icon" href="img/logo-256.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        topazio: {
+                            claro: '#fbf3e8',
+                            pessego: '#f2a65a',
+                            DEFAULT: '#d9822b',
+                            rosa: '#c8556b',
+                            escuro: '#1c0f0a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Three.js (visualização 3D) -->
+    <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+    </script>
+
+    <style>
+        body { background: #1c0f0a; }
+        .gema {
+            background:
+                radial-gradient(60% 55% at 35% 30%, rgba(255,236,200,.55), transparent 60%),
+                conic-gradient(from 210deg at 50% 50%, var(--c1, #f2a65a), var(--c2, #d9822b), var(--c1, #f2a65a));
+        }
+        .gema img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .opcao { border: 1px solid rgba(255,255,255,.12); transition: border-color .2s, background .2s; }
+        .opcao:hover { border-color: rgba(242,166,90,.5); }
+        .opcao.ativa { border-color: #f2a65a; background: rgba(242,166,90,.08); box-shadow: inset 0 0 0 1px #f2a65a; }
+        .etapa-btn.ativa { color: #1c0f0a; background: #f2a65a; border-color: #f2a65a; }
+        .etapa-btn.feita { color: #f2a65a; border-color: rgba(242,166,90,.6); }
+        #palco { background: radial-gradient(70% 70% at 50% 40%, #3a2016 0%, #1c0f0a 75%); }
+        #palco.claro { background: radial-gradient(70% 70% at 50% 40%, #fffaf2 0%, #ead9c2 80%); }
+        #palco canvas { display: block; width: 100% !important; height: 100% !important; cursor: grab; touch-action: none; }
+        #palco canvas:active { cursor: grabbing; }
+        .aviso { transition: opacity .3s, transform .3s; }
+        input[type=range] { accent-color: #f2a65a; }
+    </style>
+</head>
+<body class="font-sans text-topazio-claro antialiased">
+
+    <!-- ===== TOPO ===== -->
+    <header class="sticky top-0 z-50 bg-topazio-escuro/90 backdrop-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="img/logo-256.jpg" alt="ImperialiGems" class="w-10 h-10 rounded-full object-cover">
+                <span class="font-serif text-2xl tracking-wide">Imperiali<span class="text-topazio-pessego">Gems</span></span>
+            </a>
+            <a href="index.html" class="text-xs uppercase tracking-[.18em] text-topazio-claro/70 hover:text-topazio-pessego transition">
+                <i class="fa-solid fa-arrow-left mr-2"></i>Voltar ao site
+            </a>
+        </div>
+    </header>
+
+    <!-- ===== TÍTULO ===== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-6">
+        <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-3">Ateliê online</p>
+        <h1 class="font-serif text-4xl sm:text-5xl">Crie sua Joia</h1>
+        <p class="mt-3 text-topazio-claro/70 max-w-2xl">Escolha uma pedra real do nosso estoque, o modelo e o metal. Sua joia aparece em 3D enquanto você monta, com a estimativa de preço atualizada a cada escolha.</p>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 pb-20 grid lg:grid-cols-[1.15fr_1fr] gap-8 items-start">
+
+        <!-- ===== VISUALIZAÇÃO 3D (fixa ao lado) ===== -->
+        <div class="lg:sticky lg:top-20">
+            <div id="palco" class="relative aspect-square sm:aspect-[4/3] lg:aspect-square border border-white/10 overflow-hidden">
+                <div id="carregando" class="absolute inset-0 grid place-items-center text-sm text-topazio-claro/60">Carregando visualização 3D…</div>
+                <div class="absolute top-3 left-3 text-[11px] uppercase tracking-[.2em] text-topazio-claro/50 pointer-events-none" id="legendaPalco"></div>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-topazio-claro/45 pointer-events-none whitespace-nowrap">
+                    <i class="fa-solid fa-hand-pointer mr-1"></i>Arraste para girar · role ou pince para aproximar
+                </div>
+            </div>
+            <!-- resumo de preço sempre visível -->
+            <div class="mt-4 p-5 border border-white/10 bg-white/[.02] flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <p class="text-[11px] uppercase tracking-[.22em] text-topazio-claro/55">Estimativa</p>
+                    <p class="font-serif text-3xl sm:text-4xl text-topazio-pessego" id="precoFaixa">—</p>
+                    <p class="text-xs text-topazio-claro/50 mt-1" id="precoResumo"></p>
+                </div>
+                <button type="button" data-ir-etapa="5" class="text-xs uppercase tracking-[.16em] text-topazio-pessego hover:underline">Ver detalhes do preço</button>
+            </div>
+        </div>
+
+        <!-- ===== ETAPAS ===== -->
+        <div>
+            <ol class="grid grid-cols-6 gap-1.5 mb-6" id="etapas">
+                <!-- preenchido pelo script -->
+            </ol>
+
+            <!-- 1. PEDRA -->
+            <section data-etapa="1" class="painel">
+                <h2 class="font-serif text-3xl">1. Escolha a pedra</h2>
+                <p class="text-sm text-topazio-claro/60 mt-1">Cada pedra é única e tem um código. Você escolhe exatamente a peça que vai para a sua joia.</p>
+                <div class="flex flex-wrap gap-2 mt-5" id="filtrosPedra"></div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4" id="gradePedras"></div>
+                <div class="mt-5 p-5 border border-white/10 bg-white/[.02]" id="detalhePedra"></div>
+            </section>
+
+            <!-- 2. MODELO -->
+            <section data-etapa="2" class="painel hidden">
+                <h2 class="font-serif text-3xl">2. Escolha o modelo</h2>
+                <p class="text-sm text-topazio-claro/60 mt-1">Que tipo de joia você quer criar?</p>
+                <div class="grid grid-cols-3 gap-3 mt-5" id="gradeTipos"></div>
+                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-7 mb-3">Estilo</h3>
+                <div class="grid sm:grid-cols-3 gap-3" id="gradeEstilos"></div>
+            </section>
+
+            <!-- 3. MATERIAIS -->
+            <section data-etapa="3" class="painel hidden">
+                <h2 class="font-serif text-3xl">3. Materiais e acabamento</h2>
+                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-6 mb-3">Metal</h3>
+                <div class="grid grid-cols-2 gap-3" id="gradeMetais"></div>
+
+                <div id="blocoAro" class="mt-7">
+                    <div class="flex items-baseline justify-between">
+                        <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55">Tamanho do anel (aro)</h3>
+                        <span class="font-serif text-2xl text-topazio-pessego" id="aroValor">16</span>
+                    </div>
+                    <input type="range" min="8" max="32" step="1" id="aro" class="w-full mt-3">
+                    <p class="text-xs text-topazio-claro/50 mt-1" id="aroInfo"></p>
+                </div>
+
+                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-7 mb-3">Acabamento do metal</h3>
+                <div class="grid grid-cols-3 gap-3" id="gradeAcabamentos"></div>
+
+                <div id="blocoGravacao" class="mt-7">
+                    <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mb-3">Gravação interna (opcional)</h3>
+                    <input type="text" id="gravacao" maxlength="20" placeholder="Ex.: nome ou data"
+                           class="w-full bg-transparent border border-white/15 px-4 py-3 text-sm focus:outline-none focus:border-topazio-pessego">
+                </div>
+
+                <label id="blocoCorrente" class="mt-7 flex items-center gap-3 text-sm cursor-pointer">
+                    <input type="checkbox" id="corrente" class="w-4 h-4 accent-[#f2a65a]">
+                    Incluir corrente de 45 cm no mesmo metal
+                </label>
+            </section>
+
+            <!-- 4. VISUALIZAÇÃO -->
+            <section data-etapa="4" class="painel hidden">
+                <h2 class="font-serif text-3xl">4. Veja sua joia em 3D</h2>
+                <p class="text-sm text-topazio-claro/60 mt-1">Gire, aproxime e observe todos os ângulos. Volte a qualquer etapa — a peça se atualiza na hora.</p>
+                <div class="grid sm:grid-cols-2 gap-3 mt-5">
+                    <button type="button" id="btnGirar" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-rotate mr-2 text-topazio-pessego"></i><span>Girar automaticamente</span></button>
+                    <button type="button" id="btnCentralizar" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-crosshairs mr-2 text-topazio-pessego"></i>Centralizar a peça</button>
+                    <button type="button" id="btnFundo" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-circle-half-stroke mr-2 text-topazio-pessego"></i>Alternar fundo claro / escuro</button>
+                    <button type="button" id="btnFoto" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-camera mr-2 text-topazio-pessego"></i>Baixar imagem da joia</button>
+                </div>
+                <div class="mt-6 p-5 border border-white/10 bg-white/[.02] text-sm leading-relaxed" id="resumoVisual"></div>
+                <p class="text-xs text-topazio-claro/45 mt-3">A visualização é uma representação digital. Cor e brilho da pedra real são confirmados com fotos e vídeos no atendimento.</p>
+            </section>
+
+            <!-- 5. PREÇO -->
+            <section data-etapa="5" class="painel hidden">
+                <h2 class="font-serif text-3xl">5. Estimativa de preço</h2>
+                <p class="text-sm text-topazio-claro/60 mt-1">Veja quanto cada escolha pesa no valor final.</p>
+                <table class="w-full mt-5 text-sm">
+                    <tbody id="tabelaPreco"></tbody>
+                </table>
+                <div class="mt-4 p-5 bg-topazio-pessego/10 border border-topazio-pessego/40 flex items-end justify-between gap-4">
+                    <div>
+                        <p class="text-[11px] uppercase tracking-[.22em] text-topazio-claro/60">Faixa estimada</p>
+                        <p class="font-serif text-3xl text-topazio-pessego" id="precoFaixa2">—</p>
+                    </div>
+                    <p class="text-xs text-topazio-claro/55 text-right max-w-[14rem]">Valor final confirmado no orçamento, conforme cotação do metal e peso real da peça.</p>
+                </div>
+            </section>
+
+            <!-- 6. FINALIZAR -->
+            <section data-etapa="6" class="painel hidden">
+                <h2 class="font-serif text-3xl">6. Finalize seu projeto</h2>
+                <label class="block text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-6 mb-2" for="nomeProjeto">Nome do projeto</label>
+                <input type="text" id="nomeProjeto" maxlength="40" placeholder="Ex.: Anel de noivado da Ana"
+                       class="w-full bg-transparent border border-white/15 px-4 py-3 text-sm focus:outline-none focus:border-topazio-pessego">
+                <div class="grid sm:grid-cols-2 gap-3 mt-5">
+                    <button type="button" id="btnOrcamento" class="px-5 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio-pessego transition">
+                        <i class="fa-brands fa-whatsapp mr-2"></i>Solicitar orçamento
+                    </button>
+                    <button type="button" id="btnComprar" class="px-5 py-4 border border-topazio-pessego text-topazio-pessego font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+                        <i class="fa-solid fa-bag-shopping mr-2"></i>Quero comprar
+                    </button>
+                    <button type="button" id="btnSalvar" class="opcao px-5 py-4 text-sm"><i class="fa-regular fa-bookmark mr-2 text-topazio-pessego"></i>Salvar criação</button>
+                    <button type="button" id="btnCompartilhar" class="opcao px-5 py-4 text-sm"><i class="fa-solid fa-share-nodes mr-2 text-topazio-pessego"></i>Compartilhar projeto</button>
+                </div>
+                <p class="text-xs text-topazio-claro/50 mt-3">Orçamento e compra são feitos pelo WhatsApp: a conversa já abre com o resumo completo do seu projeto.</p>
+
+                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-8 mb-3">Minhas criações</h3>
+                <div id="listaSalvos" class="grid gap-3"></div>
+            </section>
+
+            <!-- navegação entre etapas -->
+            <div class="flex justify-between gap-3 mt-8">
+                <button type="button" id="btnVoltar" class="px-6 py-3 border border-white/15 text-sm uppercase tracking-[.14em] hover:border-topazio-pessego transition">Voltar</button>
+                <button type="button" id="btnAvancar" class="px-6 py-3 bg-topazio-pessego text-topazio-escuro font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio transition">Próximo</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="aviso" class="aviso fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 bg-topazio-claro text-topazio-escuro text-sm shadow-2xl opacity-0 translate-y-4 pointer-events-none"></div>
+
+    <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+    /* ============================================================
+       DADOS DA JOALHERIA — edite aqui
+       ============================================================
+       PEDRAS: estoque de topázios lapidados. As linhas abaixo são EXEMPLOS:
+       troque pelos dados reais. A foto de cada pedra fica em
+       img/pedras/<codigo>.jpg (sem a foto, aparece um brilho na cor da pedra).
+         c / l = comprimento / largura em mm · ct = quilates · preco em R$ */
+    const PEDRAS = [
+        { codigo:"IG-0101", tom:"Dourado",  cor:"#e8a33d", formato:"oval",       lapidacao:"Oval brilhante",    c:9,   l:7,   ct:2.10, pureza:"Limpa a olho nu",          preco:2800 },
+        { codigo:"IG-0102", tom:"Pêssego",  cor:"#f0a07a", formato:"gota",       lapidacao:"Gota (pera)",       c:10,  l:6,   ct:1.85, pureza:"Limpa a olho nu",          preco:2400 },
+        { codigo:"IG-0103", tom:"Sherry",   cor:"#d9702a", formato:"redondo",    lapidacao:"Redonda brilhante", c:6.5, l:6.5, ct:1.20, pureza:"Leve inclusão natural",    preco:1900 },
+        { codigo:"IG-0104", tom:"Rosa",     cor:"#d0607a", formato:"oval",       lapidacao:"Oval brilhante",    c:8,   l:6,   ct:1.40, pureza:"Limpa a olho nu",          preco:4200 },
+        { codigo:"IG-0105", tom:"Champanhe",cor:"#e9c48a", formato:"retangular", lapidacao:"Esmeralda",         c:9,   l:7,   ct:2.60, pureza:"Limpa a olho nu",          preco:2600 },
+        { codigo:"IG-0106", tom:"Sherry",   cor:"#c25a24", formato:"gota",       lapidacao:"Gota (pera)",       c:12,  l:8,   ct:3.40, pureza:"Limpa a olho nu",          preco:5600 },
+        { codigo:"IG-0107", tom:"Dourado",  cor:"#f2c25a", formato:"redondo",    lapidacao:"Redonda brilhante", c:5,   l:5,   ct:0.60, pureza:"Leve inclusão natural",    preco:900  },
+        { codigo:"IG-0108", tom:"Rosa",     cor:"#e88a7a", formato:"retangular", lapidacao:"Esmeralda",         c:7,   l:5,   ct:1.10, pureza:"Limpa a olho nu",          preco:2900 }
+    ];
+
+    /* gramas = peso estimado do metal em ouro 18k (convertido para os outros metais
+       pela densidade). No anel, o peso do aro é calculado pelo tamanho. */
+    const MODELOS = {
+        anel: { nome:"Anel", icone:"fa-ring", estilos:{
+            solitario:{ nome:"Solitário", desc:"4 garras e aro fino. Clássico e atemporal.", maoDeObra:700,  aro:{ w:2.2, t:1.6 }, extraMm3:35 },
+            halo:     { nome:"Halo",      desc:"A pedra cercada por pontos de brilho em zircônia.", maoDeObra:1300, aro:{ w:2.0, t:1.6 }, extraMm3:85 },
+            largo:    { nome:"Aro largo", desc:"Aro robusto com a pedra embutida.", maoDeObra:950,  aro:{ w:4.5, t:2.0 }, extraMm3:45 }
+        }},
+        brinco: { nome:"Brinco", icone:"fa-gem", estilos:{
+            ponto:  { nome:"Ponto de luz", desc:"Pedra presa por garras, direto na orelha.", maoDeObra:650,  gramas:1.6 },
+            gota:   { nome:"Gota",         desc:"Pedra pendente em gancho delicado.",        maoDeObra:900,  gramas:2.4 },
+            argola: { nome:"Argola",       desc:"Argola com a pedra pendurada.",            maoDeObra:1100, gramas:4.0 }
+        }},
+        pingente: { nome:"Pingente", icone:"fa-certificate", estilos:{
+            classico:{ nome:"Clássico", desc:"4 garras e passador simples.",        maoDeObra:600,  gramas:1.2 },
+            moldura: { nome:"Moldura",  desc:"Pedra envolvida por aro de metal.",   maoDeObra:800,  gramas:1.8 },
+            halo:    { nome:"Halo",     desc:"Moldura de pontos de brilho em zircônia.", maoDeObra:1200, gramas:2.2 }
+        }}
+    };
+
+    /* precoG = R$ por grama (ajuste pela cotação do dia) */
+    const METAIS = {
+        ouro18: { nome:"Ouro amarelo 18k", cor:"#e6b85c", densidade:15.5, precoG:520 },
+        rose:   { nome:"Ouro rosé 18k",    cor:"#e3a189", densidade:15.2, precoG:520 },
+        branco: { nome:"Ouro branco 18k",  cor:"#e4e6e8", densidade:15.9, precoG:560 },
+        prata:  { nome:"Prata 925",        cor:"#cfd3d6", densidade:10.4, precoG:15  }
+    };
+    const ACABAMENTOS = {
+        polido:   { nome:"Polido",   preco:0,  rugosidade:0.12 },
+        escovado: { nome:"Escovado", preco:90, rugosidade:0.42 },
+        fosco:    { nome:"Fosco",    preco:90, rugosidade:0.62 }
+    };
+    const GRAVACAO_PRECO = 80;
+    const CORRENTE_GRAMAS = 3.0;      // corrente 45 cm, em ouro 18k
+    const MARGEM_ESTIMATIVA = 0.10;   // faixa de ±10%
+    const WHATSAPP = "553171416959";   // +55 31 7141-6959
+
+    /* ============================================================
+       ESTADO
+       ============================================================ */
+    const PADRAO = { pedra:PEDRAS[0].codigo, tipo:"anel", estilo:"solitario", metal:"ouro18", aro:16, acabamento:"polido", gravacao:"", corrente:false, nome:"" };
+    let estado = { ...PADRAO, ...lerLink() };
+    let etapa = 1;
+    let filtroFormato = "";
+    const SALVOS_LS = "imperialigems_criacoes";
+
+    const $ = id => document.getElementById(id);
+    const brl = v => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL", maximumFractionDigits:0 });
+    const pedraAtual = () => PEDRAS.find(p => p.codigo === estado.pedra) || PEDRAS[0];
+    const estiloAtual = () => MODELOS[estado.tipo].estilos[estado.estilo];
+    const NOMES_FORMATO = { oval:"Oval", gota:"Gota", redondo:"Redondo", retangular:"Retangular" };
+
+    /** Link compartilhável: #pedra=IG-0101&tipo=anel&... */
+    function lerLink(){
+        const p = new URLSearchParams(location.hash.slice(1));
+        const r = {};
+        for (const k of Object.keys(PADRAO)) if (p.has(k)) r[k] = p.get(k);
+        if (r.aro) r.aro = Number(r.aro) || PADRAO.aro;
+        if (r.corrente) r.corrente = r.corrente === "1";
+        if (r.pedra && !PEDRAS.some(x => x.codigo === r.pedra)) delete r.pedra;
+        if (r.tipo && !MODELOS[r.tipo]) { delete r.tipo; delete r.estilo; }
+        const tipo = r.tipo || PADRAO.tipo;
+        if (r.estilo && !MODELOS[tipo].estilos[r.estilo]) r.estilo = Object.keys(MODELOS[tipo].estilos)[0];
+        if (r.tipo && !r.estilo) r.estilo = Object.keys(MODELOS[tipo].estilos)[0];
+        if (r.metal && !METAIS[r.metal]) delete r.metal;
+        if (r.acabamento && !ACABAMENTOS[r.acabamento]) delete r.acabamento;
+        return r;
+    }
+    function linkProjeto(){
+        const p = new URLSearchParams();
+        for (const k of Object.keys(PADRAO)) {
+            const v = estado[k];
+            if (k === "corrente") { if (v) p.set(k, "1"); }
+            else if (v !== "" && v != null) p.set(k, v);
+        }
+        return location.origin + location.pathname + "#" + p.toString();
+    }
+
+    /* ============================================================
+       PREÇO
+       ============================================================ */
+    /** Tamanho brasileiro: circunferência interna (mm) = aro + 40. */
+    const diametroAro = aro => (aro + 40) / Math.PI;
+
+    function calcularPreco(){
+        const pedra = pedraAtual(), est = estiloAtual(), metal = METAIS[estado.metal], acab = ACABAMENTOS[estado.acabamento];
+        let gramas;
+        if (estado.tipo === "anel") {
+            const { w, t } = est.aro;
+            const volume = Math.PI * (diametroAro(estado.aro) + t) * w * t + est.extraMm3;   // mm³
+            gramas = volume * metal.densidade / 1000;
+        } else {
+            gramas = est.gramas * metal.densidade / 15.5;
+        }
+        if (estado.tipo === "pingente" && estado.corrente) gramas += CORRENTE_GRAMAS * metal.densidade / 15.5;
+
+        const qtdPedras = estado.tipo === "brinco" ? 2 : 1;
+        const linhas = [
+            { rotulo: qtdPedras === 2 ? `Pedras ${pedra.codigo} + par equivalente` : `Pedra ${pedra.codigo}`, valor: pedra.preco * qtdPedras,
+              nota: qtdPedras === 2 ? "Brincos levam 2 pedras: separamos um par de cor e tamanho equivalentes" : `${pedra.ct.toFixed(2)} ct · ${pedra.lapidacao}` },
+            { rotulo: `${metal.nome} (~${gramas.toFixed(1)} g)`, valor: gramas * metal.precoG, nota: `${brl(metal.precoG)} por grama` },
+            { rotulo: `Fabricação — ${MODELOS[estado.tipo].nome} ${est.nome}`, valor: est.maoDeObra, nota: "Mão de obra e complexidade do modelo" }
+        ];
+        if (acab.preco) linhas.push({ rotulo:`Acabamento ${acab.nome.toLowerCase()}`, valor:acab.preco });
+        if (estado.tipo === "anel" && estado.gravacao.trim()) linhas.push({ rotulo:`Gravação “${estado.gravacao.trim()}”`, valor:GRAVACAO_PRECO });
+
+        const total = linhas.reduce((s, l) => s + l.valor, 0);
+        const arred = v => Math.round(v / 10) * 10;
+        return { linhas, total, gramas, min: arred(total * (1 - MARGEM_ESTIMATIVA)), max: arred(total * (1 + MARGEM_ESTIMATIVA)) };
+    }
+
+    /* ============================================================
+       3D
+       ============================================================ */
+    const palco = $("palco");
+    const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true, preserveDrawingBuffer:true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    palco.appendChild(renderer.domElement);
+    $("carregando").remove();
+
+    const cena = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    cena.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const luz = new THREE.DirectionalLight(0xffffff, 2.2); luz.position.set(20, 40, 30); cena.add(luz);
+    const luz2 = new THREE.DirectionalLight(0xffe2c0, 1.2); luz2.position.set(-30, 10, -20); cena.add(luz2);
+
+    const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 1000);
+    const controles = new OrbitControls(camera, renderer.domElement);
+    controles.enableDamping = true;
+    controles.enablePan = false;
+    controles.autoRotateSpeed = 2.2;
+
+    const joia = new THREE.Group();
+    cena.add(joia);
+
+    function ajustarTamanho(){
+        const { width, height } = palco.getBoundingClientRect();
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+    new ResizeObserver(ajustarTamanho).observe(palco);
+    ajustarTamanho();
+
+    (function animar(){
+        requestAnimationFrame(animar);
+        controles.update();
+        renderer.render(cena, camera);
+    })();
+
+    /* ---------- geometrias ---------- */
+    const cacheGema = {};
+    /** Pedra facetada de raio 1: mesa no topo (+y), culaça embaixo. */
+    function geometriaGema(formato){
+        if (cacheGema[formato]) return cacheGema[formato];
+        const perfil = [ [0,-0.62], [1,0], [1,0.05], [0.62,0.24], [0,0.24] ].map(([x,y]) => new THREE.Vector2(x, y));
+        const ret = formato === "retangular";
+        const geo = new THREE.LatheGeometry(perfil, ret ? 4 : 16, ret ? Math.PI / 4 : 0);
+        if (formato === "gota") {
+            const pos = geo.attributes.position;
+            for (let i = 0; i < pos.count; i++) {
+                const z = pos.getZ(i);
+                if (z > 0) { pos.setX(i, pos.getX(i) * (1 - 0.6 * z)); pos.setZ(i, z * 1.15); }
+            }
+        }
+        geo.computeVertexNormals();
+        return cacheGema[formato] = geo;
+    }
+    /** Meia-largura (x) e meio-comprimento (z) da pedra em mm. */
+    const medidas = p => ({ hw: p.l / 2, hl: p.c / 2, sy: p.l / 2 });
+
+    function materialGema(cor, brilho = false){
+        return new THREE.MeshPhysicalMaterial({
+            color: cor, metalness: 0, roughness: 0.02, flatShading: true,
+            transmission: brilho ? 0.2 : 0.55, thickness: 3, ior: 1.62,
+            attenuationColor: new THREE.Color(cor), attenuationDistance: 5,
+            specularIntensity: 1, envMapIntensity: 1.8, clearcoat: 1, clearcoatRoughness: 0
+        });
+    }
+    function malhaGema(pedra){
+        const m = new THREE.Mesh(geometriaGema(pedra.formato), materialGema(pedra.cor));
+        const k = pedra.formato === "retangular" ? Math.SQRT2 : 1;
+        const { hw, hl, sy } = medidas(pedra);
+        m.scale.set(hw * k, sy, hl * k);
+        return m;
+    }
+    function materialMetal(){
+        return new THREE.MeshStandardMaterial({ color: METAIS[estado.metal].cor, metalness: 1, roughness: ACABAMENTOS[estado.acabamento].rugosidade, envMapIntensity: 1.3 });
+    }
+    function cilindro(mat, a, b, raio){
+        const dir = new THREE.Vector3().subVectors(b, a);
+        const m = new THREE.Mesh(new THREE.CylinderGeometry(raio, raio * 0.85, dir.length(), 12), mat);
+        m.position.copy(a).addScaledVector(dir, 0.5);
+        m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+        const ponta = new THREE.Mesh(new THREE.SphereGeometry(raio * 1.05, 12, 8), mat);
+        ponta.position.copy(b);
+        const g = new THREE.Group(); g.add(m, ponta); return g;
+    }
+    function tubo(mat, pontos, raio, fechado = false){
+        const curva = new THREE.CatmullRomCurve3(pontos, fechado);
+        return new THREE.Mesh(new THREE.TubeGeometry(curva, Math.max(64, pontos.length * 16), raio, 10, fechado), mat);
+    }
+    function elipse(a, b, n = 48){
+        return Array.from({ length:n }, (_, i) => { const t = i / n * Math.PI * 2; return new THREE.Vector3(Math.cos(t) * a, 0, Math.sin(t) * b); });
+    }
+
+    /**
+     * Engaste da pedra num grupo local onde a mesa aponta para +y e a cintura fica em y=0.
+     * Depois o grupo é girado/posicionado conforme a joia.
+     */
+    function engaste(pedra, mat, tipoEngaste){
+        const g = new THREE.Group();
+        g.add(malhaGema(pedra));
+        const { hw, hl, sy } = medidas(pedra);
+        const fundo = -0.62 * sy;
+        if (tipoEngaste === "garras" || tipoEngaste === "halo") {
+            const raioG = Math.max(0.32, Math.min(hw, hl) * 0.12);
+            const fator = pedra.formato === "retangular" ? 0.92 : 0.74;
+            for (const [sx, sz] of [[1,1],[1,-1],[-1,1],[-1,-1]]) {
+                g.add(cilindro(mat, new THREE.Vector3(sx * hw * 0.35, fundo - 0.4, sz * hl * 0.35),
+                                    new THREE.Vector3(sx * hw * fator, 0.18 * sy, sz * hl * fator), raioG));
+            }
+            const cesto = tubo(mat, elipse(hw * 0.55, hl * 0.55), raioG * 0.8, true);
+            cesto.position.y = fundo * 0.45;
+            g.add(cesto);
+        }
+        if (tipoEngaste === "moldura") {
+            const altura = -fundo * 0.8 + 0.25;
+            const aro = new THREE.Mesh(new THREE.CylinderGeometry(1, 0.8, altura, 48, 1, true), mat);
+            aro.material.side = THREE.DoubleSide;
+            const k = pedra.formato === "retangular" ? 1.08 : 1.04;
+            aro.scale.set(hw * k + 0.35, 1, hl * k + 0.35);
+            aro.position.y = 0.12 - altura / 2;
+            g.add(aro);
+            const borda = tubo(mat, elipse(hw * k + 0.35, hl * k + 0.35), 0.3, true);
+            borda.position.y = 0.12;
+            g.add(borda);
+        }
+        if (tipoEngaste === "halo") {
+            const a = hw + 1.1, b = hl + 1.1;
+            const n = Math.max(12, Math.round(Math.PI * (a + b) / 1.35));
+            elipse(a, b, n).forEach(p => {
+                const m = new THREE.Mesh(geometriaGema("redondo"), materialGema("#f6f3ee", true));
+                m.scale.set(0.58, 0.58, 0.58);
+                m.position.set(p.x, -0.15, p.z);
+                g.add(m);
+            });
+            const base = tubo(mat, elipse(a, b), 0.5, true);
+            base.position.y = -0.55;
+            g.add(base);
+        }
+        return g;
+    }
+
+    function montarAnel(mat, pedra){
+        const est = estiloAtual();
+        const { w, t } = est.aro;
+        const raio = diametroAro(estado.aro) / 2 + t / 2;
+        const aro = new THREE.Mesh(new THREE.TorusGeometry(raio, t / 2, 32, 128), mat);
+        aro.scale.z = w / t;
+        joia.add(aro);
+
+        const { sy } = medidas(pedra);
+        const tipo = { solitario:"garras", halo:"halo", largo:"moldura" }[estado.estilo];
+        const g = engaste(pedra, mat, tipo);
+        const subida = estado.estilo === "largo" ? 0.62 * sy * 0.55 : 0.62 * sy + 0.9;
+        g.position.y = raio + t / 2 + subida;
+        joia.add(g);
+        // ponte entre o aro e a cabeça da pedra
+        if (estado.estilo !== "largo") {
+            for (const s of [-1, 1]) {
+                joia.add(tubo(mat, [
+                    new THREE.Vector3(s * 2.4, raio - 0.2, 0),
+                    new THREE.Vector3(s * 1.6, raio + t / 2 + 0.6, 0),
+                    new THREE.Vector3(s * 0.9, g.position.y - 0.62 * sy - 0.2, 0)
+                ], 0.55));
+            }
+        }
+    }
+
+    function montarBrinco(mat, pedra){
+        const { hl, sy } = medidas(pedra);
+        const um = new THREE.Group();
+        const virar = g => { g.rotation.x = Math.PI / 2; return g; };   // mesa para a frente (+z)
+        if (estado.estilo === "ponto") {
+            um.add(virar(engaste(pedra, mat, "garras")));
+            const pino = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 10, 12), mat);
+            pino.rotation.x = Math.PI / 2; pino.position.z = -5 - 0.62 * sy;
+            um.add(pino);
+            const trava = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.35, 12, 32), mat);
+            trava.position.z = -7 - 0.62 * sy;
+            um.add(trava);
+        } else if (estado.estilo === "gota") {
+            const g = virar(engaste(pedra, mat, "moldura"));
+            g.position.y = -hl - 4;
+            um.add(g);
+            const argolinha = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.3, 12, 32), mat);
+            argolinha.rotation.y = Math.PI / 2;
+            argolinha.position.y = -3.2;
+            um.add(argolinha);
+            um.add(tubo(mat, [
+                new THREE.Vector3(0, -2.4, 0), new THREE.Vector3(0, 2, 0.3),
+                new THREE.Vector3(0, 5.5, -1.5), new THREE.Vector3(0, 5, -5), new THREE.Vector3(0, 1.5, -6.5)
+            ], 0.38));
+        } else {
+            const raio = 7.5;
+            const argola = new THREE.Mesh(new THREE.TorusGeometry(raio, 0.75, 20, 96), mat);
+            um.add(argola);
+            const g = virar(engaste(pedra, mat, "moldura"));
+            g.position.y = -raio - hl - 1.6;
+            um.add(g);
+            const elo = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.3, 12, 32), mat);
+            elo.rotation.y = Math.PI / 2;
+            elo.position.y = -raio - 0.9;
+            um.add(elo);
+        }
+        const outro = um.clone();
+        um.position.x = -11; outro.position.x = 11;
+        joia.add(um, outro);
+    }
+
+    function montarPingente(mat, pedra){
+        const { hl } = medidas(pedra);
+        const tipo = { classico:"garras", moldura:"moldura", halo:"halo" }[estado.estilo];
+        const g = engaste(pedra, mat, tipo);
+        g.rotation.x = Math.PI / 2;
+        joia.add(g);
+        const topo = hl + (estado.estilo === "halo" ? 1.6 : 0.6);
+        const passador = new THREE.Mesh(new THREE.TorusGeometry(1.7, 0.5, 14, 40), mat);
+        passador.rotation.y = Math.PI / 2;
+        passador.position.y = topo + 1.9;
+        joia.add(passador);
+        if (estado.corrente) {
+            const y = topo + 3.4;
+            for (const s of [-1, 1]) {
+                joia.add(tubo(mat, [
+                    new THREE.Vector3(0, y, 0), new THREE.Vector3(s * 5, y + 7, -1),
+                    new THREE.Vector3(s * 11, y + 22, -4), new THREE.Vector3(s * 14, y + 40, -6)
+                ], 0.28));
+            }
+        }
+    }
+
+    let ultimoEnquadre = "";
+    function montarJoia(){
+        joia.traverse(o => { if (o.isMesh && o.geometry && !Object.values(cacheGema).includes(o.geometry)) o.geometry.dispose(); });
+        joia.clear();
+        const mat = materialMetal(), pedra = pedraAtual();
+        if (estado.tipo === "anel") montarAnel(mat, pedra);
+        else if (estado.tipo === "brinco") montarBrinco(mat, pedra);
+        else montarPingente(mat, pedra);
+
+        const chave = estado.tipo + estado.estilo + (estado.corrente ? "c" : "");
+        if (chave !== ultimoEnquadre) { enquadrar(); ultimoEnquadre = chave; }
+        $("legendaPalco").textContent = `${MODELOS[estado.tipo].nome} ${estiloAtual().nome} · ${METAIS[estado.metal].nome}`;
+    }
+
+    function enquadrar(){
+        const caixa = new THREE.Box3().setFromObject(joia);
+        const centro = caixa.getCenter(new THREE.Vector3());
+        const tamanho = caixa.getSize(new THREE.Vector3()).length();
+        const dir = estado.tipo === "anel" ? new THREE.Vector3(0.35, 0.55, 1) : new THREE.Vector3(0.25, 0.12, 1);
+        camera.position.copy(centro).addScaledVector(dir.normalize(), tamanho * 1.35);
+        controles.target.copy(centro);
+        controles.minDistance = tamanho * 0.45;
+        controles.maxDistance = tamanho * 3;
+        controles.update();
+    }
+
+    /* ============================================================
+       INTERFACE
+       ============================================================ */
+    const ROTULOS_ETAPAS = ["Pedra", "Modelo", "Materiais", "3D", "Preço", "Finalizar"];
+    function pintarEtapas(){
+        $("etapas").innerHTML = ROTULOS_ETAPAS.map((r, i) => `
+            <li><button type="button" data-ir-etapa="${i + 1}"
+                class="etapa-btn w-full border border-white/15 py-2 text-[10px] sm:text-[11px] uppercase tracking-[.12em] ${i + 1 === etapa ? "ativa" : i + 1 < etapa ? "feita" : "text-topazio-claro/60"}">
+                <span class="block font-serif text-base leading-none mb-0.5">${i + 1}</span>${r}</button></li>`).join("");
+        document.querySelectorAll(".painel").forEach(p => p.classList.toggle("hidden", Number(p.dataset.etapa) !== etapa));
+        $("btnVoltar").style.visibility = etapa === 1 ? "hidden" : "visible";
+        $("btnAvancar").style.visibility = etapa === 6 ? "hidden" : "visible";
+    }
+    function irEtapa(n){
+        etapa = Math.min(6, Math.max(1, n));
+        pintarEtapas();
+        if (window.innerWidth < 1024) $("etapas").scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    function fotoPedra(p, classe = ""){
+        return `<div class="gema ${classe}" style="--c1:${p.cor};--c2:${p.cor}cc">
+            <img src="img/pedras/${p.codigo}.jpg" alt="Topázio Imperial ${p.codigo}" loading="lazy" onerror="this.remove()"></div>`;
+    }
+
+    function pintarPedras(){
+        const formatos = [...new Set(PEDRAS.map(p => p.formato))];
+        $("filtrosPedra").innerHTML = [["", "Todas"], ...formatos.map(f => [f, NOMES_FORMATO[f]])].map(([v, r]) =>
+            `<button type="button" data-filtro="${v}" class="opcao px-4 py-2 text-xs uppercase tracking-[.14em] ${filtroFormato === v ? "ativa" : ""}">${r}</button>`).join("");
+        $("gradePedras").innerHTML = PEDRAS.filter(p => !filtroFormato || p.formato === filtroFormato).map(p => `
+            <button type="button" data-pedra="${p.codigo}" class="opcao p-2 text-left ${p.codigo === estado.pedra ? "ativa" : ""}">
+                ${fotoPedra(p, "aspect-square")}
+                <span class="block text-[11px] tracking-[.14em] text-topazio-pessego mt-2">${p.codigo}</span>
+                <span class="block text-sm">${p.tom} · ${NOMES_FORMATO[p.formato]}</span>
+                <span class="block text-xs text-topazio-claro/55">${p.c} × ${p.l} mm · ${p.ct.toFixed(2)} ct</span>
+                <span class="block text-sm mt-1">${brl(p.preco)}</span>
+            </button>`).join("");
+        const p = pedraAtual();
+        $("detalhePedra").innerHTML = `
+            <div class="grid grid-cols-[96px_1fr] gap-4 items-start">
+                ${fotoPedra(p, "aspect-square")}
+                <div>
+                    <p class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">Pedra selecionada · ${p.codigo}</p>
+                    <dl class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-sm">
+                        <dt class="text-topazio-claro/55">Cor</dt><dd>${p.tom} <span class="inline-block w-3 h-3 rounded-full align-middle ml-1" style="background:${p.cor}"></span></dd>
+                        <dt class="text-topazio-claro/55">Lapidação</dt><dd>${p.lapidacao}</dd>
+                        <dt class="text-topazio-claro/55">Dimensões</dt><dd>${p.c} × ${p.l} mm</dd>
+                        <dt class="text-topazio-claro/55">Peso</dt><dd>${p.ct.toFixed(2)} ct</dd>
+                        <dt class="text-topazio-claro/55">Pureza</dt><dd>${p.pureza}</dd>
+                        <dt class="text-topazio-claro/55">Origem</dt><dd>Ouro Preto, MG</dd>
+                    </dl>
+                </div>
+            </div>`;
+    }
+
+    function pintarModelos(){
+        $("gradeTipos").innerHTML = Object.entries(MODELOS).map(([k, m]) => `
+            <button type="button" data-tipo="${k}" class="opcao py-5 text-center ${k === estado.tipo ? "ativa" : ""}">
+                <i class="fa-solid ${m.icone} text-2xl text-topazio-pessego"></i>
+                <span class="block mt-2 font-serif text-xl">${m.nome}</span>
+            </button>`).join("");
+        $("gradeEstilos").innerHTML = Object.entries(MODELOS[estado.tipo].estilos).map(([k, e]) => `
+            <button type="button" data-estilo="${k}" class="opcao p-4 text-left ${k === estado.estilo ? "ativa" : ""}">
+                <span class="block font-serif text-xl">${e.nome}</span>
+                <span class="block text-xs text-topazio-claro/60 mt-1 leading-relaxed">${e.desc}</span>
+                <span class="block text-xs text-topazio-pessego mt-2">Fabricação a partir de ${brl(e.maoDeObra)}</span>
+            </button>`).join("");
+    }
+
+    function pintarMateriais(){
+        $("gradeMetais").innerHTML = Object.entries(METAIS).map(([k, m]) => `
+            <button type="button" data-metal="${k}" class="opcao p-4 flex items-center gap-3 text-left ${k === estado.metal ? "ativa" : ""}">
+                <span class="w-8 h-8 rounded-full flex-none" style="background:radial-gradient(circle at 35% 30%,#fff 0%,${m.cor} 45%,#6b5434 120%)"></span>
+                <span><span class="block text-sm">${m.nome}</span><span class="block text-xs text-topazio-claro/55">${brl(m.precoG)}/g</span></span>
+            </button>`).join("");
+        $("gradeAcabamentos").innerHTML = Object.entries(ACABAMENTOS).map(([k, a]) => `
+            <button type="button" data-acabamento="${k}" class="opcao p-3 text-center text-sm ${k === estado.acabamento ? "ativa" : ""}">
+                ${a.nome}<span class="block text-xs text-topazio-claro/55">${a.preco ? "+ " + brl(a.preco) : "incluso"}</span>
+            </button>`).join("");
+        const ehAnel = estado.tipo === "anel";
+        $("blocoAro").classList.toggle("hidden", !ehAnel);
+        $("blocoGravacao").classList.toggle("hidden", !ehAnel);
+        $("blocoCorrente").classList.toggle("hidden", estado.tipo !== "pingente");
+        $("blocoCorrente").style.display = estado.tipo === "pingente" ? "flex" : "none";
+        $("aro").value = estado.aro;
+        $("aroValor").textContent = estado.aro;
+        $("aroInfo").textContent = `Diâmetro interno de ${diametroAro(estado.aro).toFixed(1)} mm · não sabe seu aro? A gente te ajuda no atendimento.`;
+        $("gravacao").value = estado.gravacao;
+        $("corrente").checked = !!estado.corrente;
+    }
+
+    function descricaoProjeto(){
+        const p = pedraAtual(), est = estiloAtual();
+        const partes = [
+            `${MODELOS[estado.tipo].nome} ${est.nome}`,
+            `Pedra ${p.codigo} — Topázio Imperial ${p.tom.toLowerCase()}, ${p.lapidacao.toLowerCase()}, ${p.c} × ${p.l} mm, ${p.ct.toFixed(2)} ct`,
+            `${METAIS[estado.metal].nome}, acabamento ${ACABAMENTOS[estado.acabamento].nome.toLowerCase()}`
+        ];
+        if (estado.tipo === "anel") partes.push(`Aro ${estado.aro}` + (estado.gravacao.trim() ? ` · gravação “${estado.gravacao.trim()}”` : ""));
+        if (estado.tipo === "pingente" && estado.corrente) partes.push("Com corrente de 45 cm");
+        return partes;
+    }
+
+    function pintarPreco(){
+        const r = calcularPreco();
+        const faixa = `${brl(r.min)} – ${brl(r.max)}`;
+        $("precoFaixa").textContent = faixa;
+        $("precoFaixa2").textContent = faixa;
+        $("precoResumo").textContent = `${MODELOS[estado.tipo].nome} ${estiloAtual().nome} · pedra ${estado.pedra} · ${METAIS[estado.metal].nome}`;
+        $("tabelaPreco").innerHTML = r.linhas.map(l => `
+            <tr class="border-b border-white/10">
+                <td class="py-3 pr-3"><span class="block">${l.rotulo}</span>${l.nota ? `<span class="block text-xs text-topazio-claro/50">${l.nota}</span>` : ""}</td>
+                <td class="py-3 text-right whitespace-nowrap">${brl(l.valor)}</td>
+                <td class="py-3 pl-3 w-24"><div class="h-1.5 bg-white/10"><div class="h-full bg-topazio-pessego" style="width:${Math.round(l.valor / r.total * 100)}%"></div></div></td>
+            </tr>`).join("") + `
+            <tr><td class="pt-3 font-semibold">Total estimado</td><td class="pt-3 text-right font-semibold whitespace-nowrap">${brl(r.total)}</td><td></td></tr>`;
+        $("resumoVisual").innerHTML = descricaoProjeto().map(t => `<p>${t}</p>`).join("");
+    }
+
+    function pintarTudo(){
+        pintarPedras(); pintarModelos(); pintarMateriais(); pintarPreco();
+        $("nomeProjeto").value = estado.nome || "";
+        montarJoia();
+    }
+
+    /* ---------- salvar / compartilhar / orçamento ---------- */
+    function lerSalvos(){ try { return JSON.parse(localStorage.getItem(SALVOS_LS) || "[]"); } catch (e) { return []; } }
+    function gravarSalvos(lista){ try { localStorage.setItem(SALVOS_LS, JSON.stringify(lista)); return true; } catch (e) { return false; } }
+
+    function miniatura(){
+        renderer.render(cena, camera);
+        const c = document.createElement("canvas"); c.width = c.height = 160;
+        const src = renderer.domElement, lado = Math.min(src.width, src.height);
+        c.getContext("2d").drawImage(src, (src.width - lado) / 2, (src.height - lado) / 2, lado, lado, 0, 0, 160, 160);
+        return c.toDataURL("image/jpeg", 0.8);
+    }
+
+    function pintarSalvos(){
+        const lista = lerSalvos();
+        $("listaSalvos").innerHTML = lista.length ? lista.map((s, i) => `
+            <div class="flex items-center gap-3 p-3 border border-white/10">
+                <img src="${s.img}" alt="" class="w-14 h-14 object-cover bg-black/30">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm truncate">${s.estado.nome || "Criação sem nome"}</p>
+                    <p class="text-xs text-topazio-claro/50">${s.resumo} · ${s.data}</p>
+                </div>
+                <button type="button" data-abrir-salvo="${i}" class="text-xs uppercase tracking-[.14em] text-topazio-pessego hover:underline">Abrir</button>
+                <button type="button" data-apagar-salvo="${i}" class="text-xs text-topazio-claro/40 hover:text-topazio-rosa" aria-label="Apagar"><i class="fa-regular fa-trash-can"></i></button>
+            </div>`).join("")
+            : `<p class="text-sm text-topazio-claro/45">Nenhuma criação salva ainda.</p>`;
+    }
+
+    function textoProjeto(intencao){
+        const r = calcularPreco();
+        return [
+            `Olá, ImperialiGems! ${intencao}`,
+            estado.nome ? `Projeto: ${estado.nome}` : null,
+            "",
+            ...descricaoProjeto().map(t => "• " + t),
+            "",
+            `Estimativa no site: ${brl(r.min)} – ${brl(r.max)}`,
+            `Ver projeto: ${linkProjeto()}`
+        ].filter(l => l !== null).join("\n");
+    }
+
+    async function copiar(texto){
+        try { await navigator.clipboard.writeText(texto); return true; }
+        catch (e) {
+            const t = document.createElement("textarea");
+            t.value = texto; t.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(t); t.select();
+            let ok = false; try { ok = document.execCommand("copy"); } catch (e2) {}
+            t.remove(); return ok;
+        }
+    }
+
+    let timerAviso;
+    function avisar(msg){
+        const a = $("aviso");
+        a.textContent = msg;
+        a.classList.remove("opacity-0", "translate-y-4");
+        clearTimeout(timerAviso);
+        timerAviso = setTimeout(() => a.classList.add("opacity-0", "translate-y-4"), 3200);
+    }
+
+    function enviarWhatsApp(intencao){
+        window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(textoProjeto(intencao))}`, "_blank", "noopener");
+        avisar("Abrindo o WhatsApp com o resumo do projeto");
+    }
+
+    /* ---------- eventos ---------- */
+    function mudar(parcial){
+        estado = { ...estado, ...parcial };
+        history.replaceState(null, "", "#" + linkProjeto().split("#")[1]);
+        pintarTudo();
+    }
+
+    document.addEventListener("click", e => {
+        const el = e.target.closest("[data-ir-etapa],[data-filtro],[data-pedra],[data-tipo],[data-estilo],[data-metal],[data-acabamento],[data-abrir-salvo],[data-apagar-salvo]");
+        if (!el) return;
+        const d = el.dataset;
+        if (d.irEtapa) irEtapa(Number(d.irEtapa));
+        else if (d.filtro !== undefined) { filtroFormato = d.filtro; pintarPedras(); }
+        else if (d.pedra) mudar({ pedra: d.pedra });
+        else if (d.tipo) mudar({ tipo: d.tipo, estilo: Object.keys(MODELOS[d.tipo].estilos)[0] });
+        else if (d.estilo) mudar({ estilo: d.estilo });
+        else if (d.metal) mudar({ metal: d.metal });
+        else if (d.acabamento) mudar({ acabamento: d.acabamento });
+        else if (d.abrirSalvo !== undefined) {
+            const s = lerSalvos()[Number(d.abrirSalvo)];
+            if (s) { mudar({ ...PADRAO, ...s.estado }); ultimoEnquadre = ""; montarJoia(); avisar("Criação aberta"); }
+        } else if (d.apagarSalvo !== undefined) {
+            const lista = lerSalvos(); lista.splice(Number(d.apagarSalvo), 1); gravarSalvos(lista); pintarSalvos();
+        }
+    });
+
+    $("btnVoltar").addEventListener("click", () => irEtapa(etapa - 1));
+    $("btnAvancar").addEventListener("click", () => irEtapa(etapa + 1));
+    $("aro").addEventListener("input", e => mudar({ aro: Number(e.target.value) }));
+    $("gravacao").addEventListener("input", e => { estado.gravacao = e.target.value; history.replaceState(null, "", "#" + linkProjeto().split("#")[1]); pintarPreco(); });
+    $("corrente").addEventListener("change", e => mudar({ corrente: e.target.checked }));
+    $("nomeProjeto").addEventListener("input", e => { estado.nome = e.target.value; history.replaceState(null, "", "#" + linkProjeto().split("#")[1]); });
+
+    $("btnGirar").addEventListener("click", e => {
+        controles.autoRotate = !controles.autoRotate;
+        e.currentTarget.classList.toggle("ativa", controles.autoRotate);
+        e.currentTarget.querySelector("span").textContent = controles.autoRotate ? "Parar rotação" : "Girar automaticamente";
+    });
+    $("btnCentralizar").addEventListener("click", enquadrar);
+    $("btnFundo").addEventListener("click", () => palco.classList.toggle("claro"));
+    $("btnFoto").addEventListener("click", () => {
+        renderer.render(cena, camera);
+        const a = document.createElement("a");
+        a.href = renderer.domElement.toDataURL("image/png");
+        a.download = `imperialigems-${estado.tipo}-${estado.pedra}.png`;
+        a.click();
+    });
+
+    $("btnSalvar").addEventListener("click", () => {
+        const lista = lerSalvos();
+        lista.unshift({
+            estado: { ...estado },
+            img: miniatura(),
+            resumo: `${MODELOS[estado.tipo].nome} ${estiloAtual().nome} · ${estado.pedra}`,
+            data: new Date().toLocaleDateString("pt-BR")
+        });
+        avisar(gravarSalvos(lista.slice(0, 12)) ? "Criação salva neste navegador" : "Não foi possível salvar neste navegador");
+        pintarSalvos();
+    });
+    $("btnCompartilhar").addEventListener("click", async () => {
+        const url = linkProjeto();
+        if (navigator.share) {
+            try { await navigator.share({ title:"Minha joia ImperialiGems", text: descricaoProjeto()[0], url }); return; } catch (e) { if (e.name === "AbortError") return; }
+        }
+        avisar(await copiar(url) ? "Link do projeto copiado" : "Não foi possível copiar o link");
+    });
+    $("btnOrcamento").addEventListener("click", () => enviarWhatsApp("Gostaria de um orçamento para esta joia:"));
+    $("btnComprar").addEventListener("click", () => enviarWhatsApp("Quero comprar esta joia:"));
+
+    window.addEventListener("hashchange", () => { estado = { ...PADRAO, ...lerLink() }; ultimoEnquadre = ""; pintarTudo(); });
+
+    pintarEtapas();
+    pintarTudo();
+    pintarSalvos();
+    </script>
+</body>
+</html>
