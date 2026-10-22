@@ -552,12 +552,45 @@
             }
         }
         geo.computeVertexNormals();
+        // projeção de cima (x, z → u, v) para a foto da pedra cobrir a mesa e as facetas;
+        // +z (a ponta da gota) fica no alto da imagem
+        geo.computeBoundingBox();
+        const { min, max } = geo.boundingBox, pos = geo.attributes.position, uv = geo.attributes.uv;
+        for (let i = 0; i < pos.count; i++) {
+            uv.setXY(i, (pos.getX(i) - min.x) / (max.x - min.x), (pos.getZ(i) - min.z) / (max.z - min.z));
+        }
+        uv.needsUpdate = true;
         return cacheGema[formato] = geo;
     }
+
+    /* Textura real de cada pedra: o miolo da foto (img/pedras/<codigo>-textura.webp), endireitado. */
+    const cacheTextura = {};
+    const carregadorTextura = new THREE.TextureLoader();
+    function texturaPedra(codigo){
+        if (!cacheTextura[codigo]) {
+            let pronta;
+            const promessa = new Promise(ok => { pronta = ok; });
+            const t = carregadorTextura.load(`img/pedras/${codigo}-textura.webp`, () => pronta(), undefined, () => pronta());
+            t.colorSpace = THREE.SRGBColorSpace;
+            t.anisotropy = 8;
+            t.userData.pronta = promessa;
+            cacheTextura[codigo] = t;
+        }
+        return cacheTextura[codigo];
+    }
+    const precarregarTexturas = () => Promise.all(PEDRAS.map(p => texturaPedra(p.codigo).userData.pronta));
     /** Meia-largura (x) e meio-comprimento (z) da pedra em mm. */
     const medidas = p => ({ hw: p.l / 2, hl: p.c / 2, sy: p.l / 2 });
 
-    function materialGema(cor, brilho = false){
+    function materialGema(cor, brilho = false, foto = null){
+        if (foto) return new THREE.MeshPhysicalMaterial({
+            // a foto dá a cor e as inclusões reais; as facetas, o verniz e o reflexo dão o brilho
+            color: 0x9a9a9a, map: foto, emissive: 0xffffff, emissiveMap: foto, emissiveIntensity: 0.7,
+            metalness: 0, roughness: 0.04, flatShading: true,
+            transmission: 0.12, thickness: 2, ior: 1.62,
+            // reflexo contido: a mesa (face plana de cima) não pode estourar em branco e apagar a foto
+            specularIntensity: 0.45, envMapIntensity: 0.55, clearcoat: 0.35, clearcoatRoughness: 0.08
+        });
         return new THREE.MeshPhysicalMaterial({
             color: cor, metalness: 0, roughness: 0.02, flatShading: true,
             transmission: brilho ? 0.2 : 0.55, thickness: 3, ior: 1.62,
@@ -566,7 +599,7 @@
         });
     }
     function malhaGema(pedra){
-        const m = new THREE.Mesh(geometriaGema(pedra.formato), materialGema(pedra.cor));
+        const m = new THREE.Mesh(geometriaGema(pedra.formato), materialGema(pedra.cor, false, pedra.codigo ? texturaPedra(pedra.codigo) : null));
         const k = pedra.formato === "retangular" ? Math.SQRT2 : 1;
         const { hw, hl, sy } = medidas(pedra);
         m.scale.set(hw * k, sy, hl * k);
@@ -1834,6 +1867,8 @@
     gerarMiniaturasInsp();
     pintarInspiracoes();
     pintarProjetos();
+    // quando as fotos das pedras chegarem, refaz as miniaturas das inspirações já com a textura real
+    precarregarTexturas().then(() => { gerarMiniaturasInsp(); pintarInspiracoes(); });
     </script>
 </body>
 </html>
