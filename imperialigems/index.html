@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImperialiGems | Topázio Imperial de Ouro Preto</title>
-    <meta name="description" content="ImperialiGems — especialista em Topázio Imperial bruto e lapidado, direto de Ouro Preto (MG). Peças selecionadas, euclásio e minerais de coleção.">
+    <meta name="description" content="ImperialiGems — crie sua joia exclusiva com Topázio Imperial de Ouro Preto (MG): escolha a pedra, personalize em 3D e receba uma peça única. Bruto e lapidado.">
 
     <link rel="icon" href="img/logo-256.webp">
 
@@ -81,6 +81,9 @@
         .btn-joia__seta { color: #f2a65a; font-size: 13px; transition: transform .25s; }
         .btn-joia:hover .btn-joia__seta { transform: translateX(5px); }
         @keyframes girarBorda { to { --ang: 360deg; } }
+        /* galeria em parallax 3D */
+        #pgBanner, #pgMatrix, .pg-card { backface-visibility: hidden; }
+        #pgCaption, #pgTitulo { transition: opacity .6s ease; }
         /* no celular o botão fica centralizado */
         @media (max-width: 767px) { .btn-joia { display: flex; width: max-content; margin-left: auto; margin-right: auto; } }
         @keyframes brilhoGema { 0%,100% { transform: rotate(-6deg) scale(1); } 50% { transform: rotate(6deg) scale(1.1); } }
@@ -112,13 +115,6 @@
                 <img src="img/logo-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
                 <span class="font-serif text-2xl tracking-wide max-[430px]:hidden">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
-            <nav class="hidden lg:flex gap-5 xl:gap-7 text-[11px] uppercase tracking-[.16em] whitespace-nowrap text-topazio-claro/70">
-                <a href="#pedra" class="hover:text-topazio-pessego transition">A pedra</a>
-                <a href="#processo" class="hover:text-topazio-pessego transition">Processo</a>
-                <a href="#colecao" class="hover:text-topazio-pessego transition">Coleção</a>
-                <a href="#galeria" class="hover:text-topazio-pessego transition">Galeria</a>
-                <a href="#comprar" class="hover:text-topazio-pessego transition">Como comprar</a>
-            </nav>
             <div class="flex items-center gap-3">
                 <!-- destaque do menu: visível também no celular -->
                 <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[.16em] px-4 sm:px-5 py-2.5 rounded-full text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
@@ -142,16 +138,16 @@
                     <span class="texto-topazio">Topázio Imperial</span><br>bruto e lapidado
                 </h1>
                 <p class="mt-6 text-base sm:text-lg text-topazio-claro/75 max-w-md leading-relaxed">
-                    A gema mais rara de Minas, escolhida pedra a pedra na região onde ela nasce.
-                    Peças para joalheria, coleção e presente.
+                    A gema mais rara de Minas, escolhida pedra a pedra onde ela nasce.
+                    Aqui você não escolhe uma joia pronta: você cria a sua.
                 </p>
                 <div class="mt-9 flex flex-wrap gap-3">
-                    <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems!%20Tenho%20interesse%20em%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
-                       class="px-7 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-pessego transition">
-                        <i class="fa-brands fa-whatsapp mr-2"></i>Chamar no WhatsApp
+                    <a href="crie-sua-joia.html" class="px-7 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-pessego transition">
+                        <i class="fa-regular fa-gem mr-2"></i>Criar minha joia
                     </a>
-                    <a href="#colecao" class="px-7 py-4 border border-white/20 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">
-                        Ver coleção
+                    <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems!%20Tenho%20interesse%20em%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
+                       class="px-7 py-4 border border-white/20 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">
+                        <i class="fa-brands fa-whatsapp mr-2"></i>Chamar no WhatsApp
                     </a>
                 </div>
             </div>
@@ -182,6 +178,56 @@
                 <p class="font-serif text-xl mt-2">Peso e código</p><p class="text-xs text-topazio-claro/55">Cada pedra identificada</p></div>
             <div><i class="fa-solid fa-ring text-topazio-pessego text-xl"></i>
                 <p class="font-serif text-xl mt-2">Joias sob medida</p><p class="text-xs text-topazio-claro/55">Criadas com a sua pedra</p></div>
+        </div>
+    </section>
+
+    <!-- ===== NOSSO DIFERENCIAL ===== -->
+    <section id="diferencial" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(50%_60%_at_15%_40%,rgba(217,130,43,.18),transparent_70%),radial-gradient(40%_50%_at_90%_70%,rgba(200,85,107,.14),transparent_70%)]"></div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
+            <div>
+                <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Nosso diferencial</p>
+                <h2 class="font-serif text-4xl sm:text-6xl leading-[1.05]">Uma joia não se escolhe.<br><span class="texto-topazio">Ela se cria.</span></h2>
+                <p class="mt-6 text-topazio-claro/75 leading-relaxed max-w-lg">Em vez de escolher uma peça pronta, você participa da construção de uma joia exclusiva: seleciona pessoalmente o seu Topázio Imperial e cada detalhe que vai compor a peça.</p>
+                <p class="mt-4 text-topazio-claro/60 leading-relaxed max-w-lg">Tecnologia 3D, personalização e o valor único de cada pedra, reunidos em um só lugar — da escolha ao atendimento e à compra.</p>
+                <a href="crie-sua-joia.html" class="btn-joia mt-9">
+                    <svg class="btn-joia__gema" viewBox="0 0 32 32" aria-hidden="true">
+                        <path d="M9 4h14l7 8-14 17L2 12z" fill="url(#gradGema)"/>
+                        <path d="M2 12h28M9 4l4 8 3-8 3 8 4-8M13 12l3 17 3-17" fill="none" stroke="#1c0f0a" stroke-opacity=".45" stroke-width="1"/>
+                        <path d="M10.5 6.5l2 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
+                    </svg>
+                    <span class="btn-joia__texto">Criar minha joia</span>
+                    <i class="fa-solid fa-arrow-right btn-joia__seta"></i>
+                </a>
+            </div>
+            <div class="grid gap-4">
+                <article class="flex gap-5 items-center p-4 border border-white/10 bg-white/[.03] backdrop-blur">
+                    <div class="gema w-24 h-24 sm:w-28 sm:h-28 flex-none overflow-hidden"><img src="img/pedras/IG-0213.webp" alt="Topázio Imperial lapidado de 3,55 ct" loading="lazy"></div>
+                    <div>
+                        <p class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">01 · A sua pedra</p>
+                        <h3 class="font-serif text-2xl mt-1">Você escolhe o topázio</h3>
+                        <p class="text-sm text-topazio-claro/60 mt-1">Cada pedra é única e tem código, peso e fotos reais. Você escolhe exatamente a que vai para a sua joia.</p>
+                    </div>
+                </article>
+                <article class="flex gap-5 items-center p-4 border border-white/10 bg-white/[.03] backdrop-blur lg:ml-10">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 flex-none grid place-items-center bg-gradient-to-br from-[#3a2016] to-topazio-escuro border border-topazio-pessego/40">
+                        <i class="fa-solid fa-cube text-4xl text-topazio-pessego"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">02 · O seu design</p>
+                        <h3 class="font-serif text-2xl mt-1">Você cria em 3D</h3>
+                        <p class="text-sm text-topazio-claro/60 mt-1">Anel, brinco ou pingente: troque o metal e os detalhes, gire a peça em 3D e prove na câmera do celular.</p>
+                    </div>
+                </article>
+                <article class="flex gap-5 items-center p-4 border border-white/10 bg-white/[.03] backdrop-blur lg:ml-20">
+                    <div class="gema w-24 h-24 sm:w-28 sm:h-28 flex-none overflow-hidden"><img src="img/midia/joia-anel-halo.webp" alt="Anel de Topázio Imperial produzido pela ImperialiGems" loading="lazy"></div>
+                    <div>
+                        <p class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">03 · A sua joia</p>
+                        <h3 class="font-serif text-2xl mt-1">Feita só para você</h3>
+                        <p class="text-sm text-topazio-claro/60 mt-1">A criação vira uma peça exclusiva, produzida com a pedra escolhida e acompanhada por nós até a entrega.</p>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -344,52 +390,61 @@
         </div>
     </section>
 
-    <!-- ===== GALERIA ===== -->
-    <section id="galeria" class="py-24 bg-[#2a1610]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-wrap items-end justify-between gap-4">
-                <div>
-                    <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Do garimpo à lapidação</p>
-                    <h2 class="font-serif text-4xl sm:text-5xl">Galeria</h2>
+    <!-- ===== GALERIA (parallax 3D: o mural se endireita e se abre conforme a rolagem) ===== -->
+    <section id="galeria" class="relative w-full h-[400vh] bg-[#0d0705]">
+        <div class="sticky top-0 h-screen w-full flex justify-center items-center overflow-hidden">
+            <div id="pgBanner" class="relative bg-[#0d0705] overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform">
+                <div class="absolute inset-0 flex justify-center items-center pointer-events-none" style="perspective: 1000px;">
+                    <!-- sombras nas bordas -->
+                    <div class="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(13,7,5,1),inset_0_-100px_150px_-50px_rgba(13,7,5,1)]"></div>
+                    <div class="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(13,7,5,1),inset_-150px_0_150px_-50px_rgba(13,7,5,1)]"></div>
+                    <div id="pgMatrix" class="flex gap-4 md:gap-6 justify-center items-center w-[120vw] h-[150vh] origin-center will-change-transform" style="transform-style: preserve-3d;">
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="1">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-01.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/lapidado-oval.mp4" poster="img/midia/lapidado-oval.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/midia/estoque-completo.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/euclasio.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-03.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/minerais.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                            </div>
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="2">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/joia-anel-halo.mp4" poster="img/midia/joia-anel-halo.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/snapinsta-1792706218687.mp4" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/midia/pesagem.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-04.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                            </div>
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="3">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-04.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/snapinsta-1792706440551.mp4" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/euclasio.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/pinca.mp4" poster="img/midia/pinca.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-01.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                            </div>
+                            <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="4">
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/snapinsta-1792706923391.mp4" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/minerais.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/estoque-lapidados.mp4" poster="img/midia/estoque-lapidados.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/midia/estoque-completo.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-03.webp" alt="Topázio Imperial ImperialiGems" loading="lazy" class="w-full h-full object-cover opacity-95"></div>
+                            </div>
+                    </div>
                 </div>
-                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="text-sm uppercase tracking-[.16em] text-topazio-pessego hover:underline">
-                    <i class="fa-brands fa-instagram mr-2"></i>@imperialigems
-                </a>
-            </div>
-            <!-- Fotos (img/bruto-XX.webp) e vídeos do Instagram; os vídeos tocam quando aparecem na tela -->
-            <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-3">
-                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="gema aspect-[3/4] overflow-hidden group">
-                    <img src="img/bruto-03.webp" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
-                </a>
-                <div class="gema aspect-[3/4] overflow-hidden relative">
-                    <video src="img/snapinsta-1792706166605.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
-                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
+
+                <!-- título no começo e legenda quando o mural se abre -->
+                <div id="pgTitulo" class="absolute inset-x-0 top-10 z-30 text-center px-6 pointer-events-none">
+                    <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego">Do garimpo à lapidação</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl mt-2">Galeria</h2>
                 </div>
-                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="gema aspect-[3/4] overflow-hidden group">
-                    <img src="img/bruto-04.webp" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
-                </a>
-                <div class="gema aspect-[3/4] overflow-hidden relative">
-                    <video src="img/snapinsta-1792706218687.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
-                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
-                </div>
-                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="gema aspect-[3/4] overflow-hidden group">
-                    <img src="img/bruto-02.webp" alt="Topázio Imperial bruto ImperialiGems" loading="lazy" class="group-hover:scale-105 transition duration-500">
-                </a>
-                <div class="gema aspect-[3/4] overflow-hidden relative">
-                    <video src="img/snapinsta-1792706251418.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
-                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
-                </div>
-                <div class="gema aspect-[3/4] overflow-hidden relative">
-                    <video src="img/snapinsta-1792706419596.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
-                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
-                </div>
-                <div class="gema aspect-[3/4] overflow-hidden relative">
-                    <video src="img/snapinsta-1792706440551.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
-                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
-                </div>
-                <div class="gema aspect-[3/4] overflow-hidden relative">
-                    <video src="img/snapinsta-1792706923391.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
-                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
+                <div id="pgCaption" class="absolute inset-x-0 bottom-10 z-30 text-center px-6 opacity-0">
+                    <span class="text-topazio-pessego uppercase tracking-[.3em] text-xs">ImperialiGems</span>
+                    <h2 class="font-serif text-3xl md:text-5xl mt-2 texto-topazio inline-block">Cada pedra, uma história de Minas</h2>
+                    <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="block mt-4 text-sm uppercase tracking-[.16em] text-topazio-claro/80 hover:text-topazio-pessego">
+                        <i class="fa-brands fa-instagram mr-2"></i>Veja mais em @imperialigems
+                    </a>
                 </div>
             </div>
         </div>
@@ -602,6 +657,72 @@
     </script>
 
     <script>
+        // Galeria em parallax 3D: o mural começa inclinado e distante e se endireita com a rolagem
+        (function parallaxGaleria() {
+            const secao = document.getElementById("galeria");
+            const banner = document.getElementById("pgBanner");
+            const matriz = document.getElementById("pgMatrix");
+            const legenda = document.getElementById("pgCaption");
+            const titulo = document.getElementById("pgTitulo");
+            if (!secao || !banner || !matriz) return;
+            const limitar = (v, a, b) => Math.min(b, Math.max(a, v));
+            const faixa = (p, a, b, de, ate) => de + (ate - de) * limitar((p - a) / (b - a), 0, 1);
+            const colunas = matriz.querySelectorAll(".pg-col");
+            const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const alvo = {}, atual = {};
+            let iniciado = false;
+
+            function calcular(p) {
+                alvo.bw = faixa(p, 0, 0.15, 90, 100);
+                alvo.bh = faixa(p, 0, 0.15, 80, 100);
+                alvo.br = faixa(p, 0, 0.15, 48, 0);
+                alvo.bbw = faixa(p, 0, 0.15, 4, 0);
+                alvo.rotY = faixa(p, 0.15, 1, -45, -8);
+                alvo.rotX = faixa(p, 0.15, 1, 25, 4);
+                alvo.rotZ = faixa(p, 0.15, 1, 15, 2);
+                alvo.tz = faixa(p, 0.15, 1, -800, 0);
+                alvo.y1 = faixa(p, 0.15, 1, 0, -40);
+                alvo.y2 = faixa(p, 0.15, 1, -40, 10);
+                alvo.y3 = faixa(p, 0.15, 1, 0, -40);
+                alvo.y4 = faixa(p, 0.15, 1, -30, 20);
+                alvo.legenda = faixa(p, 0.85, 1, 0, 1);
+                alvo.titulo = faixa(p, 0.05, 0.25, 1, 0);
+            }
+            function progresso() {
+                const r = secao.getBoundingClientRect();
+                const rolavel = r.height - innerHeight;
+                if (rolavel <= 0) return r.top <= 0 ? 1 : 0;
+                return limitar(-r.top / rolavel, 0, 1);
+            }
+            function aplicar() {
+                banner.style.width = atual.bw + "vw";
+                banner.style.height = atual.bh + "vh";
+                banner.style.borderRadius = atual.br + "px";
+                banner.style.border = `${atual.bbw}px solid #3a2016`;
+                matriz.style.transform = `rotateY(${atual.rotY}deg) rotateX(${atual.rotX}deg) rotateZ(${atual.rotZ}deg) translateZ(${atual.tz}px)`;
+                ["y1", "y2", "y3", "y4"].forEach((k, i) => { if (colunas[i]) colunas[i].style.transform = `translateY(${atual[k]}%)`; });
+                legenda.style.opacity = atual.legenda;
+                legenda.style.pointerEvents = atual.legenda > 0.5 ? "auto" : "none";
+                titulo.style.opacity = atual.titulo;
+            }
+            function quadro() {
+                const r = secao.getBoundingClientRect();
+                if (r.bottom > -innerHeight && r.top < innerHeight * 2) {     // só anima perto da tela
+                    calcular(progresso());
+                    if (!iniciado) { Object.assign(atual, alvo); iniciado = true; }
+                    for (const k in alvo) atual[k] += (alvo[k] - atual[k]) * (reduzido ? 1 : 0.12);
+                    aplicar();
+                }
+                requestAnimationFrame(quadro);
+            }
+            requestAnimationFrame(quadro);
+
+            // vídeos do mural: tocam enquanto a galeria está na tela
+            const videos = secao.querySelectorAll("video[data-pg]");
+            new IntersectionObserver(([e]) => videos.forEach(v => e.isIntersecting ? v.play().catch(() => {}) : v.pause()))
+                .observe(secao.querySelector(".sticky"));
+        })();
+
         // Vídeos da galeria: tocam só enquanto estão visíveis (economiza dados no celular)
         const observador = new IntersectionObserver(entradas => entradas.forEach(e => {
             if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
