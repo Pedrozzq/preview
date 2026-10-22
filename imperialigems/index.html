@@ -60,7 +60,40 @@
         @keyframes brilho { from { background-position: 100% 0 } to { background-position: -120% 0 } }
         @keyframes flutuar { 0%,100% { transform: translateY(0) rotate(0) } 50% { transform: translateY(-14px) rotate(3deg) } }
         .flutuar { animation: flutuar 7s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) { .texto-topazio, .flutuar { animation: none; } }
+        /* botão "Criar minha joia": fundo escuro, borda de topázio girando e gema facetada */
+        @property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+        .btn-joia {
+            position: relative; display: inline-flex; align-items: center; gap: 14px;
+            padding: 14px 30px 14px 18px; border-radius: 999px; border: 2px solid transparent;
+            background:
+                linear-gradient(#1c0f0a, #24130c) padding-box,
+                conic-gradient(from var(--ang), #f2a65a, #ffe3bd, #d9822b, #c8556b, #f2a65a) border-box;
+            box-shadow: 0 0 0 0 rgba(242,166,90,.35), 0 18px 40px -18px rgba(217,130,43,.8);
+            animation: girarBorda 4s linear infinite;
+            transition: transform .25s, box-shadow .25s;
+        }
+        .btn-joia:hover { transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(242,166,90,.12), 0 22px 50px -16px rgba(217,130,43,.95); }
+        .btn-joia__gema { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 0 8px rgba(242,166,90,.7)); animation: brilhoGema 2.4s ease-in-out infinite; }
+        .btn-joia__texto {
+            font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; letter-spacing: .02em;
+            background: linear-gradient(100deg, #ffe3bd, #f2a65a 50%, #e98a6a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .btn-joia__seta { color: #f2a65a; font-size: 13px; transition: transform .25s; }
+        .btn-joia:hover .btn-joia__seta { transform: translateX(5px); }
+        @keyframes girarBorda { to { --ang: 360deg; } }
+        /* no celular o botão fica centralizado */
+        @media (max-width: 767px) { .btn-joia { display: flex; width: max-content; margin-left: auto; margin-right: auto; } }
+        @keyframes brilhoGema { 0%,100% { transform: rotate(-6deg) scale(1); } 50% { transform: rotate(6deg) scale(1.1); } }
+
+        /* botão "Crie sua Joia" do menu: degradê de topázio com brilho passando */
+        .btn-crie { background: linear-gradient(100deg, #f2a65a, #d9822b 45%, #c8556b); }
+        .btn-crie::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+            transform: translateX(-120%); animation: varrer 3.2s ease-in-out infinite;
+        }
+        @keyframes varrer { 0%, 55% { transform: translateX(-120%) } 100% { transform: translateX(120%) } }
+        @media (prefers-reduced-motion: reduce) { .texto-topazio, .flutuar, .btn-crie::after, .btn-joia, .btn-joia__gema { animation: none; } }
     </style>
     <!-- Three.js (cristal 3D do topo) -->
     <script type="importmap">
@@ -77,19 +110,24 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-3">
                 <img src="img/logo-256.jpg" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
-                <span class="font-serif text-2xl tracking-wide">Imperiali<span class="text-topazio-pessego">Gems</span></span>
+                <span class="font-serif text-2xl tracking-wide max-[430px]:hidden">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
             <nav class="hidden md:flex gap-8 text-xs uppercase tracking-[.2em] text-topazio-claro/70">
                 <a href="#pedra" class="hover:text-topazio-pessego transition">A pedra</a>
                 <a href="#colecao" class="hover:text-topazio-pessego transition">Coleção</a>
                 <a href="#galeria" class="hover:text-topazio-pessego transition">Galeria</a>
                 <a href="#comprar" class="hover:text-topazio-pessego transition">Como comprar</a>
-                <a href="crie-sua-joia.html" class="text-topazio-pessego hover:text-topazio-claro transition"><i class="fa-regular fa-gem mr-1"></i>Crie sua Joia</a>
             </nav>
-            <a href="https://ig.me/m/imperialigems" target="_blank" rel="noopener"
-               class="text-xs uppercase tracking-[.18em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+            <div class="flex items-center gap-3">
+                <!-- destaque do menu: visível também no celular -->
+                <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[.16em] px-4 sm:px-5 py-2.5 rounded-full text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
+                    <i class="fa-regular fa-gem mr-1.5"></i>Crie sua Joia
+                </a>
+            <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20uma%20pe%C3%A7a%20de%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
+               class="hidden sm:inline-block text-xs uppercase tracking-[.18em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
                 Quero uma peça
             </a>
+            </div>
         </div>
     </header>
 
@@ -165,26 +203,26 @@
             <div class="text-center max-w-xl mx-auto">
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Coleção</p>
                 <h2 class="font-serif text-4xl sm:text-5xl">Escolha a sua peça</h2>
-                <p class="mt-4 text-topazio-claro/65">Cada pedra é única. Fale com a gente pelo Direct para ver as peças disponíveis, com fotos e vídeos.</p>
+                <p class="mt-4 text-topazio-claro/65">Cada pedra é única. Fale com a gente pelo WhatsApp para ver as peças disponíveis, com fotos e vídeos.</p>
             </div>
             <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Cada cartão usa img/<nome>.jpg; sem a foto, mostra o brilho de topázio -->
-                <a href="https://ig.me/m/imperialigems" target="_blank" rel="noopener" class="group block">
+                <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Lapidados." target="_blank" rel="noopener" class="group block">
                     <div class="gema aspect-[4/5] overflow-hidden"><img src="img/lapidados.jpg" alt="Topázio Imperial lapidado" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Lapidados</h3>
                     <p class="text-sm text-topazio-claro/60">Prontos para anel, pingente e brinco.</p>
                 </a>
-                <a href="https://ig.me/m/imperialigems" target="_blank" rel="noopener" class="group block">
+                <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Top%C3%A1zio%20bruto." target="_blank" rel="noopener" class="group block">
                     <div class="gema aspect-[4/5] overflow-hidden"><img src="img/bruto-02.jpg" alt="Topázio Imperial bruto" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Topázio bruto</h3>
                     <p class="text-sm text-topazio-claro/60">Cristais naturais de coleção.</p>
                 </a>
-                <a href="https://ig.me/m/imperialigems" target="_blank" rel="noopener" class="group block">
+                <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Eucl%C3%A1sio." target="_blank" rel="noopener" class="group block">
                     <div class="gema aspect-[4/5] overflow-hidden"><img src="img/euclasio.jpg" alt="Euclásio" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Euclásio</h3>
                     <p class="text-sm text-topazio-claro/60">Outra raridade das minas de Ouro Preto.</p>
                 </a>
-                <a href="https://ig.me/m/imperialigems" target="_blank" rel="noopener" class="group block">
+                <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20ver%20as%20pe%C3%A7as%20dispon%C3%ADveis%20de%20Minerais." target="_blank" rel="noopener" class="group block">
                     <div class="gema aspect-[4/5] overflow-hidden"><img src="img/minerais.jpg" alt="Minerais de coleção" loading="lazy" class="group-hover:scale-105 transition duration-500" onerror="this.remove()"></div>
                     <h3 class="font-serif text-2xl mt-4">Minerais</h3>
                     <p class="text-sm text-topazio-claro/60">Peças selecionadas para colecionadores.</p>
@@ -228,6 +266,18 @@
                     <video src="img/snapinsta-1792706251418.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
                     <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
                 </div>
+                <div class="gema aspect-[3/4] overflow-hidden relative">
+                    <video src="img/snapinsta-1792706419596.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
+                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
+                </div>
+                <div class="gema aspect-[3/4] overflow-hidden relative">
+                    <video src="img/snapinsta-1792706440551.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
+                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
+                </div>
+                <div class="gema aspect-[3/4] overflow-hidden relative">
+                    <video src="img/snapinsta-1792706923391.mp4" muted loop playsinline preload="metadata" class="w-full h-full object-cover" aria-label="Vídeo de Topázio Imperial"></video>
+                    <span class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-black/50 text-xs"><i class="fa-solid fa-play"></i></span>
+                </div>
             </div>
         </div>
     </section>
@@ -250,8 +300,21 @@
                     <li><i class="fa-solid fa-cube text-topazio-pessego mr-2"></i>Visualização em 3D</li>
                     <li><i class="fa-solid fa-calculator text-topazio-pessego mr-2"></i>Preço estimado na hora</li>
                 </ul>
-                <a href="crie-sua-joia.html" class="inline-block mt-9 px-8 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-pessego transition">
-                    Começar minha joia <i class="fa-solid fa-arrow-right ml-2"></i>
+                <a href="crie-sua-joia.html" class="btn-joia group mt-9">
+                    <!-- gema facetada -->
+                    <svg class="btn-joia__gema" viewBox="0 0 32 32" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="gradGema" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#ffe3bd"/><stop offset=".45" stop-color="#f2a65a"/>
+                                <stop offset=".75" stop-color="#d9822b"/><stop offset="1" stop-color="#c8556b"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M9 4h14l7 8-14 17L2 12z" fill="url(#gradGema)"/>
+                        <path d="M2 12h28M9 4l4 8 3-8 3 8 4-8M13 12l3 17 3-17" fill="none" stroke="#1c0f0a" stroke-opacity=".45" stroke-width="1"/>
+                        <path d="M10.5 6.5l2 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
+                    </svg>
+                    <span class="btn-joia__texto">Criar minha joia</span>
+                    <i class="fa-solid fa-arrow-right btn-joia__seta"></i>
                 </a>
             </div>
         </div>
@@ -267,7 +330,7 @@
             <div class="mt-14 grid md:grid-cols-3 gap-6">
                 <div class="p-8 border border-white/10">
                     <span class="font-serif text-5xl text-topazio-pessego">01</span>
-                    <h3 class="font-serif text-2xl mt-3">Chame no Direct</h3>
+                    <h3 class="font-serif text-2xl mt-3">Chame no WhatsApp</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65">Conte o que procura: cor, tamanho, bruto ou lapidado, e o uso da peça.</p>
                 </div>
                 <div class="p-8 border border-white/10">
@@ -289,9 +352,9 @@
         <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
             <h2 class="font-serif text-4xl sm:text-6xl leading-tight">Tenha um pedaço de Ouro Preto com você</h2>
             <p class="mt-5 text-lg opacity-80">Peças únicas, escolhidas por quem é especialista em Topázio Imperial.</p>
-            <a href="https://ig.me/m/imperialigems" target="_blank" rel="noopener"
+            <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20minha%20pe%C3%A7a%20de%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
                class="inline-block mt-9 px-9 py-4 bg-topazio-escuro text-topazio-claro font-semibold text-sm uppercase tracking-[.16em] hover:bg-black transition">
-                <i class="fa-brands fa-instagram mr-2"></i>Quero minha peça
+                <i class="fa-brands fa-whatsapp mr-2"></i>Quero minha peça
             </a>
         </div>
     </section>
@@ -308,6 +371,7 @@
             </div>
             <div class="flex gap-5 text-xl">
                 <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-topazio-pessego transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-topazio-pessego transition"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-topazio-pessego transition"><i class="fa-brands fa-youtube"></i></a>
             </div>
         </div>

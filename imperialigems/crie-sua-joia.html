@@ -77,9 +77,16 @@
                 <img src="img/logo-256.jpg" alt="ImperialiGems" class="w-10 h-10 rounded-full object-cover">
                 <span class="font-serif text-2xl tracking-wide">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
-            <a href="index.html" class="text-xs uppercase tracking-[.18em] text-topazio-claro/70 hover:text-topazio-pessego transition">
-                <i class="fa-solid fa-arrow-left mr-2"></i>Voltar ao site
-            </a>
+            <div class="flex items-center gap-2 sm:gap-5">
+                <a href="#inspiracoes" class="hidden md:inline text-xs uppercase tracking-[.18em] text-topazio-claro/70 hover:text-topazio-pessego transition">Inspirações</a>
+                <button type="button" data-abrir-projetos class="flex items-center text-xs uppercase tracking-[.16em] px-3 sm:px-4 py-2 border border-topazio-pessego/50 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+                    <i class="fa-regular fa-heart sm:mr-2"></i><span class="hidden sm:inline">Meus projetos</span>
+                    <span id="contaProjetos" class="ml-2 inline-grid place-items-center min-w-[18px] h-[18px] px-1 rounded-full bg-topazio-pessego text-topazio-escuro text-[10px] font-semibold">0</span>
+                </button>
+                <a href="index.html" class="text-xs uppercase tracking-[.18em] text-topazio-claro/70 hover:text-topazio-pessego transition" aria-label="Voltar ao site">
+                    <i class="fa-solid fa-arrow-left sm:mr-2"></i><span class="hidden sm:inline">Voltar ao site</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -97,6 +104,9 @@
             <div id="palco" class="relative aspect-square sm:aspect-[4/3] lg:aspect-square border border-white/10 overflow-hidden">
                 <div id="carregando" class="absolute inset-0 grid place-items-center text-sm text-topazio-claro/60">Carregando visualização 3D…</div>
                 <div class="absolute top-3 left-3 text-[11px] uppercase tracking-[.2em] text-topazio-claro/50 pointer-events-none" id="legendaPalco"></div>
+                <button type="button" data-abrir-provador class="absolute top-3 right-3 z-10 flex items-center gap-2 px-3 py-2 text-[11px] uppercase tracking-[.16em] bg-topazio-escuro/80 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+                    <i class="fa-solid fa-camera-retro"></i>Provar
+                </button>
                 <div class="absolute bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-topazio-claro/45 pointer-events-none whitespace-nowrap">
                     <i class="fa-solid fa-hand-pointer mr-1"></i>Arraste para girar · role ou pince para aproximar
                 </div>
@@ -176,6 +186,11 @@
                     <button type="button" id="btnFundo" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-circle-half-stroke mr-2 text-topazio-pessego"></i>Alternar fundo claro / escuro</button>
                     <button type="button" id="btnFoto" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-camera mr-2 text-topazio-pessego"></i>Baixar imagem da joia</button>
                 </div>
+                <button type="button" data-abrir-provador class="mt-3 w-full p-4 flex items-center gap-4 border border-topazio-pessego bg-topazio-pessego/10 hover:bg-topazio-pessego/20 transition text-left">
+                    <i class="fa-solid fa-camera-retro text-2xl text-topazio-pessego"></i>
+                    <span><span class="block font-serif text-xl">Prova virtual</span>
+                    <span class="block text-xs text-topazio-claro/60">Use a câmera do celular para ver como a joia fica em você</span></span>
+                </button>
                 <div class="mt-6 p-5 border border-white/10 bg-white/[.02] text-sm leading-relaxed" id="resumoVisual"></div>
                 <p class="text-xs text-topazio-claro/45 mt-3">A visualização é uma representação digital. Cor e brilho da pedra real são confirmados com fotos e vídeos no atendimento.</p>
             </section>
@@ -209,13 +224,24 @@
                     <button type="button" id="btnComprar" class="px-5 py-4 border border-topazio-pessego text-topazio-pessego font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio-pessego hover:text-topazio-escuro transition">
                         <i class="fa-solid fa-bag-shopping mr-2"></i>Quero comprar
                     </button>
-                    <button type="button" id="btnSalvar" class="opcao px-5 py-4 text-sm"><i class="fa-regular fa-bookmark mr-2 text-topazio-pessego"></i>Salvar criação</button>
+                    <button type="button" id="btnSalvar" class="opcao px-5 py-4 text-sm"><i class="fa-regular fa-bookmark mr-2 text-topazio-pessego"></i>Salvar na minha lista</button>
                     <button type="button" id="btnCompartilhar" class="opcao px-5 py-4 text-sm"><i class="fa-solid fa-share-nodes mr-2 text-topazio-pessego"></i>Compartilhar projeto</button>
                 </div>
                 <p class="text-xs text-topazio-claro/50 mt-3">Orçamento e compra são feitos pelo WhatsApp: a conversa já abre com o resumo completo do seu projeto.</p>
 
-                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-8 mb-3">Minhas criações</h3>
-                <div id="listaSalvos" class="grid gap-3"></div>
+                <button type="button" id="btnNovaVersao" class="hidden mt-3 text-xs uppercase tracking-[.14em] text-topazio-pessego hover:underline">
+                    <i class="fa-regular fa-clone mr-1"></i>Salvar como nova versão
+                </button>
+
+                <div class="mt-8 p-5 border border-white/10 bg-white/[.02] flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <p class="text-[11px] uppercase tracking-[.22em] text-topazio-claro/55">Lista de desejos</p>
+                        <p class="text-sm mt-1">Você tem <b id="contaProjetos2">0</b> projeto(s) salvo(s) neste aparelho.</p>
+                    </div>
+                    <button type="button" data-abrir-projetos class="text-xs uppercase tracking-[.14em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+                        Ver, comparar e retomar
+                    </button>
+                </div>
             </section>
 
             <!-- navegação entre etapas -->
@@ -226,7 +252,97 @@
         </div>
     </main>
 
-    <div id="aviso" class="aviso fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 bg-topazio-claro text-topazio-escuro text-sm shadow-2xl opacity-0 translate-y-4 pointer-events-none"></div>
+    <!-- ===== COLEÇÃO DE INSPIRAÇÕES ===== -->
+    <section id="inspiracoes" class="max-w-7xl mx-auto px-4 sm:px-6 pb-24 scroll-mt-20">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-t border-white/10 pt-16">
+            <div>
+                <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-3">Coleção de inspirações</p>
+                <h2 class="font-serif text-4xl sm:text-5xl">Comece por uma joia nossa</h2>
+                <p class="mt-3 text-topazio-claro/65 max-w-xl">Escolha um modelo da coleção e use como ponto de partida: troque a pedra, o metal e os detalhes até ficar do seu jeito.</p>
+            </div>
+            <div class="flex flex-wrap gap-2" id="filtrosInsp"></div>
+        </div>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="gradeInsp"></div>
+    </section>
+
+    <!-- ===== MEUS PROJETOS (gaveta) ===== -->
+    <div id="gavetaProjetos" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/60" data-fechar-projetos></div>
+        <aside class="absolute right-0 top-0 h-full w-full max-w-md bg-topazio-escuro border-l border-white/10 flex flex-col">
+            <div class="flex items-center justify-between px-5 h-16 border-b border-white/10">
+                <h2 class="font-serif text-2xl">Meus projetos</h2>
+                <button type="button" data-fechar-projetos class="w-9 h-9 grid place-items-center hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="flex gap-2 px-5 pt-4" id="abasProjetos"></div>
+            <div class="flex-1 overflow-y-auto overflow-x-hidden px-4 sm:px-5 py-4 grid grid-cols-[minmax(0,1fr)] gap-3 content-start" id="listaProjetos"></div>
+            <div class="px-4 sm:px-5 py-4 border-t border-white/10 flex items-center justify-between gap-3">
+                <p class="text-[11px] sm:text-xs text-topazio-claro/50 min-w-0">Marque até 3 para comparar.</p>
+                <button type="button" id="btnComparar" disabled class="flex-none px-4 py-2 text-xs font-semibold uppercase tracking-[.14em] bg-topazio-pessego text-topazio-escuro disabled:opacity-40 disabled:cursor-not-allowed">Comparar</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ===== COMPARAR VERSÕES ===== -->
+    <div id="modalComparar" class="fixed inset-0 z-[70] hidden bg-black/75 p-4 overflow-y-auto">
+        <div class="max-w-5xl mx-auto my-8 bg-topazio-escuro border border-white/10">
+            <div class="flex items-center justify-between px-5 h-16 border-b border-white/10">
+                <h2 class="font-serif text-2xl">Comparar versões</h2>
+                <button type="button" data-fechar-comparar class="w-9 h-9 grid place-items-center hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="overflow-x-auto p-5"><table class="w-full text-sm" id="tabelaComparar"></table></div>
+        </div>
+    </div>
+
+    <!-- ===== PROVA VIRTUAL ===== -->
+    <div id="provador" class="fixed inset-0 z-[80] hidden bg-black">
+        <div id="provPalco" class="absolute inset-0 overflow-hidden">
+            <video id="provVideo" playsinline muted autoplay class="absolute inset-0 w-full h-full object-cover"></video>
+            <img id="provFoto" alt="" class="hidden absolute inset-0 w-full h-full object-cover">
+            <div id="provJoia" class="absolute w-[min(70vw,320px)] aspect-square cursor-move" style="touch-action:none"></div>
+        </div>
+
+        <div class="absolute inset-x-0 top-0 p-3 sm:p-4 flex items-center justify-between gap-2 bg-gradient-to-b from-black/70 to-transparent">
+            <button type="button" data-fechar-provador class="w-10 h-10 grid place-items-center rounded-full bg-black/50 text-white" aria-label="Fechar prova virtual"><i class="fa-solid fa-xmark"></i></button>
+            <p class="font-serif text-xl text-white">Prova virtual</p>
+            <div class="flex gap-2">
+                <button type="button" id="provTrocar" class="w-10 h-10 grid place-items-center rounded-full bg-black/50 text-white" aria-label="Trocar câmera"><i class="fa-solid fa-camera-rotate"></i></button>
+                <label class="w-10 h-10 grid place-items-center rounded-full bg-black/50 text-white cursor-pointer" aria-label="Usar uma foto">
+                    <i class="fa-regular fa-image"></i><input type="file" id="provArquivo" accept="image/*" class="hidden">
+                </label>
+            </div>
+        </div>
+
+        <p id="provDica" class="absolute left-1/2 -translate-x-1/2 top-20 w-[min(92vw,440px)] text-center text-xs sm:text-sm text-white bg-black/50 px-4 py-2 rounded-full pointer-events-none"></p>
+
+        <div id="provErro" class="hidden absolute inset-0 grid place-items-center p-6">
+            <div class="max-w-sm text-center bg-topazio-escuro border border-white/10 p-6">
+                <i class="fa-solid fa-video-slash text-3xl text-topazio-pessego"></i>
+                <p class="mt-4 text-sm" id="provErroTexto"></p>
+                <label class="inline-block mt-5 px-5 py-3 bg-topazio-pessego text-topazio-escuro text-xs font-semibold uppercase tracking-[.14em] cursor-pointer">
+                    Usar uma foto minha<input type="file" id="provArquivo2" accept="image/*" class="hidden">
+                </label>
+            </div>
+        </div>
+
+        <div class="absolute inset-x-0 bottom-0 p-4 pb-6 bg-gradient-to-t from-black/80 to-transparent">
+            <div class="max-w-md mx-auto grid gap-3">
+                <label class="flex items-center gap-3 text-xs text-white/80">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center w-4"></i>Tamanho
+                    <input type="range" id="provTamanho" min="25" max="300" value="100" class="flex-1">
+                </label>
+                <label class="flex items-center gap-3 text-xs text-white/80">
+                    <i class="fa-solid fa-cube w-4"></i>Ângulo 3D
+                    <input type="range" id="provGiro" min="-180" max="180" value="0" class="flex-1">
+                </label>
+                <div class="flex gap-3">
+                    <button type="button" id="provFotoBtn" class="flex-1 py-3 bg-topazio-pessego text-topazio-escuro text-xs font-semibold uppercase tracking-[.14em]"><i class="fa-solid fa-camera mr-2"></i>Salvar foto</button>
+                    <button type="button" data-fechar-provador class="flex-1 py-3 border border-white/30 text-white text-xs uppercase tracking-[.14em]">Voltar ao projeto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aviso" class="aviso fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] px-5 py-3 bg-topazio-claro text-topazio-escuro text-sm shadow-2xl opacity-0 translate-y-4 pointer-events-none"></div>
 
     <script type="module">
     import * as THREE from "three";
@@ -752,28 +868,442 @@
     function lerSalvos(){ try { return JSON.parse(localStorage.getItem(SALVOS_LS) || "[]"); } catch (e) { return []; } }
     function gravarSalvos(lista){ try { localStorage.setItem(SALVOS_LS, JSON.stringify(lista)); return true; } catch (e) { return false; } }
 
-    function miniatura(){
+    function miniatura(tam = 160){
         renderer.render(cena, camera);
-        const c = document.createElement("canvas"); c.width = c.height = 160;
+        const c = document.createElement("canvas"); c.width = c.height = tam;
+        const ctx = c.getContext("2d");
+        const fundo = ctx.createRadialGradient(tam / 2, tam * 0.4, 0, tam / 2, tam / 2, tam * 0.75);
+        fundo.addColorStop(0, "#3a2016"); fundo.addColorStop(1, "#1c0f0a");
+        ctx.fillStyle = fundo; ctx.fillRect(0, 0, tam, tam);
         const src = renderer.domElement, lado = Math.min(src.width, src.height);
-        c.getContext("2d").drawImage(src, (src.width - lado) / 2, (src.height - lado) / 2, lado, lado, 0, 0, 160, 160);
-        return c.toDataURL("image/jpeg", 0.8);
+        ctx.drawImage(src, (src.width - lado) / 2, (src.height - lado) / 2, lado, lado, 0, 0, tam, tam);
+        return c.toDataURL("image/jpeg", 0.82);
     }
 
-    function pintarSalvos(){
-        const lista = lerSalvos();
-        $("listaSalvos").innerHTML = lista.length ? lista.map((s, i) => `
-            <div class="flex items-center gap-3 p-3 border border-white/10">
-                <img src="${s.img}" alt="" class="w-14 h-14 object-cover bg-black/30">
-                <div class="flex-1 min-w-0">
-                    <p class="text-sm truncate">${s.estado.nome || "Criação sem nome"}</p>
-                    <p class="text-xs text-topazio-claro/50">${s.resumo} · ${s.data}</p>
-                </div>
-                <button type="button" data-abrir-salvo="${i}" class="text-xs uppercase tracking-[.14em] text-topazio-pessego hover:underline">Abrir</button>
-                <button type="button" data-apagar-salvo="${i}" class="text-xs text-topazio-claro/40 hover:text-topazio-rosa" aria-label="Apagar"><i class="fa-regular fa-trash-can"></i></button>
-            </div>`).join("")
-            : `<p class="text-sm text-topazio-claro/45">Nenhuma criação salva ainda.</p>`;
+    /** Roda fn com outra configuração no lugar do estado atual (para preços e resumos de projetos salvos). */
+    function comEstado(config, fn){
+        const antigo = estado;
+        estado = { ...PADRAO, ...config };
+        try { return fn(); } finally { estado = antigo; }
     }
+
+    /* ---------- lista de desejos e projetos salvos (neste navegador) ---------- */
+    let projetoAtualId = null;
+    let abaProjetos = "todos";
+    const selecionados = new Set();
+    const novoId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+    function lerProjetos(){
+        const lista = lerSalvos();
+        let mudou = false;
+        lista.forEach(p => { if (!p.id) { p.id = novoId(); mudou = true; } p.fav = !!p.fav; });
+        if (mudou) gravarSalvos(lista);
+        return lista;
+    }
+    const faixaDe = config => comEstado(config, () => { const r = calcularPreco(); return `${brl(r.min)} – ${brl(r.max)}`; });
+
+    function registroAtual(id, fav){
+        return {
+            id, fav: !!fav,
+            estado: { ...estado },
+            img: miniatura(),
+            resumo: `${MODELOS[estado.tipo].nome} ${estiloAtual().nome} · ${estado.pedra}`,
+            data: new Date().toLocaleString("pt-BR", { dateStyle:"short", timeStyle:"short" })
+        };
+    }
+
+    function salvarProjeto(novaVersao){
+        const lista = lerProjetos();
+        const i = lista.findIndex(p => p.id === projetoAtualId);
+        let msg;
+        if (!novaVersao && i >= 0) {
+            lista[i] = registroAtual(projetoAtualId, lista[i].fav);
+            msg = "Alterações salvas no projeto";
+        } else {
+            if (novaVersao && i >= 0) {
+                const base = (lista[i].estado.nome || "Projeto").replace(/ · versão \d+$/, "");
+                const n = lista.filter(x => (x.estado.nome || "Projeto").replace(/ · versão \d+$/, "") === base).length + 1;
+                estado.nome = `${base} · versão ${n}`;
+                history.replaceState(null, "", "#" + linkProjeto().split("#")[1]);
+            }
+            const id = novoId();
+            lista.unshift(registroAtual(id, false));
+            projetoAtualId = id;
+            msg = novaVersao ? "Nova versão salva — compare na sua lista" : "Salvo na sua lista de desejos";
+        }
+        avisar(gravarSalvos(lista.slice(0, 30)) ? msg : "Não foi possível salvar neste navegador");
+        $("nomeProjeto").value = estado.nome || "";
+        pintarProjetos();
+    }
+
+    function abrirProjeto(id){
+        const p = lerProjetos().find(x => x.id === id);
+        if (!p) return;
+        projetoAtualId = id;
+        mudar({ ...PADRAO, ...p.estado });
+        ultimoEnquadre = ""; montarJoia();
+        fecharProjetos(); fecharComparar();
+        irEtapa(1);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        avisar(`Retomando “${p.estado.nome || p.resumo}”`);
+    }
+
+    function pintarProjetos(){
+        const lista = lerProjetos();
+        for (const id of [...selecionados]) if (!lista.some(p => p.id === id)) selecionados.delete(id);
+        $("contaProjetos").textContent = lista.length;
+        $("contaProjetos2").textContent = lista.length;
+        const favs = lista.filter(p => p.fav).length;
+        $("abasProjetos").innerHTML = [["todos", `Todos (${lista.length})`], ["favoritos", `<i class="fa-solid fa-heart mr-1"></i>Desejos (${favs})`]].map(([v, r]) =>
+            `<button type="button" data-aba-projetos="${v}" class="opcao px-3 py-1.5 text-xs ${abaProjetos === v ? "ativa" : ""}">${r}</button>`).join("");
+        const visiveis = abaProjetos === "favoritos" ? lista.filter(p => p.fav) : lista;
+        $("listaProjetos").innerHTML = visiveis.length ? visiveis.map(p => `
+            <div class="p-3 border ${p.id === projetoAtualId ? "border-topazio-pessego" : "border-white/10"}">
+                <div class="flex gap-3">
+                    <img src="${p.img}" alt="" class="w-16 h-16 object-cover bg-black/30 flex-none">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm truncate">${p.estado.nome || "Projeto sem nome"}${p.id === projetoAtualId ? ` <span class="text-[10px] uppercase tracking-[.14em] text-topazio-pessego">· aberto</span>` : ""}</p>
+                        <p class="text-xs text-topazio-claro/55 truncate">${p.resumo} · ${METAIS[p.estado.metal] ? METAIS[p.estado.metal].nome : ""}</p>
+                        <p class="text-xs text-topazio-pessego mt-0.5">${faixaDe(p.estado)}</p>
+                        <p class="text-[11px] text-topazio-claro/40">${p.data}</p>
+                    </div>
+                    <button type="button" data-favoritar="${p.id}" aria-pressed="${p.fav}" aria-label="${p.fav ? "Tirar da lista de desejos" : "Adicionar à lista de desejos"}"
+                        class="self-start w-8 h-8 grid place-items-center ${p.fav ? "text-topazio-rosa" : "text-topazio-claro/40 hover:text-topazio-rosa"}">
+                        <i class="${p.fav ? "fa-solid" : "fa-regular"} fa-heart"></i></button>
+                </div>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-xs">
+                    <button type="button" data-abrir-projeto="${p.id}" class="uppercase tracking-[.14em] text-topazio-pessego hover:underline">Retomar</button>
+                    <button type="button" data-duplicar-projeto="${p.id}" class="text-topazio-claro/60 hover:text-topazio-pessego">Duplicar</button>
+                    <label class="flex items-center gap-1.5 text-topazio-claro/60 cursor-pointer">
+                        <input type="checkbox" data-comparar="${p.id}" ${selecionados.has(p.id) ? "checked" : ""} class="accent-[#f2a65a]">Comparar</label>
+                    <button type="button" data-apagar-projeto="${p.id}" class="ml-auto text-topazio-claro/40 hover:text-topazio-rosa" aria-label="Apagar projeto"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+            </div>`).join("")
+            : `<p class="text-sm text-topazio-claro/45 py-6 text-center">${abaProjetos === "favoritos" ? "Toque no coração de um projeto para guardá-lo aqui." : "Nenhum projeto salvo ainda. Monte sua joia e toque em “Salvar na minha lista”."}</p>`;
+        $("btnComparar").disabled = selecionados.size < 2;
+        $("btnComparar").textContent = `Comparar${selecionados.size ? ` (${selecionados.size})` : ""}`;
+        $("btnSalvar").innerHTML = `<i class="fa-regular fa-bookmark mr-2 text-topazio-pessego"></i>${projetoAtualId && lista.some(p => p.id === projetoAtualId) ? "Salvar alterações" : "Salvar na minha lista"}`;
+        $("btnNovaVersao").classList.toggle("hidden", !(projetoAtualId && lista.some(p => p.id === projetoAtualId)));
+    }
+
+    const travarRolagem = trava => { document.body.style.overflow = trava ? "hidden" : ""; };
+    function abrirProjetos(){ pintarProjetos(); $("gavetaProjetos").classList.remove("hidden"); travarRolagem(true); }
+    function fecharProjetos(){ $("gavetaProjetos").classList.add("hidden"); travarRolagem(false); }
+    function fecharComparar(){ $("modalComparar").classList.add("hidden"); if ($("gavetaProjetos").classList.contains("hidden")) travarRolagem(false); }
+
+    function abrirComparar(){
+        const lista = lerProjetos().filter(p => selecionados.has(p.id));
+        if (lista.length < 2) return;
+        const dados = lista.map(p => comEstado(p.estado, () => {
+            const pedra = pedraAtual(), est = estiloAtual(), r = calcularPreco();
+            return {
+                p, r,
+                linhas: {
+                    "Modelo": `${MODELOS[estado.tipo].nome} ${est.nome}`,
+                    "Pedra": `${pedra.codigo} · ${pedra.tom}`,
+                    "Lapidação": `${pedra.lapidacao} · ${pedra.c} × ${pedra.l} mm · ${pedra.ct.toFixed(2)} ct`,
+                    "Metal": METAIS[estado.metal].nome,
+                    "Acabamento": ACABAMENTOS[estado.acabamento].nome,
+                    "Detalhes": estado.tipo === "anel" ? `Aro ${estado.aro}${estado.gravacao ? ` · gravação “${estado.gravacao}”` : ""}`
+                              : estado.tipo === "pingente" ? (estado.corrente ? "Com corrente 45 cm" : "Sem corrente") : "Par de brincos",
+                    "Peso do metal": `~${r.gramas.toFixed(1)} g`
+                }
+            };
+        }));
+        const menor = Math.min(...dados.map(d => d.r.total));
+        const rotulos = Object.keys(dados[0].linhas);
+        $("tabelaComparar").innerHTML = `
+            <thead><tr><th class="w-32"></th>${dados.map(d => `
+                <th class="p-3 align-top text-left font-normal">
+                    <img src="${d.p.img}" alt="" class="w-full max-w-[180px] aspect-square object-cover">
+                    <p class="font-serif text-xl mt-2">${d.p.estado.nome || "Projeto sem nome"}</p>
+                    <p class="text-[11px] text-topazio-claro/40">${d.p.data}</p>
+                </th>`).join("")}</tr></thead>
+            <tbody>
+                ${rotulos.map(rot => {
+                    const valores = dados.map(d => d.linhas[rot]);
+                    const iguais = valores.every(v => v === valores[0]);
+                    return `<tr class="border-t border-white/10"><td class="p-3 text-xs uppercase tracking-[.14em] text-topazio-claro/50">${rot}</td>
+                        ${valores.map(v => `<td class="p-3 ${iguais ? "text-topazio-claro/55" : ""}">${v}</td>`).join("")}</tr>`;
+                }).join("")}
+                <tr class="border-t border-white/10"><td class="p-3 text-xs uppercase tracking-[.14em] text-topazio-claro/50">Estimativa</td>
+                    ${dados.map(d => `<td class="p-3 font-serif text-xl ${d.r.total === menor ? "text-topazio-pessego" : ""}">${brl(d.r.min)} – ${brl(d.r.max)}${d.r.total === menor ? `<span class="block font-sans text-[10px] uppercase tracking-[.14em]">mais em conta</span>` : ""}</td>`).join("")}</tr>
+                <tr><td></td>${dados.map(d => `<td class="p-3"><button type="button" data-abrir-projeto="${d.p.id}" class="px-4 py-2 text-xs uppercase tracking-[.14em] border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">Retomar esta</button></td>`).join("")}</tr>
+            </tbody>`;
+        $("modalComparar").classList.remove("hidden");
+        travarRolagem(true);
+    }
+
+    /* ---------- coleção de inspirações ----------
+       Joias da marca para usar como ponto de partida. Para mostrar a foto da peça
+       produzida, salve em img/inspiracoes/<id>.jpg — sem a foto, aparece a joia em 3D. */
+    const INSPIRACOES = [
+        { id:"aurora",     titulo:"Solitário Aurora",      desc:"Topázio oval dourado em ouro amarelo, com garras delicadas.", config:{ tipo:"anel", estilo:"solitario", pedra:"IG-0101", metal:"ouro18" } },
+        { id:"imperatriz", titulo:"Halo Imperatriz",       desc:"Topázio rosa cercado de pontos de brilho, em ouro rosé.",     config:{ tipo:"anel", estilo:"halo", pedra:"IG-0104", metal:"rose" } },
+        { id:"vila-rica",  titulo:"Aro Vila Rica",         desc:"Aro largo escovado com topázio champanhe embutido.",          config:{ tipo:"anel", estilo:"largo", pedra:"IG-0105", metal:"ouro18", acabamento:"escovado" } },
+        { id:"gotas",      titulo:"Gotas de Sherry",       desc:"Par de brincos gota com topázio sherry intenso.",             config:{ tipo:"brinco", estilo:"gota", pedra:"IG-0106", metal:"ouro18" } },
+        { id:"ponto",      titulo:"Ponto de Luz Dourado",  desc:"Brinco ponto de luz em ouro branco, para o dia a dia.",       config:{ tipo:"brinco", estilo:"ponto", pedra:"IG-0107", metal:"branco" } },
+        { id:"argola",     titulo:"Argola Itacolomi",      desc:"Argola em ouro rosé com topázio sherry pendente.",            config:{ tipo:"brinco", estilo:"argola", pedra:"IG-0103", metal:"rose" } },
+        { id:"moldura",    titulo:"Pingente Relicário",    desc:"Topázio rosa-pêssego emoldurado em prata, com corrente.",     config:{ tipo:"pingente", estilo:"moldura", pedra:"IG-0108", metal:"prata", corrente:true } },
+        { id:"halo-p",     titulo:"Pingente Sol de Minas", desc:"Gota pêssego com halo de brilhos em ouro amarelo.",           config:{ tipo:"pingente", estilo:"halo", pedra:"IG-0102", metal:"ouro18", corrente:true } }
+    ];
+    let filtroInsp = "";
+    const miniaturasInsp = {};
+
+    function gerarMiniaturasInsp(){
+        const antigo = estado;
+        for (const insp of INSPIRACOES) {
+            estado = { ...PADRAO, ...insp.config };
+            ultimoEnquadre = "";
+            montarJoia();
+            miniaturasInsp[insp.id] = miniatura(420);
+        }
+        estado = antigo;
+        ultimoEnquadre = "";
+        montarJoia();
+    }
+
+    function pintarInspiracoes(){
+        $("filtrosInsp").innerHTML = [["", "Todas"], ["anel", "Anéis"], ["brinco", "Brincos"], ["pingente", "Pingentes"]].map(([v, r]) =>
+            `<button type="button" data-filtro-insp="${v}" class="opcao px-4 py-2 text-xs uppercase tracking-[.14em] ${filtroInsp === v ? "ativa" : ""}">${r}</button>`).join("");
+        $("gradeInsp").innerHTML = INSPIRACOES.filter(i => !filtroInsp || i.config.tipo === filtroInsp).map(i => `
+            <article class="group border border-white/10 bg-white/[.02] flex flex-col">
+                <div class="relative aspect-square overflow-hidden bg-black/30">
+                    <img src="${miniaturasInsp[i.id] || ""}" alt="${i.titulo}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="img/inspiracoes/${i.id}.jpg" alt="${i.titulo}" loading="lazy" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 text-[10px] uppercase tracking-[.18em] px-2 py-1 bg-topazio-escuro/80 text-topazio-pessego">${MODELOS[i.config.tipo].nome}</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col">
+                    <h3 class="font-serif text-2xl">${i.titulo}</h3>
+                    <p class="text-sm text-topazio-claro/60 mt-1 flex-1">${i.desc}</p>
+                    <p class="text-xs text-topazio-pessego mt-3">A partir de ${faixaDe(i.config).split(" – ")[0]}</p>
+                    <div class="flex gap-2 mt-4">
+                        <button type="button" data-usar-insp="${i.id}" class="flex-1 py-2.5 text-xs font-semibold uppercase tracking-[.12em] bg-topazio-pessego text-topazio-escuro hover:bg-topazio transition">Personalizar</button>
+                        <button type="button" data-provar-insp="${i.id}" class="px-3 py-2.5 text-xs border border-white/20 hover:border-topazio-pessego hover:text-topazio-pessego transition" aria-label="Provar ${i.titulo} com a câmera"><i class="fa-solid fa-camera-retro"></i></button>
+                    </div>
+                </div>
+            </article>`).join("");
+    }
+
+    function usarInspiracao(id, provar){
+        const i = INSPIRACOES.find(x => x.id === id);
+        if (!i) return;
+        projetoAtualId = null;
+        mudar({ ...PADRAO, ...i.config, nome: `Inspirado em ${i.titulo}` });
+        ultimoEnquadre = ""; montarJoia();
+        pintarProjetos();
+        if (provar) { abrirProvador(); return; }
+        irEtapa(1);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        avisar(`“${i.titulo}” carregado — personalize do seu jeito`);
+    }
+
+    /* ---------- prova virtual (câmera) ----------
+       A joia 3D aparece sobre a imagem da câmera; o cliente arrasta, aumenta e gira
+       com os dedos para posicioná-la no dedo, na orelha ou no colo. Não há rastreamento
+       automático do corpo: é uma referência visual de proporção e estilo. */
+    const prov = { pronto:false, aberto:false, stream:null, frente:false, x:.5, y:.5, s:1, r:0, toques:new Map() };
+    const DICAS_PROVA = {
+        anel:     "Aponte a câmera para sua mão e arraste o anel até o dedo. Com dois dedos, ajuste tamanho e inclinação.",
+        brinco:   "Use a câmera frontal e posicione o brinco no lóbulo da orelha. Com dois dedos, ajuste o tamanho.",
+        pingente: "Use a câmera frontal e posicione o pingente no colo, logo abaixo do pescoço."
+    };
+
+    function prepararProvador(){
+        if (prov.pronto) return;
+        prov.renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true, preserveDrawingBuffer:true });
+        prov.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        prov.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        prov.renderer.toneMappingExposure = 1.05;
+        prov.renderer.outputColorSpace = THREE.SRGBColorSpace;
+        prov.renderer.domElement.style.cssText = "width:100%;height:100%;display:block";
+        $("provJoia").appendChild(prov.renderer.domElement);
+        prov.cena = new THREE.Scene();
+        prov.cena.environment = new THREE.PMREMGenerator(prov.renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+        const l1 = new THREE.DirectionalLight(0xffffff, 2.2); l1.position.set(20, 40, 30);
+        const l2 = new THREE.DirectionalLight(0xffe2c0, 1.2); l2.position.set(-30, 10, -20);
+        prov.cena.add(l1, l2);
+        prov.camera = new THREE.PerspectiveCamera(30, 1, 0.1, 1000);
+        prov.giro = new THREE.Group();
+        prov.cena.add(prov.giro);
+        new ResizeObserver(() => {
+            const { width } = $("provJoia").getBoundingClientRect();
+            if (width) prov.renderer.setSize(width, width, false);
+        }).observe($("provJoia"));
+        prov.pronto = true;
+    }
+
+    function modeloProvador(){
+        prov.giro.clear();
+        const modelo = joia.clone(true);
+        if (estado.tipo === "brinco" && modelo.children.length > 1) {   // na orelha, só um brinco
+            modelo.remove(modelo.children[1]);
+            modelo.children[0].position.x = 0;
+        }
+        const caixa = new THREE.Box3().setFromObject(modelo);
+        const centro = caixa.getCenter(new THREE.Vector3());
+        const tam = caixa.getSize(new THREE.Vector3()).length();
+        modelo.position.sub(centro);
+        prov.giro.add(modelo);
+        prov.giro.rotation.set(estado.tipo === "anel" ? 1.15 : 0, 0, 0);   // anel: pedra virada para a câmera, como no dedo visto de cima
+        prov.camera.position.set(0, 0, tam * 1.25);
+        prov.camera.lookAt(0, 0, 0);
+        $("provGiro").value = 0;
+    }
+
+    function posicionarJoia(){
+        const el = $("provJoia"), palcoP = $("provPalco").getBoundingClientRect();
+        el.style.left = (prov.x * palcoP.width) + "px";
+        el.style.top = (prov.y * palcoP.height) + "px";
+        el.style.transform = `translate(-50%,-50%) rotate(${prov.r}rad) scale(${prov.s})`;
+        $("provTamanho").value = Math.round(prov.s * 100);
+    }
+
+    function pararCamera(){
+        if (prov.stream) prov.stream.getTracks().forEach(t => t.stop());
+        prov.stream = null;
+        $("provVideo").srcObject = null;
+    }
+
+    async function iniciarCamera(){
+        pararCamera();
+        $("provErro").classList.add("hidden");
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            mostrarErroCamera("Este navegador não permite usar a câmera aqui. Você pode usar uma foto sua no lugar.");
+            return;
+        }
+        try {
+            prov.stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: { ideal: prov.frente ? "user" : "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } },
+                audio: false
+            });
+            if (!prov.aberto) { pararCamera(); return; }
+            const v = $("provVideo");
+            v.srcObject = prov.stream;
+            v.style.transform = prov.frente ? "scaleX(-1)" : "";
+            v.classList.remove("hidden");
+            $("provFoto").classList.add("hidden");
+            await v.play().catch(() => {});
+        } catch (erro) {
+            mostrarErroCamera(erro && erro.name === "NotAllowedError"
+                ? "O acesso à câmera foi negado. Libere a câmera nas permissões do navegador ou use uma foto sua."
+                : "Não encontramos uma câmera disponível. Você pode usar uma foto sua no lugar.");
+        }
+    }
+    function mostrarErroCamera(texto){
+        $("provErroTexto").textContent = texto;
+        $("provErro").classList.remove("hidden");
+    }
+    function usarFotoProvador(arquivo){
+        if (!arquivo) return;
+        pararCamera();
+        const img = $("provFoto");
+        if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);
+        img.dataset.url = URL.createObjectURL(arquivo);
+        img.src = img.dataset.url;
+        img.classList.remove("hidden");
+        $("provVideo").classList.add("hidden");
+        $("provErro").classList.add("hidden");
+    }
+
+    function abrirProvador(){
+        prepararProvador();
+        prov.aberto = true;
+        prov.frente = estado.tipo !== "anel";       // anel: câmera traseira apontada para a mão
+        Object.assign(prov, { x:.5, y: estado.tipo === "pingente" ? .62 : .5, s:1, r:0 });
+        $("provador").classList.remove("hidden");
+        travarRolagem(true);
+        $("provDica").textContent = DICAS_PROVA[estado.tipo];
+        modeloProvador();
+        requestAnimationFrame(posicionarJoia);
+        prov.renderer.setAnimationLoop(() => prov.renderer.render(prov.cena, prov.camera));
+        iniciarCamera();
+    }
+    function fecharProvador(){
+        if (!prov.aberto) return;
+        prov.aberto = false;
+        pararCamera();
+        prov.renderer.setAnimationLoop(null);
+        $("provador").classList.add("hidden");
+        travarRolagem(false);
+    }
+
+    function fotoProvador(){
+        const palcoP = $("provPalco").getBoundingClientRect();
+        const escala = Math.min(2, window.devicePixelRatio || 1);
+        const W = Math.round(palcoP.width * escala), H = Math.round(palcoP.height * escala);
+        const c = document.createElement("canvas"); c.width = W; c.height = H;
+        const ctx = c.getContext("2d");
+        ctx.fillStyle = "#1c0f0a"; ctx.fillRect(0, 0, W, H);
+        const video = $("provVideo"), foto = $("provFoto");
+        const fonte = !foto.classList.contains("hidden") && foto.naturalWidth ? foto
+                    : video.videoWidth ? video : null;
+        if (fonte) {   // mesmo enquadramento do object-cover
+            const fw = fonte.videoWidth || fonte.naturalWidth, fh = fonte.videoHeight || fonte.naturalHeight;
+            const k = Math.max(W / fw, H / fh), dw = fw * k, dh = fh * k;
+            ctx.save();
+            if (fonte === video && prov.frente) { ctx.translate(W, 0); ctx.scale(-1, 1); }
+            ctx.drawImage(fonte, (W - dw) / 2, (H - dh) / 2, dw, dh);
+            ctx.restore();
+        }
+        prov.renderer.render(prov.cena, prov.camera);
+        const el = $("provJoia"), lado = el.offsetWidth * escala;
+        ctx.save();
+        ctx.translate(prov.x * W, prov.y * H);
+        ctx.rotate(prov.r);
+        ctx.scale(prov.s, prov.s);
+        ctx.drawImage(prov.renderer.domElement, -lado / 2, -lado / 2, lado, lado);
+        ctx.restore();
+        ctx.font = `${14 * escala}px Montserrat, sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,.85)";
+        ctx.fillText("ImperialiGems · Crie sua Joia", 16 * escala, H - 18 * escala);
+        const a = document.createElement("a");
+        a.href = c.toDataURL("image/jpeg", 0.9);
+        a.download = `imperialigems-prova-${estado.tipo}-${estado.pedra}.jpg`;
+        a.click();
+        avisar("Foto da prova virtual salva");
+    }
+
+    // gestos: 1 dedo arrasta, 2 dedos aumentam e giram; roda do mouse aumenta
+    (function gestosProvador(){
+        const el = $("provJoia");
+        let antes = null;
+        const medir = () => {
+            const [a, b] = [...prov.toques.values()];
+            return { dist: Math.hypot(b.x - a.x, b.y - a.y), ang: Math.atan2(b.y - a.y, b.x - a.x) };
+        };
+        el.addEventListener("pointerdown", e => {
+            el.setPointerCapture(e.pointerId);
+            prov.toques.set(e.pointerId, { x: e.clientX, y: e.clientY });
+            antes = prov.toques.size === 2 ? medir() : null;
+        });
+        el.addEventListener("pointermove", e => {
+            const t = prov.toques.get(e.pointerId);
+            if (!t) return;
+            const palcoP = $("provPalco").getBoundingClientRect();
+            if (prov.toques.size === 1) {
+                prov.x = Math.min(1, Math.max(0, prov.x + (e.clientX - t.x) / palcoP.width));
+                prov.y = Math.min(1, Math.max(0, prov.y + (e.clientY - t.y) / palcoP.height));
+            }
+            t.x = e.clientX; t.y = e.clientY;
+            if (prov.toques.size === 2 && antes) {
+                const agora = medir();
+                prov.s = Math.min(3, Math.max(0.25, prov.s * agora.dist / antes.dist));
+                prov.r += agora.ang - antes.ang;
+                antes = agora;
+            }
+            posicionarJoia();
+        });
+        const soltar = e => { prov.toques.delete(e.pointerId); antes = prov.toques.size === 2 ? medir() : null; };
+        el.addEventListener("pointerup", soltar);
+        el.addEventListener("pointercancel", soltar);
+        el.addEventListener("wheel", e => {
+            e.preventDefault();
+            prov.s = Math.min(3, Math.max(0.25, prov.s * (e.deltaY < 0 ? 1.08 : 0.92)));
+            posicionarJoia();
+        }, { passive: false });
+        window.addEventListener("resize", () => { if (prov.aberto) posicionarJoia(); });
+    })();
 
     function textoProjeto(intencao){
         const r = calcularPreco();
@@ -820,7 +1350,7 @@
     }
 
     document.addEventListener("click", e => {
-        const el = e.target.closest("[data-ir-etapa],[data-filtro],[data-pedra],[data-tipo],[data-estilo],[data-metal],[data-acabamento],[data-abrir-salvo],[data-apagar-salvo]");
+        const el = e.target.closest("[data-ir-etapa],[data-filtro],[data-pedra],[data-tipo],[data-estilo],[data-metal],[data-acabamento]");
         if (!el) return;
         const d = el.dataset;
         if (d.irEtapa) irEtapa(Number(d.irEtapa));
@@ -830,13 +1360,68 @@
         else if (d.estilo) mudar({ estilo: d.estilo });
         else if (d.metal) mudar({ metal: d.metal });
         else if (d.acabamento) mudar({ acabamento: d.acabamento });
-        else if (d.abrirSalvo !== undefined) {
-            const s = lerSalvos()[Number(d.abrirSalvo)];
-            if (s) { mudar({ ...PADRAO, ...s.estado }); ultimoEnquadre = ""; montarJoia(); avisar("Criação aberta"); }
-        } else if (d.apagarSalvo !== undefined) {
-            const lista = lerSalvos(); lista.splice(Number(d.apagarSalvo), 1); gravarSalvos(lista); pintarSalvos();
-        }
     });
+
+    document.addEventListener("click", e => {
+        const el = e.target.closest("[data-abrir-projetos],[data-fechar-projetos],[data-aba-projetos],[data-favoritar],[data-abrir-projeto],[data-duplicar-projeto],[data-apagar-projeto],[data-fechar-comparar],[data-filtro-insp],[data-usar-insp],[data-provar-insp],[data-abrir-provador],[data-fechar-provador]");
+        if (!el) return;
+        const d = el.dataset;
+        if (d.abrirProjetos !== undefined) abrirProjetos();
+        else if (d.fecharProjetos !== undefined) fecharProjetos();
+        else if (d.abaProjetos) { abaProjetos = d.abaProjetos; pintarProjetos(); }
+        else if (d.favoritar) {
+            const lista = lerProjetos(), p = lista.find(x => x.id === d.favoritar);
+            if (p) { p.fav = !p.fav; gravarSalvos(lista); pintarProjetos(); avisar(p.fav ? "Adicionado à lista de desejos" : "Removido da lista de desejos"); }
+        }
+        else if (d.abrirProjeto) abrirProjeto(d.abrirProjeto);
+        else if (d.duplicarProjeto) {
+            const lista = lerProjetos(), i = lista.findIndex(x => x.id === d.duplicarProjeto);
+            if (i >= 0) {
+                const copia = JSON.parse(JSON.stringify(lista[i]));
+                copia.id = novoId(); copia.fav = false;
+                copia.estado.nome = (copia.estado.nome || "Projeto") + " (cópia)";
+                copia.data = new Date().toLocaleString("pt-BR", { dateStyle:"short", timeStyle:"short" });
+                lista.splice(i, 0, copia);
+                gravarSalvos(lista.slice(0, 30)); pintarProjetos(); avisar("Cópia criada");
+            }
+        }
+        else if (d.apagarProjeto) {
+            const lista = lerProjetos().filter(x => x.id !== d.apagarProjeto);
+            if (projetoAtualId === d.apagarProjeto) projetoAtualId = null;
+            selecionados.delete(d.apagarProjeto);
+            gravarSalvos(lista); pintarProjetos();
+        }
+        else if (d.fecharComparar !== undefined) fecharComparar();
+        else if (d.filtroInsp !== undefined) { filtroInsp = d.filtroInsp; pintarInspiracoes(); }
+        else if (d.usarInsp) usarInspiracao(d.usarInsp, false);
+        else if (d.provarInsp) usarInspiracao(d.provarInsp, true);
+        else if (d.abrirProvador !== undefined) abrirProvador();
+        else if (d.fecharProvador !== undefined) fecharProvador();
+    });
+    document.addEventListener("change", e => {
+        const id = e.target.dataset && e.target.dataset.comparar;
+        if (!id) return;
+        if (e.target.checked) {
+            if (selecionados.size >= 3) { e.target.checked = false; avisar("Compare até 3 projetos por vez"); return; }
+            selecionados.add(id);
+        } else selecionados.delete(id);
+        pintarProjetos();
+    });
+    $("btnComparar").addEventListener("click", abrirComparar);
+    $("btnNovaVersao").addEventListener("click", () => salvarProjeto(true));
+    document.addEventListener("keydown", e => {
+        if (e.key !== "Escape") return;
+        if (prov.aberto) fecharProvador();
+        else if (!$("modalComparar").classList.contains("hidden")) fecharComparar();
+        else if (!$("gavetaProjetos").classList.contains("hidden")) fecharProjetos();
+    });
+
+    $("provTrocar").addEventListener("click", () => { prov.frente = !prov.frente; iniciarCamera(); });
+    $("provArquivo").addEventListener("change", e => usarFotoProvador(e.target.files[0]));
+    $("provArquivo2").addEventListener("change", e => usarFotoProvador(e.target.files[0]));
+    $("provTamanho").addEventListener("input", e => { prov.s = Number(e.target.value) / 100; posicionarJoia(); });
+    $("provGiro").addEventListener("input", e => { prov.giro.rotation.y = Number(e.target.value) * Math.PI / 180; });
+    $("provFotoBtn").addEventListener("click", fotoProvador);
 
     $("btnVoltar").addEventListener("click", () => irEtapa(etapa - 1));
     $("btnAvancar").addEventListener("click", () => irEtapa(etapa + 1));
@@ -860,17 +1445,7 @@
         a.click();
     });
 
-    $("btnSalvar").addEventListener("click", () => {
-        const lista = lerSalvos();
-        lista.unshift({
-            estado: { ...estado },
-            img: miniatura(),
-            resumo: `${MODELOS[estado.tipo].nome} ${estiloAtual().nome} · ${estado.pedra}`,
-            data: new Date().toLocaleDateString("pt-BR")
-        });
-        avisar(gravarSalvos(lista.slice(0, 12)) ? "Criação salva neste navegador" : "Não foi possível salvar neste navegador");
-        pintarSalvos();
-    });
+    $("btnSalvar").addEventListener("click", () => salvarProjeto(false));
     $("btnCompartilhar").addEventListener("click", async () => {
         const url = linkProjeto();
         if (navigator.share) {
@@ -885,7 +1460,9 @@
 
     pintarEtapas();
     pintarTudo();
-    pintarSalvos();
+    gerarMiniaturasInsp();
+    pintarInspiracoes();
+    pintarProjetos();
     </script>
 </body>
 </html>
