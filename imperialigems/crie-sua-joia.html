@@ -27,7 +27,7 @@
                     colors: {
                         topazio: {
                             claro: '#f4efec',
-                            pessego: '#e6a08c',
+                            pessego: '#e8862f',
                             DEFAULT: '#c26c5a',
                             rosa: '#bb6d85',
                             escuro: '#16140f'
@@ -56,16 +56,16 @@
         .gema { background-color: #1d1a16; }   /* quadro neutro enquanto a foto carrega */
         .gema img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .opcao { border: 1px solid rgba(255,255,255,.12); transition: border-color .2s, background .2s; }
-        .opcao:hover { border-color: rgba(230,160,140,.5); }
-        .opcao.ativa { border-color: #e6a08c; background: rgba(230,160,140,.08); box-shadow: inset 0 0 0 1px #e6a08c; }
-        .etapa-btn.ativa { color: #16140f; background: #e6a08c; border-color: #e6a08c; }
-        .etapa-btn.feita { color: #e6a08c; border-color: rgba(230,160,140,.6); }
+        .opcao:hover { border-color: rgba(232,134,47,.5); }
+        .opcao.ativa { border-color: #e8862f; background: rgba(232,134,47,.08); box-shadow: inset 0 0 0 1px #e8862f; }
+        .etapa-btn.ativa { color: #16140f; background: #e8862f; border-color: #e8862f; }
+        .etapa-btn.feita { color: #e8862f; border-color: rgba(232,134,47,.6); }
         #palco { background: radial-gradient(70% 70% at 50% 40%, #2e2a25 0%, #16140f 75%); }
         #palco.claro { background: radial-gradient(70% 70% at 50% 40%, #fffaf2 0%, #ead9c2 80%); }
         #palco canvas { display: block; width: 100% !important; height: 100% !important; cursor: grab; touch-action: none; }
         #palco canvas:active { cursor: grabbing; }
         .aviso { transition: opacity .3s, transform .3s; }
-        input[type=range] { accent-color: #e6a08c; }
+        input[type=range] { accent-color: #e8862f; }
         /* botão de prova virtual: halo suave pulsando para chamar atenção */
         .btn-provar::after { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 1px solid rgba(244,239,236,.55); animation: provarPulso 2.4s ease-out infinite; pointer-events: none; }
         @keyframes provarPulso { from { opacity: .9; transform: scale(.96); } to { opacity: 0; transform: scale(1.18); } }
@@ -177,7 +177,7 @@
                 </div>
 
                 <label id="blocoCorrente" class="mt-7 flex items-center gap-3 text-sm cursor-pointer">
-                    <input type="checkbox" id="corrente" class="w-4 h-4 accent-[#e6a08c]">
+                    <input type="checkbox" id="corrente" class="w-4 h-4 accent-[#e8862f]">
                     Incluir corrente de 45 cm no mesmo metal
                 </label>
             </section>
@@ -1081,7 +1081,7 @@
                     <button type="button" data-abrir-projeto="${p.id}" class="uppercase tracking-[.14em] text-topazio-pessego hover:underline">Retomar</button>
                     <button type="button" data-duplicar-projeto="${p.id}" class="text-topazio-claro/60 hover:text-topazio-pessego">Duplicar</button>
                     <label class="flex items-center gap-1.5 text-topazio-claro/60 cursor-pointer">
-                        <input type="checkbox" data-comparar="${p.id}" ${selecionados.has(p.id) ? "checked" : ""} class="accent-[#e6a08c]">Comparar</label>
+                        <input type="checkbox" data-comparar="${p.id}" ${selecionados.has(p.id) ? "checked" : ""} class="accent-[#e8862f]">Comparar</label>
                     <button type="button" data-apagar-projeto="${p.id}" class="ml-auto text-topazio-claro/40 hover:text-topazio-rosa" aria-label="Apagar projeto"><i class="fa-regular fa-trash-can"></i></button>
                 </div>
             </div>`).join("")

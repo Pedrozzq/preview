@@ -29,8 +29,8 @@
                     colors: {
                         topazio: {
                             claro: '#f4efec',   // creme champanhe
-                            pessego: '#e6a08c', // topázio pêssego
-                            DEFAULT: '#c26c5a', // topázio imperial "sherry"
+                            pessego: '#e8862f', // topázio imperial (laranja-dourado do cristal)
+                            DEFAULT: '#c26c5a', // topázio imperial "sherry" (salmão)
                             rosa: '#bb6d85',    // topázio rosa-imperial
                             escuro: '#16140f'   // fundo café profundo
                         }
@@ -59,7 +59,7 @@
         .gema img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .facetas { clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); }
         .texto-topazio {
-            background: linear-gradient(100deg, #e6a08c 0%, #f4d1b6 45%, #c26c5a 60%, #bb6d85 100%);
+            background: linear-gradient(100deg, #e8862f 0%, #f4d1b6 45%, #c26c5a 60%, #bb6d85 100%);
             background-size: 220% 100%;
             -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
             animation: brilho 6s linear infinite;
@@ -74,18 +74,18 @@
             padding: 14px 30px 14px 18px; border-radius: 999px; border: 2px solid transparent;
             background:
                 linear-gradient(#16140f, #24130c) padding-box,
-                conic-gradient(from var(--ang), #e6a08c, #f4d1b6, #c26c5a, #bb6d85, #e6a08c) border-box;
-            box-shadow: 0 0 0 0 rgba(230,160,140,.35), 0 18px 40px -18px rgba(194,108,90,.8);
+                conic-gradient(from var(--ang), #e8862f, #f4d1b6, #c26c5a, #bb6d85, #e8862f) border-box;
+            box-shadow: 0 0 0 0 rgba(232,134,47,.35), 0 18px 40px -18px rgba(194,108,90,.8);
             animation: girarBorda 4s linear infinite;
             transition: transform .25s, box-shadow .25s;
         }
-        .btn-joia:hover { transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(230,160,140,.12), 0 22px 50px -16px rgba(194,108,90,.95); }
-        .btn-joia__gema { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 0 8px rgba(230,160,140,.7)); animation: brilhoGema 2.4s ease-in-out infinite; }
+        .btn-joia:hover { transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(232,134,47,.12), 0 22px 50px -16px rgba(194,108,90,.95); }
+        .btn-joia__gema { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 0 8px rgba(232,134,47,.7)); animation: brilhoGema 2.4s ease-in-out infinite; }
         .btn-joia__texto {
             font-family: "Bodoni Moda", serif; font-size: 22px; font-weight: 600; letter-spacing: .02em;
-            background: linear-gradient(100deg, #f4d1b6, #e6a08c 50%, #e6a08c); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            background: linear-gradient(100deg, #f4d1b6, #e8862f 50%, #e8862f); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .btn-joia__seta { color: #e6a08c; font-size: 13px; transition: transform .25s; }
+        .btn-joia__seta { color: #e8862f; font-size: 13px; transition: transform .25s; }
         .btn-joia:hover .btn-joia__seta { transform: translateX(5px); }
         @keyframes girarBorda { to { --ang: 360deg; } }
 
@@ -96,7 +96,7 @@
         .abertura-metade.cima { top: 0; background: radial-gradient(120% 90% at 50% 100%, #26221d 0%, #0e0c09 65%); }
         .abertura-metade.baixo { bottom: 0; background: radial-gradient(120% 90% at 50% 0%, #26221d 0%, #0e0c09 65%); }
         .abertura-fio { position: absolute; left: 0; right: 0; top: 50%; height: 1px; transform: scaleX(0); opacity: 0;
-            background: linear-gradient(90deg, transparent, #f4d1b6 30%, #fff 50%, #f4d1b6 70%, transparent); box-shadow: 0 0 18px 2px rgba(230,160,140,.55); }
+            background: linear-gradient(90deg, transparent, #f4d1b6 30%, #fff 50%, #f4d1b6 70%, transparent); box-shadow: 0 0 18px 2px rgba(232,134,47,.55); }
         .abertura-centro { position: relative; display: grid; justify-items: center; gap: 14px; transition: opacity .5s ease, transform .9s cubic-bezier(.76,0,.24,1); }
         .g0 { stroke-width: .9; animation-duration: 1.3s; }
         .g1 { animation-delay: .45s; } .g2 { animation-delay: .75s; } .g3 { animation-delay: 1.05s; }
@@ -135,7 +135,7 @@
 
         /* ---------- nome antes do WhatsApp ---------- */
         #modalNome .campoNome { width: 100%; padding: 14px 16px; background: transparent; border: 1px solid rgba(244,239,236,.2); color: #f4efec; font-size: 16px; outline: none; }
-        #modalNome .campoNome:focus { border-color: #e6a08c; }
+        #modalNome .campoNome:focus { border-color: #e8862f; }
         /* galeria em parallax 3D */
         #pgBanner, #pgMatrix, .pg-card { backface-visibility: hidden; }
         #pgCaption, #pgTitulo { transition: opacity .6s ease; }
@@ -145,7 +145,7 @@
 
         /* botão "Crie sua Joia" do menu: degradê de topázio com brilho passando */
         .btn-crie { background: linear-gradient(180deg, #ffffff 0%, #f4efec 100%); box-shadow: 0 8px 22px -12px rgba(0,0,0,.7); }
-        .btn-crie.btn-crie-rosa { background: linear-gradient(100deg, #e6a08c, #c26c5a 45%, #bb6d85); box-shadow: 0 10px 22px -6px rgba(194,108,90,.35); }   /* "Criar a minha": degradê rosa original */
+        .btn-crie.btn-crie-rosa { background: linear-gradient(100deg, #e8862f, #c26c5a 45%, #bb6d85); box-shadow: 0 10px 22px -6px rgba(194,108,90,.35); }   /* "Criar a minha": degradê rosa original */
         .btn-crie::after {
             content: ""; position: absolute; inset: 0; pointer-events: none;
             background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
@@ -158,18 +158,23 @@
         .slide-op.ativa { opacity: 1; }
         /* "Gems" da marca na cor do Topázio Imperial (laranja-dourado do cristal) */
         .gems { color: #e8862f; background: linear-gradient(180deg, #f8b85e 0%, #e8862f 55%, #c9611f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        /* selo da seção 1 */
-        .selo { border-radius: 9999px; cursor: pointer; filter: drop-shadow(0 14px 24px rgba(0,0,0,.65)); transition: filter .3s; }
-        .selo:hover, .selo:focus-visible { filter: drop-shadow(0 14px 28px rgba(232,134,47,.35)); outline: none; }
-        .selo-anel { animation: seloGira 28s linear infinite; }
-        @keyframes seloGira { to { transform: rotate(360deg); } }
-        .selo-dica { position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%); padding: 3px 10px; border-radius: 9999px; background: #f4efec; color: #16140f;
-                     font: 600 9px/1.4 Montserrat, sans-serif; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
         #modalSelo { opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s; }
         #modalSelo.aberto { opacity: 1; visibility: visible; }
         #modalSelo .caixa { transform: translateY(16px) scale(.97); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
         #modalSelo.aberto .caixa { transform: none; }
-        @media (prefers-reduced-motion: reduce) { .selo-anel { animation: none; } }
+        /* balão no estilo de mensagem do WhatsApp, ao lado da logo do canto */
+        .balao-selo { display: flex; align-items: flex-end; gap: 8px; min-height: 36px; padding: 7px 10px 6px 12px; border-radius: 10px 10px 0 10px; background: #ffffff; color: #111b21;
+                      font: 400 14.5px/1.35 "Segoe UI", Helvetica, Arial, sans-serif; white-space: nowrap; box-shadow: 0 1px 1px rgba(0,0,0,.13), 0 10px 26px -10px rgba(0,0,0,.7);
+                      opacity: 0; transform: translateY(8px) scale(.92); transform-origin: 100% 100%; transition: opacity .35s ease, transform .4s cubic-bezier(.2,.8,.2,1); }
+        .balao-selo::after { content: ""; position: absolute; right: -7px; bottom: 0; width: 0; height: 0; border-left: 8px solid #ffffff; border-top: 9px solid transparent; }
+        .balao-selo.visivel { opacity: 1; transform: none; }
+        .balao-hora { display: none; align-items: center; gap: 3px; font-size: 11px; color: #667781; margin-bottom: -1px; }
+        .balao-selo.escrito .balao-hora { display: inline-flex; }
+        .balao-digitando { display: inline-flex; gap: 4px; padding: 6px 2px; }
+        .balao-digitando i { width: 7px; height: 7px; border-radius: 50%; background: #8696a0; animation: digitando 1.2s infinite ease-in-out; }
+        .balao-digitando i:nth-child(2) { animation-delay: .15s; } .balao-digitando i:nth-child(3) { animation-delay: .3s; }
+        @keyframes digitando { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+        .balao-selo.escrevendo .balao-digitando, .balao-selo.escrito .balao-digitando { display: none; }
     </style>
     <!-- Three.js (cristal 3D do topo) -->
     <script type="importmap">
@@ -233,8 +238,8 @@
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-6 md:gap-12 items-center py-10 md:py-16">
             <div>
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-5">Ouro Preto · Minas Gerais</p>
-                <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">
-                    <span class="texto-topazio">Topázio Imperial</span><br>bruto e lapidado
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-[clamp(2.6rem,5.1vw,4.2rem)] leading-[1.02]">
+                    <span class="texto-topazio md:whitespace-nowrap">Topázio Imperial</span><br>bruto e lapidado
                 </h1>
                 <p class="mt-6 text-base sm:text-lg text-topazio-claro/75 max-w-md leading-relaxed">
                     A gema mais rara de Minas, escolhida pedra a pedra onde ela nasce.
@@ -261,17 +266,6 @@
                 </div>
                 <!-- sombra no chão -->
                 <div class="mx-auto -mt-4 w-1/2 h-5 rounded-full bg-black/60 blur-xl"></div>
-                <!-- selo da marca: ao clicar, abre a apresentação da ImperialiGems -->
-                <button type="button" data-abrir-selo class="selo flutuar absolute -bottom-6 -left-4 md:-left-10 w-24 h-24 md:w-32 md:h-32" aria-label="Conheça a ImperialiGems">
-                    <svg class="selo-anel absolute inset-0 w-full h-full" viewBox="0 0 200 200" aria-hidden="true">
-                        <defs><path id="seloCirculo" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
-                        <circle cx="100" cy="100" r="98" fill="#16140f" stroke="#e4ca82" stroke-opacity=".55" stroke-width="1"/>
-                        <circle cx="100" cy="100" r="77" fill="none" stroke="#e4ca82" stroke-opacity=".35" stroke-width=".8" stroke-dasharray="2 3"/>
-                        <text font-family="Cinzel, serif" font-size="13.2" letter-spacing="3.2" fill="#e4ca82"><textPath href="#seloCirculo">TOPÁZIO IMPERIAL · OURO PRETO · MG · PROCEDÊNCIA ·</textPath></text>
-                    </svg>
-                    <img src="img/logo-nova-256.webp" alt="" class="absolute inset-[19%] w-[62%] h-[62%] rounded-full">
-                    <span class="selo-dica">Conheça</span>
-                </button>
             </div>
         </div>
     </section>
@@ -345,7 +339,7 @@
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Tons que vão do dourado ao pêssego, do laranja ao rosa-imperial.</p>
                 </div>
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <img src="img/midia/icone-anel-3d.webp" alt="Anel Halo Imperatriz em 3D" class="w-16 h-16 -my-1 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
+                    <img src="img/midia/icone-anel-halo.webp" alt="Anel Halo Imperatriz com Topázio Imperial" class="w-16 h-16 -my-1 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Do bruto à joia</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Cristais naturais para coleção e pedras lapidadas prontas para joalheria.</p>
                 </div>
@@ -586,7 +580,7 @@
                     <svg class="btn-joia__gema" viewBox="0 0 32 32" aria-hidden="true">
                         <defs>
                             <linearGradient id="gradGema" x1="0" y1="0" x2="1" y2="1">
-                                <stop offset="0" stop-color="#f4d1b6"/><stop offset=".45" stop-color="#e6a08c"/>
+                                <stop offset="0" stop-color="#f4d1b6"/><stop offset=".45" stop-color="#e8862f"/>
                                 <stop offset=".75" stop-color="#c26c5a"/><stop offset="1" stop-color="#bb6d85"/>
                             </linearGradient>
                         </defs>
@@ -643,7 +637,7 @@
             <p class="mt-5 text-lg text-topazio-claro/85">Peças únicas, escolhidas por quem é especialista em Topázio Imperial.</p>
             <a href="ouro-preto.html" class="block mt-6 text-xs uppercase tracking-[.25em] text-topazio-claro/80 hover:text-topazio-pessego transition">Conheça a origem da pedra <span aria-hidden="true">→</span></a>
             <a href="https://wa.me/553171416959" data-pedir-nome="Quero minha peça de Topázio Imperial." target="_blank" rel="noopener"
-               class="inline-block mt-9 px-9 py-4 bg-topazio-pessego text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-claro transition">
+               class="inline-block mt-9 px-9 py-4 bg-white text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] shadow-[0_10px_30px_-10px_rgba(0,0,0,.8)] hover:bg-topazio-claro hover:scale-105 transition">
                 <i class="fa-brands fa-whatsapp mr-2"></i>Quero minha peça
             </a>
         </div>
@@ -682,7 +676,17 @@
     </footer>
 
     <!-- ===== NOME ANTES DO WHATSAPP ===== -->
-    <!-- ===== SOBRE A IMPERIALIGEMS (abre pelo selo da seção 1) ===== -->
+    <!-- logo fixa no canto inferior direito: ao clicar, abre a apresentação da ImperialiGems -->
+    <button type="button" data-abrir-selo class="flutuar fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 w-12 h-12 sm:w-16 sm:h-16 rounded-full drop-shadow-[0_12px_24px_rgba(0,0,0,.6)] hover:drop-shadow-[0_12px_28px_rgba(232,134,47,.45)] transition" aria-label="Conheça a ImperialiGems">
+        <img src="img/logo-nova.webp" alt="" class="w-full h-full">
+    </button>
+    <!-- balão que aparece por alguns segundos ao rolar a página -->
+    <div id="balaoSelo" class="balao-selo fixed z-40 bottom-[4.2rem] right-4 sm:bottom-[5.3rem] sm:right-5 pointer-events-none" aria-hidden="true">
+        <span class="balao-digitando"><i></i><i></i><i></i></span>
+        <span class="balao-texto"></span><span class="balao-hora">agora <svg viewBox="0 0 16 11" width="16" height="11"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53bdeb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+
+    <!-- ===== SOBRE A IMPERIALIGEMS (abre pela logo do canto) ===== -->
     <div id="modalSelo" class="fixed inset-0 z-[90] bg-black/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloSelo">
         <div class="min-h-full grid place-items-center p-4" data-fechar-selo>
             <div class="caixa relative w-full max-w-lg bg-topazio-escuro border border-[#e4ca82]/30 shadow-2xl overflow-hidden">
@@ -696,14 +700,9 @@
                     <p class="text-[11px] uppercase tracking-[.3em] text-[#e4ca82]">Selo de procedência · Ouro Preto, MG</p>
                     <h2 id="tituloSelo" class="font-serif text-3xl sm:text-4xl mt-3 leading-tight">Imperiali<span class="gems">Gems</span></h2>
                     <p class="mt-4 text-sm text-topazio-claro/75 leading-relaxed">Nascemos em Ouro Preto, a principal fonte de Topázio Imperial do mundo. Trabalhamos com estoque próprio: cada pedra é escolhida por nós, recebe código, peso e fotos reais — você sabe exatamente qual gema será sua.</p>
-                    <ul class="mt-6 grid grid-cols-3 gap-3 text-left sm:text-center">
-                        <li class="p-3 border border-white/10 bg-white/[.02]"><p class="font-serif text-lg leading-tight">Origem</p><p class="text-[11px] text-topazio-claro/55 mt-1">Pedras da região de Ouro Preto</p></li>
-                        <li class="p-3 border border-white/10 bg-white/[.02]"><p class="font-serif text-lg leading-tight">Transparência</p><p class="text-[11px] text-topazio-claro/55 mt-1">Código e fotos de cada gema</p></li>
-                        <li class="p-3 border border-white/10 bg-white/[.02]"><p class="font-serif text-lg leading-tight">Atendimento</p><p class="text-[11px] text-topazio-claro/55 mt-1">Direto com especialistas</p></li>
-                    </ul>
-                    <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
-                        <a href="ouro-preto.html" class="inline-flex items-center justify-center px-6 py-3.5 border border-white/25 text-xs uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">Conheça nossa origem</a>
-                        <a href="https://wa.me/553171416959" data-pedir-nome="Olá! Quero conhecer as pedras da ImperialiGems." target="_blank" rel="noopener" class="btn-neutro inline-flex items-center justify-center gap-2 px-6 py-3.5 text-topazio-escuro font-semibold text-xs uppercase tracking-[.16em]"><i class="fa-brands fa-whatsapp"></i>Falar com a gente</a>
+                    <div class="mt-7 flex flex-col items-center gap-4">
+                        <a href="https://wa.me/553171416959" data-pedir-nome="Olá! Quero conhecer as pedras da ImperialiGems." target="_blank" rel="noopener" class="btn-neutro w-full inline-flex items-center justify-center gap-3 px-6 py-5 text-topazio-escuro font-semibold text-sm sm:text-base uppercase tracking-[.18em] hover:scale-[1.02] transition"><i class="fa-brands fa-whatsapp text-xl"></i>Falar com a gente</a>
+                        <a href="ouro-preto.html" class="text-xs uppercase tracking-[.2em] text-topazio-claro/70 underline-offset-4 hover:underline hover:text-topazio-pessego transition">Conheça nossa origem <span aria-hidden="true">→</span></a>
                     </div>
                 </div>
             </div>
@@ -1017,6 +1016,30 @@
                 if (e.target.closest("button[data-fechar-selo]") || e.target.matches("div[data-fechar-selo]")) fechar();
             });
             document.addEventListener("keydown", e => { if (e.key === "Escape" && caixa.classList.contains("aberto")) fechar(); });
+        })();
+        // balão de mensagem: ao rolar, "digita" Conheça a Imperiali e some sozinho (no máximo a cada 15 s)
+        (function balaoSelo() {
+            const balao = document.getElementById("balaoSelo"), texto = balao.querySelector(".balao-texto");
+            const MENSAGEM = "Conheça a Imperiali";
+            let ultimo = -Infinity, timers = [];
+            const limpar = () => { timers.forEach(clearTimeout); timers = []; };
+            const esconder = () => { limpar(); balao.classList.remove("visivel"); };
+            const mostrar = () => {
+                limpar();
+                texto.textContent = ""; balao.classList.remove("escrevendo", "escrito"); balao.classList.add("visivel");
+                timers.push(setTimeout(() => {                         // "digitando…" e depois a mensagem letra por letra
+                    balao.classList.add("escrevendo");
+                    [...MENSAGEM].forEach((_, i) => timers.push(setTimeout(() => { texto.textContent = MENSAGEM.slice(0, i + 1); }, i * 45)));
+                    timers.push(setTimeout(() => balao.classList.add("escrito"), MENSAGEM.length * 45));
+                    timers.push(setTimeout(esconder, MENSAGEM.length * 45 + 2600));
+                }, 900));
+            };
+            addEventListener("scroll", () => {
+                const agora = performance.now();
+                if (scrollY < 150 || agora - ultimo < 15000 || document.getElementById("modalSelo").classList.contains("aberto")) return;
+                ultimo = agora; mostrar();
+            }, { passive: true });
+            document.addEventListener("click", e => { if (e.target.closest("[data-abrir-selo]")) esconder(); });
         })();
     </script>
 </body>
