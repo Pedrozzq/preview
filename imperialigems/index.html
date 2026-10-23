@@ -158,6 +158,18 @@
         .slide-op.ativa { opacity: 1; }
         /* "Gems" da marca na cor do Topázio Imperial (laranja-dourado do cristal) */
         .gems { color: #e8862f; background: linear-gradient(180deg, #f8b85e 0%, #e8862f 55%, #c9611f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        /* selo da seção 1 */
+        .selo { border-radius: 9999px; cursor: pointer; filter: drop-shadow(0 14px 24px rgba(0,0,0,.65)); transition: filter .3s; }
+        .selo:hover, .selo:focus-visible { filter: drop-shadow(0 14px 28px rgba(232,134,47,.35)); outline: none; }
+        .selo-anel { animation: seloGira 28s linear infinite; }
+        @keyframes seloGira { to { transform: rotate(360deg); } }
+        .selo-dica { position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%); padding: 3px 10px; border-radius: 9999px; background: #f4efec; color: #16140f;
+                     font: 600 9px/1.4 Montserrat, sans-serif; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
+        #modalSelo { opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s; }
+        #modalSelo.aberto { opacity: 1; visibility: visible; }
+        #modalSelo .caixa { transform: translateY(16px) scale(.97); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+        #modalSelo.aberto .caixa { transform: none; }
+        @media (prefers-reduced-motion: reduce) { .selo-anel { animation: none; } }
     </style>
     <!-- Three.js (cristal 3D do topo) -->
     <script type="importmap">
@@ -200,8 +212,7 @@
     <header class="fixed inset-x-0 top-0 z-50 bg-topazio-escuro/80 backdrop-blur border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-3">
-                <img src="img/logo-nova-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
-                <span class="font-marca font-semibold text-lg sm:text-xl uppercase tracking-[.14em] max-[430px]:hidden">Imperiali<span class="gems">Gems</span></span>
+                <span class="font-marca font-semibold text-sm min-[431px]:text-lg sm:text-xl uppercase tracking-[.1em] min-[431px]:tracking-[.14em]">Imperiali<span class="gems">Gems</span></span>
             </a>
             <div class="flex items-center gap-3">
                 <!-- destaque do menu: visível também no celular -->
@@ -250,7 +261,17 @@
                 </div>
                 <!-- sombra no chão -->
                 <div class="mx-auto -mt-4 w-1/2 h-5 rounded-full bg-black/60 blur-xl"></div>
-                <img src="img/logo-nova.webp" alt="" class="hidden md:block flutuar absolute -bottom-4 -left-8 w-28 h-28 drop-shadow-[0_12px_24px_rgba(0,0,0,.6)]">
+                <!-- selo da marca: ao clicar, abre a apresentação da ImperialiGems -->
+                <button type="button" data-abrir-selo class="selo flutuar absolute -bottom-6 -left-4 md:-left-10 w-24 h-24 md:w-32 md:h-32" aria-label="Conheça a ImperialiGems">
+                    <svg class="selo-anel absolute inset-0 w-full h-full" viewBox="0 0 200 200" aria-hidden="true">
+                        <defs><path id="seloCirculo" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
+                        <circle cx="100" cy="100" r="98" fill="#16140f" stroke="#e4ca82" stroke-opacity=".55" stroke-width="1"/>
+                        <circle cx="100" cy="100" r="77" fill="none" stroke="#e4ca82" stroke-opacity=".35" stroke-width=".8" stroke-dasharray="2 3"/>
+                        <text font-family="Cinzel, serif" font-size="13.2" letter-spacing="3.2" fill="#e4ca82"><textPath href="#seloCirculo">TOPÁZIO IMPERIAL · OURO PRETO · MG · PROCEDÊNCIA ·</textPath></text>
+                    </svg>
+                    <img src="img/logo-nova-256.webp" alt="" class="absolute inset-[19%] w-[62%] h-[62%] rounded-full">
+                    <span class="selo-dica">Conheça</span>
+                </button>
             </div>
         </div>
     </section>
@@ -661,6 +682,34 @@
     </footer>
 
     <!-- ===== NOME ANTES DO WHATSAPP ===== -->
+    <!-- ===== SOBRE A IMPERIALIGEMS (abre pelo selo da seção 1) ===== -->
+    <div id="modalSelo" class="fixed inset-0 z-[90] bg-black/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloSelo">
+        <div class="min-h-full grid place-items-center p-4" data-fechar-selo>
+            <div class="caixa relative w-full max-w-lg bg-topazio-escuro border border-[#e4ca82]/30 shadow-2xl overflow-hidden">
+                <div class="relative h-36 sm:h-44">
+                    <img src="img/ouro-preto-vista.webp" alt="Ouro Preto ao entardecer" class="absolute inset-0 w-full h-full object-cover" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-b from-topazio-escuro/20 to-topazio-escuro"></div>
+                    <button type="button" data-fechar-selo class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-full bg-black/40 text-topazio-claro hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <img src="img/logo-nova-256.webp" alt="" class="relative -mt-12 mx-auto w-24 h-24 rounded-full drop-shadow-[0_10px_20px_rgba(0,0,0,.7)]">
+                <div class="px-7 sm:px-10 pb-9 pt-4 text-center">
+                    <p class="text-[11px] uppercase tracking-[.3em] text-[#e4ca82]">Selo de procedência · Ouro Preto, MG</p>
+                    <h2 id="tituloSelo" class="font-serif text-3xl sm:text-4xl mt-3 leading-tight">Imperiali<span class="gems">Gems</span></h2>
+                    <p class="mt-4 text-sm text-topazio-claro/75 leading-relaxed">Nascemos em Ouro Preto, a principal fonte de Topázio Imperial do mundo. Trabalhamos com estoque próprio: cada pedra é escolhida por nós, recebe código, peso e fotos reais — você sabe exatamente qual gema será sua.</p>
+                    <ul class="mt-6 grid grid-cols-3 gap-3 text-left sm:text-center">
+                        <li class="p-3 border border-white/10 bg-white/[.02]"><p class="font-serif text-lg leading-tight">Origem</p><p class="text-[11px] text-topazio-claro/55 mt-1">Pedras da região de Ouro Preto</p></li>
+                        <li class="p-3 border border-white/10 bg-white/[.02]"><p class="font-serif text-lg leading-tight">Transparência</p><p class="text-[11px] text-topazio-claro/55 mt-1">Código e fotos de cada gema</p></li>
+                        <li class="p-3 border border-white/10 bg-white/[.02]"><p class="font-serif text-lg leading-tight">Atendimento</p><p class="text-[11px] text-topazio-claro/55 mt-1">Direto com especialistas</p></li>
+                    </ul>
+                    <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+                        <a href="ouro-preto.html" class="inline-flex items-center justify-center px-6 py-3.5 border border-white/25 text-xs uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">Conheça nossa origem</a>
+                        <a href="https://wa.me/553171416959" data-pedir-nome="Olá! Quero conhecer as pedras da ImperialiGems." target="_blank" rel="noopener" class="btn-neutro inline-flex items-center justify-center gap-2 px-6 py-3.5 text-topazio-escuro font-semibold text-xs uppercase tracking-[.16em]"><i class="fa-brands fa-whatsapp"></i>Falar com a gente</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="modalNome" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloNome">
         <div class="min-h-full grid place-items-center p-4">
             <form id="formNome" class="relative w-full max-w-md bg-topazio-escuro border border-topazio-pessego/30 p-7 sm:p-9 shadow-2xl">
@@ -954,6 +1003,20 @@
                 atual = (atual + 1) % fotos.length;
                 fotos[atual].classList.add("ativa");
             }, 5000);
+        })();
+        // selo da seção 1: apresentação da ImperialiGems
+        (function selo() {
+            const caixa = document.getElementById("modalSelo");
+            let origem = null;
+            const fechar = () => { caixa.classList.remove("aberto"); document.body.style.overflow = ""; origem && origem.focus(); };
+            document.addEventListener("click", e => {
+                const abrir = e.target.closest("[data-abrir-selo]");
+                if (abrir) { origem = abrir; caixa.classList.add("aberto"); document.body.style.overflow = "hidden"; caixa.querySelector("[data-fechar-selo] button, button[data-fechar-selo]").focus(); return; }
+                if (!caixa.classList.contains("aberto")) return;
+                if (e.target.closest("[data-pedir-nome]")) { fechar(); return; }
+                if (e.target.closest("button[data-fechar-selo]") || e.target.matches("div[data-fechar-selo]")) fechar();
+            });
+            document.addEventListener("keydown", e => { if (e.key === "Escape" && caixa.classList.contains("aberto")) fechar(); });
         })();
     </script>
 </body>
