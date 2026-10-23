@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,16 +25,17 @@
                 extend: {
                     colors: {
                         topazio: {
-                            claro: '#fbf3e8',   // creme champanhe
-                            pessego: '#f2a65a', // topázio pêssego
-                            DEFAULT: '#d9822b', // topázio imperial "sherry"
-                            rosa: '#c8556b',    // topázio rosa-imperial
-                            escuro: '#1c0f0a'   // fundo café profundo
+                            claro: '#f4efec',   // creme champanhe
+                            pessego: '#e6a08c', // topázio pêssego
+                            DEFAULT: '#c26c5a', // topázio imperial "sherry"
+                            rosa: '#bb6d85',    // topázio rosa-imperial
+                            escuro: '#16140f'   // fundo café profundo
                         }
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Cormorant Garamond', 'serif'],
+                        serif: ['"Bodoni Moda"', 'serif'],         // títulos: contraste de alta joalheria
+                        marca: ['Cinzel', 'serif'],               // nome da marca: capitulares gravadas
                     }
                 }
             }
@@ -42,17 +43,17 @@
     </script>
 
     <style>
-        body { background: #1c0f0a; }
+        body { background: #16140f; }
         /* Brilho de pedra: usado de fundo enquanto a foto não carrega */
         .gema {
             background:
                 radial-gradient(60% 55% at 35% 30%, rgba(255,236,200,.55), transparent 60%),
-                conic-gradient(from 210deg at 50% 50%, #f2a65a, #d9822b, #c8556b, #e9a15f, #b8662a, #f2a65a);
+                conic-gradient(from 210deg at 50% 50%, #e6a08c, #c26c5a, #bb6d85, #e3a189, #a8564a, #e6a08c);
         }
         .gema img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .facetas { clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); }
         .texto-topazio {
-            background: linear-gradient(100deg, #f2a65a 0%, #ffe3bd 45%, #d9822b 60%, #c8556b 100%);
+            background: linear-gradient(100deg, #e6a08c 0%, #f4d1b6 45%, #c26c5a 60%, #bb6d85 100%);
             background-size: 220% 100%;
             -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
             animation: brilho 6s linear infinite;
@@ -66,21 +67,81 @@
             position: relative; display: inline-flex; align-items: center; gap: 14px;
             padding: 14px 30px 14px 18px; border-radius: 999px; border: 2px solid transparent;
             background:
-                linear-gradient(#1c0f0a, #24130c) padding-box,
-                conic-gradient(from var(--ang), #f2a65a, #ffe3bd, #d9822b, #c8556b, #f2a65a) border-box;
-            box-shadow: 0 0 0 0 rgba(242,166,90,.35), 0 18px 40px -18px rgba(217,130,43,.8);
+                linear-gradient(#16140f, #24130c) padding-box,
+                conic-gradient(from var(--ang), #e6a08c, #f4d1b6, #c26c5a, #bb6d85, #e6a08c) border-box;
+            box-shadow: 0 0 0 0 rgba(230,160,140,.35), 0 18px 40px -18px rgba(194,108,90,.8);
             animation: girarBorda 4s linear infinite;
             transition: transform .25s, box-shadow .25s;
         }
-        .btn-joia:hover { transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(242,166,90,.12), 0 22px 50px -16px rgba(217,130,43,.95); }
-        .btn-joia__gema { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 0 8px rgba(242,166,90,.7)); animation: brilhoGema 2.4s ease-in-out infinite; }
+        .btn-joia:hover { transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(230,160,140,.12), 0 22px 50px -16px rgba(194,108,90,.95); }
+        .btn-joia__gema { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 0 8px rgba(230,160,140,.7)); animation: brilhoGema 2.4s ease-in-out infinite; }
         .btn-joia__texto {
-            font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; letter-spacing: .02em;
-            background: linear-gradient(100deg, #ffe3bd, #f2a65a 50%, #e98a6a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            font-family: "Bodoni Moda", serif; font-size: 22px; font-weight: 600; letter-spacing: .02em;
+            background: linear-gradient(100deg, #f4d1b6, #e6a08c 50%, #e6a08c); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .btn-joia__seta { color: #f2a65a; font-size: 13px; transition: transform .25s; }
+        .btn-joia__seta { color: #e6a08c; font-size: 13px; transition: transform .25s; }
         .btn-joia:hover .btn-joia__seta { transform: translateX(5px); }
         @keyframes girarBorda { to { --ang: 360deg; } }
+
+        /* ---------- abertura ---------- */
+        html.abrindo, html.abrindo body { overflow: hidden; }
+        #abertura { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; pointer-events: none; }
+        .abertura-metade { position: absolute; left: 0; right: 0; height: 50.5%; background: #0e0c09; transition: transform 1.25s cubic-bezier(.76,0,.24,1); }
+        .abertura-metade.cima { top: 0; background: radial-gradient(120% 90% at 50% 100%, #26221d 0%, #0e0c09 65%); }
+        .abertura-metade.baixo { bottom: 0; background: radial-gradient(120% 90% at 50% 0%, #26221d 0%, #0e0c09 65%); }
+        .abertura-fio { position: absolute; left: 0; right: 0; top: 50%; height: 1px; transform: scaleX(0); opacity: 0;
+            background: linear-gradient(90deg, transparent, #f4d1b6 30%, #fff 50%, #f4d1b6 70%, transparent); box-shadow: 0 0 18px 2px rgba(230,160,140,.55); }
+        .abertura-centro { position: relative; display: grid; justify-items: center; gap: 14px; transition: opacity .5s ease, transform .9s cubic-bezier(.76,0,.24,1); }
+        .abertura-gema { width: min(38vw, 172px); height: auto; overflow: visible; margin-bottom: 14px; filter: drop-shadow(0 0 26px rgba(187,109,133,.3)); }
+        .g-traco { fill: none; stroke: url(#ouroTraco); stroke-width: .7; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+        .g-traco { animation: desenhar 1.1s cubic-bezier(.65,0,.35,1) forwards; }
+        .g0 { stroke-width: .9; animation-duration: 1.3s; }
+        .g1 { animation-delay: .45s; } .g2 { animation-delay: .75s; } .g3 { animation-delay: 1.05s; }
+        .g-corpo { opacity: 0; animation: acender 1.4s 1.6s ease forwards; }
+        .g-facetas { opacity: 0; animation: facetas 1.2s 1.9s ease forwards; }
+        @keyframes facetas { to { opacity: 1; } }
+        .g-reflexo { animation: reflexo 2.6s 2.2s ease-in-out infinite; }
+        .g-estrela { opacity: 0; transform-box: fill-box; transform-origin: center; animation: estrela 2.6s 2.6s ease-in-out infinite; }
+        .abertura-nome { font-family: "Cinzel", serif; font-weight: 600; font-size: 16px; letter-spacing: .42em; padding-left: .42em; text-transform: uppercase; color: #f4efec; opacity: 0; animation: surgir 1.2s 1.2s ease forwards; }
+        .abertura-nome span { color: #e6a08c; }
+        .abertura-sub { font-family: "Bodoni Moda", serif; font-style: italic; font-size: 15px; letter-spacing: .12em; color: rgba(244,239,236,.55); opacity: 0; animation: surgir 1.2s 1.5s ease forwards; }
+        .abertura-barra { width: 96px; height: 1px; margin-top: 10px; background: rgba(244,239,236,.12); overflow: hidden; opacity: 0; animation: surgir .8s 1.6s ease forwards; }
+        .abertura-barra span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #b19550, #f4d1b6); transition: width .5s ease; }
+        /* saída: fio de luz na emenda, o conteúdo some e a tela se abre ao meio */
+        #abertura.saindo .abertura-centro { opacity: 0; transform: translateY(-10px) scale(.96); }
+        #abertura.saindo .abertura-fio { animation: fio .9s ease forwards; }
+        #abertura.abrir .abertura-metade.cima { transform: translateY(-101%); }
+        #abertura.abrir .abertura-metade.baixo { transform: translateY(101%); }
+        #abertura.abrir .abertura-fio { animation: fioApaga .45s ease forwards; }
+        @keyframes fioApaga { from { opacity: 1; transform: scaleX(1); } to { opacity: 0; transform: scaleX(1.05); } }
+        @keyframes desenhar { to { stroke-dashoffset: 0; } }
+        @keyframes acender { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes reflexo { 0% { transform: skewX(-18deg) translateX(0); } 55%, 100% { transform: skewX(-18deg) translateX(330px); } }
+        @keyframes estrela { 0%, 100% { opacity: 0; transform: scale(.2) rotate(0deg); } 40% { opacity: 1; transform: scale(1) rotate(45deg); } 65% { opacity: 0; transform: scale(.4) rotate(90deg); } }
+        @keyframes surgir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+        @keyframes fio { 0% { opacity: 0; transform: scaleX(0); } 40% { opacity: 1; } 100% { opacity: 1; transform: scaleX(1); } }
+        @media (prefers-reduced-motion: reduce) {
+            .g-traco, .g-corpo, .g-reflexo, .g-estrela, .abertura-nome, .abertura-sub, .abertura-barra { animation: none; }
+            .g-traco { stroke-dashoffset: 0; } .g-corpo, .g-facetas { opacity: 1; } .abertura-nome, .abertura-sub, .abertura-barra { opacity: 1; }
+            .abertura-metade { transition: none; }
+        }
+
+        /* botão principal do topo: champanhe metálico, neutro */
+        .btn-neutro { background: linear-gradient(135deg, #f1e7d3 0%, #d9c6a0 48%, #bfa77a 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 10px 26px -14px rgba(0,0,0,.8); }
+        .btn-neutro:hover { background: linear-gradient(135deg, #f8f1e4 0%, #e4d3b1 48%, #c9b287 100%); }
+
+        /* ---------- última seção: foto de Ouro Preto com zoom lento ---------- */
+        .foto-ouro-preto { transform: scale(1.06); animation: zoomLento 24s ease-in-out infinite alternate; }
+        @keyframes zoomLento { to { transform: scale(1.16); } }
+        @media (prefers-reduced-motion: reduce) { .foto-ouro-preto { animation: none; } }
+
+        /* ícones de traço fino: herdam a cor e o tamanho do texto, como os ícones de fonte */
+        .ic { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; fill: none; stroke: currentColor;
+              stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+
+        /* ---------- nome antes do WhatsApp ---------- */
+        #modalNome .campoNome { width: 100%; padding: 14px 16px; background: transparent; border: 1px solid rgba(244,239,236,.2); color: #f4efec; font-size: 16px; outline: none; }
+        #modalNome .campoNome:focus { border-color: #e6a08c; }
         /* galeria em parallax 3D */
         #pgBanner, #pgMatrix, .pg-card { backface-visibility: hidden; }
         #pgCaption, #pgTitulo { transition: opacity .6s ease; }
@@ -89,7 +150,7 @@
         @keyframes brilhoGema { 0%,100% { transform: rotate(-6deg) scale(1); } 50% { transform: rotate(6deg) scale(1.1); } }
 
         /* botão "Crie sua Joia" do menu: degradê de topázio com brilho passando */
-        .btn-crie { background: linear-gradient(100deg, #f2a65a, #d9822b 45%, #c8556b); }
+        .btn-crie { background: linear-gradient(100deg, #e6a08c, #c26c5a 45%, #bb6d85); }
         .btn-crie::after {
             content: ""; position: absolute; inset: 0; pointer-events: none;
             background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
@@ -107,20 +168,138 @@
     </script>
 </head>
 <body class="font-sans text-topazio-claro antialiased">
+    <!-- ícones de traço fino da marca -->
+    <svg width="0" height="0" class="absolute" aria-hidden="true">
+        <defs>
+            <symbol id="ic-gema" viewBox="0 0 24 24"><path d="M7 4h10l4 5-9 11L3 9z"/><path d="M3 9h18M7 4l2.5 5L12 4l2.5 5L17 4M9.5 9 12 20l2.5-11"/></symbol>
+            <symbol id="ic-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17 19 7"/></symbol>
+            <symbol id="ic-anel" viewBox="0 0 24 24"><circle cx="12" cy="15" r="6"/><path d="M9.6 6.2h4.8l1.6 2.1L12 11.6 8 8.3z"/><path d="M8 8.3h8"/></symbol>
+            <symbol id="ic-local" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+            <symbol id="ic-cubo" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></symbol>
+            <symbol id="ic-balanca" viewBox="0 0 24 24"><path d="M12 4v15M8 20h8M5 7h14"/><path d="M5 7 2.5 12.5a2.6 2.6 0 0 0 5 0zM19 7l-2.5 5.5a2.6 2.6 0 0 0 5 0z"/></symbol>
+            <symbol id="ic-paleta" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.3 0 1.9-.9 1.4-2-.6-1.4.4-2.7 1.8-2.7h2.1a3.2 3.2 0 0 0 3.2-3.2c0-5.2-3.8-9.1-8.5-9.1z"/><circle cx="8" cy="10" r=".9"/><circle cx="11.5" cy="7.2" r=".9"/><circle cx="15.5" cy="8.6" r=".9"/></symbol>
+            <symbol id="ic-calculadora" viewBox="0 0 24 24"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 6.5h7v3h-7zM8.6 13h.01M12 13h.01M15.4 13h.01M8.6 16.5h.01M12 16.5h.01M15.4 16.5h.01"/></symbol>
+        </defs>
+    </svg>
+    <!-- ===== ABERTURA: gema lapidada em traço dourado que se acende; sai abrindo como um porta-joias ===== -->
+    <script>document.documentElement.classList.add("abrindo");</script>
+    <div id="abertura" aria-hidden="true">
+        <div class="abertura-metade cima"></div>
+        <div class="abertura-metade baixo"></div>
+        <div class="abertura-fio"></div>
+        <div class="abertura-centro">
+            <svg class="abertura-gema" viewBox="0 0 200 200">
+                <defs>
+                    <linearGradient id="ouroTraco" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#fff1d6"/><stop offset=".45" stop-color="#e4ca82"/><stop offset="1" stop-color="#b19550"/>
+                    </linearGradient>
+                    <radialGradient id="luzTopazio" cx=".42" cy=".38" r=".7">
+                        <stop offset="0" stop-color="#fbe2d2"/><stop offset=".3" stop-color="#e6a08c"/><stop offset=".68" stop-color="#bb6d85"/><stop offset="1" stop-color="#5b1d24"/>
+                    </radialGradient>
+                    <linearGradient id="reflexo" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                    </linearGradient>
+                    <radialGradient id="mesaLuz" cx=".4" cy=".35" r=".8">
+                        <stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/>
+                    </radialGradient>
+                    <clipPath id="formaGema"><ellipse cx="100" cy="100" rx="62" ry="82"/></clipPath>
+                </defs>
+                <ellipse class="g-corpo" cx="100" cy="100" rx="62" ry="82" fill="url(#luzTopazio)"/>
+                <g class="g-facetas">
+                    <polygon points="100.0,62.3 120.2,73.3 128.5,100.0 120.2,126.7 100.0,137.7 79.8,126.7 71.5,100.0 79.8,73.3" fill="url(#mesaLuz)"/>
+                    <polygon points="100.0,62.3 117.1,45.5 120.2,73.3" fill="#fff" fill-opacity="0.16"/>
+                    <polygon points="100.0,18.0 117.1,45.5 123.7,24.2" fill="#000" fill-opacity="0.2"/>
+                    <polygon points="123.7,24.2 117.1,45.5 143.8,42.0" fill="#fff" fill-opacity="0.1"/>
+                    <polygon points="100.0,18.0 100.0,62.3 117.1,45.5" fill="#fff" fill-opacity="0.06"/>
+                    <polygon points="120.2,73.3 141.2,77.4 128.5,100.0" fill="#000" fill-opacity="0.14"/>
+                    <polygon points="143.8,42.0 141.2,77.4 157.3,68.6" fill="#fff" fill-opacity="0.2"/>
+                    <polygon points="157.3,68.6 141.2,77.4 162.0,100.0" fill="#000" fill-opacity="0.22"/>
+                    <polygon points="143.8,42.0 120.2,73.3 141.2,77.4" fill="#fff" fill-opacity="0.12"/>
+                    <polygon points="128.5,100.0 141.2,122.6 120.2,126.7" fill="#fff" fill-opacity="0.16"/>
+                    <polygon points="162.0,100.0 141.2,122.6 157.3,131.4" fill="#000" fill-opacity="0.2"/>
+                    <polygon points="157.3,131.4 141.2,122.6 143.8,158.0" fill="#fff" fill-opacity="0.1"/>
+                    <polygon points="162.0,100.0 128.5,100.0 141.2,122.6" fill="#fff" fill-opacity="0.06"/>
+                    <polygon points="120.2,126.7 117.1,154.5 100.0,137.7" fill="#000" fill-opacity="0.14"/>
+                    <polygon points="143.8,158.0 117.1,154.5 123.7,175.8" fill="#fff" fill-opacity="0.2"/>
+                    <polygon points="123.7,175.8 117.1,154.5 100.0,182.0" fill="#000" fill-opacity="0.22"/>
+                    <polygon points="143.8,158.0 120.2,126.7 117.1,154.5" fill="#fff" fill-opacity="0.12"/>
+                    <polygon points="100.0,137.7 82.9,154.5 79.8,126.7" fill="#fff" fill-opacity="0.16"/>
+                    <polygon points="100.0,182.0 82.9,154.5 76.3,175.8" fill="#000" fill-opacity="0.2"/>
+                    <polygon points="76.3,175.8 82.9,154.5 56.2,158.0" fill="#fff" fill-opacity="0.1"/>
+                    <polygon points="100.0,182.0 100.0,137.7 82.9,154.5" fill="#fff" fill-opacity="0.06"/>
+                    <polygon points="79.8,126.7 58.8,122.6 71.5,100.0" fill="#000" fill-opacity="0.14"/>
+                    <polygon points="56.2,158.0 58.8,122.6 42.7,131.4" fill="#fff" fill-opacity="0.2"/>
+                    <polygon points="42.7,131.4 58.8,122.6 38.0,100.0" fill="#000" fill-opacity="0.22"/>
+                    <polygon points="56.2,158.0 79.8,126.7 58.8,122.6" fill="#fff" fill-opacity="0.12"/>
+                    <polygon points="71.5,100.0 58.8,77.4 79.8,73.3" fill="#fff" fill-opacity="0.16"/>
+                    <polygon points="38.0,100.0 58.8,77.4 42.7,68.6" fill="#000" fill-opacity="0.2"/>
+                    <polygon points="42.7,68.6 58.8,77.4 56.2,42.0" fill="#fff" fill-opacity="0.1"/>
+                    <polygon points="38.0,100.0 71.5,100.0 58.8,77.4" fill="#fff" fill-opacity="0.06"/>
+                    <polygon points="79.8,73.3 82.9,45.5 100.0,62.3" fill="#000" fill-opacity="0.14"/>
+                    <polygon points="56.2,42.0 82.9,45.5 76.3,24.2" fill="#fff" fill-opacity="0.2"/>
+                    <polygon points="76.3,24.2 82.9,45.5 100.0,18.0" fill="#000" fill-opacity="0.22"/>
+                    <polygon points="56.2,42.0 79.8,73.3 82.9,45.5" fill="#fff" fill-opacity="0.12"/>
+                </g>
+                <g clip-path="url(#formaGema)"><rect class="g-reflexo" x="-60" y="0" width="60" height="200" fill="url(#reflexo)" transform="skewX(-18)"/></g>
+                <ellipse pathLength="1" class="g-traco g0" cx="100" cy="100" rx="62" ry="82"/>
+                <g>
+                    <polygon pathLength="1" class="g-traco g1" points="100.0,62.3 120.2,73.3 128.5,100.0 120.2,126.7 100.0,137.7 79.8,126.7 71.5,100.0 79.8,73.3"/>
+                    <polyline pathLength="1" class="g-traco g2" points="100.0,62.3 117.1,45.5 120.2,73.3"/>
+                    <polyline pathLength="1" class="g-traco g2" points="120.2,73.3 141.2,77.4 128.5,100.0"/>
+                    <polyline pathLength="1" class="g-traco g2" points="128.5,100.0 141.2,122.6 120.2,126.7"/>
+                    <polyline pathLength="1" class="g-traco g2" points="120.2,126.7 117.1,154.5 100.0,137.7"/>
+                    <polyline pathLength="1" class="g-traco g2" points="100.0,137.7 82.9,154.5 79.8,126.7"/>
+                    <polyline pathLength="1" class="g-traco g2" points="79.8,126.7 58.8,122.6 71.5,100.0"/>
+                    <polyline pathLength="1" class="g-traco g2" points="71.5,100.0 58.8,77.4 79.8,73.3"/>
+                    <polyline pathLength="1" class="g-traco g2" points="79.8,73.3 82.9,45.5 100.0,62.3"/>
+                    <polyline pathLength="1" class="g-traco g3" points="100.0,18.0 100.0,62.3"/>
+                    <polyline pathLength="1" class="g-traco g3" points="100.0,18.0 117.1,45.5 143.8,42.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="117.1,45.5 123.7,24.2"/>
+                    <polyline pathLength="1" class="g-traco g3" points="143.8,42.0 120.2,73.3"/>
+                    <polyline pathLength="1" class="g-traco g3" points="143.8,42.0 141.2,77.4 162.0,100.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="141.2,77.4 157.3,68.6"/>
+                    <polyline pathLength="1" class="g-traco g3" points="162.0,100.0 128.5,100.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="162.0,100.0 141.2,122.6 143.8,158.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="141.2,122.6 157.3,131.4"/>
+                    <polyline pathLength="1" class="g-traco g3" points="143.8,158.0 120.2,126.7"/>
+                    <polyline pathLength="1" class="g-traco g3" points="143.8,158.0 117.1,154.5 100.0,182.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="117.1,154.5 123.7,175.8"/>
+                    <polyline pathLength="1" class="g-traco g3" points="100.0,182.0 100.0,137.7"/>
+                    <polyline pathLength="1" class="g-traco g3" points="100.0,182.0 82.9,154.5 56.2,158.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="82.9,154.5 76.3,175.8"/>
+                    <polyline pathLength="1" class="g-traco g3" points="56.2,158.0 79.8,126.7"/>
+                    <polyline pathLength="1" class="g-traco g3" points="56.2,158.0 58.8,122.6 38.0,100.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="58.8,122.6 42.7,131.4"/>
+                    <polyline pathLength="1" class="g-traco g3" points="38.0,100.0 71.5,100.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="38.0,100.0 58.8,77.4 56.2,42.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="58.8,77.4 42.7,68.6"/>
+                    <polyline pathLength="1" class="g-traco g3" points="56.2,42.0 79.8,73.3"/>
+                    <polyline pathLength="1" class="g-traco g3" points="56.2,42.0 82.9,45.5 100.0,18.0"/>
+                    <polyline pathLength="1" class="g-traco g3" points="82.9,45.5 76.3,24.2"/>
+                </g>
+                <g class="g-estrela" transform="translate(78 58)">
+                    <path d="M0-11 1.6-1.6 11 0 1.6 1.6 0 11-1.6 1.6-11 0-1.6-1.6Z" fill="#fff"/>
+                </g>
+            </svg>
+            <p class="abertura-nome">Imperiali<span>Gems</span></p>
+            <p class="abertura-sub">Topázio Imperial · Ouro Preto</p>
+            <div class="abertura-barra"><span id="aberturaProgresso"></span></div>
+        </div>
+    </div>
 
     <!-- ===== TOPO ===== -->
     <header class="fixed inset-x-0 top-0 z-50 bg-topazio-escuro/80 backdrop-blur border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-3">
                 <img src="img/logo-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
-                <span class="font-serif text-2xl tracking-wide max-[430px]:hidden">Imperiali<span class="text-topazio-pessego">Gems</span></span>
+                <span class="font-marca font-semibold text-lg sm:text-xl uppercase tracking-[.14em] max-[430px]:hidden">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
             <div class="flex items-center gap-3">
                 <!-- destaque do menu: visível também no celular -->
                 <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[.16em] px-4 sm:px-5 py-2.5 rounded-full text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
-                    <i class="fa-regular fa-gem mr-1.5"></i>Crie sua Joia
+                    <svg class="ic mr-1.5" aria-hidden="true"><use href="#ic-gema"/></svg>Crie sua Joia
                 </a>
-            <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20uma%20pe%C3%A7a%20de%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
+            <a href="https://wa.me/553171416959" data-pedir-nome="Quero uma peça de Topázio Imperial." target="_blank" rel="noopener"
                class="hidden sm:inline-block whitespace-nowrap text-xs uppercase tracking-[.18em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
                 Quero uma peça
             </a>
@@ -130,7 +309,7 @@
 
     <!-- ===== HERO ===== -->
     <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden pt-16">
-        <div class="absolute inset-0 bg-[radial-gradient(70%_60%_at_75%_40%,rgba(217,130,43,.28),transparent_70%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(70%_60%_at_75%_40%,rgba(194,108,90,.28),transparent_70%)]"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-6 md:gap-12 items-center py-10 md:py-16">
             <div>
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-5">Ouro Preto · Minas Gerais</p>
@@ -142,8 +321,8 @@
                     Aqui você não escolhe uma joia pronta: você cria a sua.
                 </p>
                 <div class="mt-9 flex flex-wrap gap-3">
-                    <a href="crie-sua-joia.html" class="px-7 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-pessego transition">
-                        <i class="fa-regular fa-gem mr-2"></i>Criar minha joia
+                    <a href="crie-sua-joia.html" class="btn-neutro px-7 py-4 text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] transition">
+                        <svg class="ic mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Criar minha joia
                     </a>
                     <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems!%20Tenho%20interesse%20em%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
                        class="px-7 py-4 border border-white/20 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">
@@ -168,22 +347,22 @@
     </section>
 
     <!-- ===== FAIXA DE AUTORIDADE ===== -->
-    <section class="border-y border-white/10 bg-[#140a06]">
+    <section class="border-y border-white/10 bg-[#0e0c09]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div><i class="fa-solid fa-location-dot text-topazio-pessego text-xl"></i>
+            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-local"/></svg>
                 <p class="font-serif text-xl mt-2">Ouro Preto · MG</p><p class="text-xs text-topazio-claro/55">Onde o Topázio Imperial nasce</p></div>
-            <div><i class="fa-solid fa-gem text-topazio-pessego text-xl"></i>
+            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-gema"/></svg>
                 <p class="font-serif text-xl mt-2">Bruto e lapidado</p><p class="text-xs text-topazio-claro/55">Do cristal à pedra pronta</p></div>
-            <div><i class="fa-solid fa-scale-balanced text-topazio-pessego text-xl"></i>
+            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-balanca"/></svg>
                 <p class="font-serif text-xl mt-2">Peso e código</p><p class="text-xs text-topazio-claro/55">Cada pedra identificada</p></div>
-            <div><i class="fa-solid fa-ring text-topazio-pessego text-xl"></i>
+            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-anel"/></svg>
                 <p class="font-serif text-xl mt-2">Joias sob medida</p><p class="text-xs text-topazio-claro/55">Criadas com a sua pedra</p></div>
         </div>
     </section>
 
     <!-- ===== NOSSO DIFERENCIAL ===== -->
     <section id="diferencial" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(50%_60%_at_15%_40%,rgba(217,130,43,.18),transparent_70%),radial-gradient(40%_50%_at_90%_70%,rgba(200,85,107,.14),transparent_70%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(50%_60%_at_15%_40%,rgba(194,108,90,.18),transparent_70%),radial-gradient(40%_50%_at_90%_70%,rgba(187,109,133,.14),transparent_70%)]"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
             <div>
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Nosso diferencial</p>
@@ -201,9 +380,7 @@
                     </div>
                 </article>
                 <article class="flex gap-5 items-center p-4 border border-white/10 bg-white/[.03] backdrop-blur lg:ml-10">
-                    <div class="w-24 h-24 sm:w-28 sm:h-28 flex-none grid place-items-center bg-gradient-to-br from-[#3a2016] to-topazio-escuro border border-topazio-pessego/40">
-                        <i class="fa-solid fa-cube text-4xl text-topazio-pessego"></i>
-                    </div>
+                    <div class="gema w-24 h-24 sm:w-28 sm:h-28 flex-none overflow-hidden"><img src="img/midia/joia-3d.webp" alt="Anel criado em 3D no Crie sua Joia" decoding="async"></div>
                     <div>
                         <p class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">02 · O seu design</p>
                         <h3 class="font-serif text-2xl mt-1">Você cria em 3D</h3>
@@ -222,7 +399,7 @@
                 <a href="crie-sua-joia.html" class="btn-joia">
                     <svg class="btn-joia__gema" viewBox="0 0 32 32" aria-hidden="true">
                         <path d="M9 4h14l7 8-14 17L2 12z" fill="url(#gradGema)"/>
-                        <path d="M2 12h28M9 4l4 8 3-8 3 8 4-8M13 12l3 17 3-17" fill="none" stroke="#1c0f0a" stroke-opacity=".45" stroke-width="1"/>
+                        <path d="M2 12h28M9 4l4 8 3-8 3 8 4-8M13 12l3 17 3-17" fill="none" stroke="#16140f" stroke-opacity=".45" stroke-width="1"/>
                         <path d="M10.5 6.5l2 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
                     </svg>
                     <span class="btn-joia__texto">Criar minha joia</span>
@@ -234,7 +411,7 @@
     </section>
 
     <!-- ===== A PEDRA ===== -->
-    <section id="pedra" class="py-24 bg-gradient-to-b from-topazio-escuro to-[#2a1610]">
+    <section id="pedra" class="py-24 bg-gradient-to-b from-topazio-escuro to-[#24231e]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-10">
             <div class="md:col-span-1">
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">A pedra</p>
@@ -242,17 +419,17 @@
             </div>
             <div class="md:col-span-2 grid sm:grid-cols-3 gap-6">
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <i class="fa-solid fa-location-dot text-topazio-pessego text-xl"></i>
+                    <svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-local"/></svg>
                     <h3 class="font-serif text-2xl mt-4">Origem rara</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">A região de Ouro Preto é a principal fonte de Topázio Imperial do mundo.</p>
                 </div>
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <i class="fa-solid fa-palette text-topazio-pessego text-xl"></i>
+                    <svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-paleta"/></svg>
                     <h3 class="font-serif text-2xl mt-4">Cor única</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Tons que vão do dourado ao pêssego, do laranja ao rosa-imperial.</p>
                 </div>
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <i class="fa-regular fa-gem text-topazio-pessego text-xl"></i>
+                    <svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-gema"/></svg>
                     <h3 class="font-serif text-2xl mt-4">Do bruto à joia</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Cristais naturais para coleção e pedras lapidadas prontas para joalheria.</p>
                 </div>
@@ -262,7 +439,7 @@
 
     <!-- ===== JOIA EM DESTAQUE ===== -->
     <section id="destaque" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(55%_60%_at_25%_50%,rgba(217,130,43,.22),transparent_70%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(55%_60%_at_25%_50%,rgba(194,108,90,.22),transparent_70%)]"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="relative mx-auto w-full max-w-md">
                 <div class="gema aspect-square overflow-hidden rounded-[2rem] border border-topazio-pessego/40 shadow-2xl">
@@ -275,9 +452,9 @@
                 <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Da pedra de Ouro Preto à joia pronta</h2>
                 <p class="mt-5 text-topazio-claro/70 leading-relaxed">Topázio Imperial oval, envolvido por um halo de brilhos e montado em ouro. Uma peça única, feita a partir de uma pedra selecionada no nosso estoque — e você pode criar a sua do mesmo jeito.</p>
                 <ul class="mt-6 grid gap-3 text-sm text-topazio-claro/80">
-                    <li><i class="fa-solid fa-check text-topazio-pessego mr-2"></i>Pedra escolhida a dedo, com peso e procedência</li>
-                    <li><i class="fa-solid fa-check text-topazio-pessego mr-2"></i>Modelo ajustado ao seu gosto e ao seu tamanho</li>
-                    <li><i class="fa-solid fa-check text-topazio-pessego mr-2"></i>Acompanhamento por foto e vídeo até a entrega</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Pedra escolhida a dedo, com peso e procedência</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Modelo ajustado ao seu gosto e ao seu tamanho</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Acompanhamento por foto e vídeo até a entrega</li>
                 </ul>
                 <div class="mt-9 flex flex-wrap gap-3">
                     <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Vi%20o%20anel%20com%20halo%20no%20site%20e%20quero%20uma%20joia%20assim." target="_blank" rel="noopener"
@@ -285,7 +462,7 @@
                         <i class="fa-brands fa-whatsapp text-lg text-[#25D366]"></i>Quero uma joia assim
                     </a>
                     <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap inline-flex items-center px-7 py-4 rounded-full text-sm font-semibold uppercase tracking-[.16em] text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
-                        <i class="fa-regular fa-gem mr-2"></i>Criar a minha
+                        <svg class="ic mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Criar a minha
                     </a>
                 </div>
             </div>
@@ -293,7 +470,7 @@
     </section>
 
     <!-- ===== DO GARIMPO À JOIA ===== -->
-    <section id="processo" class="py-24 bg-[#2a1610]">
+    <section id="processo" class="py-24 bg-[#24231e]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto">
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Nosso processo</p>
@@ -351,7 +528,7 @@
             <div class="mt-12 grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 md:h-[620px]">
                 <div class="gema col-span-2 md:row-span-2 overflow-hidden aspect-[3/4] md:aspect-auto"><img src="img/lapidados.webp" alt="Topázios Imperiais lapidados em tons de rosa e pêssego" decoding="async"></div>
                 <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/lapidado-oval.mp4" poster="img/midia/lapidado-oval.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Topázio Imperial oval lapidado"></video></div>
-                <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><img src="img/pedras/IG-0203.webp" alt="Topázio Imperial rosa avermelhado lapidado em almofada" decoding="async"></div>
+                <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><img src="img/midia/gotas-pessego.webp" alt="Topázios Imperiais lapidados em gota e oval, em tons de pêssego" decoding="async"></div>
                 <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/lapidados-rosa.mp4" poster="img/midia/lapidados-rosa.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Topázios lapidados em tons de rosa e pêssego"></video></div>
                 <div class="gema overflow-hidden aspect-[3/4] md:aspect-auto"><video src="img/midia/pinca.mp4" poster="img/midia/pinca.webp" data-auto muted loop playsinline preload="none" class="w-full h-full object-cover " aria-label="Topázio lapidado na pinça"></video></div>
             </div>
@@ -393,45 +570,45 @@
     </section>
 
     <!-- ===== GALERIA (parallax 3D: o mural se endireita e se abre conforme a rolagem) ===== -->
-    <section id="galeria" class="relative w-full h-[400vh] bg-[#0d0705]">
+    <section id="galeria" class="relative w-full h-[400vh] bg-[#0e0c09]">
         <div class="sticky top-0 h-screen w-full flex justify-center items-center overflow-hidden">
-            <div id="pgBanner" class="relative bg-[#0d0705] overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform">
+            <div id="pgBanner" class="relative bg-[#0e0c09] overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform">
                 <div class="absolute inset-0 flex justify-center items-center pointer-events-none" style="perspective: 1000px;">
                     <!-- sombras nas bordas -->
-                    <div class="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(13,7,5,1),inset_0_-100px_150px_-50px_rgba(13,7,5,1)]"></div>
-                    <div class="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(13,7,5,1),inset_-150px_0_150px_-50px_rgba(13,7,5,1)]"></div>
+                    <div class="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(14,12,9,1),inset_0_-100px_150px_-50px_rgba(14,12,9,1)]"></div>
+                    <div class="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(14,12,9,1),inset_-150px_0_150px_-50px_rgba(14,12,9,1)]"></div>
                     <div id="pgMatrix" class="flex gap-4 md:gap-6 justify-center items-center w-[120vw] h-[150vh] origin-center will-change-transform" style="transform-style: preserve-3d;">
                             <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="1">
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-01.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/lapidado-oval.mp4" poster="img/midia/lapidado-oval.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/pedras/IG-0204.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/euclasio.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-03.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/minerais.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-01.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/midia/lapidado-oval.mp4" poster="img/midia/lapidado-oval.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/pedras/IG-0204.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/euclasio.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-03.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/minerais.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
                             </div>
                             <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="2">
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/joia-anel-halo.mp4" poster="img/midia/joia-anel-halo.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/snapinsta-1792706218687.mp4" poster="img/midia/snapinsta-1792706218687.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/midia/pesagem.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-04.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/midia/joia-anel-halo.mp4" poster="img/midia/joia-anel-halo.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/snapinsta-1792706218687.mp4" poster="img/midia/snapinsta-1792706218687.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/midia/pesagem.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-04.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
                             </div>
                             <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="3">
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-04.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/snapinsta-1792706440551.mp4" poster="img/midia/snapinsta-1792706440551.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/euclasio.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/pinca.mp4" poster="img/midia/pinca.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-01.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-04.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/snapinsta-1792706440551.mp4" poster="img/midia/snapinsta-1792706440551.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/euclasio.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/lapidados.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/midia/pinca.mp4" poster="img/midia/pinca.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-01.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
                             </div>
                             <div class="pg-col flex flex-col gap-4 md:gap-6 w-[22vw] min-w-[200px] pointer-events-none" data-col="4">
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/snapinsta-1792706923391.mp4" poster="img/midia/snapinsta-1792706923391.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/minerais.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><video src="img/midia/lapidados-rosa.mp4" poster="img/midia/lapidados-rosa.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/pedras/IG-0213.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
-                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#140a06] overflow-hidden"><img src="img/bruto-03.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/snapinsta-1792706923391.mp4" poster="img/midia/snapinsta-1792706923391.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/minerais.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-02.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><video src="img/midia/lapidados-rosa.mp4" poster="img/midia/lapidados-rosa.webp" data-pg muted loop playsinline preload="none" class="w-full h-full object-cover opacity-95"></video></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/pedras/IG-0213.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
+                                <div class="pg-card w-full h-[200px] sm:h-[300px] md:h-[400px] shrink-0 bg-[#0e0c09] overflow-hidden"><img src="img/bruto-03.webp" alt="Topázio Imperial ImperialiGems" decoding="async" class="w-full h-full object-cover opacity-95"></div>
                             </div>
                     </div>
                 </div>
@@ -454,7 +631,7 @@
 
     <!-- ===== CRIE SUA JOIA ===== -->
     <section id="crie" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(60%_70%_at_20%_50%,rgba(200,85,107,.18),transparent_70%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(60%_70%_at_20%_50%,rgba(187,109,133,.18),transparent_70%)]"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="grid grid-cols-2 gap-3">
                 <div class="gema aspect-[3/4] overflow-hidden rounded-t-full"><img src="img/bruto-04.webp" alt="Topázio Imperial" decoding="async"></div>
@@ -465,22 +642,22 @@
                 <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Crie sua Joia com Topázio Imperial</h2>
                 <p class="mt-5 text-topazio-claro/70 leading-relaxed">Escolha uma pedra real do nosso estoque, o modelo de anel, brinco ou pingente e o metal. Veja a peça em 3D e acompanhe a estimativa de preço a cada escolha.</p>
                 <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-topazio-claro/80">
-                    <li><i class="fa-regular fa-gem text-topazio-pessego mr-2"></i>Pedra com código</li>
-                    <li><i class="fa-solid fa-ring text-topazio-pessego mr-2"></i>Anel, brinco, pingente</li>
-                    <li><i class="fa-solid fa-cube text-topazio-pessego mr-2"></i>Visualização em 3D</li>
-                    <li><i class="fa-solid fa-calculator text-topazio-pessego mr-2"></i>Preço estimado na hora</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Pedra com código</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-anel"/></svg>Anel, brinco, pingente</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-cubo"/></svg>Visualização em 3D</li>
+                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-calculadora"/></svg>Preço estimado na hora</li>
                 </ul>
                 <a href="crie-sua-joia.html" class="btn-joia group mt-9">
                     <!-- gema facetada -->
                     <svg class="btn-joia__gema" viewBox="0 0 32 32" aria-hidden="true">
                         <defs>
                             <linearGradient id="gradGema" x1="0" y1="0" x2="1" y2="1">
-                                <stop offset="0" stop-color="#ffe3bd"/><stop offset=".45" stop-color="#f2a65a"/>
-                                <stop offset=".75" stop-color="#d9822b"/><stop offset="1" stop-color="#c8556b"/>
+                                <stop offset="0" stop-color="#f4d1b6"/><stop offset=".45" stop-color="#e6a08c"/>
+                                <stop offset=".75" stop-color="#c26c5a"/><stop offset="1" stop-color="#bb6d85"/>
                             </linearGradient>
                         </defs>
                         <path d="M9 4h14l7 8-14 17L2 12z" fill="url(#gradGema)"/>
-                        <path d="M2 12h28M9 4l4 8 3-8 3 8 4-8M13 12l3 17 3-17" fill="none" stroke="#1c0f0a" stroke-opacity=".45" stroke-width="1"/>
+                        <path d="M2 12h28M9 4l4 8 3-8 3 8 4-8M13 12l3 17 3-17" fill="none" stroke="#16140f" stroke-opacity=".45" stroke-width="1"/>
                         <path d="M10.5 6.5l2 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
                     </svg>
                     <span class="btn-joia__texto">Criar minha joia</span>
@@ -518,12 +695,18 @@
     </section>
 
     <!-- ===== CTA FINAL ===== -->
-    <section class="py-24 bg-gradient-to-br from-topazio via-[#b8662a] to-topazio-rosa text-topazio-escuro">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-            <h2 class="font-serif text-4xl sm:text-6xl leading-tight">Tenha um pedaço de Ouro Preto com você</h2>
-            <p class="mt-5 text-lg opacity-80">Peças únicas, escolhidas por quem é especialista em Topázio Imperial.</p>
-            <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Quero%20minha%20pe%C3%A7a%20de%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
-               class="inline-block mt-9 px-9 py-4 bg-topazio-escuro text-topazio-claro font-semibold text-sm uppercase tracking-[.16em] hover:bg-black transition">
+    <section class="relative py-32 sm:py-40 overflow-hidden text-topazio-claro">
+        <!-- Praça Tiradentes, Ouro Preto -->
+        <img src="img/ouro-preto.webp" alt="Praça Tiradentes ao anoitecer, com o Museu da Inconfidência, em Ouro Preto" decoding="async"
+             class="foto-ouro-preto absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-topazio-escuro/75 via-topazio-escuro/35 to-topazio-escuro/85"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_50%,transparent,rgba(14,12,9,.55))]"></div>
+        <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+            <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Ouro Preto · Minas Gerais</p>
+            <h2 class="font-serif text-4xl sm:text-6xl leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,.6)]">Tenha um pedaço de Ouro Preto com você</h2>
+            <p class="mt-5 text-lg text-topazio-claro/85">Peças únicas, escolhidas por quem é especialista em Topázio Imperial.</p>
+            <a href="https://wa.me/553171416959" data-pedir-nome="Quero minha peça de Topázio Imperial." target="_blank" rel="noopener"
+               class="inline-block mt-9 px-9 py-4 bg-topazio-pessego text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-claro transition">
                 <i class="fa-brands fa-whatsapp mr-2"></i>Quero minha peça
             </a>
         </div>
@@ -535,7 +718,7 @@
             <div class="flex items-center gap-4">
                 <img src="img/logo-256.webp" alt="" class="w-14 h-14 rounded-full">
                 <div>
-                    <p class="font-serif text-2xl text-topazio-claro">Imperiali<span class="text-topazio-pessego">Gems</span></p>
+                    <p class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="text-topazio-pessego">Gems</span></p>
                     <p class="mt-1">Topázio Imperial · Ouro Preto, MG</p>
                 </div>
             </div>
@@ -546,6 +729,24 @@
             </div>
         </div>
     </footer>
+
+    <!-- ===== NOME ANTES DO WHATSAPP ===== -->
+    <div id="modalNome" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloNome">
+        <div class="min-h-full grid place-items-center p-4">
+            <form id="formNome" class="relative w-full max-w-md bg-topazio-escuro border border-topazio-pessego/30 p-7 sm:p-9 shadow-2xl">
+                <button type="button" data-fechar-nome class="absolute top-3 right-3 w-9 h-9 grid place-items-center text-topazio-claro/60 hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                <img src="img/logo-256.webp" alt="" class="w-16 h-16 mx-auto rounded-full">
+                <p class="text-center text-xs uppercase tracking-[.3em] text-topazio-pessego mt-4">Atendimento exclusivo</p>
+                <h2 id="tituloNome" class="font-serif text-3xl text-center mt-2">Como podemos te chamar?</h2>
+                <label class="block mt-6 text-xs uppercase tracking-[.2em] text-topazio-claro/60" for="campoNome">Seu nome</label>
+                <input id="campoNome" name="nome" class="campoNome mt-2" autocomplete="given-name" maxlength="60" required placeholder="Digite seu nome">
+                <p id="erroNome" class="hidden mt-2 text-sm text-topazio-rosa">Conte pra gente o seu nome para continuar.</p>
+                <button type="submit" class="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-white text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-claro transition">
+                    <i class="fa-brands fa-whatsapp text-lg text-[#25D366]"></i>Continuar no WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script type="module">
         // Cristal 3D do topo: prisma de topázio com a textura das fotos reais, girando sobre fundo transparente
@@ -700,7 +901,7 @@
                 banner.style.width = atual.bw + "vw";
                 banner.style.height = atual.bh + "vh";
                 banner.style.borderRadius = atual.br + "px";
-                banner.style.border = `${atual.bbw}px solid #3a2016`;
+                banner.style.border = `${atual.bbw}px solid #2e2a25`;
                 matriz.style.transform = `rotateY(${atual.rotY}deg) rotateX(${atual.rotX}deg) rotateZ(${atual.rotZ}deg) translateZ(${atual.tz}px)`;
                 ["y1", "y2", "y3", "y4"].forEach((k, i) => { if (colunas[i]) colunas[i].style.transform = `translateY(${atual[k]}%)`; });
                 legenda.style.opacity = atual.legenda;
@@ -723,6 +924,64 @@
             const videos = secao.querySelectorAll("video[data-pg]");
             new IntersectionObserver(([e]) => videos.forEach(v => e.isIntersecting ? v.play().catch(() => {}) : v.pause()))
                 .observe(secao.querySelector(".sticky"));
+        })();
+
+        // Abertura: a gema se desenha e se acende; quando a página carrega, a tela se abre como um porta-joias
+        (function abertura() {
+            const tela = document.getElementById("abertura"), barra = document.getElementById("aberturaProgresso");
+            if (!tela) return;
+            const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const MINIMO = reduzido ? 400 : 3000;                  // tempo para o desenho e o brilho aparecerem
+            const inicio = performance.now();
+            let progresso = 6, feito = false;
+            const crescer = setInterval(() => { progresso = Math.min(92, progresso + (92 - progresso) * 0.07); barra.style.width = progresso + "%"; }, 120);
+            function terminar() {
+                if (feito) return; feito = true;
+                clearInterval(crescer); barra.style.width = "100%";
+                setTimeout(() => {
+                    tela.classList.add("saindo");                              // fio dourado na emenda
+                    setTimeout(() => {
+                        tela.classList.add("abrir");                           // as duas metades se afastam
+                        document.documentElement.classList.remove("abrindo");
+                        setTimeout(() => tela.remove(), 1350);
+                    }, reduzido ? 0 : 650);
+                }, 300);
+            }
+            const quandoCarregar = () => setTimeout(terminar, Math.max(0, MINIMO - (performance.now() - inicio)));
+            if (document.readyState === "complete") quandoCarregar(); else window.addEventListener("load", quandoCarregar);
+            setTimeout(terminar, 7000);                              // nunca prende o visitante na abertura
+        })();
+
+        // "Quero uma peça": pergunta o nome antes de abrir o WhatsApp
+        (function pedirNome() {
+            const modal = document.getElementById("modalNome"), form = document.getElementById("formNome");
+            const campo = document.getElementById("campoNome"), erro = document.getElementById("erroNome");
+            const WHATSAPP = "553171416959";
+            let mensagem = "";
+            const abrir = msg => {
+                mensagem = msg;
+                try { campo.value = localStorage.getItem("imperialigems_nome") || ""; } catch (e) {}
+                erro.classList.add("hidden");
+                modal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+                setTimeout(() => campo.focus(), 50);
+            };
+            const fechar = () => { modal.classList.add("hidden"); document.body.style.overflow = ""; };
+            document.addEventListener("click", e => {
+                const link = e.target.closest("[data-pedir-nome]");
+                if (link) { e.preventDefault(); abrir(link.dataset.pedirNome); return; }
+                if (e.target.closest("[data-fechar-nome]") || e.target === modal.firstElementChild) fechar();
+            });
+            document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.classList.contains("hidden")) fechar(); });
+            form.addEventListener("submit", e => {
+                e.preventDefault();
+                const nome = campo.value.trim().replace(/\s+/g, " ");
+                if (nome.length < 2) { erro.classList.remove("hidden"); campo.focus(); return; }
+                try { localStorage.setItem("imperialigems_nome", nome); } catch (err) {}
+                const texto = `Olá, ImperialiGems! Meu nome é ${nome}. ${mensagem}`;
+                window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+                fechar();
+            });
         })();
 
         // Vídeos da galeria: tocam só enquanto estão visíveis (economiza dados no celular)

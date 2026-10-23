@@ -10,7 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,16 +23,17 @@
                 extend: {
                     colors: {
                         topazio: {
-                            claro: '#fbf3e8',
-                            pessego: '#f2a65a',
-                            DEFAULT: '#d9822b',
-                            rosa: '#c8556b',
-                            escuro: '#1c0f0a'
+                            claro: '#f4efec',
+                            pessego: '#e6a08c',
+                            DEFAULT: '#c26c5a',
+                            rosa: '#bb6d85',
+                            escuro: '#16140f'
                         }
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Cormorant Garamond', 'serif'],
+                        serif: ['"Bodoni Moda"', 'serif'],         // títulos: contraste de alta joalheria
+                        marca: ['Cinzel', 'serif'],               // nome da marca: capitulares gravadas
                     }
                 }
             }
@@ -48,24 +49,24 @@
     </script>
 
     <style>
-        body { background: #1c0f0a; }
+        body { background: #16140f; }
         .gema {
             background:
                 radial-gradient(60% 55% at 35% 30%, rgba(255,236,200,.55), transparent 60%),
-                conic-gradient(from 210deg at 50% 50%, var(--c1, #f2a65a), var(--c2, #d9822b), var(--c1, #f2a65a));
+                conic-gradient(from 210deg at 50% 50%, var(--c1, #e6a08c), var(--c2, #c26c5a), var(--c1, #e6a08c));
         }
         .gema img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .opcao { border: 1px solid rgba(255,255,255,.12); transition: border-color .2s, background .2s; }
-        .opcao:hover { border-color: rgba(242,166,90,.5); }
-        .opcao.ativa { border-color: #f2a65a; background: rgba(242,166,90,.08); box-shadow: inset 0 0 0 1px #f2a65a; }
-        .etapa-btn.ativa { color: #1c0f0a; background: #f2a65a; border-color: #f2a65a; }
-        .etapa-btn.feita { color: #f2a65a; border-color: rgba(242,166,90,.6); }
-        #palco { background: radial-gradient(70% 70% at 50% 40%, #3a2016 0%, #1c0f0a 75%); }
+        .opcao:hover { border-color: rgba(230,160,140,.5); }
+        .opcao.ativa { border-color: #e6a08c; background: rgba(230,160,140,.08); box-shadow: inset 0 0 0 1px #e6a08c; }
+        .etapa-btn.ativa { color: #16140f; background: #e6a08c; border-color: #e6a08c; }
+        .etapa-btn.feita { color: #e6a08c; border-color: rgba(230,160,140,.6); }
+        #palco { background: radial-gradient(70% 70% at 50% 40%, #2e2a25 0%, #16140f 75%); }
         #palco.claro { background: radial-gradient(70% 70% at 50% 40%, #fffaf2 0%, #ead9c2 80%); }
         #palco canvas { display: block; width: 100% !important; height: 100% !important; cursor: grab; touch-action: none; }
         #palco canvas:active { cursor: grabbing; }
         .aviso { transition: opacity .3s, transform .3s; }
-        input[type=range] { accent-color: #f2a65a; }
+        input[type=range] { accent-color: #e6a08c; }
     </style>
 </head>
 <body class="font-sans text-topazio-claro antialiased">
@@ -75,7 +76,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <img src="img/logo-256.webp" alt="ImperialiGems" class="w-10 h-10 rounded-full object-cover">
-                <span class="font-serif text-2xl tracking-wide">Imperiali<span class="text-topazio-pessego">Gems</span></span>
+                <span class="font-marca font-semibold text-lg sm:text-xl uppercase tracking-[.14em]">Imperiali<span class="text-topazio-pessego">Gems</span></span>
             </a>
             <div class="flex items-center gap-2 sm:gap-5">
                 <a href="#inspiracoes" class="hidden md:inline text-xs uppercase tracking-[.18em] text-topazio-claro/70 hover:text-topazio-pessego transition">Inspirações</a>
@@ -171,7 +172,7 @@
                 </div>
 
                 <label id="blocoCorrente" class="mt-7 flex items-center gap-3 text-sm cursor-pointer">
-                    <input type="checkbox" id="corrente" class="w-4 h-4 accent-[#f2a65a]">
+                    <input type="checkbox" id="corrente" class="w-4 h-4 accent-[#e6a08c]">
                     Incluir corrente de 45 cm no mesmo metal
                 </label>
             </section>
@@ -973,7 +974,7 @@
         const c = document.createElement("canvas"); c.width = c.height = tam;
         const ctx = c.getContext("2d");
         const fundo = ctx.createRadialGradient(tam / 2, tam * 0.4, 0, tam / 2, tam / 2, tam * 0.75);
-        fundo.addColorStop(0, "#3a2016"); fundo.addColorStop(1, "#1c0f0a");
+        fundo.addColorStop(0, "#2e2a25"); fundo.addColorStop(1, "#16140f");
         ctx.fillStyle = fundo; ctx.fillRect(0, 0, tam, tam);
         const src = renderer.domElement, lado = Math.min(src.width, src.height);
         ctx.drawImage(src, (src.width - lado) / 2, (src.height - lado) / 2, lado, lado, 0, 0, tam, tam);
@@ -1075,7 +1076,7 @@
                     <button type="button" data-abrir-projeto="${p.id}" class="uppercase tracking-[.14em] text-topazio-pessego hover:underline">Retomar</button>
                     <button type="button" data-duplicar-projeto="${p.id}" class="text-topazio-claro/60 hover:text-topazio-pessego">Duplicar</button>
                     <label class="flex items-center gap-1.5 text-topazio-claro/60 cursor-pointer">
-                        <input type="checkbox" data-comparar="${p.id}" ${selecionados.has(p.id) ? "checked" : ""} class="accent-[#f2a65a]">Comparar</label>
+                        <input type="checkbox" data-comparar="${p.id}" ${selecionados.has(p.id) ? "checked" : ""} class="accent-[#e6a08c]">Comparar</label>
                     <button type="button" data-apagar-projeto="${p.id}" class="ml-auto text-topazio-claro/40 hover:text-topazio-rosa" aria-label="Apagar projeto"><i class="fa-regular fa-trash-can"></i></button>
                 </div>
             </div>`).join("")
@@ -1354,7 +1355,7 @@
         const W = Math.round(palcoP.width * escala), H = Math.round(palcoP.height * escala);
         const c = document.createElement("canvas"); c.width = W; c.height = H;
         const ctx = c.getContext("2d");
-        ctx.fillStyle = "#1c0f0a"; ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = "#16140f"; ctx.fillRect(0, 0, W, H);
         const video = $("provVideo"), foto = $("provFoto");
         const fonte = !foto.classList.contains("hidden") && foto.naturalWidth ? foto
                     : video.videoWidth ? video : null;
