@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anel Imperatriz 3D | ImperialiGems</title>
+    <link rel="icon" type="image/png" href="../favicon-48.png?v=3">
+    <style>
+        html, body { margin: 0; height: 100%; background: radial-gradient(circle at 50% 42%, #3a3530, #16140f 70%); color: #f4efec; font-family: Georgia, serif; overflow: hidden; }
+        #palco { position: fixed; inset: 0; }
+        .titulo { position: fixed; left: 0; right: 0; top: 22px; text-align: center; pointer-events: none; }
+        .titulo p { margin: 0; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #e6a08c; font-family: Arial, sans-serif; }
+        .titulo h1 { margin: 6px 0 0; font-weight: 400; font-size: 28px; }
+        .dica { position: fixed; left: 0; right: 0; bottom: 18px; text-align: center; font: 12px Arial, sans-serif; color: rgba(244,239,236,.55); }
+    </style>
+    <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+    </script>
+</head>
+<body>
+    <div id="palco"></div>
+    <div class="titulo"><p>ImperialiGems · Topázio Imperial</p><h1>Anel Halo Imperatriz</h1></div>
+    <div class="dica">Arraste para girar · role ou use dois dedos para aproximar</div>
+
+    <script type="module">
+        import * as THREE from "three";
+        import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+        import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+        import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+        const palco = document.getElementById("palco");
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.35;
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        palco.appendChild(renderer.domElement);
+
+        // mesma iluminação do Crie sua Joia
+        const cena = new THREE.Scene();
+        cena.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+        const l1 = new THREE.DirectionalLight(0xffffff, 2.2); l1.position.set(20, 40, 30); cena.add(l1);
+        const l2 = new THREE.DirectionalLight(0xffe2c0, 1.2); l2.position.set(-30, 10, -20); cena.add(l2);
+
+        const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 1000);
+        const controles = new OrbitControls(camera, renderer.domElement);
+        controles.enableDamping = true; controles.enablePan = false;
+        controles.autoRotate = true; controles.autoRotateSpeed = 1.6;
+        controles.addEventListener("start", () => controles.autoRotate = false);
+
+        new GLTFLoader().load("anel-imperatriz.glb", gltf => {
+            const joia = gltf.scene; cena.add(joia);
+            const caixa = new THREE.Box3().setFromObject(joia);
+            const centro = caixa.getCenter(new THREE.Vector3());
+            const raio = caixa.getSize(new THREE.Vector3()).length() / 2;
+            const dist = raio / Math.sin(THREE.MathUtils.degToRad(camera.fov / 2));
+            camera.position.copy(centro).add(new THREE.Vector3(0.12, 1, 0.75).normalize().multiplyScalar(dist));
+            controles.target.copy(centro);
+            controles.minDistance = dist * 0.45; controles.maxDistance = dist * 2;
+        });
+
+        const ajustar = () => {
+            renderer.setSize(innerWidth, innerHeight, false);
+            camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+        };
+        addEventListener("resize", ajustar); ajustar();
+        renderer.setAnimationLoop(() => { controles.update(); renderer.render(cena, camera); });
+    </script>
+</body>
+</html>

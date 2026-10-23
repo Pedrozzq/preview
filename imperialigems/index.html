@@ -6,7 +6,10 @@
     <title>ImperialiGems | Topázio Imperial de Ouro Preto</title>
     <meta name="description" content="ImperialiGems — crie sua joia exclusiva com Topázio Imperial de Ouro Preto (MG): escolha a pedra, personalize em 3D e receba uma peça única. Bruto e lapidado.">
 
-    <link rel="icon" href="img/logo-256.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png?v=3">
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png?v=3">
+    <link rel="icon" type="image/png" sizes="256x256" href="img/favicon.png?v=3">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=3">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,10 +49,13 @@
         body { background: #16140f; }
         /* Brilho de pedra: usado de fundo enquanto a foto não carrega */
         .gema {
-            background:
-                radial-gradient(60% 55% at 35% 30%, rgba(255,236,200,.55), transparent 60%),
-                conic-gradient(from 210deg at 50% 50%, #e6a08c, #c26c5a, #bb6d85, #e3a189, #a8564a, #e6a08c);
+            background-color: #1d1a16;
+            background-image: linear-gradient(110deg, transparent 30%, rgba(244,239,236,.05) 50%, transparent 70%);
+            background-size: 250% 100%;
+            animation: carregando 1.6s linear infinite;
         }
+        @keyframes carregando { from { background-position: 130% 0; } to { background-position: -130% 0; } }
+        .gema img, .gema video { background-color: #1d1a16; }
         .gema img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .facetas { clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); }
         .texto-topazio {
@@ -92,18 +98,12 @@
         .abertura-fio { position: absolute; left: 0; right: 0; top: 50%; height: 1px; transform: scaleX(0); opacity: 0;
             background: linear-gradient(90deg, transparent, #f4d1b6 30%, #fff 50%, #f4d1b6 70%, transparent); box-shadow: 0 0 18px 2px rgba(230,160,140,.55); }
         .abertura-centro { position: relative; display: grid; justify-items: center; gap: 14px; transition: opacity .5s ease, transform .9s cubic-bezier(.76,0,.24,1); }
-        .abertura-gema { width: min(38vw, 172px); height: auto; overflow: visible; margin-bottom: 14px; filter: drop-shadow(0 0 26px rgba(187,109,133,.3)); }
-        .g-traco { fill: none; stroke: url(#ouroTraco); stroke-width: .7; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
-        .g-traco { animation: desenhar 1.1s cubic-bezier(.65,0,.35,1) forwards; }
         .g0 { stroke-width: .9; animation-duration: 1.3s; }
         .g1 { animation-delay: .45s; } .g2 { animation-delay: .75s; } .g3 { animation-delay: 1.05s; }
-        .g-corpo { opacity: 0; animation: acender 1.4s 1.6s ease forwards; }
-        .g-facetas { opacity: 0; animation: facetas 1.2s 1.9s ease forwards; }
-        @keyframes facetas { to { opacity: 1; } }
-        .g-reflexo { animation: reflexo 2.6s 2.2s ease-in-out infinite; }
-        .g-estrela { opacity: 0; transform-box: fill-box; transform-origin: center; animation: estrela 2.6s 2.6s ease-in-out infinite; }
+        .abertura-cristal { position: relative; width: min(44vw, 210px); aspect-ratio: 3 / 4; margin-bottom: 4px; opacity: 0; animation: cristalSurge 1.6s .15s cubic-bezier(.2,.8,.2,1) forwards; }
+        .abertura-cristal::before { content: ""; position: absolute; inset: -30% -60%; border-radius: 50%; background: radial-gradient(circle, rgba(194,108,90,.32) 0%, rgba(194,108,90,.08) 40%, transparent 68%); }
+        @keyframes cristalSurge { from { opacity: 0; transform: translateY(14px) scale(.92); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
         .abertura-nome { font-family: "Cinzel", serif; font-weight: 600; font-size: 16px; letter-spacing: .42em; padding-left: .42em; text-transform: uppercase; color: #f4efec; opacity: 0; animation: surgir 1.2s 1.2s ease forwards; }
-        .abertura-nome span { color: #e6a08c; }
         .abertura-sub { font-family: "Bodoni Moda", serif; font-style: italic; font-size: 15px; letter-spacing: .12em; color: rgba(244,239,236,.55); opacity: 0; animation: surgir 1.2s 1.5s ease forwards; }
         .abertura-barra { width: 96px; height: 1px; margin-top: 10px; background: rgba(244,239,236,.12); overflow: hidden; opacity: 0; animation: surgir .8s 1.6s ease forwards; }
         .abertura-barra span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #b19550, #f4d1b6); transition: width .5s ease; }
@@ -114,16 +114,10 @@
         #abertura.abrir .abertura-metade.baixo { transform: translateY(101%); }
         #abertura.abrir .abertura-fio { animation: fioApaga .45s ease forwards; }
         @keyframes fioApaga { from { opacity: 1; transform: scaleX(1); } to { opacity: 0; transform: scaleX(1.05); } }
-        @keyframes desenhar { to { stroke-dashoffset: 0; } }
-        @keyframes acender { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes reflexo { 0% { transform: skewX(-18deg) translateX(0); } 55%, 100% { transform: skewX(-18deg) translateX(330px); } }
-        @keyframes estrela { 0%, 100% { opacity: 0; transform: scale(.2) rotate(0deg); } 40% { opacity: 1; transform: scale(1) rotate(45deg); } 65% { opacity: 0; transform: scale(.4) rotate(90deg); } }
         @keyframes surgir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
         @keyframes fio { 0% { opacity: 0; transform: scaleX(0); } 40% { opacity: 1; } 100% { opacity: 1; transform: scaleX(1); } }
         @media (prefers-reduced-motion: reduce) {
-            .g-traco, .g-corpo, .g-reflexo, .g-estrela, .abertura-nome, .abertura-sub, .abertura-barra { animation: none; }
-            .g-traco { stroke-dashoffset: 0; } .g-corpo, .g-facetas { opacity: 1; } .abertura-nome, .abertura-sub, .abertura-barra { opacity: 1; }
-            .abertura-metade { transition: none; }
+                    .abertura-metade { transition: none; }
         }
 
         /* botão principal do topo: champanhe metálico, neutro */
@@ -150,7 +144,8 @@
         @keyframes brilhoGema { 0%,100% { transform: rotate(-6deg) scale(1); } 50% { transform: rotate(6deg) scale(1.1); } }
 
         /* botão "Crie sua Joia" do menu: degradê de topázio com brilho passando */
-        .btn-crie { background: linear-gradient(100deg, #e6a08c, #c26c5a 45%, #bb6d85); }
+        .btn-crie { background: linear-gradient(180deg, #ffffff 0%, #f4efec 100%); box-shadow: 0 8px 22px -12px rgba(0,0,0,.7); }
+        .btn-crie.btn-crie-rosa { background: linear-gradient(100deg, #e6a08c, #c26c5a 45%, #bb6d85); box-shadow: 0 10px 22px -6px rgba(194,108,90,.35); }   /* "Criar a minha": degradê rosa original */
         .btn-crie::after {
             content: ""; position: absolute; inset: 0; pointer-events: none;
             background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
@@ -158,6 +153,11 @@
         }
         @keyframes varrer { 0%, 55% { transform: translateX(-120%) } 100% { transform: translateX(120%) } }
         @media (prefers-reduced-motion: reduce) { .texto-topazio, .flutuar, .btn-crie::after, .btn-joia, .btn-joia__gema { animation: none; } }
+        /* fotos de Ouro Preto que se alternam na chamada final */
+        .slide-op { opacity: 0; transition: opacity 1.6s ease; }
+        .slide-op.ativa { opacity: 1; }
+        /* "Gems" da marca na cor do Topázio Imperial (laranja-dourado do cristal) */
+        .gems { color: #e8862f; background: linear-gradient(180deg, #f8b85e 0%, #e8862f 55%, #c9611f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
     <!-- Three.js (cristal 3D do topo) -->
     <script type="importmap">
@@ -181,107 +181,16 @@
             <symbol id="ic-calculadora" viewBox="0 0 24 24"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 6.5h7v3h-7zM8.6 13h.01M12 13h.01M15.4 13h.01M8.6 16.5h.01M12 16.5h.01M15.4 16.5h.01"/></symbol>
         </defs>
     </svg>
-    <!-- ===== ABERTURA: gema lapidada em traço dourado que se acende; sai abrindo como um porta-joias ===== -->
+    <!-- ===== ABERTURA: o cristal da seção 1 surge no centro; a tela se abre como um porta-joias e ele voa até o lugar dele ===== -->
     <script>document.documentElement.classList.add("abrindo");</script>
     <div id="abertura" aria-hidden="true">
         <div class="abertura-metade cima"></div>
         <div class="abertura-metade baixo"></div>
         <div class="abertura-fio"></div>
         <div class="abertura-centro">
-            <svg class="abertura-gema" viewBox="0 0 200 200">
-                <defs>
-                    <linearGradient id="ouroTraco" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stop-color="#fff1d6"/><stop offset=".45" stop-color="#e4ca82"/><stop offset="1" stop-color="#b19550"/>
-                    </linearGradient>
-                    <radialGradient id="luzTopazio" cx=".42" cy=".38" r=".7">
-                        <stop offset="0" stop-color="#fbe2d2"/><stop offset=".3" stop-color="#e6a08c"/><stop offset=".68" stop-color="#bb6d85"/><stop offset="1" stop-color="#5b1d24"/>
-                    </radialGradient>
-                    <linearGradient id="reflexo" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
-                    </linearGradient>
-                    <radialGradient id="mesaLuz" cx=".4" cy=".35" r=".8">
-                        <stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/>
-                    </radialGradient>
-                    <clipPath id="formaGema"><ellipse cx="100" cy="100" rx="62" ry="82"/></clipPath>
-                </defs>
-                <ellipse class="g-corpo" cx="100" cy="100" rx="62" ry="82" fill="url(#luzTopazio)"/>
-                <g class="g-facetas">
-                    <polygon points="100.0,62.3 120.2,73.3 128.5,100.0 120.2,126.7 100.0,137.7 79.8,126.7 71.5,100.0 79.8,73.3" fill="url(#mesaLuz)"/>
-                    <polygon points="100.0,62.3 117.1,45.5 120.2,73.3" fill="#fff" fill-opacity="0.16"/>
-                    <polygon points="100.0,18.0 117.1,45.5 123.7,24.2" fill="#000" fill-opacity="0.2"/>
-                    <polygon points="123.7,24.2 117.1,45.5 143.8,42.0" fill="#fff" fill-opacity="0.1"/>
-                    <polygon points="100.0,18.0 100.0,62.3 117.1,45.5" fill="#fff" fill-opacity="0.06"/>
-                    <polygon points="120.2,73.3 141.2,77.4 128.5,100.0" fill="#000" fill-opacity="0.14"/>
-                    <polygon points="143.8,42.0 141.2,77.4 157.3,68.6" fill="#fff" fill-opacity="0.2"/>
-                    <polygon points="157.3,68.6 141.2,77.4 162.0,100.0" fill="#000" fill-opacity="0.22"/>
-                    <polygon points="143.8,42.0 120.2,73.3 141.2,77.4" fill="#fff" fill-opacity="0.12"/>
-                    <polygon points="128.5,100.0 141.2,122.6 120.2,126.7" fill="#fff" fill-opacity="0.16"/>
-                    <polygon points="162.0,100.0 141.2,122.6 157.3,131.4" fill="#000" fill-opacity="0.2"/>
-                    <polygon points="157.3,131.4 141.2,122.6 143.8,158.0" fill="#fff" fill-opacity="0.1"/>
-                    <polygon points="162.0,100.0 128.5,100.0 141.2,122.6" fill="#fff" fill-opacity="0.06"/>
-                    <polygon points="120.2,126.7 117.1,154.5 100.0,137.7" fill="#000" fill-opacity="0.14"/>
-                    <polygon points="143.8,158.0 117.1,154.5 123.7,175.8" fill="#fff" fill-opacity="0.2"/>
-                    <polygon points="123.7,175.8 117.1,154.5 100.0,182.0" fill="#000" fill-opacity="0.22"/>
-                    <polygon points="143.8,158.0 120.2,126.7 117.1,154.5" fill="#fff" fill-opacity="0.12"/>
-                    <polygon points="100.0,137.7 82.9,154.5 79.8,126.7" fill="#fff" fill-opacity="0.16"/>
-                    <polygon points="100.0,182.0 82.9,154.5 76.3,175.8" fill="#000" fill-opacity="0.2"/>
-                    <polygon points="76.3,175.8 82.9,154.5 56.2,158.0" fill="#fff" fill-opacity="0.1"/>
-                    <polygon points="100.0,182.0 100.0,137.7 82.9,154.5" fill="#fff" fill-opacity="0.06"/>
-                    <polygon points="79.8,126.7 58.8,122.6 71.5,100.0" fill="#000" fill-opacity="0.14"/>
-                    <polygon points="56.2,158.0 58.8,122.6 42.7,131.4" fill="#fff" fill-opacity="0.2"/>
-                    <polygon points="42.7,131.4 58.8,122.6 38.0,100.0" fill="#000" fill-opacity="0.22"/>
-                    <polygon points="56.2,158.0 79.8,126.7 58.8,122.6" fill="#fff" fill-opacity="0.12"/>
-                    <polygon points="71.5,100.0 58.8,77.4 79.8,73.3" fill="#fff" fill-opacity="0.16"/>
-                    <polygon points="38.0,100.0 58.8,77.4 42.7,68.6" fill="#000" fill-opacity="0.2"/>
-                    <polygon points="42.7,68.6 58.8,77.4 56.2,42.0" fill="#fff" fill-opacity="0.1"/>
-                    <polygon points="38.0,100.0 71.5,100.0 58.8,77.4" fill="#fff" fill-opacity="0.06"/>
-                    <polygon points="79.8,73.3 82.9,45.5 100.0,62.3" fill="#000" fill-opacity="0.14"/>
-                    <polygon points="56.2,42.0 82.9,45.5 76.3,24.2" fill="#fff" fill-opacity="0.2"/>
-                    <polygon points="76.3,24.2 82.9,45.5 100.0,18.0" fill="#000" fill-opacity="0.22"/>
-                    <polygon points="56.2,42.0 79.8,73.3 82.9,45.5" fill="#fff" fill-opacity="0.12"/>
-                </g>
-                <g clip-path="url(#formaGema)"><rect class="g-reflexo" x="-60" y="0" width="60" height="200" fill="url(#reflexo)" transform="skewX(-18)"/></g>
-                <ellipse pathLength="1" class="g-traco g0" cx="100" cy="100" rx="62" ry="82"/>
-                <g>
-                    <polygon pathLength="1" class="g-traco g1" points="100.0,62.3 120.2,73.3 128.5,100.0 120.2,126.7 100.0,137.7 79.8,126.7 71.5,100.0 79.8,73.3"/>
-                    <polyline pathLength="1" class="g-traco g2" points="100.0,62.3 117.1,45.5 120.2,73.3"/>
-                    <polyline pathLength="1" class="g-traco g2" points="120.2,73.3 141.2,77.4 128.5,100.0"/>
-                    <polyline pathLength="1" class="g-traco g2" points="128.5,100.0 141.2,122.6 120.2,126.7"/>
-                    <polyline pathLength="1" class="g-traco g2" points="120.2,126.7 117.1,154.5 100.0,137.7"/>
-                    <polyline pathLength="1" class="g-traco g2" points="100.0,137.7 82.9,154.5 79.8,126.7"/>
-                    <polyline pathLength="1" class="g-traco g2" points="79.8,126.7 58.8,122.6 71.5,100.0"/>
-                    <polyline pathLength="1" class="g-traco g2" points="71.5,100.0 58.8,77.4 79.8,73.3"/>
-                    <polyline pathLength="1" class="g-traco g2" points="79.8,73.3 82.9,45.5 100.0,62.3"/>
-                    <polyline pathLength="1" class="g-traco g3" points="100.0,18.0 100.0,62.3"/>
-                    <polyline pathLength="1" class="g-traco g3" points="100.0,18.0 117.1,45.5 143.8,42.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="117.1,45.5 123.7,24.2"/>
-                    <polyline pathLength="1" class="g-traco g3" points="143.8,42.0 120.2,73.3"/>
-                    <polyline pathLength="1" class="g-traco g3" points="143.8,42.0 141.2,77.4 162.0,100.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="141.2,77.4 157.3,68.6"/>
-                    <polyline pathLength="1" class="g-traco g3" points="162.0,100.0 128.5,100.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="162.0,100.0 141.2,122.6 143.8,158.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="141.2,122.6 157.3,131.4"/>
-                    <polyline pathLength="1" class="g-traco g3" points="143.8,158.0 120.2,126.7"/>
-                    <polyline pathLength="1" class="g-traco g3" points="143.8,158.0 117.1,154.5 100.0,182.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="117.1,154.5 123.7,175.8"/>
-                    <polyline pathLength="1" class="g-traco g3" points="100.0,182.0 100.0,137.7"/>
-                    <polyline pathLength="1" class="g-traco g3" points="100.0,182.0 82.9,154.5 56.2,158.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="82.9,154.5 76.3,175.8"/>
-                    <polyline pathLength="1" class="g-traco g3" points="56.2,158.0 79.8,126.7"/>
-                    <polyline pathLength="1" class="g-traco g3" points="56.2,158.0 58.8,122.6 38.0,100.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="58.8,122.6 42.7,131.4"/>
-                    <polyline pathLength="1" class="g-traco g3" points="38.0,100.0 71.5,100.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="38.0,100.0 58.8,77.4 56.2,42.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="58.8,77.4 42.7,68.6"/>
-                    <polyline pathLength="1" class="g-traco g3" points="56.2,42.0 79.8,73.3"/>
-                    <polyline pathLength="1" class="g-traco g3" points="56.2,42.0 82.9,45.5 100.0,18.0"/>
-                    <polyline pathLength="1" class="g-traco g3" points="82.9,45.5 76.3,24.2"/>
-                </g>
-                <g class="g-estrela" transform="translate(78 58)">
-                    <path d="M0-11 1.6-1.6 11 0 1.6 1.6 0 11-1.6 1.6-11 0-1.6-1.6Z" fill="#fff"/>
-                </g>
-            </svg>
-            <p class="abertura-nome">Imperiali<span>Gems</span></p>
+            <!-- o cristal 3D da seção 1 aparece aqui e depois voa até o lugar dele -->
+            <div id="aberturaCristal" class="abertura-cristal"></div>
+            <p class="abertura-nome">Imperiali<span class="gems">Gems</span></p>
             <p class="abertura-sub">Topázio Imperial · Ouro Preto</p>
             <div class="abertura-barra"><span id="aberturaProgresso"></span></div>
         </div>
@@ -291,12 +200,12 @@
     <header class="fixed inset-x-0 top-0 z-50 bg-topazio-escuro/80 backdrop-blur border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-3">
-                <img src="img/logo-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
-                <span class="font-marca font-semibold text-lg sm:text-xl uppercase tracking-[.14em] max-[430px]:hidden">Imperiali<span class="text-topazio-pessego">Gems</span></span>
+                <img src="img/logo-nova-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
+                <span class="font-marca font-semibold text-lg sm:text-xl uppercase tracking-[.14em] max-[430px]:hidden">Imperiali<span class="gems">Gems</span></span>
             </a>
             <div class="flex items-center gap-3">
                 <!-- destaque do menu: visível também no celular -->
-                <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[.16em] px-4 sm:px-5 py-2.5 rounded-full text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
+                <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[.16em] px-4 sm:px-5 py-2.5 rounded-full text-topazio-escuro hover:scale-105 transition">
                     <svg class="ic mr-1.5" aria-hidden="true"><use href="#ic-gema"/></svg>Crie sua Joia
                 </a>
             <a href="https://wa.me/553171416959" data-pedir-nome="Quero uma peça de Topázio Imperial." target="_blank" rel="noopener"
@@ -341,22 +250,8 @@
                 </div>
                 <!-- sombra no chão -->
                 <div class="mx-auto -mt-4 w-1/2 h-5 rounded-full bg-black/60 blur-xl"></div>
-                <img src="img/logo-256.webp" alt="" class="hidden md:block flutuar absolute -bottom-2 -left-6 w-24 h-24 rounded-full border-4 border-topazio-escuro shadow-xl">
+                <img src="img/logo-nova.webp" alt="" class="hidden md:block flutuar absolute -bottom-4 -left-8 w-28 h-28 drop-shadow-[0_12px_24px_rgba(0,0,0,.6)]">
             </div>
-        </div>
-    </section>
-
-    <!-- ===== FAIXA DE AUTORIDADE ===== -->
-    <section class="border-y border-white/10 bg-[#0e0c09]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-local"/></svg>
-                <p class="font-serif text-xl mt-2">Ouro Preto · MG</p><p class="text-xs text-topazio-claro/55">Onde o Topázio Imperial nasce</p></div>
-            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-gema"/></svg>
-                <p class="font-serif text-xl mt-2">Bruto e lapidado</p><p class="text-xs text-topazio-claro/55">Do cristal à pedra pronta</p></div>
-            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-balanca"/></svg>
-                <p class="font-serif text-xl mt-2">Peso e código</p><p class="text-xs text-topazio-claro/55">Cada pedra identificada</p></div>
-            <div><svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-anel"/></svg>
-                <p class="font-serif text-xl mt-2">Joias sob medida</p><p class="text-xs text-topazio-claro/55">Criadas com a sua pedra</p></div>
         </div>
     </section>
 
@@ -419,20 +314,38 @@
             </div>
             <div class="md:col-span-2 grid sm:grid-cols-3 gap-6">
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-local"/></svg>
+                    <img src="img/midia/icone-bruto.webp" alt="Cristal bruto de Topázio Imperial" class="w-14 h-14 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Origem rara</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">A região de Ouro Preto é a principal fonte de Topázio Imperial do mundo.</p>
                 </div>
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-paleta"/></svg>
+                    <img src="img/midia/icone-lapidada.webp" alt="Topázio Imperial lapidado" class="w-14 h-14 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Cor única</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Tons que vão do dourado ao pêssego, do laranja ao rosa-imperial.</p>
                 </div>
                 <div class="p-6 border border-white/10 bg-white/[.02]">
-                    <svg class="ic text-topazio-pessego text-xl" aria-hidden="true"><use href="#ic-gema"/></svg>
+                    <img src="img/midia/icone-anel-3d.webp" alt="Anel Halo Imperatriz em 3D" class="w-16 h-16 -my-1 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Do bruto à joia</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Cristais naturais para coleção e pedras lapidadas prontas para joalheria.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Ouro Preto, onde a pedra nasce -->
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <figure class="gema col-span-2 md:row-span-2 overflow-hidden aspect-[4/3] md:aspect-auto relative">
+                    <img src="img/ouro-preto-vista.webp" alt="Vista de Ouro Preto ao entardecer" decoding="async" class="w-full h-full object-cover">
+                    <figcaption class="absolute left-4 bottom-3 text-[11px] uppercase tracking-[.22em] text-topazio-claro drop-shadow">Ouro Preto · MG</figcaption>
+                </figure>
+                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-igreja.webp" alt="Igreja de São Francisco de Assis, obra de Aleijadinho" decoding="async" class="w-full h-full object-cover"></figure>
+                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-rua.webp" alt="Rua de pedra do centro histórico de Ouro Preto" decoding="async" class="w-full h-full object-cover"></figure>
+                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-praca.webp" alt="Praça Tiradentes ao anoitecer" decoding="async" class="w-full h-full object-cover"></figure>
+                <a href="ouro-preto.html" class="group flex flex-col justify-between aspect-[4/3] p-5 border border-topazio-pessego/40 bg-white/[.03] hover:bg-topazio-pessego/10 transition">
+                    <span class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">A origem</span>
+                    <span class="font-serif text-2xl leading-tight">Por que o Topázio Imperial de Ouro Preto vale tanto</span>
+                    <span class="text-xs uppercase tracking-[.2em] text-topazio-claro/70 group-hover:text-topazio-pessego">Conhecer <span aria-hidden="true">→</span></span>
+                </a>
             </div>
         </div>
     </section>
@@ -452,16 +365,16 @@
                 <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Da pedra de Ouro Preto à joia pronta</h2>
                 <p class="mt-5 text-topazio-claro/70 leading-relaxed">Topázio Imperial oval, envolvido por um halo de brilhos e montado em ouro. Uma peça única, feita a partir de uma pedra selecionada no nosso estoque — e você pode criar a sua do mesmo jeito.</p>
                 <ul class="mt-6 grid gap-3 text-sm text-topazio-claro/80">
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Pedra escolhida a dedo, com peso e procedência</li>
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Modelo ajustado ao seu gosto e ao seu tamanho</li>
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Acompanhamento por foto e vídeo até a entrega</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Pedra escolhida a dedo, com peso e procedência</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Modelo ajustado ao seu gosto e ao seu tamanho</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-check"/></svg>Acompanhamento por foto e vídeo até a entrega</li>
                 </ul>
                 <div class="mt-9 flex flex-wrap gap-3">
                     <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems%21%20Vi%20o%20anel%20com%20halo%20no%20site%20e%20quero%20uma%20joia%20assim." target="_blank" rel="noopener"
                        class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] shadow-lg shadow-black/30 ring-1 ring-white/60 hover:bg-topazio-claro hover:-translate-y-0.5 hover:shadow-xl transition">
                         <i class="fa-brands fa-whatsapp text-lg text-[#25D366]"></i>Quero uma joia assim
                     </a>
-                    <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap inline-flex items-center px-7 py-4 rounded-full text-sm font-semibold uppercase tracking-[.16em] text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
+                    <a href="crie-sua-joia.html" class="btn-crie btn-crie-rosa relative overflow-hidden whitespace-nowrap inline-flex items-center px-7 py-4 rounded-full text-sm font-semibold uppercase tracking-[.16em] text-topazio-escuro shadow-lg shadow-topazio/30 hover:scale-105 transition">
                         <svg class="ic mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Criar a minha
                     </a>
                 </div>
@@ -642,10 +555,10 @@
                 <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Crie sua Joia com Topázio Imperial</h2>
                 <p class="mt-5 text-topazio-claro/70 leading-relaxed">Escolha uma pedra real do nosso estoque, o modelo de anel, brinco ou pingente e o metal. Veja a peça em 3D e acompanhe a estimativa de preço a cada escolha.</p>
                 <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-topazio-claro/80">
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Pedra com código</li>
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-anel"/></svg>Anel, brinco, pingente</li>
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-cubo"/></svg>Visualização em 3D</li>
-                    <li><svg class="ic text-topazio-pessego mr-2" aria-hidden="true"><use href="#ic-calculadora"/></svg>Preço estimado na hora</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Pedra com código</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-anel"/></svg>Anel, brinco, pingente</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-cubo"/></svg>Visualização em 3D</li>
+                    <li><svg class="ic text-topazio-claro mr-2" aria-hidden="true"><use href="#ic-calculadora"/></svg>Preço estimado na hora</li>
                 </ul>
                 <a href="crie-sua-joia.html" class="btn-joia group mt-9">
                     <!-- gema facetada -->
@@ -696,15 +609,18 @@
 
     <!-- ===== CTA FINAL ===== -->
     <section class="relative py-32 sm:py-40 overflow-hidden text-topazio-claro">
-        <!-- Praça Tiradentes, Ouro Preto -->
-        <img src="img/ouro-preto.webp" alt="Praça Tiradentes ao anoitecer, com o Museu da Inconfidência, em Ouro Preto" decoding="async"
-             class="foto-ouro-preto absolute inset-0 w-full h-full object-cover">
+        <!-- fotos de Ouro Preto que se alternam a cada 5 s -->
+        <img src="img/ouro-preto-vista.webp" alt="Vista de Ouro Preto ao entardecer" decoding="async" class="foto-ouro-preto slide-op ativa absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-igreja.webp" alt="Igreja de São Francisco de Assis" decoding="async" loading="lazy" class="foto-ouro-preto slide-op absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-rua.webp" alt="Rua de pedra do centro histórico" decoding="async" loading="lazy" class="foto-ouro-preto slide-op absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-praca.webp" alt="Praça Tiradentes ao anoitecer" decoding="async" loading="lazy" class="foto-ouro-preto slide-op absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-b from-topazio-escuro/75 via-topazio-escuro/35 to-topazio-escuro/85"></div>
         <div class="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_50%,transparent,rgba(14,12,9,.55))]"></div>
         <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
             <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Ouro Preto · Minas Gerais</p>
             <h2 class="font-serif text-4xl sm:text-6xl leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,.6)]">Tenha um pedaço de Ouro Preto com você</h2>
             <p class="mt-5 text-lg text-topazio-claro/85">Peças únicas, escolhidas por quem é especialista em Topázio Imperial.</p>
+            <a href="ouro-preto.html" class="block mt-6 text-xs uppercase tracking-[.25em] text-topazio-claro/80 hover:text-topazio-pessego transition">Conheça a origem da pedra <span aria-hidden="true">→</span></a>
             <a href="https://wa.me/553171416959" data-pedir-nome="Quero minha peça de Topázio Imperial." target="_blank" rel="noopener"
                class="inline-block mt-9 px-9 py-4 bg-topazio-pessego text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-claro transition">
                 <i class="fa-brands fa-whatsapp mr-2"></i>Quero minha peça
@@ -712,14 +628,28 @@
         </div>
     </section>
 
+    <!-- ===== FAIXA DE AUTORIDADE ===== -->
+    <section class="border-y border-white/10 bg-[#0e0c09]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-local"/></svg>
+                <p class="font-serif text-xl mt-2">Ouro Preto · MG</p><p class="text-xs text-topazio-claro/55">Onde o Topázio Imperial nasce</p></div>
+            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-gema"/></svg>
+                <p class="font-serif text-xl mt-2">Bruto e lapidado</p><p class="text-xs text-topazio-claro/55">Do cristal à pedra pronta</p></div>
+            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-balanca"/></svg>
+                <p class="font-serif text-xl mt-2">Peso e código</p><p class="text-xs text-topazio-claro/55">Cada pedra identificada</p></div>
+            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-anel"/></svg>
+                <p class="font-serif text-xl mt-2">Joias sob medida</p><p class="text-xs text-topazio-claro/55">Criadas com a sua pedra</p></div>
+        </div>
+    </section>
+
     <!-- ===== RODAPÉ ===== -->
     <footer class="py-12 border-t border-white/10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-topazio-claro/60">
             <div class="flex items-center gap-4">
-                <img src="img/logo-256.webp" alt="" class="w-14 h-14 rounded-full">
+                <img src="img/logo-nova-256.webp" alt="" class="w-14 h-14 rounded-full">
                 <div>
-                    <p class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="text-topazio-pessego">Gems</span></p>
-                    <p class="mt-1">Topázio Imperial · Ouro Preto, MG</p>
+                    <p class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></p>
+                    <p class="mt-1">Topázio Imperial · <a href="ouro-preto.html" class="hover:text-topazio-pessego underline-offset-4 hover:underline">Ouro Preto, MG</a></p>
                 </div>
             </div>
             <div class="flex gap-5 text-xl">
@@ -735,7 +665,7 @@
         <div class="min-h-full grid place-items-center p-4">
             <form id="formNome" class="relative w-full max-w-md bg-topazio-escuro border border-topazio-pessego/30 p-7 sm:p-9 shadow-2xl">
                 <button type="button" data-fechar-nome class="absolute top-3 right-3 w-9 h-9 grid place-items-center text-topazio-claro/60 hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
-                <img src="img/logo-256.webp" alt="" class="w-16 h-16 mx-auto rounded-full">
+                <img src="img/logo-nova-256.webp" alt="" class="w-16 h-16 mx-auto rounded-full">
                 <p class="text-center text-xs uppercase tracking-[.3em] text-topazio-pessego mt-4">Atendimento exclusivo</p>
                 <h2 id="tituloNome" class="font-serif text-3xl text-center mt-2">Como podemos te chamar?</h2>
                 <label class="block mt-6 text-xs uppercase tracking-[.2em] text-topazio-claro/60" for="campoNome">Seu nome</label>
@@ -762,7 +692,10 @@
             renderer.toneMapping = THREE.NoToneMapping;     // sem curva de tom: mantém a cor exata da foto
             renderer.setClearColor(0x000000, 0);
             renderer.domElement.style.cssText = "position:absolute;inset:0;width:100%;height:100%";
-            alvo.appendChild(renderer.domElement);
+            const caixaAbertura = document.getElementById("aberturaCristal");
+            let casa = alvo;
+            if (caixaAbertura && document.documentElement.classList.contains("abrindo")) casa = caixaAbertura;
+            casa.appendChild(renderer.domElement);
 
             const cena = new THREE.Scene();
             const pmrem = new THREE.PMREMGenerator(renderer);
@@ -819,12 +752,32 @@
             cena.add(pivo);
 
             const ajustar = () => {
-                const { width, height } = alvo.getBoundingClientRect();
+                const { width, height } = casa.getBoundingClientRect();
+                if (!width || !height) return;
                 renderer.setSize(width, height, false);
                 camera.aspect = width / height;
                 camera.updateProjectionMatrix();
             };
             new ResizeObserver(ajustar).observe(alvo);
+            if (caixaAbertura) new ResizeObserver(ajustar).observe(caixaAbertura);
+
+            // quando a abertura sai: o mesmo cristal voa do centro da tela até o lugar dele na seção 1
+            window.addEventListener("abertura-saindo", () => {
+                if (casa === alvo) return;
+                const tela = renderer.domElement;
+                const de = tela.getBoundingClientRect();
+                casa = alvo; alvo.appendChild(tela); ajustar();
+                const para = tela.getBoundingClientRect();
+                if (matchMedia("(prefers-reduced-motion: reduce)").matches || !para.width) return;
+                tela.style.zIndex = "101";                      // passa por cima das portas da abertura
+                tela.style.transformOrigin = "0 0";
+                tela.style.transition = "none";
+                tela.style.transform = `translate(${de.left - para.left}px, ${de.top - para.top}px) scale(${de.width / para.width}, ${de.height / para.height})`;
+                tela.getBoundingClientRect();
+                tela.style.transition = "transform 1.3s cubic-bezier(.7,0,.2,1)";
+                tela.style.transform = "none";
+                setTimeout(() => { tela.style.zIndex = ""; tela.style.transition = ""; }, 1400);
+            }, { once: true });
             ajustar();
 
             // arrastar para girar (na horizontal; a rolagem vertical da página continua funcionando)
@@ -939,6 +892,8 @@
                 if (feito) return; feito = true;
                 clearInterval(crescer); barra.style.width = "100%";
                 setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    window.dispatchEvent(new Event("abertura-saindo"));       // o cristal voa até a seção 1
                     tela.classList.add("saindo");                              // fio dourado na emenda
                     setTimeout(() => {
                         tela.classList.add("abrir");                           // as duas metades se afastam
@@ -989,6 +944,17 @@
             if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
         }), { threshold: 0.35 });
         document.querySelectorAll("#galeria video, video[data-auto]").forEach(v => observador.observe(v));
+        // chamada final: as fotos de Ouro Preto se alternam a cada 5 s
+        (function alternarFotos() {
+            const fotos = document.querySelectorAll(".slide-op");
+            if (fotos.length < 2) return;
+            let atual = 0;
+            setInterval(() => {
+                fotos[atual].classList.remove("ativa");
+                atual = (atual + 1) % fotos.length;
+                fotos[atual].classList.add("ativa");
+            }, 5000);
+        })();
     </script>
 </body>
 </html>

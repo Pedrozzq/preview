@@ -47,9 +47,9 @@ O resultado seria um site que funciona não apenas como uma vitrine virtual, mas
 
 ## Onde cada parte está implementada
 
-Site estático (HTML + Tailwind via CDN + JS puro, sem build). Duas páginas:
+Site estático (HTML + Tailwind via CDN + JS puro, sem build). Três páginas (`ouro-preto.html`: origem da pedra, galeria da cidade e chamada para atendimento):
 
-- `index.html` — página inicial: abertura (gema lapidada em traço dourado que se acende e tela que se abre como porta-joias), topo, diferencial, joia em destaque, processo, estoque, coleção, galeria em parallax, chamada do Crie sua Joia, como comprar.
+- `index.html` — página inicial: abertura (o mesmo cristal 3D da seção 1 surge no centro, a tela se abre como porta-joias e ele voa até o topo), topo, diferencial, joia em destaque, processo, estoque, coleção, galeria em parallax, chamada do Crie sua Joia, como comprar.
 - `crie-sua-joia.html` — o ateliê. Os dados ficam no começo do `<script type="module">`:
   - `PEDRAS` — estoque (código, tom, cor, formato, lapidação, medidas `c`/`l`, `ct`, preço). `aprox: true` mostra "≈" (medida estimada pela foto); `ctReal: true` marca peso confirmado. A primeira da lista é a pedra padrão.
   - `MODELOS` — anel (Solitário, Halo, Aro largo, Imperatriz), brinco (Ponto de luz, Gota, Argola), pingente (Clássico, Moldura, Halo), com mão de obra e peso de metal.
@@ -76,7 +76,7 @@ Site estático (HTML + Tailwind via CDN + JS puro, sem build). Duas páginas:
 - **Fidelidade à especificação:** nenhuma etapa ou ideia acima pode ser removida; novas funções devem reforçar o diferencial (experiência de criação, exclusividade, valor de cada pedra).
 - **Pedras reais:** foto e código sempre correspondem a uma pedra do estoque. Medidas/preços estimados ficam marcados com `aprox: true` até o cliente informar o valor real — nunca apresente estimativa como dado confirmado.
 - **Imagens em WebP** (`img/`, `img/pedras/`, `img/midia/`). Vídeos em MP4 curto, com capa (`poster`) em WebP e `preload="none"`.
-- **Identidade:** cores tiradas das fotos do estoque próprio — fundo preto quente do couro (`topazio-escuro #16140f`, seções `#24231e`), pedras rosa `#bb6d85`, salmão `#c26c5a`, pêssego-rosado `#e6a08c` (destaque), champanhe `#e4ca82` nos traços dourados e branco-pérola `#f4efec`. Títulos em Bodoni Moda; nome da marca em Cinzel (caixa alta, espaçado), "Imperiali" pérola + "Gems" pêssego-rosado; texto corrido em Montserrat. Logo: `img/logo-256.webp` (original, com o fundo kraft — não usar versão sem fundo). Cores de dados (`cor` de cada pedra em `PEDRAS`, cores de `METAIS`) não fazem parte do tema.
+- **Identidade:** cores tiradas das fotos do estoque próprio — fundo preto quente do couro (`topazio-escuro #16140f`, seções `#24231e`), pedras rosa `#bb6d85`, salmão `#c26c5a`, pêssego-rosado `#e6a08c` (destaque), champanhe `#e4ca82` nos traços dourados e branco-pérola `#f4efec`. Títulos em Bodoni Moda; nome da marca em Cinzel (caixa alta, espaçado), "Imperiali" pérola + "Gems" no laranja-dourado do Topázio Imperial (classe `.gems`, degradê #f8b85e → #e8862f → #c9611f); texto corrido em Montserrat. Logo: medalhão dourado `img/logo-nova-256.webp` (topo/rodapé) e `img/logo-nova.webp` (selo da seção 1), recortados em círculo com fundo transparente a partir de `img/IMPERIALI GEMS LOGO NOVA.png`; versão grande em `img/logo-nova-transparente.png`. Cores de dados (`cor` de cada pedra em `PEDRAS`, cores de `METAIS`) não fazem parte do tema.
 - **Contato:** tudo vai para o WhatsApp `553171416959` (não usar o Direct do Instagram para atendimento).
 - **Textos em português do Brasil**, tom sofisticado e direto.
 - **Teste no navegador** (computador e celular ~375 px) após cada mudança: sem erros no console, sem rolagem lateral no celular, 3D carregando, prova virtual abrindo.

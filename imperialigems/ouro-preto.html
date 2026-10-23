@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouro Preto, berço do Topázio Imperial | ImperialiGems</title>
+    <meta name="description" content="Ouro Preto, Patrimônio Mundial da UNESCO, é a principal fonte de Topázio Imperial do mundo. Conheça a origem da gema mais rara de Minas e crie uma joia exclusiva com a ImperialiGems.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png?v=3">
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png?v=3">
+    <link rel="icon" type="image/png" sizes="256x256" href="img/favicon.png?v=3">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=3">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        topazio: {
+                            claro: '#f4efec',   // creme champanhe
+                            pessego: '#e6a08c', // topázio pêssego
+                            DEFAULT: '#c26c5a', // topázio imperial "sherry"
+                            rosa: '#bb6d85',    // topázio rosa-imperial
+                            escuro: '#16140f'   // fundo café profundo
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['"Bodoni Moda"', 'serif'],         // títulos: contraste de alta joalheria
+                        marca: ['Cinzel', 'serif'],               // nome da marca: capitulares gravadas
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background: #16140f; }
+        .ic { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; fill: none; stroke: currentColor;
+              stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+        .foto { background-color: #1d1a16; min-height: 220px; }
+        .btn-neutro { background: linear-gradient(135deg, #f1e7d3 0%, #d9c6a0 48%, #bfa77a 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 10px 26px -14px rgba(0,0,0,.8); }
+        .btn-neutro:hover { background: linear-gradient(135deg, #f8f1e4 0%, #e4d3b1 48%, #c9b287 100%); }
+        .btn-crie { background: linear-gradient(180deg, #ffffff 0%, #f4efec 100%); box-shadow: 0 8px 22px -12px rgba(0,0,0,.7); }
+        .foto-topo { transform: scale(1.06); animation: zoomLento 26s ease-in-out infinite alternate; }
+        @keyframes zoomLento { to { transform: scale(1.15); } }
+        .surgir { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
+        .surgir.visivel { opacity: 1; transform: none; }
+        #modalNome .campoNome { width: 100%; padding: 14px 16px; background: transparent; border: 1px solid rgba(244,239,236,.2); color: #f4efec; font-size: 16px; outline: none; }
+        #modalNome .campoNome:focus { border-color: #e6a08c; }
+        #ampliada { opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+        #ampliada.aberta { opacity: 1; visibility: visible; }
+        @media (prefers-reduced-motion: reduce) { .foto-topo { animation: none; } .surgir { opacity: 1; transform: none; transition: none; } }
+        /* fotos de Ouro Preto que se alternam na chamada final */
+        .slide-op { opacity: 0; transition: opacity 1.6s ease; }
+        .slide-op.ativa { opacity: 1; }
+        /* "Gems" da marca na cor do Topázio Imperial (laranja-dourado do cristal) */
+        .gems { color: #e8862f; background: linear-gradient(180deg, #f8b85e 0%, #e8862f 55%, #c9611f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="font-sans text-topazio-claro antialiased">
+    <!-- ícones de traço fino da marca -->
+    <svg width="0" height="0" class="absolute" aria-hidden="true">
+        <defs>
+            <symbol id="ic-gema" viewBox="0 0 24 24"><path d="M7 4h10l4 5-9 11L3 9z"/><path d="M3 9h18M7 4l2.5 5L12 4l2.5 5L17 4M9.5 9 12 20l2.5-11"/></symbol>
+            <symbol id="ic-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17 19 7"/></symbol>
+            <symbol id="ic-anel" viewBox="0 0 24 24"><circle cx="12" cy="15" r="6"/><path d="M9.6 6.2h4.8l1.6 2.1L12 11.6 8 8.3z"/><path d="M8 8.3h8"/></symbol>
+            <symbol id="ic-local" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+            <symbol id="ic-cubo" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></symbol>
+            <symbol id="ic-balanca" viewBox="0 0 24 24"><path d="M12 4v15M8 20h8M5 7h14"/><path d="M5 7 2.5 12.5a2.6 2.6 0 0 0 5 0zM19 7l-2.5 5.5a2.6 2.6 0 0 0 5 0z"/></symbol>
+            <symbol id="ic-paleta" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.3 0 1.9-.9 1.4-2-.6-1.4.4-2.7 1.8-2.7h2.1a3.2 3.2 0 0 0 3.2-3.2c0-5.2-3.8-9.1-8.5-9.1z"/><circle cx="8" cy="10" r=".9"/><circle cx="11.5" cy="7.2" r=".9"/><circle cx="15.5" cy="8.6" r=".9"/></symbol>
+            <symbol id="ic-calculadora" viewBox="0 0 24 24"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 6.5h7v3h-7zM8.6 13h.01M12 13h.01M15.4 13h.01M8.6 16.5h.01M12 16.5h.01M15.4 16.5h.01"/></symbol>
+        </defs>
+    </svg>
+
+    <!-- ===== TOPO ===== -->
+    <header class="fixed inset-x-0 top-0 z-50 bg-topazio-escuro/80 backdrop-blur border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="img/logo-nova-256.webp" alt="ImperialiGems — Imperial Topaz" class="w-10 h-10 rounded-full object-cover">
+                <span class="font-marca font-semibold text-lg sm:text-xl uppercase tracking-[.14em] max-[430px]:hidden">Imperiali<span class="gems">Gems</span></span>
+            </a>
+            <div class="flex items-center gap-3">
+                <!-- destaque do menu: visível também no celular -->
+                <a href="crie-sua-joia.html" class="btn-crie relative overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[.16em] px-4 sm:px-5 py-2.5 rounded-full text-topazio-escuro hover:scale-105 transition">
+                    <svg class="ic mr-1.5" aria-hidden="true"><use href="#ic-gema"/></svg>Crie sua Joia
+                </a>
+            <a href="https://wa.me/553171416959" data-pedir-nome="Quero uma peça de Topázio Imperial." target="_blank" rel="noopener"
+               class="hidden sm:inline-block whitespace-nowrap text-xs uppercase tracking-[.18em] px-4 py-2 border border-topazio-pessego/60 text-topazio-pessego hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+                Quero uma peça
+            </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== ABERTURA ===== -->
+    <section class="relative min-h-[92vh] flex items-end overflow-hidden">
+        <img src="img/ouro-preto-vista.webp" alt="Vista de Ouro Preto ao entardecer" class="foto-topo absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+        <div class="absolute inset-0 bg-gradient-to-t from-topazio-escuro via-topazio-escuro/40 to-topazio-escuro/30"></div>
+        <div class="relative max-w-6xl mx-auto w-full px-4 sm:px-6 pb-20 pt-32">
+            <p class="text-xs uppercase tracking-[.32em] text-topazio-pessego">Ouro Preto · Minas Gerais · Patrimônio Mundial da UNESCO</p>
+            <h1 class="font-serif text-5xl sm:text-7xl leading-[1.02] mt-4 max-w-3xl">Onde nasce a gema mais rara do Brasil</h1>
+            <p class="mt-6 text-lg text-topazio-claro/80 max-w-xl leading-relaxed">A região de Ouro Preto é a principal fonte de Topázio Imperial do mundo. Cada pedra que chega às nossas mãos carrega a história, a geologia e a arte de uma das cidades mais preciosas do planeta.</p>
+            <div class="mt-9 flex flex-wrap gap-3">
+                <a href="https://wa.me/553171416959" data-pedir-nome="Quero conhecer as peças de Topázio Imperial de Ouro Preto." target="_blank" rel="noopener"
+                   class="btn-neutro inline-flex items-center gap-2 px-8 py-4 text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] transition">
+                    <i class="fa-brands fa-whatsapp"></i>Atendimento reservado
+                </a>
+                <a href="crie-sua-joia.html" class="inline-flex items-center gap-2 px-8 py-4 border border-white/25 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">
+                    <svg class="ic" aria-hidden="true"><use href="#ic-gema"/></svg>Criar minha joia
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== O VALOR DA PEDRA ===== -->
+    <section class="py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1fr_1.1fr] gap-14 items-start">
+            <div class="surgir lg:sticky lg:top-28">
+                <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">O valor do Topázio Imperial</p>
+                <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Uma gema rara, de origem única e para a vida inteira</h2>
+                <p class="mt-6 text-topazio-claro/75 leading-relaxed">Poucas pedras no mundo reúnem procedência tão nobre, cor tão singular e uma história tão brasileira. Por isso o Topázio Imperial é escolhido por quem procura uma joia que não se repete — e que atravessa gerações.</p>
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="p-5 border border-white/10 bg-white/[.02]"><p class="font-serif text-4xl text-topazio-pessego">1980</p><p class="text-xs text-topazio-claro/60 mt-1">Ouro Preto se torna Patrimônio Mundial da UNESCO</p></div>
+                    <div class="p-5 border border-white/10 bg-white/[.02]"><p class="font-serif text-4xl text-topazio-pessego">8</p><p class="text-xs text-topazio-claro/60 mt-1">de dureza na escala Mohs: resistente ao uso diário</p></div>
+                </div>
+            </div>
+            <div class="grid gap-4">
+                <article class="surgir p-6 sm:p-7 border border-white/10 bg-white/[.02] flex gap-5">
+                    <svg class="ic text-3xl text-topazio-claro flex-none" aria-hidden="true"><use href="#ic-local"/></svg>
+                    <div><h3 class="font-serif text-2xl">Procedência rara</h3>
+                    <p class="mt-2 text-sm text-topazio-claro/70 leading-relaxed">As jazidas que produzem o Topázio Imperial com qualidade de gema são poucas e concentradas na região de Ouro Preto. A oferta é limitada pela própria natureza.</p></div>
+                </article>
+                <article class="surgir p-6 sm:p-7 border border-white/10 bg-white/[.02] flex gap-5">
+                    <svg class="ic text-3xl text-topazio-claro flex-none" aria-hidden="true"><use href="#ic-paleta"/></svg>
+                    <div><h3 class="font-serif text-2xl">Uma cor que não se imita</h3>
+                    <p class="mt-2 text-sm text-topazio-claro/70 leading-relaxed">Do dourado ao pêssego, do salmão ao rosa-imperial. Os tons rosados e avermelhados são os mais raros e os mais disputados por colecionadores.</p></div>
+                </article>
+                <article class="surgir p-6 sm:p-7 border border-white/10 bg-white/[.02] flex gap-5">
+                    <svg class="ic text-3xl text-topazio-claro flex-none" aria-hidden="true"><use href="#ic-anel"/></svg>
+                    <div><h3 class="font-serif text-2xl">Um nome com história</h3>
+                    <p class="mt-2 text-sm text-topazio-claro/70 leading-relaxed">Segundo a tradição, o nome “Imperial” homenageia a família imperial brasileira. Uma gema nascida no ciclo do ouro e ligada à história do país.</p></div>
+                </article>
+                <article class="surgir p-6 sm:p-7 border border-white/10 bg-white/[.02] flex gap-5">
+                    <svg class="ic text-3xl text-topazio-claro flex-none" aria-hidden="true"><use href="#ic-balanca"/></svg>
+                    <div><h3 class="font-serif text-2xl">Cada pedra, identificada</h3>
+                    <p class="mt-2 text-sm text-topazio-claro/70 leading-relaxed">Na ImperialiGems, cada topázio tem código, peso e fotos reais. Você sabe exatamente qual pedra será sua — e ela não volta ao estoque.</p></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERIA DA CIDADE ===== -->
+    <section class="py-24 bg-[#24231e]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="surgir flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">A cidade</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl">Ouro Preto, joia do barroco mineiro</h2>
+                </div>
+                <p class="text-sm text-topazio-claro/60 max-w-sm">Toque em uma foto para ampliar.</p>
+            </div>
+            <div class="mt-12 grid md:grid-cols-4 md:grid-rows-2 gap-3 md:h-[620px]">
+                <figure class="foto md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-zoom-in" data-foto="0">
+                    <img src="img/ouro-preto-vista.webp" alt="Ouro Preto ao entardecer" decoding="async" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <figcaption class="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/75 to-transparent">
+                        <p class="font-serif text-xl sm:text-2xl text-topazio-claro">Ouro Preto ao entardecer</p>
+                        <p class="text-xs text-topazio-claro/70 mt-1 ">A cidade vista do alto, entre as serras do Espinhaço — o mesmo solo que guarda o Topázio Imperial.</p>
+                    </figcaption>
+                </figure>
+                <figure class="foto  group relative overflow-hidden cursor-zoom-in" data-foto="1">
+                    <img src="img/ouro-preto-igreja.webp" alt="Igreja de São Francisco de Assis" decoding="async" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <figcaption class="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/75 to-transparent">
+                        <p class="font-serif text-xl sm:text-2xl text-topazio-claro">Igreja de São Francisco de Assis</p>
+                        <p class="text-xs text-topazio-claro/70 mt-1 hidden sm:block">Obra-prima de Aleijadinho e um dos ícones do barroco mineiro.</p>
+                    </figcaption>
+                </figure>
+                <figure class="foto  group relative overflow-hidden cursor-zoom-in" data-foto="2">
+                    <img src="img/ouro-preto-rua.webp" alt="As ruas de pedra do centro histórico" decoding="async" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <figcaption class="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/75 to-transparent">
+                        <p class="font-serif text-xl sm:text-2xl text-topazio-claro">As ruas de pedra do centro histórico</p>
+                        <p class="text-xs text-topazio-claro/70 mt-1 hidden sm:block">Casarões coloniais que atravessaram três séculos de história.</p>
+                    </figcaption>
+                </figure>
+                <figure class="foto md:col-span-2 group relative overflow-hidden cursor-zoom-in" data-foto="3">
+                    <img src="img/ouro-preto-praca.webp" alt="Praça Tiradentes ao anoitecer" decoding="async" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <figcaption class="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/75 to-transparent">
+                        <p class="font-serif text-xl sm:text-2xl text-topazio-claro">Praça Tiradentes ao anoitecer</p>
+                        <p class="text-xs text-topazio-claro/70 mt-1 hidden sm:block">O coração da cidade, com o Museu da Inconfidência ao fundo.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIÊNCIA ===== -->
+    <section class="py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center surgir">
+            <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">A experiência ImperialiGems</p>
+            <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Da pedra de Ouro Preto à sua joia exclusiva</h2>
+            <p class="mt-5 text-topazio-claro/70 max-w-2xl mx-auto leading-relaxed">Você escolhe pessoalmente o seu topázio, define o modelo e o metal, vê a peça em 3D e acompanha tudo com atendimento individual — do primeiro contato à entrega.</p>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 mt-12 grid sm:grid-cols-3 gap-4">
+            <div class="surgir p-6 border border-white/10 bg-white/[.02] text-center"><svg class="ic text-3xl text-topazio-claro" aria-hidden="true"><use href="#ic-gema"/></svg><p class="font-serif text-xl mt-3">Pedra escolhida a dedo</p><p class="text-xs text-topazio-claro/60 mt-2">Fotos e vídeos reais de cada gema antes da decisão.</p></div>
+            <div class="surgir p-6 border border-white/10 bg-white/[.02] text-center"><svg class="ic text-3xl text-topazio-claro" aria-hidden="true"><use href="#ic-cubo"/></svg><p class="font-serif text-xl mt-3">Criação em 3D</p><p class="text-xs text-topazio-claro/60 mt-2">Veja, gire e prove a joia antes de ela existir.</p></div>
+            <div class="surgir p-6 border border-white/10 bg-white/[.02] text-center"><svg class="ic text-3xl text-topazio-claro" aria-hidden="true"><use href="#ic-check"/></svg><p class="font-serif text-xl mt-3">Atendimento reservado</p><p class="text-xs text-topazio-claro/60 mt-2">Um especialista acompanha cada etapa do seu projeto.</p></div>
+        </div>
+    </section>
+
+    <!-- ===== CHAMADA FINAL ===== -->
+    <section class="relative py-32 overflow-hidden">
+        <!-- fotos de Ouro Preto que se alternam a cada 5 s -->
+        <img src="img/ouro-preto-vista.webp" alt="Vista de Ouro Preto ao entardecer" decoding="async" class="slide-op ativa absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-igreja.webp" alt="Igreja de São Francisco de Assis" decoding="async" loading="lazy" class="slide-op absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-rua.webp" alt="Rua de pedra do centro histórico" decoding="async" loading="lazy" class="slide-op absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-praca.webp" alt="Praça Tiradentes ao anoitecer" decoding="async" loading="lazy" class="slide-op absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-topazio-escuro/85 via-topazio-escuro/60 to-topazio-escuro/90"></div>
+        <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="font-serif text-4xl sm:text-6xl leading-tight">Leve com você um pedaço raro de Ouro Preto</h2>
+            <p class="mt-5 text-lg text-topazio-claro/80">Cada pedra é única. Quando ela sai do nosso estoque, não volta.</p>
+            <div class="mt-9 flex flex-wrap justify-center gap-3">
+                <a href="https://wa.me/553171416959" data-pedir-nome="Quero um atendimento reservado para escolher meu Topázio Imperial." target="_blank" rel="noopener"
+                   class="btn-neutro inline-flex items-center gap-2 px-9 py-4 text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] transition">
+                    <i class="fa-brands fa-whatsapp"></i>Quero meu atendimento
+                </a>
+                <a href="crie-sua-joia.html" class="inline-flex items-center gap-2 px-8 py-4 border border-white/25 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">Criar minha joia</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="py-10 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-5 text-sm text-topazio-claro/60">
+            <a href="index.html" class="flex items-center gap-3"><img src="img/logo-nova-256.webp" alt="" class="w-12 h-12 rounded-full">
+                <span class="font-marca font-semibold uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></span></a>
+            <div class="flex gap-5 text-xl">
+                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-topazio-pessego"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-topazio-pessego"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-topazio-pessego"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- foto ampliada -->
+    <div id="ampliada" class="fixed inset-0 z-[95] bg-black/90 grid place-items-center p-4" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+        <button type="button" data-fechar-foto class="absolute top-4 right-4 w-11 h-11 grid place-items-center text-topazio-claro hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark text-xl"></i></button>
+        <figure class="max-w-6xl w-full">
+            <img id="ampliadaImg" alt="" class="w-full max-h-[80vh] object-contain">
+            <figcaption id="ampliadaLegenda" class="mt-4 text-center font-serif text-2xl"></figcaption>
+        </figure>
+    </div>
+
+    <!-- ===== NOME ANTES DO WHATSAPP ===== -->
+    <div id="modalNome" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloNome">
+        <div class="min-h-full grid place-items-center p-4">
+            <form id="formNome" class="relative w-full max-w-md bg-topazio-escuro border border-topazio-pessego/30 p-7 sm:p-9 shadow-2xl">
+                <button type="button" data-fechar-nome class="absolute top-3 right-3 w-9 h-9 grid place-items-center text-topazio-claro/60 hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                <img src="img/logo-nova-256.webp" alt="" class="w-16 h-16 mx-auto rounded-full">
+                <p class="text-center text-xs uppercase tracking-[.3em] text-topazio-pessego mt-4">Atendimento exclusivo</p>
+                <h2 id="tituloNome" class="font-serif text-3xl text-center mt-2">Como podemos te chamar?</h2>
+                <label class="block mt-6 text-xs uppercase tracking-[.2em] text-topazio-claro/60" for="campoNome">Seu nome</label>
+                <input id="campoNome" name="nome" class="campoNome mt-2" autocomplete="given-name" maxlength="60" required placeholder="Digite seu nome">
+                <p id="erroNome" class="hidden mt-2 text-sm text-topazio-rosa">Conte pra gente o seu nome para continuar.</p>
+                <button type="submit" class="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-white text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] hover:bg-topazio-claro transition">
+                    <i class="fa-brands fa-whatsapp text-lg text-[#25D366]"></i>Continuar no WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // textos e cartões surgem ao rolar
+        const observador = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visivel"); observador.unobserve(e.target); } }), { threshold: .15 });
+        document.querySelectorAll(".surgir").forEach(el => observador.observe(el));
+
+        // ampliar foto da galeria
+        (function ampliar() {
+            const caixa = document.getElementById("ampliada"), img = document.getElementById("ampliadaImg"), leg = document.getElementById("ampliadaLegenda");
+            document.addEventListener("click", e => {
+                const f = e.target.closest("[data-foto]");
+                if (f) { const i = f.querySelector("img"); img.src = i.src; img.alt = i.alt; leg.textContent = i.alt; caixa.classList.add("aberta"); return; }
+                if (e.target.closest("[data-fechar-foto]") || e.target === caixa) caixa.classList.remove("aberta");
+            });
+            document.addEventListener("keydown", e => { if (e.key === "Escape") caixa.classList.remove("aberta"); });
+        })();
+
+        // "Quero uma peça": pergunta o nome antes de abrir o WhatsApp
+        (function pedirNome() {
+            const modal = document.getElementById("modalNome"), form = document.getElementById("formNome");
+            const campo = document.getElementById("campoNome"), erro = document.getElementById("erroNome");
+            const WHATSAPP = "553171416959";
+            let mensagem = "";
+            const abrir = msg => {
+                mensagem = msg;
+                try { campo.value = localStorage.getItem("imperialigems_nome") || ""; } catch (e) {}
+                erro.classList.add("hidden");
+                modal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+                setTimeout(() => campo.focus(), 50);
+            };
+            const fechar = () => { modal.classList.add("hidden"); document.body.style.overflow = ""; };
+            document.addEventListener("click", e => {
+                const link = e.target.closest("[data-pedir-nome]");
+                if (link) { e.preventDefault(); abrir(link.dataset.pedirNome); return; }
+                if (e.target.closest("[data-fechar-nome]") || e.target === modal.firstElementChild) fechar();
+            });
+            document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.classList.contains("hidden")) fechar(); });
+            form.addEventListener("submit", e => {
+                e.preventDefault();
+                const nome = campo.value.trim().replace(/\s+/g, " ");
+                if (nome.length < 2) { erro.classList.remove("hidden"); campo.focus(); return; }
+                try { localStorage.setItem("imperialigems_nome", nome); } catch (err) {}
+                const texto = `Olá, ImperialiGems! Meu nome é ${nome}. ${mensagem}`;
+                window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+                fechar();
+            });
+        })();
+        // chamada final: as fotos de Ouro Preto se alternam a cada 5 s
+        (function alternarFotos() {
+            const fotos = document.querySelectorAll(".slide-op");
+            if (fotos.length < 2) return;
+            let atual = 0;
+            setInterval(() => {
+                fotos[atual].classList.remove("ativa");
+                atual = (atual + 1) % fotos.length;
+                fotos[atual].classList.add("ativa");
+            }, 5000);
+        })();
+    </script>
+</body>
+</html>
