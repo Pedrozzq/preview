@@ -14,7 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -175,6 +175,49 @@
         .balao-digitando i:nth-child(2) { animation-delay: .15s; } .balao-digitando i:nth-child(3) { animation-delay: .3s; }
         @keyframes digitando { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
         .balao-selo.escrevendo .balao-digitando, .balao-selo.escrito .balao-digitando { display: none; }
+        /* faixa de autoridade: uma linha só, no estilo dos apps da Apple */
+        .faixa { background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)), #0e0c09; font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; }
+        .faixa-item { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 4px; min-width: 0; }
+        .faixa-item + .faixa-item::before { content: ""; position: absolute; left: 0; top: 12%; bottom: 12%; width: 1px; background: linear-gradient(transparent, rgba(255,255,255,.12), transparent); }
+        .faixa-ic { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; font-size: 16px; color: #f4efec;
+                    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+        .faixa-tit { margin-top: 8px; font-size: 11px; line-height: 1.2; font-weight: 600; letter-spacing: -.01em; color: #f4efec; }
+        .faixa-sub { margin-top: 2px; font-size: 9.5px; line-height: 1.25; color: rgba(244,239,236,.5); }
+        @media (min-width: 640px) {
+            .faixa-ic { width: 44px; height: 44px; border-radius: 13px; font-size: 20px; }
+            .faixa-tit { margin-top: 12px; font-size: 16px; }
+            .faixa-sub { margin-top: 3px; font-size: 13px; }
+            .faixa-item { padding: 0 12px; }
+        }
+        /* rodapé */
+        .rodape { border-top: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg, #0e0c09, #0a0907); }
+        .rodape-tit { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #e8862f; margin-bottom: 18px; }
+        .rodape-lista { display: grid; gap: 12px; font-size: 14px; color: rgba(244,239,236,.7); }
+        .rodape-lista a { transition: color .2s; }
+        .rodape-lista a:hover { color: #f4efec; }
+        .rodape-social { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; font-size: 17px; color: rgba(244,239,236,.8);
+                         background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); transition: background .2s, color .2s; }
+        .rodape-social:hover { background: rgba(255,255,255,.12); color: #fff; }
+        .rodape-base { border-top: 1px solid rgba(255,255,255,.06); }
+        /* botão principal da seção 1 */
+        .btn-hero { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+                    width: 100%; max-width: 360px; height: 64px; padding: 0 34px; border-radius: 999px; color: #16140f;
+                    font: 700 15px/1 Montserrat, sans-serif; letter-spacing: .18em; text-transform: uppercase;
+                    background: linear-gradient(120deg, #fff6e8 0%, #f6d39a 38%, #e8862f 78%, #d0705a 100%);
+                    box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 18px 44px -14px rgba(232,134,47,.75), 0 0 60px -10px rgba(232,134,47,.45);
+                    transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; animation: heroPulso 2.8s ease-in-out infinite; }
+        .btn-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: translateX(-120%);
+                            background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.75) 50%, transparent 70%); animation: heroBrilho 3.4s ease-in-out infinite; }
+        .btn-hero:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 0 1px rgba(255,255,255,.45) inset, 0 24px 54px -14px rgba(232,134,47,.95), 0 0 80px -6px rgba(232,134,47,.6); }
+        .btn-hero__gema { font-size: 22px; stroke-width: 1.6; }
+        .btn-hero__seta { font-size: 18px; transition: transform .3s; }
+        .btn-hero:hover .btn-hero__seta { transform: translateX(6px); }
+        @keyframes heroBrilho { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
+        @keyframes heroPulso { 0%, 100% { box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 18px 44px -14px rgba(232,134,47,.75), 0 0 0 0 rgba(232,134,47,.45); }
+                               50% { box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 18px 44px -14px rgba(232,134,47,.75), 0 0 0 12px rgba(232,134,47,0); } }
+        .btn-hero { white-space: nowrap; }
+        @media (max-width: 420px) { .btn-hero { height: 58px; padding: 0 22px; gap: 10px; font-size: 13px; letter-spacing: .12em; } }
+        @media (prefers-reduced-motion: reduce) { .btn-hero, .btn-hero::before { animation: none; } }
     </style>
     <!-- Three.js (cristal 3D do topo) -->
     <script type="importmap">
@@ -245,13 +288,17 @@
                     A gema mais rara de Minas, escolhida pedra a pedra onde ela nasce.
                     Aqui você não escolhe uma joia pronta: você cria a sua.
                 </p>
-                <div class="mt-9 flex flex-wrap gap-3">
-                    <a href="crie-sua-joia.html" class="btn-neutro px-7 py-4 text-topazio-escuro font-semibold text-sm uppercase tracking-[.16em] transition">
-                        <svg class="ic mr-2" aria-hidden="true"><use href="#ic-gema"/></svg>Criar minha joia
+                <!-- chamada principal: centralizada e em destaque -->
+                <div class="mt-10 flex flex-col items-center gap-4 max-w-md">
+                    <a href="crie-sua-joia.html" class="btn-hero">
+                        <svg class="ic btn-hero__gema" aria-hidden="true"><use href="#ic-gema"/></svg>
+                        <span>Criar minha joia</span>
+                        <span class="btn-hero__seta" aria-hidden="true">→</span>
                     </a>
+                    <p class="text-xs text-topazio-claro/55 tracking-wide">Monte em 3D · veja o preço na hora</p>
                     <a href="https://wa.me/553171416959?text=Ol%C3%A1%2C%20ImperialiGems!%20Tenho%20interesse%20em%20Top%C3%A1zio%20Imperial." target="_blank" rel="noopener"
-                       class="px-7 py-4 border border-white/20 text-sm uppercase tracking-[.16em] hover:border-topazio-pessego hover:text-topazio-pessego transition">
-                        <i class="fa-brands fa-whatsapp mr-2"></i>Chamar no WhatsApp
+                       class="inline-flex items-center gap-2 text-xs uppercase tracking-[.18em] text-topazio-claro/70 hover:text-topazio-pessego transition">
+                        <i class="fa-brands fa-whatsapp"></i>ou fale no WhatsApp
                     </a>
                 </div>
             </div>
@@ -343,24 +390,6 @@
                     <h3 class="font-serif text-2xl mt-4">Do bruto à joia</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Cristais naturais para coleção e pedras lapidadas prontas para joalheria.</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Ouro Preto, onde a pedra nasce -->
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <figure class="gema col-span-2 md:row-span-2 overflow-hidden aspect-[4/3] md:aspect-auto relative">
-                    <img src="img/ouro-preto-vista.webp" alt="Vista de Ouro Preto ao entardecer" decoding="async" class="w-full h-full object-cover">
-                    <figcaption class="absolute left-4 bottom-3 text-[11px] uppercase tracking-[.22em] text-topazio-claro drop-shadow">Ouro Preto · MG</figcaption>
-                </figure>
-                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-igreja.webp" alt="Igreja de São Francisco de Assis, obra de Aleijadinho" decoding="async" class="w-full h-full object-cover"></figure>
-                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-rua.webp" alt="Rua de pedra do centro histórico de Ouro Preto" decoding="async" class="w-full h-full object-cover"></figure>
-                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-praca.webp" alt="Praça Tiradentes ao anoitecer" decoding="async" class="w-full h-full object-cover"></figure>
-                <a href="ouro-preto.html" class="group flex flex-col justify-between aspect-[4/3] p-5 border border-topazio-pessego/40 bg-white/[.03] hover:bg-topazio-pessego/10 transition">
-                    <span class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">A origem</span>
-                    <span class="font-serif text-2xl leading-tight">Por que o Topázio Imperial de Ouro Preto vale tanto</span>
-                    <span class="text-xs uppercase tracking-[.2em] text-topazio-claro/70 group-hover:text-topazio-pessego">Conhecer <span aria-hidden="true">→</span></span>
-                </a>
             </div>
         </div>
     </section>
@@ -595,6 +624,30 @@
         </div>
     </section>
 
+    <!-- ===== OURO PRETO, ONDE A PEDRA NASCE ===== -->
+    <section id="ouro-preto" class="py-20 bg-[#24231e]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-10">
+            <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Ouro Preto · MG</p>
+            <h2 class="font-serif text-4xl sm:text-5xl leading-tight">Onde a pedra nasce</h2>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <figure class="gema col-span-2 md:row-span-2 overflow-hidden aspect-[4/3] md:aspect-auto relative">
+                    <img src="img/ouro-preto-vista.webp" alt="Vista de Ouro Preto ao entardecer" decoding="async" class="w-full h-full object-cover">
+                    <figcaption class="absolute left-4 bottom-3 text-[11px] uppercase tracking-[.22em] text-topazio-claro drop-shadow">Ouro Preto · MG</figcaption>
+                </figure>
+                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-igreja.webp" alt="Igreja de São Francisco de Assis, obra de Aleijadinho" decoding="async" class="w-full h-full object-cover"></figure>
+                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-rua.webp" alt="Rua de pedra do centro histórico de Ouro Preto" decoding="async" class="w-full h-full object-cover"></figure>
+                <figure class="gema overflow-hidden aspect-[4/3]"><img src="img/ouro-preto-praca.webp" alt="Praça Tiradentes ao anoitecer" decoding="async" class="w-full h-full object-cover"></figure>
+                <a href="ouro-preto.html" class="group flex flex-col justify-between aspect-[4/3] p-5 border border-topazio-pessego/40 bg-white/[.03] hover:bg-topazio-pessego/10 transition">
+                    <span class="text-[11px] uppercase tracking-[.22em] text-topazio-pessego">A origem</span>
+                    <span class="font-serif text-2xl leading-tight">Por que o Topázio Imperial de Ouro Preto vale tanto</span>
+                    <span class="text-xs uppercase tracking-[.2em] text-topazio-claro/70 group-hover:text-topazio-pessego">Conhecer <span aria-hidden="true">→</span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== COMO COMPRAR ===== -->
     <section id="comprar" class="py-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -643,34 +696,83 @@
         </div>
     </section>
 
-    <!-- ===== FAIXA DE AUTORIDADE ===== -->
-    <section class="border-y border-white/10 bg-[#0e0c09]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-local"/></svg>
-                <p class="font-serif text-xl mt-2">Ouro Preto · MG</p><p class="text-xs text-topazio-claro/55">Onde o Topázio Imperial nasce</p></div>
-            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-gema"/></svg>
-                <p class="font-serif text-xl mt-2">Bruto e lapidado</p><p class="text-xs text-topazio-claro/55">Do cristal à pedra pronta</p></div>
-            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-balanca"/></svg>
-                <p class="font-serif text-xl mt-2">Peso e código</p><p class="text-xs text-topazio-claro/55">Cada pedra identificada</p></div>
-            <div><svg class="ic text-topazio-claro text-xl" aria-hidden="true"><use href="#ic-anel"/></svg>
-                <p class="font-serif text-xl mt-2">Joias sob medida</p><p class="text-xs text-topazio-claro/55">Criadas com a sua pedra</p></div>
-        </div>
+    <!-- ===== FAIXA DE AUTORIDADE (uma linha, também no celular) ===== -->
+    <section class="faixa border-y border-white/[.06]">
+        <ul class="max-w-6xl mx-auto px-2 sm:px-6 py-5 sm:py-7 grid grid-cols-4">
+            <li class="faixa-item">
+                <span class="faixa-ic"><svg class="ic" aria-hidden="true"><use href="#ic-local"/></svg></span>
+                <p class="faixa-tit">Ouro Preto · MG</p><p class="faixa-sub">Onde o Topázio Imperial nasce</p>
+            </li>
+            <li class="faixa-item">
+                <span class="faixa-ic"><svg class="ic" aria-hidden="true"><use href="#ic-gema"/></svg></span>
+                <p class="faixa-tit">Bruto e lapidado</p><p class="faixa-sub">Do cristal à pedra pronta</p>
+            </li>
+            <li class="faixa-item">
+                <span class="faixa-ic"><svg class="ic" aria-hidden="true"><use href="#ic-balanca"/></svg></span>
+                <p class="faixa-tit">Peso e código</p><p class="faixa-sub">Cada pedra identificada</p>
+            </li>
+            <li class="faixa-item">
+                <span class="faixa-ic"><svg class="ic" aria-hidden="true"><use href="#ic-anel"/></svg></span>
+                <p class="faixa-tit">Joias sob medida</p><p class="faixa-sub">Criadas com a sua pedra</p>
+            </li>
+        </ul>
     </section>
 
     <!-- ===== RODAPÉ ===== -->
-    <footer class="py-12 border-t border-white/10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-topazio-claro/60">
-            <div class="flex items-center gap-4">
-                <img src="img/logo-nova-256.webp" alt="" class="w-14 h-14 rounded-full">
+    <footer class="rodape">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-10">
+            <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+                <!-- marca -->
                 <div>
-                    <p class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></p>
-                    <p class="mt-1">Topázio Imperial · <a href="ouro-preto.html" class="hover:text-topazio-pessego underline-offset-4 hover:underline">Ouro Preto, MG</a></p>
+                    <a href="#inicio" class="inline-flex items-center gap-3">
+                        <img src="img/logo-nova-256.webp" alt="" class="w-14 h-14 rounded-full" loading="lazy">
+                        <span class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></span>
+                    </a>
+                    <p class="mt-5 text-sm leading-relaxed text-topazio-claro/60 max-w-xs">Topázio Imperial de Ouro Preto, do cristal bruto à joia sob medida. Estoque próprio, com código, peso e fotos reais de cada pedra.</p>
+                    <div class="mt-6 flex gap-2">
+                        <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="rodape-social"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="rodape-social"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="rodape-social"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <!-- páginas -->
+                <nav aria-label="Páginas do site">
+                    <p class="rodape-tit">O site</p>
+                    <ul class="rodape-lista">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="crie-sua-joia.html">Crie sua Joia</a></li>
+                        <li><a href="ouro-preto.html">Ouro Preto, a origem</a></li>
+                        <li><a href="crie-sua-joia.html#inspiracoes">Inspirações</a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="Conheça a ImperialiGems">
+                    <p class="rodape-tit">Conheça</p>
+                    <ul class="rodape-lista">
+                        <li><a href="#diferencial">Nosso diferencial</a></li>
+                        <li><a href="#pedra">O Topázio Imperial</a></li>
+                        <li><a href="#estoque">Pedras em estoque</a></li>
+                        <li><a href="#colecao">Coleção</a></li>
+                        <li><a href="#comprar">Como comprar</a></li>
+                    </ul>
+                </nav>
+                <!-- atendimento -->
+                <div>
+                    <p class="rodape-tit">Atendimento</p>
+                    <ul class="rodape-lista">
+                        <li><a href="https://wa.me/553171416959" target="_blank" rel="noopener" class="inline-flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i>+55 31 7141-6959</a></li>
+                        <li><a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener">@imperialigems</a></li>
+                        <li><span>Ouro Preto · Minas Gerais</span></li>
+                    </ul>
+                    <a href="https://wa.me/553171416959" data-pedir-nome="Olá! Quero um atendimento da ImperialiGems." target="_blank" rel="noopener"
+                       class="mt-6 inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-topazio-escuro text-sm font-semibold whitespace-nowrap hover:scale-105 transition">
+                        Falar com um especialista <span aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
-            <div class="flex gap-5 text-xl">
-                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-topazio-pessego transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-topazio-pessego transition"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-topazio-pessego transition"><i class="fa-brands fa-youtube"></i></a>
+
+            <div class="rodape-base mt-14 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-xs text-topazio-claro/45">
+                <p>© <span data-ano>2026</span> ImperialiGems · Topázio Imperial de Ouro Preto. Todos os direitos reservados.</p>
+                <p>As visualizações 3D são representações digitais; cor e brilho de cada pedra são confirmados no atendimento.</p>
             </div>
         </div>
     </footer>
@@ -1041,6 +1143,7 @@
             }, { passive: true });
             document.addEventListener("click", e => { if (e.target.closest("[data-abrir-selo]")) esconder(); });
         })();
+        document.querySelectorAll("[data-ano]").forEach(el => el.textContent = new Date().getFullYear());
     </script>
 </body>
 </html>

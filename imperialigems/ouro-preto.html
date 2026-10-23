@@ -67,6 +67,16 @@
         .slide-op.ativa { opacity: 1; }
         /* "Gems" da marca na cor do Topázio Imperial (laranja-dourado do cristal) */
         .gems { color: #e8862f; background: linear-gradient(180deg, #f8b85e 0%, #e8862f 55%, #c9611f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        /* rodapé */
+        .rodape { border-top: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg, #0e0c09, #0a0907); }
+        .rodape-tit { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #e8862f; margin-bottom: 18px; }
+        .rodape-lista { display: grid; gap: 12px; font-size: 14px; color: rgba(244,239,236,.7); }
+        .rodape-lista a { transition: color .2s; }
+        .rodape-lista a:hover { color: #f4efec; }
+        .rodape-social { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; font-size: 17px; color: rgba(244,239,236,.8);
+                         background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); transition: background .2s, color .2s; }
+        .rodape-social:hover { background: rgba(255,255,255,.12); color: #fff; }
+        .rodape-base { border-top: 1px solid rgba(255,255,255,.06); }
     </style>
 </head>
 <body class="font-sans text-topazio-claro antialiased">
@@ -239,14 +249,60 @@
     </section>
 
     <!-- ===== RODAPÉ ===== -->
-    <footer class="py-10 border-t border-white/10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-5 text-sm text-topazio-claro/60">
-            <a href="index.html" class="flex items-center gap-3"><img src="img/logo-nova-256.webp" alt="" class="w-12 h-12 rounded-full">
-                <span class="font-marca font-semibold uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></span></a>
-            <div class="flex gap-5 text-xl">
-                <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-topazio-pessego"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-topazio-pessego"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-topazio-pessego"><i class="fa-brands fa-youtube"></i></a>
+    <footer class="rodape">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-10">
+            <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+                <!-- marca -->
+                <div>
+                    <a href="index.html" class="inline-flex items-center gap-3">
+                        <img src="img/logo-nova-256.webp" alt="" class="w-14 h-14 rounded-full" loading="lazy">
+                        <span class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></span>
+                    </a>
+                    <p class="mt-5 text-sm leading-relaxed text-topazio-claro/60 max-w-xs">Topázio Imperial de Ouro Preto, do cristal bruto à joia sob medida. Estoque próprio, com código, peso e fotos reais de cada pedra.</p>
+                    <div class="mt-6 flex gap-2">
+                        <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="rodape-social"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="rodape-social"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="rodape-social"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <!-- páginas -->
+                <nav aria-label="Páginas do site">
+                    <p class="rodape-tit">O site</p>
+                    <ul class="rodape-lista">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="crie-sua-joia.html">Crie sua Joia</a></li>
+                        <li><a href="ouro-preto.html">Ouro Preto, a origem</a></li>
+                        <li><a href="crie-sua-joia.html#inspiracoes">Inspirações</a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="Conheça a ImperialiGems">
+                    <p class="rodape-tit">Conheça</p>
+                    <ul class="rodape-lista">
+                        <li><a href="index.html#diferencial">Nosso diferencial</a></li>
+                        <li><a href="index.html#pedra">O Topázio Imperial</a></li>
+                        <li><a href="index.html#estoque">Pedras em estoque</a></li>
+                        <li><a href="index.html#colecao">Coleção</a></li>
+                        <li><a href="index.html#comprar">Como comprar</a></li>
+                    </ul>
+                </nav>
+                <!-- atendimento -->
+                <div>
+                    <p class="rodape-tit">Atendimento</p>
+                    <ul class="rodape-lista">
+                        <li><a href="https://wa.me/553171416959" target="_blank" rel="noopener" class="inline-flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i>+55 31 7141-6959</a></li>
+                        <li><a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener">@imperialigems</a></li>
+                        <li><span>Ouro Preto · Minas Gerais</span></li>
+                    </ul>
+                    <a href="https://wa.me/553171416959" data-pedir-nome="Olá! Quero um atendimento da ImperialiGems." target="_blank" rel="noopener"
+                       class="mt-6 inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-topazio-escuro text-sm font-semibold whitespace-nowrap hover:scale-105 transition">
+                        Falar com um especialista <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rodape-base mt-14 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-xs text-topazio-claro/45">
+                <p>© <span data-ano>2026</span> ImperialiGems · Topázio Imperial de Ouro Preto. Todos os direitos reservados.</p>
+                <p>As visualizações 3D são representações digitais; cor e brilho de cada pedra são confirmados no atendimento.</p>
             </div>
         </div>
     </footer>
@@ -336,6 +392,7 @@
                 fotos[atual].classList.add("ativa");
             }, 5000);
         })();
+        document.querySelectorAll("[data-ano]").forEach(el => el.textContent = new Date().getFullYear());
     </script>
 </body>
 </html>

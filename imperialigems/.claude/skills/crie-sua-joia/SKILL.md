@@ -51,6 +51,10 @@ Site estático (HTML + Tailwind via CDN + JS puro, sem build). Três páginas (`
 
 - `index.html` — página inicial: abertura (o mesmo cristal 3D da seção 1 surge no centro, a tela se abre como porta-joias e ele voa até o topo), topo, diferencial, joia em destaque, processo, estoque, coleção, galeria em parallax, chamada do Crie sua Joia, como comprar.
 - `crie-sua-joia.html` — o ateliê. Os dados ficam no começo do `<script type="module">`:
+  - Interface do ateliê no estilo de software de criação (janela com barra, etapas em controle segmentado, visor com ferramentas em vidro — vistas Frente/Lado/Topo, girar, centralizar, fundo, foto, tela cheia — e inspetor à direita). Fonte de interface: Inter.
+  - Ordem das etapas: **Modelo → Pedra → Materiais → 3D → Preço → Finalizar**. Joia padrão: **Aro Vila Rica** (anel aro largo, IG-0201, ouro amarelo, escovado).
+  - Prévias: `img/estilos/<tipo>-<estilo>.webp` (render 3D transparente de cada estilo); os cartões de pedra usam a foto real `img/pedras/<codigo>.webp` (renders 3D transparentes de cada pedra ficam guardados em `img/pedras/<codigo>-3d.webp`). Refazer as prévias quando a geometria de um estilo mudar.
+  - Engastes: `garras`, `halo`, `contorno` (borda que segue a pedra — aro largo e brincos) e `moldura` (relicário: medalhão circular com fundo).
   - `PEDRAS` — estoque (código, tom, cor, formato, lapidação, medidas `c`/`l`, `ct`, preço). `aprox: true` mostra "≈" (medida estimada pela foto); `ctReal: true` marca peso confirmado. A primeira da lista é a pedra padrão.
   - `MODELOS` — anel (Solitário, Halo, Aro largo, Imperatriz), brinco (Ponto de luz, Gota, Argola), pingente (Clássico, Moldura, Halo), com mão de obra e peso de metal.
   - `METAIS`, `ACABAMENTOS`, `GRAVACAO_PRECO`, `CORRENTE_GRAMAS`, `MARGEM_ESTIMATIVA`.

@@ -13,7 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -72,6 +72,110 @@
         @media (prefers-reduced-motion: reduce) { .btn-provar::after { animation: none; opacity: 0; } }
         /* "Gems" da marca na cor do Topázio Imperial (laranja-dourado do cristal) */
         .gems { color: #e8862f; background: linear-gradient(180deg, #f8b85e 0%, #e8862f 55%, #c9611f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ===================== ATELIÊ: interface de software de criação ===================== */
+        .atelie { font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; -webkit-font-smoothing: antialiased; }
+        .janela { border-radius: 26px; background: linear-gradient(180deg, rgba(40,37,32,.78), rgba(24,22,18,.82)); border: 1px solid rgba(255,255,255,.08);
+                  box-shadow: 0 50px 120px -50px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.06); backdrop-filter: blur(30px) saturate(140%); }
+        .barra { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.06); flex-wrap: wrap; }
+        .barra-titulo { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1 1 200px; font-size: 13px; color: rgba(244,239,236,.85); }
+        .barra-titulo b { font-weight: 600; }
+        .luzes { display: inline-flex; gap: 7px; flex: none; }
+        .luzes i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.25); }
+        .luzes i:nth-child(2) { background: #febc2e; } .luzes i:nth-child(3) { background: #28c840; }
+        .barra-acoes { display: flex; gap: 6px; flex: 1 1 200px; justify-content: flex-end; }
+        .acao { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 9px; font-size: 13px; font-weight: 500; color: rgba(244,239,236,.85);
+                background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.07); transition: background .2s; }
+        .acao:hover { background: rgba(255,255,255,.12); }
+        /* etapas: controle segmentado */
+        .segmentos { order: 3; flex: 1 1 100%; display: flex; gap: 2px; padding: 3px; border-radius: 12px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.06); overflow-x: auto; scrollbar-width: none; }
+        @media (min-width: 1100px) { .segmentos { order: 0; flex: 0 1 auto; } }
+        .segmentos::-webkit-scrollbar { display: none; }
+        .segmentos li { flex: 1 0 auto; }
+        .etapa-btn { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 7px 13px; border-radius: 9px; font-size: 13px; font-weight: 500;
+                     color: rgba(244,239,236,.55); white-space: nowrap; transition: background .25s, color .25s, box-shadow .25s; }
+        .etapa-btn:hover { color: #f4efec; }
+        .etapa-btn .num { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 600; background: rgba(255,255,255,.08); }
+        .etapa-btn.feita { color: rgba(244,239,236,.85); }
+        .etapa-btn.feita .num { background: rgba(232,134,47,.25); color: #e8862f; }
+        .etapa-btn.ativa { color: #16140f; background: linear-gradient(180deg, #ffffff, #ece6df); box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 12px -4px rgba(0,0,0,.5); }
+        .etapa-btn.ativa .num { background: #16140f; color: #fff; }
+        .area { display: grid; gap: 14px; padding: 14px; }
+        @media (min-width: 1024px) { .area { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+
+        /* visor 3D */
+        .atelie #palco { border-radius: 20px; background: radial-gradient(80% 70% at 50% 35%, #3a352f 0%, #1c1915 60%, #110f0c 100%);
+                         box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), inset 0 -60px 120px -60px rgba(0,0,0,.8); }
+        .atelie #palco.claro { background: radial-gradient(80% 70% at 50% 35%, #ffffff 0%, #f1ebe3 60%, #ddd2c4 100%); }
+        .atelie #palco:fullscreen { border-radius: 0; }
+        .palco-chao { position: absolute; left: 15%; right: 15%; bottom: 14%; height: 18%; border-radius: 50%; pointer-events: none;
+                      background: radial-gradient(closest-side, rgba(232,134,47,.16), rgba(187,109,133,.06) 55%, transparent); filter: blur(6px); }
+        .chip { display: flex; align-items: center; gap: 7px; height: 28px; padding: 0 11px; border-radius: 9px; font-size: 12px; font-weight: 500; color: rgba(244,239,236,.85);
+                background: rgba(18,16,13,.55); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(16px) saturate(160%); z-index: 5; }
+        .chip:empty { display: none; }
+        .chip-vivo i { width: 7px; height: 7px; border-radius: 50%; background: #e8862f; box-shadow: 0 0 0 0 rgba(232,134,47,.6); animation: vivo 2s infinite; }
+        @keyframes vivo { 70% { box-shadow: 0 0 0 7px rgba(232,134,47,0); } 100% { box-shadow: 0 0 0 0 rgba(232,134,47,0); } }
+        #palco.claro .chip { background: rgba(255,255,255,.7); color: #16140f; border-color: rgba(0,0,0,.08); }
+        .ferramentas { position: absolute; z-index: 6; right: 12px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 5px;
+                       border-radius: 14px; background: rgba(18,16,13,.55); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(18px) saturate(160%);
+                       box-shadow: 0 12px 30px -12px rgba(0,0,0,.8); }
+        .ferramentas button { width: 38px; height: 34px; display: grid; place-items: center; border-radius: 9px; font-size: 13px; color: rgba(244,239,236,.78); transition: background .2s, color .2s; }
+        .ferramentas button .txt { font-size: 10px; font-weight: 600; letter-spacing: .02em; }
+        .ferramentas button:hover { background: rgba(255,255,255,.1); color: #fff; }
+        .ferramentas button.ativa { background: rgba(255,255,255,.92); color: #16140f; }
+        .ferramentas .divisor { width: 22px; height: 1px; margin: 3px 0; background: rgba(255,255,255,.12); }
+        #palco.claro .ferramentas { background: rgba(255,255,255,.72); border-color: rgba(0,0,0,.08); }
+        #palco.claro .ferramentas button { color: rgba(22,20,15,.75); }
+        #palco.claro .ferramentas button.ativa { background: #16140f; color: #fff; }
+        .atelie .btn-provar::after { border-color: rgba(255,255,255,.6); }
+        .cartao-preco { padding: 18px 20px; border-radius: 20px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07); }
+        .rotulo, .sub { font-size: 12px; font-weight: 600; color: rgba(244,239,236,.5); letter-spacing: .01em; text-transform: none; }
+        .atelie #precoFaixa, .atelie #precoFaixa2 { font-family: "Inter", sans-serif; font-weight: 600; letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: #f4efec; }
+        .atelie #precoFaixa { font-size: clamp(26px, 3vw, 34px); }
+
+        /* inspetor */
+        .inspetor { padding: 22px; border-radius: 20px; background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.06); }
+        @media (min-width: 640px) { .inspetor { padding: 26px; } }
+        .olho { font-size: 12px; font-weight: 600; color: #e8862f; letter-spacing: .02em; }
+        .titulo-painel { font-size: 28px; line-height: 1.15; font-weight: 600; letter-spacing: -.025em; margin-top: 4px; }
+        .painel:not(.hidden) { animation: entrarPainel .5s cubic-bezier(.2,.8,.2,1); }
+        @keyframes entrarPainel { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .atelie .opcao { border-radius: 16px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03);
+                         transition: transform .3s cubic-bezier(.2,.8,.2,1), background .2s, box-shadow .25s, border-color .2s; }
+        .atelie .opcao:hover { transform: translateY(-2px); background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.14); }
+        .atelie .opcao.ativa { border-color: transparent; background: rgba(232,134,47,.07); box-shadow: 0 0 0 1.5px #e8862f, 0 14px 34px -16px rgba(232,134,47,.55); }
+        .atelie .opcao .gema { border-radius: 11px; overflow: hidden; }
+        .atelie #filtrosPedra .opcao { border-radius: 999px; text-transform: none; letter-spacing: 0; font-size: 13px; font-weight: 500; padding: 7px 14px; }
+        .previa { display: block; aspect-ratio: 4 / 3; border-radius: 11px; overflow: hidden; background: radial-gradient(80% 80% at 50% 35%, #3a352f, #191612); }
+        .previa img { width: 100%; height: 100%; object-fit: contain; transform: scale(1.04); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+        .opcao:hover .previa img { transform: scale(1.1); }
+        .atelie input[type=text] { border-radius: 12px; background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+        .atelie input[type=text]:focus { border-color: #e8862f; box-shadow: 0 0 0 3px rgba(232,134,47,.2); }
+        .atelie input[type=range] { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: rgba(255,255,255,.14); outline: none; }
+        .atelie input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.5); cursor: grab; }
+        .atelie input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.5); }
+        .atelie #aroValor { font-family: "Inter", sans-serif; font-weight: 600; letter-spacing: -.02em; }
+        .atelie #tabelaPreco tr { border-color: rgba(255,255,255,.06); }
+        .atelie #tabelaPreco .h-1\.5 { border-radius: 4px; overflow: hidden; }
+        .atelie #tabelaPreco .bg-topazio-pessego { background: linear-gradient(90deg, #e8862f, #bb6d85); }
+        .atelie #detalhePedra, .atelie #resumoVisual { border-radius: 16px; }
+        .btn-pri, .btn-sec { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 24px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: transform .2s, background .2s, filter .2s; }
+        .btn-pri { background: linear-gradient(180deg, #ffffff, #ebe5dd); color: #16140f; box-shadow: 0 10px 24px -12px rgba(0,0,0,.9); }
+        .btn-pri:hover { filter: brightness(1.04); transform: translateY(-1px); }
+        .btn-sec { background: rgba(255,255,255,.07); color: #f4efec; border: 1px solid rgba(255,255,255,.1); }
+        .btn-sec:hover { background: rgba(255,255,255,.12); }
+        .btn-peq { height: 34px; padding: 0 14px; font-size: 13px; }
+        .nav-etapas { padding-top: 18px; border-top: 1px solid rgba(255,255,255,.06); }
+        /* rodapé */
+        .rodape { border-top: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg, #0e0c09, #0a0907); }
+        .rodape-tit { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #e8862f; margin-bottom: 18px; }
+        .rodape-lista { display: grid; gap: 12px; font-size: 14px; color: rgba(244,239,236,.7); }
+        .rodape-lista a { transition: color .2s; }
+        .rodape-lista a:hover { color: #f4efec; }
+        .rodape-social { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; font-size: 17px; color: rgba(244,239,236,.8);
+                         background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); transition: background .2s, color .2s; }
+        .rodape-social:hover { background: rgba(255,255,255,.12); color: #fff; }
+        .rodape-base { border-top: 1px solid rgba(255,255,255,.06); }
     </style>
 </head>
 <body class="font-sans text-topazio-claro antialiased">
@@ -102,15 +206,45 @@
         <p class="mt-3 text-topazio-claro/70 max-w-2xl">Aqui você não escolhe uma peça pronta: você cria a sua. Selecione pessoalmente o seu Topázio Imperial, o modelo e cada detalhe — e veja a joia ganhar forma em 3D, com o preço atualizado a cada escolha.</p>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 pb-20 grid lg:grid-cols-[1.15fr_1fr] gap-8 items-start">
+    <main class="atelie max-w-7xl mx-auto px-3 sm:px-6 pb-20">
+      <div class="janela">
+        <!-- barra da janela: título do projeto, etapas em controle segmentado e ações rápidas -->
+        <div class="barra">
+            <div class="barra-titulo">
+                <span class="luzes" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="truncate"><b>Ateliê</b> <span class="text-topazio-claro/45">—</span> <span id="tituloProjeto">Novo projeto</span></span>
+            </div>
+            <ol class="segmentos" id="etapas">
+                <!-- preenchido pelo script -->
+            </ol>
+            <div class="barra-acoes">
+                <button type="button" data-clique="btnSalvar" class="acao" title="Salvar na minha lista"><i class="fa-regular fa-bookmark"></i><span>Salvar</span></button>
+                <button type="button" data-clique="btnCompartilhar" class="acao" title="Compartilhar projeto"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Compartilhar</span></button>
+            </div>
+        </div>
 
+        <div class="area">
         <!-- ===== VISUALIZAÇÃO 3D (fixa ao lado) ===== -->
-        <div class="lg:sticky lg:top-20">
-            <div id="palco" class="relative aspect-square sm:aspect-[4/3] lg:aspect-square border border-white/10 overflow-hidden">
+        <div class="lg:sticky lg:top-20 self-start">
+            <div id="palco" class="relative aspect-square sm:aspect-[4/3] lg:aspect-square overflow-hidden">
                 <div id="carregando" class="absolute inset-0 grid place-items-center text-sm text-topazio-claro/60">Carregando visualização 3D…</div>
-                <div class="absolute top-3 left-3 text-[11px] uppercase tracking-[.2em] text-topazio-claro/50 pointer-events-none" id="legendaPalco"></div>
+                <div class="palco-chao" aria-hidden="true"></div>
+                <div class="chip absolute top-3 left-3 pointer-events-none" id="legendaPalco"></div>
+                <div class="chip chip-vivo absolute top-3 right-3 pointer-events-none hidden sm:flex"><i></i>Tempo real</div>
+                <!-- ferramentas do visor, em vidro -->
+                <div class="ferramentas" role="toolbar" aria-label="Ferramentas de visualização">
+                    <button type="button" data-vista="frente" title="Vista frontal"><span class="txt">Frente</span></button>
+                    <button type="button" data-vista="lado" title="Vista lateral"><span class="txt">Lado</span></button>
+                    <button type="button" data-vista="topo" title="Vista de cima"><span class="txt">Topo</span></button>
+                    <span class="divisor"></span>
+                    <button type="button" data-clique="btnGirar" data-alterna title="Girar automaticamente"><i class="fa-solid fa-rotate"></i></button>
+                    <button type="button" data-clique="btnCentralizar" title="Centralizar a peça"><i class="fa-solid fa-expand"></i></button>
+                    <button type="button" data-clique="btnFundo" data-alterna title="Fundo claro / escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    <button type="button" data-clique="btnFoto" title="Baixar imagem da joia"><i class="fa-solid fa-camera"></i></button>
+                    <button type="button" data-tela-cheia title="Tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+                </div>
                 <!-- prova virtual: botão em destaque, centralizado sob a joia -->
-                <button type="button" data-abrir-provador class="btn-provar absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-b from-white to-[#f4efec] text-topazio-escuro text-xs font-semibold uppercase tracking-[.2em] shadow-[0_10px_30px_-8px_rgba(0,0,0,.8)] hover:scale-105 transition whitespace-nowrap">
+                <button type="button" data-abrir-provador class="btn-provar absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2.5 px-6 py-3 rounded-full bg-white text-topazio-escuro text-[14px] font-semibold shadow-[0_10px_30px_-8px_rgba(0,0,0,.8)] hover:scale-105 transition whitespace-nowrap">
                     <i class="fa-solid fa-camera-retro text-sm"></i>Provar em mim
                 </button>
                 <div class="absolute bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-topazio-claro/45 pointer-events-none whitespace-nowrap">
@@ -118,60 +252,60 @@
                 </div>
             </div>
             <!-- resumo de preço sempre visível -->
-            <div class="mt-4 p-5 border border-white/10 bg-white/[.02] flex flex-wrap items-end justify-between gap-4">
+            <div class="cartao-preco mt-3 flex flex-wrap items-end justify-between gap-4">
                 <div>
-                    <p class="text-[11px] uppercase tracking-[.22em] text-topazio-claro/55">Estimativa</p>
+                    <p class="rotulo">Estimativa</p>
                     <p class="font-serif text-3xl sm:text-4xl text-topazio-pessego" id="precoFaixa">—</p>
                     <p class="text-xs text-topazio-claro/50 mt-1" id="precoResumo"></p>
                 </div>
-                <button type="button" data-ir-etapa="5" class="text-xs uppercase tracking-[.16em] text-topazio-pessego hover:underline">Ver detalhes do preço</button>
+                <button type="button" data-ir-etapa="5" class="btn-sec btn-peq">Detalhes do preço</button>
             </div>
         </div>
 
-        <!-- ===== ETAPAS ===== -->
-        <div>
-            <ol class="grid grid-cols-6 gap-1.5 mb-6" id="etapas">
-                <!-- preenchido pelo script -->
-            </ol>
+        <!-- ===== ETAPAS (inspetor) ===== -->
+        <div class="inspetor">
 
-            <!-- 1. PEDRA -->
+            <!-- 1. MODELO -->
             <section data-etapa="1" class="painel">
-                <h2 class="font-serif text-3xl">1. Escolha a pedra</h2>
+                <p class="olho">Etapa 1 de 6</p>
+                <h2 class="titulo-painel">Escolha o modelo</h2>
+                <p class="text-sm text-topazio-claro/60 mt-1">Que tipo de joia você quer criar?</p>
+                <div class="grid grid-cols-3 gap-3 mt-5" id="gradeTipos"></div>
+                <h3 class="sub mt-7 mb-3">Estilo</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3" id="gradeEstilos"></div>
+            </section>
+
+            <!-- 2. PEDRA -->
+            <section data-etapa="2" class="painel hidden">
+                <p class="olho">Etapa 2 de 6</p>
+                <h2 class="titulo-painel">Escolha a pedra</h2>
                 <p class="text-sm text-topazio-claro/60 mt-1">Cada pedra é única e tem um código. Você escolhe exatamente a peça que vai para a sua joia.</p>
                 <div class="flex flex-wrap gap-2 mt-5" id="filtrosPedra"></div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4" id="gradePedras"></div>
                 <div class="mt-5 p-5 border border-white/10 bg-white/[.02]" id="detalhePedra"></div>
             </section>
 
-            <!-- 2. MODELO -->
-            <section data-etapa="2" class="painel hidden">
-                <h2 class="font-serif text-3xl">2. Escolha o modelo</h2>
-                <p class="text-sm text-topazio-claro/60 mt-1">Que tipo de joia você quer criar?</p>
-                <div class="grid grid-cols-3 gap-3 mt-5" id="gradeTipos"></div>
-                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-7 mb-3">Estilo</h3>
-                <div class="grid sm:grid-cols-3 gap-3" id="gradeEstilos"></div>
-            </section>
-
             <!-- 3. MATERIAIS -->
             <section data-etapa="3" class="painel hidden">
-                <h2 class="font-serif text-3xl">3. Materiais e acabamento</h2>
-                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-6 mb-3">Metal</h3>
+                <p class="olho">Etapa 3 de 6</p>
+                <h2 class="titulo-painel">Materiais e acabamento</h2>
+                <h3 class="sub mt-6 mb-3">Metal</h3>
                 <div class="grid grid-cols-2 gap-3" id="gradeMetais"></div>
 
                 <div id="blocoAro" class="mt-7">
                     <div class="flex items-baseline justify-between">
-                        <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55">Tamanho do anel (aro)</h3>
+                        <h3 class="sub">Tamanho do anel (aro)</h3>
                         <span class="font-serif text-2xl text-topazio-pessego" id="aroValor">16</span>
                     </div>
                     <input type="range" min="8" max="32" step="1" id="aro" class="w-full mt-3">
                     <p class="text-xs text-topazio-claro/50 mt-1" id="aroInfo"></p>
                 </div>
 
-                <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-7 mb-3">Acabamento do metal</h3>
+                <h3 class="sub mt-7 mb-3">Acabamento do metal</h3>
                 <div class="grid grid-cols-3 gap-3" id="gradeAcabamentos"></div>
 
                 <div id="blocoGravacao" class="mt-7">
-                    <h3 class="text-xs uppercase tracking-[.22em] text-topazio-claro/55 mb-3">Gravação interna (opcional)</h3>
+                    <h3 class="sub mb-3">Gravação interna (opcional)</h3>
                     <input type="text" id="gravacao" maxlength="20" placeholder="Ex.: nome ou data"
                            class="w-full bg-transparent border border-white/15 px-4 py-3 text-sm focus:outline-none focus:border-topazio-pessego">
                 </div>
@@ -184,7 +318,8 @@
 
             <!-- 4. VISUALIZAÇÃO -->
             <section data-etapa="4" class="painel hidden">
-                <h2 class="font-serif text-3xl">4. Veja sua joia em 3D</h2>
+                <p class="olho">Etapa 4 de 6</p>
+                <h2 class="titulo-painel">Veja sua joia em 3D</h2>
                 <p class="text-sm text-topazio-claro/60 mt-1">Gire, aproxime e observe todos os ângulos. Volte a qualquer etapa — a peça se atualiza na hora.</p>
                 <div class="grid sm:grid-cols-2 gap-3 mt-5">
                     <button type="button" id="btnGirar" class="opcao p-4 text-left text-sm"><i class="fa-solid fa-rotate mr-2 text-topazio-pessego"></i><span>Girar automaticamente</span></button>
@@ -203,7 +338,8 @@
 
             <!-- 5. PREÇO -->
             <section data-etapa="5" class="painel hidden">
-                <h2 class="font-serif text-3xl">5. Estimativa de preço</h2>
+                <p class="olho">Etapa 5 de 6</p>
+                <h2 class="titulo-painel">Estimativa de preço</h2>
                 <p class="text-sm text-topazio-claro/60 mt-1">Veja quanto cada escolha pesa no valor final.</p>
                 <table class="w-full mt-5 text-sm">
                     <tbody id="tabelaPreco"></tbody>
@@ -219,15 +355,16 @@
 
             <!-- 6. FINALIZAR -->
             <section data-etapa="6" class="painel hidden">
-                <h2 class="font-serif text-3xl">6. Finalize seu projeto</h2>
+                <p class="olho">Etapa 6 de 6</p>
+                <h2 class="titulo-painel">Finalize seu projeto</h2>
                 <label class="block text-xs uppercase tracking-[.22em] text-topazio-claro/55 mt-6 mb-2" for="nomeProjeto">Nome do projeto</label>
                 <input type="text" id="nomeProjeto" maxlength="40" placeholder="Ex.: Anel de noivado da Ana"
                        class="w-full bg-transparent border border-white/15 px-4 py-3 text-sm focus:outline-none focus:border-topazio-pessego">
                 <div class="grid sm:grid-cols-2 gap-3 mt-5">
-                    <button type="button" id="btnOrcamento" class="px-5 py-4 bg-topazio text-topazio-escuro font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio-pessego transition">
+                    <button type="button" id="btnOrcamento" class="btn-pri w-full justify-center">
                         <i class="fa-brands fa-whatsapp mr-2"></i>Solicitar orçamento
                     </button>
-                    <button type="button" id="btnComprar" class="px-5 py-4 border border-topazio-pessego text-topazio-pessego font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio-pessego hover:text-topazio-escuro transition">
+                    <button type="button" id="btnComprar" class="btn-sec w-full justify-center">
                         <i class="fa-solid fa-bag-shopping mr-2"></i>Quero comprar
                     </button>
                     <button type="button" id="btnSalvar" class="opcao px-5 py-4 text-sm"><i class="fa-regular fa-bookmark mr-2 text-topazio-pessego"></i>Salvar na minha lista</button>
@@ -251,11 +388,13 @@
             </section>
 
             <!-- navegação entre etapas -->
-            <div class="flex justify-between gap-3 mt-8">
-                <button type="button" id="btnVoltar" class="px-6 py-3 border border-white/15 text-sm uppercase tracking-[.14em] hover:border-topazio-pessego transition">Voltar</button>
-                <button type="button" id="btnAvancar" class="px-6 py-3 bg-topazio-pessego text-topazio-escuro font-semibold text-sm uppercase tracking-[.14em] hover:bg-topazio transition">Próximo</button>
+            <div class="nav-etapas flex justify-between gap-3 mt-8">
+                <button type="button" id="btnVoltar" class="btn-sec">Voltar</button>
+                <button type="button" id="btnAvancar" class="btn-pri">Próximo</button>
             </div>
         </div>
+        </div>
+      </div>
     </main>
 
     <!-- ===== COLEÇÃO DE INSPIRAÇÕES ===== -->
@@ -270,6 +409,65 @@
         </div>
         <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="gradeInsp"></div>
     </section>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="rodape">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-10">
+            <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+                <!-- marca -->
+                <div>
+                    <a href="index.html" class="inline-flex items-center gap-3">
+                        <img src="img/logo-nova-256.webp" alt="" class="w-14 h-14 rounded-full" loading="lazy">
+                        <span class="font-marca font-semibold text-xl uppercase tracking-[.14em] text-topazio-claro">Imperiali<span class="gems">Gems</span></span>
+                    </a>
+                    <p class="mt-5 text-sm leading-relaxed text-topazio-claro/60 max-w-xs">Topázio Imperial de Ouro Preto, do cristal bruto à joia sob medida. Estoque próprio, com código, peso e fotos reais de cada pedra.</p>
+                    <div class="mt-6 flex gap-2">
+                        <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" aria-label="Instagram" class="rodape-social"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/553171416959" target="_blank" rel="noopener" aria-label="WhatsApp" class="rodape-social"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@imperiali_gems" target="_blank" rel="noopener" aria-label="YouTube" class="rodape-social"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <!-- páginas -->
+                <nav aria-label="Páginas do site">
+                    <p class="rodape-tit">O site</p>
+                    <ul class="rodape-lista">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="crie-sua-joia.html">Crie sua Joia</a></li>
+                        <li><a href="ouro-preto.html">Ouro Preto, a origem</a></li>
+                        <li><a href="crie-sua-joia.html#inspiracoes">Inspirações</a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="Conheça a ImperialiGems">
+                    <p class="rodape-tit">Conheça</p>
+                    <ul class="rodape-lista">
+                        <li><a href="index.html#diferencial">Nosso diferencial</a></li>
+                        <li><a href="index.html#pedra">O Topázio Imperial</a></li>
+                        <li><a href="index.html#estoque">Pedras em estoque</a></li>
+                        <li><a href="index.html#colecao">Coleção</a></li>
+                        <li><a href="index.html#comprar">Como comprar</a></li>
+                    </ul>
+                </nav>
+                <!-- atendimento -->
+                <div>
+                    <p class="rodape-tit">Atendimento</p>
+                    <ul class="rodape-lista">
+                        <li><a href="https://wa.me/553171416959" target="_blank" rel="noopener" class="inline-flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i>+55 31 7141-6959</a></li>
+                        <li><a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener">@imperialigems</a></li>
+                        <li><span>Ouro Preto · Minas Gerais</span></li>
+                    </ul>
+                    <a href="https://wa.me/553171416959" data-pedir-nome="Olá! Quero um atendimento da ImperialiGems." target="_blank" rel="noopener"
+                       class="mt-6 inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-topazio-escuro text-sm font-semibold whitespace-nowrap hover:scale-105 transition">
+                        Falar com um especialista <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rodape-base mt-14 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-xs text-topazio-claro/45">
+                <p>© <span data-ano>2026</span> ImperialiGems · Topázio Imperial de Ouro Preto. Todos os direitos reservados.</p>
+                <p>As visualizações 3D são representações digitais; cor e brilho de cada pedra são confirmados no atendimento.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- ===== MEUS PROJETOS (gaveta) ===== -->
     <div id="gavetaProjetos" class="fixed inset-0 z-[60] hidden">
@@ -429,7 +627,7 @@
     /* ============================================================
        ESTADO
        ============================================================ */
-    const PADRAO = { pedra:PEDRAS[0].codigo, tipo:"anel", estilo:"solitario", metal:"ouro18", aro:16, acabamento:"polido", gravacao:"", corrente:false, nome:"" };
+    const PADRAO = { pedra:"IG-0201", tipo:"anel", estilo:"largo", metal:"ouro18", aro:16, acabamento:"escovado", gravacao:"", corrente:false, nome:"" };   // padrão: Aro Vila Rica
     let estado = { ...PADRAO, ...lerLink() };
     let etapa = 1;
     let filtroFormato = "";
@@ -629,6 +827,18 @@
         const curva = new THREE.CatmullRomCurve3(pontos, fechado);
         return new THREE.Mesh(new THREE.TubeGeometry(curva, Math.max(64, pontos.length * 16), raio, 10, fechado), mat);
     }
+    /** Raio do medalhão do relicário: o círculo que contém a pedra inteira, com folga. */
+    const raioRelicario = pedra => { const { hw, hl } = medidas(pedra); return Math.hypot(hw, hl) * 1.02 + 0.7; };
+    /** Contorno da pedra na altura da cintura: retângulo de cantos arredondados ou elipse. */
+    function contornoPedra(pedra, k = 1){
+        const { hw, hl } = medidas(pedra);
+        if (pedra.formato !== "retangular") return elipse(hw * k, hl * k, 64);
+        const a = hw * k, b = hl * k, rc = Math.min(a, b) * 0.28, pts = [];
+        const cantos = [[a - rc, b - rc, 0], [-(a - rc), b - rc, 1], [-(a - rc), -(b - rc), 2], [a - rc, -(b - rc), 3]];
+        for (const [cx, cz, q] of cantos)
+            for (let i = 0; i <= 8; i++) { const t = (q + i / 8) * Math.PI / 2; pts.push(new THREE.Vector3(cx + Math.cos(t) * rc, 0, cz + Math.sin(t) * rc)); }
+        return pts;
+    }
     function elipse(a, b, n = 48){
         return Array.from({ length:n }, (_, i) => { const t = i / n * Math.PI * 2; return new THREE.Vector3(Math.cos(t) * a, 0, Math.sin(t) * b); });
     }
@@ -654,16 +864,34 @@
             g.add(cesto);
         }
         if (tipoEngaste === "moldura") {
-            const altura = -fundo * 0.8 + 0.25;
-            const aro = new THREE.Mesh(new THREE.CylinderGeometry(1, 0.8, altura, 48, 1, true), mat);
+            // relicário: medalhão circular com fundo; a pedra fica dentro do círculo, presa por quatro garras
+            const R = raioRelicario(pedra);
+            const altura = -fundo * 0.8 + 0.6;
+            const aro = new THREE.Mesh(new THREE.CylinderGeometry(R, R, altura, 72, 1, true), mat);
             aro.material.side = THREE.DoubleSide;
-            const k = pedra.formato === "retangular" ? 1.08 : 1.04;
-            aro.scale.set(hw * k + 0.35, 1, hl * k + 0.35);
             aro.position.y = 0.12 - altura / 2;
             g.add(aro);
-            const borda = tubo(mat, elipse(hw * k + 0.35, hl * k + 0.35), 0.3, true);
+            const borda = tubo(mat, elipse(R, R, 72), 0.38, true);
             borda.position.y = 0.12;
             g.add(borda);
+            const disco = new THREE.Mesh(new THREE.CylinderGeometry(R, R, 0.45, 72), mat);
+            disco.position.y = 0.12 - altura;
+            g.add(disco);
+            const raioG = Math.max(0.3, Math.min(hw, hl) * 0.1);
+            const fator = pedra.formato === "retangular" ? 0.92 : 0.74;
+            for (const [sx, sz] of [[1,1],[1,-1],[-1,1],[-1,-1]]) {
+                g.add(cilindro(mat, new THREE.Vector3(sx * hw * 0.5, disco.position.y, sz * hl * 0.5),
+                                    new THREE.Vector3(sx * hw * fator, 0.18 * sy, sz * hl * fator), raioG));
+            }
+        }
+        if (tipoEngaste === "contorno") {
+            // aro largo: borda baixa que acompanha o contorno da própria pedra (sem aro redondo por cima)
+            const linha = contornoPedra(pedra, 1.04);
+            for (const [y, r] of [[0.1, 0.3], [-0.3, 0.32], [-0.7, 0.34]]) {
+                const t = tubo(mat, linha, r, true);
+                t.position.y = y;
+                g.add(t);
+            }
         }
         if (tipoEngaste === "halo") {
             const a = hw + 1.1, b = hl + 1.1;
@@ -738,7 +966,7 @@
 
         const { hw, sy } = medidas(pedra);
         if (estado.estilo === "imperatriz") pedrasLaterais(mat, raioInterno + t, w, hw * 0.55 + 0.8);
-        const tipo = { solitario:"garras", halo:"halo", largo:"moldura", imperatriz:"halo" }[estado.estilo];
+        const tipo = { solitario:"garras", halo:"halo", largo:"contorno", imperatriz:"halo" }[estado.estilo];
         const g = engaste(pedra, mat, tipo);
         const subida = estado.estilo === "largo" ? 0.62 * sy * 0.55
                      : estado.estilo === "imperatriz" ? 0.62 * sy + 0.35
@@ -770,7 +998,7 @@
             trava.position.z = -7 - 0.62 * sy;
             um.add(trava);
         } else if (estado.estilo === "gota") {
-            const g = virar(engaste(pedra, mat, "moldura"));
+            const g = virar(engaste(pedra, mat, "contorno"));
             g.position.y = -hl - 4;
             um.add(g);
             const argolinha = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.3, 12, 32), mat);
@@ -785,7 +1013,7 @@
             const raio = 7.5;
             const argola = new THREE.Mesh(new THREE.TorusGeometry(raio, 0.75, 20, 96), mat);
             um.add(argola);
-            const g = virar(engaste(pedra, mat, "moldura"));
+            const g = virar(engaste(pedra, mat, "contorno"));
             g.position.y = -raio - hl - 1.6;
             um.add(g);
             const elo = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.3, 12, 32), mat);
@@ -804,7 +1032,7 @@
         const g = engaste(pedra, mat, tipo);
         g.rotation.x = Math.PI / 2;
         joia.add(g);
-        const topo = hl + (estado.estilo === "halo" ? 1.6 : 0.6);
+        const topo = estado.estilo === "moldura" ? raioRelicario(pedra) + 0.4 : hl + (estado.estilo === "halo" ? 1.6 : 0.6);
         const passador = new THREE.Mesh(new THREE.TorusGeometry(1.7, 0.5, 14, 40), mat);
         passador.rotation.y = Math.PI / 2;
         passador.position.y = topo + 1.9;
@@ -812,10 +1040,12 @@
         if (estado.corrente) {
             const y = topo + 3.4;
             for (const s of [-1, 1]) {
-                joia.add(tubo(mat, [
+                const fio = tubo(mat, [
                     new THREE.Vector3(0, y, 0), new THREE.Vector3(s * 5, y + 7, -1),
                     new THREE.Vector3(s * 11, y + 22, -4), new THREE.Vector3(s * 14, y + 40, -6)
-                ], 0.28));
+                ], 0.28);
+                fio.userData.corrente = true;     // fica fora do enquadramento: a câmera foca o pingente
+                joia.add(fio);
             }
         }
     }
@@ -832,14 +1062,16 @@
         const chave = estado.tipo + estado.estilo + (estado.corrente ? "c" : "");
         if (chave !== ultimoEnquadre) { enquadrar(); ultimoEnquadre = chave; }
         $("legendaPalco").textContent = `${MODELOS[estado.tipo].nome} ${estiloAtual().nome} · ${METAIS[estado.metal].nome}`;
+        $("tituloProjeto").textContent = estado.nome || "Novo projeto";
     }
 
     function enquadrar(){
-        const caixa = new THREE.Box3().setFromObject(joia);
+        const caixa = new THREE.Box3();
+        joia.children.forEach(o => { if (!o.userData.corrente) caixa.expandByObject(o); });
         const centro = caixa.getCenter(new THREE.Vector3());
         const tamanho = caixa.getSize(new THREE.Vector3()).length();
         const dir = estado.tipo === "anel" ? new THREE.Vector3(0.35, 0.55, 1) : new THREE.Vector3(0.25, 0.12, 1);
-        camera.position.copy(centro).addScaledVector(dir.normalize(), tamanho * 1.35);
+        camera.position.copy(centro).addScaledVector(dir.normalize(), tamanho * (estado.tipo === "anel" ? 1.35 : 1.6));
         controles.target.copy(centro);
         controles.minDistance = tamanho * 0.45;
         controles.maxDistance = tamanho * 3;
@@ -849,12 +1081,12 @@
     /* ============================================================
        INTERFACE
        ============================================================ */
-    const ROTULOS_ETAPAS = ["Pedra", "Modelo", "Materiais", "3D", "Preço", "Finalizar"];
+    const ROTULOS_ETAPAS = ["Modelo", "Pedra", "Materiais", "3D", "Preço", "Finalizar"];
     function pintarEtapas(){
         $("etapas").innerHTML = ROTULOS_ETAPAS.map((r, i) => `
             <li><button type="button" data-ir-etapa="${i + 1}"
-                class="etapa-btn w-full border border-white/15 py-2 text-[10px] sm:text-[11px] uppercase tracking-[.12em] ${i + 1 === etapa ? "ativa" : i + 1 < etapa ? "feita" : "text-topazio-claro/60"}">
-                <span class="block font-serif text-base leading-none mb-0.5">${i + 1}</span>${r}</button></li>`).join("");
+                class="etapa-btn ${i + 1 === etapa ? "ativa" : i + 1 < etapa ? "feita" : ""}">
+                <span class="num">${i + 1 < etapa ? '<i class="fa-solid fa-check"></i>' : i + 1}</span>${r}</button></li>`).join("");
         document.querySelectorAll(".painel").forEach(p => p.classList.toggle("hidden", Number(p.dataset.etapa) !== etapa));
         $("btnVoltar").style.visibility = etapa === 1 ? "hidden" : "visible";
         $("btnAvancar").style.visibility = etapa === 6 ? "hidden" : "visible";
@@ -902,15 +1134,18 @@
 
     function pintarModelos(){
         $("gradeTipos").innerHTML = Object.entries(MODELOS).map(([k, m]) => `
-            <button type="button" data-tipo="${k}" class="opcao py-5 text-center ${k === estado.tipo ? "ativa" : ""}">
-                <i class="fa-solid ${m.icone} text-2xl text-topazio-pessego"></i>
-                <span class="block mt-2 font-serif text-xl">${m.nome}</span>
+            <button type="button" data-tipo="${k}" class="opcao p-2 pb-3 text-center ${k === estado.tipo ? "ativa" : ""}">
+                <span class="previa"><img src="img/estilos/${k}-${Object.keys(m.estilos)[0]}.webp" alt="" loading="lazy" onerror="this.remove()"></span>
+                <span class="block mt-2 text-[15px] font-semibold">${m.nome}</span>
             </button>`).join("");
+        const nEstilos = Object.keys(MODELOS[estado.tipo].estilos).length;
+        $("gradeEstilos").className = `grid gap-3 ${nEstilos === 3 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2"}`;
         $("gradeEstilos").innerHTML = Object.entries(MODELOS[estado.tipo].estilos).map(([k, e]) => `
-            <button type="button" data-estilo="${k}" class="opcao p-4 text-left ${k === estado.estilo ? "ativa" : ""}">
-                <span class="block font-serif text-xl">${e.nome}</span>
-                <span class="block text-xs text-topazio-claro/60 mt-1 leading-relaxed">${e.desc}</span>
-                <span class="block text-xs text-topazio-pessego mt-2">Fabricação a partir de ${brl(e.maoDeObra)}</span>
+            <button type="button" data-estilo="${k}" class="opcao p-2 pb-4 text-left ${k === estado.estilo ? "ativa" : ""}">
+                <span class="previa"><img src="img/estilos/${estado.tipo}-${k}.webp" alt="Prévia do estilo ${e.nome}" loading="lazy" onerror="this.remove()"></span>
+                <span class="block px-2 mt-3 text-[15px] font-semibold">${e.nome}</span>
+                <span class="block px-2 text-xs text-topazio-claro/60 mt-1 leading-relaxed">${e.desc}</span>
+                <span class="block px-2 text-xs text-topazio-pessego mt-2">Fabricação a partir de ${brl(e.maoDeObra)}</span>
             </button>`).join("");
     }
 
@@ -1890,7 +2125,7 @@
     $("aro").addEventListener("input", e => mudar({ aro: Number(e.target.value) }));
     $("gravacao").addEventListener("input", e => { estado.gravacao = e.target.value; history.replaceState(null, "", "#" + linkProjeto().split("#")[1]); pintarPreco(); });
     $("corrente").addEventListener("change", e => mudar({ corrente: e.target.checked }));
-    $("nomeProjeto").addEventListener("input", e => { estado.nome = e.target.value; history.replaceState(null, "", "#" + linkProjeto().split("#")[1]); });
+    $("nomeProjeto").addEventListener("input", e => { estado.nome = e.target.value; $("tituloProjeto").textContent = estado.nome || "Novo projeto"; history.replaceState(null, "", "#" + linkProjeto().split("#")[1]); });
 
     $("btnGirar").addEventListener("click", e => {
         controles.autoRotate = !controles.autoRotate;
@@ -1898,6 +2133,34 @@
         e.currentTarget.querySelector("span").textContent = controles.autoRotate ? "Parar rotação" : "Girar automaticamente";
     });
     $("btnCentralizar").addEventListener("click", enquadrar);
+
+    /** Leva a câmera suavemente até uma vista (frente, lado ou topo), como num software de modelagem. */
+    function vista(nome){
+        const caixa = new THREE.Box3().setFromObject(joia);
+        const centro = caixa.getCenter(new THREE.Vector3());
+        const dist = camera.position.distanceTo(controles.target);
+        const dir = { frente:[0, 0.12, 1], lado:[1, 0.12, 0.02], topo:[0.001, 1, 0.02] }[nome];
+        const de = camera.position.clone(), alvoDe = controles.target.clone();
+        const para = centro.clone().addScaledVector(new THREE.Vector3(...dir).normalize(), dist);
+        const t0 = performance.now(), D = 650;
+        (function passo(){
+            const t = Math.min(1, (performance.now() - t0) / D), k = 1 - Math.pow(1 - t, 3);
+            controles.target.lerpVectors(alvoDe, centro, k);
+            camera.position.lerpVectors(de, para, k).sub(controles.target).setLength(dist).add(controles.target);
+            controles.update();
+            if (t < 1) requestAnimationFrame(passo);
+        })();
+        document.querySelectorAll("[data-vista]").forEach(b => b.classList.toggle("ativa", b.dataset.vista === nome));
+    }
+    document.querySelectorAll("[data-vista]").forEach(b => b.addEventListener("click", () => vista(b.dataset.vista)));
+    controles.addEventListener("start", () => document.querySelectorAll("[data-vista]").forEach(b => b.classList.remove("ativa")));
+    document.querySelectorAll("[data-clique]").forEach(b => b.addEventListener("click", () => {
+        $(b.dataset.clique).click();
+        if ("alterna" in b.dataset) b.classList.toggle("ativa");
+    }));
+    document.querySelector("[data-tela-cheia]").addEventListener("click", () => {
+        if (document.fullscreenElement) document.exitFullscreen(); else palco.requestFullscreen?.();
+    });
     $("btnFundo").addEventListener("click", () => palco.classList.toggle("claro"));
     $("btnFoto").addEventListener("click", () => {
         renderer.render(cena, camera);
@@ -1927,6 +2190,7 @@
     pintarProjetos();
     // quando as fotos das pedras chegarem, refaz as miniaturas das inspirações já com a textura real
     precarregarTexturas().then(() => { gerarMiniaturasInsp(); pintarInspiracoes(); });
+        document.querySelectorAll("[data-ano]").forEach(el => el.textContent = new Date().getFullYear());
     </script>
 </body>
 </html>
