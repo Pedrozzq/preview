@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Transportes | Transporte e Turismo em Ouro Preto</title>
+    <meta name="description" content="MG Transportes: transfer de aeroporto, city tour pelas cidades históricas, viagens e transporte corporativo em Ouro Preto - MG.">
+    <link rel="icon" type="image/png" href="img/favicon.png?v=2">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- bandeiras dos idiomas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+    <!-- Cinzel (títulos, combina com o "VIAGENS" do logo) + Manrope (texto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #060a14;
+            --navy-2: #0b1222;
+            --navy-3: #111a2e;
+            --linha: rgba(170, 190, 225, 0.14);
+            --aco: #8fb4ff;
+            --aco-forte: #5b8def;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--navy);
+            color: #e8edf7;
+            overflow-x: hidden;
+        }
+
+        .font-titulo { font-family: 'Cinzel', serif; letter-spacing: 0.04em; }
+
+        /* Texto cromado, no mesmo prateado do logo */
+        .chrome-text {
+            background: linear-gradient(180deg, #ffffff 0%, #dfe6f2 38%, #8e9bb3 55%, #f4f7fc 72%, #a9b4c8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .chrome-text-animated {
+            background: linear-gradient(100deg, #9aa6bd 0%, #ffffff 20%, #b9c3d6 40%, #eef2f9 60%, #8e9bb3 80%, #ffffff 100%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: chromeShine 7s linear infinite;
+        }
+        @keyframes chromeShine { to { background-position: 220% center; } }
+
+        .aco-text { color: var(--aco); }
+
+        /* Hero: foto de Ouro Preto à noite com véu azul-marinho */
+        .hero-bg {
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(91, 141, 239, 0.25), transparent 55%),
+                linear-gradient(180deg, rgba(6, 10, 20, 0.55) 0%, rgba(6, 10, 20, 0.88) 55%, var(--navy) 100%),
+                url('img/ouro-preto-noite.webp');
+            background-size: cover;
+            background-position: center 30%;
+        }
+
+        /* Logo (PNG transparente), parado, com brilho azulado */
+        .logo-hero {
+            filter: drop-shadow(0 0 28px rgba(143, 180, 255, 0.35)) drop-shadow(0 18px 30px rgba(0, 0, 0, 0.6));
+        }
+
+        /* Botão "Salvar contato": prata com texto azul */
+        .btn-contato {
+            background: linear-gradient(180deg, #ffffff 0%, #e3e9f3 45%, #aeb9cc 100%);
+            color: #12408f;
+            box-shadow: inset 0 1px 0 #fff, 0 6px 16px -6px rgba(223, 230, 242, 0.55);
+            transition: transform .2s ease, filter .2s ease;
+        }
+        .btn-contato:hover { transform: translateY(-1px); filter: brightness(1.06); }
+
+        /* Botão exclusivo do carro de casamento */
+        .tile-casamento {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(120deg, rgba(250, 204, 21, 0.16), rgba(11, 18, 34, 0.85) 55%);
+            border: 1px solid rgba(250, 204, 21, 0.4);
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .tile-casamento:hover { transform: translateY(-3px); border-color: rgba(250, 204, 21, 0.75); box-shadow: 0 14px 30px -12px rgba(250, 204, 21, 0.45); }
+        .tile-casamento::after {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 -60%;
+            width: 45%;
+            background: linear-gradient(100deg, transparent, rgba(253, 224, 71, 0.55), rgba(255, 247, 200, 0.75), rgba(253, 224, 71, 0.55), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+            animation: reflexo 3s ease-in-out .8s infinite;
+        }
+
+        /* Menu inferior (celular) */
+        .nav-inferior {
+            background: rgba(8, 13, 26, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid var(--linha);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .nav-inferior .nav-item { color: #7d8aa5; transition: color .2s; }
+        .nav-inferior .nav-item.ativo { color: #fff; }
+        .nav-inferior .nav-item.ativo i { color: var(--aco); }
+        .nav-inferior .nav-centro {
+            background: linear-gradient(180deg, #ffffff 0%, #dde4f0 45%, #aab6cb 100%);
+            color: #0a1428;
+            box-shadow: 0 8px 22px -6px rgba(143, 180, 255, 0.7), inset 0 1px 0 #fff;
+        }
+        @media (max-width: 639px) { body { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); } }
+
+        /* Caixas dos formulários: prata premium */
+        .modal-prata {
+            position: relative;
+            background:
+                linear-gradient(165deg, #1b2335 0%, #0d1424 38%, #0a101e 100%) padding-box,
+                linear-gradient(135deg, #ffffff, #8e9bb3 30%, #3a465e 55%, #dfe6f2 80%, #8e9bb3) border-box;
+            border: 1px solid transparent;
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+        /* faixa de brilho metálico no topo */
+        .modal-prata::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 120px;
+            background: linear-gradient(180deg, rgba(223, 230, 242, 0.10), transparent);
+            pointer-events: none;
+        }
+        .modal-prata .selo-prata {
+            background: linear-gradient(145deg, #ffffff 0%, #c9d2e2 45%, #7f8ba3 100%);
+            color: #0a1428;
+            box-shadow: inset 0 1px 0 #fff, 0 8px 18px -8px rgba(223, 230, 242, 0.6);
+        }
+        .modal-prata .linha-prata { height: 1px; background: linear-gradient(90deg, transparent, rgba(223, 230, 242, 0.45), transparent); }
+        .modal-prata .campo { background: rgba(4, 7, 14, 0.75); border-color: rgba(200, 210, 228, 0.16); }
+        .modal-prata .campo:focus { border-color: #dfe6f2; box-shadow: 0 0 0 3px rgba(223, 230, 242, 0.14); }
+        .modal-prata label, .modal-prata .rotulo { color: #c9d2e2; letter-spacing: .02em; }
+        .modal-prata .opcao-prata { background: rgba(4, 7, 14, 0.75); border: 1px solid rgba(200, 210, 228, 0.16); }
+        .modal-prata .opcao-prata:hover { border-color: rgba(223, 230, 242, 0.55); }
+        .btn-prata {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #dde4f0 45%, #a3afc4 100%);
+            color: #0a1428;
+            box-shadow: inset 0 1px 0 #fff, 0 12px 28px -12px rgba(223, 230, 242, 0.7);
+            transition: transform .2s ease, filter .2s ease;
+        }
+        .btn-prata:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .btn-prata::after {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 -60%;
+            width: 40%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+            transform: skewX(-20deg);
+            animation: reflexo 3.2s ease-in-out infinite;
+        }
+
+        /* Blocos de link (vidro azul) */
+        .tile {
+            background: linear-gradient(160deg, rgba(23, 34, 58, 0.78), rgba(11, 18, 34, 0.78));
+            border: 1px solid var(--linha);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+        .tile:hover {
+            transform: translateY(-3px);
+            border-color: rgba(143, 180, 255, 0.55);
+            box-shadow: 0 14px 30px -12px rgba(91, 141, 239, 0.55);
+        }
+        .tile .tile-icon {
+            background: linear-gradient(145deg, rgba(143, 180, 255, 0.18), rgba(143, 180, 255, 0.04));
+            border: 1px solid rgba(143, 180, 255, 0.25);
+            color: var(--aco);
+        }
+
+        /* Botões da seção 1: placas de aço escovado */
+        .tile-heroi {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.025) 42%, rgba(6, 10, 20, 0.6));
+            border: 1px solid rgba(223, 230, 242, 0.18);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 12px 30px -18px #000;
+        }
+        .tile-heroi::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 12%; right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+        }
+        .tile-heroi::after {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 -70%;
+            width: 45%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+            transform: skewX(-20deg);
+            transition: left .8s ease;
+            pointer-events: none;
+        }
+        .tile-heroi:hover {
+            border-color: rgba(223, 230, 242, 0.5);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 16px 34px -14px rgba(223, 230, 242, 0.35);
+        }
+        .tile-heroi:hover::after { left: 130%; }
+        .tile-heroi .tile-icon {
+            background: linear-gradient(145deg, #ffffff, #c9d2e2 45%, #7f8ba3);
+            border: 0;
+            color: #0a1428;
+            box-shadow: inset 0 1px 0 #fff, 0 6px 14px -6px rgba(223, 230, 242, 0.6);
+        }
+        .tile-seta {
+            position: absolute;
+            top: 1.1rem; right: 1.1rem;
+            font-size: .75rem;
+            color: #dfe6f2;
+            opacity: .35;
+            transform: rotate(-45deg);
+            transition: opacity .3s ease, transform .3s ease;
+        }
+        .tile-heroi:hover .tile-seta { opacity: 1; transform: rotate(0); }
+
+        /* CTA principal: placa cromada */
+        .cta-chrome {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #dde4f0 45%, #aab6cb 100%);
+            color: #0a1428;
+            box-shadow: inset 0 1px 0 #fff, 0 12px 30px -10px rgba(143, 180, 255, 0.6);
+            transition: transform .3s ease, box-shadow .3s ease;
+            animation: ctaRespira 2.4s ease-in-out 1.6s infinite;
+        }
+        .cta-chrome:hover { transform: translateY(-2px); }
+        .cta-chrome::after {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 -60%;
+            width: 40%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+            transform: skewX(-20deg);
+            animation: reflexo 3.2s ease-in-out infinite;
+        }
+        @keyframes reflexo { 0%, 55% { left: -60%; } 100% { left: 140%; } }
+        @keyframes ctaRespira {
+            0%, 100% { box-shadow: inset 0 1px 0 #fff, 0 0 0 0 rgba(143, 180, 255, 0.55); }
+            50% { box-shadow: inset 0 1px 0 #fff, 0 0 0 14px rgba(143, 180, 255, 0); }
+        }
+
+        /* Seletor de idioma: bandeira retangular com brilho + sigla */
+        .lang-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .3rem .55rem .3rem .35rem;
+            border-radius: 9999px;
+            color: #8e9bb3;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            transition: background .2s, color .2s;
+        }
+        .lang-btn .bandeira {
+            position: relative;
+            width: 1.6rem;
+            height: 1.2rem;
+            border-radius: 4px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 3px 8px rgba(0, 0, 0, 0.5);
+            filter: saturate(.7) brightness(.85);
+            transition: filter .2s, transform .2s;
+        }
+        /* reflexo de vidro sobre a bandeira */
+        .lang-btn .bandeira::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(0, 0, 0, 0.18) 100%);
+        }
+        .lang-btn:hover { color: #fff; }
+        .lang-btn:hover .bandeira { filter: none; }
+        .lang-btn.active { background: linear-gradient(180deg, #ffffff 0%, #dde4f0 50%, #aab6cb 100%); color: #12408f; }
+        .lang-btn.active .bandeira { filter: none; transform: scale(1.05); }
+
+        /* Carro do easter-egg (clique no logo) */
+        .car-flyby {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            pointer-events: none;
+            line-height: 1;
+            filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.6));
+            will-change: transform;
+        }
+        .car-flyby .car-icon { font-size: 2.6rem; color: #eef2f9; display: inline-block; }
+        .car-flyby .car-caption {
+            position: absolute;
+            left: 50%;
+            top: -1.4rem;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--aco);
+        }
+
+        /* Entrada e revelação */
+        .entra { opacity: 0; transform: translateY(24px); animation: entra .8s cubic-bezier(.16, 1, .3, 1) forwards; }
+        @keyframes entra { to { opacity: 1; transform: none; } }
+        .d1 { animation-delay: .1s; } .d2 { animation-delay: .2s; } .d3 { animation-delay: .3s; }
+        .d4 { animation-delay: .4s; } .d5 { animation-delay: .5s; } .d6 { animation-delay: .6s; } .d7 { animation-delay: .7s; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1); }
+        .reveal.is-visible { opacity: 1; transform: none; }
+        .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; }
+        .reveal-delay-3 { transition-delay: .3s; } .reveal-delay-4 { transition-delay: .4s; }
+
+        /* Galeria cinema: cortina + aproximação lenta + barras de progresso */
+        .cine-slide {
+            position: absolute;
+            inset: 0;
+            clip-path: inset(0 100% 0 0);
+            z-index: 1;
+        }
+        .cine-slide.ativo {
+            clip-path: inset(0 0 0 0);
+            z-index: 3;
+            transition: clip-path 1.5s cubic-bezier(.77, 0, .18, 1);
+        }
+        .cine-slide.saindo { clip-path: inset(0 0 0 0); z-index: 2; }
+        .cine-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.18);
+            transition: transform 8s cubic-bezier(.2, .6, .2, 1);
+        }
+        .cine-slide.ativo img { transform: scale(1.02); }
+        /* linha prateada que acompanha a borda da cortina */
+        .cine-slide.ativo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            left: 0;
+            background: linear-gradient(180deg, transparent, #ffffff 30%, #dfe6f2 70%, transparent);
+            box-shadow: 0 0 22px 4px rgba(223, 230, 242, 0.55);
+            animation: cineLinha 1.5s cubic-bezier(.77, 0, .18, 1) forwards;
+        }
+        @keyframes cineLinha { from { left: 0; opacity: 1; } 85% { opacity: 1; } to { left: 100%; opacity: 0; } }
+        .cine-legenda { transition: opacity .6s ease, transform .6s ease; }
+        .cine-legenda.trocando { opacity: 0; transform: translateY(12px); }
+        .cine-barra { height: 2px; background: rgba(255, 255, 255, 0.18); border-radius: 2px; overflow: hidden; cursor: pointer; }
+        .cine-barra i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #8e9bb3, #ffffff); }
+        .cine-barra.feita i { width: 100%; }
+        .cine-barra.rodando i { animation: cineProgresso var(--dur, 6s) linear forwards; }
+        .cine-pausado .cine-barra.rodando i { animation-play-state: paused; }
+        @keyframes cineProgresso { to { width: 100%; } }
+
+        /* Serviços: cartões com foto, moldura prateada e botão que acende no hover */
+        .servico {
+            border: 1px solid rgba(200, 210, 228, 0.14);
+            box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.9);
+            transition: border-color .4s ease, box-shadow .4s ease, transform .4s ease;
+        }
+        .servico:hover { border-color: rgba(223, 230, 242, 0.5); box-shadow: 0 30px 60px -24px rgba(143, 180, 255, 0.35); transform: translateY(-4px); }
+        .servico-foto { transform: scale(1.04); filter: saturate(.85) brightness(.9); transition: transform 1.2s cubic-bezier(.2, .6, .2, 1), filter .6s ease; }
+        .servico:hover .servico-foto { transform: scale(1.12); filter: saturate(1) brightness(1); }
+        .servico-selo { background: rgba(6, 10, 20, 0.6); border: 1px solid rgba(223, 230, 242, 0.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .servico-linha { width: 2.5rem; height: 2px; background: linear-gradient(90deg, #ffffff, #8e9bb3); transition: width .6s cubic-bezier(.2, .6, .2, 1); }
+        .servico:hover .servico-linha { width: 6rem; }
+        .servico-botao { color: #fff; border: 1px solid rgba(223, 230, 242, 0.45); background: rgba(6, 10, 20, 0.35); backdrop-filter: blur(6px); transition: background .3s, color .3s, border-color .3s; }
+        .servico:hover .servico-botao { background: linear-gradient(180deg, #ffffff 0%, #dde4f0 45%, #aab6cb 100%); color: #0a1428; border-color: transparent; }
+        .servico-botao i { transition: transform .3s; }
+        .servico:hover .servico-botao i { transform: translateX(4px); }
+
+        /* Modais */
+        .modal { transition: opacity .3s ease, visibility .3s ease; }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content { transition: transform .35s cubic-bezier(.16, 1, .3, 1); transform: translateY(24px); }
+        .modal.active .modal-content { transform: none; }
+        .campo {
+            width: 100%;
+            background: var(--navy);
+            border: 1px solid var(--linha);
+            border-radius: 0.75rem;
+            padding: 0.65rem 1rem;
+            color: #fff;
+            transition: border-color .2s, box-shadow .2s;
+            color-scheme: dark;
+        }
+        .campo::placeholder { color: #5d6a84; }
+        .campo:focus { outline: none; border-color: var(--aco); box-shadow: 0 0 0 3px rgba(143, 180, 255, 0.18); }
+        .campo.com-icone { padding-left: 2.3rem; }
+
+        /* Pré-carregamento: logo com anel */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--navy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            transition: opacity .5s ease, visibility .5s ease;
+        }
+        #preloader.preloader-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        #preloader .pre-logo { width: 11rem; height: auto; filter: drop-shadow(0 0 26px rgba(143, 180, 255, 0.35)); }
+        #preloader .pre-barra { width: 11rem; height: 3px; border-radius: 99px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+        #preloader .pre-barra i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #8e9bb3, #ffffff, #8fb4ff); animation: preCarga 1.5s ease forwards; }
+        @keyframes preCarga { to { width: 100%; } }
+        body.preloading { overflow: hidden; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: #24324f; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--aco-forte); }
+        /* Frota: showroom */
+        .frota-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.1); transition: opacity 1s ease, transform 7s ease-out; }
+        .frota-img.ativo { opacity: 1; transform: scale(1); }
+        .frota-num { font-size: clamp(3.5rem, 10vw, 7.5rem); color: transparent; -webkit-text-stroke: 1px rgba(223, 230, 242, 0.45); }
+        .frota-leg, .frota-info { display: none; }
+        .frota-leg.ativo, .frota-info.ativo { display: block; animation: frotaSobe .6s ease both; }
+        @keyframes frotaSobe { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .frota-prog { width: 0; background: linear-gradient(90deg, #7f8ba3, #ffffff); }
+        .frota-prog.roda { animation: frotaProg 7s linear forwards; }
+        #frotaPalco.pausado .frota-prog { animation-play-state: paused; }
+        @keyframes frotaProg { to { width: 100%; } }
+        .frota-tab { display: flex; flex-direction: column; gap: .6rem; padding: .5rem; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); transition: border-color .3s, background .3s, transform .3s; }
+        .frota-tab:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.2); }
+        .frota-tab-img { width: 100%; height: 3.5rem; border-radius: .7rem; object-fit: cover; filter: grayscale(.7) brightness(.7); transition: filter .4s; }
+        .frota-tab-num { color: #5d6a85; transition: color .3s; }
+        .frota-tab.ativo { border-color: rgba(223, 230, 242, 0.6); background: linear-gradient(135deg, rgba(223, 230, 242, 0.12), rgba(11, 18, 34, 0.6)); box-shadow: 0 12px 28px -14px rgba(143, 180, 255, 0.55); }
+        .frota-tab.ativo .frota-tab-img { filter: none; }
+        .frota-tab.ativo .frota-tab-num { color: #dfe6f2; }
+        .frota-tab-ouro.ativo { border-color: rgba(250, 204, 21, 0.65); background: linear-gradient(135deg, rgba(250, 204, 21, 0.14), rgba(11, 18, 34, 0.6)); box-shadow: 0 12px 28px -14px rgba(250, 204, 21, 0.5); }
+        .frota-tab-ouro.ativo .frota-tab-num { color: #fde047; }
+        @media (min-width: 1024px) {
+            .frota-tab { flex-direction: row; align-items: center; gap: 1rem; padding: .6rem; }
+            .frota-tab-img { width: 6rem; height: 4rem; flex-shrink: 0; }
+        }
+        .frota-spec { display: flex; flex-direction: column; align-items: center; gap: .2rem; padding: .8rem .4rem; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); text-align: center; }
+        .frota-spec b { color: #fff; font-size: .95rem; }
+        .frota-spec span { color: #7d8aa5; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; }
+        /* Mockup de celular do vídeo */
+        .celular {
+            position: relative;
+            width: min(300px, 78vw);
+            aspect-ratio: 9 / 19.5;
+            padding: 11px;
+            border-radius: 3.2rem;
+            background: linear-gradient(145deg, #f4f7fc 0%, #aeb9cc 22%, #5d6a82 50%, #c9d2e2 78%, #6e7a91 100%);
+            box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9), 0 0 60px -10px rgba(143, 180, 255, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+        }
+        .celular-tela {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 2.6rem;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 0 3px #05070c;
+        }
+        .celular-tela video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .celular-ilha { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 34%; height: 24px; border-radius: 999px; background: #000; pointer-events: none; }
+        .celular-btn { position: absolute; width: 4px; border-radius: 4px; background: linear-gradient(90deg, #6e7a91, #c9d2e2); }
+        .celular-btn-l1 { left: -3px; top: 22%; height: 9%; }
+        .celular-btn-l2 { left: -3px; top: 33%; height: 9%; }
+        .celular-btn-r { right: -3px; top: 27%; height: 13%; }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-blue-500 selection:text-white preloading">
+
+    <!-- Pré-carregamento -->
+    <div id="preloader">
+        <img class="pre-logo" src="img/logo.webp?v=2" alt="MG Transportes">
+        <div class="pre-barra"><i></i></div>
+        <span class="font-titulo text-xs tracking-[0.4em] text-slate-400">MG TRANSPORTES</span>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (!preloader) return;
+                preloader.classList.add('preloader-hidden');
+                document.body.classList.remove('preloading');
+                preloader.addEventListener('transitionend', () => preloader.remove(), { once: true });
+            }, 1500);
+        });
+    </script>
+
+    <!-- Barra superior: marca + idioma -->
+    <div class="fixed top-0 inset-x-0 z-40 px-4 pt-3">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <span class="hidden sm:inline font-titulo text-xs tracking-[0.35em] text-slate-300/80">MG TRANSPORTES</span>
+            <div class="ml-auto flex items-center gap-1 bg-[#060a14]/75 border border-white/10 rounded-full p-1 backdrop-blur-md">
+                <button onclick="setLanguage('pt')" data-lang-btn="pt" aria-label="Português" title="Português" class="lang-btn"><span class="bandeira fi fi-br"></span>PT</button>
+                <button onclick="setLanguage('en')" data-lang-btn="en" aria-label="English" title="English" class="lang-btn"><span class="bandeira fi fi-us"></span>EN</button>
+                <button onclick="setLanguage('es')" data-lang-btn="es" aria-label="Español" title="Español" class="lang-btn"><span class="bandeira fi fi-es"></span>ES</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO: marca à esquerda, atalhos à direita (empilha no celular) -->
+    <section id="inicio" class="hero-bg min-h-[100dvh] w-full flex items-center pt-20 pb-16 px-4">
+        <div class="w-full max-w-6xl mx-auto grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-center">
+
+            <header class="flex flex-col items-center lg:items-start text-center lg:text-left entra">
+                <img src="img/logo.webp?v=2" alt="MG Transportes" onclick="launchCar()" title="MG Transportes" class="logo-hero w-44 sm:w-56 h-auto mb-6 cursor-pointer active:scale-95 transition-transform">
+
+                <p data-i18n="hero_kicker" class="text-[11px] font-bold tracking-[0.35em] uppercase aco-text mb-3">Ouro Preto · Minas Gerais</p>
+                <h1 class="font-titulo text-4xl sm:text-5xl lg:text-6xl font-bold chrome-text-animated leading-[1.05] mb-4">MG Transportes</h1>
+                <p data-i18n="hero_subtitle" class="text-slate-300 text-base sm:text-lg max-w-md mb-6">Transporte e turismo pelas cidades históricas de Minas, com conforto do aeroporto ao centro histórico.</p>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                    <button onclick="downloadVCard()" class="btn-contato inline-flex items-center gap-2 text-xs font-bold px-3.5 py-1.5 rounded-full">
+                        <i class="fa-regular fa-address-card"></i>
+                        <span data-i18n="hero_saveContact">Salvar contato</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Atalhos -->
+            <div class="w-full max-w-xl mx-auto lg:mx-0 flex flex-col gap-3">
+                <a href="javascript:void(0)" onclick="waSend('wa_ride')" class="car-target cta-chrome entra d1 w-full rounded-2xl px-5 py-4 flex items-center gap-4">
+                    <span class="w-12 h-12 rounded-xl bg-[#0a1428] text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-car-side text-lg"></i></span>
+                    <span class="flex flex-col text-left">
+                        <span data-i18n="cta_title" class="font-extrabold text-lg leading-tight">Solicitar Corrida</span>
+                        <span data-i18n="cta_subtitle" class="text-[#0a1428]/70 text-xs font-semibold">Atendimento imediato pelo WhatsApp</span>
+                    </span>
+                    <i class="fa-solid fa-arrow-right ml-auto"></i>
+                </a>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="javascript:void(0)" onclick="openModal('agendamentoModal')" class="car-target tile tile-heroi entra d2 rounded-2xl p-4 flex flex-col gap-3 cursor-pointer">
+                        <i class="tile-seta fa-solid fa-arrow-right"></i>
+                        <span class="tile-icon w-10 h-10 rounded-xl flex items-center justify-center"><i class="fa-regular fa-calendar-check"></i></span>
+                        <span>
+                            <span data-i18n="schedule_title" class="block font-bold text-white text-sm sm:text-base">Agendar Viagem</span>
+                            <span data-i18n="schedule_subtitle" class="block text-slate-400 text-xs mt-0.5">Datas, passeios e eventos</span>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openModal('transferModal')" class="car-target tile tile-heroi entra d3 rounded-2xl p-4 flex flex-col gap-3 cursor-pointer">
+                        <i class="tile-seta fa-solid fa-arrow-right"></i>
+                        <span class="tile-icon w-10 h-10 rounded-xl flex items-center justify-center"><i class="fa-solid fa-plane-arrival"></i></span>
+                        <span>
+                            <span data-i18n="transferLink_title" class="block font-bold text-white text-sm sm:text-base">Transfer Aeroporto</span>
+                            <span data-i18n="transferLink_subtitle" class="block text-slate-400 text-xs mt-0.5">Confins e Pampulha</span>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openModal('corporativoModal')" class="car-target tile tile-heroi entra d4 rounded-2xl p-4 flex flex-col gap-3 cursor-pointer">
+                        <i class="tile-seta fa-solid fa-arrow-right"></i>
+                        <span class="tile-icon w-10 h-10 rounded-xl flex items-center justify-center"><i class="fa-solid fa-briefcase"></i></span>
+                        <span>
+                            <span data-i18n="corporate_title" class="block font-bold text-white text-sm sm:text-base">Para Empresas</span>
+                            <span data-i18n="corporate_subtitle" class="block text-slate-400 text-xs mt-0.5">Equipes e visitantes</span>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openModal('localizacaoModal')" class="car-target tile tile-heroi entra d5 rounded-2xl p-4 flex flex-col gap-3 cursor-pointer">
+                        <i class="tile-seta fa-solid fa-arrow-right"></i>
+                        <span class="tile-icon w-10 h-10 rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></span>
+                        <span>
+                            <span data-i18n="area_title" class="block font-bold text-white text-sm sm:text-base">Onde Atendemos</span>
+                            <span data-i18n="area_subtitle" class="block text-slate-400 text-xs mt-0.5">Regiões e cidades</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Carro de casamento (exclusivo) -->
+                <a href="javascript:void(0)" onclick="openModal('casamentoModal')" class="car-target tile-casamento entra d6 rounded-2xl p-3 pr-5 flex items-center gap-4 cursor-pointer">
+                    <img src="img/classico-amarelo.webp" alt="" class="w-16 h-16 rounded-xl object-cover object-[center_65%] shrink-0">
+                    <span class="flex flex-col">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-ring text-yellow-300 text-sm"></i><span data-i18n="wedding_title" class="font-bold text-white">Carro para Casamento</span></span>
+                        <span data-i18n="wedding_subtitle" class="text-slate-400 text-xs mt-0.5">Clássico amarelo para a chegada da noiva</span>
+                    </span>
+                    <i class="fa-solid fa-chevron-right ml-auto text-yellow-300/80"></i>
+                </a>
+
+                <!-- Avaliação: só aparece quando o link está configurado (ver CONFIG no script) -->
+                <a data-link="review" href="#" target="_blank" rel="noopener noreferrer" class="car-target tile entra d7 rounded-xl px-4 py-3 flex items-center justify-center gap-2 text-sm font-semibold text-slate-100">
+                    <i class="fa-solid fa-star text-yellow-400"></i><span data-i18n="review_title">Avaliar no Google</span>
+                </a>
+
+                <a href="#site-content" class="mt-4 self-center lg:self-start text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold tracking-[0.25em] uppercase">
+                    <i class="fa-solid fa-arrow-down animate-bounce"></i><span data-i18n="scroll_hint">Conheça a MG</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main id="site-content" class="w-full relative">
+
+        <!-- Galeria cinema -->
+        <section id="galeria" class="relative w-full h-[78vh] min-h-[480px] max-h-[860px] overflow-hidden bg-[#03060d]" aria-roledescription="carrossel">
+            <div id="cineSlides" class="absolute inset-0"></div>
+            <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#060a14] via-[#060a14]/20 to-[#060a14]/40"></div>
+            <div class="absolute inset-y-0 left-0 w-2/3 z-10 pointer-events-none bg-gradient-to-r from-[#060a14]/70 to-transparent"></div>
+
+            <div class="absolute inset-x-0 bottom-0 z-20">
+                <div class="max-w-6xl mx-auto px-6 pb-10 sm:pb-14">
+                    <span class="aco-text font-bold uppercase tracking-[0.35em] text-xs">MG Transportes</span>
+                    <h2 data-i18n="gallery_caption" class="font-titulo text-3xl md:text-5xl font-bold mt-2 chrome-text max-w-xl">Minas pela janela do carro</h2>
+                    <p id="cineLegenda" class="cine-legenda mt-3 text-slate-200 text-sm md:text-base flex items-center gap-2"><i class="fa-solid fa-location-dot aco-text"></i><span></span></p>
+
+                    <div class="mt-8 flex items-center gap-5">
+                        <span id="cineContador" class="font-titulo text-white text-sm tabular-nums whitespace-nowrap">01 <span class="text-slate-500">/ 08</span></span>
+                        <div id="cineBarras" class="flex-1 grid gap-2"></div>
+                        <div class="flex gap-2 shrink-0">
+                            <button id="cineAnt" aria-label="Foto anterior" class="w-10 h-10 rounded-full border border-white/25 text-white hover:bg-white hover:text-[#0a1428] transition-colors flex items-center justify-center"><i class="fa-solid fa-arrow-left text-sm"></i></button>
+                            <button id="cineProx" aria-label="Próxima foto" class="w-10 h-10 rounded-full border border-white/25 text-white hover:bg-white hover:text-[#0a1428] transition-colors flex items-center justify-center"><i class="fa-solid fa-arrow-right text-sm"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roteiros + vídeo do tour -->
+        <section id="roteiros" class="py-20 lg:py-28 border-b border-white/5">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+                    <div>
+                        <p data-i18n="cities_badge" class="aco-text text-xs font-bold uppercase tracking-[0.3em] mb-3">Roteiros</p>
+                        <h2 data-i18n="cities_title" class="font-titulo text-3xl md:text-4xl font-bold chrome-text">Para onde levamos você</h2>
+                    </div>
+                    <p data-i18n="cities_subtitle" class="text-slate-400 max-w-md text-sm leading-relaxed">Igrejas barrocas, minas, mirantes e ladeiras de pedra em Ouro Preto, São João del-Rei e região: montamos o passeio com as paradas que você quiser.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-6 items-stretch">
+                    <!-- Vídeo do tour dentro de um celular -->
+                    <div class="reveal flex flex-col items-center justify-center gap-5 py-2">
+                        <div class="celular">
+                            <span class="celular-btn celular-btn-l1"></span>
+                            <span class="celular-btn celular-btn-l2"></span>
+                            <span class="celular-btn celular-btn-r"></span>
+                            <div class="celular-tela">
+                                <video src="video/tour-sao-joao-del-rei.mp4" poster="img/tour-capa.jpg" controls playsinline preload="metadata"></video>
+                                <span class="celular-ilha"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-flex items-center gap-2 border border-white/15 bg-white/5 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest text-white">
+                                <i class="fa-solid fa-play text-[9px] aco-text"></i><span data-i18n="tour_video_label">Tour guiado</span>
+                            </span>
+                            <h3 data-i18n="tour_video_title" class="font-titulo text-white font-bold text-lg leading-tight mt-3">Igreja de São Francisco de Assis</h3>
+                            <p class="text-slate-400 text-xs mt-1"><i class="fa-solid fa-location-dot aco-text mr-1"></i>São João del-Rei - MG</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="reveal reveal-delay-1 group relative rounded-2xl overflow-hidden border border-white/10 col-span-2 aspect-[16/8]">
+                            <img src="img/ouro-preto-panorama.webp" alt="Vista de Ouro Preto" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 p-5"><h3 class="font-titulo text-white font-bold text-lg">Ouro Preto</h3><p data-i18n="city1_desc" class="text-slate-300 text-xs">Centro histórico e mirantes</p></div>
+                        </div>
+                        <div class="reveal reveal-delay-2 group relative rounded-2xl overflow-hidden border border-white/10 aspect-[3/4]">
+                            <img src="img/igreja-altar.webp" alt="Altar de igreja barroca" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 p-4"><h3 data-i18n="city2_title" class="font-titulo text-white font-bold">Igrejas Barrocas</h3><p data-i18n="city2_desc" class="text-slate-300 text-xs">Ouro, talha e história</p></div>
+                        </div>
+                        <div class="reveal reveal-delay-3 group relative rounded-2xl overflow-hidden border border-white/10 aspect-[3/4]">
+                            <img src="img/capela-1.webp" alt="Capela iluminada" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 p-4"><h3 data-i18n="city3_title" class="font-titulo text-white font-bold">Capelas e Minas</h3><p data-i18n="city3_desc" class="text-slate-300 text-xs">Roteiros fora do comum</p></div>
+                        </div>
+                        <div onclick="openModal('casamentoModal')" class="reveal reveal-delay-4 group relative rounded-2xl overflow-hidden border border-yellow-400/40 col-span-2 aspect-[16/8] cursor-pointer">
+                            <img src="img/classico-passeio.webp" alt="Carro antigo amarelo para casamento" loading="lazy" class="w-full h-full object-cover object-[center_70%] group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 p-5"><h3 class="font-titulo text-white font-bold text-lg"><i class="fa-solid fa-ring text-yellow-300 text-sm mr-1.5"></i><span data-i18n="city4_title">Carros Antigos para Casamento</span></h3><p data-i18n="city4_desc" class="text-slate-300 text-xs">O clássico amarelo para a chegada da noiva</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre -->
+        <section id="sobre" class="py-20 lg:py-28 border-b border-white/5 bg-[#08101f]">
+            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal relative">
+                    <div class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-blue-500/25 via-transparent to-slate-200/10 blur-2xl"></div>
+                    <img src="img/yaris-estrada.webp" alt="Carro da MG Transportes na estrada" loading="lazy" class="relative w-full h-[420px] object-cover rounded-[1.75rem] border border-white/10">
+                </div>
+                <div>
+                    <p data-i18n="about_badge" class="reveal aco-text text-xs font-bold uppercase tracking-[0.3em] mb-3">Quem somos</p>
+                    <h2 class="reveal font-titulo text-3xl md:text-4xl font-bold leading-tight mb-5">
+                        <span data-i18n="about_title_pre" class="text-white">Seu motorista em</span> <span data-i18n="about_title_highlight" class="chrome-text">Minas Gerais</span>
+                    </h2>
+                    <p data-i18n="about_text" class="reveal reveal-delay-1 text-slate-400 leading-relaxed mb-6">A MG Transportes leva moradores, turistas e empresas com segurança e pontualidade, do aeroporto às cidades históricas, com atendimento direto e personalizado.</p>
+
+                    <div class="reveal reveal-delay-1 flex items-center gap-4 mb-8">
+                        <span class="selo-motorista w-14 h-14 rounded-full flex items-center justify-center shrink-0 text-[#0a1428] font-titulo font-bold text-lg" style="background:linear-gradient(145deg,#ffffff,#c9d2e2 45%,#7f8ba3);box-shadow:inset 0 1px 0 #fff,0 8px 18px -8px rgba(223,230,242,.6)">MG</span>
+                        <div>
+                            <p data-i18n="about_driver_label" class="text-[11px] font-bold uppercase tracking-[0.25em] aco-text">Seu motorista</p>
+                            <p class="font-titulo text-xl font-bold chrome-text">Maurílio Gonçalves</p>
+                            <span class="inline-flex items-center mt-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950/50 text-emerald-300 border border-emerald-700/40">
+                                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
+                                <span data-i18n="hero_available">Disponível 24/7</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3">
+                        <li class="reveal reveal-delay-1 flex items-center gap-4 tile rounded-xl px-4 py-3"><i class="fa-solid fa-user-shield aco-text w-5 text-center"></i><span data-i18n="about_li1" class="text-slate-200 text-sm">Motorista experiente e cuidadoso.</span></li>
+                        <li class="reveal reveal-delay-2 flex items-center gap-4 tile rounded-xl px-4 py-3"><i class="fa-solid fa-snowflake aco-text w-5 text-center"></i><span data-i18n="about_li2" class="text-slate-200 text-sm">Carros limpos, revisados e climatizados.</span></li>
+                        <li class="reveal reveal-delay-3 flex items-center gap-4 tile rounded-xl px-4 py-3"><i class="fa-solid fa-landmark aco-text w-5 text-center"></i><span data-i18n="about_li3" class="text-slate-200 text-sm">Quem conhece a história e os atalhos da região.</span></li>
+                        <li class="reveal reveal-delay-4 flex items-center gap-4 tile rounded-xl px-4 py-3"><i class="fa-brands fa-whatsapp aco-text w-5 text-center"></i><span data-i18n="about_li4" class="text-slate-200 text-sm">Atendimento pelo WhatsApp, 24 horas.</span></li>
+                    </ul>
+
+                    <a href="javascript:void(0)" onclick="waSend('wa_ride')" class="reveal reveal-delay-4 cta-chrome mt-6 w-full rounded-2xl px-5 py-4 flex items-center gap-4">
+                        <span class="w-11 h-11 rounded-xl bg-[#0a1428] text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-car-side"></i></span>
+                        <span class="flex flex-col text-left">
+                            <span data-i18n="cta_title" class="font-extrabold text-lg leading-tight">Solicitar Corrida</span>
+                            <span data-i18n="cta_subtitle" class="text-[#0a1428]/70 text-xs font-semibold">Atendimento imediato pelo WhatsApp</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-right ml-auto"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frota (showroom: foto grande + seletor de carros) -->
+        <section id="frota" class="py-20 lg:py-28 border-b border-white/5 relative overflow-hidden">
+            <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-[#8fb4ff]/[0.06] blur-3xl pointer-events-none"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+                    <div>
+                        <p data-i18n="fleet_badge" class="aco-text text-xs font-bold uppercase tracking-[0.3em] mb-3">Frota</p>
+                        <h2 data-i18n="fleet_title" class="font-titulo text-3xl md:text-4xl font-bold chrome-text">Escolha como quer chegar</h2>
+                    </div>
+                    <p data-i18n="fleet_subtitle" class="text-slate-400 max-w-md text-sm md:text-right">Do sedã e do SUV confortáveis para o dia a dia ao clássico amarelo que leva a noiva ao altar.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-[1.45fr_1fr] gap-5 lg:gap-8">
+                    <!-- Palco -->
+                    <div id="frotaPalco" class="reveal relative rounded-[1.75rem] overflow-hidden border border-white/10 bg-[#0b1222] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[540px] touch-pan-y">
+                        <img class="frota-img ativo" data-v="0" src="img/yaris-aeroporto.webp" alt="Toyota Yaris Sedan branco" loading="lazy">
+                        <img class="frota-img" data-v="1" src="img/corolla-cross.webp" alt="Toyota Corolla Cross prata" loading="lazy" style="object-position:center 70%">
+                        <img class="frota-img" data-v="2" src="img/classico-amarelo.webp" alt="Esportivo clássico amarelo" loading="lazy" style="object-position:center 60%">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-[#060a14]/10 to-[#060a14]/30 pointer-events-none"></div>
+                        <span id="frotaNum" class="frota-num absolute top-3 right-5 font-titulo font-bold leading-none pointer-events-none">01</span>
+
+                        <div class="absolute left-5 right-5 bottom-6 sm:left-8 sm:bottom-8 pointer-events-none">
+                            <div class="frota-leg ativo" data-v="0">
+                                <span data-i18n="veh1_tag" class="inline-block bg-white text-[#0a1428] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Executivo</span>
+                                <h3 class="font-titulo text-2xl sm:text-4xl font-bold text-white">Toyota Yaris Sedan</h3>
+                            </div>
+                            <div class="frota-leg" data-v="1">
+                                <span data-i18n="veh3_tag" class="inline-block bg-[#dfe6f2] text-[#0a1428] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-3">SUV</span>
+                                <h3 class="font-titulo text-2xl sm:text-4xl font-bold text-white">Toyota Corolla Cross</h3>
+                            </div>
+                            <div class="frota-leg" data-v="2">
+                                <span data-i18n="veh2_tag" class="inline-block bg-yellow-400 text-[#0a1428] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Casamentos</span>
+                                <h3 data-i18n="veh2_name" class="font-titulo text-2xl sm:text-4xl font-bold text-white">Clássico Amarelo</h3>
+                            </div>
+                        </div>
+
+                        <button onclick="frotaPasso(-1)" data-i18n-aria="fleet_prev" aria-label="Veículo anterior" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#060a14]/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-sm hover:bg-white hover:text-[#0a1428] transition-colors"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button onclick="frotaPasso(1)" data-i18n-aria="fleet_next" aria-label="Próximo veículo" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#060a14]/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-sm hover:bg-white hover:text-[#0a1428] transition-colors"><i class="fa-solid fa-chevron-right"></i></button>
+
+                        <div class="absolute bottom-0 inset-x-0 h-[3px] bg-white/10"><div id="frotaProg" class="frota-prog h-full"></div></div>
+                    </div>
+
+                    <!-- Seletor + ficha -->
+                    <div class="reveal reveal-delay-1 flex flex-col gap-5">
+                        <div class="grid grid-cols-3 lg:grid-cols-1 gap-2 lg:gap-3" role="tablist">
+                            <button class="frota-tab ativo" data-v="0" role="tab" aria-selected="true">
+                                <img src="img/yaris-aeroporto.webp" alt="" loading="lazy" class="frota-tab-img">
+                                <span class="text-left min-w-0">
+                                    <span class="frota-tab-num block font-titulo text-[11px] font-bold tracking-[0.2em]">01</span>
+                                    <span class="block text-white font-bold text-xs sm:text-sm leading-tight">Yaris Sedan</span>
+                                </span>
+                            </button>
+                            <button class="frota-tab" data-v="1" role="tab" aria-selected="false">
+                                <img src="img/corolla-cross.webp" alt="" loading="lazy" class="frota-tab-img" style="object-position:center 70%">
+                                <span class="text-left min-w-0">
+                                    <span class="frota-tab-num block font-titulo text-[11px] font-bold tracking-[0.2em]">02</span>
+                                    <span class="block text-white font-bold text-xs sm:text-sm leading-tight">Corolla Cross</span>
+                                </span>
+                            </button>
+                            <button class="frota-tab frota-tab-ouro" data-v="2" role="tab" aria-selected="false">
+                                <img src="img/classico-amarelo.webp" alt="" loading="lazy" class="frota-tab-img" style="object-position:center 60%">
+                                <span class="text-left min-w-0">
+                                    <span class="frota-tab-num block font-titulo text-[11px] font-bold tracking-[0.2em]">03</span>
+                                    <span data-i18n="veh2_name" class="block text-white font-bold text-xs sm:text-sm leading-tight">Clássico Amarelo</span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="frota-ficha rounded-3xl border border-white/10 bg-[#0b1222]/80 p-6 flex-1">
+                            <div class="frota-info ativo" data-v="0">
+                                <p data-i18n="veh1_desc" class="text-slate-300 text-sm leading-relaxed">Sedã confortável e econômico, ideal para transfers de aeroporto, viagens e compromissos de trabalho.</p>
+                                <div class="grid grid-cols-3 gap-2 my-5">
+                                    <div class="frota-spec"><i class="fa-solid fa-user aco-text"></i><b>4</b><span data-i18n="fleet_pax">Passageiros</span></div>
+                                    <div class="frota-spec"><i class="fa-solid fa-suitcase aco-text"></i><b>3</b><span data-i18n="fleet_bags">Malas</span></div>
+                                    <div class="frota-spec"><i class="fa-solid fa-snowflake aco-text"></i><b>A/C</b><span data-i18n="fleet_ac">Climatizado</span></div>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-5"><span data-i18n="fleet_ideal" class="font-bold uppercase tracking-widest aco-text">Ideal para</span> · <span data-i18n="veh1_ideal">aeroporto, viagens e trabalho</span></p>
+                                <button onclick="reservarCarro('Toyota Yaris Sedan')" class="cta-chrome w-full rounded-full px-6 py-3.5 font-extrabold inline-flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp"></i><span data-i18n="fleet_book">Reservar este carro</span></button>
+                            </div>
+                            <div class="frota-info" data-v="1">
+                                <p data-i18n="veh3_desc" class="text-slate-300 text-sm leading-relaxed">SUV espaçoso e confortável, com porta-malas amplo para viagens longas, famílias e passeios pelas ladeiras de pedra.</p>
+                                <div class="grid grid-cols-3 gap-2 my-5">
+                                    <div class="frota-spec"><i class="fa-solid fa-user aco-text"></i><b>4</b><span data-i18n="fleet_pax">Passageiros</span></div>
+                                    <div class="frota-spec"><i class="fa-solid fa-suitcase aco-text"></i><b>4</b><span data-i18n="fleet_bags">Malas</span></div>
+                                    <div class="frota-spec"><i class="fa-solid fa-snowflake aco-text"></i><b>A/C</b><span data-i18n="fleet_ac">Climatizado</span></div>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-5"><span data-i18n="fleet_ideal" class="font-bold uppercase tracking-widest aco-text">Ideal para</span> · <span data-i18n="veh3_ideal">famílias, viagens longas e passeios</span></p>
+                                <button onclick="reservarCarro('Toyota Corolla Cross')" class="cta-chrome w-full rounded-full px-6 py-3.5 font-extrabold inline-flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp"></i><span data-i18n="fleet_book">Reservar este carro</span></button>
+                            </div>
+                            <div class="frota-info" data-v="2">
+                                <p data-i18n="veh2_desc" class="text-slate-300 text-sm leading-relaxed">O carro da noiva: um esportivo clássico que faz da chegada à cerimônia um momento inesquecível e rende fotos lindas.</p>
+                                <div class="grid grid-cols-3 gap-2 my-5">
+                                    <div class="frota-spec"><i class="fa-solid fa-ring text-yellow-300"></i><b data-i18n="veh2_chip">Noivas</b><span data-i18n="fleet_arrival">Chegada</span></div>
+                                    <div class="frota-spec"><i class="fa-solid fa-camera text-yellow-300"></i><b data-i18n="veh2_chip2">Ensaios</b><span data-i18n="fleet_photos">Fotos</span></div>
+                                    <div class="frota-spec"><i class="fa-solid fa-star text-yellow-300"></i><b data-i18n="fleet_classic">Clássico</b><span data-i18n="fleet_unique">Exclusivo</span></div>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-5"><span data-i18n="fleet_ideal" class="font-bold uppercase tracking-widest text-yellow-300">Ideal para</span> · <span data-i18n="veh2_ideal">casamentos, ensaios e datas especiais</span></p>
+                                <button onclick="openModal('casamentoModal')" class="w-full rounded-full px-6 py-3.5 font-extrabold inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-[#0a1428] transition-colors"><i class="fa-solid fa-ring"></i><span data-i18n="wedding_cta">Reservar para casamento</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+        <section id="especialidades" class="py-20 lg:py-28 bg-[#08101f]">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="reveal mb-12 max-w-2xl">
+                    <p data-i18n="spec_badge" class="aco-text text-xs font-bold uppercase tracking-[0.3em] mb-3">Serviços</p>
+                    <h2 data-i18n="spec_title" class="font-titulo text-3xl md:text-4xl font-bold chrome-text">O que fazemos por você</h2>
+                    <p data-i18n="spec_subtitle" class="text-slate-400 text-sm mt-3">Toque no serviço para pedir o seu orçamento pelo WhatsApp.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-5">
+                    <article class="servico reveal reveal-delay-1 lg:col-span-7 group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[420px] flex flex-col justify-end cursor-pointer" onclick="openModal('transferModal')">
+                        <img src="img/yaris-aeroporto-2.webp" alt="" loading="lazy" class="servico-foto absolute inset-0 w-full h-full object-cover" style="object-position:center 60%">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-[#060a14]/55 to-[#060a14]/5"></div>
+                        <div class="absolute top-5 left-5 right-5 flex items-center justify-between">
+                            <span class="servico-selo w-11 h-11 rounded-xl flex items-center justify-center"><i class="fa-solid fa-plane-arrival aco-text"></i></span>
+                            <span class="font-titulo text-sm font-bold chrome-text tracking-[0.2em]">01</span>
+                        </div>
+                        <div class="relative p-6 sm:p-7">
+                            <div class="servico-linha mb-4"></div>
+                            <h3 data-i18n="spec1_title" class="font-titulo text-2xl font-bold text-white mb-2">Transfer de Aeroporto</h3>
+                            <p data-i18n="spec1_desc" class="servico-texto text-slate-300 text-sm leading-relaxed max-w-md">Buscamos e levamos você em Confins e na Pampulha, acompanhando o horário do voo para estar no desembarque na hora certa.</p>
+                            <span class="servico-botao mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] px-4 py-2.5 rounded-full">
+                                <span data-i18n="spec1_cta"></span><i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="servico reveal reveal-delay-2 lg:col-span-5 group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[420px] flex flex-col justify-end cursor-pointer" onclick="openModal('agendamentoModal')">
+                        <img src="img/igreja-altar.webp" alt="" loading="lazy" class="servico-foto absolute inset-0 w-full h-full object-cover" style="object-position:center 35%">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-[#060a14]/55 to-[#060a14]/5"></div>
+                        <div class="absolute top-5 left-5 right-5 flex items-center justify-between">
+                            <span class="servico-selo w-11 h-11 rounded-xl flex items-center justify-center"><i class="fa-solid fa-church aco-text"></i></span>
+                            <span class="font-titulo text-sm font-bold chrome-text tracking-[0.2em]">02</span>
+                        </div>
+                        <div class="relative p-6 sm:p-7">
+                            <div class="servico-linha mb-4"></div>
+                            <h3 data-i18n="spec2_title" class="font-titulo text-2xl font-bold text-white mb-2">City Tour Histórico</h3>
+                            <p data-i18n="spec2_desc" class="servico-texto text-slate-300 text-sm leading-relaxed max-w-md">Roteiros por Ouro Preto, Mariana, Congonhas e São João del-Rei, com paradas nas igrejas, minas e mirantes que você quiser conhecer.</p>
+                            <span class="servico-botao mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] px-4 py-2.5 rounded-full">
+                                <span data-i18n="spec2_cta"></span><i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="servico reveal reveal-delay-3 lg:col-span-5 group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[420px] flex flex-col justify-end cursor-pointer" onclick="openModal('casamentoModal')">
+                        <img src="img/classico-passeio.webp" alt="" loading="lazy" class="servico-foto absolute inset-0 w-full h-full object-cover" style="object-position:center 70%">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-[#060a14]/55 to-[#060a14]/5"></div>
+                        <div class="absolute top-5 left-5 right-5 flex items-center justify-between">
+                            <span class="servico-selo w-11 h-11 rounded-xl flex items-center justify-center"><i class="fa-solid fa-ring text-yellow-300"></i></span>
+                            <span class="font-titulo text-sm font-bold chrome-text tracking-[0.2em]">03</span>
+                        </div>
+                        <div class="relative p-6 sm:p-7">
+                            <div class="servico-linha mb-4"></div>
+                            <h3 data-i18n="spec3_title" class="font-titulo text-2xl font-bold text-white mb-2">Carro para Casamentos</h3>
+                            <p data-i18n="spec3_desc" class="servico-texto text-slate-300 text-sm leading-relaxed max-w-md">O clássico amarelo leva a noiva até a cerimônia e participa do ensaio de fotos pelas ladeiras do centro histórico.</p>
+                            <span class="servico-botao mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] px-4 py-2.5 rounded-full">
+                                <span data-i18n="spec3_cta"></span><i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="servico reveal reveal-delay-4 lg:col-span-7 group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[420px] flex flex-col justify-end cursor-pointer" onclick="openModal('corporativoModal')">
+                        <img src="img/yaris-estrada.webp" alt="" loading="lazy" class="servico-foto absolute inset-0 w-full h-full object-cover" style="object-position:center 55%">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060a14] via-[#060a14]/55 to-[#060a14]/5"></div>
+                        <div class="absolute top-5 left-5 right-5 flex items-center justify-between">
+                            <span class="servico-selo w-11 h-11 rounded-xl flex items-center justify-center"><i class="fa-solid fa-route aco-text"></i></span>
+                            <span class="font-titulo text-sm font-bold chrome-text tracking-[0.2em]">04</span>
+                        </div>
+                        <div class="relative p-6 sm:p-7">
+                            <div class="servico-linha mb-4"></div>
+                            <h3 data-i18n="spec4_title" class="font-titulo text-2xl font-bold text-white mb-2">Viagens e Empresas</h3>
+                            <p data-i18n="spec4_desc" class="servico-texto text-slate-300 text-sm leading-relaxed max-w-md">Viagens para Belo Horizonte e outras cidades, e transporte para empresas com motorista à disposição.</p>
+                            <span class="servico-botao mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] px-4 py-2.5 rounded-full">
+                                <span data-i18n="spec4_cta"></span><i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="relative overflow-hidden">
+            <!-- Chamada final sobre a vista de Ouro Preto -->
+            <div class="relative">
+                <img src="img/ouro-preto-panorama.webp" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-b from-[#060a14] via-[#060a14]/70 to-[#060a14]"></div>
+                <div class="reveal relative max-w-4xl mx-auto px-6 py-20 lg:py-24 text-center">
+                    <img src="img/logo.webp?v=2" alt="MG Transportes" class="w-24 h-auto mx-auto mb-6 drop-shadow-[0_0_24px_rgba(143,180,255,0.35)]">
+                    <h2 data-i18n="footer_cta_title" class="font-titulo text-3xl md:text-5xl font-bold chrome-text leading-tight">Para onde vamos hoje?</h2>
+                    <p data-i18n="footer_cta_text" class="text-slate-300 mt-4 max-w-xl mx-auto">Aeroporto, city tour, casamento ou viagem: fale direto com o Maurílio e reserve o seu horário.</p>
+                    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <a href="javascript:void(0)" onclick="waSend('wa_ride')" class="cta-chrome w-full sm:w-auto rounded-full px-7 py-3.5 font-extrabold inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-car-side"></i><span data-i18n="cta_title">Solicitar Corrida</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('agendamentoModal')" class="w-full sm:w-auto rounded-full px-7 py-3.5 font-bold inline-flex items-center justify-center gap-2 border border-white/30 text-white hover:bg-white/10 transition-colors">
+                            <i class="fa-regular fa-calendar-check"></i><span data-i18n="schedule_title">Agendar Viagem</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informações -->
+            <div class="relative bg-[#04070e]">
+                <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-300/50 to-transparent"></div>
+                <div class="max-w-6xl mx-auto px-6 pt-14 pb-8">
+                    <div class="grid grid-cols-2 md:grid-cols-[1.5fr_1fr_1fr_1.3fr] gap-x-6 gap-y-10">
+                        <div class="col-span-2 md:col-span-1">
+                            <p class="font-titulo text-2xl font-bold chrome-text">MG Transportes</p>
+                            <p class="text-slate-500 text-sm leading-relaxed mt-2 max-w-xs" data-i18n="footer_tagline">Transporte e turismo em Ouro Preto e região.</p>
+                            <div class="mt-5 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] pl-2 pr-4 py-2">
+                                <span class="w-10 h-10 rounded-full flex items-center justify-center text-[#0a1428] font-titulo font-bold text-sm" style="background:linear-gradient(145deg,#ffffff,#c9d2e2 45%,#7f8ba3)">MG</span>
+                                <span>
+                                    <span data-i18n="about_driver_label" class="block text-[10px] font-bold uppercase tracking-[0.25em] aco-text">Seu motorista</span>
+                                    <span class="block text-sm font-semibold text-white">Maurílio Gonçalves</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 data-i18n="footer_nav_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Navegue</h4>
+                            <ul class="space-y-3 text-sm text-slate-500">
+                                <li><a href="#roteiros" class="hover:text-white transition-colors" data-i18n="cities_badge">Roteiros</a></li>
+                                <li><a href="#sobre" class="hover:text-white transition-colors" data-i18n="about_badge">Quem somos</a></li>
+                                <li><a href="#frota" class="hover:text-white transition-colors" data-i18n="fleet_badge">Frota</a></li>
+                                <li><a href="#especialidades" class="hover:text-white transition-colors" data-i18n="spec_badge">Serviços</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 data-i18n="footer_services_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Serviços</h4>
+                            <ul class="space-y-3 text-sm text-slate-500">
+                                <li><a href="javascript:void(0)" onclick="openModal('transferModal')" class="hover:text-white transition-colors" data-i18n="transferLink_title">Transfer Aeroporto</a></li>
+                                <li><a href="javascript:void(0)" onclick="openModal('agendamentoModal')" class="hover:text-white transition-colors" data-i18n="spec2_title">City Tour Histórico</a></li>
+                                <li><a href="javascript:void(0)" onclick="openModal('casamentoModal')" class="hover:text-white transition-colors" data-i18n="wedding_title">Carro para Casamento</a></li>
+                                <li><a href="javascript:void(0)" onclick="openModal('corporativoModal')" class="hover:text-white transition-colors" data-i18n="corporate_title">Para Empresas</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-span-2 md:col-span-1">
+                            <h4 data-i18n="footer_contact_title" class="text-slate-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Contato</h4>
+                            <ul class="space-y-3 text-sm text-slate-400">
+                                <li>
+                                    <a href="javascript:void(0)" onclick="waSend('wa_help')" class="group flex items-center gap-3 hover:text-white transition-colors">
+                                        <span class="w-9 h-9 rounded-full bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center"><i class="fa-brands fa-whatsapp text-emerald-400"></i></span>
+                                        <span data-phone>WhatsApp</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-link="instagram" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:text-white transition-colors">
+                                        <span class="w-9 h-9 rounded-full bg-pink-500/10 border border-pink-400/30 flex items-center justify-center"><i class="fa-brands fa-instagram text-pink-400"></i></span>
+                                        <span>@transportes_goncalves</span>
+                                    </a>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><i class="fa-solid fa-location-dot aco-text"></i></span>
+                                    <span>Ouro Preto - MG</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span></span>
+                                    <span data-i18n="hero_available">Disponível 24/7</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                        <p class="text-slate-600 text-xs">&copy; <span id="currentYear"></span> MG Transportes. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
+                        <div class="flex items-center gap-5">
+                            <p class="text-slate-600 text-xs">
+                                <span data-i18n="footer_madeBy">Desenvolvido por:</span>
+                                <a href="https://www.saturnonfc.com.br" target="_blank" rel="noopener noreferrer" class="aco-text hover:text-white transition-colors font-semibold">Saturno NFC</a>
+                            </p>
+                            <a href="#inicio" class="w-9 h-9 rounded-full border border-white/15 text-slate-300 hover:bg-white hover:text-[#0a1428] transition-colors flex items-center justify-center" data-i18n-aria="footer_back_top" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- WhatsApp flutuante -->
+    <a href="javascript:void(0)" onclick="waSend('wa_help')" data-i18n-aria="wa_aria" aria-label="Falar no WhatsApp" class="hidden sm:flex fixed bottom-5 right-5 z-40 h-14 pl-4 pr-5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white items-center gap-2 shadow-lg shadow-emerald-900/50 transition-transform hover:scale-105">
+        <i class="fa-brands fa-whatsapp text-2xl"></i><span class="hidden sm:inline text-sm font-bold" data-i18n="wa_float">Fale conosco</span>
+    </a>
+
+    <!-- Menu inferior (só no celular) -->
+    <nav class="nav-inferior sm:hidden fixed bottom-0 inset-x-0 z-40" aria-label="Menu">
+        <div class="grid grid-cols-5 items-end h-16 px-1">
+            <a href="#inicio" data-nav="inicio" class="nav-item ativo flex flex-col items-center justify-center gap-1 h-full text-[10px] font-semibold"><i class="fa-solid fa-house text-base"></i><span data-i18n="nav_home">Início</span></a>
+            <a data-link="instagram" href="#" target="_blank" rel="noopener noreferrer" class="nav-item flex flex-col items-center justify-center gap-1 h-full text-[10px] font-semibold"><i class="fa-brands fa-instagram text-base text-pink-400"></i><span data-i18n="instagram_label">Instagram</span></a>
+            <button onclick="openModal('agendamentoModal')" class="flex flex-col items-center gap-1 -mt-5 text-[10px] font-semibold text-white" data-i18n-aria="nav_book" aria-label="Agendar">
+                <span class="nav-centro w-14 h-14 rounded-2xl flex items-center justify-center"><i class="fa-regular fa-calendar-check text-xl"></i></span>
+                <span data-i18n="nav_book" class="pb-1.5">Agendar</span>
+            </button>
+            <a href="javascript:void(0)" onclick="openModal('casamentoModal')" class="nav-item flex flex-col items-center justify-center gap-1 h-full text-[10px] font-semibold"><i class="fa-solid fa-ring text-base text-yellow-300"></i><span data-i18n="nav_wedding">Casamento</span></a>
+            <a href="javascript:void(0)" onclick="waSend('wa_help')" class="nav-item flex flex-col items-center justify-center gap-1 h-full text-[10px] font-semibold"><i class="fa-brands fa-whatsapp text-base text-emerald-400"></i><span>WhatsApp</span></a>
+        </div>
+    </nav>
+
+    <!-- MODAIS (sobem de baixo, painel azul-marinho) -->
+
+    <div id="agendamentoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4">
+        <div class="modal-content modal-prata rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <button onclick="closeModal('agendamentoModal')" aria-label="Fechar" class="absolute top-4 right-4 text-slate-400 hover:text-white w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/5"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <span class="selo-prata w-12 h-12 rounded-2xl flex items-center justify-center mb-4"><i class="fa-regular fa-calendar-check"></i></span>
+            <h2 data-i18n="modal_schedule_title" class="font-titulo text-2xl font-bold chrome-text mb-1">Agendar Viagem</h2>
+            <p data-i18n="modal_schedule_subtitle" class="text-slate-400 text-sm mb-5">Preencha os dados abaixo para verificar disponibilidade.</p>
+            <div class="linha-prata mb-5"></div>
+
+            <form id="agendamentoForm" onsubmit="submitAgendamento(event)" class="space-y-4 text-sm">
+                <div>
+                    <label for="origem" data-i18n="modal_schedule_origin_label" class="block mb-1.5 font-semibold">Endereço de Origem</label>
+                    <div class="relative"><i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <input type="text" id="origem" required data-i18n-placeholder="modal_schedule_origin_placeholder" class="campo com-icone" placeholder="Ex: Aeroporto de Confins"></div>
+                </div>
+                <div>
+                    <label for="destino" data-i18n="modal_schedule_dest_label" class="block mb-1.5 font-semibold">Endereço de Destino</label>
+                    <div class="relative"><i class="fa-solid fa-flag-checkered absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <input type="text" id="destino" required data-i18n-placeholder="modal_schedule_dest_placeholder" class="campo com-icone" placeholder="Ex: Pousada em Ouro Preto"></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-1/2"><label for="data" data-i18n="label_date" class="block mb-1.5 font-semibold">Data</label><input type="date" id="data" required class="campo"></div>
+                    <div class="w-1/2"><label for="horario" data-i18n="label_time" class="block mb-1.5 font-semibold">Horário</label><input type="time" id="horario" required class="campo"></div>
+                </div>
+                <button type="submit" class="btn-prata w-full mt-6 font-extrabold py-3.5 rounded-xl flex justify-center items-center"><i class="fa-brands fa-whatsapp text-xl mr-2 text-emerald-700"></i><span data-i18n="btn_requestQuote">Pedir Orçamento</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="transferModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4">
+        <div class="modal-content modal-prata rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <button onclick="closeModal('transferModal')" aria-label="Fechar" class="absolute top-4 right-4 text-slate-400 hover:text-white w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/5"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <span class="selo-prata w-12 h-12 rounded-2xl flex items-center justify-center mb-4"><i class="fa-solid fa-plane-arrival"></i></span>
+            <h2 data-i18n="transferLink_title" class="font-titulo text-2xl font-bold chrome-text mb-1">Transfer Aeroporto</h2>
+            <p data-i18n="modal_transfer_subtitle" class="text-slate-400 text-sm mb-5">Selecione o aeroporto e os detalhes do seu voo.</p>
+            <div class="linha-prata mb-5"></div>
+
+            <form id="transferForm" onsubmit="submitTransfer(event)" class="space-y-4 text-sm">
+                <div>
+                    <label for="aeroporto" data-i18n="modal_transfer_airport_label" class="block mb-1.5 font-semibold">Aeroporto</label>
+                    <div class="relative"><i class="fa-solid fa-plane absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <select id="aeroporto" required class="campo com-icone appearance-none">
+                            <option value="" disabled selected data-i18n="modal_transfer_airport_placeholder">Selecione o aeroporto</option>
+                            <option value="Aeroporto Internacional de Confins - Tancredo Neves (CNF)">Confins - Tancredo Neves (CNF) · ~100 km</option>
+                            <option value="Aeroporto da Pampulha (PLU)">Pampulha (PLU) · ~95 km</option>
+                            <option value="Aeroporto de Ipatinga - Usiminas (IPN)">Ipatinga - Usiminas (IPN) · ~180 km</option>
+                        </select></div>
+                </div>
+                <div>
+                    <label for="sentidoTransfer" data-i18n="modal_transfer_direction_label" class="block mb-1.5 font-semibold">Sentido</label>
+                    <div class="relative"><i class="fa-solid fa-right-left absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <select id="sentidoTransfer" required class="campo com-icone appearance-none">
+                            <option value="Desembarque (Aeroporto → Ouro Preto)" data-i18n="modal_transfer_direction_opt1">Desembarque (Aeroporto → Ouro Preto)</option>
+                            <option value="Embarque (Ouro Preto → Aeroporto)" data-i18n="modal_transfer_direction_opt2">Embarque (Ouro Preto → Aeroporto)</option>
+                        </select></div>
+                </div>
+                <div>
+                    <label for="enderecoTransfer" data-i18n="modal_transfer_address_label" class="block mb-1.5 font-semibold">Endereço em Ouro Preto</label>
+                    <div class="relative"><i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <input type="text" id="enderecoTransfer" required data-i18n-placeholder="modal_transfer_address_placeholder" class="campo com-icone" placeholder="Ex: Hotel no Centro Histórico"></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-1/2"><label for="dataTransfer" data-i18n="modal_transfer_date_label" class="block mb-1.5 font-semibold">Data do Voo</label><input type="date" id="dataTransfer" required class="campo"></div>
+                    <div class="w-1/2"><label for="horarioTransfer" data-i18n="modal_transfer_time_label" class="block mb-1.5 font-semibold">Horário do Voo</label><input type="time" id="horarioTransfer" required class="campo"></div>
+                </div>
+                <button type="submit" class="btn-prata w-full mt-6 font-extrabold py-3.5 rounded-xl flex justify-center items-center"><i class="fa-brands fa-whatsapp text-xl mr-2 text-emerald-700"></i><span data-i18n="btn_requestQuote">Pedir Orçamento</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="corporativoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4">
+        <div class="modal-content modal-prata rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <button onclick="closeModal('corporativoModal')" aria-label="Fechar" class="absolute top-4 right-4 text-slate-400 hover:text-white w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/5"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <span class="selo-prata w-12 h-12 rounded-2xl flex items-center justify-center mb-4"><i class="fa-solid fa-briefcase"></i></span>
+            <h2 data-i18n="corporate_title" class="font-titulo text-2xl font-bold chrome-text mb-1">Para Empresas</h2>
+            <p data-i18n="modal_corp_subtitle" class="text-slate-400 text-sm mb-5">Conte um pouco sobre a sua empresa para montarmos a melhor proposta.</p>
+            <div class="linha-prata mb-5"></div>
+
+            <form id="corporativoForm" onsubmit="submitCorporativo(event)" class="space-y-4 text-sm">
+                <div>
+                    <label for="corpNome" data-i18n="modal_corp_name_label" class="block mb-1.5 font-semibold">Seu Nome</label>
+                    <div class="relative"><i class="fa-solid fa-user absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <input type="text" id="corpNome" required class="campo com-icone" placeholder="Ex: Maria Silva"></div>
+                </div>
+                <div>
+                    <label for="corpEmpresa" data-i18n="modal_corp_company_label" class="block mb-1.5 font-semibold">Nome da Empresa</label>
+                    <div class="relative"><i class="fa-solid fa-building absolute left-3.5 top-3.5 text-slate-500"></i>
+                        <input type="text" id="corpEmpresa" required class="campo com-icone" placeholder="Ex: Mineração ABC Ltda"></div>
+                </div>
+                <div>
+                    <span data-i18n="modal_corp_services_label" class="rotulo block mb-2 font-semibold">Serviços de Interesse</span>
+                    <div class="grid gap-2">
+                        <label class="opcao-prata flex items-center gap-3 rounded-xl px-4 py-2.5 cursor-pointer transition-colors"><input type="checkbox" name="corpServico" value="corp_service1" class="w-4 h-4 accent-slate-300 shrink-0"><span data-i18n="corp_service1" class="text-slate-200">Diárias com motorista à disposição</span></label>
+                        <label class="opcao-prata flex items-center gap-3 rounded-xl px-4 py-2.5 cursor-pointer transition-colors"><input type="checkbox" name="corpServico" value="corp_service2" class="w-4 h-4 accent-slate-300 shrink-0"><span data-i18n="corp_service2" class="text-slate-200">Transfer de colaboradores e visitantes</span></label>
+                        <label class="opcao-prata flex items-center gap-3 rounded-xl px-4 py-2.5 cursor-pointer transition-colors"><input type="checkbox" name="corpServico" value="corp_service3" class="w-4 h-4 accent-slate-300 shrink-0"><span data-i18n="corp_service3" class="text-slate-200">Reuniões e eventos</span></label>
+                        <label class="opcao-prata flex items-center gap-3 rounded-xl px-4 py-2.5 cursor-pointer transition-colors"><input type="checkbox" name="corpServico" value="corp_service4" class="w-4 h-4 accent-slate-300 shrink-0"><span data-i18n="corp_service4" class="text-slate-200">Viagens intermunicipais da equipe</span></label>
+                        <label class="opcao-prata flex items-center gap-3 rounded-xl px-4 py-2.5 cursor-pointer transition-colors"><input type="checkbox" name="corpServico" value="corp_service5" class="w-4 h-4 accent-slate-300 shrink-0"><span data-i18n="corp_service5" class="text-slate-200">Contrato mensal</span></label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-prata w-full mt-6 font-extrabold py-3.5 rounded-xl flex justify-center items-center"><i class="fa-brands fa-whatsapp text-xl mr-2 text-emerald-700"></i><span data-i18n="modal_corp_submit">Falar com a MG</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="casamentoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4">
+        <div class="modal-content modal-prata rounded-t-3xl sm:rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden max-h-[92vh] overflow-y-auto">
+            <div class="relative h-40">
+                <img src="img/classico-passeio.webp" alt="Carro clássico amarelo para casamento" class="w-full h-full object-cover object-[center_65%]">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0d1424] via-[#0d1424]/30 to-transparent"></div>
+                <button onclick="closeModal('casamentoModal')" aria-label="Fechar" class="absolute top-4 right-4 text-white bg-black/40 w-9 h-9 flex items-center justify-center rounded-full hover:bg-black/60"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="p-6 pt-1">
+                <p class="text-yellow-300 text-[11px] font-bold uppercase tracking-[0.3em] mb-1"><i class="fa-solid fa-ring mr-1"></i> <span data-i18n="wedding_kicker">Exclusivo para noivas</span></p>
+                <h2 data-i18n="wedding_title" class="font-titulo text-2xl font-bold chrome-text mb-1">Carro para Casamento</h2>
+                <p data-i18n="wedding_modal_subtitle" class="text-slate-400 text-sm mb-5">Conte os detalhes do grande dia para reservarmos o clássico amarelo.</p>
+                <div class="linha-prata mb-5"></div>
+
+                <form id="casamentoForm" onsubmit="submitCasamento(event)" class="space-y-4 text-sm">
+                    <div>
+                        <label for="casNoivos" data-i18n="wedding_names_label" class="block mb-1.5 font-semibold">Nome dos noivos</label>
+                        <div class="relative"><i class="fa-solid fa-heart absolute left-3.5 top-3.5 text-slate-500"></i>
+                            <input type="text" id="casNoivos" required class="campo com-icone" data-i18n-placeholder="wedding_names_placeholder" placeholder="Ex: Ana e Pedro"></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1/2"><label for="casData" data-i18n="label_date" class="block mb-1.5 font-semibold">Data</label><input type="date" id="casData" required class="campo"></div>
+                        <div class="w-1/2"><label for="casHorario" data-i18n="wedding_time_label" class="block mb-1.5 font-semibold">Horário da cerimônia</label><input type="time" id="casHorario" required class="campo"></div>
+                    </div>
+                    <div>
+                        <label for="casCerimonia" data-i18n="wedding_ceremony_label" class="block mb-1.5 font-semibold">Local da cerimônia</label>
+                        <div class="relative"><i class="fa-solid fa-church absolute left-3.5 top-3.5 text-slate-500"></i>
+                            <input type="text" id="casCerimonia" required class="campo com-icone" data-i18n-placeholder="wedding_ceremony_placeholder" placeholder="Ex: Igreja de São Francisco de Assis"></div>
+                    </div>
+                    <div>
+                        <label for="casSaida" data-i18n="wedding_pickup_label" class="block mb-1.5 font-semibold">Buscar a noiva em</label>
+                        <div class="relative"><i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-slate-500"></i>
+                            <input type="text" id="casSaida" class="campo com-icone" data-i18n-placeholder="wedding_pickup_placeholder" placeholder="Ex: Salão de beleza, pousada (opcional)"></div>
+                    </div>
+                    <label class="opcao-prata flex items-center gap-3 rounded-xl px-4 py-2.5 cursor-pointer transition-colors">
+                        <input type="checkbox" id="casEnsaio" class="w-4 h-4 accent-slate-300 shrink-0">
+                        <span data-i18n="wedding_photos_label" class="text-slate-200">Quero o carro também no ensaio de fotos</span>
+                    </label>
+                    <button type="submit" class="btn-prata w-full mt-6 font-extrabold py-3.5 rounded-xl flex justify-center items-center"><i class="fa-brands fa-whatsapp text-xl mr-2 text-emerald-700"></i><span data-i18n="wedding_submit">Consultar disponibilidade</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="localizacaoModal" class="modal fixed inset-0 z-50 opacity-0 invisible bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4">
+        <div class="modal-content modal-prata rounded-t-3xl sm:rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden max-h-[92vh] overflow-y-auto">
+            <div class="relative h-36">
+                <img src="img/ouro-preto-panorama.webp" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1222] to-transparent"></div>
+                <button onclick="closeModal('localizacaoModal')" aria-label="Fechar" class="absolute top-4 right-4 text-white bg-black/40 w-9 h-9 flex items-center justify-center rounded-full hover:bg-black/60"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="p-6 pt-0">
+                <h2 data-i18n="area_title" class="font-titulo text-2xl font-bold text-white mb-5">Onde Atendemos</h2>
+
+                <div class="rounded-xl p-4 border border-blue-300/20 bg-blue-300/5 mb-5">
+                    <h3 class="text-white font-bold mb-1 flex items-center gap-2"><i class="fa-solid fa-house-flag aco-text"></i> <span data-i18n="modal_area_base_title">Base</span></h3>
+                    <p data-i18n-html="modal_area_base_text" class="text-slate-400 text-sm">Ouro Preto - MG<br>Atendimento em Ouro Preto, Mariana e região.</p>
+                </div>
+
+                <h3 data-i18n="modal_area_coverage_title" class="font-semibold text-xs uppercase tracking-[0.2em] text-slate-300 mb-3">Cobertura</h3>
+                <ul class="text-slate-400 text-sm space-y-3">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><div data-i18n-html="modal_area_li1"><strong class="text-slate-200">Aeroportos:</strong> Confins (CNF) e Pampulha (PLU).</div></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><div data-i18n-html="modal_area_li2"><strong class="text-slate-200">Cidades históricas:</strong> Ouro Preto, Mariana, Congonhas e arredores.</div></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><div data-i18n-html="modal_area_li3"><strong class="text-slate-200">Outros destinos:</strong> Belo Horizonte e demais cidades sob consulta.</div></li>
+                </ul>
+
+                <button onclick="closeModal('localizacaoModal')" data-i18n="modal_area_button" class="w-full mt-8 bg-white/10 hover:bg-white/15 text-white font-semibold py-3 rounded-xl transition-colors">Entendi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================= CONFIGURAÇÃO DA MG TRANSPORTES =================
+        // Preencha antes de publicar. Campos vazios: o WhatsApp abre sem número
+        // (a pessoa escolhe o contato) e os botões de Instagram/Google somem.
+        const WHATSAPP_NUMBER = '553185534265';   // +55 31 8553-4265 (55 + DDD + número, só dígitos)
+        const INSTAGRAM_URL = 'https://www.instagram.com/transportes_goncalves/';
+        const GOOGLE_REVIEW_URL = '';    // link "Avaliar" do perfil no Google
+        const COMPANY_NAME = 'MG Transportes';
+        const DRIVER_NAME = 'Maurílio Gonçalves';
+        // ==================================================================
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Liga (ou esconde) os links configuráveis e mostra o telefone no rodapé
+        (function aplicarConfig() {
+            const links = { instagram: INSTAGRAM_URL, review: GOOGLE_REVIEW_URL };
+            document.querySelectorAll('[data-link]').forEach(el => {
+                const url = links[el.getAttribute('data-link')];
+                if (url) { el.href = url; return; }
+                const grade = el.parentElement;
+                el.remove();
+                // sobrou um botão só na linha: ocupa a largura toda
+                if (grade && grade.classList.contains('grid') && grade.children.length === 1) grade.children[0].classList.add('col-span-2');
+            });
+            const d = WHATSAPP_NUMBER.replace(/\D/g, '').replace(/^55/, '');
+            if (d.length >= 10) {
+                const fone = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
+                document.querySelectorAll('[data-phone]').forEach(el => { el.textContent = fone; });
+            }
+        })();
+
+        function openWhatsApp(message) {
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(url, '_blank');
+        }
+
+        /**
+         * i18n: PT / EN / ES
+         */
+        const translations = {
+            pt: {
+                meta_title: "MG Transportes | Transporte e Turismo em Ouro Preto",
+                hero_kicker: "Ouro Preto · Minas Gerais",
+                hero_subtitle: "Transporte e turismo pelas cidades históricas de Minas, com conforto do aeroporto ao centro histórico.",
+                hero_saveContact: "Salvar contato",
+                hero_available: "Disponível 24/7",
+                cta_title: "Solicitar Corrida",
+                cta_subtitle: "Atendimento imediato pelo WhatsApp",
+                schedule_title: "Agendar Viagem",
+                schedule_subtitle: "Datas, passeios e eventos",
+                transferLink_title: "Transfer Aeroporto",
+                transferLink_subtitle: "Confins e Pampulha",
+                corporate_title: "Para Empresas",
+                corporate_subtitle: "Equipes e visitantes",
+                area_title: "Onde Atendemos",
+                area_subtitle: "Regiões e cidades",
+                review_title: "Avaliar no Google",
+                instagram_label: "Instagram",
+                scroll_hint: "Conheça a MG",
+                gallery_caption: "Minas pela janela do carro",
+                cities_badge: "Roteiros",
+                cities_title: "Para onde levamos você",
+                cities_subtitle: "Igrejas barrocas, minas, mirantes e ladeiras de pedra em Ouro Preto, São João del-Rei e região: montamos o passeio com as paradas que você quiser.",
+                tour_video_label: "Tour guiado",
+                city1_desc: "Centro histórico e mirantes",
+                city2_title: "Igrejas Barrocas",
+                city2_desc: "Ouro, talha e história",
+                city3_title: "Capelas e Minas",
+                city3_desc: "Roteiros fora do comum",
+                city4_title: "Carros Antigos para Casamento",
+                city4_desc: "O clássico amarelo para a chegada da noiva",
+                about_badge: "Quem somos",
+                about_title_pre: "Seu motorista em",
+                about_title_highlight: "Minas Gerais",
+                about_text: "A MG Transportes leva moradores, turistas e empresas com segurança e pontualidade, do aeroporto às cidades históricas, com atendimento direto e personalizado.",
+                about_li1: "Motorista experiente e cuidadoso.",
+                about_li2: "Carros limpos, revisados e climatizados.",
+                about_li3: "Quem conhece a história e os atalhos da região.",
+                about_li4: "Atendimento pelo WhatsApp, 24 horas.",
+                fleet_badge: "Frota",
+                fleet_title: "Escolha como quer chegar",
+                fleet_subtitle: "Do sedã e do SUV confortáveis para o dia a dia ao clássico amarelo que leva a noiva ao altar.",
+                veh1_tag: "Executivo",
+                veh1_desc: "Sedã confortável e econômico, ideal para transfers de aeroporto, viagens e compromissos de trabalho.",
+                veh2_tag: "Casamentos",
+                veh2_name: "Clássico Amarelo",
+                veh2_desc: "O carro da noiva: um esportivo clássico que faz da chegada à cerimônia um momento inesquecível e rende fotos lindas.",
+                veh2_chip: "Noivas",
+                fleet_hint: "Deslize para ver o outro carro",
+                spec_badge: "Serviços",
+                spec_title: "O que fazemos por você",
+                spec1_title: "Transfer de Aeroporto",
+                spec1_desc: "Buscamos e levamos você em Confins e na Pampulha, acompanhando o horário do voo para estar no desembarque na hora certa.",
+                spec2_title: "City Tour Histórico",
+                spec2_desc: "Roteiros por Ouro Preto, Mariana, Congonhas e São João del-Rei, com paradas nas igrejas, minas e mirantes que você quiser conhecer.",
+                spec3_title: "Carro para Casamentos",
+                spec3_desc: "O clássico amarelo leva a noiva até a cerimônia e participa do ensaio de fotos pelas ladeiras do centro histórico.",
+                spec4_title: "Viagens e Empresas",
+                spec4_desc: "Viagens para Belo Horizonte e outras cidades, e transporte para empresas com motorista à disposição.",
+                footer_tagline: "Transporte e turismo em Ouro Preto e região.",
+                footer_rights: "Todos os direitos reservados.",
+                footer_madeBy: "Desenvolvido por:",
+                footer_nav_title: "Navegue",
+                footer_contact_title: "Contato",
+                footer_social_title: "Redes",
+                wa_aria: "Falar no WhatsApp",
+                wa_float: "Fale conosco",
+                modal_schedule_title: "Agendar Viagem",
+                modal_schedule_subtitle: "Preencha os dados abaixo para verificar disponibilidade.",
+                modal_schedule_origin_label: "Endereço de Origem",
+                modal_schedule_origin_placeholder: "Ex: Aeroporto de Confins",
+                modal_schedule_dest_label: "Endereço de Destino",
+                modal_schedule_dest_placeholder: "Ex: Pousada em Ouro Preto",
+                label_date: "Data",
+                label_time: "Horário",
+                btn_requestQuote: "Pedir Orçamento",
+                modal_transfer_subtitle: "Selecione o aeroporto e os detalhes do seu voo.",
+                modal_transfer_airport_label: "Aeroporto",
+                modal_transfer_airport_placeholder: "Selecione o aeroporto",
+                modal_transfer_direction_label: "Sentido",
+                modal_transfer_direction_opt1: "Desembarque (Aeroporto → Ouro Preto)",
+                modal_transfer_direction_opt2: "Embarque (Ouro Preto → Aeroporto)",
+                modal_transfer_address_label: "Endereço em Ouro Preto",
+                modal_transfer_address_placeholder: "Ex: Hotel no Centro Histórico",
+                modal_transfer_date_label: "Data do Voo",
+                modal_transfer_time_label: "Horário do Voo",
+                modal_corp_subtitle: "Conte um pouco sobre a sua empresa para montarmos a melhor proposta.",
+                modal_corp_name_label: "Seu Nome",
+                modal_corp_company_label: "Nome da Empresa",
+                modal_corp_services_label: "Serviços de Interesse",
+                corp_service1: "Diárias com motorista à disposição",
+                corp_service2: "Transfer de colaboradores e visitantes",
+                corp_service3: "Reuniões e eventos",
+                corp_service4: "Viagens intermunicipais da equipe",
+                corp_service5: "Contrato mensal",
+                modal_corp_submit: "Falar com a MG",
+                modal_area_base_title: "Base",
+                modal_area_base_text: "Ouro Preto - MG<br>Atendimento em Ouro Preto, Mariana e região.",
+                modal_area_coverage_title: "Cobertura",
+                modal_area_li1: '<strong class="text-slate-200">Aeroportos:</strong> Confins (CNF) e Pampulha (PLU).',
+                modal_area_li2: '<strong class="text-slate-200">Cidades históricas:</strong> Ouro Preto, Mariana, Congonhas e arredores.',
+                modal_area_li3: '<strong class="text-slate-200">Outros destinos:</strong> Belo Horizonte e demais cidades sob consulta.',
+                modal_area_button: "Entendi",
+                wa_ride: "Olá, MG Transportes! Gostaria de solicitar uma corrida agora.",
+                wa_help: "Olá, MG Transportes! Gostaria de mais informações sobre os serviços.",
+                wa_scheduleHeader: "Pedido de Orçamento",
+                wa_origin: "Origem",
+                wa_destination: "Destino",
+                wa_date: "Data",
+                wa_time: "Horário",
+                wa_scheduleClosing: "Olá! Gostaria de confirmar a disponibilidade e o valor para este trajeto.",
+                wa_transferHeader: "Transfer Aeroporto",
+                wa_airport: "Aeroporto",
+                wa_direction: "Sentido",
+                wa_addressOP: "Endereço em Ouro Preto",
+                wa_flightDate: "Data do Voo",
+                wa_flightTime: "Horário do Voo",
+                wa_transferClosing: "Olá! Gostaria de confirmar a disponibilidade e o valor para este transfer.",
+                wa_corpHeader: "Transporte para Empresas",
+                wa_name: "Nome",
+                wa_company: "Empresa",
+                wa_services: "Serviços de interesse",
+                wa_toDefine: "A definir",
+                wa_corpClosing: "Olá! Gostaria de conversar sobre transporte para a minha empresa.",
+                wedding_title: "Carro para Casamento",
+                wedding_subtitle: "Clássico amarelo para a chegada da noiva",
+                wedding_cta: "Reservar para casamento",
+                wedding_kicker: "Exclusivo para noivas",
+                wedding_modal_subtitle: "Conte os detalhes do grande dia para reservarmos o clássico amarelo.",
+                wedding_names_label: "Nome dos noivos",
+                wedding_names_placeholder: "Ex: Ana e Pedro",
+                wedding_time_label: "Horário da cerimônia",
+                wedding_ceremony_label: "Local da cerimônia",
+                wedding_ceremony_placeholder: "Ex: Igreja de São Francisco de Assis",
+                wedding_pickup_label: "Buscar a noiva em",
+                wedding_pickup_placeholder: "Ex: Salão de beleza, pousada (opcional)",
+                wedding_photos_label: "Quero o carro também no ensaio de fotos",
+                wedding_submit: "Consultar disponibilidade",
+                veh2_chip2: "Ensaios",
+                nav_home: "Início",
+                nav_book: "Agendar",
+                nav_wedding: "Casamento",
+                tour_video_title: "Igreja de São Francisco de Assis",
+                wa_weddingHeader: "Carro para Casamento",
+                wa_couple: "Noivos",
+                wa_ceremonyTime: "Horário da cerimônia",
+                wa_ceremony: "Cerimônia",
+                wa_pickup: "Buscar a noiva em",
+                wa_photos: "Ensaio de fotos",
+                wa_yes: "Sim",
+                wa_no: "Não",
+                wa_weddingClosing: "Olá! Gostaria de saber a disponibilidade e o valor do carro clássico para o nosso casamento.",
+                about_driver_label: "Seu motorista",
+                veh3_tag: "SUV",
+                veh3_desc: "SUV espaçoso e confortável, com porta-malas amplo para viagens longas, famílias e passeios pelas ladeiras de pedra.",
+                slide_1: "Ouro Preto à noite",
+                slide_2: "Toyota Corolla Cross",
+                slide_3: "Igrejas barrocas",
+                slide_4: "O clássico amarelo dos casamentos",
+                slide_5: "Vista de Ouro Preto",
+                slide_6: "Transfer de aeroporto",
+                slide_7: "Capelas e minas",
+                slide_8: "Ladeiras de pedra",
+                spec1_cta: "Agendar transfer",
+                spec2_cta: "Montar roteiro",
+                spec3_cta: "Reservar o clássico",
+                spec4_cta: "Pedir proposta",
+                spec_subtitle: "Toque no serviço para pedir o seu orçamento pelo WhatsApp.",
+                footer_cta_title: "Para onde vamos hoje?",
+                footer_cta_text: "Aeroporto, city tour, casamento ou viagem: fale direto com o Maurílio e reserve o seu horário.",
+                footer_services_title: "Serviços",
+                footer_back_top: "Voltar ao topo",
+                fleet_pax: "Passageiros",
+                fleet_bags: "Malas",
+                fleet_ac: "Climatizado",
+                fleet_ideal: "Ideal para",
+                fleet_book: "Reservar este carro",
+                fleet_arrival: "Chegada",
+                fleet_photos: "Fotos",
+                fleet_classic: "Clássico",
+                fleet_unique: "Exclusivo",
+                fleet_prev: "Veículo anterior",
+                fleet_next: "Próximo veículo",
+                veh1_ideal: "aeroporto, viagens e trabalho",
+                veh3_ideal: "famílias, viagens longas e passeios",
+                veh2_ideal: "casamentos, ensaios e datas especiais",
+                wa_fleet: "Olá, MG Transportes! Gostaria de reservar o {carro}."
+            },
+            en: {
+                meta_title: "MG Transportes | Transportation & Tours in Ouro Preto",
+                hero_kicker: "Ouro Preto · Minas Gerais",
+                hero_subtitle: "Transportation and tours through the historic towns of Minas, in comfort from the airport to the old town.",
+                hero_saveContact: "Save contact",
+                hero_available: "Available 24/7",
+                cta_title: "Request a Ride",
+                cta_subtitle: "Immediate service via WhatsApp",
+                schedule_title: "Book a Trip",
+                schedule_subtitle: "Dates, tours and events",
+                transferLink_title: "Airport Transfer",
+                transferLink_subtitle: "Confins and Pampulha",
+                corporate_title: "For Companies",
+                corporate_subtitle: "Teams and visitors",
+                area_title: "Where We Go",
+                area_subtitle: "Regions and towns",
+                review_title: "Rate us on Google",
+                instagram_label: "Instagram",
+                scroll_hint: "Meet MG",
+                gallery_caption: "Minas through the car window",
+                cities_badge: "Tours",
+                cities_title: "Where we take you",
+                cities_subtitle: "Baroque churches, mines, viewpoints and stone streets in Ouro Preto, São João del-Rei and around: we plan the tour with the stops you want.",
+                tour_video_label: "Guided tour",
+                city1_desc: "Historic center and viewpoints",
+                city2_title: "Baroque Churches",
+                city2_desc: "Gold, carvings and history",
+                city3_title: "Chapels and Mines",
+                city3_desc: "Off-the-beaten-path tours",
+                city4_title: "Vintage Wedding Cars",
+                city4_desc: "The yellow classic for the bride’s arrival",
+                about_badge: "About us",
+                about_title_pre: "Your driver in",
+                about_title_highlight: "Minas Gerais",
+                about_text: "MG Transportes drives locals, tourists and companies safely and on time, from the airport to the historic towns, with direct, personal service.",
+                about_li1: "Experienced, careful driver.",
+                about_li2: "Clean, serviced, air-conditioned cars.",
+                about_li3: "Someone who knows the region's history and shortcuts.",
+                about_li4: "WhatsApp service, 24 hours.",
+                fleet_badge: "Fleet",
+                fleet_title: "Choose how to arrive",
+                fleet_subtitle: "From a comfortable sedan and SUV for everyday trips to the yellow classic that takes the bride to the altar.",
+                veh1_tag: "Executive",
+                veh1_desc: "A comfortable, economical sedan, ideal for airport transfers, trips and business appointments.",
+                veh2_tag: "Weddings",
+                veh2_name: "Yellow Classic",
+                veh2_desc: "The bride’s car: a classic sports car that turns the arrival at the ceremony into an unforgettable moment, with beautiful photos.",
+                veh2_chip: "Brides",
+                fleet_hint: "Swipe to see the other car",
+                spec_badge: "Services",
+                spec_title: "What we do for you",
+                spec1_title: "Airport Transfer",
+                spec1_desc: "We pick you up and drop you off at Confins and Pampulha, tracking your flight to be at arrivals on time.",
+                spec2_title: "Historic City Tour",
+                spec2_desc: "Tours through Ouro Preto, Mariana, Congonhas and São João del-Rei, stopping at the churches, mines and viewpoints you want to see.",
+                spec3_title: "Wedding Car",
+                spec3_desc: "The yellow classic takes the bride to the ceremony and joins the photo shoot along the slopes of the old town.",
+                spec4_title: "Trips and Companies",
+                spec4_desc: "Trips to Belo Horizonte and other towns, and corporate transportation with a driver at your disposal.",
+                footer_tagline: "Transportation and tours in Ouro Preto and the region.",
+                footer_rights: "All rights reserved.",
+                footer_madeBy: "Developed by:",
+                footer_nav_title: "Navigate",
+                footer_contact_title: "Contact",
+                footer_social_title: "Social",
+                wa_aria: "Chat on WhatsApp",
+                wa_float: "Talk to us",
+                modal_schedule_title: "Book a Trip",
+                modal_schedule_subtitle: "Fill in the details below to check availability.",
+                modal_schedule_origin_label: "Pickup Address",
+                modal_schedule_origin_placeholder: "E.g.: Confins Airport",
+                modal_schedule_dest_label: "Destination Address",
+                modal_schedule_dest_placeholder: "E.g.: Inn in Ouro Preto",
+                label_date: "Date",
+                label_time: "Time",
+                btn_requestQuote: "Request a Quote",
+                modal_transfer_subtitle: "Select the airport and your flight details.",
+                modal_transfer_airport_label: "Airport",
+                modal_transfer_airport_placeholder: "Select the airport",
+                modal_transfer_direction_label: "Direction",
+                modal_transfer_direction_opt1: "Arrival (Airport → Ouro Preto)",
+                modal_transfer_direction_opt2: "Departure (Ouro Preto → Airport)",
+                modal_transfer_address_label: "Address in Ouro Preto",
+                modal_transfer_address_placeholder: "E.g.: Hotel in the Historic Center",
+                modal_transfer_date_label: "Flight Date",
+                modal_transfer_time_label: "Flight Time",
+                modal_corp_subtitle: "Tell us a bit about your company so we can put together the best proposal.",
+                modal_corp_name_label: "Your Name",
+                modal_corp_company_label: "Company Name",
+                modal_corp_services_label: "Services of Interest",
+                corp_service1: "Day rate with driver on standby",
+                corp_service2: "Employee and visitor transfers",
+                corp_service3: "Meetings and events",
+                corp_service4: "Intercity trips for the team",
+                corp_service5: "Monthly contract",
+                modal_corp_submit: "Talk to MG",
+                modal_area_base_title: "Base",
+                modal_area_base_text: "Ouro Preto - MG<br>Service in Ouro Preto, Mariana and the region.",
+                modal_area_coverage_title: "Coverage",
+                modal_area_li1: '<strong class="text-slate-200">Airports:</strong> Confins (CNF) and Pampulha (PLU).',
+                modal_area_li2: '<strong class="text-slate-200">Historic towns:</strong> Ouro Preto, Mariana, Congonhas and surroundings.',
+                modal_area_li3: '<strong class="text-slate-200">Other destinations:</strong> Belo Horizonte and other towns on request.',
+                modal_area_button: "Got it",
+                wa_ride: "Hi, MG Transportes! I'd like to request a ride now.",
+                wa_help: "Hi, MG Transportes! I'd like more information about your services.",
+                wa_scheduleHeader: "Quote Request",
+                wa_origin: "Pickup",
+                wa_destination: "Destination",
+                wa_date: "Date",
+                wa_time: "Time",
+                wa_scheduleClosing: "Hi! I'd like to confirm availability and pricing for this route.",
+                wa_transferHeader: "Airport Transfer",
+                wa_airport: "Airport",
+                wa_direction: "Direction",
+                wa_addressOP: "Address in Ouro Preto",
+                wa_flightDate: "Flight Date",
+                wa_flightTime: "Flight Time",
+                wa_transferClosing: "Hi! I'd like to confirm availability and pricing for this transfer.",
+                wa_corpHeader: "Corporate Transportation",
+                wa_name: "Name",
+                wa_company: "Company",
+                wa_services: "Services of interest",
+                wa_toDefine: "To be defined",
+                wa_corpClosing: "Hi! I'd like to talk about transportation for my company.",
+                wedding_title: "Wedding Car",
+                wedding_subtitle: "Yellow classic for the bride’s arrival",
+                wedding_cta: "Book for a wedding",
+                wedding_kicker: "Exclusive for brides",
+                wedding_modal_subtitle: "Tell us about the big day so we can reserve the yellow classic.",
+                wedding_names_label: "Couple’s names",
+                wedding_names_placeholder: "E.g.: Ana and Pedro",
+                wedding_time_label: "Ceremony time",
+                wedding_ceremony_label: "Ceremony venue",
+                wedding_ceremony_placeholder: "E.g.: São Francisco de Assis Church",
+                wedding_pickup_label: "Pick up the bride at",
+                wedding_pickup_placeholder: "E.g.: Beauty salon, inn (optional)",
+                wedding_photos_label: "I also want the car for the photo shoot",
+                wedding_submit: "Check availability",
+                veh2_chip2: "Photo shoots",
+                nav_home: "Home",
+                nav_book: "Book",
+                nav_wedding: "Wedding",
+                tour_video_title: "Church of São Francisco de Assis",
+                wa_weddingHeader: "Wedding Car",
+                wa_couple: "Couple",
+                wa_ceremonyTime: "Ceremony time",
+                wa_ceremony: "Ceremony",
+                wa_pickup: "Pick up the bride at",
+                wa_photos: "Photo shoot",
+                wa_yes: "Yes",
+                wa_no: "No",
+                wa_weddingClosing: "Hi! I’d like to check availability and pricing for the classic car for our wedding.",
+                about_driver_label: "Your driver",
+                veh3_tag: "SUV",
+                veh3_desc: "A roomy, comfortable SUV with a large trunk for long trips, families and rides along the stone streets.",
+                slide_1: "Ouro Preto by night",
+                slide_2: "Toyota Corolla Cross",
+                slide_3: "Baroque churches",
+                slide_4: "The yellow wedding classic",
+                slide_5: "View of Ouro Preto",
+                slide_6: "Airport transfer",
+                slide_7: "Chapels and mines",
+                slide_8: "Stone streets",
+                spec1_cta: "Book a transfer",
+                spec2_cta: "Plan a tour",
+                spec3_cta: "Book the classic",
+                spec4_cta: "Request a proposal",
+                spec_subtitle: "Tap a service to request your quote via WhatsApp.",
+                footer_cta_title: "Where are we going today?",
+                footer_cta_text: "Airport, city tour, wedding or trip: talk directly to Maurílio and book your time.",
+                footer_services_title: "Services",
+                footer_back_top: "Back to top",
+                fleet_pax: "Passengers",
+                fleet_bags: "Bags",
+                fleet_ac: "Air-conditioned",
+                fleet_ideal: "Ideal for",
+                fleet_book: "Book this car",
+                fleet_arrival: "Arrival",
+                fleet_photos: "Photos",
+                fleet_classic: "Classic",
+                fleet_unique: "Exclusive",
+                fleet_prev: "Previous vehicle",
+                fleet_next: "Next vehicle",
+                veh1_ideal: "airport, trips and business",
+                veh3_ideal: "families, long trips and tours",
+                veh2_ideal: "weddings, photo shoots and special dates",
+                wa_fleet: "Hi, MG Transportes! I'd like to book the {carro}."
+            },
+            es: {
+                meta_title: "MG Transportes | Transporte y Turismo en Ouro Preto",
+                hero_kicker: "Ouro Preto · Minas Gerais",
+                hero_subtitle: "Transporte y turismo por las ciudades históricas de Minas, con comodidad del aeropuerto al centro histórico.",
+                hero_saveContact: "Guardar contacto",
+                hero_available: "Disponible 24/7",
+                cta_title: "Solicitar Viaje",
+                cta_subtitle: "Atención inmediata por WhatsApp",
+                schedule_title: "Agendar Viaje",
+                schedule_subtitle: "Fechas, paseos y eventos",
+                transferLink_title: "Traslado Aeropuerto",
+                transferLink_subtitle: "Confins y Pampulha",
+                corporate_title: "Para Empresas",
+                corporate_subtitle: "Equipos y visitantes",
+                area_title: "Dónde Atendemos",
+                area_subtitle: "Regiones y ciudades",
+                review_title: "Califícanos en Google",
+                instagram_label: "Instagram",
+                scroll_hint: "Conozca MG",
+                gallery_caption: "Minas por la ventana del auto",
+                cities_badge: "Recorridos",
+                cities_title: "Adónde lo llevamos",
+                cities_subtitle: "Iglesias barrocas, minas, miradores y calles de piedra en Ouro Preto, São João del-Rei y región: armamos el paseo con las paradas que usted quiera.",
+                tour_video_label: "Tour guiado",
+                city1_desc: "Centro histórico y miradores",
+                city2_title: "Iglesias Barrocas",
+                city2_desc: "Oro, tallas e historia",
+                city3_title: "Capillas y Minas",
+                city3_desc: "Recorridos fuera de lo común",
+                city4_title: "Autos Antiguos para Bodas",
+                city4_desc: "El clásico amarillo para la llegada de la novia",
+                about_badge: "Quiénes somos",
+                about_title_pre: "Su conductor en",
+                about_title_highlight: "Minas Gerais",
+                about_text: "MG Transportes lleva a residentes, turistas y empresas con seguridad y puntualidad, del aeropuerto a las ciudades históricas, con atención directa y personalizada.",
+                about_li1: "Conductor experimentado y cuidadoso.",
+                about_li2: "Autos limpios, revisados y climatizados.",
+                about_li3: "Alguien que conoce la historia y los atajos de la región.",
+                about_li4: "Atención por WhatsApp, las 24 horas.",
+                fleet_badge: "Flota",
+                fleet_title: "Elija cómo quiere llegar",
+                fleet_subtitle: "Del sedán y el SUV cómodos para el día a día al clásico amarillo que lleva a la novia al altar.",
+                veh1_tag: "Ejecutivo",
+                veh1_desc: "Sedán cómodo y económico, ideal para traslados al aeropuerto, viajes y compromisos de trabajo.",
+                veh2_tag: "Bodas",
+                veh2_name: "Clásico Amarillo",
+                veh2_desc: "El auto de la novia: un deportivo clásico que convierte la llegada a la ceremonia en un momento inolvidable, con fotos hermosas.",
+                veh2_chip: "Novias",
+                fleet_hint: "Deslice para ver el otro auto",
+                spec_badge: "Servicios",
+                spec_title: "Lo que hacemos por usted",
+                spec1_title: "Traslado al Aeropuerto",
+                spec1_desc: "Lo buscamos y lo llevamos a Confins y Pampulha, siguiendo el horario del vuelo para estar en la llegada a tiempo.",
+                spec2_title: "City Tour Histórico",
+                spec2_desc: "Recorridos por Ouro Preto, Mariana, Congonhas y São João del-Rei, con paradas en las iglesias, minas y miradores que quiera conocer.",
+                spec3_title: "Auto para Bodas",
+                spec3_desc: "El clásico amarillo lleva a la novia a la ceremonia y participa de la sesión de fotos por las cuestas del centro histórico.",
+                spec4_title: "Viajes y Empresas",
+                spec4_desc: "Viajes a Belo Horizonte y otras ciudades, y transporte para empresas con conductor a disposición.",
+                footer_tagline: "Transporte y turismo en Ouro Preto y la región.",
+                footer_rights: "Todos los derechos reservados.",
+                footer_madeBy: "Desarrollado por:",
+                footer_nav_title: "Navegar",
+                footer_contact_title: "Contacto",
+                footer_social_title: "Redes",
+                wa_aria: "Hablar por WhatsApp",
+                wa_float: "Hable con nosotros",
+                modal_schedule_title: "Agendar Viaje",
+                modal_schedule_subtitle: "Complete los datos a continuación para verificar disponibilidad.",
+                modal_schedule_origin_label: "Dirección de Origen",
+                modal_schedule_origin_placeholder: "Ej: Aeropuerto de Confins",
+                modal_schedule_dest_label: "Dirección de Destino",
+                modal_schedule_dest_placeholder: "Ej: Posada en Ouro Preto",
+                label_date: "Fecha",
+                label_time: "Hora",
+                btn_requestQuote: "Pedir Presupuesto",
+                modal_transfer_subtitle: "Seleccione el aeropuerto y los detalles de su vuelo.",
+                modal_transfer_airport_label: "Aeropuerto",
+                modal_transfer_airport_placeholder: "Seleccione el aeropuerto",
+                modal_transfer_direction_label: "Sentido",
+                modal_transfer_direction_opt1: "Llegada (Aeropuerto → Ouro Preto)",
+                modal_transfer_direction_opt2: "Salida (Ouro Preto → Aeropuerto)",
+                modal_transfer_address_label: "Dirección en Ouro Preto",
+                modal_transfer_address_placeholder: "Ej: Hotel en el Centro Histórico",
+                modal_transfer_date_label: "Fecha del Vuelo",
+                modal_transfer_time_label: "Hora del Vuelo",
+                modal_corp_subtitle: "Cuéntenos un poco sobre su empresa para armar la mejor propuesta.",
+                modal_corp_name_label: "Su Nombre",
+                modal_corp_company_label: "Nombre de la Empresa",
+                modal_corp_services_label: "Servicios de Interés",
+                corp_service1: "Diarias con conductor a disposición",
+                corp_service2: "Traslado de colaboradores y visitantes",
+                corp_service3: "Reuniones y eventos",
+                corp_service4: "Viajes intermunicipales del equipo",
+                corp_service5: "Contrato mensual",
+                modal_corp_submit: "Hablar con MG",
+                modal_area_base_title: "Base",
+                modal_area_base_text: "Ouro Preto - MG<br>Atención en Ouro Preto, Mariana y la región.",
+                modal_area_coverage_title: "Cobertura",
+                modal_area_li1: '<strong class="text-slate-200">Aeropuertos:</strong> Confins (CNF) y Pampulha (PLU).',
+                modal_area_li2: '<strong class="text-slate-200">Ciudades históricas:</strong> Ouro Preto, Mariana, Congonhas y alrededores.',
+                modal_area_li3: '<strong class="text-slate-200">Otros destinos:</strong> Belo Horizonte y otras ciudades bajo consulta.',
+                modal_area_button: "Entendido",
+                wa_ride: "¡Hola, MG Transportes! Me gustaría solicitar un viaje ahora.",
+                wa_help: "¡Hola, MG Transportes! Me gustaría más información sobre los servicios.",
+                wa_scheduleHeader: "Pedido de Presupuesto",
+                wa_origin: "Origen",
+                wa_destination: "Destino",
+                wa_date: "Fecha",
+                wa_time: "Hora",
+                wa_scheduleClosing: "¡Hola! Me gustaría confirmar la disponibilidad y el valor para este trayecto.",
+                wa_transferHeader: "Traslado al Aeropuerto",
+                wa_airport: "Aeropuerto",
+                wa_direction: "Sentido",
+                wa_addressOP: "Dirección en Ouro Preto",
+                wa_flightDate: "Fecha del Vuelo",
+                wa_flightTime: "Hora del Vuelo",
+                wa_transferClosing: "¡Hola! Me gustaría confirmar la disponibilidad y el valor para este traslado.",
+                wa_corpHeader: "Transporte para Empresas",
+                wa_name: "Nombre",
+                wa_company: "Empresa",
+                wa_services: "Servicios de interés",
+                wa_toDefine: "Por definir",
+                wa_corpClosing: "¡Hola! Me gustaría conversar sobre transporte para mi empresa.",
+                wedding_title: "Auto para Bodas",
+                wedding_subtitle: "Clásico amarillo para la llegada de la novia",
+                wedding_cta: "Reservar para boda",
+                wedding_kicker: "Exclusivo para novias",
+                wedding_modal_subtitle: "Cuéntenos los detalles del gran día para reservar el clásico amarillo.",
+                wedding_names_label: "Nombre de los novios",
+                wedding_names_placeholder: "Ej: Ana y Pedro",
+                wedding_time_label: "Hora de la ceremonia",
+                wedding_ceremony_label: "Lugar de la ceremonia",
+                wedding_ceremony_placeholder: "Ej: Iglesia de San Francisco de Asís",
+                wedding_pickup_label: "Buscar a la novia en",
+                wedding_pickup_placeholder: "Ej: Salón de belleza, posada (opcional)",
+                wedding_photos_label: "Quiero el auto también en la sesión de fotos",
+                wedding_submit: "Consultar disponibilidad",
+                veh2_chip2: "Sesiones",
+                nav_home: "Inicio",
+                nav_book: "Agendar",
+                nav_wedding: "Boda",
+                tour_video_title: "Iglesia de San Francisco de Asís",
+                wa_weddingHeader: "Auto para Bodas",
+                wa_couple: "Novios",
+                wa_ceremonyTime: "Hora de la ceremonia",
+                wa_ceremony: "Ceremonia",
+                wa_pickup: "Buscar a la novia en",
+                wa_photos: "Sesión de fotos",
+                wa_yes: "Sí",
+                wa_no: "No",
+                wa_weddingClosing: "¡Hola! Me gustaría saber la disponibilidad y el valor del auto clásico para nuestra boda.",
+                about_driver_label: "Su conductor",
+                veh3_tag: "SUV",
+                veh3_desc: "SUV amplio y cómodo, con maletero grande para viajes largos, familias y paseos por las calles de piedra.",
+                slide_1: "Ouro Preto de noche",
+                slide_2: "Toyota Corolla Cross",
+                slide_3: "Iglesias barrocas",
+                slide_4: "El clásico amarillo de las bodas",
+                slide_5: "Vista de Ouro Preto",
+                slide_6: "Traslado al aeropuerto",
+                slide_7: "Capillas y minas",
+                slide_8: "Calles de piedra",
+                spec1_cta: "Agendar traslado",
+                spec2_cta: "Armar recorrido",
+                spec3_cta: "Reservar el clásico",
+                spec4_cta: "Pedir propuesta",
+                spec_subtitle: "Toque el servicio para pedir su presupuesto por WhatsApp.",
+                footer_cta_title: "¿Adónde vamos hoy?",
+                footer_cta_text: "Aeropuerto, city tour, boda o viaje: hable directo con Maurílio y reserve su horario.",
+                footer_services_title: "Servicios",
+                footer_back_top: "Volver arriba",
+                fleet_pax: "Pasajeros",
+                fleet_bags: "Maletas",
+                fleet_ac: "Climatizado",
+                fleet_ideal: "Ideal para",
+                fleet_book: "Reservar este auto",
+                fleet_arrival: "Llegada",
+                fleet_photos: "Fotos",
+                fleet_classic: "Clásico",
+                fleet_unique: "Exclusivo",
+                fleet_prev: "Vehículo anterior",
+                fleet_next: "Siguiente vehículo",
+                veh1_ideal: "aeropuerto, viajes y trabajo",
+                veh3_ideal: "familias, viajes largos y paseos",
+                veh2_ideal: "bodas, sesiones y fechas especiales",
+                wa_fleet: "¡Hola, MG Transportes! Me gustaría reservar el {carro}."
+            }
+        };
+
+        let currentLang = 'pt';
+        try { currentLang = localStorage.getItem('mg_lang') || 'pt'; } catch (e) {}
+
+        function t(key) {
+            return (translations[currentLang] && translations[currentLang][key]) || translations.pt[key] || key;
+        }
+
+        function applyLanguage() {
+            document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : currentLang;
+            document.title = t('meta_title');
+            document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.getAttribute('data-i18n')); });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder'))); });
+            document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
+            document.querySelectorAll('[data-lang-btn]').forEach(btn => { btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === currentLang); });
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            try { localStorage.setItem('mg_lang', lang); } catch (e) {}
+            applyLanguage();
+        }
+
+        function waSend(key) {
+            openWhatsApp(t(key));
+        }
+
+        /**
+         * Easter-egg: clique no logo e um carro passa pela tela, pulando
+         * por cima de cada botão visível (.car-target) como se fosse quebra-molas.
+         */
+        function launchCar() {
+            const existing = document.querySelector('.car-flyby');
+            if (existing) existing.remove();
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const targets = Array.from(document.querySelectorAll('.car-target')).filter(el => {
+                const r = el.getBoundingClientRect();
+                return r.top < vh && r.bottom > 0 && r.width > 0;
+            });
+
+            const climbOrder = [...targets].reverse();
+            const waypoints = [];
+            const lastY = climbOrder.length ? climbOrder[0].getBoundingClientRect().bottom - 20 : vh * 0.8;
+            waypoints.push({ x: -60, y: Math.min(vh - 40, lastY + 80) });
+            climbOrder.forEach((el, i) => {
+                const r = el.getBoundingClientRect();
+                const x = i % 2 === 0 ? r.left + r.width * 0.28 : r.right - r.width * 0.28;
+                waypoints.push({ x, y: r.top + r.height / 2, bump: true });
+            });
+            const last = waypoints[waypoints.length - 1];
+            waypoints.push({ x: vw + 60, y: Math.max(30, last.y - 90) });
+
+            const car = document.createElement('div');
+            car.className = 'car-flyby';
+            car.innerHTML = '<span class="car-caption" style="opacity:0">MG Transportes</span><i class="car-icon fa-solid fa-car-side"></i>';
+            document.body.appendChild(car);
+
+            const caption = car.querySelector('.car-caption');
+            const icon = car.querySelector('.car-icon');
+            const segmentMs = 620;
+            const bumpHeight = 26;
+            const totalMs = segmentMs * (waypoints.length - 1);
+            const startTime = performance.now();
+
+            function frame(now) {
+                const elapsed = now - startTime;
+                if (elapsed >= totalMs) { car.remove(); return; }
+
+                const segIndex = Math.min(Math.floor(elapsed / segmentMs), waypoints.length - 2);
+                const segT = (elapsed - segIndex * segmentMs) / segmentMs;
+                const eased = segT < 0.5 ? 2 * segT * segT : 1 - Math.pow(-2 * segT + 2, 2) / 2;
+                const a = waypoints[segIndex];
+                const b = waypoints[segIndex + 1];
+                const x = a.x + (b.x - a.x) * eased;
+                const y = a.y + (b.y - a.y) * eased - (b.bump ? Math.sin(Math.PI * segT) * bumpHeight : 0);
+                const tilt = b.bump ? Math.cos(Math.PI * segT) * -10 : 0;
+                const flip = (b.x - a.x) >= 0 ? 1 : -1;
+
+                car.style.transform = `translate(${x}px, ${y}px)`;
+                icon.style.transform = `scaleX(${flip}) rotate(${tilt * flip}deg)`;
+                caption.style.opacity = (elapsed > 250 && elapsed < totalMs - 300) ? '1' : '0';
+                caption.style.transition = 'opacity 0.25s ease';
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        }
+
+        /**
+         * Frota em formato showroom: troca o carro a cada 7 s (a barra embaixo
+         * da foto mostra o tempo). Pausa com o mouse em cima e fora da tela;
+         * miniaturas, setas e arrastar a foto no celular navegam.
+         */
+        let frotaPasso = () => {};
+        (function initFrota() {
+            const palco = document.getElementById('frotaPalco');
+            const prog = document.getElementById('frotaProg');
+            if (!palco || !prog) return;
+            const secao = document.getElementById('frota');
+            const total = secao.querySelectorAll('.frota-tab').length;
+            let atual = 0;
+
+            function ir(i) {
+                atual = (i + total) % total;
+                secao.querySelectorAll('[data-v]').forEach(el => {
+                    const on = Number(el.dataset.v) === atual;
+                    el.classList.toggle('ativo', on);
+                    if (el.classList.contains('frota-tab')) el.setAttribute('aria-selected', on);
+                });
+                document.getElementById('frotaNum').textContent = String(atual + 1).padStart(2, '0');
+                prog.classList.remove('roda');
+                void prog.offsetWidth;
+                prog.classList.add('roda');
+            }
+            frotaPasso = d => ir(atual + d);
+
+            secao.querySelectorAll('.frota-tab').forEach(tab => tab.addEventListener('click', () => ir(Number(tab.dataset.v))));
+            prog.addEventListener('animationend', () => ir(atual + 1));
+
+            palco.addEventListener('mouseenter', () => palco.classList.add('pausado'));
+            palco.addEventListener('mouseleave', () => palco.classList.remove('pausado'));
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(([e]) => palco.classList.toggle('pausado', !e.isIntersecting), { threshold: 0.25 }).observe(palco);
+            }
+
+            let x0 = null;
+            palco.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+            palco.addEventListener('touchend', e => {
+                if (x0 === null) return;
+                const dx = e.changedTouches[0].clientX - x0;
+                if (Math.abs(dx) > 40) ir(atual + (dx < 0 ? 1 : -1));
+                x0 = null;
+            });
+
+            ir(0);
+        })();
+
+        function reservarCarro(carro) {
+            openWhatsApp(t('wa_fleet').replace('{carro}', carro));
+        }
+
+        /**
+         * Galeria cinema: troca sozinha a cada 6 s (cortina da esquerda para a
+         * direita + aproximação lenta). Pausa com o mouse em cima, fora da tela
+         * e com a aba escondida; setas, barras e arrastar no celular navegam.
+         */
+        (function initGaleriaCinema() {
+            const box = document.getElementById('galeria');
+            const slidesEl = document.getElementById('cineSlides');
+            if (!box || !slidesEl) return;
+
+            const fotos = [
+                ['ouro-preto-noite', 'slide_1'], ['igreja-altar', 'slide_3'], ['classico-passeio', 'slide_4'], ['ouro-preto-panorama', 'slide_5'],
+                ['yaris-aeroporto', 'slide_6'], ['capela-2', 'slide_7'], ['ouro-preto-rua', 'slide_8'], ['corolla-cross', 'slide_2']
+            ];
+            const DUR = 6000;
+            const origens = ['center', 'left center', 'right center', 'center top', 'center bottom'];
+
+            slidesEl.innerHTML = fotos.map(([img], i) =>
+                `<div class="cine-slide"><img src="img/${img}.webp" alt="" ${i ? 'loading="lazy"' : ''} style="transform-origin:${origens[i % origens.length]}"></div>`).join('');
+            const barrasEl = document.getElementById('cineBarras');
+            barrasEl.style.gridTemplateColumns = `repeat(${fotos.length}, 1fr)`;
+            barrasEl.style.setProperty('--dur', DUR / 1000 + 's');
+            barrasEl.innerHTML = fotos.map((_, i) => `<span class="cine-barra" data-i="${i}" role="button" aria-label="${i + 1}"><i></i></span>`).join('');
+
+            const slides = slidesEl.children;
+            const barras = barrasEl.children;
+            const legenda = document.getElementById('cineLegenda');
+            const contador = document.getElementById('cineContador');
+            let atual = -1, timer = null, pausado = false, visivel = false;
+
+            function mostrar(n) {
+                n = (n + fotos.length) % fotos.length;
+                if (n === atual) return;
+                const anterior = atual;
+                [...slides].forEach((el, i) => {
+                    el.classList.toggle('saindo', i === anterior);
+                    if (i !== n) el.classList.remove('ativo');
+                });
+                void slides[n].offsetWidth;            // reinicia a cortina
+                slides[n].classList.add('ativo');
+                atual = n;
+
+                [...barras].forEach((b, i) => {
+                    b.classList.remove('rodando');
+                    b.classList.toggle('feita', i < n);
+                });
+                void barras[n].offsetWidth;
+                barras[n].classList.add('rodando');
+
+                legenda.classList.add('trocando');
+                setTimeout(() => {
+                    legenda.querySelector('span').setAttribute('data-i18n', fotos[n][1]);
+                    legenda.querySelector('span').textContent = t(fotos[n][1]);
+                    legenda.classList.remove('trocando');
+                }, 350);
+                contador.innerHTML = `${String(n + 1).padStart(2, '0')} <span class="text-slate-500">/ ${String(fotos.length).padStart(2, '0')}</span>`;
+                agendar();
+            }
+
+            function agendar() {
+                clearTimeout(timer);
+                if (!pausado && visivel && !document.hidden) timer = setTimeout(() => mostrar(atual + 1), DUR);
+            }
+            function pausar(sim) {
+                pausado = sim;
+                box.classList.toggle('cine-pausado', sim);
+                // ao voltar, a barra recomeça do zero junto com o tempo
+                if (!sim && barras[atual]) { barras[atual].classList.remove('rodando'); void barras[atual].offsetWidth; barras[atual].classList.add('rodando'); }
+                agendar();
+            }
+
+            document.getElementById('cineProx').onclick = () => mostrar(atual + 1);
+            document.getElementById('cineAnt').onclick = () => mostrar(atual - 1);
+            barrasEl.addEventListener('click', e => { const b = e.target.closest('.cine-barra'); if (b) mostrar(+b.dataset.i); });
+            box.addEventListener('mouseenter', () => pausar(true));
+            box.addEventListener('mouseleave', () => pausar(false));
+            document.addEventListener('visibilitychange', agendar);
+
+            let x0 = null;
+            box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+            box.addEventListener('touchend', e => {
+                if (x0 === null) return;
+                const dx = e.changedTouches[0].clientX - x0;
+                if (Math.abs(dx) > 40) mostrar(atual + (dx < 0 ? 1 : -1));
+                x0 = null;
+            });
+
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(([en]) => {
+                    visivel = en.isIntersecting;
+                    box.classList.toggle('cine-pausado', !visivel || pausado);
+                    agendar();
+                }, { threshold: 0.35 }).observe(box);
+            } else {
+                visivel = true;
+            }
+            mostrar(0);
+        })();
+
+        /**
+         * Revelação das seções ao rolar
+         */
+        (function initScrollReveal() {
+            const revealEls = document.querySelectorAll('.reveal');
+            if (!revealEls.length) return;
+            if (!('IntersectionObserver' in window)) { revealEls.forEach(el => el.classList.add('is-visible')); return; }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+            revealEls.forEach(el => observer.observe(el));
+        })();
+
+        /**
+         * Modais
+         */
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function (e) { if (e.target === this) closeModal(this.id); });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.querySelectorAll('.modal.active').forEach(modal => closeModal(modal.id));
+        });
+
+        function formatarData(data) {
+            return new Date(data + 'T00:00:00').toLocaleDateString(currentLang === 'pt' ? 'pt-BR' : currentLang);
+        }
+
+        function submitAgendamento(event) {
+            event.preventDefault();
+            const message = `*${t('wa_scheduleHeader')} - ${COMPANY_NAME}*\n\n` +
+                `📍 *${t('wa_origin')}:* ${document.getElementById('origem').value}\n` +
+                `🏁 *${t('wa_destination')}:* ${document.getElementById('destino').value}\n` +
+                `📅 *${t('wa_date')}:* ${formatarData(document.getElementById('data').value)}\n` +
+                `⏰ *${t('wa_time')}:* ${document.getElementById('horario').value}\n\n` +
+                t('wa_scheduleClosing');
+            closeModal('agendamentoModal');
+            setTimeout(() => { openWhatsApp(message); event.target.reset(); }, 300);
+        }
+
+        function submitTransfer(event) {
+            event.preventDefault();
+            const message = `*${t('wa_transferHeader')} - ${COMPANY_NAME}*\n\n` +
+                `✈️ *${t('wa_airport')}:* ${document.getElementById('aeroporto').value}\n` +
+                `🔀 *${t('wa_direction')}:* ${document.getElementById('sentidoTransfer').value}\n` +
+                `📍 *${t('wa_addressOP')}:* ${document.getElementById('enderecoTransfer').value}\n` +
+                `📅 *${t('wa_flightDate')}:* ${formatarData(document.getElementById('dataTransfer').value)}\n` +
+                `⏰ *${t('wa_flightTime')}:* ${document.getElementById('horarioTransfer').value}\n\n` +
+                t('wa_transferClosing');
+            closeModal('transferModal');
+            setTimeout(() => { openWhatsApp(message); event.target.reset(); }, 300);
+        }
+
+        function submitCorporativo(event) {
+            event.preventDefault();
+            const servicos = Array.from(document.querySelectorAll('input[name="corpServico"]:checked')).map(el => t(el.value));
+            const servicosTexto = servicos.length ? servicos.map(s => `• ${s}`).join('\n') : `• ${t('wa_toDefine')}`;
+            const message = `*${t('wa_corpHeader')} - ${COMPANY_NAME}*\n\n` +
+                `👤 *${t('wa_name')}:* ${document.getElementById('corpNome').value}\n` +
+                `🏢 *${t('wa_company')}:* ${document.getElementById('corpEmpresa').value}\n` +
+                `🧾 *${t('wa_services')}:*\n${servicosTexto}\n\n` +
+                t('wa_corpClosing');
+            closeModal('corporativoModal');
+            setTimeout(() => { openWhatsApp(message); event.target.reset(); }, 300);
+        }
+
+        function submitCasamento(event) {
+            event.preventDefault();
+            const saida = document.getElementById('casSaida').value.trim();
+            const message = `*${t('wa_weddingHeader')} - ${COMPANY_NAME}*\n\n` +
+                `💍 *${t('wa_couple')}:* ${document.getElementById('casNoivos').value}\n` +
+                `📅 *${t('wa_date')}:* ${formatarData(document.getElementById('casData').value)}\n` +
+                `⏰ *${t('wa_ceremonyTime')}:* ${document.getElementById('casHorario').value}\n` +
+                `⛪ *${t('wa_ceremony')}:* ${document.getElementById('casCerimonia').value}\n` +
+                (saida ? `📍 *${t('wa_pickup')}:* ${saida}\n` : '') +
+                `📸 *${t('wa_photos')}:* ${t(document.getElementById('casEnsaio').checked ? 'wa_yes' : 'wa_no')}\n\n` +
+                t('wa_weddingClosing');
+            closeModal('casamentoModal');
+            setTimeout(() => { openWhatsApp(message); event.target.reset(); }, 300);
+        }
+
+        /**
+         * Menu inferior: destaca Início enquanto o topo está na tela
+         */
+        (function initNavInferior() {
+            const itens = document.querySelectorAll('.nav-inferior [data-nav]');
+            const secoes = ['inicio', 'roteiros', 'sobre', 'frota', 'especialidades'].map(id => document.getElementById(id)).filter(Boolean);
+            if (!itens.length || !('IntersectionObserver' in window)) return;
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    itens.forEach(a => a.classList.toggle('ativo', a.dataset.nav === e.target.id));
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            secoes.forEach(sec => obs.observe(sec));
+        })();
+
+        /**
+         * Gera e baixa o cartão de contato (.vcf)
+         */
+        function downloadVCard() {
+            const linhas = [
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'N:Gonçalves;Maurílio;;;',
+                `FN:${DRIVER_NAME} - ${COMPANY_NAME}`,
+                `ORG:${COMPANY_NAME}`,
+                WHATSAPP_NUMBER ? `TEL;TYPE=WORK,VOICE:+${WHATSAPP_NUMBER}` : null,
+                INSTAGRAM_URL ? `URL:${INSTAGRAM_URL}` : null,
+                'TITLE:Motorista - Transporte e Turismo',
+                'ADR;TYPE=WORK:;;;Ouro Preto;MG;;Brasil',
+                'NOTE:Transfer de aeroporto, city tour e viagens em Ouro Preto e região.',
+                'END:VCARD'
+            ].filter(Boolean).join('\n');
+
+            const url = URL.createObjectURL(new Blob([linhas], { type: 'text/vcard' }));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mg_transportes.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Datas mínimas = hoje, e aplica o idioma salvo
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            ['data', 'dataTransfer', 'casData'].forEach(id => {
+                const dateInput = document.getElementById(id);
+                if (dateInput) dateInput.setAttribute('min', today);
+            });
+            applyLanguage();
+        });
+    </script>
+</body>
+</html>
