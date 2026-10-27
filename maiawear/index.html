@@ -319,7 +319,7 @@
                 </p>
             </div>`).join("");
 
-        const DE_LADO = toque ? 50 : 72;          // em repouso: vista de lado, como numa arara
+        const DE_LADO = toque ? 0 : 72;           // em repouso: de lado, como numa arara; no celular, de frente
         document.querySelectorAll(".peca").forEach(peca => {
             const giro = peca.querySelector(".giro"), ladoTxt = peca.querySelector(".lado-atual");
             const girar = ang => {
