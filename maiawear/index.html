@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIA Wear | Streetwear</title>
+    <meta name="description" content="MAIA Wear — camisetas streetwear com a arte do calendário maia. Frente e verso, em preto, branco e roxo.">
+
+    <link rel="icon" href="img/logo-maia.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parede: '#ececea',     // fundo claro, como uma parede de loja
+                        tinta: '#141216',
+                        mostarda: '#d2a85e',   // fundo do logo
+                        cafe: '#4b1e02',       // letras do logo
+                        roxo: '#4b2a8a'
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html, body { overflow-x: hidden; max-width: 100%; }   /* nada de arrastar a página para o lado */
+        body { background: #ececea; }
+        /* ---------- arara ---------- */
+        .barra {
+            height: 9px; border-radius: 9px;
+            background: linear-gradient(180deg, #fafafa 0%, #c9c9c9 35%, #8d8d8d 60%, #e4e4e4 100%);
+            box-shadow: 0 6px 10px -4px rgba(0,0,0,.35);
+        }
+        .ponteira { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #9a9a9a 70%); box-shadow: 0 3px 6px rgba(0,0,0,.3); }
+        .suporte { width: 3px; background: linear-gradient(90deg, #8d8d8d, #e8e8e8, #8d8d8d); }
+
+        .peca { position: relative; width: clamp(130px, 19vw, 250px); perspective: 1300px; cursor: pointer; transform-origin: 50% 0; }
+        .peca .gancho { position: absolute; left: 50%; top: -30px; width: 30px; height: 44px; transform: translateX(-50%); z-index: 3; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+        .giro { position: relative; transform-style: preserve-3d; transform: rotateY(72deg); transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+        .peca.ativa .giro { transition: transform .25s ease-out; }
+        .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .face img { width: 100%; height: 100%; object-fit: contain; object-position: 50% 0; filter: drop-shadow(14px 18px 16px rgba(0,0,0,.22)); pointer-events: none; user-select: none; }
+        .face.costas { transform: rotateY(180deg); }
+        .moldura { aspect-ratio: 0.8; }
+        .peca.balanco { animation: balanco 1.4s ease-out; }
+        @keyframes balanco { 0% { transform: rotate(0) } 20% { transform: rotate(3.5deg) } 45% { transform: rotate(-2.5deg) } 70% { transform: rotate(1.2deg) } 100% { transform: rotate(0) } }
+        .rotulo { opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
+        .peca.ativa .rotulo { opacity: 1; transform: none; }
+
+        /* ---------- faixa ---------- */
+        .faixa-texto { display: flex; width: max-content; animation: correr 26s linear infinite; }
+        @keyframes correr { to { transform: translateX(-50%) } }
+
+        /* ---------- detalhe ---------- */
+        #detalhe { opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s; }
+        #detalhe.aberto { opacity: 1; visibility: visible; }
+        .giro-grande { position: relative; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+        .giro-grande.verso { transform: rotateY(180deg); }
+        .etiqueta { transform-origin: 50% 0; transition: transform .3s; cursor: pointer; }
+        .etiqueta:hover { transform: rotate(-6deg); }
+        .etiqueta.atual { animation: balanco 1.4s ease-out; }
+        .tam.ativo { background: #141216; color: #ececea; }
+        .campo { display: block; width: 100%; margin-top: 4px; padding: 11px 14px; border-radius: 14px; border: 1px solid rgba(20,18,22,.18); background: #fff; font-size: 14px; outline: none; }
+        .campo:focus { border-color: #4b2a8a; box-shadow: 0 0 0 3px rgba(75,42,138,.15); }
+        .campo.erro { border-color: #b91c1c; }
+
+        /* celular: detalhe sem arrastar para o lado e etiquetas de cor logo abaixo da camiseta */
+        @media (max-width: 640px) {
+            #detalhe { touch-action: pan-y; }
+            .fio { height: 14px !important; }          /* etiquetas logo abaixo da camiseta */
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .faixa-texto, .peca.balanco, .etiqueta.atual { animation: none; }
+        }
+    </style>
+</head>
+<body class="font-sans text-tinta antialiased">
+    <svg width="0" height="0" class="absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="cromo" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f4f4f4"/><stop offset=".5" stop-color="#9c9c9c"/><stop offset="1" stop-color="#dcdcdc"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- ===== TOPO ===== -->
+    <header class="fixed inset-x-0 top-0 z-40">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-24 grid grid-cols-3 items-center text-[11px] sm:text-xs uppercase tracking-[.25em]">
+            <a href="#sobre" class="justify-self-start hover:opacity-60 transition">Sobre</a>
+            <a href="#inicio" class="justify-self-center" aria-label="MAIA Wear"><img src="img/logo-maia.webp" alt="MAIA Wear" class="h-14 sm:h-[4.5rem] w-auto"></a>
+            <a href="#contato" class="justify-self-end hover:opacity-60 transition">Contato</a>
+        </div>
+    </header>
+
+    <!-- ===== ARARA ===== -->
+    <main id="inicio" class="relative min-h-screen flex flex-col">
+        <div class="flex-1 flex flex-col items-center justify-center pt-28 pb-10">
+            <div class="relative w-[min(92vw,1100px)]">
+                <!-- suportes de parede -->
+                <div class="absolute -top-24 left-[8%] h-24 suporte"></div>
+                <div class="absolute -top-24 right-[8%] h-24 suporte"></div>
+                <!-- barra cromada -->
+                <div class="relative flex items-center">
+                    <span class="ponteira -mr-2 z-10"></span>
+                    <div class="barra flex-1"></div>
+                    <span class="ponteira -ml-2 z-10"></span>
+                </div>
+                <!-- peças penduradas -->
+                <div id="arara" class="flex justify-center gap-[clamp(10px,4vw,60px)] mt-6"></div>
+            </div>
+
+            <p class="mt-10 text-[11px] uppercase tracking-[.3em] text-tinta/50 text-center px-6">
+                <span class="hidden sm:inline">Passe o mouse para ver frente e verso · </span>Clique para ver a peça
+            </p>
+            <button type="button" data-abrir="0" class="mt-5 px-7 py-3 rounded-full border border-tinta/30 text-xs uppercase tracking-[.25em] hover:bg-tinta hover:text-parede transition">
+                Ver coleção
+            </button>
+        </div>
+
+        <!-- faixa verde-limão -->
+        <div class="bg-mostarda text-tinta overflow-hidden border-y border-tinta/10">
+            <div class="faixa-texto py-3 font-semibold uppercase tracking-[.3em] text-xs" aria-hidden="true"></div>
+        </div>
+    </main>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre" class="py-28 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+            <div class="relative aspect-square max-w-sm mx-auto w-full">
+                <div class="absolute inset-[8%] rounded-full bg-mostarda"></div>
+                <img src="img/camisetas/preta-costas.webp" alt="Costas da camiseta MAIA preta com o calendário maia" class="relative w-full h-full object-contain drop-shadow-2xl">
+            </div>
+            <div>
+                <p class="text-xs uppercase tracking-[.3em] text-tinta/50 mb-4">Sobre a marca</p>
+                <h2><img src="img/logo-maia.webp" alt="MAIA Wear" class="w-64 sm:w-80 h-auto"></h2>
+                <p class="mt-6 text-lg leading-relaxed text-tinta/75">Streetwear com a força da arte maia. Na frente, a assinatura discreta; nas costas, o calendário inteiro em traço — para quem gosta de deixar a mensagem para trás.</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <span class="px-4 py-2 rounded-full bg-tinta text-parede text-xs uppercase tracking-[.2em]">Preta</span>
+                    <span class="px-4 py-2 rounded-full bg-white border border-tinta/15 text-xs uppercase tracking-[.2em]">Branca</span>
+                    <span class="px-4 py-2 rounded-full bg-roxo text-white text-xs uppercase tracking-[.2em]">Roxa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <footer id="contato" class="bg-cafe text-parede">
+        <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 items-center">
+            <img src="img/logo-maia-claro.webp" alt="MAIA Wear" class="w-56 h-auto">
+            <p class="text-sm text-parede/60 leading-relaxed">Pedidos, tamanhos e encomendas pelo direct ou WhatsApp.</p>
+            <div class="flex md:justify-end gap-5 text-2xl">
+                <a href="#" data-link="instagram" class="hover:text-mostarda transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" data-link="whatsapp" class="hover:text-mostarda transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <p class="text-center text-[11px] uppercase tracking-[.3em] text-parede/40 pb-8">© MAIA Wear</p>
+    </footer>
+
+    <!-- ===== DETALHE DA PEÇA ===== -->
+    <div id="detalhe" class="fixed inset-0 z-50 bg-parede overflow-y-auto overflow-x-hidden" role="dialog" aria-modal="true" aria-label="Detalhe da camiseta">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between text-xs uppercase tracking-[.25em]">
+            <img src="img/logo-maia.webp" alt="MAIA Wear" class="h-11 w-auto">
+            <button type="button" data-fechar class="flex items-center gap-2 hover:opacity-60">Fechar <i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-5 pb-16 grid lg:grid-cols-[1fr_340px] gap-10 items-center min-h-[calc(100vh-5rem)]">
+            <!-- setas -->
+            <button type="button" data-passo="-1" class="hidden sm:grid absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 place-items-center rounded-full border border-tinta/30 hover:bg-tinta hover:text-parede transition z-10" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button>
+
+            <!-- camiseta grande + etiquetas de cor -->
+            <div class="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-5 sm:gap-10">
+                <div class="relative w-[min(76vw,460px)]" style="perspective:1600px">
+                    <svg viewBox="0 0 34 42" class="absolute left-1/2 -translate-x-1/2 -top-11 w-10 z-10" style="filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))" aria-hidden="true">
+                        <path d="M17 40V27c0-5 10-6 10-15a10 10 0 0 0-20 0" fill="none" stroke="#5f5f5f" stroke-width="3.6" stroke-linecap="round"/>
+            <path d="M17 40V27c0-5 10-6 10-15a10 10 0 0 0-20 0" fill="none" stroke="url(#cromo)" stroke-width="2.2" stroke-linecap="round"/>
+                    </svg>
+                    <div id="giroGrande" class="giro-grande moldura">
+                        <div class="face"><img id="imgFrente" alt="Frente da camiseta"></div>
+                        <div class="face costas"><img id="imgCostas" alt="Costas da camiseta"></div>
+                    </div>
+                </div>
+                <!-- etiquetas penduradas -->
+                <div id="etiquetas" class="flex gap-4 sm:gap-3 sm:pt-2"></div>
+            </div>
+
+            <!-- informações -->
+            <div class="text-center lg:text-left">
+                <p class="text-xs uppercase tracking-[.3em] text-tinta/50">Camiseta</p>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">MAIA <span id="nomeCor"></span></h2>
+                <p class="mt-3 text-tinta/60 leading-relaxed">Frente com a assinatura MAIA e costas com o calendário maia completo.</p>
+
+                <div class="mt-6 inline-flex rounded-full border border-tinta/25 p-1 text-xs uppercase tracking-[.2em]">
+                    <button type="button" data-lado="frente" class="lado px-5 py-2 rounded-full">Frente</button>
+                    <button type="button" data-lado="verso" class="lado px-5 py-2 rounded-full">Verso</button>
+                </div>
+
+                <p class="mt-7 text-xs uppercase tracking-[.25em] text-tinta/50">Tamanho</p>
+                <div id="tamanhos" class="mt-3 flex gap-2 justify-center lg:justify-start"></div>
+
+                <p class="mt-7 text-3xl font-bold" id="precoPeca"></p>
+                <p class="text-xs text-tinta/50" id="parcelaPeca"></p>
+                <div class="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start">
+                    <button type="button" id="btnComprar" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-tinta text-parede text-xs font-semibold uppercase tracking-[.25em] hover:bg-roxo transition">
+                        <i class="fa-solid fa-bag-shopping text-base"></i>Comprar
+                    </button>
+                    <a id="btnPedir" href="#contato" data-fechar class="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-tinta/30 text-xs font-semibold uppercase tracking-[.2em] hover:bg-tinta hover:text-parede transition">
+                        <i class="fa-brands fa-whatsapp text-base"></i>Dúvidas
+                    </a>
+                </div>
+                <p class="mt-3 text-[11px] text-tinta/45"><i class="fa-solid fa-lock mr-1"></i>Pagamento seguro pelo Mercado Pago · Pix, cartão ou boleto</p>
+            </div>
+
+            <button type="button" data-passo="1" class="hidden sm:grid absolute right-2 lg:right-[360px] top-1/2 -translate-y-1/2 w-11 h-11 place-items-center rounded-full border border-tinta/30 hover:bg-tinta hover:text-parede transition z-10" aria-label="Próxima"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- ===== CHECKOUT (dados de entrega → Mercado Pago) ===== -->
+    <div id="checkout" class="fixed inset-0 z-[60] hidden bg-tinta/60 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true" aria-label="Finalizar compra">
+        <div class="min-h-full flex items-center justify-center p-4">
+            <form id="formCheckout" class="w-full max-w-lg bg-parede rounded-3xl p-6 sm:p-8 shadow-2xl" novalidate>
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs uppercase tracking-[.25em] text-tinta/50">Finalizar compra</p>
+                        <h2 class="text-2xl font-bold mt-1">Dados de entrega</h2>
+                    </div>
+                    <button type="button" data-fechar-checkout class="w-9 h-9 grid place-items-center rounded-full hover:bg-tinta/10" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <!-- resumo do pedido -->
+                <div class="mt-5 flex items-center gap-4 p-3 rounded-2xl bg-white border border-tinta/10">
+                    <img id="resumoFoto" alt="" class="w-16 h-16 object-contain">
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold" id="resumoNome"></p>
+                        <p class="text-xs text-tinta/55" id="resumoDetalhe"></p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button type="button" data-qtd="-1" class="w-8 h-8 rounded-full border border-tinta/20" aria-label="Diminuir">−</button>
+                        <span id="resumoQtd" class="w-5 text-center font-semibold">1</span>
+                        <button type="button" data-qtd="1" class="w-8 h-8 rounded-full border border-tinta/20" aria-label="Aumentar">+</button>
+                    </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-6 gap-3 text-sm">
+                    <label class="col-span-6">Nome completo<input name="nome" required autocomplete="name" class="campo"></label>
+                    <label class="col-span-6 sm:col-span-3">E-mail<input name="email" type="email" required autocomplete="email" class="campo"></label>
+                    <label class="col-span-6 sm:col-span-3">WhatsApp<input name="telefone" type="tel" required autocomplete="tel" placeholder="(31) 99999-9999" class="campo"></label>
+                    <label class="col-span-6 sm:col-span-3">CPF<input name="cpf" inputmode="numeric" required placeholder="000.000.000-00" class="campo"></label>
+                    <label class="col-span-6 sm:col-span-3">CEP<input name="cep" inputmode="numeric" required autocomplete="postal-code" placeholder="00000-000" class="campo"></label>
+                    <label class="col-span-6 sm:col-span-4">Rua<input name="rua" required autocomplete="address-line1" class="campo"></label>
+                    <label class="col-span-3 sm:col-span-2">Número<input name="numero" required class="campo"></label>
+                    <label class="col-span-3 sm:col-span-6">Complemento<input name="complemento" autocomplete="address-line2" placeholder="Opcional" class="campo"></label>
+                    <label class="col-span-6 sm:col-span-3">Bairro<input name="bairro" required class="campo"></label>
+                    <label class="col-span-4 sm:col-span-2">Cidade<input name="cidade" required autocomplete="address-level2" class="campo"></label>
+                    <label class="col-span-2 sm:col-span-1">UF<input name="uf" required maxlength="2" autocomplete="address-level1" class="campo uppercase"></label>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between text-sm">
+                    <span class="text-tinta/60">Total</span>
+                    <span class="text-2xl font-bold" id="resumoTotal"></span>
+                </div>
+                <p id="erroCheckout" class="hidden mt-3 text-sm text-red-700"></p>
+                <button type="submit" id="btnPagar" class="mt-5 w-full inline-flex items-center justify-center gap-2 py-4 rounded-full bg-tinta text-parede text-xs font-semibold uppercase tracking-[.25em] hover:bg-roxo transition disabled:opacity-60">
+                    <i class="fa-solid fa-lock"></i>Ir para o pagamento
+                </button>
+                <p class="mt-3 text-center text-[11px] text-tinta/45">Você será levado ao Mercado Pago para pagar com Pix, cartão ou boleto.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="aviso" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[70] px-5 py-3 rounded-full bg-tinta text-parede text-sm shadow-xl opacity-0 pointer-events-none transition-opacity"></div>
+
+    <script>
+        /* ===== Coleção — edite aqui =====
+           Fotos em img/camisetas/<id>-frente.webp e <id>-costas.webp (fundo transparente). */
+        const PECAS = [
+            { id: "preta",  nome: "Preta",  cor: "#141216", etiqueta: "#141216", texto: "#d9ec3c" },
+            { id: "branca", nome: "Branca", cor: "#f4f2ec", etiqueta: "#f4f2ec", texto: "#141216" },
+            { id: "roxa",   nome: "Roxa",   cor: "#4b2a8a", etiqueta: "#4b2a8a", texto: "#d9ec3c" }
+        ];
+        const TAMANHOS = ["P", "M", "G", "GG"];
+        // Preço só para EXIBIR — quem cobra é o servidor (api/criar-preferencia.js). Mude nos dois lugares.
+        const PRECO = 149.90;
+        // Função que cria o pagamento no Mercado Pago (veja api/criar-preferencia.js)
+        const CHECKOUT_ENDPOINT = "/api/criar-preferencia";
+        // Contatos da marca (preencha): número com DDI e DDD, só dígitos, e o @ do Instagram
+        const WHATSAPP = "";
+        const INSTAGRAM = "";
+
+        const $ = id => document.getElementById(id);
+        const brl = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        const foto = (p, lado) => `img/camisetas/${p.id}-${lado}.webp`;
+        const toque = matchMedia("(hover: none)").matches;
+        const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ---------- arara ---------- */
+        const ganchoSVG = `<svg viewBox="0 0 34 42" class="gancho" aria-hidden="true">
+            <path d="M17 40V27c0-5 10-6 10-15a10 10 0 0 0-20 0" fill="none" stroke="#5f5f5f" stroke-width="3.6" stroke-linecap="round"/>
+            <path d="M17 40V27c0-5 10-6 10-15a10 10 0 0 0-20 0" fill="none" stroke="url(#cromo)" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+
+        $("arara").innerHTML = PECAS.map((p, i) => `
+            <div class="peca" data-indice="${i}" role="button" tabindex="0" aria-label="Camiseta MAIA ${p.nome}: ver frente e verso">
+                ${ganchoSVG}
+                <div class="giro moldura">
+                    <div class="face"><img src="${foto(p, "frente")}" alt="Frente da camiseta MAIA ${p.nome}"></div>
+                    <div class="face costas"><img src="${foto(p, "costas")}" alt="Costas da camiseta MAIA ${p.nome}"></div>
+                </div>
+                <p class="rotulo mt-3 text-center text-[11px] uppercase tracking-[.25em]">
+                    <span class="font-semibold">${p.nome}</span> · <span class="lado-atual">Frente</span>
+                </p>
+            </div>`).join("");
+
+        const DE_LADO = toque ? 50 : 72;          // em repouso: vista de lado, como numa arara
+        document.querySelectorAll(".peca").forEach(peca => {
+            const giro = peca.querySelector(".giro"), ladoTxt = peca.querySelector(".lado-atual");
+            const girar = ang => {
+                giro.style.transform = `rotateY(${ang}deg)`;
+                ladoTxt.textContent = ang > 90 ? "Verso" : "Frente";
+            };
+            girar(DE_LADO);
+            if (!toque) {
+                // passa o mouse: a peça vira de frente; arrastar para a direita mostra o verso
+                peca.addEventListener("mouseenter", () => {
+                    peca.classList.add("ativa");
+                    if (!reduzido) { peca.classList.remove("balanco"); void peca.offsetWidth; peca.classList.add("balanco"); }
+                });
+                peca.addEventListener("mousemove", e => {
+                    const r = peca.getBoundingClientRect();
+                    const f = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+                    girar(f < 0.35 ? 0 : f > 0.65 ? 180 : (f - 0.35) / 0.3 * 180);
+                });
+                peca.addEventListener("mouseleave", () => { peca.classList.remove("ativa"); girar(DE_LADO); });
+            }
+            peca.addEventListener("click", () => abrir(Number(peca.dataset.indice)));
+            peca.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(Number(peca.dataset.indice)); } });
+        });
+
+        /* ---------- faixa ---------- */
+        const frase = ["MAIA WEAR", "✦", "FRENTE & VERSO", "✦", "CALENDÁRIO MAIA", "✦", "PRETA · BRANCA · ROXA", "✦"];
+        document.querySelector(".faixa-texto").innerHTML = Array(2).fill(
+            `<span class="flex gap-10 pr-10">${Array(4).fill(frase.map(t => `<span>${t}</span>`).join("")).join("")}</span>`).join("");
+
+        /* ---------- detalhe ---------- */
+        let atual = 0, tamanho = "M", verso = false;
+        function pintarDetalhe(){
+            const p = PECAS[atual];
+            $("imgFrente").src = foto(p, "frente");
+            $("imgCostas").src = foto(p, "costas");
+            $("nomeCor").textContent = p.nome;
+            $("giroGrande").classList.toggle("verso", verso);
+            document.querySelectorAll(".lado").forEach(b => {
+                const ativo = (b.dataset.lado === "verso") === verso;
+                b.classList.toggle("bg-tinta", ativo); b.classList.toggle("text-parede", ativo);
+            });
+            $("etiquetas").innerHTML = PECAS.map((q, i) => `
+                <button type="button" data-cor="${i}" class="etiqueta ${i === atual ? "atual" : ""} flex flex-col items-center" aria-label="Cor ${q.nome}">
+                    <span class="fio w-px bg-tinta/40" style="height:${36 + i * 18}px"></span>
+                    <span class="relative w-9 h-14 sm:h-16 rounded-md border border-tinta/15 shadow-md grid place-items-end pb-2" style="background:${q.etiqueta}">
+                        <span class="absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-parede border border-tinta/20"></span>
+                        <span class="text-[8px] font-bold tracking-[.15em] [writing-mode:vertical-rl] rotate-180" style="color:${q.texto}">${q.nome.toUpperCase()}</span>
+                    </span>
+                </button>`).join("");
+            $("tamanhos").innerHTML = TAMANHOS.map(t => `<button type="button" data-tam="${t}" class="tam w-12 h-12 rounded-full border border-tinta/25 text-sm font-semibold ${t === tamanho ? "ativo" : ""}">${t}</button>`).join("");
+            $("precoPeca").textContent = brl(PRECO);
+            $("parcelaPeca").textContent = `ou até 3x de ${brl(PRECO / 3)} no cartão`;
+            const msg = `Olá, MAIA! Quero a camiseta MAIA ${p.nome}, tamanho ${tamanho}.`;
+            const btn = $("btnPedir");
+            if (WHATSAPP) { btn.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`; btn.target = "_blank"; btn.removeAttribute("data-fechar"); }
+        }
+        function abrir(i){
+            atual = ((i % PECAS.length) + PECAS.length) % PECAS.length; verso = false;
+            pintarDetalhe();
+            $("detalhe").classList.add("aberto");
+            document.body.style.overflow = "hidden";
+        }
+        function fechar(){ $("detalhe").classList.remove("aberto"); document.body.style.overflow = ""; }
+
+        document.addEventListener("click", e => {
+            const el = e.target.closest("[data-abrir],[data-fechar],[data-passo],[data-cor],[data-tam],[data-lado]");
+            if (!el) return;
+            const d = el.dataset;
+            if (d.abrir !== undefined) abrir(Number(d.abrir));
+            else if (d.fechar !== undefined) fechar();
+            else if (d.passo) { atual += Number(d.passo); abrir(atual); }
+            else if (d.cor !== undefined) { atual = Number(d.cor); pintarDetalhe(); }
+            else if (d.tam) { tamanho = d.tam; pintarDetalhe(); }
+            else if (d.lado) { verso = d.lado === "verso"; pintarDetalhe(); }
+        });
+        // clicar na camiseta grande vira frente/verso
+        $("giroGrande").addEventListener("click", () => { verso = !verso; pintarDetalhe(); });
+        document.addEventListener("keydown", e => {
+            if (!$("detalhe").classList.contains("aberto")) return;
+            if (e.key === "Escape") { if (!$("checkout").classList.contains("hidden")) fecharCheckout(); else fechar(); }
+            if (e.key === "ArrowRight") abrir(atual + 1);
+            if (e.key === "ArrowLeft") abrir(atual - 1);
+        });
+
+        /* ---------- checkout ---------- */
+        let quantidade = 1;
+        const avisar = msg => { const a = $("aviso"); a.textContent = msg; a.style.opacity = 1; clearTimeout(avisar.t); avisar.t = setTimeout(() => a.style.opacity = 0, 4000); };
+        function pintarResumo(){
+            const p = PECAS[atual];
+            $("resumoFoto").src = foto(p, "frente");
+            $("resumoNome").textContent = `Camiseta MAIA ${p.nome}`;
+            $("resumoDetalhe").textContent = `Tamanho ${tamanho} · ${brl(PRECO)} cada`;
+            $("resumoQtd").textContent = quantidade;
+            $("resumoTotal").textContent = brl(PRECO * quantidade);
+        }
+        function abrirCheckout(){ quantidade = 1; pintarResumo(); $("erroCheckout").classList.add("hidden"); $("checkout").classList.remove("hidden"); }
+        function fecharCheckout(){ $("checkout").classList.add("hidden"); }
+        $("btnComprar").addEventListener("click", abrirCheckout);
+        document.addEventListener("click", e => {
+            if (e.target.closest("[data-fechar-checkout]") || e.target === $("checkout").firstElementChild) fecharCheckout();
+            const q = e.target.closest("[data-qtd]");
+            if (q) { quantidade = Math.min(5, Math.max(1, quantidade + Number(q.dataset.qtd))); pintarResumo(); }
+        });
+
+        // máscaras simples + busca do endereço pelo CEP (ViaCEP)
+        const form = $("formCheckout");
+        const mascara = (el, fn) => el.addEventListener("input", () => { el.value = fn(el.value.replace(/\D/g, "")); });
+        mascara(form.cep, d => d.slice(0, 8).replace(/(\d{5})(\d)/, "$1-$2"));
+        mascara(form.cpf, d => d.slice(0, 11).replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2"));
+        mascara(form.telefone, d => d.slice(0, 11).replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d{1,4})$/, "$1-$2"));
+        form.cep.addEventListener("input", async () => {
+            const cep = form.cep.value.replace(/\D/g, "");
+            if (cep.length !== 8) return;
+            try {
+                const r = await (await fetch(`https://viacep.com.br/ws/${cep}/json/`)).json();
+                if (r.erro) return;
+                form.rua.value = r.logradouro || form.rua.value;
+                form.bairro.value = r.bairro || form.bairro.value;
+                form.cidade.value = r.localidade || form.cidade.value;
+                form.uf.value = r.uf || form.uf.value;
+                form.numero.focus();
+            } catch (err) {}
+        });
+
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            let ok = true;
+            [...form.elements].forEach(el => {
+                if (!el.name) return;
+                const invalido = el.required && !el.value.trim()
+                    || (el.name === "email" && el.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value))
+                    || (el.name === "cep" && el.value.replace(/\D/g, "").length !== 8)
+                    || (el.name === "cpf" && el.value.replace(/\D/g, "").length !== 11);
+                el.classList.toggle("erro", !!invalido);
+                if (invalido) ok = false;
+            });
+            const erro = $("erroCheckout");
+            if (!ok) { erro.textContent = "Confira os campos destacados."; erro.classList.remove("hidden"); return; }
+            erro.classList.add("hidden");
+            const dados = Object.fromEntries(new FormData(form));
+            const btn = $("btnPagar"), texto = btn.innerHTML;
+            btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>Abrindo o Mercado Pago…';
+            try {
+                const r = await fetch(CHECKOUT_ENDPOINT, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ item: { cor: PECAS[atual].id, tamanho, quantidade }, comprador: dados })
+                });
+                const j = await r.json().catch(() => ({}));
+                if (!r.ok || !j.init_point) throw new Error(j.erro || "Não foi possível iniciar o pagamento.");
+                window.location.href = j.init_point;
+            } catch (err) {
+                erro.textContent = err.message + " Tente de novo ou fale com a gente pelo WhatsApp.";
+                erro.classList.remove("hidden");
+                btn.disabled = false; btn.innerHTML = texto;
+            }
+        });
+
+        // volta do Mercado Pago (back_urls): ?pagamento=sucesso|pendente|falha
+        const retorno = new URLSearchParams(location.search).get("pagamento");
+        if (retorno) {
+            avisar({ sucesso: "Pagamento aprovado! Obrigado pela compra 💛", pendente: "Pagamento em análise — avisaremos assim que confirmar.", falha: "O pagamento não foi concluído. Tente novamente." }[retorno] || "");
+            history.replaceState(null, "", location.pathname);
+        }
+
+        // links de contato
+        document.querySelectorAll('[data-link="whatsapp"]').forEach(a => { if (WHATSAPP) { a.href = `https://wa.me/${WHATSAPP}`; a.target = "_blank"; } });
+        document.querySelectorAll('[data-link="instagram"]').forEach(a => { if (INSTAGRAM) { a.href = `https://instagram.com/${INSTAGRAM}`; a.target = "_blank"; } });
+    </script>
+</body>
+</html>

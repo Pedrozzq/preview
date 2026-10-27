@@ -849,7 +849,7 @@
     <!-- ===== BARRA INFERIOR DO CELULAR (estilo Instagram) ===== -->
     <nav class="barra-app" aria-label="Atalhos">
         <a href="#inicio" class="barra-item" data-aba="inicio"><svg class="ic" aria-hidden="true"><use href="#ic-casa"/></svg><span>Início</span></a>
-        <a href="#colecao" class="barra-item" data-aba="colecao"><svg class="ic" aria-hidden="true"><use href="#ic-grade"/></svg><span>Coleção</span></a>
+        <a href="#galeria" class="barra-item" data-aba="galeria"><svg class="ic" aria-hidden="true"><use href="#ic-grade"/></svg><span>Galeria</span></a>
         <button type="button" class="barra-comprar" data-abrir-comprar aria-haspopup="dialog">
             <span class="barra-comprar__bola"><i class="fa-brands fa-whatsapp"></i></span><span>Comprar</span>
         </button>
@@ -1205,16 +1205,16 @@
                 fechar();
             });
 
-            // aba ativa, como no Instagram: Início no topo, Coleção quando ela está na tela
+            // aba ativa, como no Instagram: Início no topo, Galeria quando ela está na tela
             const abas = document.querySelectorAll(".barra-item[data-aba]");
             const marcarAba = id => abas.forEach(a => a.classList.toggle("ativo", a.dataset.aba === id));
             marcarAba("inicio");
             const visiveis = new Set();
             const io = new IntersectionObserver(entradas => {
                 entradas.forEach(e => e.isIntersecting ? visiveis.add(e.target.id) : visiveis.delete(e.target.id));
-                marcarAba(visiveis.has("colecao") ? "colecao" : visiveis.has("inicio") ? "inicio" : "");
+                marcarAba(visiveis.has("galeria") ? "galeria" : visiveis.has("inicio") ? "inicio" : "");
             }, { rootMargin: "-40% 0px -40% 0px" });
-            ["inicio", "colecao"].forEach(id => io.observe(document.getElementById(id)));
+            ["inicio", "galeria"].forEach(id => io.observe(document.getElementById(id)));
         })();
 
         // Vídeos da galeria: tocam só enquanto estão visíveis (economiza dados no celular)
