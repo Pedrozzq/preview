@@ -2,7 +2,7 @@
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ImperialiGems | Topázio Imperial de Ouro Preto</title>
     <meta name="description" content="ImperialiGems — crie sua joia exclusiva com Topázio Imperial de Ouro Preto (MG): escolha a pedra, personalize em 3D e receba uma peça única. Bruto e lapidado.">
 
@@ -239,6 +239,45 @@
         html.rv-on [data-rv="cartao"]:not(.rv-in) { transform: translateY(54px); }
         html.rv-on [data-rv="botao"]:not(.rv-in) { transform: translateY(20px) scale(.92); }
         html.rv-on [data-rv="lista"]:not(.rv-in) { transform: translateX(-22px); filter: blur(4px); }
+
+        /* ---------- barra inferior do celular, no estilo do Instagram ---------- */
+        .barra-app { display: none; }
+        @media (max-width: 767px) {
+            body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+            /* no celular a barra substitui a logo flutuante "Conheça a ImperialiGems" e o balão dela */
+            [data-abrir-selo].fixed, #balaoSelo { display: none !important; }
+            .barra-app { display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; position: fixed; inset: auto 0 0 0; z-index: 45;
+                         height: calc(60px + env(safe-area-inset-bottom)); padding: 0 6px env(safe-area-inset-bottom);
+                         background: rgba(14,12,9,.88); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+                         border-top: 1px solid rgba(255,255,255,.08); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+            html.abrindo .barra-app { transform: translateY(110%); }
+        }
+        .barra-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 60px; font-size: 24px;
+                      color: rgba(244,239,236,.62); -webkit-tap-highlight-color: transparent; transition: color .2s, transform .15s; }
+        .barra-item:active { transform: scale(.9); }
+        .barra-item.ativo { color: #f4efec; }
+        .barra-item.ativo .ic { stroke-width: 1.9; }
+        .barra-item span { font: 500 10px/1 "Inter", sans-serif; letter-spacing: .01em; }
+        /* botão central: comprar joia pronta pelo WhatsApp */
+        .barra-comprar { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 60px; justify-content: flex-end; padding-bottom: 7px;
+                         color: #f4efec; -webkit-tap-highlight-color: transparent; }
+        .barra-comprar__bola { display: grid; place-items: center; width: 54px; height: 54px; margin-top: -22px; border-radius: 50%; font-size: 27px; color: #fff;
+                               background: linear-gradient(140deg, #3ee07a, #1faa52); border: 3px solid #0e0c09;
+                               box-shadow: 0 10px 24px -8px rgba(37,211,102,.6); transition: transform .15s; animation: comprarPulso 2.8s ease-in-out infinite; }
+        .barra-comprar:active .barra-comprar__bola { transform: scale(.92); }
+        .barra-comprar span:last-child { font: 600 10px/1 "Inter", sans-serif; }
+        @keyframes comprarPulso { 0%, 100% { box-shadow: 0 10px 24px -8px rgba(37,211,102,.6), 0 0 0 0 rgba(37,211,102,.45); }
+                                  50% { box-shadow: 0 10px 24px -8px rgba(37,211,102,.6), 0 0 0 10px rgba(37,211,102,0); } }
+        @media (prefers-reduced-motion: reduce) { .barra-comprar__bola { animation: none; } }
+
+        /* folha "Comprar joia pronta" que sobe de baixo */
+        #folhaComprar { opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+        #folhaComprar.aberta { opacity: 1; visibility: visible; }
+        #folhaComprar .folha { transform: translateY(100%); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+        #folhaComprar.aberta .folha { transform: none; }
+        .folha-chip { padding: 10px 14px; border-radius: 999px; font-size: 13px; color: rgba(244,239,236,.85); background: rgba(255,255,255,.05);
+                      border: 1px solid rgba(255,255,255,.12); transition: background .2s, border-color .2s, color .2s; }
+        .folha-chip[aria-pressed="true"] { background: rgba(232,134,47,.16); border-color: #e8862f; color: #f4efec; }
     </style>
     <!-- Three.js (cristal 3D do topo) -->
     <script type="importmap">
@@ -259,6 +298,8 @@
             <symbol id="ic-cubo" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></symbol>
             <symbol id="ic-balanca" viewBox="0 0 24 24"><path d="M12 4v15M8 20h8M5 7h14"/><path d="M5 7 2.5 12.5a2.6 2.6 0 0 0 5 0zM19 7l-2.5 5.5a2.6 2.6 0 0 0 5 0z"/></symbol>
             <symbol id="ic-paleta" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.3 0 1.9-.9 1.4-2-.6-1.4.4-2.7 1.8-2.7h2.1a3.2 3.2 0 0 0 3.2-3.2c0-5.2-3.8-9.1-8.5-9.1z"/><circle cx="8" cy="10" r=".9"/><circle cx="11.5" cy="7.2" r=".9"/><circle cx="15.5" cy="8.6" r=".9"/></symbol>
+            <symbol id="ic-casa" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6.5H9V21H4.5a1 1 0 0 1-1-1z"/></symbol>
+            <symbol id="ic-grade" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17"/></symbol>
             <symbol id="ic-calculadora" viewBox="0 0 24 24"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 6.5h7v3h-7zM8.6 13h.01M12 13h.01M15.4 13h.01M8.6 16.5h.01M12 16.5h.01M15.4 16.5h.01"/></symbol>
         </defs>
     </svg>
@@ -389,24 +430,30 @@
     </section>
 
     <!-- ===== A PEDRA ===== -->
-    <section id="pedra" class="py-24 bg-gradient-to-b from-topazio-escuro to-[#24231e]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-10">
+    <section id="pedra" class="relative py-24 overflow-hidden bg-[#24231e]">
+        <!-- fotos de Ouro Preto ao fundo, alternando a cada 5 s -->
+        <img src="img/ouro-preto.webp" alt="" decoding="async" loading="lazy" class="foto-ouro-preto slide-op ativa absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-rua.webp" alt="" decoding="async" loading="lazy" class="foto-ouro-preto slide-op absolute inset-0 w-full h-full object-cover">
+        <img src="img/ouro-preto-praca.webp" alt="" decoding="async" loading="lazy" class="foto-ouro-preto slide-op absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-topazio-escuro via-topazio-escuro/70 to-[#24231e]/90"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(70%_70%_at_50%_50%,transparent,rgba(14,12,9,.6))]"></div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-10">
             <div class="md:col-span-1">
                 <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">A pedra</p>
                 <h2 class="font-serif text-4xl leading-tight">Por que o Topázio Imperial é tão especial</h2>
             </div>
             <div class="md:col-span-2 grid sm:grid-cols-3 gap-6">
-                <div class="p-6 border border-white/10 bg-white/[.02]">
+                <div class="p-6 border border-white/10 bg-topazio-escuro/55 backdrop-blur-md">
                     <img src="img/midia/icone-bruto.webp" alt="Cristal bruto de Topázio Imperial" class="w-14 h-14 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Origem rara</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">A região de Ouro Preto é a principal fonte de Topázio Imperial do mundo.</p>
                 </div>
-                <div class="p-6 border border-white/10 bg-white/[.02]">
+                <div class="p-6 border border-white/10 bg-topazio-escuro/55 backdrop-blur-md">
                     <img src="img/midia/icone-lapidada.webp" alt="Topázio Imperial lapidado" class="w-14 h-14 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Cor única</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Tons que vão do dourado ao pêssego, do laranja ao rosa-imperial.</p>
                 </div>
-                <div class="p-6 border border-white/10 bg-white/[.02]">
+                <div class="p-6 border border-white/10 bg-topazio-escuro/55 backdrop-blur-md">
                     <img src="img/midia/icone-anel-halo.webp" alt="Anel Halo Imperatriz com Topázio Imperial" class="w-16 h-16 -my-1 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,.5)]" decoding="async">
                     <h3 class="font-serif text-2xl mt-4">Do bruto à joia</h3>
                     <p class="mt-2 text-sm text-topazio-claro/65 leading-relaxed">Cristais naturais para coleção e pedras lapidadas prontas para joalheria.</p>
@@ -664,33 +711,6 @@
         </div>
     </section>
 
-    <!-- ===== COMO COMPRAR ===== -->
-    <section id="comprar" class="py-24">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-xl mx-auto">
-                <p class="text-xs uppercase tracking-[.3em] text-topazio-pessego mb-4">Como comprar</p>
-                <h2 class="font-serif text-4xl sm:text-5xl">Simples e com atendimento direto</h2>
-            </div>
-            <div class="mt-14 grid md:grid-cols-3 gap-6">
-                <div class="p-8 border border-white/10">
-                    <span class="font-serif text-5xl text-topazio-pessego">01</span>
-                    <h3 class="font-serif text-2xl mt-3">Chame no WhatsApp</h3>
-                    <p class="mt-2 text-sm text-topazio-claro/65">Conte o que procura: cor, tamanho, bruto ou lapidado, e o uso da peça.</p>
-                </div>
-                <div class="p-8 border border-white/10">
-                    <span class="font-serif text-5xl text-topazio-pessego">02</span>
-                    <h3 class="font-serif text-2xl mt-3">Receba as opções</h3>
-                    <p class="mt-2 text-sm text-topazio-claro/65">Enviamos fotos e vídeos reais das peças disponíveis, com peso e medidas.</p>
-                </div>
-                <div class="p-8 border border-white/10">
-                    <span class="font-serif text-5xl text-topazio-pessego">03</span>
-                    <h3 class="font-serif text-2xl mt-3">Envio seguro</h3>
-                    <p class="mt-2 text-sm text-topazio-claro/65">Pagamento combinado no atendimento e envio para todo o Brasil.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== CTA FINAL ===== -->
     <section class="relative py-32 sm:py-40 overflow-hidden text-topazio-claro">
         <!-- fotos de Ouro Preto que se alternam a cada 5 s -->
@@ -768,7 +788,6 @@
                         <li><a href="#pedra">O Topázio Imperial</a></li>
                         <li><a href="#estoque">Pedras em estoque</a></li>
                         <li><a href="#colecao">Coleção</a></li>
-                        <li><a href="#comprar">Como comprar</a></li>
                     </ul>
                 </nav>
                 <!-- atendimento -->
@@ -825,6 +844,47 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- ===== BARRA INFERIOR DO CELULAR (estilo Instagram) ===== -->
+    <nav class="barra-app" aria-label="Atalhos">
+        <a href="#inicio" class="barra-item" data-aba="inicio"><svg class="ic" aria-hidden="true"><use href="#ic-casa"/></svg><span>Início</span></a>
+        <a href="#colecao" class="barra-item" data-aba="colecao"><svg class="ic" aria-hidden="true"><use href="#ic-grade"/></svg><span>Coleção</span></a>
+        <button type="button" class="barra-comprar" data-abrir-comprar aria-haspopup="dialog">
+            <span class="barra-comprar__bola"><i class="fa-brands fa-whatsapp"></i></span><span>Comprar</span>
+        </button>
+        <a href="crie-sua-joia.html" class="barra-item"><svg class="ic" aria-hidden="true"><use href="#ic-gema"/></svg><span>Criar 3D</span></a>
+        <a href="https://www.instagram.com/imperialigems/" target="_blank" rel="noopener" class="barra-item"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+    </nav>
+
+    <!-- ===== COMPRAR JOIA PRONTA: escolhe a peça e o nome, e já abre o WhatsApp ===== -->
+    <div id="folhaComprar" class="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloComprar">
+        <form id="formComprar" class="folha absolute inset-x-0 bottom-0 mx-auto max-w-md rounded-t-3xl bg-[#1b1813] border-t border-white/10 px-5 pt-3 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-2xl">
+            <div class="mx-auto w-10 h-1 rounded-full bg-white/20" aria-hidden="true"></div>
+            <div class="mt-4 flex items-center gap-3">
+                <img src="img/logo-nova-256.webp" alt="" class="w-11 h-11 rounded-full">
+                <div class="min-w-0">
+                    <h2 id="tituloComprar" class="font-serif text-2xl leading-tight">Comprar joia pronta</h2>
+                    <p class="text-xs text-topazio-claro/55"><span class="inline-block w-2 h-2 rounded-full bg-[#25D366] mr-1.5"></span>Atendimento no WhatsApp · fotos e vídeos reais</p>
+                </div>
+                <button type="button" data-fechar-comprar class="ml-auto self-start w-9 h-9 grid place-items-center rounded-full text-topazio-claro/60 hover:text-topazio-pessego" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="mt-5 text-xs uppercase tracking-[.2em] text-topazio-claro/60">O que você procura?</p>
+            <div class="mt-3 flex flex-wrap gap-2" id="chipsComprar">
+                <button type="button" class="folha-chip" aria-pressed="false" data-tipo="um anel">Anel</button>
+                <button type="button" class="folha-chip" aria-pressed="false" data-tipo="um brinco">Brinco</button>
+                <button type="button" class="folha-chip" aria-pressed="false" data-tipo="um colar ou pingente">Colar / pingente</button>
+                <button type="button" class="folha-chip" aria-pressed="false" data-tipo="uma pedra lapidada avulsa">Pedra lapidada</button>
+                <button type="button" class="folha-chip" aria-pressed="false" data-tipo="um cristal bruto">Cristal bruto</button>
+            </div>
+            <label class="block mt-5 text-xs uppercase tracking-[.2em] text-topazio-claro/60" for="nomeComprar">Seu nome</label>
+            <input id="nomeComprar" class="mt-2 w-full px-4 py-3.5 bg-transparent border border-white/15 rounded-xl text-topazio-claro text-base outline-none focus:border-topazio-pessego" autocomplete="given-name" maxlength="60" placeholder="Como podemos te chamar?">
+            <p id="erroComprar" class="hidden mt-2 text-sm text-topazio-rosa">Conte pra gente o seu nome para continuar.</p>
+            <button type="submit" class="mt-5 w-full h-14 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] text-[#0b1a10] font-semibold text-sm uppercase tracking-[.14em] active:scale-[.98] transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>Chamar no WhatsApp
+            </button>
+            <a href="crie-sua-joia.html" class="mt-4 block text-center text-xs text-topazio-claro/60">Prefere montar a sua? <span class="text-topazio-pessego">Criar em 3D →</span></a>
+        </form>
     </div>
 
     <div id="modalNome" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="tituloNome">
@@ -1105,21 +1165,76 @@
             });
         })();
 
+        // Barra do celular: "Comprar" abre a folha da joia pronta, que manda direto para o WhatsApp
+        (function comprarJoia() {
+            const folha = document.getElementById("folhaComprar"), form = document.getElementById("formComprar");
+            const campo = document.getElementById("nomeComprar"), erro = document.getElementById("erroComprar");
+            const chips = [...document.querySelectorAll("#chipsComprar .folha-chip")];
+            const WHATSAPP = "553171416959";
+            let origem = null;
+            const abrir = btn => {
+                origem = btn;
+                try { campo.value = localStorage.getItem("imperialigems_nome") || ""; } catch (e) {}
+                erro.classList.add("hidden");
+                folha.classList.add("aberta");
+                document.body.style.overflow = "hidden";
+                setTimeout(() => chips[0].focus({ preventScroll: true }), 80);
+            };
+            const fechar = () => { folha.classList.remove("aberta"); document.body.style.overflow = ""; origem && origem.focus({ preventScroll: true }); };
+            document.addEventListener("click", e => {
+                const btn = e.target.closest("[data-abrir-comprar]");
+                if (btn) { abrir(btn); return; }
+                if (!folha.classList.contains("aberta")) return;
+                if (e.target === folha || e.target.closest("[data-fechar-comprar]")) fechar();
+            });
+            document.addEventListener("keydown", e => { if (e.key === "Escape" && folha.classList.contains("aberta")) fechar(); });
+            chips.forEach(chip => chip.addEventListener("click", () => {
+                const marcar = chip.getAttribute("aria-pressed") !== "true";
+                chips.forEach(c => c.setAttribute("aria-pressed", "false"));
+                chip.setAttribute("aria-pressed", String(marcar));
+            }));
+            form.addEventListener("submit", e => {
+                e.preventDefault();
+                const nome = campo.value.trim().replace(/\s+/g, " ");
+                if (nome.length < 2) { erro.classList.remove("hidden"); campo.focus(); return; }
+                try { localStorage.setItem("imperialigems_nome", nome); } catch (err) {}
+                const escolhido = chips.find(c => c.getAttribute("aria-pressed") === "true");
+                const pedido = escolhido ? `Quero comprar ${escolhido.dataset.tipo} de Topázio Imperial pronto.` : "Quero comprar uma joia pronta de Topázio Imperial.";
+                const texto = `Olá, ImperialiGems! Meu nome é ${nome}. ${pedido} Pode me mandar fotos e valores das peças disponíveis?`;
+                window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+                fechar();
+            });
+
+            // aba ativa, como no Instagram: Início no topo, Coleção quando ela está na tela
+            const abas = document.querySelectorAll(".barra-item[data-aba]");
+            const marcarAba = id => abas.forEach(a => a.classList.toggle("ativo", a.dataset.aba === id));
+            marcarAba("inicio");
+            const visiveis = new Set();
+            const io = new IntersectionObserver(entradas => {
+                entradas.forEach(e => e.isIntersecting ? visiveis.add(e.target.id) : visiveis.delete(e.target.id));
+                marcarAba(visiveis.has("colecao") ? "colecao" : visiveis.has("inicio") ? "inicio" : "");
+            }, { rootMargin: "-40% 0px -40% 0px" });
+            ["inicio", "colecao"].forEach(id => io.observe(document.getElementById(id)));
+        })();
+
         // Vídeos da galeria: tocam só enquanto estão visíveis (economiza dados no celular)
         const observador = new IntersectionObserver(entradas => entradas.forEach(e => {
             if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
         }), { threshold: 0.35 });
         document.querySelectorAll("#galeria video, video[data-auto]").forEach(v => observador.observe(v));
         // chamada final: as fotos de Ouro Preto se alternam a cada 5 s
+        // (cada seção alterna as próprias fotos)
         (function alternarFotos() {
-            const fotos = document.querySelectorAll(".slide-op");
-            if (fotos.length < 2) return;
-            let atual = 0;
-            setInterval(() => {
-                fotos[atual].classList.remove("ativa");
-                atual = (atual + 1) % fotos.length;
-                fotos[atual].classList.add("ativa");
-            }, 5000);
+            document.querySelectorAll("section").forEach(secao => {
+                const fotos = [...secao.children].filter(el => el.classList.contains("slide-op"));
+                if (fotos.length < 2) return;
+                let atual = 0;
+                setInterval(() => {
+                    fotos[atual].classList.remove("ativa");
+                    atual = (atual + 1) % fotos.length;
+                    fotos[atual].classList.add("ativa");
+                }, 5000);
+            });
         })();
         // selo da seção 1: apresentação da ImperialiGems
         (function selo() {
