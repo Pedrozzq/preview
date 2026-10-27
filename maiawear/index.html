@@ -79,8 +79,36 @@
             .fio { height: 14px !important; }          /* etiquetas logo abaixo da camiseta */
         }
 
+        /* ---------- topo: ganha fundo ao rolar ---------- */
+        #topo { transition: background-color .3s, box-shadow .3s; }
+        #topo.rolado { background: rgba(236,236,234,.86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(20,18,22,.08); }
+        .topo-linha { transition: height .3s; }
+        #topo.rolado .topo-linha { height: 4.5rem; }
+
+        /* ---------- vitrine: passa o mouse e mostra o verso ---------- */
+        .card-peca .lado-a, .card-peca .lado-b { transition: opacity .45s; }
+        .card-peca .lado-b { opacity: 0; }
+        .card-peca:hover .lado-b, .card-peca:focus-visible .lado-b { opacity: 1; }
+        .card-peca:hover .lado-a, .card-peca:focus-visible .lado-a { opacity: 0; }
+
+        /* ---------- instagram ---------- */
+        .ig-anel { background: conic-gradient(from 210deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #feda75); }
+        .ig-post img, .ig-post video { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+        .ig-post:hover img, .ig-post:hover video { transform: scale(1.05); }
+
+        /* ---------- perguntas ---------- */
+        .faq summary { list-style: none; cursor: pointer; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary i { transition: transform .3s; }
+        .faq[open] summary i { transform: rotate(45deg); }
+
+        /* ---------- revelar ao rolar ---------- */
+        .revelar { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+        .revelar.visto { opacity: 1; transform: none; }
+
         @media (prefers-reduced-motion: reduce) {
             .faixa-texto, .peca.balanco, .etiqueta.atual { animation: none; }
+            .revelar { opacity: 1; transform: none; transition: none; }
         }
     </style>
 </head>
@@ -94,11 +122,17 @@
     </svg>
 
     <!-- ===== TOPO ===== -->
-    <header class="fixed inset-x-0 top-0 z-40">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-24 grid grid-cols-3 items-center text-[11px] sm:text-xs uppercase tracking-[.25em]">
-            <a href="#sobre" class="justify-self-start hover:opacity-60 transition">Sobre</a>
+    <header id="topo" class="fixed inset-x-0 top-0 z-40">
+        <div class="topo-linha max-w-7xl mx-auto px-5 sm:px-8 h-24 grid grid-cols-3 items-center text-[11px] sm:text-xs uppercase tracking-[.25em]">
+            <nav class="justify-self-start flex gap-7">
+                <a href="#colecao" class="hover:opacity-60 transition">Coleção</a>
+                <a href="#sobre" class="hidden sm:inline hover:opacity-60 transition">Sobre</a>
+            </nav>
             <a href="#inicio" class="justify-self-center" aria-label="MAIA Wear"><img src="img/logo-maia.webp" alt="MAIA Wear" class="h-14 sm:h-[4.5rem] w-auto"></a>
-            <a href="#contato" class="justify-self-end hover:opacity-60 transition">Contato</a>
+            <nav class="justify-self-end flex items-center gap-7">
+                <a href="#instagram" class="hidden sm:inline hover:opacity-60 transition">Instagram</a>
+                <a href="#contato" class="hover:opacity-60 transition">Contato</a>
+            </nav>
         </div>
     </header>
 
@@ -133,6 +167,30 @@
         </div>
     </main>
 
+    <!-- ===== VITRINE ===== -->
+    <section id="colecao" class="py-28 px-5 sm:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="revelar flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                <div>
+                    <p class="text-xs uppercase tracking-[.3em] text-tinta/50 mb-4">Coleção Calendário</p>
+                    <h2 class="text-4xl sm:text-6xl font-bold leading-[.95] tracking-tight">Três cores.<br>Uma mesma presença.</h2>
+                </div>
+                <p class="max-w-sm text-tinta/60 leading-relaxed">Assinatura MAIA na frente, calendário maia completo nas costas. <span class="hidden sm:inline">Passe o mouse para ver o verso.</span></p>
+            </div>
+            <div id="vitrine" class="mt-14 grid sm:grid-cols-3 gap-x-5 gap-y-10"></div>
+        </div>
+    </section>
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section class="border-y border-tinta/10 bg-white/50">
+        <ul class="max-w-7xl mx-auto px-5 sm:px-8 py-10 grid grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+            <li class="revelar flex items-start gap-4"><i class="fa-solid fa-lock text-xl text-roxo mt-0.5"></i><div><p class="font-semibold">Compra segura</p><p class="text-tinta/55">Pagamento pelo Mercado Pago</p></div></li>
+            <li class="revelar flex items-start gap-4"><i class="fa-solid fa-credit-card text-xl text-roxo mt-0.5"></i><div><p class="font-semibold">Até 3x no cartão</p><p class="text-tinta/55">Ou Pix e boleto</p></div></li>
+            <li class="revelar flex items-start gap-4"><i class="fa-solid fa-shirt text-xl text-roxo mt-0.5"></i><div><p class="font-semibold">Frente &amp; verso</p><p class="text-tinta/55">Arte nos dois lados da peça</p></div></li>
+            <li class="revelar flex items-start gap-4"><i class="fa-solid fa-ruler text-xl text-roxo mt-0.5"></i><div><p class="font-semibold">Do P ao GG</p><p class="text-tinta/55">Escolha o seu tamanho</p></div></li>
+        </ul>
+    </section>
+
     <!-- ===== SOBRE ===== -->
     <section id="sobre" class="py-28 px-6">
         <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
@@ -143,7 +201,8 @@
             <div>
                 <p class="text-xs uppercase tracking-[.3em] text-tinta/50 mb-4">Sobre a marca</p>
                 <h2><img src="img/logo-maia.webp" alt="MAIA Wear" class="w-64 sm:w-80 h-auto"></h2>
-                <p class="mt-6 text-lg leading-relaxed text-tinta/75">Streetwear com a força da arte maia. Na frente, a assinatura discreta; nas costas, o calendário inteiro em traço — para quem gosta de deixar a mensagem para trás.</p>
+                <p class="mt-6 text-2xl sm:text-3xl font-bold leading-tight">Não seguimos tendência,<br>criamos presença.</p>
+                <p class="mt-5 text-lg leading-relaxed text-tinta/75">Streetwear com a força da arte maia. Na frente, a assinatura discreta; nas costas, o calendário inteiro em traço — para quem gosta de deixar a mensagem para trás.</p>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <span class="px-4 py-2 rounded-full bg-tinta text-parede text-xs uppercase tracking-[.2em]">Preta</span>
                     <span class="px-4 py-2 rounded-full bg-white border border-tinta/15 text-xs uppercase tracking-[.2em]">Branca</span>
@@ -153,17 +212,142 @@
         </div>
     </section>
 
-    <!-- ===== CONTATO ===== -->
-    <footer id="contato" class="bg-cafe text-parede">
-        <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 items-center">
-            <img src="img/logo-maia-claro.webp" alt="MAIA Wear" class="w-56 h-auto">
-            <p class="text-sm text-parede/60 leading-relaxed">Pedidos, tamanhos e encomendas pelo direct ou WhatsApp.</p>
-            <div class="flex md:justify-end gap-5 text-2xl">
-                <a href="#" data-link="instagram" class="hover:text-mostarda transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" data-link="whatsapp" class="hover:text-mostarda transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <!-- ===== A ARTE ===== -->
+    <section class="bg-tinta text-parede">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
+            <div class="revelar order-2 md:order-1">
+                <p class="text-xs uppercase tracking-[.3em] text-parede/50 mb-4">A arte</p>
+                <h2 class="text-4xl sm:text-5xl font-bold leading-[1.02] tracking-tight">O calendário inteiro,<br><span class="text-[#e6e01f]">em traço.</span></h2>
+                <p class="mt-6 text-parede/65 leading-relaxed max-w-md">Na frente, só a assinatura. Nas costas, o calendário maia em traço, com o nome MAIA no alto: a mensagem fica para quem vem atrás.</p>
+                <div class="mt-9 grid grid-cols-3 gap-4 max-w-md">
+                    <div class="border-t border-parede/20 pt-4"><p class="text-3xl font-bold">3</p><p class="text-xs uppercase tracking-[.2em] text-parede/50 mt-1">cores</p></div>
+                    <div class="border-t border-parede/20 pt-4"><p class="text-3xl font-bold">2</p><p class="text-xs uppercase tracking-[.2em] text-parede/50 mt-1">lados</p></div>
+                    <div class="border-t border-parede/20 pt-4"><p class="text-3xl font-bold">4</p><p class="text-xs uppercase tracking-[.2em] text-parede/50 mt-1">tamanhos</p></div>
+                </div>
+                <button type="button" data-abrir="0" class="mt-10 px-8 py-4 rounded-full bg-parede text-tinta text-xs font-semibold uppercase tracking-[.25em] hover:bg-mostarda transition">Escolher a minha</button>
+            </div>
+            <div class="revelar order-1 md:order-2">
+                <img src="img/snapinsta-1792714702156.jpg" alt="Camiseta MAIA preta: costas com o calendário maia e frente com a assinatura" class="w-full rounded-3xl shadow-2xl" loading="lazy">
             </div>
         </div>
-        <p class="text-center text-[11px] uppercase tracking-[.3em] text-parede/40 pb-8">© MAIA Wear</p>
+    </section>
+
+    <!-- ===== INSTAGRAM (prévia do perfil) ===== -->
+    <section id="instagram" class="py-28 px-5 sm:px-8">
+        <div class="max-w-4xl mx-auto">
+            <p class="revelar text-center text-xs uppercase tracking-[.3em] text-tinta/50 mb-10">Siga a MAIA no Instagram</p>
+            <div class="revelar flex items-center gap-5 sm:gap-10">
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-anel shrink-0 rounded-full p-[3px]" aria-label="Perfil @maiawearoficial no Instagram">
+                    <span class="block rounded-full bg-parede p-[3px]"><img src="img/logo.jpg" alt="" class="w-20 h-20 sm:w-36 sm:h-36 rounded-full object-cover"></span>
+                </a>
+                <div class="min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <p class="text-lg sm:text-xl font-semibold">maiawearoficial</p>
+                        <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="px-5 py-1.5 rounded-lg bg-[#0095f6] text-white text-sm font-semibold hover:bg-[#1877f2] transition">Seguir</a>
+                    </div>
+                    <ul class="mt-3 flex gap-6 text-sm">
+                        <li><span class="font-semibold">931</span> seguidores</li>
+                        <li><span class="font-semibold">3</span> seguindo</li>
+                    </ul>
+                    <p class="mt-3 text-sm font-semibold">Maia Wear</p>
+                    <p class="text-sm text-tinta/75">Não seguimos tendência, criamos presença.<br>Use: MAIAWEAR 🏷️</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-tinta/15 flex justify-center gap-12 text-[11px] uppercase tracking-[.2em]">
+                <span class="-mt-px border-t border-tinta pt-4 font-semibold"><i class="fa-solid fa-table-cells mr-2"></i>Posts</span>
+                <span class="pt-4 text-tinta/45"><i class="fa-solid fa-clapperboard mr-2"></i>Reels</span>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-1">
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-post revelar relative aspect-square overflow-hidden bg-tinta/10">
+                    <video src="snapinsta-1792714647111.mp4" class="w-full h-full object-cover" muted loop playsinline autoplay preload="metadata" aria-label="Reel da MAIA Wear"></video>
+                    <i class="fa-solid fa-clapperboard absolute top-2 right-2 text-white drop-shadow"></i>
+                </a>
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-post revelar relative aspect-square overflow-hidden bg-tinta/10">
+                    <img src="img/snapinsta-1792714702156.jpg" alt="Camiseta MAIA preta, frente e costas" class="w-full h-full object-cover" loading="lazy">
+                </a>
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-post revelar relative aspect-square overflow-hidden bg-tinta/10">
+                    <img src="img/snapinsta-1792714712687.jpg" alt="Camiseta MAIA branca, frente e costas" class="w-full h-full object-cover" loading="lazy">
+                </a>
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-post revelar relative aspect-square overflow-hidden bg-tinta/10">
+                    <img src="img/snapinsta-1792714729070.jpg" alt="Camiseta MAIA roxa, frente e costas" class="w-full h-full object-cover" loading="lazy">
+                </a>
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-post revelar relative aspect-square overflow-hidden bg-mostarda">
+                    <img src="img/camisetas/preta-costas.webp" alt="Costas da camiseta MAIA preta" class="w-full h-full object-contain p-[12%]" loading="lazy">
+                </a>
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="ig-post revelar relative aspect-square overflow-hidden bg-[#c9bce6]">
+                    <img src="img/camisetas/roxa-costas.webp" alt="Costas da camiseta MAIA roxa" class="w-full h-full object-contain p-[12%]" loading="lazy">
+                </a>
+            </div>
+            <div class="mt-10 text-center">
+                <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-tinta/30 text-xs font-semibold uppercase tracking-[.25em] hover:bg-tinta hover:text-parede transition">
+                    <i class="fa-brands fa-instagram text-base"></i>Ver perfil completo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PERGUNTAS ===== -->
+    <section id="duvidas" class="py-24 px-5 sm:px-8 border-t border-tinta/10">
+        <div class="max-w-3xl mx-auto">
+            <p class="revelar text-xs uppercase tracking-[.3em] text-tinta/50 mb-4 text-center">Dúvidas</p>
+            <h2 class="revelar text-4xl sm:text-5xl font-bold text-center tracking-tight">Perguntas frequentes</h2>
+            <div class="mt-12 divide-y divide-tinta/10 border-y border-tinta/10">
+                <details class="faq revelar py-6">
+                    <summary class="flex items-center justify-between gap-6 text-lg font-semibold">Como faço meu pedido?<i class="fa-solid fa-plus text-sm"></i></summary>
+                    <p class="mt-3 text-tinta/65 leading-relaxed">Escolha a cor e o tamanho, toque em Comprar e preencha os dados de entrega. Você é levado ao Mercado Pago para concluir o pagamento.</p>
+                </details>
+                <details class="faq revelar py-6">
+                    <summary class="flex items-center justify-between gap-6 text-lg font-semibold">Quais as formas de pagamento?<i class="fa-solid fa-plus text-sm"></i></summary>
+                    <p class="mt-3 text-tinta/65 leading-relaxed">Pix, boleto ou cartão de crédito em até 3x, tudo pelo ambiente seguro do Mercado Pago.</p>
+                </details>
+                <details class="faq revelar py-6">
+                    <summary class="flex items-center justify-between gap-6 text-lg font-semibold">Quais tamanhos estão disponíveis?<i class="fa-solid fa-plus text-sm"></i></summary>
+                    <p class="mt-3 text-tinta/65 leading-relaxed">P, M, G e GG, nas três cores. Ficou em dúvida? Chame a gente que ajudamos a escolher.</p>
+                </details>
+                <details class="faq revelar py-6">
+                    <summary class="flex items-center justify-between gap-6 text-lg font-semibold">Onde vejo os lançamentos?<i class="fa-solid fa-plus text-sm"></i></summary>
+                    <p class="mt-3 text-tinta/65 leading-relaxed">No nosso Instagram, <a href="https://www.instagram.com/maiawearoficial/" target="_blank" rel="noopener" class="underline underline-offset-4">@maiawearoficial</a>: é por lá que mostramos as peças novas e as novidades da marca.</p>
+                </details>
+                <details class="faq revelar py-6">
+                    <summary class="flex items-center justify-between gap-6 text-lg font-semibold">Como falo com a MAIA?<i class="fa-solid fa-plus text-sm"></i></summary>
+                    <p class="mt-3 text-tinta/65 leading-relaxed">Pelo direct do Instagram ou pelo WhatsApp. Respondemos sobre pedidos, tamanhos e encomendas.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <footer id="contato" class="bg-cafe text-parede">
+        <div class="max-w-7xl mx-auto px-6 pt-20 pb-12 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+            <div>
+                <img src="img/logo-maia-claro.webp" alt="MAIA Wear" class="w-56 h-auto">
+                <p class="mt-6 text-sm text-parede/60 leading-relaxed max-w-xs">Não seguimos tendência, criamos presença. Pedidos, tamanhos e encomendas pelo direct ou WhatsApp.</p>
+                <div class="mt-6 flex gap-3 text-xl">
+                    <a href="#" data-link="instagram" class="w-11 h-11 grid place-items-center rounded-full border border-parede/20 hover:bg-parede hover:text-cafe transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" data-link="whatsapp" class="w-11 h-11 grid place-items-center rounded-full border border-parede/20 hover:bg-parede hover:text-cafe transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <nav aria-label="Loja">
+                <p class="text-xs uppercase tracking-[.3em] text-mostarda mb-5">Loja</p>
+                <ul class="grid gap-3 text-sm text-parede/70">
+                    <li><button type="button" data-abrir="0" class="hover:text-parede">Camiseta MAIA Preta</button></li>
+                    <li><button type="button" data-abrir="1" class="hover:text-parede">Camiseta MAIA Branca</button></li>
+                    <li><button type="button" data-abrir="2" class="hover:text-parede">Camiseta MAIA Roxa</button></li>
+                </ul>
+            </nav>
+            <nav aria-label="A marca">
+                <p class="text-xs uppercase tracking-[.3em] text-mostarda mb-5">A marca</p>
+                <ul class="grid gap-3 text-sm text-parede/70">
+                    <li><a href="#sobre" class="hover:text-parede">Sobre</a></li>
+                    <li><a href="#instagram" class="hover:text-parede">Instagram</a></li>
+                    <li><a href="#duvidas" class="hover:text-parede">Perguntas frequentes</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 py-6 border-t border-parede/10 flex flex-col sm:flex-row gap-3 justify-between text-[11px] uppercase tracking-[.25em] text-parede/40">
+            <p>© <span data-ano>2026</span> MAIA Wear</p>
+            <p><i class="fa-solid fa-lock mr-1"></i>Pagamento seguro · Mercado Pago</p>
+        </div>
     </footer>
 
     <!-- ===== DETALHE DA PEÇA ===== -->
@@ -294,7 +478,7 @@
         const CHECKOUT_ENDPOINT = "/api/criar-preferencia";
         // Contatos da marca (preencha): número com DDI e DDD, só dígitos, e o @ do Instagram
         const WHATSAPP = "";
-        const INSTAGRAM = "";
+        const INSTAGRAM = "maiawearoficial";
 
         const $ = id => document.getElementById(id);
         const brl = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -343,6 +527,32 @@
             peca.addEventListener("click", () => abrir(Number(peca.dataset.indice)));
             peca.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(Number(peca.dataset.indice)); } });
         });
+
+        /* ---------- vitrine ---------- */
+        const FUNDO_CARD = { preta: "#d2a85e", branca: "#dcdad3", roxa: "#c9bce6" };
+        $("vitrine").innerHTML = PECAS.map((p, i) => `
+            <button type="button" data-abrir="${i}" class="card-peca revelar text-left" aria-label="Ver camiseta MAIA ${p.nome}">
+                <span class="relative block aspect-[4/5] rounded-3xl overflow-hidden" style="background:${FUNDO_CARD[p.id] || "#dcdad3"}">
+                    <img src="${foto(p, "frente")}" alt="" class="lado-a absolute inset-0 w-full h-full object-contain p-8 drop-shadow-xl" loading="lazy">
+                    <img src="${foto(p, "costas")}" alt="" class="lado-b absolute inset-0 w-full h-full object-contain p-8 drop-shadow-xl" loading="lazy">
+                    <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-parede/90 text-[10px] font-semibold uppercase tracking-[.2em]">Frente &amp; verso</span>
+                </span>
+                <span class="mt-5 flex items-start justify-between gap-4">
+                    <span><span class="block text-lg font-semibold">Camiseta MAIA ${p.nome}</span><span class="block text-sm text-tinta/55">${TAMANHOS.join(" · ")}</span></span>
+                    <span class="text-right"><span class="block text-lg font-bold">${brl(PRECO)}</span><span class="block text-xs text-tinta/50">3x de ${brl(PRECO / 3)}</span></span>
+                </span>
+            </button>`).join("");
+
+        /* ---------- topo ganha fundo ao rolar ---------- */
+        const marcarTopo = () => $("topo").classList.toggle("rolado", scrollY > 40);
+        addEventListener("scroll", marcarTopo, { passive: true }); marcarTopo();
+
+        /* ---------- revelar ao rolar ---------- */
+        if ("IntersectionObserver" in window) {
+            const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visto"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+            document.querySelectorAll(".revelar").forEach(el => io.observe(el));
+        } else document.querySelectorAll(".revelar").forEach(el => el.classList.add("visto"));
+        document.querySelectorAll("[data-ano]").forEach(el => el.textContent = new Date().getFullYear());
 
         /* ---------- faixa ---------- */
         const frase = ["MAIA WEAR", "✦", "FRENTE & VERSO", "✦", "CALENDÁRIO MAIA", "✦", "PRETA · BRANCA · ROXA", "✦"];
