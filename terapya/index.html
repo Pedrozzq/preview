@@ -15,7 +15,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -336,13 +336,6 @@
       animation:none;
     }
 
-    .primary-links{
-      margin-top:34px;
-      display:grid;
-      gap:12px;
-      width:min(100%,650px);
-      margin-inline:auto;
-    }
     .action-card{
       --card-x:50%;
       --card-y:50%;
@@ -430,49 +423,6 @@
     }
     .action-card:hover .arrow{transform:translateX(4px);color:#fff}
 
-    .secondary-grid{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      width:min(100%,650px);
-      margin-inline:auto;
-    }
-    .small-link{
-      display:grid;
-      grid-template-columns:22px 1fr auto;
-      align-items:center;
-      gap:12px;
-      min-height:50px;
-      padding:12px 4px;
-      border-radius:0;
-      border:none;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      background:transparent;
-      transition:.3s var(--ease);
-    }
-    .small-link:hover{
-      background:rgba(255,255,255,.02);
-      border-color:rgba(6,182,212,.24);
-    }
-    .small-link .icon-wrap{width:22px;height:22px;border-radius:0;background:none;border:none;color:rgba(255,255,255,.46)}
-    .small-link:hover .icon-wrap{color:var(--purple)}
-    .small-link .icon-wrap svg{width:17px;height:17px;stroke-width:1.5}
-    .small-link strong{display:block;font:600 12px/1.2 Manrope,sans-serif;letter-spacing:.01em}
-    .small-link span{display:block;margin-top:3px;font-size:10px;color:rgba(255,255,255,.4)}
-    .small-link .arrow{color:rgba(255,255,255,.26);font-size:15px}
-    .small-link.gold{border-color:rgba(255,196,64,.20)}
-    .small-link.gold .icon-wrap{color:#FFC640}
-    .small-link.gold:hover{background:rgba(255,196,64,.05);border-color:rgba(255,196,64,.45)}
-    .small-link.gold:hover .icon-wrap{color:#FFC640}
-    .small-link.whatsapp{border-color:rgba(37,211,102,.20)}
-    .small-link.whatsapp .icon-wrap{color:#25D366}
-    .small-link.whatsapp:hover{background:rgba(37,211,102,.05);border-color:rgba(37,211,102,.45)}
-    .small-link.whatsapp:hover .icon-wrap{color:#25D366}
-    .small-link.orange{border-color:rgba(255,138,30,.20)}
-    .small-link.orange .icon-wrap{color:#FF8A1E}
-    .small-link.orange:hover{background:rgba(255,138,30,.05);border-color:rgba(255,138,30,.45)}
-    .small-link.orange:hover .icon-wrap{color:#FF8A1E}
 
     /* SECTIONS */
     .section{
@@ -876,7 +826,6 @@
 
     @media(min-width:680px){
       .site-shell{padding-inline:28px}
-      .secondary-grid{grid-template-columns:1fr 1fr}
       .event-grid{grid-template-columns:repeat(2,1fr)}
       .event-card{min-height:330px}
       .info-grid{grid-template-columns:repeat(3,1fr)}
@@ -887,7 +836,6 @@
 
     @media(min-width:980px){
       .hero{min-height:940px}
-      .primary-links{grid-template-columns:repeat(3,1fr);width:100%}
       .action-card{
         grid-template-columns:1fr auto;
         grid-template-rows:auto auto;
@@ -900,7 +848,6 @@
       .action-card .action-copy{grid-column:1/3;grid-row:2}
       .action-copy strong{font-size:14px}
       .action-copy span{font-size:11px}
-      .secondary-grid{grid-template-columns:1fr 1fr}
       .ig-profile{max-width:420px;margin-inline:auto}
     }
 
@@ -911,93 +858,6 @@
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
     }
-    /* Botão flutuante "Avaliar no Google": redondo, fixo no canto inferior
-       direito, com anel dourado pulsando e etiqueta curta de chamada */
-    .review-fab{
-      position:fixed;
-      right:calc(18px + env(safe-area-inset-right));
-      bottom:calc(18px + env(safe-area-inset-bottom));
-      z-index:900;
-      display:flex;align-items:center;gap:10px;
-      text-decoration:none;
-    }
-    .review-fab__btn{
-      position:relative;
-      width:58px;height:58px;border-radius:50%;
-      display:grid;place-items:center;
-      background:#fff;
-      border:2px solid #FFC640;
-      animation:reviewGlow 2.4s ease-in-out infinite;
-      transition:transform .3s var(--ease);
-    }
-    @keyframes reviewGlow{
-      0%,100%{border-color:#FFC640;box-shadow:0 10px 26px rgba(0,0,0,.5),0 0 10px rgba(255,198,64,.35)}
-      50%{border-color:#FFE08A;box-shadow:0 10px 26px rgba(0,0,0,.5),0 0 26px rgba(255,198,64,.8),0 0 0 4px rgba(255,198,64,.18)}
-    }
-    .review-fab__btn svg{width:28px;height:28px}
-    .review-fab__btn::before,.review-fab__btn::after{
-      content:"";position:absolute;inset:-2px;border-radius:50%;
-      border:2px solid rgba(255,198,64,.75);
-      animation:reviewPulse 2.4s var(--ease) infinite;
-      pointer-events:none;
-    }
-    .review-fab__btn::after{animation-delay:1.2s}
-    @keyframes reviewPulse{
-      0%{transform:scale(1);opacity:.8}
-      100%{transform:scale(1.6);opacity:0}
-    }
-    /* Balão de conversa compacto: avatar, "digitando…" e uma linha de mensagem */
-    .review-fab{align-items:center}
-    .review-chat{
-      position:relative;
-      display:flex;align-items:center;gap:8px;
-      padding:6px 8px 6px 6px;
-      border-radius:999px 999px 6px 999px;
-      background:rgba(20,20,24,.92);
-      border:1px solid rgba(255,198,64,.25);
-      box-shadow:0 10px 26px rgba(0,0,0,.5);
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      color:var(--text);white-space:nowrap;
-      opacity:0;transform:translateX(8px) scale(.96);transform-origin:100% 50%;
-      pointer-events:none;
-      transition:opacity .35s var(--ease),transform .35s var(--ease);
-    }
-    .review-fab.show-label .review-chat,
-    .review-fab:hover .review-chat,
-    .review-fab:focus-visible .review-chat{opacity:1;transform:none;pointer-events:auto}
-    .review-chat__avatar{position:relative;width:22px;height:22px;flex:none}
-    .review-chat__avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-    .review-chat__avatar::after{
-      content:"";position:absolute;right:-1px;bottom:-1px;width:7px;height:7px;border-radius:50%;
-      background:var(--success);border:1.5px solid #141418;
-    }
-    .review-chat__msg{font:600 12px/1 'Manrope',sans-serif}
-    .review-chat__msg b{color:#FFC640;font-weight:800}
-    .review-chat__typing{display:none;gap:3px;padding:0 4px}
-    .review-chat__typing i{width:4px;height:4px;border-radius:50%;background:var(--muted);animation:chatDot 1.1s ease-in-out infinite}
-    .review-chat__typing i:nth-child(2){animation-delay:.15s}
-    .review-chat__typing i:nth-child(3){animation-delay:.3s}
-    @keyframes chatDot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-3px);opacity:1}}
-    .review-chat.typing .review-chat__typing{display:flex}
-    .review-chat.typing .review-chat__msg{display:none}
-    .review-chat__close{
-      width:16px;height:16px;border-radius:50%;flex:none;padding:0;
-      display:grid;place-items:center;font-size:12px;line-height:1;
-      color:var(--muted);background:transparent;border:0;cursor:pointer;
-    }
-    .review-chat__close:hover{color:#fff}
-    .review-fab__badge{
-      position:absolute;top:-3px;right:-3px;z-index:1;
-      min-width:18px;height:18px;padding:0 5px;border-radius:999px;
-      display:grid;place-items:center;
-      font:800 10px/1 'Manrope',sans-serif;color:#fff;
-      background:var(--red);border:2px solid #0b0b0d;
-      transition:transform .3s var(--ease),opacity .3s ease;
-    }
-    .review-fab.seen .review-fab__badge{transform:scale(0);opacity:0}
-    .review-fab:hover .review-fab__btn{transform:scale(1.08)}
-    .review-fab:focus-visible{outline:none}
-    .review-fab:focus-visible .review-fab__btn{outline:2px solid #FFC640;outline-offset:3px}
     /* "Role para baixo" abaixo dos botões do topo */
     .scroll-cue{
       margin:26px auto 0;width:max-content;
@@ -1070,6 +930,125 @@
     }
     .rsv-submit:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(37,211,102,.35)}
     .rsv-submit svg{width:18px;height:18px}
+
+    /* Topo premium: foto em tela cheia com zoom lento, tipografia editorial
+       e detalhes em linhas finas no lugar dos botões */
+    .hero{padding:80px 0 120px;clip-path:inset(0 -100vw)}
+    .hero::before{
+      left:50%;right:auto;width:100vw;margin-left:-50vw;
+      background-image:
+        radial-gradient(ellipse at 50% 42%, transparent 0%, rgba(5,5,5,.55) 70%, rgba(5,5,5,.9) 100%),
+        linear-gradient(180deg, rgba(5,5,5,.35) 0%, rgba(5,5,5,.62) 50%, #050505 100%),
+        url("img/fachada-noite.webp");
+      background-repeat:no-repeat;
+      background-position:center, center, center 30%;
+      background-size:auto, auto, cover;
+      animation:heroZoom 18s var(--ease) both;
+    }
+    @media(max-width:679px){
+      .hero::before{background-position:center, center, 50% 22%;background-size:auto, auto, cover}
+    }
+    @keyframes heroZoom{from{transform:scale(1.1)}to{transform:scale(1)}}
+    .hero::after{
+      content:"";position:absolute;left:50%;bottom:0;z-index:-1;
+      width:min(80%,520px);height:1px;transform:translateX(-50%);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+    }
+    .hero .brand-mark{
+      width:74px;height:74px;border-radius:22px;margin-bottom:30px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 0 7px rgba(255,255,255,.025),0 24px 60px rgba(0,0,0,.6),0 0 60px rgba(34,211,238,.12);
+    }
+    .hero .eyebrow{
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      font-size:10.5px;letter-spacing:.34em;color:rgba(255,255,255,.55);margin-bottom:22px;
+    }
+    .hero .eyebrow::before,.hero .eyebrow::after{
+      content:"";width:38px;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.45));
+    }
+    .hero .eyebrow::after{transform:scaleX(-1)}
+    .hero h1{font-size:clamp(40px,10vw,84px);line-height:1;letter-spacing:-.05em;text-shadow:0 10px 40px rgba(0,0,0,.45)}
+    .hero h1 span{background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.78) 100%);-webkit-background-clip:text;background-clip:text}
+    .hero h1 em{
+      display:block;margin-top:4px;
+      font:italic 600 1.12em/1 'Cormorant Garamond',Georgia,serif;letter-spacing:-.01em;
+      background:linear-gradient(90deg,#9BF6FF,#fff 45%,#FF8A8A);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      filter:drop-shadow(0 0 24px rgba(34,211,238,.25));
+    }
+    .hero .hero-lead{
+      max-width:420px;margin:24px auto 0;
+      font-size:15px;line-height:1.75;color:rgba(245,245,245,.68);font-weight:400;
+    }
+    .hero .hero-meta{gap:0;margin-top:30px}
+    .hero .pill{
+      min-height:auto;padding:0 18px;border:0;border-radius:0;background:none;backdrop-filter:none;
+      font:600 10.5px/1 Manrope,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);
+    }
+    .hero .pill + .pill{border-left:1px solid rgba(255,255,255,.16)}
+    @media(max-width:420px){
+      .hero .hero-meta{flex-direction:column;gap:12px}
+      .hero .pill + .pill{border-left:0}
+    }
+    .hero .scroll-cue{
+      position:absolute;left:50%;bottom:28px;transform:translateX(-50%);margin:0;
+      font-size:9.5px;letter-spacing:.42em;color:rgba(255,255,255,.5);
+    }
+    .hero .scroll-cue.reveal{transform:translate(-50%,16px)}
+    @media(max-width:679px){.hero .scroll-cue{bottom:calc(84px + env(safe-area-inset-bottom))}.hero{padding-bottom:170px}}
+    .hero .scroll-cue.reveal.visible{transform:translate(-50%,0)}
+    .hero .scroll-cue__mouse{width:1px;height:42px;border:0;border-radius:0;background:rgba(255,255,255,.18);overflow:hidden}
+    .hero .scroll-cue__mouse span{left:0;top:0;width:1px;height:14px;margin:0;border-radius:0;background:linear-gradient(180deg,transparent,#fff);animation:heroLine 2s var(--ease) infinite}
+    @keyframes heroLine{from{transform:translateY(-14px)}to{transform:translateY(42px)}}
+
+    /* Menu inferior mobile (estilo Instagram): ícones coloridos com nome
+       e o drink central destacado no visual da logo Terapya */
+    .bottom-nav{display:none}
+    @media(max-width:679px){
+      .bottom-nav{
+        position:fixed;left:0;right:0;bottom:0;z-index:850;
+        display:flex;justify-content:space-around;align-items:flex-end;
+        height:calc(64px + env(safe-area-inset-bottom));
+        padding:0 4px env(safe-area-inset-bottom);
+        background:rgba(5,5,5,.92);
+        border-top:1px solid var(--line);
+        backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      }
+      .bottom-nav a{
+        position:relative;flex:1;height:64px;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+        color:var(--c,#fff);
+        -webkit-tap-highlight-color:transparent;
+      }
+      .bottom-nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.78;transition:transform .2s var(--ease),opacity .2s ease,filter .2s ease}
+      .bottom-nav__label{font:600 10px/1 Manrope,sans-serif;letter-spacing:.02em;color:rgba(245,245,245,.5);white-space:nowrap;transition:color .2s ease}
+      .bottom-nav a:active svg{transform:scale(.86)}
+      .bottom-nav a.active svg{opacity:1;stroke-width:2.3;filter:drop-shadow(0 0 6px var(--c))}
+      .bottom-nav a.active .bottom-nav__label{color:var(--text)}
+      .bottom-nav__avatar{width:26px;height:26px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#22D3EE,#FF3B4E)}
+      .bottom-nav__avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:1.5px solid #050505}
+      /* Drink central: quadrado preto arredondado, taça neon ciano e palito vermelho */
+      .bottom-nav a.bottom-nav__center{justify-content:flex-end;padding-bottom:9px}
+      .bottom-nav__logo{
+        position:relative;width:54px;height:54px;margin-top:-26px;border-radius:17px;
+        display:grid;place-items:center;background:#000;
+        border:1px solid rgba(34,211,238,.35);
+        box-shadow:0 10px 28px rgba(0,0,0,.65),0 0 18px rgba(34,211,238,.28),inset 0 0 14px rgba(34,211,238,.08);
+        animation:navLogoGlow 3.2s ease-in-out infinite;
+        transition:transform .2s var(--ease);
+      }
+      .bottom-nav__center:active .bottom-nav__logo{transform:scale(.92)}
+      .bottom-nav .bottom-nav__logo svg{width:32px;height:32px;opacity:1;stroke-width:1.7;filter:none}
+      .bottom-nav__logo .glass{stroke:#22D3EE;filter:drop-shadow(0 0 3px #22D3EE) drop-shadow(0 0 8px rgba(34,211,238,.7))}
+      .bottom-nav__logo .stick{stroke:#FF3B4E;filter:drop-shadow(0 0 3px #FF3B4E)}
+      .bottom-nav__logo .olive{fill:#FF3B4E;stroke:none;filter:drop-shadow(0 0 4px #FF3B4E)}
+      .bottom-nav__center.active .bottom-nav__logo{border-color:rgba(34,211,238,.7)}
+      @keyframes navLogoGlow{
+        0%,100%{box-shadow:0 10px 28px rgba(0,0,0,.65),0 0 14px rgba(34,211,238,.22),inset 0 0 14px rgba(34,211,238,.06)}
+        50%{box-shadow:0 10px 28px rgba(0,0,0,.65),0 0 26px rgba(34,211,238,.45),inset 0 0 16px rgba(34,211,238,.14)}
+      }
+      body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+    }
   </style>
 </head>
 <body>
@@ -1099,77 +1078,21 @@
           <span class="nfc-wave"></span>
         </div>
 
-        <div class="eyebrow reveal" style="--delay:250ms"><span class="brand-glow">TERAPYA BAR</span> • OURO PRETO</div>
+        <div class="eyebrow reveal" style="--delay:250ms"><span class="brand-glow">TERAPYA BAR</span> · OURO PRETO</div>
 
         <h1 class="reveal" style="--delay:320ms">
-          <span>Onde a noite<br>de Ouro Preto acontece.</span>
+          <span>Onde a noite<br>de Ouro Preto</span> <em>acontece.</em>
         </h1>
+
+        <p class="hero-lead reveal" style="--delay:400ms">Chapas, picanhas e drinks autorais em uma noite feita para ser lembrada.</p>
 
         <div class="hero-meta reveal" style="--delay:470ms">
           <span class="pill"><span class="open-dot" id="statusDot"></span> <span id="statusText">ABERTO AGORA</span></span>
-          <span class="pill">⭐ 4,8 • 107 avaliações no Google</span>
-        </div>
-
-        <div class="primary-links reveal" style="--delay:560ms">
-          <a class="action-card featured interactive-card" href="cardapio.html">
-            <div class="icon-wrap">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2Z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7Z"/><path d="M5 8h3M5 11h3M16 8h3M16 11h3"/>
-              </svg>
-            </div>
-            <div class="action-copy">
-              <strong>VER CARDÁPIO</strong>
-              <span>Chapas, picanhas, drinks e petiscos.</span>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-
-          <a class="action-card interactive-card" href="https://wa.me/5531985220592?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20no%20Terapya." target="_blank" rel="noopener">
-            <div class="icon-wrap">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <rect x="3" y="5" width="18" height="16" rx="3"/>
-                <path d="M8 3v4M16 3v4M3 10h18"/>
-              </svg>
-            </div>
-            <div class="action-copy">
-              <strong>RESERVAR MESA</strong>
-              <span>Fale com a gente no WhatsApp.</span>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-
-          <a class="action-card interactive-card" href="https://www.google.com/maps/search/?api=1&query=Terapya+Bar+Ouro+Preto" target="_blank" rel="noopener">
-            <div class="icon-wrap">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                <circle cx="12" cy="10" r="2.5"/>
-              </svg>
-            </div>
-            <div class="action-copy">
-              <strong>COMO CHEGAR</strong>
-              <span>Rua José Trindade, 5 — Bauxita.</span>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-        </div>
-
-        <div class="secondary-grid reveal" style="--delay:650ms">
-          <a class="small-link whatsapp" href="https://wa.me/5531985220592" target="_blank" rel="noopener">
-            <div class="icon-wrap">
-              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.14h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.02h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.08.78.83-3-.2-.31a8.07 8.07 0 0 1-1.24-4.28c0-4.47 3.64-8.11 8.13-8.11 4.48 0 8.12 3.64 8.12 8.12 0 4.48-3.64 8.11-8.12 8.11zm4.44-6.09c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
-            </div>
-            <div><strong>WHATSAPP</strong><span>Fale diretamente com nossa equipe.</span></div><span class="arrow">›</span>
-          </a>
-          <a class="small-link orange" href="#promocoes">
-            <div class="icon-wrap">
-              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.41l9 9c.36.36.86.59 1.41.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.05-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
-            </div>
-            <div><strong>PROMOÇÕES</strong><span>Terça a quinta: compre 3 Heineken 600ml e ganhe +1.</span></div><span class="arrow">›</span>
-          </a>
+          <span class="pill">★ 4,8 · 107 avaliações no Google</span>
         </div>
 
         <a class="scroll-cue reveal" href="#cardapio" style="--delay:800ms">
-          <span>Role para baixo para conhecer mais</span>
+          <span>Descubra</span>
           <span class="scroll-cue__mouse" aria-hidden="true"><span></span></span>
         </a>
       </div>
@@ -1180,51 +1103,6 @@
         <video id="reelVideo" src="video/reel-terapya.mp4" loop playsinline preload="metadata"></video>
         <button type="button" class="reel-mute" id="reelMuteBtn" aria-label="Desativar som do vídeo">🔊</button>
         <span class="reel-tag">REEL • @terapyabarop</span>
-      </div>
-
-      <div class="parallax-wrap" id="parallaxGallery">
-        <div class="parallax-sticky">
-          <div class="parallax-banner">
-            <div class="parallax-perspective">
-              <div class="parallax-vignette v"></div>
-              <div class="parallax-vignette h"></div>
-              <div class="parallax-grid">
-                <div class="parallax-col">
-                  <div class="parallax-item"><img loading="lazy" src="img/chapa-mesa.webp" alt="Chapa Terapya servida na mesa"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/drink-01.webp" alt="Drink de terapia"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-9.jpg" alt="Drink no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/chapa-mesa.webp" alt="Chapa Terapya servida na mesa"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/drink-01.webp" alt="Drink de terapia"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-9.jpg" alt="Drink no Terapya"></div>
-                </div>
-                <div class="parallax-col">
-                  <div class="parallax-item"><img loading="lazy" src="img/chapa-terapya.webp" alt="Chapa Terapya Mista"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/drink-02.webp" alt="Drink de terapia"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_2.png" alt="Cliente com drink no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/chapa-terapya.webp" alt="Chapa Terapya Mista"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/drink-02.webp" alt="Drink de terapia"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_2.png" alt="Cliente com drink no Terapya"></div>
-                </div>
-                <div class="parallax-col">
-                  <div class="parallax-item"><img loading="lazy" src="img/picanha.webp" alt="Picanha Argentina do Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-4.jpg" alt="Momento no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_1.png" alt="Drink no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/picanha.webp" alt="Picanha Argentina do Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-4.jpg" alt="Momento no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_1.png" alt="Drink no Terapya"></div>
-                </div>
-                <div class="parallax-col">
-                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
-                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <a class="action-card featured interactive-card reveal" href="cardapio.html" style="--delay:120ms">
@@ -1338,6 +1216,53 @@
           <span class="arrow">↗</span>
         </div>
       </a>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="parallax-wrap" id="parallaxGallery">
+        <div class="parallax-sticky">
+          <div class="parallax-banner">
+            <div class="parallax-perspective">
+              <div class="parallax-vignette v"></div>
+              <div class="parallax-vignette h"></div>
+              <div class="parallax-grid">
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-mesa.webp" alt="Chapa Terapya servida na mesa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-01.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-9.jpg" alt="Drink no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-mesa.webp" alt="Chapa Terapya servida na mesa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-01.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-9.jpg" alt="Drink no Terapya"></div>
+                </div>
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-terapya.webp" alt="Chapa Terapya Mista"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-02.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_2.png" alt="Cliente com drink no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/chapa-terapya.webp" alt="Chapa Terapya Mista"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/drink-02.webp" alt="Drink de terapia"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_2.png" alt="Cliente com drink no Terapya"></div>
+                </div>
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/picanha.webp" alt="Picanha Argentina do Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-4.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_1.png" alt="Drink no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/picanha.webp" alt="Picanha Argentina do Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-4.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/Screenshot_1.png" alt="Drink no Terapya"></div>
+                </div>
+                <div class="parallax-col">
+                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/torresmo.webp" alt="Torresmo da Casa"></div>
+                  <div class="parallax-item"><img loading="lazy" src="img/instagram/post-8.jpg" alt="Momento no Terapya"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="eventos">
@@ -1617,7 +1542,7 @@
     }
 
     // FEEDBACK MOBILE
-    document.querySelectorAll('.action-card,.small-link').forEach(el => {
+    document.querySelectorAll('.action-card').forEach(el => {
       el.addEventListener('touchstart', () => el.style.transform='scale(.985)', {passive:true});
       el.addEventListener('touchend', () => el.style.transform='', {passive:true});
     });
@@ -1682,6 +1607,35 @@
     })();
   </script>
   <!-- Modal de reserva: data, horário e envio por WhatsApp -->
+  <!-- Menu inferior mobile (estilo Instagram) -->
+  <nav class="bottom-nav" id="bottomNav" aria-label="Menu principal">
+    <a href="#inicio" data-spy="inicio cardapio" style="--c:#22D3EE"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg><span class="bottom-nav__label">Início</span></a>
+    <a href="#programacao" data-spy="programacao promocoes" style="--c:#FF8A1E"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><span class="bottom-nav__label">Agenda</span></a>
+    <a href="cardapio.html" class="bottom-nav__center"><span class="bottom-nav__logo"><svg viewBox="0 0 32 32"><path class="glass" d="M5 8h22L16 19.5Z"/><path class="glass" d="M16 19.5V27M11 27h10"/><path class="stick" d="M23.5 3.5 17.5 12"/><circle class="olive" cx="21.6" cy="6.3" r="2.3"/></svg></span><span class="bottom-nav__label">Cardápio</span></a>
+    <a href="https://wa.me/5531985220592?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20no%20Terapya." data-spy="reservas" style="--c:#55F59D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg><span class="bottom-nav__label">Reservar</span></a>
+    <a href="#instagram" data-spy="instagram galeria eventos"><span class="bottom-nav__avatar"><img src="img/logo.jpg" alt=""></span><span class="bottom-nav__label">Perfil</span></a>
+  </nav>
+  <script>
+    /* Menu inferior: marca o ícone da seção visível na tela */
+    (function(){
+      var links = document.querySelectorAll('#bottomNav a[data-spy]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (!entry.isIntersecting) return;
+          links.forEach(function(a){
+            a.classList.toggle('active', a.dataset.spy.split(' ').indexOf(entry.target.id) > -1);
+          });
+        });
+      }, {rootMargin:'-45% 0px -50% 0px'});
+      links.forEach(function(a){
+        a.dataset.spy.split(' ').forEach(function(id){
+          var sec = document.getElementById(id);
+          if (sec) obs.observe(sec);
+        });
+      });
+    })();
+  </script>
   <div class="rsv-modal" id="rsvModal" role="dialog" aria-modal="true" aria-labelledby="rsvTitle">
     <form class="rsv-box" id="rsvForm" novalidate>
       <button type="button" class="rsv-close" data-rsv-close aria-label="Fechar">&times;</button>
@@ -1806,53 +1760,6 @@
         fechar();
         form.reset();
       });
-    })();
-  </script>
-  <!-- Botão flutuante: avaliar no Google (acompanha a página toda) -->
-  <a class="review-fab" id="reviewFab" href="https://www.google.com/search?q=terapya+bar&rlz=1C1BNSD_pt-PTBR1081BR1081&oq=terapya+bar&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIGCAEQIxgnMgYIAhAjGCcyBwgDEAAYgAQyEAgEEC4YrwEYxwEYgAQYjgUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgxNTI1ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0xa40b001bc30241:0xfb6ab6ae3077d5ad,3,,,," target="_blank" rel="noopener" aria-label="Avaliar o Terapya no Google">
-    <span class="review-chat" id="reviewChat" role="status">
-      <span class="review-chat__avatar"><img src="img/logo.jpg" alt=""></span>
-      <span class="review-chat__typing" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="review-chat__msg">Curtiu? <b>Avalie no Google ★</b></span>
-      <button type="button" class="review-chat__close" id="reviewChatClose" aria-label="Fechar mensagem">&times;</button>
-    </span>
-    <span class="review-fab__btn">
-      <span class="review-fab__badge" aria-hidden="true">1</span>
-      <svg viewBox="0 0 48 48" aria-hidden="true">
-        <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/>
-        <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
-        <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
-        <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/>
-      </svg>
-    </span>
-  </a>
-  <script>
-    /* Balão de conversa do botão de avaliação: aparece "digitando…",
-       depois a mensagem; some sozinho ou pelo X */
-    (function(){
-      var fab = document.getElementById('reviewFab');
-      var chat = document.getElementById('reviewChat');
-      var close = document.getElementById('reviewChatClose');
-      if (!fab || !chat) return;
-      var hideTimer;
-      function hide(){ fab.classList.remove('show-label'); }
-      setTimeout(function(){
-        chat.classList.add('typing');
-        fab.classList.add('show-label');
-        setTimeout(function(){
-          chat.classList.remove('typing');
-          hideTimer = setTimeout(hide, 6000);
-        }, 1400);
-      }, 4000);
-      if (close) close.addEventListener('click', function(e){
-        e.preventDefault(); e.stopPropagation();
-        clearTimeout(hideTimer);
-        chat.classList.remove('typing');
-        hide();
-        fab.classList.add('seen');
-        fab.blur();
-      });
-      fab.addEventListener('click', function(){ fab.classList.add('seen'); });
     })();
   </script>
 </body>

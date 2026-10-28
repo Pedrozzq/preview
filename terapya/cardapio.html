@@ -310,6 +310,55 @@
     .preview-bar .sep{opacity:.5}
     @keyframes previewBlink{0%,100%{opacity:1}50%{opacity:.25}}
     .photo-note{margin:0;padding:5px 16px;text-align:center;font-size:10.5px;letter-spacing:.04em;color:var(--muted);background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
+
+    /* Menu inferior mobile (estilo Instagram): ícones coloridos com nome
+       e o drink central destacado no visual da logo Terapya */
+    .bottom-nav{display:none}
+    @media(max-width:679px){
+      .bottom-nav{
+        position:fixed;left:0;right:0;bottom:0;z-index:90;
+        display:flex;justify-content:space-around;align-items:flex-end;
+        height:calc(64px + env(safe-area-inset-bottom));
+        padding:0 4px env(safe-area-inset-bottom);
+        background:rgba(5,5,5,.92);
+        border-top:1px solid var(--line);
+        backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      }
+      .bottom-nav a{
+        position:relative;flex:1;height:64px;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+        color:var(--c,#fff);
+        -webkit-tap-highlight-color:transparent;
+      }
+      .bottom-nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.78;transition:transform .2s var(--ease),opacity .2s ease,filter .2s ease}
+      .bottom-nav__label{font:600 10px/1 Manrope,sans-serif;letter-spacing:.02em;color:rgba(245,245,245,.5);white-space:nowrap;transition:color .2s ease}
+      .bottom-nav a:active svg{transform:scale(.86)}
+      .bottom-nav a.active svg{opacity:1;stroke-width:2.3;filter:drop-shadow(0 0 6px var(--c))}
+      .bottom-nav a.active .bottom-nav__label{color:var(--text)}
+      .bottom-nav__avatar{width:26px;height:26px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#22D3EE,#FF3B4E)}
+      .bottom-nav__avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:1.5px solid #050505}
+      /* Drink central: quadrado preto arredondado, taça neon ciano e palito vermelho */
+      .bottom-nav a.bottom-nav__center{justify-content:flex-end;padding-bottom:9px}
+      .bottom-nav__logo{
+        position:relative;width:54px;height:54px;margin-top:-26px;border-radius:17px;
+        display:grid;place-items:center;background:#000;
+        border:1px solid rgba(34,211,238,.35);
+        box-shadow:0 10px 28px rgba(0,0,0,.65),0 0 18px rgba(34,211,238,.28),inset 0 0 14px rgba(34,211,238,.08);
+        animation:navLogoGlow 3.2s ease-in-out infinite;
+        transition:transform .2s var(--ease);
+      }
+      .bottom-nav__center:active .bottom-nav__logo{transform:scale(.92)}
+      .bottom-nav .bottom-nav__logo svg{width:32px;height:32px;opacity:1;stroke-width:1.7;filter:none}
+      .bottom-nav__logo .glass{stroke:#22D3EE;filter:drop-shadow(0 0 3px #22D3EE) drop-shadow(0 0 8px rgba(34,211,238,.7))}
+      .bottom-nav__logo .stick{stroke:#FF3B4E;filter:drop-shadow(0 0 3px #FF3B4E)}
+      .bottom-nav__logo .olive{fill:#FF3B4E;stroke:none;filter:drop-shadow(0 0 4px #FF3B4E)}
+      .bottom-nav__center.active .bottom-nav__logo{border-color:rgba(34,211,238,.7)}
+      @keyframes navLogoGlow{
+        0%,100%{box-shadow:0 10px 28px rgba(0,0,0,.65),0 0 14px rgba(34,211,238,.22),inset 0 0 14px rgba(34,211,238,.06)}
+        50%{box-shadow:0 10px 28px rgba(0,0,0,.65),0 0 26px rgba(34,211,238,.45),inset 0 0 16px rgba(34,211,238,.14)}
+      }
+      body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+    }
   </style>
 </head>
 <body>
@@ -841,6 +890,35 @@
     </footer>
   </main>
 
+  <!-- Menu inferior mobile (estilo Instagram) -->
+  <nav class="bottom-nav" id="bottomNav" aria-label="Menu principal">
+    <a href="index.html" style="--c:#22D3EE"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg><span class="bottom-nav__label">Início</span></a>
+    <a href="#especiais" data-spy="especiais entradas porcoes refeicoes guarnicoes" style="--c:#FF8A1E"><svg viewBox="0 0 24 24"><path d="M7 2v20M4 2v6a3 3 0 0 0 6 0V2M17 22V2c-2.5 1-4 4-4 8v4h4"/></svg><span class="bottom-nav__label">Comidas</span></a>
+    <a href="#drinks" class="bottom-nav__center" data-spy="drinks doses"><span class="bottom-nav__logo"><svg viewBox="0 0 32 32"><path class="glass" d="M5 8h22L16 19.5Z"/><path class="glass" d="M16 19.5V27M11 27h10"/><path class="stick" d="M23.5 3.5 17.5 12"/><circle class="olive" cx="21.6" cy="6.3" r="2.3"/></svg></span><span class="bottom-nav__label">Drinks</span></a>
+    <a href="#chopp" data-spy="chopp" style="--c:#FFC640"><svg viewBox="0 0 24 24"><path d="M5 8h10v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M15 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2M5 8a2.5 2.5 0 0 1 3-3.5A3 3 0 0 1 13 5a2 2 0 0 1 2 3M9 12v5M12 12v5"/></svg><span class="bottom-nav__label">Cervejas</span></a>
+    <a href="#combos" data-spy="combos sucos" style="--c:#FF4D6D"><svg viewBox="0 0 24 24"><path d="M3 9h18v3a9 9 0 0 1-18 0Z"/><path d="M8 5c0-1 1-1 1-2M12 5c0-1 1-1 1-2M16 5c0-1 1-1 1-2"/></svg><span class="bottom-nav__label">Combos</span></a>
+  </nav>
+  <script>
+    /* Menu inferior: marca o ícone da seção visível na tela */
+    (function(){
+      var links = document.querySelectorAll('#bottomNav a[data-spy]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (!entry.isIntersecting) return;
+          links.forEach(function(a){
+            a.classList.toggle('active', a.dataset.spy.split(' ').indexOf(entry.target.id) > -1);
+          });
+        });
+      }, {rootMargin:'-45% 0px -50% 0px'});
+      links.forEach(function(a){
+        a.dataset.spy.split(' ').forEach(function(id){
+          var sec = document.getElementById(id);
+          if (sec) obs.observe(sec);
+        });
+      });
+    })();
+  </script>
   <div class="pm" id="pm" aria-hidden="true">
     <div class="pm-backdrop" data-close></div>
     <div class="pm-dialog" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
