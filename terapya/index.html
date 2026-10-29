@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#050505" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="description" content="Terapya Bar — onde a noite de Ouro Preto acontece. Drinks autorais, chapas, happy hour e boa música. Rua José Trindade, 5, Bauxita." />
   <title>TERAPYA — Onde a noite de Ouro Preto acontece</title>
 
@@ -38,13 +40,13 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;background-color:#050505;color-scheme:dark}
     body{
       margin:0;
       background:
         radial-gradient(circle at var(--mx) var(--my), rgba(34,211,238,.10), transparent 25rem),
         radial-gradient(circle at 85% 10%, rgba(6,182,212,.06), transparent 24rem),
-        linear-gradient(180deg, #050505 0%, #070708 35%, #050505 100%);
+        linear-gradient(180deg, #050505 0%, #070708 35%, #050505 100%) #050505;
       color:var(--text);
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       overflow-x:hidden;
