@@ -290,7 +290,7 @@
       font:700 clamp(38px,9vw,76px)/.98 Sora,sans-serif;
       letter-spacing:-.055em;
     }
-    .hero h1 span{
+    .hero h1 .hl-in{
       background:linear-gradient(110deg,#fff 15%,#c8c5ff 50%,#fff 82%);
       -webkit-background-clip:text;
       background-clip:text;
@@ -910,17 +910,55 @@
     .rsv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .rsv-field{display:flex;flex-direction:column;gap:6px;min-width:0}
     .rsv-field.full{grid-column:1/-1}
-    .rsv-field label{font:700 11px/1 'Manrope',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-    .rsv-field input,.rsv-field select,.rsv-field textarea{
+    .rsv-field label,.rsv-field .rsv-label{font:700 11px/1 'Manrope',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .rsv-field input,.rsv-field select{
       width:100%;padding:12px 13px;border-radius:14px;
       font:500 15px/1.3 'Inter',sans-serif;color:var(--text);
       background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
       outline:none;color-scheme:dark;
       transition:border-color .2s ease,box-shadow .2s ease;
     }
-    .rsv-field textarea{resize:vertical;min-height:70px}
     .rsv-field select option{background:#141418}
-    .rsv-field input:focus,.rsv-field select:focus,.rsv-field textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+    .rsv-field input:focus,.rsv-field select:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+    /* Dias e horários em botões roláveis: sem os campos nativos que quebram no celular */
+    .rsv-chips{
+      display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;
+      margin:0 -22px;padding:2px 22px 4px;scroll-padding-inline:22px;scrollbar-width:none;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
+              mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
+    }
+    .rsv-chips::-webkit-scrollbar{display:none}
+    .rsv-chip{
+      flex:none;scroll-snap-align:start;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+      min-width:58px;padding:10px 8px;border-radius:14px;
+      color:var(--text);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+      font:600 14px/1 'Manrope',sans-serif;
+      transition:border-color .2s ease,background .2s ease,transform .15s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .rsv-chip:active{transform:scale(.95)}
+    .rsv-chip small{font:700 9.5px/1 'Manrope',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .rsv-chip b{font:700 20px/1 'Sora',sans-serif}
+    .rsv-chip.time{min-width:68px;padding:12px 10px}
+    .rsv-chip[aria-checked="true"]{border-color:var(--purple);background:rgba(34,211,238,.12);box-shadow:0 0 0 3px rgba(34,211,238,.12)}
+    .rsv-chip[aria-checked="true"] small{color:var(--purple)}
+    .rsv-empty{margin:4px 0;font-size:13px;color:var(--muted)}
+    /* No celular o formulário sobe de baixo, como uma aba */
+    @media(max-width:679px){
+      .rsv-modal{place-items:end stretch;padding:0}
+      .rsv-box{
+        max-width:none;max-height:92dvh;border-radius:26px 26px 0 0;border-bottom:0;
+        padding:30px 20px calc(18px + env(safe-area-inset-bottom));
+        transform:translateY(100%);
+      }
+      .rsv-box::before{
+        content:"";position:absolute;top:10px;left:50%;width:40px;height:4px;margin-left:-20px;
+        border-radius:4px;background:rgba(255,255,255,.18);
+      }
+      .rsv-chips{margin:0 -20px;padding-inline:20px;scroll-padding-inline:20px}
+      .rsv-field input,.rsv-field select{font-size:16px}
+    }
     .rsv-hint{min-height:18px;margin:12px 0 0;font-size:12px;color:var(--red);text-align:center}
     .rsv-submit{
       width:100%;margin-top:8px;padding:14px;border:0;border-radius:16px;cursor:pointer;
@@ -940,17 +978,33 @@
       left:50%;right:auto;width:100vw;margin-left:-50vw;
       background-image:
         radial-gradient(ellipse at 50% 42%, transparent 0%, rgba(5,5,5,.55) 70%, rgba(5,5,5,.9) 100%),
-        linear-gradient(180deg, rgba(5,5,5,.35) 0%, rgba(5,5,5,.62) 50%, #050505 100%),
-        url("img/fachada-noite.webp");
+        linear-gradient(180deg, rgba(5,5,5,.35) 0%, rgba(5,5,5,.62) 50%, #050505 100%);
       background-repeat:no-repeat;
-      background-position:center, center, center 30%;
-      background-size:auto, auto, cover;
-      animation:heroZoom 18s var(--ease) both;
+      background-position:center, center;
+      background-size:auto, auto;
     }
+    /* Carregamento progressivo: prévia minúscula borrada embutida no HTML,
+       a foto real entra por cima e vai ganhando nitidez quando o loader some */
+    .hero-media{
+      position:absolute;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;
+      z-index:-2;overflow:hidden;background:#050505;
+    }
+    .hero-media::before{
+      content:"";position:absolute;inset:-40px;
+      background:url("data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAACwBACdASogABIAPu1orlCppaQiqAqpMB2JYgDLLDQr/CfUL4T91+F5p2xfSsJAAP7zI17wZyXchcqt8yQ/rsX8H7FKstWi8LM8gUf79jyMo5w1U1RgAh4flSeBC3ACKM2csWqtQgUWfZj79QSW5gCvWobKQxFFejWCsUB1bnAIEczJDTzxfo24LUK7VhGyJv/OvdNfLObBro4g2ShLXs08p2069MwxkhVlgTLqR0jgAA==") center 30%/cover no-repeat;
+      filter:blur(22px) saturate(1.2);
+    }
+    .hero-photo{
+      position:absolute;inset:0;width:100%;height:100%;max-width:none;
+      object-fit:cover;object-position:center 30%;
+      opacity:0;filter:blur(16px);transform:scale(1.12);
+      transition:opacity 1.2s var(--ease), filter 1.6s var(--ease);
+    }
+    body.loaded .hero-photo.is-loaded{opacity:1;filter:blur(0);animation:heroZoom 18s var(--ease) both}
     @media(max-width:679px){
-      .hero::before{background-position:center, center, 50% 22%;background-size:auto, auto, cover}
+      .hero-photo{object-position:50% 22%}
     }
-    @keyframes heroZoom{from{transform:scale(1.1)}to{transform:scale(1)}}
+    @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
     .hero::after{
       content:"";position:absolute;left:50%;bottom:0;z-index:-1;
       width:min(80%,520px);height:1px;transform:translateX(-50%);
@@ -970,14 +1024,26 @@
     }
     .hero .eyebrow::after{transform:scaleX(-1)}
     .hero h1{font-size:clamp(40px,10vw,84px);line-height:1;letter-spacing:-.05em;text-shadow:0 10px 40px rgba(0,0,0,.45)}
-    .hero h1 span{background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.78) 100%);-webkit-background-clip:text;background-clip:text}
+    .hero h1 span.hl .hl-in{background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.78) 100%);-webkit-background-clip:text;background-clip:text}
     .hero h1 em{
-      display:block;margin-top:4px;
+      margin-top:4px;
       font:italic 600 1.12em/1 'Cormorant Garamond',Georgia,serif;letter-spacing:-.01em;
-      background:linear-gradient(90deg,#9BF6FF,#fff 45%,#FF8A8A);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
       filter:drop-shadow(0 0 24px rgba(34,211,238,.25));
     }
+    .hero h1 em .hl-in{
+      background:linear-gradient(90deg,#9BF6FF,#fff 45%,#FF8A8A);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    /* Título entra linha por linha, subindo por trás de uma máscara */
+    .hero h1 .hl{display:block;overflow:hidden;padding:0 .08em .1em}
+    .hero h1 .hl-in{
+      display:inline-block;
+      opacity:0;transform:translateY(110%);
+      transition:transform 1s var(--ease), opacity 1s var(--ease);
+    }
+    .hero h1 .hl:nth-child(2) .hl-in{transition-delay:.12s}
+    .hero h1 .hl:nth-child(3) .hl-in{transition-delay:.26s}
+    body.loaded .hero h1 .hl-in{opacity:1;transform:none}
     .hero .hero-lead{
       max-width:420px;margin:24px auto 0;
       font-size:15px;line-height:1.75;color:rgba(245,245,245,.68);font-weight:400;
@@ -1002,6 +1068,43 @@
     .hero .scroll-cue__mouse{width:1px;height:42px;border:0;border-radius:0;background:rgba(255,255,255,.18);overflow:hidden}
     .hero .scroll-cue__mouse span{left:0;top:0;width:1px;height:14px;margin:0;border-radius:0;background:linear-gradient(180deg,transparent,#fff);animation:heroLine 2s var(--ease) infinite}
     @keyframes heroLine{from{transform:translateY(-14px)}to{transform:translateY(42px)}}
+
+    /* Topo no mobile: conteúdo ancorado embaixo, foto respirando em cima, selos em vidro */
+    @media(max-width:679px){
+      .hero{
+        justify-content:flex-end;
+        padding:calc(env(safe-area-inset-top) + 64px) 0 calc(180px + env(safe-area-inset-bottom));
+      }
+      .hero::before{
+        background-image:
+          radial-gradient(ellipse 120% 60% at 50% 70%, rgba(5,5,5,.7) 0%, transparent 70%),
+          linear-gradient(180deg, rgba(5,5,5,.15) 0%, rgba(5,5,5,.45) 38%, rgba(5,5,5,.88) 68%, #050505 100%);
+      }
+      .hero-media::after{
+        content:"";position:absolute;left:50%;bottom:22%;
+        width:340px;height:340px;transform:translateX(-50%);
+        background:radial-gradient(circle, rgba(34,211,238,.13), transparent 65%);
+      }
+      .hero .brand-mark{width:62px;height:62px;border-radius:19px;margin-bottom:22px}
+      .hero .eyebrow{font-size:9.5px;letter-spacing:.3em;gap:10px;margin-bottom:18px}
+      .hero .eyebrow::before,.hero .eyebrow::after{width:26px}
+      .hero h1{font-size:clamp(42px,12.6vw,58px);line-height:.98}
+      .hero .hero-lead{max-width:310px;margin-top:18px;font-size:14.5px;line-height:1.65}
+      .hero .hero-meta{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:24px}
+      .hero .pill{
+        padding:10px 14px;border-radius:999px;
+        border:1px solid rgba(255,255,255,.1);
+        background:rgba(255,255,255,.05);
+        backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+        font-size:9.5px;letter-spacing:.14em;
+      }
+      .hero .pill + .pill{border-left:1px solid rgba(255,255,255,.1)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .hero h1 .hl-in{opacity:1;transform:none;transition:none}
+      .hero-photo{transition:none}
+      body.loaded .hero-photo.is-loaded{animation:none;transform:none}
+    }
 
     /* Menu inferior mobile (estilo Instagram): ícones coloridos com nome
        e o drink central destacado no visual da logo Terapya */
@@ -1072,6 +1175,9 @@
 
   <main class="site-shell">
     <section class="hero" id="inicio">
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-photo" id="heroPhoto" src="img/fachada-noite.webp" alt="" fetchpriority="high" decoding="async">
+      </div>
       <div class="hero-inner">
         <div class="brand-mark reveal connected" id="brandMark" style="--delay:100ms">
           <img src="img/logo.jpg" alt="Terapya">
@@ -1082,8 +1188,10 @@
 
         <div class="eyebrow reveal" style="--delay:250ms"><span class="brand-glow">TERAPYA BAR</span> · OURO PRETO</div>
 
-        <h1 class="reveal" style="--delay:320ms">
-          <span>Onde a noite<br>de Ouro Preto</span> <em>acontece.</em>
+        <h1>
+          <span class="hl"><span class="hl-in">Onde a noite</span></span>
+          <span class="hl"><span class="hl-in">de Ouro Preto</span></span>
+          <em class="hl"><span class="hl-in">acontece.</span></em>
         </h1>
 
         <p class="hero-lead reveal" style="--delay:400ms">Chapas, picanhas e drinks autorais em uma noite feita para ser lembrada.</p>
@@ -1366,6 +1474,12 @@
       setTimeout(nextLoadStep, 280);
     });
 
+    // FOTO DO TOPO: troca a prévia borrada pela foto nítida assim que ela baixa
+    const heroPhoto = document.getElementById('heroPhoto');
+    const markHeroPhoto = () => heroPhoto.classList.add('is-loaded');
+    if(heroPhoto.complete && heroPhoto.naturalWidth) markHeroPhoto();
+    else heroPhoto.addEventListener('load', markHeroPhoto);
+
     // STATUS ABERTO/FECHADO — horário real do Terapya (0=domingo ... 6=sábado)
     // fim em minutos pode passar de 24h (ex.: 00:30 = 1470) para indicar que fecha na madrugada
     const HORARIOS = {
@@ -1612,10 +1726,10 @@
   <!-- Menu inferior mobile (estilo Instagram) -->
   <nav class="bottom-nav" id="bottomNav" aria-label="Menu principal">
     <a href="#inicio" data-spy="inicio cardapio" style="--c:#22D3EE"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg><span class="bottom-nav__label">Início</span></a>
-    <a href="#programacao" data-spy="programacao promocoes" style="--c:#FF8A1E"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><span class="bottom-nav__label">Agenda</span></a>
+    <a href="#galeria" data-spy="galeria" style="--c:#FF8A1E"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg><span class="bottom-nav__label">Galeria</span></a>
     <a href="cardapio.html" class="bottom-nav__center"><span class="bottom-nav__logo"><svg viewBox="0 0 32 32"><path class="glass" d="M5 8h22L16 19.5Z"/><path class="glass" d="M16 19.5V27M11 27h10"/><path class="stick" d="M23.5 3.5 17.5 12"/><circle class="olive" cx="21.6" cy="6.3" r="2.3"/></svg></span><span class="bottom-nav__label">Cardápio</span></a>
     <a href="https://wa.me/5531985220592?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20no%20Terapya." data-spy="reservas" style="--c:#55F59D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg><span class="bottom-nav__label">Reservar</span></a>
-    <a href="#instagram" data-spy="instagram galeria eventos"><span class="bottom-nav__avatar"><img src="img/logo.jpg" alt=""></span><span class="bottom-nav__label">Perfil</span></a>
+    <a href="#instagram" data-spy="instagram eventos"><span class="bottom-nav__avatar"><img src="img/logo.jpg" alt=""></span><span class="bottom-nav__label">Perfil</span></a>
   </nav>
   <script>
     /* Menu inferior: marca o ícone da seção visível na tela */
@@ -1648,13 +1762,15 @@
           <label for="rsvName">Nome</label>
           <input type="text" id="rsvName" autocomplete="name" placeholder="Seu nome">
         </div>
-        <div class="rsv-field">
-          <label for="rsvDate">Data</label>
-          <input type="date" id="rsvDate">
+        <div class="rsv-field full">
+          <span class="rsv-label" id="rsvDateLbl">Data</span>
+          <div class="rsv-chips" id="rsvDays" role="radiogroup" aria-labelledby="rsvDateLbl"></div>
+          <input type="hidden" id="rsvDate">
         </div>
-        <div class="rsv-field">
-          <label for="rsvTime">Horário</label>
-          <input type="time" id="rsvTime" step="900">
+        <div class="rsv-field full">
+          <span class="rsv-label" id="rsvTimeLbl">Horário</span>
+          <div class="rsv-chips" id="rsvTimes" role="radiogroup" aria-labelledby="rsvTimeLbl"></div>
+          <input type="hidden" id="rsvTime">
         </div>
         <div class="rsv-field full">
           <label for="rsvPeople">Pessoas</label>
@@ -1670,10 +1786,6 @@
             <option value="9">9 pessoas</option>
             <option value="10 ou mais">10 ou mais</option>
           </select>
-        </div>
-        <div class="rsv-field full">
-          <label for="rsvNote">Observação <span style="text-transform:none;letter-spacing:0">(opcional)</span></label>
-          <textarea id="rsvNote" rows="2" placeholder="Aniversário, mesa na área externa…"></textarea>
         </div>
       </div>
       <p class="rsv-hint" id="rsvHint" aria-live="polite"></p>
@@ -1706,14 +1818,69 @@
         m = m % 1440;
         return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
       }
+      var MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+      function iso(d){
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      }
+      function chip(cls, html, onPick){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'rsv-chip ' + cls;
+        b.setAttribute('role', 'radio');
+        b.setAttribute('aria-checked', 'false');
+        b.innerHTML = html;
+        b.addEventListener('click', function(){
+          b.parentNode.querySelectorAll('.rsv-chip').forEach(function(c){ c.setAttribute('aria-checked', 'false'); });
+          b.setAttribute('aria-checked', 'true');
+          hint.textContent = '';
+          onPick();
+        });
+        return b;
+      }
+      // próximos 14 dias em que o bar abre
+      function montarDias(){
+        var box = F('rsvDays');
+        box.innerHTML = '';
+        F('rsvDate').value = '';
+        var primeiro = null;
+        for (var i = 0; i < 14; i++) {
+          var d = new Date();
+          d.setHours(0, 0, 0, 0);
+          d.setDate(d.getDate() + i);
+          if (H && !H[d.getDay()]) continue;
+          var rotulo = i === 0 ? 'Hoje' : i === 1 ? 'Amanhã' : DIAS[d.getDay()].slice(0, 3);
+          var b = chip('', '<small>' + rotulo + '</small><b>' + d.getDate() + '</b><small>' + MESES[d.getMonth()] + '</small>',
+            (function(v, dia, ehHoje){ return function(){ F('rsvDate').value = v; montarHorarios(dia, ehHoje); }; })(iso(d), d.getDay(), i === 0));
+          box.appendChild(b);
+          if (!primeiro) primeiro = b;
+        }
+        if (primeiro) primeiro.click();
+      }
+      // horários de 30 em 30 min dentro do funcionamento, até 1h antes de fechar
+      function montarHorarios(dia, ehHoje){
+        var box = F('rsvTimes');
+        box.innerHTML = '';
+        F('rsvTime').value = '';
+        var faixa = H ? H[dia] : [18 * 60, 24 * 60];
+        var agora = new Date();
+        var agoraMin = agora.getHours() * 60 + agora.getMinutes();
+        for (var m = faixa[0]; m <= faixa[1] - 60; m += 30) {
+          if (ehHoje && m <= agoraMin + 30) continue;
+          box.appendChild(chip('time', hm(m), (function(v){ return function(){ F('rsvTime').value = v; }; })(hm(m))));
+        }
+        if (!box.children.length) box.innerHTML = '<p class="rsv-empty">Sem horários livres nesse dia. Escolha outra data.</p>';
+        box.scrollLeft = 0;
+      }
+
       function abrir(e){
         e.preventDefault();
         lastFocus = document.activeElement;
-        F('rsvDate').min = hoje();
+        montarDias();
         hint.textContent = '';
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
-        setTimeout(function(){ F('rsvName').focus(); }, 250);
+        // no celular não abre o teclado sozinho, para os dias e horários ficarem à vista
+        if (window.matchMedia('(min-width:680px)').matches) setTimeout(function(){ F('rsvName').focus(); }, 250);
       }
       function fechar(){
         modal.classList.remove('open');
@@ -1751,13 +1918,11 @@
           if (!ok) { hint.textContent = 'Nesse dia funcionamos das ' + hm(faixa[0]) + ' às ' + hm(faixa[1]) + '.'; return; }
         }
 
-        var obs = F('rsvNote').value.trim();
         var msg = 'Olá! Quero reservar uma mesa no Terapya.\n\n'
           + '*Nome:* ' + nome + '\n'
           + '*Data:* ' + p[2] + '/' + p[1] + '/' + p[0] + ' (' + DIAS[dia] + ')\n'
           + '*Horário:* ' + hora + '\n'
-          + '*Pessoas:* ' + F('rsvPeople').value
-          + (obs ? '\n*Observação:* ' + obs : '');
+          + '*Pessoas:* ' + F('rsvPeople').value;
         window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
         fechar();
         form.reset();
