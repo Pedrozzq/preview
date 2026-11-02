@@ -2,10 +2,19 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-63C683CHX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-63C683CHX1');
+</script>
 <title>Botânico Ouro Preto | Chocolateria &amp; Gelateria</title>
 <meta name="description" content="Botânico Ouro Preto — chocolateria e gelateria artesanal no centro histórico. Bombons, trufas, gelatos e caixas presente, entre folhas e casario colonial.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2c1c'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2c1c'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle'%3E%F0%9F%8E%84%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Petit+Formal+Script&display=swap" rel="stylesheet">
@@ -19,7 +28,7 @@ tailwind.config = {
         mata: '#0f2c1c', mataEsc: '#0a2014',
         folha: '#2f6b3f', folhaClara: '#4c9a5e', musgo: '#6b8f4e',
         creme: '#f7f3e8', cremeEsc: '#efe7d3',
-        cacau: '#3a2418', terracota: '#cc6b3d', rosa: '#e7b8c5'
+        cacau: '#3a2418', terracota: '#b3262e', rosa: '#e2c27a'
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
@@ -47,20 +56,47 @@ tailwind.config = {
   .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
   .faq-item.open .faq-answer { grid-template-rows: 1fr; }
   .faq-item.open .faq-ico { transform: rotate(45deg); }
-  .lk{display:flex;align-items:center;gap:.9rem;width:100%;border:1px solid rgba(247,243,232,.45);
-      background:rgba(15,44,28,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-      border-radius:9999px;padding:.9rem 1.15rem;font-size:.9rem;
-      box-shadow:0 8px 20px -10px rgba(0,0,0,.6);transition:all .2s ease}
-  .lk:hover{background:#f7f3e8;color:#0f2c1c;transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(0,0,0,.55)}
-  .lk--solid{background:#cc6b3d;border-color:#cc6b3d;color:#f7f3e8}
-  .lk--solid:hover{background:#f7f3e8;color:#cc6b3d}
-  .lk-i{width:1.4rem;text-align:center;font-size:1rem;color:#4c9a5e}
-  .lk:hover .lk-i{color:#cc6b3d}
-  .lk--solid .lk-i{color:#f7f3e8}
-  .lk-t{flex:1;font-weight:400}
-  .lk-a{font-size:.7rem;opacity:.4}
-  .lk:hover .lk-a{opacity:1}
+  /* barra inferior fixa no celular (no estilo de app), com o cardápio em destaque no centro */
+  .bnav{display:none}
+  @media (max-width:767px){
+    .bnav{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;justify-content:space-around;align-items:flex-end;
+      height:calc(64px + env(safe-area-inset-bottom));padding:0 4px env(safe-area-inset-bottom);
+      background:rgba(10,32,20,.94);border-top:1px solid rgba(247,243,232,.1);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .bnav a{position:relative;flex:1;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+      color:var(--c,#f7f3e8);-webkit-tap-highlight-color:transparent}
+    .bnav a > i{font-size:1.25rem;opacity:.8;transition:transform .2s ease,opacity .2s ease,filter .2s ease}
+    .bnav-l{font:500 10px/1 Poppins,sans-serif;letter-spacing:.02em;color:rgba(247,243,232,.55);white-space:nowrap;transition:color .2s ease}
+    .bnav a:active > i{transform:scale(.86)}
+    .bnav a.active > i{opacity:1;filter:drop-shadow(0 0 6px var(--c))}
+    .bnav a.active .bnav-l{color:#f7f3e8}
+    .bnav-av{width:26px;height:26px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#4c9a5e,#b3262e)}
+    .bnav-av img{width:100%;height:100%;border-radius:50%;object-fit:contain;background:#0f2c1c;border:1.5px solid #0a2014;padding:2px}
+    .bnav a.bnav-c{justify-content:flex-end;padding-bottom:9px}
+    .bnav-logo{width:54px;height:54px;margin-top:-26px;border-radius:17px;display:grid;place-items:center;
+      background:#b3262e;color:#f7f3e8;font-size:1.35rem;border:1px solid rgba(247,243,232,.35);
+      box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 18px rgba(179,38,46,.35);animation:bnavGlow 3.2s ease-in-out infinite;transition:transform .2s ease}
+    .bnav-c:active .bnav-logo{transform:scale(.92)}
+    .bnav-c.active .bnav-logo{border-color:#f7f3e8}
+    .bnav-c.active .bnav-l{color:#f7f3e8}
+    @keyframes bnavGlow{0%,100%{box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 12px rgba(179,38,46,.25)}50%{box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 26px rgba(179,38,46,.55)}}
+    body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+    /* categorias do catálogo: faixa rolável em cima da barra, só enquanto o catálogo está na tela */
+    #cat-filtros{display:none}
+    .bcat{position:absolute;left:0;right:0;bottom:100%;display:flex;gap:.5rem;overflow-x:auto;padding:.6rem .9rem;
+      background:rgba(10,32,20,.94);border-top:1px solid rgba(247,243,232,.1);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      scrollbar-width:none;opacity:0;transform:translateY(100%);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+    .bcat::-webkit-scrollbar{display:none}
+    body.bcat-on .bcat{opacity:1;transform:none;pointer-events:auto}
+    .bcat button{flex:none;border:1px solid rgba(247,243,232,.25);border-radius:9999px;padding:.45rem .9rem;
+      font:400 .75rem/1 Poppins,sans-serif;color:#f7f3e8;background:transparent;white-space:nowrap;transition:all .2s ease}
+    .bcat button.is-on{background:#b3262e;border-color:#b3262e}
+    body.bcat-on #cart-fab{bottom:calc(126px + env(safe-area-inset-bottom))}
+    #cart-fab{bottom:calc(76px + env(safe-area-inset-bottom))}
+  }
+  @media (prefers-reduced-motion:reduce){.bnav-logo{animation:none}}
 </style>
+<link rel="stylesheet" href="natal.css"><!-- tema de Natal -->
 </head>
 <body class="font-body bg-creme text-cacau">
 
@@ -79,22 +115,22 @@ tailwind.config = {
         <a href="#contato" class="hover:text-folha transition-colors">Onde estamos</a>
       </nav>
       <div class="flex items-center gap-2">
-        <a href="index.html" class="hidden sm:inline text-xs text-cacau/60 hover:text-folha transition-colors">trocar unidade</a>
+        <a href="index.html" class="text-xs text-cacau/60 hover:text-folha transition-colors">trocar unidade</a>
         <a href="https://wa.me/553198502386" target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 rounded-full bg-folha text-creme text-sm px-4 py-2 hover:bg-mata transition-colors">
-          <i class="fa-brands fa-whatsapp"></i><span class="hidden sm:inline">WhatsApp</span>
+           class="hidden md:inline-flex items-center gap-2 rounded-full bg-folha text-creme text-sm px-4 py-2 hover:bg-mata transition-colors">
+          <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
         </a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ===== Seção 1 — Linktree ===== -->
-<section class="leaf-field relative bg-mata text-creme overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20">
+<!-- ===== Hero ===== -->
+<section id="inicio" class="leaf-field relative flex min-h-[100svh] items-center bg-mata text-creme overflow-hidden pt-28 pb-24 sm:pt-32">
   <img src="img/ouropreret.webp" alt="Fachada colonial da Botânico Ouro Preto" class="absolute inset-0 h-full w-full object-cover opacity-60">
   <div class="pointer-events-none absolute inset-0 bg-mata/60"></div>
   <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(60% 45% at 50% 30%, rgba(76,154,94,.22), transparent 70%)"></div>
-  <div class="relative mx-auto w-full max-w-md px-6 text-center">
+  <div class="relative mx-auto w-full max-w-xl px-6 text-center">
 
     <h1 class="sr-only">Botânico — chocolateria &amp; gelateria · Ouro Preto</h1>
     <img src="img/logo.png" alt="Botânico — chocolateria &amp; gelateria" class="mx-auto w-64 sm:w-80 max-w-full">
@@ -103,46 +139,19 @@ tailwind.config = {
       <i class="fa-solid fa-location-dot text-folhaClara"></i> Unidade Ouro Preto · Centro histórico
     </p>
 
-    <div class="hours-widget mx-auto mt-5 w-full max-w-xs text-left" data-hours>
-      <button type="button" class="hours-toggle flex w-full items-center justify-between gap-3 rounded-2xl border border-creme/20 bg-creme/[0.06] px-4 py-3 text-sm transition-colors hover:bg-creme/10">
-        <span class="flex items-center gap-2">
-          <span class="hours-dot inline-block h-2.5 w-2.5 rounded-full bg-creme/40"></span>
-          <span class="hours-status font-medium">Aberto agora</span>
-        </span>
-        <span class="flex items-center gap-2 text-creme/60">
-          <span class="hours-sub text-xs"></span>
-          <i class="fa-solid fa-chevron-down hours-caret text-[0.7rem] transition-transform"></i>
-        </span>
-      </button>
-      <div class="hours-list hidden mt-2 rounded-2xl border border-creme/15 bg-mataEsc/70 px-4 py-3 text-xs text-creme/75">
-        <ul class="space-y-1.5"></ul>
-        <p class="mt-3 border-t border-creme/10 pt-2 text-creme/45">Fechado em feriados · os horários podem variar</p>
-      </div>
+    <p class="mt-7 font-display text-2xl sm:text-3xl leading-snug text-creme/90">Chocolate e gelato artesanais no coração do centro histórico.</p>
+
+    <!-- desktop: atalhos principais (no celular eles ficam na barra inferior) -->
+    <div class="mt-9 hidden md:flex items-center justify-center gap-3 text-sm">
+      <a href="#catalogo" class="inline-flex items-center gap-2 rounded-full bg-terracota px-6 py-3 text-creme transition-colors hover:bg-creme hover:text-terracota">
+        <i class="fa-solid fa-book-open"></i> Ver cardápio
+      </a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-creme/40 px-6 py-3 transition-colors hover:bg-creme hover:text-mata">
+        <i class="fa-solid fa-map-location-dot"></i> Como chegar
+      </a>
     </div>
 
-    <div class="mt-9 space-y-3.5 text-left">
-      <a href="#catalogo"
-         class="lk group"><i class="fa-solid fa-book-open lk-i"></i><span class="lk-t">Cardápio digital</span><i class="fa-solid fa-arrow-down lk-a"></i></a>
-
-      <a href="https://wa.me/553198502386?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Bot%C3%A2nico%20Ouro%20Preto." target="_blank" rel="noopener"
-         class="lk group"><i class="fa-brands fa-whatsapp lk-i"></i><span class="lk-t">WhatsApp · pedidos &amp; encomendas</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
-
-      <a href="https://instagram.com/botanico.ouropreto" target="_blank" rel="noopener"
-         class="lk group"><i class="fa-brands fa-instagram lk-i"></i><span class="lk-t">Instagram @botanico.ouropreto</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
-
-      <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener"
-         class="lk group"><i class="fa-solid fa-map-location-dot lk-i"></i><span class="lk-t">Como chegar · Google Maps</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
-
-      <a href="https://www.google.com/search?q=botanico+ouro+preto&oq=botanico+ouro+preto&sourceid=chrome&ie=UTF-8#lrd=0xa40ba7ea9f19f1:0xc45ae88a19cff925,3,,,," target="_blank" rel="noopener"
-         class="lk group"><i class="fa-brands fa-google lk-i"></i><span class="lk-t">Avaliar no Google</span><i class="fa-solid fa-arrow-up-right-from-square lk-a"></i></a>
-
-      <a href="#boasvindas"
-         class="lk lk--solid group"><i class="fa-solid fa-mug-hot lk-i"></i><span class="lk-t">Conhecer a loja</span><i class="fa-solid fa-arrow-down lk-a"></i></a>
-    </div>
-
-    <p class="mt-8 text-[0.7rem] text-creme/45">Botânico · chocolateria &amp; gelateria artesanal</p>
-
-    <div class="mx-auto mt-4 flex w-full max-w-xs items-center justify-center gap-2 text-sm">
+    <div class="mx-auto mt-9 flex w-full max-w-xs items-center justify-center gap-2 text-sm">
       <span class="font-display text-lg font-semibold text-creme">4,3</span>
       <span class="flex text-terracota" aria-hidden="true">
         <i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star-half-stroke text-xs"></i>
@@ -155,7 +164,95 @@ tailwind.config = {
       <i class="fa-regular fa-star text-[0.7rem]"></i> Avalie agora
     </a>
   </div>
+
+  <a href="#boasvindas" aria-label="Conhecer a loja" class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[0.65rem] uppercase tracking-[0.3em] text-creme/50 transition-colors hover:text-creme">
+    conhecer a loja <i class="fa-solid fa-chevron-down text-xs animate-bounce"></i>
+  </a>
 </section>
+
+<!-- ===== Nossas linhas (atalhos por categoria) ===== -->
+<section id="linhas" class="pt-16 pb-2 sm:pt-24 sm:pb-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="reveal flex items-end justify-between gap-4">
+      <div>
+        <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-3">Nossas linhas</p>
+        <h2 class="font-display text-3xl sm:text-5xl font-semibold leading-tight">Linhas <span class="font-script text-terracota text-[0.8em]">irresistíveis</span></h2>
+      </div>
+      <a href="#catalogo" data-linha="todos" class="linha-tile shrink-0 pb-1 text-sm sm:text-base text-terracota underline decoration-terracota/40 underline-offset-4 transition-colors hover:text-folha hover:decoration-folha">
+        Ver tudo <i class="fa-solid fa-chevron-right text-[0.65rem]"></i>
+      </a>
+    </div>
+    <div class="reveal mt-8 sm:mt-12 grid grid-cols-4 gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-8">
+      <a href="#catalogo" data-linha="chocolates" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/chocolateria-parede.jpg" alt="Chocolates na vitrine" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Chocolates</span>
+      </a>
+      <a href="#chocolateria" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/vitrine-bombons.jpg" alt="Vitrine de bombons e trufas" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Bombons</span>
+      </a>
+      <a href="#catalogo" data-linha="doces" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/doces-conserva.jpg" alt="Compotas e doces em conserva na prateleira" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Doces &amp; compotas</span>
+      </a>
+      <a href="#catalogo" data-linha="docedeleite" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/produtos/doce-de-leite-comanz.jpg" alt="Potes de doce de leite" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Doce de leite</span>
+      </a>
+      <a href="#catalogo" data-linha="cafe" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/produtos/cafe-especial-botanico-moido-e-em-graos.webp" alt="Café especial Botânico" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Cafés</span>
+      </a>
+      <a href="#catalogo" data-linha="cervejas" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/produtos/cerveja-ouropretana-amburana-brown-porter.jpg" alt="Cerveja artesanal Ouropretana" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Cervejas</span>
+      </a>
+      <a href="#catalogo" data-linha="gelateria" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/produtos/gelato-kg.webp" alt="Vitrine de gelatos artesanais" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Gelatos</span>
+      </a>
+      <a href="#catalogo" data-linha="presentes" class="linha-tile group text-center">
+        <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
+          <img src="img/escolha-caixa.jpg" alt="Montando uma caixa de bombons" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mata/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+        </span>
+        <span class="mt-2 sm:mt-3 block text-[0.78rem] sm:text-base font-medium leading-tight text-cacau transition-colors group-hover:text-folha">Presentes</span>
+      </a>
+    </div>
+  </div>
+</section>
+<script>
+  /* atalhos "Nossas linhas": filtram o catálogo pela categoria e rolam até a lista */
+  document.querySelectorAll('#linhas [data-linha]').forEach(a => a.addEventListener('click', e => {
+    const chip = document.querySelector('#cat-filtros .cat-chip[data-filtro="' + a.dataset.linha + '"]');
+    const grid = document.getElementById('cat-grid');
+    if (!chip || !grid) return;
+    e.preventDefault();
+    chip.click();
+    scrollTo({top: grid.getBoundingClientRect().top + scrollY - 110, behavior: 'smooth'});
+  }));
+</script>
 
 <!-- ===== Boas-vindas ===== -->
 <section id="boasvindas" class="py-20 sm:py-28">
@@ -206,19 +303,6 @@ tailwind.config = {
     </div>
 
     <div id="cat-grid" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="docinhos brizon  sabores variados   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/docinhos-brizon-sabores-variados.webp" alt="Docinhos Brizon — sabores variados" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Docinhos Brizon — sabores variados</h3>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 12,00</p>
-            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Docinhos%20Brizon%20%E2%80%94%20sabores%20variados" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
       <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="kit ouropretana 330ml   ">
         <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
           <img src="img/produtos/kit-ouropretana-330ml.webp" alt="Kit Ouropretana 330ml" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
@@ -227,7 +311,7 @@ tailwind.config = {
         <div class="flex flex-1 flex-col p-5">
           <h3 class="font-display text-xl font-semibold leading-tight">Kit Ouropretana 330ml</h3>
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 60,00</p>
+            <p class="font-display text-2xl font-semibold text-folha">R$ 70,00</p>
             <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20Ouropretana%20330ml" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
@@ -240,7 +324,7 @@ tailwind.config = {
         <div class="flex flex-1 flex-col p-5">
           <h3 class="font-display text-xl font-semibold leading-tight">Kit Ouropretana 500ml</h3>
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 70,00</p>
+            <p class="font-display text-2xl font-semibold text-folha">R$ 90,00</p>
             <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Kit%20Ouropretana%20500ml" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
@@ -588,23 +672,6 @@ tailwind.config = {
           </div>
         </div>
       </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="canecas personalizadas lavras novas caneca pequena caneca grande   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/canecas-personalizadas-lavras-novas.jpg" alt="Canecas personalizadas “Lavras Novas”" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Canecas personalizadas “Lavras Novas”</h3>
-          <dl class="mt-3 space-y-1 border-t border-cacau/10 pt-3 text-[0.78rem] text-cacau/70">
-            <div class="flex justify-between gap-3"><dt>Caneca pequena</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 25,00</dd></div>
-            <div class="flex justify-between gap-3"><dt>Caneca grande</dt><dd class="whitespace-nowrap font-medium text-cacau/85">R$ 38,00</dd></div>
-          </dl>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="leading-tight"><span class="block text-[0.6rem] uppercase tracking-[0.15em] text-cacau/45">a partir de</span><span class="font-display text-2xl font-semibold text-folha">R$ 25,00</span></p>
-            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Canecas%20personalizadas%20%E2%80%9CLavras%20Novas%E2%80%9D" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
       <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="lata personalizada botanico   ">
         <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
           <img src="img/produtos/lata-personalizada-botanico.webp" alt="Lata personalizada “Botânico”" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
@@ -736,7 +803,7 @@ tailwind.config = {
             <li class="rounded-full bg-cremeEsc px-2.5 py-1 text-[0.7rem] text-cacau/75">Coco</li>
           </ul>
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 29,00</p>
+            <p class="font-display text-2xl font-semibold text-folha">R$ 32,00</p>
             <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Barras%20recheadas" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
@@ -755,16 +822,16 @@ tailwind.config = {
           </div>
         </div>
       </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="gelateria" data-busca="gelato a quilo r$ 15,90 a cada 100g. self service.  ">
+      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="gelateria" data-busca="gelato a quilo r$ 16,90 a cada 100g. self service.  ">
         <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
           <img src="img/produtos/gelato-kg.webp" alt="Gelato a quilo" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
           <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Gelateria</span>
         </div>
         <div class="flex flex-1 flex-col p-5">
           <h3 class="font-display text-xl font-semibold leading-tight">Gelato a quilo</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cacau/70">R$ 15,90 a cada 100g. Self service.</p>
+          <p class="mt-2 text-sm leading-relaxed text-cacau/70">R$ 16,90 a cada 100g. Self service.</p>
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 15,90</p>
+            <p class="font-display text-2xl font-semibold text-folha">R$ 16,90</p>
             <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Gelato%20a%20quilo" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
@@ -822,20 +889,6 @@ tailwind.config = {
           </div>
         </div>
       </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="alfajores" data-busca="alfajor porteno alfajor porteno doce de leite chocolate branco ao leite   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/alfajor-porteno.jpg" alt="Alfajor Porteño" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Alfajores</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Alfajor Porteño</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Recheio uruguaio de doce de leite · chocolate branco ou ao leite</p>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 13,00</p>
-            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Alfajor%20Porte%C3%B1o" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
       <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="geleia de morango com vinho comanz geleia morango vinho cabernet comanz   ">
         <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
           <img src="img/produtos/geleia-morango-vinho-comanz.jpg" alt="Geleia de morango com vinho Comanz" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
@@ -859,7 +912,7 @@ tailwind.config = {
           <h3 class="font-display text-xl font-semibold leading-tight">Licor Golik Chocolate Belga — 750 ml</h3>
           <p class="mt-2 text-sm leading-relaxed text-cacau/70">Coquetel alcoólico · sabor chocolate belga · 750 ml</p>
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 99,00</p>
+            <p class="font-display text-2xl font-semibold text-folha">R$ 125,00</p>
             <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Licor%20Golik%20Chocolate%20Belga%20%E2%80%94%20750%20ml" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
@@ -892,20 +945,6 @@ tailwind.config = {
           </div>
         </div>
       </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="presentes" data-busca="caixa coracao 12 unidades caixa coracao bombons 12 unidades presente   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/caixa-coracao-12-un.jpg" alt="Caixa coração — 12 unidades" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Presentes &amp; kits</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Caixa coração — 12 unidades</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Bombons em formato de coração · 12 unidades</p>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 55,00</p>
-            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Caixa%20cora%C3%A7%C3%A3o%20%E2%80%94%2012%20unidades" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
       <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="chocolates" data-busca="saquinho de pistache saquinho pistache chocolate ao leite   ">
         <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
           <img src="img/produtos/saquinho-pistache.jpg" alt="Saquinho de pistache" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
@@ -917,20 +956,6 @@ tailwind.config = {
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
             <p class="font-display text-2xl font-semibold text-folha">R$ 23,00</p>
             <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Saquinho%20de%20pistache" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="doces" data-busca="pipoca gourmet ninho dourado pipoca gourmet ninho dourado chocolate branco leite em po   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/pipoca-gourmet-ninho-dourado.jpg" alt="Pipoca gourmet — Ninho Dourado" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Doces &amp; compotas</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Pipoca gourmet — Ninho Dourado</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Pipoca gourmet sabor chocolate branco com leite em pó · 80 g</p>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 25,00</p>
-            <a href="https://wa.me/553198502386?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Pipoca%20gourmet%20%E2%80%94%20Ninho%20Dourado" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
       </article>
@@ -1071,34 +1096,6 @@ tailwind.config = {
           <div class="mt-auto flex items-end justify-between gap-3 pt-5">
             <p class="font-display text-2xl font-semibold text-folha">R$ 24,90</p>
             <a href="https://wa.me/5531972252172?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Cerveja%20Ouropretana%20%E2%80%94%20Caf%C3%A9%20Lager" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cervejas" data-busca="cerveja ouropretana amber lager cerveja ouropretana amber lager   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/cerveja-ouropretana-amber-lager.jpg" alt="Cerveja Ouropretana — Amber Lager" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Cervejas</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Cerveja Ouropretana — Amber Lager</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Cervejaria Ouropretana · Amber Lager · 500 ml</p>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 24,90</p>
-            <a href="https://wa.me/5531972252172?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Cerveja%20Ouropretana%20%E2%80%94%20Amber%20Lager" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
-          </div>
-        </div>
-      </article>
-      <article class="prod-card flex flex-col overflow-hidden rounded-3xl border border-cacau/10 bg-creme shadow-sm transition-shadow duration-300 hover:shadow-xl" data-cat="cervejas" data-busca="cerveja ouropretana mascavo cerveja ouropretana mascavo   ">
-        <div class="relative aspect-[4/5] overflow-hidden bg-cremeEsc">
-          <img src="img/produtos/cerveja-ouropretana-mascavo.jpg" alt="Cerveja Ouropretana — Mascavo" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-          <span class="absolute left-3 top-3 rounded-full bg-mata/85 px-3 py-1 text-[0.58rem] uppercase tracking-[0.18em] text-creme">Cervejas</span>
-        </div>
-        <div class="flex flex-1 flex-col p-5">
-          <h3 class="font-display text-xl font-semibold leading-tight">Cerveja Ouropretana — Mascavo</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cacau/70">Cervejaria Ouropretana · Belgian Blonde · 500 ml</p>
-          <div class="mt-auto flex items-end justify-between gap-3 pt-5">
-            <p class="font-display text-2xl font-semibold text-folha">R$ 24,90</p>
-            <a href="https://wa.me/5531972252172?text=Ol%C3%A1%21%20Vi%20no%20site%20e%20queria%20pedir%3A%20Cerveja%20Ouropretana%20%E2%80%94%20Mascavo" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-folha px-4 py-2 text-xs text-creme transition-colors hover:bg-mata"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
           </div>
         </div>
       </article>
@@ -1367,13 +1364,6 @@ tailwind.config = {
           </div>
         </div>
         <div class="flex gap-4">
-          <i class="fa-solid fa-clock text-folha mt-1"></i>
-          <div>
-            <dt class="font-medium">Horário</dt>
-            <dd class="text-sm">Domingo a quinta · 9h às 20h<br>Sexta e sábado · 9h às 22h</dd>
-          </div>
-        </div>
-        <div class="flex gap-4">
           <i class="fa-brands fa-instagram text-folha mt-1"></i>
           <div>
             <dt class="font-medium">Redes</dt>
@@ -1412,12 +1402,6 @@ tailwind.config = {
           <span class="font-medium">Fazem caixas para presente e eventos?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
         </button>
         <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">Sim. Você monta a sua caixa na loja ou encomenda pelo WhatsApp — casamentos, aniversários, lembrancinhas e cestas corporativas.</p></div></div>
-      </div>
-      <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
-        <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
-          <span class="font-medium">O chocolate aguenta a viagem de volta?</span><i class="fa-solid fa-plus text-folha faq-ico transition-transform"></i>
-        </button>
-        <div class="faq-answer"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-cacau/70">Embalamos para transporte. Em dias quentes, peça a caixa térmica no balcão e evite deixar o carro no sol.</p></div></div>
       </div>
       <div class="faq-item reveal rounded-2xl bg-creme overflow-hidden">
         <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
@@ -1502,6 +1486,59 @@ tailwind.config = {
   v.addEventListener('pointermove', e => { if (down) v.scrollLeft = sl - (e.pageX - startX); });
   v.addEventListener('pointerup', () => down = false);
   v.addEventListener('pointercancel', () => down = false);
+</script>
+
+<!-- ===== Barra inferior (mobile) ===== -->
+<nav class="bnav" id="bottomNav" aria-label="Menu principal">
+  <div class="bcat" id="bottomCats" aria-label="Categorias de produtos"></div>
+  <a href="#inicio" data-spy="inicio boasvindas" style="--c:#4c9a5e"><i class="fa-solid fa-house"></i><span class="bnav-l">Início</span></a>
+  <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener" style="--c:#b3262e"><i class="fa-solid fa-location-dot"></i><span class="bnav-l">Como chegar</span></a>
+  <a href="#catalogo" data-spy="catalogo" class="bnav-c"><span class="bnav-logo"><i class="fa-solid fa-book-open"></i></span><span class="bnav-l">Cardápio</span></a>
+  <a href="https://wa.me/553198502386?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Bot%C3%A2nico%20Ouro%20Preto." target="_blank" rel="noopener" style="--c:#25d366"><i class="fa-brands fa-whatsapp"></i><span class="bnav-l">WhatsApp</span></a>
+  <a href="https://instagram.com/botanico.ouropreto" target="_blank" rel="noopener" style="--c:#e2c27a"><span class="bnav-av"><img src="img/logo.png" alt=""></span><span class="bnav-l">Instagram</span></a>
+</nav>
+<script>
+  /* barra inferior: marca o ícone da seção visível na tela */
+  (function () {
+    const links = document.querySelectorAll('#bottomNav a[data-spy]');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    const obs = new IntersectionObserver(ents => ents.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.toggle('active', a.dataset.spy.split(' ').includes(e.target.id)));
+    }), {rootMargin: '-45% 0px -50% 0px'});
+    links.forEach(a => a.dataset.spy.split(' ').forEach(id => { const s = document.getElementById(id); if (s) obs.observe(s); }));
+  })();
+</script>
+
+<script>
+  /* barra inferior: categorias do catálogo (cópia dos filtros; tocar filtra e volta ao topo da lista) */
+  (function () {
+    const box = document.getElementById('bottomCats'), cat = document.getElementById('catalogo');
+    let orig = Array.from(document.querySelectorAll('#cat-filtros .cat-chip'));
+    if (!box || !cat || !orig.length) return;
+    // contagem real de cada categoria (os números escritos no HTML ficavam desatualizados); categoria vazia some
+    const cards = document.querySelectorAll('#cat-grid .prod-card');
+    orig.forEach(ch => {
+      const n = ch.dataset.filtro === 'todos' ? cards.length : document.querySelectorAll('#cat-grid .prod-card[data-cat="' + ch.dataset.filtro + '"]').length;
+      const sp = ch.querySelector('span'); if (sp) sp.textContent = n;
+      if (!n) ch.remove();
+    });
+    orig = orig.filter(ch => ch.isConnected);
+    const copias = orig.map(ch => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.innerHTML = ch.innerHTML; b.classList.toggle('is-on', ch.classList.contains('is-on'));
+      b.addEventListener('click', () => {
+        ch.click();
+        b.scrollIntoView({inline: 'center', block: 'nearest', behavior: 'smooth'});
+        const y = document.getElementById('cat-grid').getBoundingClientRect().top + scrollY - 90;
+        scrollTo({top: y, behavior: 'smooth'});
+      });
+      box.appendChild(b); return b;
+    });
+    orig.forEach((ch, i) => ch.addEventListener('click', () => copias.forEach((b, j) => b.classList.toggle('is-on', i === j))));
+    if ('IntersectionObserver' in window)
+      new IntersectionObserver(([e]) => document.body.classList.toggle('bcat-on', e.isIntersecting), {rootMargin: '0px 0px -40% 0px'}).observe(cat);
+  })();
 </script>
 
 <!-- ===== Carrinho ===== -->
@@ -1688,84 +1725,6 @@ tailwind.config = {
 })();
 </script>
 
-<script>
-(function () {
-  const boxes = document.querySelectorAll('[data-hours]');
-  if (!boxes.length) return;
-
-  // Domingo … Sábado (Date.getDay() 0-6)
-  const SCHED = [
-    ['09:00', '20:00'],
-    ['09:00', '20:00'],
-    ['09:00', '20:00'],
-    ['09:00', '20:00'],
-    ['09:00', '20:00'],
-    ['09:00', '22:00'],
-    ['09:00', '22:00']
-  ];
-  const DIAS = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-  const toMin = t => { const p = t.split(':'); return (+p[0]) * 60 + (+p[1]); };
-  const VERDE = '#4c9a5e', VERMELHO = '#d9534f', AMARELO = '#e0a72c';
-
-  function estado(now) {
-    const d = now.getDay();
-    const cur = now.getHours() * 60 + now.getMinutes();
-    const ab = toMin(SCHED[d][0]), fe = toMin(SCHED[d][1]);
-
-    if (cur >= ab && cur < fe) {
-      const falta = fe - cur;
-      if (falta <= 30) return { cor: AMARELO, txt: 'Fecha em ' + falta + ' min', sub: 'fecha às ' + SCHED[d][1] };
-      return { cor: VERDE, txt: 'Aberto agora', sub: 'fecha às ' + SCHED[d][1] };
-    }
-    if (cur < ab) {
-      const falta = ab - cur;
-      if (falta <= 30) return { cor: AMARELO, txt: 'Abre em ' + falta + ' min', sub: 'abre às ' + SCHED[d][0] };
-      return { cor: VERMELHO, txt: 'Fechado', sub: 'abre hoje às ' + SCHED[d][0] };
-    }
-    const nd = (d + 1) % 7;
-    return { cor: VERMELHO, txt: 'Fechado', sub: 'abre amanhã às ' + SCHED[nd][0] };
-  }
-
-  const _sty = document.createElement('style');
-  _sty.textContent = '@keyframes hoursPulse{0%{box-shadow:0 0 0 0 var(--pc)}70%{box-shadow:0 0 0 8px rgba(0,0,0,0)}100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}}.hours-dot.pulse{animation:hoursPulse 1.8s ease-out infinite}';
-  document.head.appendChild(_sty);
-
-  function pintar(box) {
-    const s = estado(new Date());
-    const dot = box.querySelector('.hours-dot');
-    const st  = box.querySelector('.hours-status');
-    const sub = box.querySelector('.hours-sub');
-    st.textContent = s.txt;
-    sub.textContent = s.sub;
-    st.style.color = s.cor;
-    dot.style.background = s.cor;
-    const aberto = s.txt === 'Aberto agora';
-    dot.style.setProperty('--pc', s.cor);
-    dot.classList.toggle('pulse', aberto);
-    dot.style.boxShadow = aberto ? '' : '0 0 0 4px ' + s.cor + '33';
-  }
-
-  boxes.forEach(box => {
-    const ul = box.querySelector('.hours-list ul');
-    const hoje = new Date().getDay();
-    DIAS.forEach((nome, i) => {
-      const li = document.createElement('li');
-      li.className = 'flex justify-between gap-4' + (i === hoje ? ' text-creme font-medium' : '');
-      li.innerHTML = '<span>' + nome + '</span><span>' + SCHED[i][0] + '–' + SCHED[i][1] + '</span>';
-      ul.appendChild(li);
-    });
-    const toggle = box.querySelector('.hours-toggle');
-    const list   = box.querySelector('.hours-list');
-    const caret  = box.querySelector('.hours-caret');
-    toggle.addEventListener('click', () => {
-      const aberto = list.classList.toggle('hidden') === false;
-      caret.style.transform = aberto ? 'rotate(180deg)' : '';
-    });
-    pintar(box);
-    setInterval(() => pintar(box), 60000);
-  });
-})();
-</script>
-
+<script src="natal.js"></script><!-- tema de Natal -->
 </body>
 </html>
