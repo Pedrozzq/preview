@@ -76,14 +76,15 @@ tailwind.config = {
   }
   .unit-link:hover::after { transform: translateX(120%); }
   @media (prefers-reduced-motion: reduce) {
-    .leaf-field::before, .leaf-field::after, .glow-pulse, .fade-up, .logo-in, .unit-link::after { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    .leaf-field::before, .leaf-field::after, .glow-pulse, .fade-up, .logo-in { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    .unit-link::after { display: none; }
   }
 </style>
 <link rel="stylesheet" href="natal.css"><!-- tema de Natal -->
 </head>
 <body class="font-body bg-mata text-creme min-h-screen flex flex-col">
 
-  <main class="leaf-field relative flex-1 flex flex-col items-center justify-center px-5 py-14 overflow-hidden">
+  <main class="relative flex-1 flex flex-col items-center justify-center px-5 py-14 overflow-hidden">
     <!-- glow -->
     <div class="glow-pulse pointer-events-none absolute inset-0" style="background:radial-gradient(60% 50% at 50% 38%, rgba(76,154,94,.22), transparent 70%)"></div>
 
@@ -104,27 +105,35 @@ tailwind.config = {
       <!-- Unit buttons -->
       <div class="space-y-4">
         <a href="ouro-preto.html"
-           class="unit-link fade-up d2 group flex items-center gap-4 rounded-2xl border border-creme/20 bg-creme/[0.04] px-5 py-5 transition-all duration-300 hover:bg-creme hover:text-mata hover:-translate-y-1 hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/40 active:scale-[0.98]">
-          <span class="shrink-0 w-11 h-11 rounded-full border border-current/30 flex items-center justify-center text-folhaClara transition-all duration-300 group-hover:text-terracota group-hover:scale-110 group-hover:rotate-6">
+           class="unit-link fade-up d2 group flex items-end gap-4 min-h-[9.5rem] sm:min-h-[10.5rem] overflow-hidden rounded-2xl border-2 border-creme/45 bg-mataEsc px-5 pb-5 pt-14 text-creme shadow-lg shadow-black/30 transition-all duration-300 hover:border-rosa hover:-translate-y-1 hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/40 active:scale-[0.98]">
+          <!-- foto da unidade + sombra para o texto ficar legível -->
+          <img src="img/ouropretoMG.jpg" alt="Rua de pedra com casarões coloniais em Ouro Preto" class="absolute inset-0 -z-0 h-full w-full object-cover object-[50%_60%] transition-transform duration-700 ease-out group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mataEsc via-mataEsc/55 to-mataEsc/5"></span>
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-r from-mataEsc/60 to-transparent"></span>
+          <span class="relative shrink-0 w-11 h-11 rounded-full border border-creme/50 bg-mataEsc/50 backdrop-blur-sm flex items-center justify-center text-rosa transition-all duration-300 group-hover:text-creme group-hover:bg-terracota group-hover:border-terracota group-hover:scale-110 group-hover:rotate-6">
             <i class="fa-solid fa-landmark"></i>
           </span>
-          <span class="flex-1">
-            <span class="block font-display text-2xl font-semibold leading-none">Ouro Preto</span>
-            <span class="block text-xs tracking-wide text-creme/60 group-hover:text-mata/60 mt-1">Centro histórico · Minas Gerais</span>
+          <span class="relative flex-1">
+            <span class="block font-display text-[1.9rem] font-bold leading-none text-creme drop-shadow-[0_2px_8px_rgba(0,0,0,.6)]">Ouro Preto</span>
+            <span class="block text-sm tracking-wide text-creme/90 mt-1 drop-shadow-[0_1px_4px_rgba(0,0,0,.7)]">Centro histórico · Minas Gerais</span>
           </span>
-          <i class="fa-solid fa-arrow-right text-sm opacity-40 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1.5"></i>
+          <span class="relative shrink-0 w-9 h-9 rounded-full bg-creme text-mata flex items-center justify-center transition-all duration-300 group-hover:bg-rosa group-hover:translate-x-1"><i class="fa-solid fa-arrow-right text-sm"></i></span>
         </a>
 
         <a href="lavras-novas.html"
-           class="unit-link fade-up d3 group flex items-center gap-4 rounded-2xl border border-creme/20 bg-creme/[0.04] px-5 py-5 transition-all duration-300 hover:bg-creme hover:text-mata hover:-translate-y-1 hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/40 active:scale-[0.98]">
-          <span class="shrink-0 w-11 h-11 rounded-full border border-current/30 flex items-center justify-center text-folhaClara transition-all duration-300 group-hover:text-terracota group-hover:scale-110 group-hover:-rotate-6">
+           class="unit-link fade-up d3 group flex items-end gap-4 min-h-[9.5rem] sm:min-h-[10.5rem] overflow-hidden rounded-2xl border-2 border-creme/45 bg-mataEsc px-5 pb-5 pt-14 text-creme shadow-lg shadow-black/30 transition-all duration-300 hover:border-rosa hover:-translate-y-1 hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/40 active:scale-[0.98]">
+          <!-- foto da unidade + sombra para o texto ficar legível -->
+          <img src="img/lavrasnovasmg.jpg" alt="Casinhas coloridas de Lavras Novas" class="absolute inset-0 -z-0 h-full w-full object-cover object-[30%_55%] transition-transform duration-700 ease-out group-hover:scale-110">
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mataEsc via-mataEsc/55 to-mataEsc/5"></span>
+          <span class="pointer-events-none absolute inset-0 bg-gradient-to-r from-mataEsc/60 to-transparent"></span>
+          <span class="relative shrink-0 w-11 h-11 rounded-full border border-creme/50 bg-mataEsc/50 backdrop-blur-sm flex items-center justify-center text-rosa transition-all duration-300 group-hover:text-creme group-hover:bg-terracota group-hover:border-terracota group-hover:scale-110 group-hover:-rotate-6">
             <i class="fa-solid fa-mountain-sun"></i>
           </span>
-          <span class="flex-1">
-            <span class="block font-display text-2xl font-semibold leading-none">Lavras Novas</span>
-            <span class="block text-xs tracking-wide text-creme/60 group-hover:text-mata/60 mt-1">Distrito de Ouro Preto</span>
+          <span class="relative flex-1">
+            <span class="block font-display text-[1.9rem] font-bold leading-none text-creme drop-shadow-[0_2px_8px_rgba(0,0,0,.6)]">Lavras Novas</span>
+            <span class="block text-sm tracking-wide text-creme/90 mt-1 drop-shadow-[0_1px_4px_rgba(0,0,0,.7)]">Distrito de Ouro Preto</span>
           </span>
-          <i class="fa-solid fa-arrow-right text-sm opacity-40 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1.5"></i>
+          <span class="relative shrink-0 w-9 h-9 rounded-full bg-creme text-mata flex items-center justify-center transition-all duration-300 group-hover:bg-rosa group-hover:translate-x-1"><i class="fa-solid fa-arrow-right text-sm"></i></span>
         </a>
       </div>
 
