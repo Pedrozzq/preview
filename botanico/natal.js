@@ -2,7 +2,8 @@
    Botânico · tema de Natal
    Papai Noel espiando pela lateral da tela, no site todo (fica fixo na tela enquanto a pessoa
    rola): primeiro as mãos agarram a borda, depois o rosto surge devagar, ele fala uma frase
-   e volta para trás da borda. Uma aparição a cada 11 s, cada vez em um canto, com as 12 frases
+   e volta para trás da borda. Uma aparição a cada 11 s, em um ponto sorteado das laterais (de cima
+   até o meio e embaixo, nunca perto do carrinho no canto inferior direito), com as 12 frases
    em ordem aleatória (sem repetir até passar por todas). Pausa com a aba em segundo plano.
    Visual no natal.css.
    ===================================================================== */
@@ -21,10 +22,12 @@
     'Até as renas pararam para um <b>chocolate</b>! 🦌',
     'Natal bom tem <b>cheirinho de cacau</b>! 🍫'
   ];
-  var CANTOS = ['tl', 'tr', 'br', 'bl'];   // superior esq. → superior dir. → inferior dir. → inferior esq.
+  // Áreas livres (px): abaixo do menu fixo no topo; embaixo, acima da barra do celular e, no lado
+  // direito, bem acima do botão do carrinho (canto inferior direito), para nunca ficar atrás dele.
+  var LIVRE = {topo: 92, baixoEsq: 100, baixoDir: 190};
   var CICLO = 11000;                       // uma aparição a cada 11 s
 
-  // Rosto do Papai Noel, olhando para a direita (nos cantos da direita o CSS espelha).
+  // Rosto do Papai Noel, olhando para a direita (no lado direito da tela o CSS espelha).
   var SVG =
     '<svg viewBox="0 0 200 220" aria-hidden="true"><defs>' +
       '<radialGradient id="nPele" cx="45%" cy="38%" r="65%"><stop offset="0" stop-color="#fcdcc2"/><stop offset=".65" stop-color="#f1bb98"/><stop offset="1" stop-color="#d9946f"/></radialGradient>' +
@@ -101,7 +104,19 @@
   var balao = el.querySelector('.noel-balao');
   var DIGITANDO = '<span class="noel-dig" aria-hidden="true"><i></i><i></i><i></i></span>';
 
-  var canto = -1, timers = [], rodando = false, sacola = [], ultima = -1;
+  var timers = [], rodando = false, sacola = [], ultima = -1, ultimoLugar = null;
+  // lugar sorteado: lado (esquerda/direita) e altura na tela. Evita repetir o mesmo lado perto
+  // da altura anterior, para ele "pular" pela tela.
+  function sortearLugar() {
+    var alt = innerHeight, fig = el.querySelector('.noel-fig').offsetHeight || 200, lugar, tent = 0;
+    do {
+      var lado = Math.random() < .5 ? 'tl' : 'tr';
+      var min = LIVRE.topo, max = alt - fig - (lado === 'tr' ? LIVRE.baixoDir : LIVRE.baixoEsq);
+      if (max < min) max = min;                       // tela muito baixa: fica logo abaixo do menu
+      lugar = {lado: lado, y: Math.round(min + Math.random() * (max - min))};
+    } while (ultimoLugar && lugar.lado === ultimoLugar.lado && Math.abs(lugar.y - ultimoLugar.y) < alt * .25 && ++tent < 12);
+    return (ultimoLugar = lugar);
+  }
   // frases em ordem aleatória: embaralha todas, usa uma por vez e só repete depois de passar por todas
   // (e nunca a mesma duas vezes seguidas)
   function proximaFrase() {
@@ -118,9 +133,9 @@
   // uma aparição: as mãos agarram a borda → o rosto surge devagar → balão "digitando…" → frase →
   // balão some → o rosto recua e por último as mãos soltam a borda (tempos das animações no natal.css)
   function aparicao() {
-    canto = (canto + 1) % CANTOS.length;
-    var frase = proximaFrase();
-    el.className = 'noel ' + CANTOS[canto];          // canto novo, ainda escondido atrás da borda
+    var frase = proximaFrase(), lugar = sortearLugar();
+    el.className = 'noel ' + lugar.lado;             // lugar novo, ainda escondido atrás da borda
+    el.style.top = lugar.y + 'px'; el.style.bottom = 'auto';
     balao.innerHTML = DIGITANDO;
     void el.offsetWidth;
     depois(60,   function () { el.classList.add('on'); });
