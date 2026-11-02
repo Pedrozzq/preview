@@ -191,3 +191,5 @@
   .natal-ramo{width:150px}
 }
 @media (prefers-reduced-motion:reduce){.natal-bola{animation:none}}
+/* index: o conteúdo (logo, textos e botões) fica sempre na frente das bolas e dos ramos */
+.natal-index main > .relative{z-index:3}
