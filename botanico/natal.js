@@ -2,7 +2,7 @@
    Botânico · tema de Natal
    Papai Noel espiando pela lateral da tela, no site todo (fica fixo na tela enquanto a pessoa
    rola): primeiro as mãos agarram a borda, depois o rosto surge devagar, ele fala uma frase
-   e volta para trás da borda. Uma aparição a cada 11 s, em um ponto sorteado das laterais (de cima
+   e volta para trás da borda. Uma aparição a cada 15 s, em um ponto sorteado das laterais (de cima
    até o meio e embaixo, nunca perto do carrinho no canto inferior direito), com as 12 frases
    em ordem aleatória (sem repetir até passar por todas). Pausa com a aba em segundo plano.
    Visual no natal.css.
@@ -25,7 +25,7 @@
   // Áreas livres (px): abaixo do menu fixo no topo; embaixo, acima da barra do celular e, no lado
   // direito, bem acima do botão do carrinho (canto inferior direito), para nunca ficar atrás dele.
   var LIVRE = {topo: 92, baixoEsq: 100, baixoDir: 190};
-  var CICLO = 11000;                       // uma aparição a cada 11 s
+  var CICLO = 15000;                       // uma aparição (e uma frase nova) a cada 15 s
 
   // Rosto do Papai Noel, olhando para a direita (no lado direito da tela o CSS espelha).
   var SVG =
@@ -36,7 +36,7 @@
       '<linearGradient id="nBarba" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#f1eee9"/><stop offset="1" stop-color="#d9d3ca"/></linearGradient>' +
       '<radialGradient id="nPelo" cx="45%" cy="35%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ddd7cc"/></radialGradient>' +
       '<linearGradient id="nGorro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2343c"/><stop offset=".6" stop-color="#b3262e"/><stop offset="1" stop-color="#7d1820"/></linearGradient>' +
-      '<linearGradient id="nLuva" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4c9a5e"/><stop offset="1" stop-color="#22502f"/></linearGradient>' +
+      '<linearGradient id="nLuva" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ec4048"/><stop offset=".55" stop-color="#c22a33"/><stop offset="1" stop-color="#7d1820"/></linearGradient>' +
     '</defs>' +
     '<g class="noel-cabeca">' +
       // gorro (atrás) caindo para o lado, com dobra sombreada
@@ -80,13 +80,13 @@
       '<g fill="#d8d1c5" opacity=".7"><circle cx="66" cy="90" r="3"/><circle cx="84" cy="80" r="2.5"/><circle cx="100" cy="92" r="3"/><circle cx="118" cy="81" r="2.5"/><circle cx="136" cy="91" r="3"/><circle cx="152" cy="82" r="2.5"/></g>' +
     '</g></svg>';
 
-  // luva verde vista de frente segurando a borda: punho de pelo atrás da borda, dedos e polegar por cima
+  // luva vermelha vista de frente segurando a borda: punho de pelo atrás da borda, dedos e polegar por cima
   var MAO =
     '<svg viewBox="0 0 90 64" aria-hidden="true">' +
       '<rect x="0" y="10" width="28" height="44" rx="11" fill="url(#nPelo)"/>' +
       '<path d="M22 14C40 6 70 8 82 22c8 10 6 24-4 30-14 8-40 6-56 0z" fill="url(#nLuva)"/>' +
-      '<path d="M42 15c3-12 18-15 23-7 3 5-2 10-9 11" fill="#2a6239"/>' +
-      '<path d="M58 30c10 1 18 4 23 8M56 41c10 1 17 3 22 7" stroke="#163a22" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".75"/>' +
+      '<path d="M42 15c3-12 18-15 23-7 3 5-2 10-9 11" fill="#a8222b"/>' +
+      '<path d="M58 30c10 1 18 4 23 8M56 41c10 1 17 3 22 7" stroke="#5e1016" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".75"/>' +
       '<ellipse cx="50" cy="24" rx="14" ry="4" fill="#fff" opacity=".18"/>' +
     '</svg>';
 
@@ -141,8 +141,8 @@
     depois(60,   function () { el.classList.add('on'); });
     depois(1700, function () { el.classList.add('falando'); });
     depois(2300, function () { balao.innerHTML = '<span class="noel-txt">' + FRASES[frase] + '</span>'; });
-    depois(7600, function () { el.classList.remove('falando'); });
-    depois(7850, function () { el.classList.remove('on'); });
+    depois(11300, function () { el.classList.remove('falando'); });   // frase fica ~9 s na tela
+    depois(11550, function () { el.classList.remove('on'); });
     depois(CICLO, aparicao);
   }
   function iniciar() { if (rodando || document.hidden) return; rodando = true; depois(1500, aparicao); }
