@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chopp Du Leozinho | Chopp gelado em Ouro Preto - Kombi, Fusca e Delivery</title>
+<meta name="description" content="Chopp Du Leozinho: o chopp mais gelado de Ouro Preto - MG. Chopp na Kombi e no Fusca, delivery de barril para repúblicas, festas e eventos.">
+<meta name="theme-color" content="#FFE600">
+<meta property="og:title" content="Chopp Du Leozinho - Ouro Preto/MG">
+<meta property="og:description" content="Chopp da Kombi e do Fusca, delivery de barril, festas, repúblicas e eventos.">
+<meta property="og:image" content="img/logo.jpg">
+<link rel="icon" type="image/jpeg" href="img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#FFE600;
+  --yellow-2:#FFD400;
+  --amber:#F5A800;
+  --beer:#F2B32B;
+  --red:#E63B2E;
+  --red-dark:#B8241A;
+  --ink:#151111;
+  --ink-2:#2A2222;
+  --cream:#FFF9E3;
+  --foam:#FFFFFF;
+  --radius:22px;
+  --shadow:0 18px 40px -18px rgba(21,17,17,.45);
+  --display:'Bagel Fat One', 'Outfit', system-ui, sans-serif;
+  --body:'Outfit', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);overflow-x:hidden;overflow-x:clip;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+.display{font-family:var(--display);font-weight:400;letter-spacing:.2px;line-height:.95}
+.tag{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--yellow);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
+.tag.red{background:var(--red);color:#fff}
+.tag.light{background:#fff;color:var(--ink)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1rem;padding:16px 26px;border-radius:999px;border:3px solid var(--ink);transition:transform .2s ease, box-shadow .2s ease, background .2s;cursor:pointer;white-space:nowrap}
+.btn-red{background:var(--red);color:#fff;box-shadow:5px 5px 0 var(--ink)}
+.btn-red:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn-ink{background:var(--ink);color:var(--yellow);box-shadow:5px 5px 0 var(--red)}
+.btn-ink:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--red)}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn-ghost:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:14px 0;transition:background .3s, box-shadow .3s, padding .3s}
+.nav.scrolled{background:rgba(255,230,0,.94);backdrop-filter:blur(10px);box-shadow:0 4px 0 var(--ink);padding:8px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:1.35rem}
+.brand img{width:48px;height:48px;border-radius:50%;border:3px solid var(--ink);object-fit:cover}
+.brand span b{color:var(--red)}
+.nav-links{display:flex;gap:26px;font-weight:700}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:3px;background:var(--red);border-radius:3px;transition:right .25s}
+.nav-links a:hover::after{right:0}
+.nav .btn{padding:11px 18px;font-size:.92rem}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:#fff;align-items:center;justify-content:center;cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:3px;background:var(--ink);border-radius:3px;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.menu-open .burger span{background:transparent}
+.menu-open .burger span::before{top:0;transform:rotate(45deg)}
+.menu-open .burger span::after{top:0;transform:rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:45;background:var(--yellow);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;font-family:var(--display);font-size:2.2rem;transform:translateY(-105%);visibility:hidden;overflow-y:auto;transition:transform .45s cubic-bezier(.7,0,.2,1),visibility 0s .45s}
+.menu-open .mobile-menu{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.7,0,.2,1)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;background:radial-gradient(120% 90% at 70% 20%,#FFF27A 0%,var(--yellow) 45%,var(--yellow-2) 100%);overflow:hidden;display:flex;align-items:center;padding:120px 0 140px}
+.bubbles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bubble{position:absolute;bottom:-80px;border-radius:50%;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95) 0 9%,rgba(255,255,255,.0) 10%),radial-gradient(circle at 50% 50%,rgba(245,168,0,.18),rgba(245,168,0,.55) 70%,rgba(200,130,0,.75) 100%);box-shadow:inset -4px -6px 0 rgba(180,110,0,.25);animation:rise linear infinite;opacity:.85}
+@keyframes rise{0%{transform:translate(0,0) scale(.7)}50%{transform:translate(18px,-55vh) scale(1)}100%{transform:translate(-12px,-115vh) scale(1.08)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(3rem,7.4vw,6.4rem);margin:18px 0 20px;color:var(--ink)}
+.hero h1 .nw{white-space:nowrap}
+.hero h1 .r{color:var(--red);-webkit-text-stroke:0;text-shadow:4px 4px 0 var(--ink)}
+.hero h1 .w{color:#fff;text-shadow:4px 4px 0 var(--ink)}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);font-weight:500;max-width:520px;margin-bottom:30px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-facts{display:flex;gap:22px;margin-top:34px;flex-wrap:wrap}
+.hero-facts div{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:8px}
+.hero-facts i{font-style:normal;width:34px;height:34px;border-radius:50%;background:#fff;border:2.5px solid var(--ink);display:grid;place-items:center;font-size:1rem}
+.hero-visual{position:relative;height:600px}
+.polaroid{position:absolute;background:#fff;padding:10px 10px 44px;border:3px solid var(--ink);border-radius:14px;box-shadow:var(--shadow);will-change:transform}
+.polaroid img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.polaroid figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--display);font-size:1.15rem}
+.p1{width:56%;height:72%;left:2%;top:10%}
+.p2{width:50%;height:62%;right:0;top:0}
+.p3{width:44%;height:48%;right:10%;bottom:-2%}
+.p1 .rot{transform:rotate(-6deg)}
+.hero-logo{position:absolute;width:170px;height:170px;left:36%;top:52%;border-radius:50%;border:5px solid var(--ink);box-shadow:6px 6px 0 var(--red);z-index:5;object-fit:cover;animation:wobble 5s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.05)}}
+.foam{position:absolute;left:0;right:0;bottom:-1px;z-index:3;line-height:0}
+.foam svg{width:100%;height:110px}
+.scroll-cue{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);z-index:4;font-weight:800;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue span{width:26px;height:42px;border:3px solid var(--ink);border-radius:14px;position:relative}
+.scroll-cue span::after{content:"";position:absolute;left:50%;top:7px;width:5px;height:9px;margin-left:-2.5px;border-radius:3px;background:var(--red);animation:cue 1.6s infinite}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+/* ---------- Marquee ---------- */
+.marquee{background:var(--red);color:#fff;border-block:4px solid var(--ink);overflow:hidden;transform:rotate(-2deg);margin:-30px -20px 0;position:relative;z-index:6}
+.marquee.alt{background:var(--ink);color:var(--yellow);transform:rotate(1.5deg);margin:0 -20px}
+.marquee-track{display:flex;gap:40px;width:max-content;padding:16px 0;animation:marq 26s linear infinite;font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);white-space:nowrap}
+.marquee.alt .marquee-track{animation-direction:reverse;animation-duration:32s}
+.marquee-track span{display:flex;align-items:center;gap:40px}
+.marquee-track span::after{content:"🍺"}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- Sections ---------- */
+section{position:relative}
+.sec{padding:120px 0}
+.sec-head{text-align:center;max-width:760px;margin:0 auto 60px}
+.sec-head h2{font-size:clamp(2.4rem,5.4vw,4.2rem);margin:16px 0 14px}
+.sec-head p{font-size:1.12rem;color:var(--ink-2)}
+.hl{color:var(--red)}
+
+/* ---------- Frota ---------- */
+.frota{background:var(--cream)}
+.vehicle{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:130px}
+.vehicle:last-child{margin-bottom:0}
+.vehicle.rev .v-media{order:2}
+.v-media{position:relative;height:620px}
+.v-media .ph{position:absolute;border:4px solid var(--ink);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#ddd;will-change:transform}
+.v-media .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform}
+.v-media .ph.a{width:66%;height:86%;left:0;top:4%}
+.v-media .ph.b{width:48%;height:58%;right:0;bottom:0}
+.v-badge{position:absolute;z-index:4;top:-14px;right:8%;background:var(--yellow);border:4px solid var(--ink);border-radius:50%;width:132px;height:132px;display:grid;place-items:center;text-align:center;font-family:var(--display);font-size:1.15rem;line-height:1;transform:rotate(10deg);box-shadow:5px 5px 0 var(--red)}
+.v-copy h3{font-size:clamp(2.6rem,5vw,4rem);margin:16px 0 18px}
+.v-copy p{font-size:1.1rem;margin-bottom:22px;color:var(--ink-2)}
+.v-list{list-style:none;display:grid;gap:12px;margin-bottom:30px}
+.v-list li{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.v-list li::before{content:"";flex:none;width:24px;height:24px;margin-top:1px;border-radius:50%;background:var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23151111' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat;border:2.5px solid var(--ink)}
+
+/* ---------- Parallax band ---------- */
+.band{position:relative;height:88vh;min-height:520px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;border-block:5px solid var(--ink)}
+.band-bg{position:absolute;inset:-25% 0;background-size:cover;background-position:center;will-change:transform}
+.band::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(21,17,17,.55),rgba(21,17,17,.35) 45%,rgba(184,36,26,.65))}
+.band-content{position:relative;z-index:2;padding:0 16px;max-width:980px}
+.band h2{font-size:clamp(2.6rem,7vw,5.6rem);text-shadow:5px 5px 0 var(--ink)}
+.band h2 .y{color:var(--yellow)}
+.band p{margin:20px auto 32px;font-size:clamp(1.05rem,1.7vw,1.35rem);max-width:640px;font-weight:500}
+
+/* ---------- Serviços ---------- */
+.servicos{background:var(--yellow);overflow:hidden}
+.servicos .bubbles .bubble{opacity:.45}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;z-index:2}
+.card{background:#fff;border:4px solid var(--ink);border-radius:var(--radius);padding:28px 24px 30px;box-shadow:7px 7px 0 var(--ink);transition:transform .25s, box-shadow .25s;display:flex;flex-direction:column}
+.card:hover{transform:translate(-4px,-6px) rotate(-1deg);box-shadow:11px 13px 0 var(--red)}
+.card .ico{width:66px;height:66px;border-radius:18px;background:var(--red);border:3px solid var(--ink);display:grid;place-items:center;font-size:2rem;margin-bottom:20px;transform:rotate(-6deg)}
+.card:nth-child(2) .ico{background:var(--yellow);transform:rotate(5deg)}
+.card:nth-child(3) .ico{background:var(--ink)}
+.card:nth-child(4) .ico{background:var(--beer);transform:rotate(-3deg)}
+.card h3{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.05;margin-bottom:10px}
+.card p{color:var(--ink-2);flex:1}
+.card a{margin-top:18px;font-weight:800;color:var(--red);display:inline-flex;gap:6px;align-items:center}
+.card a:hover{gap:10px}
+
+/* ---------- Universitário ---------- */
+.uni{background:var(--ink);color:#fff;overflow:hidden}
+.uni .sec-head p{color:#d9d2c5}
+.uni-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.calc{background:var(--yellow);color:var(--ink);border:4px solid #000;border-radius:28px;padding:34px;box-shadow:9px 9px 0 var(--red);position:relative}
+.calc h3{font-family:var(--display);font-weight:400;font-size:2rem;margin-bottom:6px}
+.calc .sub{margin-bottom:24px;font-weight:500}
+.field{margin-bottom:22px}
+.field label{display:flex;justify-content:space-between;font-weight:800;margin-bottom:10px}
+.field label output{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--red)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:14px;border-radius:999px;background:#fff;border:3px solid var(--ink);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:var(--red);border:3px solid var(--ink);cursor:grab;box-shadow:2px 2px 0 var(--ink)}
+input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--red);border:3px solid var(--ink);cursor:grab}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid var(--ink);background:#fff;border-radius:999px;padding:9px 16px;font-weight:800;cursor:pointer;font-family:var(--body);font-size:.95rem;transition:.15s}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--yellow)}
+.result{display:flex;align-items:center;gap:18px;background:#fff;border:3px solid var(--ink);border-radius:20px;padding:18px 20px;margin:6px 0 22px}
+.glass{width:64px;height:84px;flex:none;position:relative;border:3px solid var(--ink);border-top:none;border-radius:4px 4px 14px 14px;overflow:hidden;background:#fff}
+.glass .liq{position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(180deg,#FFD43B,var(--amber));transition:height .5s cubic-bezier(.3,1.4,.5,1)}
+.glass .liq::before{content:"";position:absolute;left:-4px;right:-4px;top:-10px;height:14px;background:#fff;border-radius:10px;box-shadow:0 -2px 0 rgba(0,0,0,.05)}
+.result strong{font-family:var(--display);font-weight:400;font-size:2.2rem;line-height:1;display:block}
+.result small{font-weight:600;color:var(--ink-2)}
+.calc .btn{width:100%}
+.calc .note{font-size:.8rem;margin-top:12px;text-align:center;opacity:.75}
+.uni-copy h2{font-size:clamp(2.4rem,5vw,4rem);margin:16px 0 20px}
+.uni-copy h2 .y{color:var(--yellow)}
+.uni-copy p{color:#d9d2c5;font-size:1.1rem;margin-bottom:26px}
+.reps{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.reps span{border:2px solid rgba(255,230,0,.5);color:var(--yellow);padding:8px 14px;border-radius:999px;font-weight:700;font-size:.92rem;transition:.2s}
+.reps span:hover{background:var(--yellow);color:var(--ink)}
+.uni-stack{position:relative;height:280px;margin-top:36px}
+.uni-stack .ph{position:absolute;width:42%;height:100%;border:4px solid #000;border-radius:18px;overflow:hidden;box-shadow:6px 6px 0 var(--red);will-change:transform}
+.uni-stack .ph img{width:100%;height:100%;object-fit:cover}
+.uni-stack .ph:nth-child(1){left:0;transform:rotate(-5deg)}
+.uni-stack .ph:nth-child(2){left:29%;top:14px;transform:rotate(3deg);z-index:2}
+.uni-stack .ph:nth-child(3){right:0;transform:rotate(-2deg)}
+
+/* ---------- Como funciona ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{position:relative;background:#fff;border:4px solid var(--ink);border-radius:var(--radius);padding:56px 28px 30px;box-shadow:var(--shadow)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-34px;left:24px;width:68px;height:68px;border-radius:50%;background:var(--yellow);border:4px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:2rem;box-shadow:4px 4px 0 var(--red)}
+.step h3{font-family:var(--display);font-weight:400;font-size:1.65rem;margin-bottom:10px}
+.step p{color:var(--ink-2)}
+
+/* ---------- Galeria ---------- */
+.galeria{background:var(--cream);overflow:hidden}
+.gal{columns:4 240px;column-gap:18px}
+.gal figure{break-inside:avoid;margin-bottom:18px;border:4px solid var(--ink);border-radius:18px;overflow:hidden;position:relative;background:#eee;box-shadow:6px 6px 0 var(--ink);transition:transform .3s, box-shadow .3s;cursor:zoom-in}
+.gal figure:nth-child(3n+2){box-shadow:6px 6px 0 var(--red)}
+.gal figure:hover{transform:translateY(-6px) rotate(-.8deg)}
+.gal img{width:100%;height:auto;transition:transform .6s}
+.gal figure:hover img{transform:scale(1.06)}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:999px;padding:4px 12px;font-weight:800;font-size:.82rem}
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(21,17,17,.92);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-height:90vh;max-width:min(92vw,720px);border:5px solid var(--yellow);border-radius:18px}
+
+/* ---------- Depoimento / insta ---------- */
+.insta{background:var(--red);color:#fff;overflow:hidden;text-align:center}
+.insta h2{font-size:clamp(2.4rem,6vw,4.6rem);text-shadow:4px 4px 0 var(--ink)}
+.insta p{font-size:1.15rem;max-width:620px;margin:18px auto 30px}
+.insta-strip{display:flex;gap:16px;justify-content:center;margin-top:50px;flex-wrap:nowrap}
+.insta-strip img{width:180px;height:240px;object-fit:cover;border:4px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);will-change:transform}
+.insta-strip img:nth-child(odd){transform:rotate(-4deg)}
+.insta-strip img:nth-child(even){transform:rotate(4deg) translateY(20px)}
+
+/* ---------- FAQ ---------- */
+.faq-list{max-width:860px;margin:0 auto;display:grid;gap:14px}
+.faq-item{background:#fff;border:3.5px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:5px 5px 0 var(--ink)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:800;font-size:1.08rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";flex:none;width:34px;height:34px;border-radius:50%;background:var(--yellow);border:2.5px solid var(--ink);display:grid;place-items:center;font-size:1.4rem;line-height:1;transition:transform .25s}
+.faq-item[open] summary::after{transform:rotate(45deg);background:var(--red);color:#fff}
+.faq-item p{padding:0 24px 22px;color:var(--ink-2)}
+
+/* ---------- CTA final ---------- */
+.final{background:var(--yellow);overflow:hidden;text-align:center;padding:130px 0 150px}
+.final h2{font-size:clamp(2.8rem,8vw,6.6rem);margin:18px 0}
+.final h2 .r{color:var(--red);text-shadow:5px 5px 0 var(--ink)}
+.final p{font-size:1.2rem;max-width:600px;margin:0 auto 34px;font-weight:500}
+.final .hero-ctas{justify-content:center}
+.final-logo{width:150px;height:150px;border-radius:50%;margin:0 auto;border:5px solid var(--ink);box-shadow:6px 6px 0 var(--red);object-fit:cover;will-change:transform}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);color:#d9d2c5;padding:60px 0 30px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12)}
+footer .brand{color:#fff}
+footer h4{color:var(--yellow);font-family:var(--display);font-weight:400;font-size:1.3rem;margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a:hover{color:var(--yellow)}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:.88rem}
+.legal strong{color:var(--yellow)}
+
+/* ---------- Floating WhatsApp ---------- */
+.fab{position:fixed;right:18px;bottom:18px;z-index:60;width:64px;height:64px;border-radius:50%;background:#25D366;border:3.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);display:grid;place-items:center;transition:transform .2s}
+.fab:hover{transform:scale(1.08) rotate(-8deg)}
+.fab svg{width:32px;height:32px;fill:#fff}
+.fab::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:3px solid #25D366;animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(.85);opacity:1}100%{transform:scale(1.35);opacity:0}}
+
+/* ---------- Age gate ---------- */
+.age{position:fixed;inset:0;z-index:100;background:var(--yellow);display:flex;align-items:center;justify-content:center;padding:20px;transition:opacity .5s, visibility .5s}
+.age.hide{opacity:0;visibility:hidden}
+.age-box{text-align:center;max-width:460px}
+.age-box img{width:170px;height:170px;border-radius:50%;margin:0 auto 22px;border:5px solid var(--ink);box-shadow:6px 6px 0 var(--red);object-fit:cover}
+.age-box h2{font-size:clamp(2rem,6vw,2.8rem);margin-bottom:10px}
+.age-box p{font-weight:500;margin-bottom:26px}
+.age-box .hero-ctas{justify-content:center}
+.age-box small{display:block;margin-top:18px;font-size:.82rem;opacity:.75}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{height:480px;max-width:620px;width:100%;margin:0 auto}
+  .uni-grid{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .nav-links,.nav .btn{display:none}
+  .burger{display:flex}
+  .vehicle{grid-template-columns:1fr;gap:40px;margin-bottom:90px}
+  .vehicle.rev .v-media{order:0}
+  .v-media{height:500px}
+  .steps{grid-template-columns:1fr;gap:50px}
+  .foot{grid-template-columns:1fr}
+  .insta-strip img{width:130px;height:180px}
+  .insta-strip img:nth-child(n+4){display:none}
+  .sec{padding:90px 0}
+}
+@media (max-width:560px){
+  .hero{padding:104px 0 130px}
+  .hero h1{font-size:clamp(2.2rem,12.5vw,3.4rem)}
+  .hero-visual{height:400px}
+  .hero-logo{width:118px;height:118px;left:38%;top:56%}
+  .cards{grid-template-columns:1fr}
+  .v-media{height:420px}
+  .v-badge{width:104px;height:104px;font-size:.95rem}
+  .calc{padding:24px 20px}
+  .btn{padding:15px 22px}
+  .hero-ctas .btn{width:100%}
+  .insta-strip{gap:10px}
+  .insta-strip img{width:31%;height:150px}
+  .scroll-cue{display:none}
+  .uni-stack{height:220px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Aviso de idade -->
+<div class="age" id="age" role="dialog" aria-modal="true" aria-labelledby="age-title">
+  <div class="age-box">
+    <img src="img/logo.jpg" alt="Chopp Du Leozinho">
+    <h2 class="display" id="age-title">Você tem 18 anos ou mais?</h2>
+    <p>O site do Chopp Du Leozinho tem conteúdo sobre bebidas alcoólicas e é destinado a maiores de idade.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-red" id="age-yes">Sim, bora pro chopp!</button>
+      <a class="btn btn-ghost" href="https://www.google.com">Não tenho</a>
+    </div>
+    <small>Beba com moderação. Se beber, não dirija.</small>
+  </div>
+</div>
+
+<!-- Navegação -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#topo" class="brand" aria-label="Chopp Du Leozinho - início">
+      <img src="img/logo.jpg" alt="">
+      <span>Chopp Du <b>Leozinho</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#frota">Kombi &amp; Fusca</a>
+      <a href="#universitario">Repúblicas</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Eventos</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <a class="btn btn-red js-whats" href="https://wa.me/5531989505552" data-msg="Olá, Leozinho! Quero fazer um pedido de chopp 🍺">Pedir chopp</a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#frota">Kombi &amp; Fusca</a>
+  <a href="#universitario">Repúblicas</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#galeria">Eventos</a>
+  <a href="#faq">Dúvidas</a>
+  <a class="btn btn-red js-whats" href="https://wa.me/5531989505552" data-msg="Olá, Leozinho! Quero fazer um pedido de chopp 🍺" style="font-family:var(--body);font-size:1.1rem">Pedir no WhatsApp</a>
+</div>
+
+<main id="topo">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="bubbles" data-bubbles="34"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="tag reveal">📍 Ouro Preto - MG</span>
+      <h1 class="display reveal d1">O chopp <span class="w">mais gelado</span> de <span class="nw">Ouro <span class="r">Preto!</span></span></h1>
+      <p class="lead reveal d2">Chopp na <strong>Kombi</strong>, no <strong>Fusca</strong> ou entregue na porta da sua república. Festas, rocks, formaturas e eventos com chopp trincando do primeiro ao último copo.</p>
+      <div class="hero-ctas reveal d3">
+        <a class="btn btn-red js-whats" href="https://wa.me/5531989505552" data-msg="Olá, Leozinho! Quero um orçamento de chopp para minha festa 🍻">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Fazer orçamento
+        </a>
+        <a class="btn btn-ghost" href="#frota">Conhecer a frota</a>
+      </div>
+      <div class="hero-facts reveal d3">
+        <div><i>🚐</i> Chopp da Kombi</div>
+        <div><i>🚗</i> Fuscão Chopp</div>
+        <div><i>🛵</i> Delivery</div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <figure class="polaroid p1" data-speed="-0.12" style="--r:-6deg"><img src="img/fusca-lateral.jpg" alt=""><figcaption>Fuscão Chopp</figcaption></figure>
+      <figure class="polaroid p2" data-speed="0.10" style="--r:5deg"><img src="img/kombi-torneiras.jpg" alt=""><figcaption>Beba na Kombi</figcaption></figure>
+      <figure class="polaroid p3" data-speed="-0.22" style="--r:-3deg"><img src="img/chopp-mascote.jpg" alt=""><figcaption>Trincando!</figcaption></figure>
+      <img class="hero-logo" src="img/logo.jpg" alt="" data-speed="0.18">
+    </div>
+  </div>
+  <a href="#frota" class="scroll-cue" aria-label="Rolar para baixo"><span></span>role</a>
+  <div class="foam" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path fill="#FFF9E3" d="M0 60c40-30 80 20 120 0s70-40 110-10 60 40 110 15 70-50 120-20 70 35 115 10 75-40 125-12 65 30 110 8 70-45 125-15 80 38 125 8 60-28 110-5 70 30 115 0 60-25 105-5 55 20 55 20V110H0Z"/><g fill="#FFF9E3"><circle cx="180" cy="58" r="10"/><circle cx="520" cy="50" r="7"/><circle cx="905" cy="56" r="9"/><circle cx="1250" cy="52" r="8"/></g></svg>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Chopp gelado</span><span>Kombi Chopp</span><span>Fuscão Chopp</span><span>Delivery de barril</span><span>Repúblicas</span><span>Festas &amp; eventos</span>
+    <span>Chopp gelado</span><span>Kombi Chopp</span><span>Fuscão Chopp</span><span>Delivery de barril</span><span>Repúblicas</span><span>Festas &amp; eventos</span>
+  </div>
+</div>
+
+<!-- FROTA -->
+<section class="sec frota" id="frota">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag red">A frota mais amarela de Minas</span>
+      <h2 class="display">Chopp sobre <span class="hl">rodas</span></h2>
+      <p>A gente estaciona, abre as torneiras e a festa começa. Nossos veículos são chopeiras completas, com chopp tirado na hora e aquela espuma cremosa.</p>
+    </div>
+
+    <article class="vehicle">
+      <div class="v-media reveal">
+        <div class="v-badge" data-speed="-0.15">Beba na<br>Kombi!</div>
+        <div class="ph a" data-speed="-0.06"><img src="img/kombi-torneiras.jpg" alt="Kombi amarela do Chopp Du Leozinho com torneiras de chopp na lateral" data-inner="0.08" loading="lazy"></div>
+        <div class="ph b" data-speed="0.12"><img src="img/kombi-tirando.jpg" alt="Chopp sendo tirado na torneira da Kombi" data-inner="0.06" loading="lazy"></div>
+      </div>
+      <div class="v-copy reveal d1">
+        <span class="tag">🚐 Kombi Chopp</span>
+        <h3 class="display">A Kombi que vira <span class="hl">bar</span></h3>
+        <p>Clássica, amarelinha e com torneiras na lateral. A Kombi do Leozinho chega no seu evento pronta para servir: é só encostar o copo.</p>
+        <ul class="v-list">
+          <li>Várias torneiras na lateral, chopp tirado na hora</li>
+          <li>Perfeita para rocks, formaturas, casamentos e eventos de rua</li>
+          <li>Vira cenário e ponto de foto da festa</li>
+        </ul>
+        <a class="btn btn-ink js-whats" href="https://wa.me/5531989505552" data-msg="Olá! Quero a Kombi Chopp no meu evento 🚐🍺">Quero a Kombi no meu evento</a>
+      </div>
+    </article>
+
+    <article class="vehicle rev">
+      <div class="v-media reveal">
+        <div class="v-badge" data-speed="-0.15" style="background:var(--red);color:#fff;box-shadow:5px 5px 0 var(--ink)">Beba no<br>Fusca!</div>
+        <div class="ph a" data-speed="-0.06"><img src="img/fusca-evento.jpg" alt="Fusca amarelo do Chopp Du Leozinho adesivado com o mascote" data-inner="0.08" loading="lazy"></div>
+        <div class="ph b" data-speed="0.12"><img src="img/chopp-fusca.jpg" alt="Copo de chopp sendo servido no Fusca" data-inner="0.06" loading="lazy"></div>
+      </div>
+      <div class="v-copy reveal d1">
+        <span class="tag red">🚗 Fuscão Chopp</span>
+        <h3 class="display">O Fusca mais <span class="hl">gelado</span> do Brasil</h3>
+        <p>Um Fusca amarelo com chopeira embutida e o mascote estampado na lataria. Charme de sobra nas ladeiras de Ouro Preto e em qualquer festa.</p>
+        <ul class="v-list">
+          <li>Chopeira embutida com torneiras na traseira</li>
+          <li>Ideal para aniversários, eventos de marca e ativações</li>
+          <li>Todo mundo quer foto com o Fuscão</li>
+        </ul>
+        <a class="btn btn-red js-whats" href="https://wa.me/5531989505552" data-msg="Olá! Quero o Fuscão Chopp na minha festa 🚗🍺">Quero o Fuscão na minha festa</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- UNIVERSITÁRIO / CALCULADORA -->
+<section class="sec uni" id="universitario">
+  <div class="wrap uni-grid">
+    <div class="uni-copy reveal">
+      <span class="tag" style="background:var(--yellow);color:var(--ink)">🎓 Feito pra universitário</span>
+      <h2 class="display">Sua rep merece <span class="y">chopp de verdade</span></h2>
+      <p>Quem é de Ouro Preto sabe: no 12 de Outubro e no Carnaval, as repúblicas já garantem o chopp com o Leozinho. Monte seu pedido, combine a entrega e deixe o resto com a gente.</p>
+      <div class="reps" aria-label="Quem já brindou com a gente">
+        <span>República Alforria</span><span>República Butantan</span><span>Pif Paf</span><span>Bloco Chapado</span><span>Música na Sacada</span><span>Festival Gastronômico OP</span><span>Power Fit</span>
+      </div>
+      <div class="uni-stack">
+        <div class="ph" data-speed="-0.08"><img src="img/carnaval-kombi.jpg" alt="Kombi do Chopp Du Leozinho no meio do Carnaval de Ouro Preto" loading="lazy"></div>
+        <div class="ph" data-speed="0.06"><img src="img/leo-brinde.jpg" alt="Leozinho servindo um copo de chopp" loading="lazy"></div>
+        <div class="ph" data-speed="-0.04"><img src="img/evento-noite.jpg" alt="Evento lotado à noite em Ouro Preto" loading="lazy"></div>
+      </div>
+    </div>
+
+    <form class="calc reveal d1" id="calc" onsubmit="return false">
+      <h3>Quanto chopp eu preciso?</h3>
+      <p class="sub">Calcule em 10 segundos e mande direto pro WhatsApp.</p>
+      <div class="field">
+        <label for="pessoas">Pessoas na festa <output id="o-pessoas">40</output></label>
+        <input type="range" id="pessoas" min="5" max="400" step="5" value="40">
+      </div>
+      <div class="field">
+        <label for="horas">Duração (horas) <output id="o-horas">5</output></label>
+        <input type="range" id="horas" min="2" max="12" step="1" value="5">
+      </div>
+      <div class="field">
+        <label>Perfil da galera</label>
+        <div class="chips" role="group" aria-label="Perfil da galera">
+          <button type="button" class="chip" data-f="0.75" aria-pressed="false">De boa</button>
+          <button type="button" class="chip" data-f="1" aria-pressed="true">Animada</button>
+          <button type="button" class="chip" data-f="1.35" aria-pressed="false">Rock de rep 🔥</button>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="glass" aria-hidden="true"><div class="liq" id="liq"></div></div>
+        <div>
+          <strong id="litros">100 L</strong>
+          <small id="barris">Sugestão: 2 barris de 50 L</small>
+        </div>
+      </div>
+      <button type="button" class="btn btn-red" id="calc-send">Enviar pedido no WhatsApp</button>
+      <p class="note">Estimativa média. A quantidade final é combinada com a equipe do Leozinho.</p>
+    </form>
+  </div>
+</section>
+
+<!-- BAND PARALLAX -->
+<section class="band" aria-label="Ouro Preto">
+  <div class="band-bg" data-speed="0.3" style="background-image:url('img/fusca-ouro-preto.jpg')"></div>
+  <div class="band-content reveal">
+    <span class="tag light">Ladeira acima, chopp gelado</span>
+    <h2 class="display" style="margin-top:18px">Em Ouro Preto, festa boa tem <span class="y">Chopp Du Leozinho</span></h2>
+    <p>Do centro histórico às repúblicas, a gente sobe qualquer ladeira para o seu chopp chegar trincando.</p>
+    <a class="btn btn-red js-whats" href="https://wa.me/5531989505552" data-msg="Olá, Leozinho! Quero chopp na minha festa em Ouro Preto 🍻">Chamar no WhatsApp</a>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="sec servicos" id="servicos">
+  <div class="bubbles" data-bubbles="18"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">O que a gente faz</span>
+      <h2 class="display">Do barril ao <span class="hl">último copo</span></h2>
+      <p>Seja uma resenha pequena ou um evento gigante, tem um formato de chopp pra você.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico">🛵</div>
+        <h3>Chopp Delivery</h3>
+        <p>Barril e chopeira entregues no seu endereço em Ouro Preto. Você só se preocupa com a playlist.</p>
+        <a href="https://wa.me/5531989505552" class="js-whats" data-msg="Olá! Quero pedir chopp delivery 🛵🍺">Pedir delivery →</a>
+      </article>
+      <article class="card reveal d1">
+        <div class="ico">🎉</div>
+        <h3>Festas &amp; eventos</h3>
+        <p>Aniversários, casamentos, formaturas, festivais e corridas. A gente leva a estrutura e serve sua galera.</p>
+        <a href="https://wa.me/5531989505552" class="js-whats" data-msg="Olá! Quero orçamento para um evento 🎉">Orçar evento →</a>
+      </article>
+      <article class="card reveal d2">
+        <div class="ico">🏠</div>
+        <h3>Repúblicas &amp; rocks</h3>
+        <p>12 de Outubro, Carnaval, calourada ou aquele rock de sexta. Chopp garantido pra república inteira.</p>
+        <a href="https://wa.me/5531989505552" class="js-whats" data-msg="Olá! Sou de república e quero chopp para nosso rock 🏠🍺">Garantir o da rep →</a>
+      </article>
+      <article class="card reveal d3">
+        <div class="ico">🍸</div>
+        <h3>Gin no barril</h3>
+        <p>Além do chopp, também levamos gin no barril para deixar sua festa ainda mais completa.</p>
+        <a href="https://wa.me/5531989505552" class="js-whats" data-msg="Olá! Quero saber do gin no barril 🍸">Saber mais →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="marquee alt" aria-hidden="true">
+  <div class="marquee-track">
+    <span>12 de Outubro</span><span>Carnaval Ouro Preto</span><span>Calourada</span><span>Formatura</span><span>Rock de república</span><span>Festival</span>
+    <span>12 de Outubro</span><span>Carnaval Ouro Preto</span><span>Calourada</span><span>Formatura</span><span>Rock de república</span><span>Festival</span>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag red">Simples assim</span>
+      <h2 class="display">Como <span class="hl">funciona</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Chama no Whats</h3><p>Conta a data, o local, quantas pessoas e se você quer Kombi, Fusca ou delivery de barril.</p></div>
+      <div class="step reveal d1"><h3>Fecha o orçamento</h3><p>A gente indica a quantidade ideal de chopp e o formato certo para sua festa.</p></div>
+      <div class="step reveal d2"><h3>Chopp trincando</h3><p>No dia, chegamos com tudo pronto. Você brinda, a gente cuida das torneiras.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND 2 -->
+<section class="band" aria-label="Eventos">
+  <div class="band-bg" data-speed="0.3" style="background-image:url('img/evento-noite.jpg')"></div>
+  <div class="band-content reveal">
+    <h2 class="display">Vai ter evento? <span class="y">Chama a gente!</span></h2>
+    <p>Corridas, festivais, micaretas, blocos e música na sacada: onde tem gente feliz, tem Chopp Du Leozinho.</p>
+    <a class="btn btn-ghost js-whats" href="https://wa.me/5531989505552" data-msg="Olá! Tenho um evento e quero o Chopp Du Leozinho 🍻">Quero no meu evento</a>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="sec galeria" id="galeria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Por onde a gente passou</span>
+      <h2 class="display">Resenha <span class="hl">registrada</span></h2>
+      <p>Um pouco do que rola quando as torneiras do Leozinho abrem.</p>
+    </div>
+    <div class="gal">
+      <figure class="reveal"><img src="img/carnaval-kombi.jpg" alt="Kombi no Carnaval de Ouro Preto 2026" loading="lazy"><figcaption>Carnaval OP</figcaption></figure>
+      <figure class="reveal"><img src="img/cliente-sorriso.jpg" alt="Cliente sorrindo com copo de chopp" loading="lazy"><figcaption>Sorriso garantido</figcaption></figure>
+      <figure class="reveal"><img src="img/chopp-tirando.jpg" alt="Chopp sendo tirado na torneira" loading="lazy"><figcaption>#AtitudeCervejeira</figcaption></figure>
+      <figure class="reveal"><img src="img/fusca-ouro-preto.jpg" alt="Fusca do chopp no centro histórico de Ouro Preto" loading="lazy"><figcaption>Praça Tiradentes</figcaption></figure>
+      <figure class="reveal"><img src="img/leo-barris.jpg" alt="Leozinho em frente aos barris de chopp" loading="lazy"><figcaption>Barril cheio</figcaption></figure>
+      <figure class="reveal"><img src="img/copo-laut.jpg" alt="Copo de chopp com espuma cremosa" loading="lazy"><figcaption>Espuma perfeita</figcaption></figure>
+      <figure class="reveal"><img src="img/van-chopp.jpg" alt="Veículo amarelo do Chopp Du Leozinho" loading="lazy"><figcaption>Frota amarela</figcaption></figure>
+      <figure class="reveal"><img src="img/copo-atitude.jpg" alt="Copo de chopp gelado na mão" loading="lazy"><figcaption>Gelado na medida</figcaption></figure>
+      <figure class="reveal"><img src="img/torneira-gelada.jpg" alt="Torneira de chopp suando de gelada" loading="lazy"><figcaption>Torneira suando</figcaption></figure>
+      <figure class="reveal"><img src="img/fusca-lateral.jpg" alt="Fusca do chopp visto de trás" loading="lazy"><figcaption>Fuscão</figcaption></figure>
+      <figure class="reveal"><img src="img/kombi-tirando.jpg" alt="Copo sendo enchido na Kombi" loading="lazy"><figcaption>Na Kombi</figcaption></figure>
+      <figure class="reveal"><img src="img/leo-brinde.jpg" alt="Leozinho brindando" loading="lazy"><figcaption>Saúde!</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="sec insta">
+  <div class="bubbles" data-bubbles="14"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="tag light reveal">@choppduleozinho_</span>
+    <h2 class="display reveal d1" style="margin-top:18px">Segue a gente no Insta</h2>
+    <p class="reveal d2">Agenda de eventos, bastidores das entregas e as melhores resenhas de Ouro Preto.</p>
+    <a class="btn btn-ink reveal d3" href="https://www.instagram.com/choppduleozinho_/" target="_blank" rel="noopener">Seguir @choppduleozinho_</a>
+    <div class="insta-strip">
+      <img src="img/chopp-mascote.jpg" alt="" loading="lazy" data-speed="-0.06">
+      <img src="img/fusca-evento.jpg" alt="" loading="lazy" data-speed="0.06">
+      <img src="img/kombi-torneiras.jpg" alt="" loading="lazy" data-speed="-0.1">
+      <img src="img/cliente-sorriso.jpg" alt="" loading="lazy" data-speed="0.08">
+      <img src="img/copo-laut.jpg" alt="" loading="lazy" data-speed="-0.05">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag red">Dúvidas</span>
+      <h2 class="display">Perguntas <span class="hl">frequentes</span></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal" open><summary>Vocês atendem onde?</summary><p>Nossa base é Ouro Preto - MG. Atendemos a cidade, os distritos e a região. Chama no WhatsApp e confirma a disponibilidade para o seu endereço e data.</p></details>
+      <details class="faq-item reveal"><summary>Qual a diferença entre Kombi, Fusca e delivery?</summary><p>No delivery a gente entrega barril e chopeira para você servir. Com a Kombi ou o Fusca, o veículo vira o bar do seu evento, com as torneiras prontas para servir a galera.</p></details>
+      <details class="faq-item reveal"><summary>Quanto chopp preciso para minha festa?</summary><p>Use a calculadora acima para ter uma estimativa. Na hora do orçamento a gente ajusta conforme o perfil do evento e o tempo de festa.</p></details>
+      <details class="faq-item reveal"><summary>Com quanta antecedência devo pedir?</summary><p>Quanto antes, melhor, principalmente em datas como 12 de Outubro, Carnaval e formaturas, quando a agenda enche rápido.</p></details>
+      <details class="faq-item reveal"><summary>Vocês têm outras bebidas?</summary><p>Sim! Além do chopp, trabalhamos com gin no barril. Pergunte as opções disponíveis para a sua data.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="bubbles" data-bubbles="24"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <img class="final-logo reveal" src="img/logo.jpg" alt="Mascote do Chopp Du Leozinho" data-speed="-0.1">
+    <h2 class="display reveal d1">Venha tomar um <span class="r">chopp gelado!</span></h2>
+    <p class="reveal d2">Entre em contato para festas e eventos. A gente responde rapidinho.</p>
+    <div class="hero-ctas reveal d3">
+      <a class="btn btn-red js-whats" href="https://wa.me/5531989505552" data-msg="Olá, Leozinho! Quero chopp gelado 🍺">Pedir no WhatsApp</a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/choppduleozinho_/" target="_blank" rel="noopener">Ver Instagram</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#topo" class="brand"><img src="img/logo.jpg" alt=""><span>Chopp Du <b>Leozinho</b></span></a>
+        <p style="margin-top:16px;max-width:360px">Chopp da Kombi e do Fusca, delivery de barril, repúblicas, festas e eventos em Ouro Preto - MG.</p>
+      </div>
+      <div>
+        <h4>Navegue</h4>
+        <ul>
+          <li><a href="#frota">Kombi &amp; Fusca</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#universitario">Repúblicas</a></li>
+          <li><a href="#galeria">Eventos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>📍 Ouro Preto - MG</li>
+          <li><a href="https://wa.me/5531989505552" class="js-whats" data-msg="Olá, Leozinho!">💬 WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/choppduleozinho_/" target="_blank" rel="noopener">📸 @choppduleozinho_</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="ano"></span> Chopp Du Leozinho. Todos os direitos reservados.</span>
+      <span><strong>Venda proibida para menores de 18 anos.</strong> Beba com moderação. Se beber, não dirija.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab js-whats" href="https://wa.me/5531989505552" data-msg="Olá, Leozinho! Quero fazer um pedido 🍺" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<div class="lightbox" id="lightbox" aria-hidden="true"><img alt=""></div>
+
+<script>
+/* ===== Contato (WhatsApp) ===== */
+const WHATS_NUMBER = '5531989505552';
+const whatsLink = msg => `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+document.querySelectorAll('.js-whats').forEach(a => {
+  a.href = whatsLink(a.dataset.msg || 'Olá, Leozinho!');
+  a.target = '_blank'; a.rel = 'noopener';
+});
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+/* ===== Aviso 18+ ===== */
+const age = document.getElementById('age');
+let ok = false;
+try { ok = localStorage.getItem('leozinho18') === '1'; } catch (e) {}
+if (ok) age.classList.add('hide'); else document.body.style.overflow = 'hidden';
+document.getElementById('age-yes').addEventListener('click', () => {
+  age.classList.add('hide'); document.body.style.overflow = '';
+  try { localStorage.setItem('leozinho18', '1'); } catch (e) {}
+});
+
+/* ===== Bolhas ===== */
+document.querySelectorAll('[data-bubbles]').forEach(box => {
+  const n = +box.dataset.bubbles;
+  for (let i = 0; i < n; i++) {
+    const b = document.createElement('span');
+    const s = 10 + Math.random() * 46;
+    b.className = 'bubble';
+    b.style.cssText = `width:${s}px;height:${s * 1.08}px;left:${Math.random() * 100}%;animation-duration:${9 + Math.random() * 14}s;animation-delay:-${Math.random() * 20}s`;
+    box.appendChild(b);
+  }
+});
+
+/* ===== Nav ===== */
+const nav = document.getElementById('nav');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const open = document.body.classList.toggle('menu-open');
+  burger.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => {
+  document.body.classList.remove('menu-open'); burger.setAttribute('aria-expanded', false);
+}));
+
+/* ===== Parallax ===== */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const layers = [...document.querySelectorAll('[data-speed]')];
+const inners = [...document.querySelectorAll('[data-inner]')];
+const baseRot = el => el.style.getPropertyValue('--r') || '0deg';
+let ticking = false;
+function parallax() {
+  const vh = innerHeight;
+  nav.classList.toggle('scrolled', scrollY > 30);
+  if (!reduce) {
+    layers.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      const center = r.top + r.height / 2 - vh / 2;
+      const y = -center * parseFloat(el.dataset.speed);
+      const rot = el.classList.contains('polaroid') ? ` rotate(${baseRot(el)})` : '';
+      el.style.transform = `translate3d(0,${y.toFixed(1)}px,0)${rot}`;
+    });
+    inners.forEach(img => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const center = r.top + r.height / 2 - vh / 2;
+      img.style.transform = `translate3d(0,${(center * parseFloat(img.dataset.inner)).toFixed(1)}px,0) scale(1.12)`;
+    });
+  }
+  ticking = false;
+}
+addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(parallax); ticking = true; } }, { passive: true });
+addEventListener('resize', parallax);
+parallax();
+
+/* ===== Reveal ===== */
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .14, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ===== Calculadora ===== */
+const pessoas = document.getElementById('pessoas');
+const horas = document.getElementById('horas');
+const chips = [...document.querySelectorAll('.chip')];
+let fator = 1;
+function calc() {
+  const p = +pessoas.value, h = +horas.value;
+  document.getElementById('o-pessoas').textContent = p;
+  document.getElementById('o-horas').textContent = h;
+  // média de ~0,5 L por pessoa/hora numa festa animada
+  const litros = Math.max(10, Math.ceil((p * h * 0.5 * fator) / 10) * 10);
+  document.getElementById('litros').textContent = litros + ' L';
+  const b50 = Math.floor(litros / 50), resto = litros - b50 * 50;
+  let sug = [];
+  let n50 = b50, n30 = 0;
+  if (resto > 30) n50++; else if (resto > 0) n30 = 1;
+  if (n50) sug.push(`${n50} barril${n50 > 1 ? 'is' : ''} de 50 L`);
+  if (n30) sug.push(`1 barril de 30 L`);
+  document.getElementById('barris').textContent = 'Sugestão: ' + sug.join(' + ');
+  document.getElementById('liq').style.height = Math.min(92, 18 + litros / 6) + '%';
+  calc.msg = `Olá, Leozinho! Quero um orçamento de chopp 🍻\n• Pessoas: ${p}\n• Duração: ${h}h\n• Estimativa: ${litros} L (${sug.join(' + ')})\nData e local: `;
+}
+pessoas.addEventListener('input', calc);
+horas.addEventListener('input', calc);
+chips.forEach(c => c.addEventListener('click', () => {
+  chips.forEach(x => x.setAttribute('aria-pressed', 'false'));
+  c.setAttribute('aria-pressed', 'true'); fator = +c.dataset.f; calc();
+}));
+calc();
+document.getElementById('calc-send').addEventListener('click', () => {
+  window.open(whatsLink(calc.msg), '_blank', 'noopener');
+});
+
+/* ===== Lightbox ===== */
+const lb = document.getElementById('lightbox');
+document.querySelectorAll('.gal figure').forEach(f => f.addEventListener('click', () => {
+  const img = f.querySelector('img');
+  lb.querySelector('img').src = img.src; lb.querySelector('img').alt = img.alt;
+  lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); });
+addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+</body>
+</html>
