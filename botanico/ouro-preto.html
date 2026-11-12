@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a2014">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-63C683CHX1"></script>
 <script>
@@ -15,7 +14,11 @@
 </script>
 <title>Botânico Ouro Preto | Chocolateria &amp; Gelateria</title>
 <meta name="description" content="Botânico Ouro Preto — chocolateria e gelateria artesanal no centro histórico. Bombons, trufas, gelatos e caixas presente, entre folhas e casario colonial.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2c1c'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle'%3E%F0%9F%8E%84%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0f2c1c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Petit+Formal+Script&display=swap" rel="stylesheet">
@@ -43,7 +46,10 @@ tailwind.config = {
 <style>
   html { scroll-behavior: smooth; }
   body { -webkit-font-smoothing: antialiased; }
-  html{background:#0a2014}
+  /* barras do navegador no celular na cor do site (Safari pinta as barras pela cor do fundo e das faixas fixas nas bordas) */
+  html{background:#0f2c1c}
+  .nav-tinta{position:fixed;left:0;right:0;height:2px;background:#0f2c1c;z-index:70;pointer-events:none}
+  .nav-tinta.topo{top:0}.nav-tinta.base{bottom:0}
   .leaf-field::before, .leaf-field::after {
     content: ""; position: absolute; width: 52vmin; height: 52vmin;
     background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%234c9a5e' d='M100 8c40 26 62 66 62 108 0 40-28 68-62 76-34-8-62-36-62-76C38 74 60 34 100 8Zm0 24c-26 22-40 52-40 84 0 26 16 46 40 54 24-8 40-28 40-54 0-32-14-62-40-84Z'/%3E%3Cpath fill='%234c9a5e' d='M97 44h6v130h-6z'/%3E%3C/svg%3E");
@@ -101,6 +107,7 @@ tailwind.config = {
 <link rel="stylesheet" href="natal.css"><!-- tema de Natal -->
 </head>
 <body class="font-body bg-creme text-cacau">
+<div class="nav-tinta topo" aria-hidden="true"></div><div class="nav-tinta base" aria-hidden="true"></div>
 
 <!-- ===== Top bar ===== -->
 <header id="bar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
@@ -146,7 +153,7 @@ tailwind.config = {
     <!-- desktop: atalhos principais (no celular eles ficam na barra inferior) -->
     <div class="mt-9 hidden md:flex items-center justify-center gap-3 text-sm">
       <a href="#catalogo" class="inline-flex items-center gap-2 rounded-full bg-terracota px-6 py-3 text-creme transition-colors hover:bg-creme hover:text-terracota">
-        <i class="fa-solid fa-book-open"></i> Ver cardápio
+        <i class="fa-solid fa-bag-shopping"></i> Peça agora
       </a>
       <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-creme/40 px-6 py-3 transition-colors hover:bg-creme hover:text-mata">
         <i class="fa-solid fa-map-location-dot"></i> Como chegar
@@ -158,13 +165,14 @@ tailwind.config = {
       <span class="flex text-terracota" aria-hidden="true">
         <i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star-half-stroke text-xs"></i>
       </span>
-      <span class="text-creme/55">122 avaliações</span>
+      <span class="text-creme/55">129 avaliações</span>
     </div>
 
     <a href="https://www.google.com/search?q=Bot%C3%A2nico+Chocolateria+Ouro+Preto#lrd=0xa40ba7ea9f19f1:0xc45ae88a19cff925,3" target="_blank" rel="noopener"
        class="mx-auto mt-2 inline-flex items-center gap-1.5 text-xs text-creme/55 underline decoration-creme/25 underline-offset-4 transition-colors hover:text-creme">
       <i class="fa-regular fa-star text-[0.7rem]"></i> Avalie agora
     </a>
+
   </div>
 
   <a href="#boasvindas" aria-label="Conhecer a loja" class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[0.65rem] uppercase tracking-[0.3em] text-creme/50 transition-colors hover:text-creme">
@@ -172,19 +180,53 @@ tailwind.config = {
   </a>
 </section>
 
+<style>
+  /* ===== Linhas irresistíveis: animações =====
+     Ao chegar na seção: título sobe, o traço dourado se desenha sob "irresistíveis" e as fotos
+     entram uma a uma. Passando o mouse/dedo: a foto levanta, inclina e um brilho atravessa. */
+  #linhas .ln-tit{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .8s cubic-bezier(.16,1,.3,1)}
+  #linhas .ln-irr{position:relative; display:inline-block}
+  #linhas .ln-irr svg{position:absolute; left:-4%; bottom:-.32em; width:108%; height:.5em; overflow:visible}
+  #linhas .ln-irr path{fill:none; stroke:#e2c27a; stroke-width:3; stroke-linecap:round; stroke-dasharray:240; stroke-dashoffset:240;
+    transition:stroke-dashoffset 1.1s cubic-bezier(.65,0,.35,1) .45s}
+  #linhas .linha-tile.ln-t{opacity:0; transform:translateY(34px) scale(.92) rotate(var(--rz,0deg));
+    transition:opacity .6s ease var(--dl,0s), transform .85s cubic-bezier(.2,1.25,.4,1) var(--dl,0s)}
+  #linhas.ln-on .ln-tit{opacity:1; transform:none}
+  #linhas.ln-on .ln-irr path{stroke-dashoffset:0}
+  #linhas.ln-on .linha-tile.ln-t{opacity:1; transform:none}
+  /* foto: flutua de leve depois de entrar; no hover levanta, inclina e passa um brilho */
+  #linhas .ln-t > span:first-child{transition:transform .45s cubic-bezier(.2,1.3,.4,1), box-shadow .3s ease}
+  #linhas.ln-on .ln-t > span:first-child{animation:lnFlutua 5s ease-in-out calc(var(--dl,0s) + 1.2s) infinite}
+  @keyframes lnFlutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  #linhas .ln-t:hover > span:first-child,#linhas .ln-t:focus-visible > span:first-child{animation:none; transform:translateY(-8px) rotate(-2deg) scale(1.03)}
+  #linhas .ln-t:nth-child(even):hover > span:first-child{transform:translateY(-8px) rotate(2deg) scale(1.03)}
+  #linhas .ln-t > span:first-child::after{content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%); transform:translateX(-130%)}
+  #linhas .ln-t:hover > span:first-child::after{transform:translateX(130%); transition:transform .75s ease}
+  #linhas .ln-t > span:last-child{transition:transform .3s ease, color .2s}
+  #linhas .ln-t:hover > span:last-child{transform:translateY(-3px)}
+  /* "Ver tudo": a seta vai e volta */
+  #linhas .ln-ver i{display:inline-block; animation:lnSeta 1.6s ease-in-out infinite}
+  @keyframes lnSeta{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+  @media (prefers-reduced-motion:reduce){
+    #linhas .ln-tit,#linhas .linha-tile.ln-t{opacity:1; transform:none; transition:none}
+    #linhas .ln-irr path{stroke-dashoffset:0; transition:none}
+    #linhas .ln-t > span:first-child,#linhas .ln-ver i{animation:none!important}
+  }
+</style>
 <!-- ===== Nossas linhas (atalhos por categoria) ===== -->
 <section id="linhas" class="pt-16 pb-2 sm:pt-24 sm:pb-4">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="reveal flex items-end justify-between gap-4">
+    <div class="ln-tit flex items-end justify-between gap-4">
       <div>
         <p class="uppercase tracking-[0.35em] text-[0.7rem] text-folha mb-3">Nossas linhas</p>
-        <h2 class="font-display text-3xl sm:text-5xl font-semibold leading-tight">Linhas <span class="font-script text-terracota text-[0.8em]">irresistíveis</span></h2>
+        <h2 class="font-display text-3xl sm:text-5xl font-semibold leading-tight">Linhas <span class="ln-irr font-script text-terracota text-[0.8em]">irresistíveis<svg viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9C30 2 70 2 118 8"/></svg></span></h2>
       </div>
-      <a href="#catalogo" data-linha="todos" class="linha-tile shrink-0 pb-1 text-sm sm:text-base text-terracota underline decoration-terracota/40 underline-offset-4 transition-colors hover:text-folha hover:decoration-folha">
+      <a href="#catalogo" data-linha="todos" class="ln-ver linha-tile shrink-0 pb-1 text-sm sm:text-base text-terracota underline decoration-terracota/40 underline-offset-4 transition-colors hover:text-folha hover:decoration-folha">
         Ver tudo <i class="fa-solid fa-chevron-right text-[0.65rem]"></i>
       </a>
     </div>
-    <div class="reveal mt-8 sm:mt-12 grid grid-cols-4 gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-8">
+    <div class="mt-8 sm:mt-12 grid grid-cols-4 gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-8">
       <a href="#catalogo" data-linha="chocolates" class="linha-tile group text-center">
         <span class="relative block aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-cremeEsc shadow-sm ring-1 ring-cacau/10 transition-shadow duration-300 group-hover:shadow-xl">
           <img src="img/chocolateria-parede.jpg" alt="Chocolates na vitrine" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -254,6 +296,20 @@ tailwind.config = {
     chip.click();
     scrollTo({top: grid.getBoundingClientRect().top + scrollY - 110, behavior: 'smooth'});
   }));
+</script>
+<script>
+  /* Linhas irresistíveis: dispara as animações quando a seção aparece na tela */
+  (function () {
+    var sec = document.getElementById('linhas'); if (!sec) return;
+    sec.querySelectorAll('.grid .linha-tile').forEach(function (t, i) {
+      t.classList.add('ln-t');
+      t.style.setProperty('--dl', (i * 0.08).toFixed(2) + 's');
+      t.style.setProperty('--rz', (i % 2 ? 3 : -3) + 'deg');
+    });
+    if (!('IntersectionObserver' in window)) { sec.classList.add('ln-on'); return; }
+    new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { sec.classList.add('ln-on'); o.disconnect(); } },
+      {threshold: 0.2}).observe(sec);
+  })();
 </script>
 
 <!-- ===== Boas-vindas ===== -->
@@ -1495,9 +1551,9 @@ tailwind.config = {
   <div class="bcat" id="bottomCats" aria-label="Categorias de produtos"></div>
   <a href="#inicio" data-spy="inicio boasvindas" style="--c:#4c9a5e"><i class="fa-solid fa-house"></i><span class="bnav-l">Início</span></a>
   <a href="https://www.google.com/maps/search/?api=1&query=Rua+Conde+de+Bobadela%2C+26+-+Ouro+Preto+-+MG" target="_blank" rel="noopener" style="--c:#b3262e"><i class="fa-solid fa-location-dot"></i><span class="bnav-l">Como chegar</span></a>
-  <a href="#catalogo" data-spy="catalogo" class="bnav-c"><span class="bnav-logo"><i class="fa-solid fa-book-open"></i></span><span class="bnav-l">Cardápio</span></a>
+  <a href="#catalogo" data-spy="catalogo" class="bnav-c"><span class="bnav-logo"><i class="fa-solid fa-bag-shopping"></i></span><span class="bnav-l">Peça agora</span></a>
   <a href="https://wa.me/553198502386?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Bot%C3%A2nico%20Ouro%20Preto." target="_blank" rel="noopener" style="--c:#25d366"><i class="fa-brands fa-whatsapp"></i><span class="bnav-l">WhatsApp</span></a>
-  <a href="https://instagram.com/botanico.ouropreto" target="_blank" rel="noopener" style="--c:#e2c27a"><span class="bnav-av"><img src="img/logo.png" alt=""></span><span class="bnav-l">Instagram</span></a>
+  <a href="https://www.google.com/search?q=Bot%C3%A2nico+Chocolateria+Ouro+Preto#lrd=0xa40ba7ea9f19f1:0xc45ae88a19cff925,3" target="_blank" rel="noopener" style="--c:#e2c27a"><i class="fa-solid fa-star"></i><span class="bnav-l">Avaliar</span></a>
 </nav>
 <script>
   /* barra inferior: marca o ícone da seção visível na tela */
@@ -1728,5 +1784,6 @@ tailwind.config = {
 </script>
 
 <script src="natal.js"></script><!-- tema de Natal -->
+<script src="whats-nome.js"></script><!-- pede o nome antes de abrir o WhatsApp -->
 </body>
 </html>

@@ -1,54 +1,195 @@
-/* ===== Tema de Natal — Botânico =====
-   Camada sazonal: para remover depois das festas, apague as linhas de natal.css / natal.js
-   nas páginas e volte as cores (terracota #cc6b3d, rosa #e7b8c5) no tailwind.config. */
+/* =====================================================================
+   Botânico · tema de Natal
+   Papai Noel espiando pela lateral da tela, no site todo: as mãos agarram a borda, o rosto
+   surge devagar entre elas, ele fala e volta para trás da borda (o rosto primeiro, as mãos
+   por último). Um canto por vez (superior esq. → superior dir. → inferior dir. → inferior esq.).
+   Desenho, frases e tempos no natal.js.
+   ===================================================================== */
+/* camada fixa do tamanho da tela: corta o que fica atrás da borda e não bloqueia cliques.
+   Acima do conteúdo e do menu, abaixo do carrinho e das janelas (z 60+) */
+.noel-camada{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:55}
+.noel{
+  --noel-w:150px;
+  position:absolute; display:flex; align-items:center;
+  opacity:0; transition:opacity .3s ease 1.1s;
+}
+.noel.on{opacity:1; transition:opacity .15s ease}
+/* cantos: abaixo do menu fixo no topo; embaixo acima do botão do carrinho / barra do celular */
+.noel.tl,.noel.tr{top:92px}
+.noel.bl,.noel.br{bottom:92px}
+.noel.tl,.noel.bl{left:0}
+.noel.tr,.noel.br{right:0; flex-direction:row-reverse}
 
-:root{
-  --natal-vermelho:#b3262e;
-  --natal-ouro:#e2c27a;
-  --natal-ouro-esc:#c9a24d;
+/* figura atrás da borda. Desenhada para a borda ESQUERDA; na direita é espelhada inteira */
+.noel-fig{position:relative; flex:none; width:var(--noel-w); height:calc(var(--noel-w) * 1.32)}
+.noel.tr .noel-fig,.noel.br .noel-fig{transform:scaleX(-1)}
+.noel-rosto,.noel-mao{position:absolute; left:0}
+.noel-rosto svg,.noel-mao svg{display:block; width:100%; height:auto; overflow:visible}
+.noel-rosto{top:calc(var(--noel-w) * .1); width:100%; transform-origin:0 55%;
+  filter:drop-shadow(0 12px 16px rgba(0,0,0,.38)) drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+.noel-mao{z-index:2; width:calc(var(--noel-w) * .4); transform-origin:0 50%;
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.35))}
+.noel-mao.cima{top:calc(var(--noel-w) * .2)}
+.noel-mao.baixo{top:calc(var(--noel-w) * .97)}
+.noel-mao.baixo svg{transform:scaleY(-1)}                 /* polegar por baixo, como quem segura a quina */
+
+/* escondido: tudo atrás da borda.
+   SAÍDA (sem .on): o rosto recua primeiro; as mãos soltam a borda depois */
+.noel-rosto{transform:translateX(-104%) rotate(20deg); transition:transform .65s cubic-bezier(.55,0,.8,.35)}
+.noel-mao{transform:translateX(-105%); transition:transform .45s cubic-bezier(.55,0,.8,.35) .55s}
+.noel-mao.baixo{transition-delay:.68s}
+
+/* ENTRADA (.on): 1) as mãos agarram a borda, uma depois da outra; 2) o rosto surge devagar entre elas */
+.noel.on .noel-mao{transform:translateX(-38%); transition:transform .55s cubic-bezier(.2,1.3,.4,1) .05s}
+.noel.on .noel-mao.baixo{transition-delay:.25s}
+.noel.on .noel-rosto{transform:translateX(-36%) rotate(11deg); transition:transform 1.1s cubic-bezier(.22,.85,.3,1.04) .55s}
+
+/* o balão encosta na parte visível do rosto */
+.noel.tl .noel-balao,.noel.bl .noel-balao{margin-left:calc(var(--noel-w) * -.26)}
+.noel.tr .noel-balao,.noel.br .noel-balao{margin-right:calc(var(--noel-w) * -.26)}
+
+/* cabeça: respiração e um balanço leve enquanto está à vista */
+.noel .noel-cabeca{transform-box:view-box; transform-origin:104px 205px}
+.noel.on .noel-cabeca{animation:noelRespira 3.2s ease-in-out 1.7s infinite}
+@keyframes noelRespira{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(-2.5deg) translateY(-1.5px)}70%{transform:rotate(1.8deg) translateY(.5px)}}
+
+/* piscar (pálpebras descem rápido e sobem) */
+.noel .noel-palpebra{transform-box:fill-box; transform-origin:50% 0; transform:scaleY(0)}
+.noel.on .noel-palpebra{animation:noelPisca 3.4s ease-in-out .6s infinite}
+@keyframes noelPisca{0%,42%,50%,88%,94%,100%{transform:scaleY(0)}45%,91%{transform:scaleY(1)}}
+
+/* sobrancelhas: erguem na chegada ("opa!") */
+.noel .noel-sobrancelhas{transform-box:view-box}
+.noel.on .noel-sobrancelhas{animation:noelOpa 1s ease-out 1.4s 1}
+@keyframes noelOpa{0%,100%{transform:translateY(0)}30%,60%{transform:translateY(-4px)}}
+
+/* olhar: segue o balão enquanto fala */
+.noel .noel-olhos{transition:transform .5s ease}
+.noel.falando .noel-olhos{transform:translate(2px,-1px)}
+
+/* pompom balança com o movimento */
+.noel .noel-pom{transform-box:view-box; transform-origin:176px 96px}
+.noel.on .noel-pom{animation:noelPom 2.2s ease-in-out .4s infinite}
+@keyframes noelPom{0%,100%{transform:rotate(0)}50%{transform:rotate(9deg)}}
+
+/* mãos: os dedos apertam a borda de leve, cada uma no seu ritmo */
+.noel.on .noel-mao svg{transform-origin:20% 50%; animation:noelAperta 2.8s ease-in-out 1.2s infinite}
+.noel.on .noel-mao.baixo svg{animation-name:noelApertaB; animation-delay:1.6s}
+@keyframes noelApertaB{0%,100%{transform:scaleY(-1) scaleX(1)}50%{transform:scaleY(-1) scaleX(.94)}}
+@keyframes noelAperta{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.94)}}
+
+/* balão de fala: primeiro "digitando…", depois a frase */
+.noel-balao{
+  position:relative; max-width:225px; margin-bottom:34px;
+  background:#f7f3e8; color:#3a2418; border-radius:18px;
+  padding:11px 15px; font:500 13.5px/1.38 Poppins,system-ui,sans-serif; text-align:left;
+  box-shadow:0 16px 32px -12px rgba(0,0,0,.5), 0 0 0 1px rgba(179,38,46,.16);
+  opacity:0; transform:scale(.7) translateY(8px);
+  transition:opacity .3s ease, transform .5s cubic-bezier(.3,1.5,.6,1);
+}
+.noel.tl .noel-balao,.noel.bl .noel-balao{transform-origin:0 70%}
+.noel.tr .noel-balao,.noel.br .noel-balao{transform-origin:100% 70%}
+.noel-balao::before{                                   /* rabinho apontando para a boca do Noel */
+  content:""; position:absolute; bottom:14px; width:14px; height:14px; background:inherit;
+  transform:rotate(45deg); border-radius:2px;
+}
+.noel.tl .noel-balao::before,.noel.bl .noel-balao::before{left:-6px}
+.noel.tr .noel-balao::before,.noel.br .noel-balao::before{right:-6px}
+.noel-balao b{color:#b3262e; font-weight:600}
+.noel.falando .noel-balao{opacity:1; transform:none}
+.noel-dig{display:inline-flex; gap:4px; padding:4px 2px}
+.noel-dig i{width:6px; height:6px; border-radius:50%; background:#b3262e; opacity:.35; animation:noelDig 1s ease-in-out infinite}
+.noel-dig i:nth-child(2){animation-delay:.15s}.noel-dig i:nth-child(3){animation-delay:.3s}
+@keyframes noelDig{0%,100%{opacity:.3; transform:translateY(0)}40%{opacity:1; transform:translateY(-3px)}}
+.noel-txt{display:inline-block; animation:noelTxt .35s ease-out}
+@keyframes noelTxt{from{opacity:0; transform:translateY(3px)}to{opacity:1; transform:none}}
+
+@media (max-width:640px){
+  .noel{--noel-w:104px}
+  .noel.tl,.noel.tr{top:78px}
+  .noel.bl,.noel.br{bottom:96px}                         /* acima da barra inferior do celular */
+  .noel-balao{max-width:160px; font-size:12px; padding:9px 12px; border-radius:15px; margin-bottom:22px}
+  .noel-balao::before{bottom:11px; width:12px; height:12px}
 }
 
-/* folhas de fundo viram flocos de neve dourados */
-.leaf-field::before, .leaf-field::after{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23e2c27a' stroke-width='7' stroke-linecap='round'%3E%3Cg transform='rotate(0 100 100)'%3E%3Cpath d='M100 100V18M100 46l-16-16M100 46l16-16M100 72l-12-12M100 72l12-12'/%3E%3C/g%3E%3Cg transform='rotate(60 100 100)'%3E%3Cpath d='M100 100V18M100 46l-16-16M100 46l16-16M100 72l-12-12M100 72l12-12'/%3E%3C/g%3E%3Cg transform='rotate(120 100 100)'%3E%3Cpath d='M100 100V18M100 46l-16-16M100 46l16-16M100 72l-12-12M100 72l12-12'/%3E%3C/g%3E%3Cg transform='rotate(180 100 100)'%3E%3Cpath d='M100 100V18M100 46l-16-16M100 46l16-16M100 72l-12-12M100 72l12-12'/%3E%3C/g%3E%3Cg transform='rotate(240 100 100)'%3E%3Cpath d='M100 100V18M100 46l-16-16M100 46l16-16M100 72l-12-12M100 72l12-12'/%3E%3C/g%3E%3Cg transform='rotate(300 100 100)'%3E%3Cpath d='M100 100V18M100 46l-16-16M100 46l16-16M100 72l-12-12M100 72l12-12'/%3E%3C/g%3E%3C/g%3E%3Ccircle cx='100' cy='100' r='9' fill='%23e2c27a'/%3E%3C/svg%3E") !important;
-  opacity:.1 !important;
-}
-
-/* ---- varal de luzinhas ---- */
-.natal-luzes{position:absolute;left:0;right:0;top:0;height:46px;z-index:5;pointer-events:none;overflow:hidden}
-.natal-luzes svg.fio{position:absolute;inset:0;width:100%;height:100%}
-.natal-luzes .lamp{position:absolute;width:9px;height:14px;margin-left:-4.5px;border-radius:50% 50% 45% 45%;
-  background:var(--c);box-shadow:0 0 10px 2px var(--c);animation:natalPisca 2.4s ease-in-out infinite;animation-delay:var(--d)}
-.natal-luzes .lamp::before{content:"";position:absolute;left:2px;top:-4px;width:5px;height:5px;border-radius:1px;background:#2b3a2f}
-@keyframes natalPisca{0%,100%{opacity:1;filter:brightness(1.15)}50%{opacity:.35;filter:brightness(.7)}}
-/* no topo das páginas internas o cabeçalho é fixo: as luzes descem um pouco no hero */
-#inicio > .natal-luzes{top:74px}
-@media (min-width:640px){ #inicio > .natal-luzes{top:78px} }
-
-/* ---- neve ---- */
-canvas.natal-neve{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-
-/* ---- selo "Feliz Natal" ---- */
-.natal-selo{display:inline-flex;align-items:center;gap:.55rem;margin-top:1.1rem;padding:.35rem 1rem;border-radius:9999px;
-  border:1px solid rgba(226,194,122,.45);background:rgba(179,38,46,.18);color:var(--natal-ouro);
-  font:400 1.15rem/1.2 "Petit Formal Script",cursive;letter-spacing:.01em;backdrop-filter:blur(4px)}
-.natal-selo i{font-size:.7rem;color:var(--natal-ouro)}
-
-/* faixa fina de laço (vermelho + filete dourado) separando seções claras */
-.natal-faixa{height:6px;background:
-  linear-gradient(var(--natal-ouro),var(--natal-ouro)) center/100% 1px no-repeat,
-  repeating-linear-gradient(135deg,var(--natal-vermelho) 0 14px,#8f1d24 14px 28px)}
-
-/* brilho dourado nos títulos script */
-.font-script.text-terracota{text-shadow:0 1px 0 rgba(226,194,122,.25)}
-
-/* cartões de produto/linhas com um toque dourado no hover */
-.prod-card:hover, .linha-tile:hover > span:first-child{box-shadow:0 18px 40px -18px rgba(179,38,46,.45),0 0 0 1px rgba(226,194,122,.55)}
-
-/* rodapé/topo da barra inferior com filete dourado */
-@media (max-width:767px){ .bnav{border-top:1px solid rgba(226,194,122,.35)} }
-
+/* quem prefere menos movimento: só aparece e some, sem deslizar nem animar o rosto */
 @media (prefers-reduced-motion:reduce){
-  .natal-luzes .lamp{animation:none}
-  canvas.natal-neve{display:none}
+  .noel,.noel.on{transition:opacity .4s ease}
+  .noel-mao,.noel-rosto,.noel.on .noel-mao,.noel.on .noel-rosto{transition:none}
+  .noel-mao,.noel.on .noel-mao{transform:translateX(-38%)}
+  .noel-rosto,.noel.on .noel-rosto{transform:translateX(-36%) rotate(11deg)}
+  .noel.on .noel-cabeca,.noel.on .noel-palpebra,.noel.on .noel-sobrancelhas,
+  .noel.on .noel-pom,.noel.on .noel-mao svg,.noel-dig i{animation:none}
+  .noel-balao{transform:none}
 }
+}
+
+/* =====================================================================
+   Decoração de Natal da seção 1 (unidades) e do index: pisca-pisca no alto, neve caindo,
+   brilho quente vermelho e dourado e a faixa "Feliz Natal" abaixo do logo. Montado no natal.js.
+   ===================================================================== */
+.natal-fx{position:absolute; inset:0; pointer-events:none; overflow:hidden}
+/* brilho quente por cima da foto (vermelho nas bordas, dourado no centro) */
+.natal-brilho{background:
+  radial-gradient(55% 40% at 50% 34%, rgba(226,194,122,.16), transparent 70%),
+  radial-gradient(45% 60% at 0% 100%, rgba(179,38,46,.2), transparent 70%),
+  radial-gradient(45% 60% at 100% 100%, rgba(179,38,46,.2), transparent 70%)}
+
+/* neve */
+.natal-neve i{position:absolute; top:-12px; border-radius:50%; background:#fff;
+  opacity:var(--o); width:var(--s); height:var(--s); left:var(--x); filter:blur(var(--b));
+  animation:natalCai var(--d) linear var(--a) infinite}
+@keyframes natalCai{
+  0%{transform:translate(0,-12px)}
+  50%{transform:translate(var(--v),50vh)}
+  100%{transform:translate(0,105vh)}}
+
+/* pisca-pisca: fio em curvas e lâmpadas acendendo em ondas */
+.natal-luzes{position:absolute; left:0; right:0; top:var(--luz-top,0); height:64px; pointer-events:none; z-index:2}
+.natal-luzes svg{position:absolute; inset:0; width:100%; height:100%}
+.natal-luzes path{fill:none; stroke:#1c3a26; stroke-width:2; vector-effect:non-scaling-stroke}
+.natal-luzes b{position:absolute; width:9px; height:14px; margin-left:-4.5px; border-radius:50% 50% 45% 45%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 40% 35%, #fff 0 12%, var(--c) 45%, color-mix(in srgb, var(--c) 70%, #000) 100%);
+  box-shadow:0 0 10px 2px var(--c), 0 0 22px 4px color-mix(in srgb, var(--c) 45%, transparent);
+  transform:rotate(var(--r)); animation:natalPisca 2.6s ease-in-out var(--a) infinite}
+.natal-luzes b::before{content:""; position:absolute; top:-4px; left:2px; width:5px; height:5px; border-radius:1px; background:#2b3b2f}
+@keyframes natalPisca{0%,100%{opacity:1; filter:brightness(1.15)}45%{opacity:.35; filter:brightness(.6); box-shadow:none}}
+
+/* faixa "Feliz Natal" abaixo do logo */
+.natal-faixa{display:flex; align-items:center; justify-content:center; gap:10px; margin:14px auto 0;
+  font-family:"Petit Formal Script",cursive; font-size:clamp(1.05rem,2.4vw,1.35rem); color:#e2c27a;
+  text-shadow:0 2px 12px rgba(0,0,0,.45); animation:natalFaixa 1s ease-out .3s both}
+.natal-faixa svg{width:26px; height:26px; flex:none}
+.natal-faixa svg:last-child{transform:scaleX(-1)}
+@keyframes natalFaixa{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
+
+/* index: botões das unidades com um toque natalino */
+.natal-index .unit-link{border-color:rgba(226,194,122,.7)!important}
+.natal-index .unit-link > span:first-child{color:#e2c27a}
+
+@media (max-width:640px){
+  .natal-luzes{height:48px}
+  .natal-luzes b{width:7px; height:11px; margin-left:-3.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  .natal-neve{display:none}
+  .natal-luzes b,.natal-faixa{animation:none}
+}
+
+/* index: no lugar das folhas, bolas de Natal penduradas e ramos de pinheiro nos cantos */
+.natal-bolas{position:absolute; inset:0 0 auto; height:0; z-index:1; pointer-events:none}
+.natal-bola{position:absolute; top:0; width:var(--t); transform-origin:50% 0; animation:natalBalanca var(--d) ease-in-out var(--a) infinite}
+.natal-bola::before{content:""; display:block; width:1.5px; height:var(--h); margin:0 auto; background:linear-gradient(#e2c27a,rgba(226,194,122,.5))}
+.natal-bola svg{display:block; width:100%; height:auto; filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
+@keyframes natalBalanca{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.natal-ramo{position:absolute; width:clamp(190px,30vmin,320px); pointer-events:none; z-index:1; opacity:.95;
+  filter:drop-shadow(0 14px 20px rgba(0,0,0,.45))}
+.natal-ramo.e{left:-26px; bottom:-18px}
+.natal-ramo.d{right:-26px; bottom:-18px; transform:scaleX(-1)}
+@media (max-width:640px){
+  .natal-bola:nth-child(n+4){display:none}
+  .natal-ramo{width:150px}
+}
+@media (prefers-reduced-motion:reduce){.natal-bola{animation:none}}
+/* index: o conteúdo (logo, textos e botões) fica sempre na frente das bolas e dos ramos */
+.natal-index main > .relative{z-index:3}
