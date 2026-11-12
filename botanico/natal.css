@@ -181,13 +181,14 @@
 .natal-bola{position:absolute; top:0; width:var(--t); transform-origin:50% 0; animation:natalBalanca var(--d) ease-in-out var(--a) infinite}
 .natal-bola::before{content:""; display:block; width:1.5px; height:var(--h); margin:0 auto; background:linear-gradient(#e2c27a,rgba(226,194,122,.5))}
 .natal-bola svg{display:block; width:100%; height:auto; filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
-@keyframes natalBalanca{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes natalBalanca{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
 .natal-ramo{position:absolute; width:clamp(190px,30vmin,320px); pointer-events:none; z-index:1; opacity:.95;
   filter:drop-shadow(0 14px 20px rgba(0,0,0,.45))}
 .natal-ramo.e{left:-26px; bottom:-18px}
 .natal-ramo.d{right:-26px; bottom:-18px; transform:scaleX(-1)}
 @media (max-width:640px){
-  .natal-bola:nth-child(n+4){display:none}
+  .natal-bola:nth-child(n+3){display:none}
+  .natal-bola{width:calc(var(--t) * .8)}
   .natal-ramo{width:150px}
 }
 @media (prefers-reduced-motion:reduce){.natal-bola{animation:none}}

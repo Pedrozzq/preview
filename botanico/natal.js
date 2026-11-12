@@ -237,8 +237,8 @@
       '<ellipse cx="20" cy="28" rx="7" ry="4.5" fill="#fff" opacity=".45" transform="rotate(-30 20 28)"/></svg>';
   };
   var BOLAS = [  // posição (%), fio (px), tamanho (px), cores
-    [9, 70, 46, '#ff5a5f', '#8e1a21'], [24, 130, 34, '#f6d77a', '#a9781f'], [76, 120, 38, '#4fc372', '#1d5a31'],
-    [91, 60, 50, '#ff5a5f', '#8e1a21'], [38, 40, 26, '#4fc372', '#1d5a31'], [62, 46, 28, '#f6d77a', '#a9781f']
+    [6, 56, 40, '#ff5a5f', '#8e1a21'], [94, 48, 42, '#ff5a5f', '#8e1a21'],  // só nas laterais, longe da logo
+    [15, 26, 28, '#f6d77a', '#a9781f'], [85, 30, 30, '#4fc372', '#1d5a31']
   ];
   var bolas = document.createElement('div'); bolas.className = 'natal-bolas';
   bolas.innerHTML = BOLAS.map(function (b, i) {

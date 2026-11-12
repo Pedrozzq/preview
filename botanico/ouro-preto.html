@@ -50,8 +50,6 @@ tailwind.config = {
   html{background:#0f2c1c}
   .nav-tinta{position:fixed;left:0;right:0;height:2px;background:#0f2c1c;z-index:70;pointer-events:none}
   .nav-tinta.topo{top:0}.nav-tinta.base{bottom:0}
-  /* fundo da página verde (o Safari usa essa cor nas barras); as seções sem fundo próprio continuam creme */
-  body > section:not([class*="bg-"]){background:#f7f3e8}
   .leaf-field::before, .leaf-field::after {
     content: ""; position: absolute; width: 52vmin; height: 52vmin;
     background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%234c9a5e' d='M100 8c40 26 62 66 62 108 0 40-28 68-62 76-34-8-62-36-62-76C38 74 60 34 100 8Zm0 24c-26 22-40 52-40 84 0 26 16 46 40 54 24-8 40-28 40-54 0-32-14-62-40-84Z'/%3E%3Cpath fill='%234c9a5e' d='M97 44h6v130h-6z'/%3E%3C/svg%3E");
@@ -108,7 +106,7 @@ tailwind.config = {
 </style>
 <link rel="stylesheet" href="natal.css"><!-- tema de Natal -->
 </head>
-<body class="font-body bg-mata text-cacau">
+<body class="font-body bg-creme text-cacau">
 <div class="nav-tinta topo" aria-hidden="true"></div><div class="nav-tinta base" aria-hidden="true"></div>
 
 <!-- ===== Top bar ===== -->
