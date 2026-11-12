@@ -132,7 +132,15 @@
 
   // uma aparição: as mãos agarram a borda → o rosto surge devagar → balão "digitando…" → frase →
   // balão some → o rosto recua e por último as mãos soltam a borda (tempos das animações no natal.css)
+  // seção catálogo: o Papai Noel não aparece enquanto ela estiver na tela (e some se ela entrar)
+  var catalogo = document.getElementById('catalogo'), noCatalogo = false;
+  if (catalogo && 'IntersectionObserver' in window) new IntersectionObserver(function (es) {
+    noCatalogo = es[0].isIntersecting;
+    if (noCatalogo && el.classList.contains('on')) { limpar(); el.classList.remove('on', 'falando'); if (rodando) depois(CICLO, aparicao); }
+  }).observe(catalogo);
+
   function aparicao() {
+    if (noCatalogo) { depois(2000, aparicao); return; }   // espera sair do catálogo
     var frase = proximaFrase(), lugar = sortearLugar();
     el.className = 'noel ' + lugar.lado;             // lugar novo, ainda escondido atrás da borda
     el.style.top = lugar.y + 'px'; el.style.bottom = 'auto';
