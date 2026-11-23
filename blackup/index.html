@@ -83,6 +83,14 @@
         /* faixa rolante */
         .faixa { animation: faixa 32s linear infinite; }
         @keyframes faixa { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        /* no celular: uma frase por vez, centralizada */
+        .faixa-mobile { display: none; position: relative; height: 1.3em; }
+        .faixa-mobile span { position: absolute; inset: 0; text-align: center; opacity: 0; transform: translateY(6px); transition: opacity .45s ease, transform .45s ease; }
+        .faixa-mobile span.ativa { opacity: 1; transform: none; }
+        @media (max-width: 639px) {
+            .faixa { display: none !important; }
+            .faixa-mobile { display: block; }
+        }
 
         /* revelar ao rolar */
         .revela { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1); }
@@ -109,6 +117,39 @@
         .wpp-flutuante { animation: pulsa 2.4s ease-in-out infinite; }
         @keyframes pulsa { 0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, .5); } 50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); } }
 
+        /* Barra inferior (mobile) */
+        .barra-mobile { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: grid; grid-template-columns: repeat(5, 1fr); align-items: end;
+            padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); background: rgba(5, 5, 5, .92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(227, 177, 79, .25); box-shadow: 0 -12px 30px -12px rgba(0, 0, 0, .8); }
+        .barra-mobile button { background: none; border: 0; font: inherit; cursor: pointer; }
+        .barra-mobile a, .barra-mobile button { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; min-height: 52px; padding: 4px 2px;
+            font-size: 10.5px; font-weight: 700; color: rgba(255, 255, 255, .62); -webkit-tap-highlight-color: transparent; transition: color .2s; }
+        .barra-mobile a i, .barra-mobile button i { font-size: 19px; }
+        .barra-mobile a:active, .barra-mobile a.atual { color: #e3b14f; }
+        .barra-mobile .principal { color: #ffd98a; }
+        .barra-mobile .bola { width: 58px; height: 58px; margin-top: -30px; border-radius: 999px; display: grid; place-items: center; color: #000;
+            background: linear-gradient(135deg, #ffd98a, #e3b14f 50%, #9a6a1c); box-shadow: 0 0 0 5px #050505, 0 12px 26px -6px rgba(227, 177, 79, .6); }
+        .barra-mobile .bola i { font-size: 26px; }
+        .barra-mobile .wpp, .barra-mobile .wpp:active { color: #25d366; }
+        .barra-mobile .wpp .bola { background: #25d366; color: #fff; box-shadow: 0 0 0 5px #050505, 0 12px 26px -6px rgba(37, 211, 102, .55); }
+        @media (max-width: 1023px) {
+            .wpp-topo, .wpp-topo:hover { background: #25d366; color: #fff; box-shadow: 0 10px 26px -10px rgba(37, 211, 102, .7); }
+        }
+
+        /* Pop-up de troca */
+        .pop-troca { position: fixed; inset: 0; z-index: 60; display: flex; align-items: flex-end; justify-content: center; }
+        .pop-troca[hidden] { display: none; }
+        .pop-fundo { position: absolute; inset: 0; background: rgba(0, 0, 0, .7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: popFade .25s ease; }
+        .pop-caixa { position: relative; width: 100%; max-width: 480px; padding: 26px 20px calc(22px + env(safe-area-inset-bottom)); border-radius: 26px 26px 0 0;
+            background: #0b0b0b; border-color: rgba(227, 177, 79, .3); animation: popSobe .32s cubic-bezier(.2, .8, .2, 1); }
+        .pop-fechar { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; color: #fff; }
+        @media (min-width: 640px) { .pop-troca { align-items: center; padding: 16px; } .pop-caixa { border-radius: 26px; padding-bottom: 26px; } }
+        @keyframes popSobe { from { transform: translateY(40px); opacity: 0; } }
+        @keyframes popFade { from { opacity: 0; } }
+        body.travado { overflow: hidden; }
+        @media (max-width: 1023px) { body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); } }
+        @media (min-width: 1024px) { .barra-mobile { display: none; } }
+
         @media (prefers-reduced-motion: reduce) {
             .faixa, .brilho::after, .wpp-flutuante { animation: none; }
             .revela { opacity: 1; transform: none; }
@@ -131,6 +172,13 @@
             <span>Encomenda com entrega em até 24h</span><span>✦</span>
             <span>+130 clientes satisfeitos</span><span>✦</span>
         </div>
+        <div class="faixa-mobile" id="faixaMobile" aria-live="off">
+            <span class="ativa">iPhones novos e seminovos com garantia</span>
+            <span>Até 18x no cartão</span>
+            <span>Seu usado vale como entrada</span>
+            <span>Encomenda com entrega em até 24h</span>
+            <span>+130 clientes satisfeitos</span>
+        </div>
     </div>
 
     <!-- Cabeçalho -->
@@ -148,7 +196,7 @@
             </nav>
             <div class="flex items-center gap-2">
                 <a href="https://www.instagram.com/store.blackup/" target="_blank" rel="noopener" class="btn-vidro w-10 h-10 rounded-full grid place-items-center text-white/80" aria-label="Instagram da Black Up Store"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store e quero saber mais." class="btn-ouro rounded-full px-4 sm:px-5 h-10 inline-flex items-center gap-2 text-sm font-extrabold">
+                <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store e quero saber mais." class="btn-ouro wpp-topo rounded-full px-4 sm:px-5 h-10 inline-flex items-center gap-2 text-sm font-extrabold">
                     <i class="fa-brands fa-whatsapp text-base"></i><span class="hidden sm:inline">Falar no WhatsApp</span><span class="sm:hidden">WhatsApp</span>
                 </a>
                 <button id="menuBtn" class="lg:hidden btn-vidro w-10 h-10 rounded-full grid place-items-center" aria-label="Abrir menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
@@ -180,12 +228,22 @@
                 iPhones <strong class="text-white">novos e seminovos com garantia</strong>, Android, MacBook, iPad e Apple Watch.
                 Compra, venda e troca — e parcelamos em até <strong class="text-white">18x no cartão</strong>.
             </p>
-            <div class="revela mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="#" data-wpp="Olá! Quero saber os iPhones disponíveis e os valores." class="btn-ouro w-full sm:w-auto rounded-full px-8 h-14 inline-flex items-center justify-center gap-2 font-extrabold text-base">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> Ver aparelhos disponíveis
-                </a>
-                <a href="#upgrade" class="btn-vidro w-full sm:w-auto rounded-full px-8 h-14 inline-flex items-center justify-center gap-2 font-bold text-base">
-                    <i class="fa-solid fa-arrows-rotate text-ouro"></i> Avaliar meu usado
+            <!-- Troca rápida -->
+            <form id="formTroca" class="revela mt-8 max-w-3xl mx-auto card p-4 sm:p-5 grid sm:grid-cols-[1fr_1fr_auto] gap-3 text-left scroll-mt-28">
+                <p class="sm:col-span-3 flex items-center gap-2 text-sm font-extrabold text-white"><i class="fa-solid fa-arrows-rotate text-ouro"></i> Seu usado vale como entrada — avalie agora</p>
+                <label class="text-xs font-bold uppercase tracking-widest text-white/50">Tenho um
+                    <input name="usado" required placeholder="Ex.: iPhone 13 128GB" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-base sm:text-sm font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
+                </label>
+                <label class="text-xs font-bold uppercase tracking-widest text-white/50">Quero um
+                    <input name="quero" required placeholder="Ex.: iPhone 16 Pro" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-base sm:text-sm font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
+                </label>
+                <button class="btn-ouro self-end rounded-full h-12 px-6 inline-flex items-center justify-center gap-2 font-extrabold text-sm whitespace-nowrap">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Avaliar minha troca
+                </button>
+            </form>
+            <div class="revela mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="#" data-wpp="Olá! Quero saber os iPhones disponíveis e os valores." class="btn-vidro w-full sm:w-auto rounded-full px-8 h-12 inline-flex items-center justify-center gap-2 font-bold text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg text-ouro"></i> Ver aparelhos disponíveis
                 </a>
             </div>
         </div>
@@ -194,7 +252,7 @@
         <div class="revela max-w-[1500px] mx-auto px-0 sm:px-6">
             <div class="brilho sm:rounded-[28px] border-y sm:border border-white/10 shadow-[0_40px_120px_-40px_rgba(227,177,79,.45)]">
                 <picture>
-                    <source media="(max-width: 640px)" srcset="img/hero-mobile.webp">
+                    <source media="(max-width: 640px)" srcset="img/hero-mobile-centro.webp">
                     <img src="img/hero-banner.webp" alt="Black Up Store: fazemos upgrade, celulares novos e seminovos, Android e iPhone" class="w-full h-auto block" width="2400" height="1000">
                 </picture>
             </div>
@@ -374,17 +432,9 @@
                     </li>
                 </ol>
 
-                <form id="formTroca" class="mt-8 card p-5 sm:p-6 grid sm:grid-cols-2 gap-3">
-                    <label class="text-xs font-bold uppercase tracking-widest text-white/50 sm:col-span-1">Tenho um
-                        <input name="usado" required placeholder="Ex.: iPhone 13 128GB" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-sm font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
-                    </label>
-                    <label class="text-xs font-bold uppercase tracking-widest text-white/50 sm:col-span-1">Quero um
-                        <input name="quero" required placeholder="Ex.: iPhone 16 Pro" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-sm font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
-                    </label>
-                    <button class="btn-ouro sm:col-span-2 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
-                        <i class="fa-brands fa-whatsapp text-lg"></i> Avaliar minha troca
-                    </button>
-                </form>
+                <a href="#formTroca" data-foco-troca class="mt-8 btn-ouro rounded-full h-12 px-8 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                    <i class="fa-solid fa-arrows-rotate"></i> Avaliar minha troca
+                </a>
             </div>
         </div>
     </section>
@@ -525,9 +575,42 @@
     </footer>
 
     <!-- WhatsApp flutuante -->
-    <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store." class="wpp-flutuante fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25d366] grid place-items-center text-white text-3xl shadow-xl" aria-label="Falar no WhatsApp">
+    <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store." class="wpp-flutuante fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25d366] hidden lg:grid place-items-center text-white text-3xl shadow-xl" aria-label="Falar no WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
+
+    <!-- Barra inferior (mobile) -->
+    <nav class="barra-mobile lg:hidden" aria-label="Atalhos">
+        <a href="#produtos"><i class="fa-solid fa-mobile-screen-button"></i><span>Produtos</span></a>
+        <button type="button" id="abrirTroca" aria-haspopup="dialog" aria-controls="popTroca"><i class="fa-solid fa-arrows-rotate"></i><span>Troca</span></button>
+        <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store e quero saber mais." class="principal wpp" aria-label="Falar no WhatsApp">
+            <span class="bola"><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp</span>
+        </a>
+        <a href="#destaques"><i class="fa-solid fa-star"></i><span>Destaques</span></a>
+        <a href="#contato"><i class="fa-solid fa-headset"></i><span>Contato</span></a>
+    </nav>
+
+    <!-- Pop-up de troca -->
+    <div id="popTroca" class="pop-troca" role="dialog" aria-modal="true" aria-labelledby="popTrocaTitulo" hidden>
+        <div class="pop-fundo" data-fechar-troca></div>
+        <div class="pop-caixa card">
+            <button type="button" class="pop-fechar btn-vidro" data-fechar-troca aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+            <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Compra • Venda • Troca</p>
+            <h2 id="popTrocaTitulo" class="mt-2 text-2xl font-black leading-tight"><span class="txt-prata">Fazemos</span> <span class="txt-ouro">upgrade.</span></h2>
+            <p class="mt-2 text-sm text-white/60">Seu usado vale como entrada. O restante você parcela em até 18x no cartão.</p>
+            <form data-troca class="mt-5 grid gap-3">
+                <label class="text-xs font-bold uppercase tracking-widest text-white/50">Tenho um
+                    <input name="usado" required placeholder="Ex.: iPhone 13 128GB" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-base font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
+                </label>
+                <label class="text-xs font-bold uppercase tracking-widest text-white/50">Quero um
+                    <input name="quero" required placeholder="Ex.: iPhone 16 Pro" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-base font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
+                </label>
+                <button class="btn-ouro mt-1 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Avaliar minha troca
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script>
         // WhatsApp: todos os botões com data-wpp abrem a conversa com a mensagem pronta
@@ -551,13 +634,47 @@
             ligarWpp(btn18);
         }));
 
-        // Formulário de troca → WhatsApp
-        document.getElementById('formTroca').addEventListener('submit', (e) => {
+        // Formulários de troca (topo e pop-up) → WhatsApp
+        document.querySelectorAll('#formTroca, form[data-troca]').forEach((form) => form.addEventListener('submit', (e) => {
             e.preventDefault();
             const f = e.target;
             const msg = 'Olá! Quero fazer upgrade. Tenho um ' + f.usado.value.trim() + ' e quero um ' + f.quero.value.trim() + '. Quanto fica a troca?';
             window.open(linkWpp(msg), '_blank', 'noopener');
-        });
+        }));
+
+        // Pop-up de troca (barra inferior)
+        const popTroca = document.getElementById('popTroca');
+        const btnTroca = document.getElementById('abrirTroca');
+        const abrirTroca = () => {
+            popTroca.hidden = false;
+            document.body.classList.add('travado');
+            setTimeout(() => popTroca.querySelector('input').focus(), 320);
+        };
+        const fecharTroca = () => {
+            popTroca.hidden = true;
+            document.body.classList.remove('travado');
+            btnTroca.focus();
+        };
+        btnTroca.addEventListener('click', abrirTroca);
+        popTroca.querySelectorAll('[data-fechar-troca]').forEach((el) => el.addEventListener('click', fecharTroca));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !popTroca.hidden) fecharTroca(); });
+
+        // Atalhos de troca: rola até o formulário do topo e já foca o primeiro campo
+        document.querySelectorAll('[data-foco-troca]').forEach((a) => a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = document.getElementById('formTroca');
+            form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => form.usado.focus({ preventScroll: true }), 450);
+        }));
+
+        // Barra inferior: destaca a seção visível
+        const abas = [...document.querySelectorAll('.barra-mobile a[href^="#"]:not([href="#"])')];
+        const alvos = abas.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        const ioAba = new IntersectionObserver((itens) => itens.forEach((it) => {
+            if (!it.isIntersecting) return;
+            abas.forEach((a) => a.classList.toggle('atual', a.getAttribute('href') === '#' + it.target.id));
+        }), { rootMargin: '-45% 0px -50% 0px' });
+        alvos.forEach((s) => ioAba.observe(s));
 
         // Menu mobile
         const menuBtn = document.getElementById('menuBtn');
@@ -580,6 +697,15 @@
             if (it.isIntersecting) { it.target.classList.add('ativo'); io.unobserve(it.target); }
         }), { threshold: 0.12 });
         document.querySelectorAll('.revela').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); });
+
+        // Faixa do topo no celular: troca a frase a cada 3,5s
+        const frases = document.querySelectorAll('#faixaMobile span');
+        let fraseAtual = 0;
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => {
+            frases[fraseAtual].classList.remove('ativa');
+            fraseAtual = (fraseAtual + 1) % frases.length;
+            frases[fraseAtual].classList.add('ativa');
+        }, 3500);
 
         document.getElementById('ano').textContent = new Date().getFullYear();
     </script>
