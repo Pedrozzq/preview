@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Up Store | iPhones novos e seminovos em Ouro Preto</title>
+    <meta name="description" content="Black Up Store — iPhones novos e seminovos com garantia, Android, MacBook, iPad e Apple Watch. Compra, venda e troca. Até 18x no cartão. Ouro Preto e região.">
+    <meta name="theme-color" content="#050505">
+    <link rel="icon" href="img/logo.webp">
+    <meta property="og:title" content="Black Up Store">
+    <meta property="og:description" content="iPhones novos e seminovos com garantia. Compra • Venda • Troca. Até 18x no cartão.">
+    <meta property="og:image" content="img/hero-banner.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        noite: '#050505',
+                        grafite: '#111111',
+                        ouro: '#e3b14f',
+                        ourobrilho: '#ffd98a',
+                        ouroescuro: '#9a6a1c',
+                        prata: '#d9d9d9'
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        html, body { overflow-x: hidden; max-width: 100%; }
+        body { background: #050505; color: #f2f2f2; }
+
+        /* texto dourado e prateado, como no logo */
+        .txt-ouro {
+            background: linear-gradient(180deg, #fff0bf 0%, #ffd27a 30%, #d99a2b 62%, #8f5d14 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .txt-prata {
+            background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 40%, #9a9a9a 62%, #f4f4f4 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .btn-ouro {
+            background: linear-gradient(180deg, #ffe39e 0%, #e9b24c 45%, #b9801f 100%);
+            color: #140d02; box-shadow: 0 10px 30px -10px rgba(233, 178, 76, .65), inset 0 1px 0 rgba(255, 255, 255, .6);
+            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+        }
+        .btn-ouro:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 16px 40px -12px rgba(233, 178, 76, .8), inset 0 1px 0 rgba(255, 255, 255, .6); }
+        .btn-vidro {
+            background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .14);
+            transition: background .2s ease, border-color .2s ease;
+        }
+        .btn-vidro:hover { background: rgba(255, 255, 255, .1); border-color: rgba(227, 177, 79, .6); }
+
+        /* fundo com brilho dourado esfumaçado, igual às artes da loja */
+        .fumaca {
+            background:
+                radial-gradient(60% 50% at 15% 10%, rgba(227, 177, 79, .22), transparent 70%),
+                radial-gradient(50% 45% at 90% 20%, rgba(154, 106, 28, .25), transparent 70%),
+                radial-gradient(70% 60% at 50% 110%, rgba(227, 177, 79, .14), transparent 70%),
+                #050505;
+        }
+        .linha-ouro { height: 1px; background: linear-gradient(90deg, transparent, rgba(227, 177, 79, .7), transparent); }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 22px;
+            transition: transform .35s cubic-bezier(.2, .8, .2, 1), border-color .35s ease, box-shadow .35s ease;
+        }
+        .card:hover { transform: translateY(-6px); border-color: rgba(227, 177, 79, .45); box-shadow: 0 30px 60px -30px rgba(227, 177, 79, .35); }
+        .card img { transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+        .card:hover img { transform: scale(1.05); }
+
+        /* faixa rolante */
+        .faixa { animation: faixa 32s linear infinite; }
+        @keyframes faixa { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* revelar ao rolar */
+        .revela { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1); }
+        .revela.ativo { opacity: 1; transform: none; }
+
+        /* brilho que atravessa o banner */
+        .brilho { position: relative; overflow: hidden; }
+        .brilho::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(105deg, transparent 40%, rgba(255, 230, 170, .18) 50%, transparent 60%);
+            transform: translateX(-100%); animation: brilho 6s ease-in-out infinite 1.5s;
+        }
+        @keyframes brilho { 0%, 60% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        .header-solido { background: rgba(5, 5, 5, .85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 255, 255, .06); }
+
+        details summary::-webkit-details-marker { display: none; }
+        details[open] .faq-icone { transform: rotate(45deg); }
+        .faq-icone { transition: transform .25s ease; }
+
+        .cor-btn { width: 30px; height: 30px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, .2); transition: transform .2s, border-color .2s; }
+        .cor-btn.ativo { border-color: #e3b14f; transform: scale(1.15); }
+
+        .wpp-flutuante { animation: pulsa 2.4s ease-in-out infinite; }
+        @keyframes pulsa { 0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, .5); } 50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); } }
+
+        @media (prefers-reduced-motion: reduce) {
+            .faixa, .brilho::after, .wpp-flutuante { animation: none; }
+            .revela { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Faixa de avisos -->
+    <div class="bg-gradient-to-r from-ouroescuro via-ouro to-ouroescuro text-black text-[11px] sm:text-xs font-bold uppercase tracking-[.18em] overflow-hidden whitespace-nowrap py-2">
+        <div class="faixa inline-flex gap-10">
+            <span>iPhones novos e seminovos com garantia</span><span>✦</span>
+            <span>Até 18x no cartão</span><span>✦</span>
+            <span>Seu usado vale como entrada</span><span>✦</span>
+            <span>Encomenda com entrega em até 24h</span><span>✦</span>
+            <span>+130 clientes satisfeitos</span><span>✦</span>
+            <span>iPhones novos e seminovos com garantia</span><span>✦</span>
+            <span>Até 18x no cartão</span><span>✦</span>
+            <span>Seu usado vale como entrada</span><span>✦</span>
+            <span>Encomenda com entrega em até 24h</span><span>✦</span>
+            <span>+130 clientes satisfeitos</span><span>✦</span>
+        </div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header id="topo" class="sticky top-0 z-40 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
+            <a href="#" class="shrink-0" aria-label="Black Up Store — início">
+                <img src="img/logo.webp" alt="Black Up Store" class="h-10 sm:h-12 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-white/75">
+                <a href="#produtos" class="hover:text-ouro transition">Produtos</a>
+                <a href="#destaques" class="hover:text-ouro transition">Destaques</a>
+                <a href="#upgrade" class="hover:text-ouro transition">Troca</a>
+                <a href="#clientes" class="hover:text-ouro transition">Clientes</a>
+                <a href="#duvidas" class="hover:text-ouro transition">Dúvidas</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="https://www.instagram.com/store.blackup/" target="_blank" rel="noopener" class="btn-vidro w-10 h-10 rounded-full grid place-items-center text-white/80" aria-label="Instagram da Black Up Store"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store e quero saber mais." class="btn-ouro rounded-full px-4 sm:px-5 h-10 inline-flex items-center gap-2 text-sm font-extrabold">
+                    <i class="fa-brands fa-whatsapp text-base"></i><span class="hidden sm:inline">Falar no WhatsApp</span><span class="sm:hidden">WhatsApp</span>
+                </a>
+                <button id="menuBtn" class="lg:hidden btn-vidro w-10 h-10 rounded-full grid place-items-center" aria-label="Abrir menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+        <nav id="menuMobile" class="lg:hidden hidden header-solido px-4 pb-4">
+            <div class="grid grid-cols-2 gap-2 text-sm font-semibold">
+                <a href="#produtos" class="btn-vidro rounded-xl px-4 py-3">Produtos</a>
+                <a href="#destaques" class="btn-vidro rounded-xl px-4 py-3">Destaques</a>
+                <a href="#upgrade" class="btn-vidro rounded-xl px-4 py-3">Troca</a>
+                <a href="#clientes" class="btn-vidro rounded-xl px-4 py-3">Clientes</a>
+                <a href="#duvidas" class="btn-vidro rounded-xl px-4 py-3">Dúvidas</a>
+                <a href="#contato" class="btn-vidro rounded-xl px-4 py-3">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="fumaca relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-8 text-center">
+            <p class="revela inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-[.3em] text-ouro/90 border border-ouro/30 rounded-full px-4 py-1.5">
+                <i class="fa-solid fa-location-dot"></i> Ouro Preto e região
+            </p>
+            <h1 class="revela mt-6 text-[2.35rem] leading-[1.05] sm:text-6xl lg:text-7xl font-black tracking-tight">
+                <span class="txt-prata">Seu próximo iPhone</span><br>
+                <span class="txt-ouro">está aqui.</span>
+            </h1>
+            <p class="revela mt-5 max-w-2xl mx-auto text-white/70 text-base sm:text-lg">
+                iPhones <strong class="text-white">novos e seminovos com garantia</strong>, Android, MacBook, iPad e Apple Watch.
+                Compra, venda e troca — e parcelamos em até <strong class="text-white">18x no cartão</strong>.
+            </p>
+            <div class="revela mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="#" data-wpp="Olá! Quero saber os iPhones disponíveis e os valores." class="btn-ouro w-full sm:w-auto rounded-full px-8 h-14 inline-flex items-center justify-center gap-2 font-extrabold text-base">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Ver aparelhos disponíveis
+                </a>
+                <a href="#upgrade" class="btn-vidro w-full sm:w-auto rounded-full px-8 h-14 inline-flex items-center justify-center gap-2 font-bold text-base">
+                    <i class="fa-solid fa-arrows-rotate text-ouro"></i> Avaliar meu usado
+                </a>
+            </div>
+        </div>
+
+        <!-- Banner da loja -->
+        <div class="revela max-w-[1500px] mx-auto px-0 sm:px-6">
+            <div class="brilho sm:rounded-[28px] border-y sm:border border-white/10 shadow-[0_40px_120px_-40px_rgba(227,177,79,.45)]">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="img/hero-mobile.webp">
+                    <img src="img/hero-banner.webp" alt="Black Up Store: fazemos upgrade, celulares novos e seminovos, Android e iPhone" class="w-full h-auto block" width="2400" height="1000">
+                </picture>
+            </div>
+        </div>
+
+        <!-- Números -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            <div class="revela card p-5 text-center">
+                <p class="text-3xl sm:text-4xl font-black txt-ouro">+130</p>
+                <p class="mt-1 text-xs sm:text-sm text-white/60 font-semibold">clientes atendidos</p>
+            </div>
+            <div class="revela card p-5 text-center">
+                <p class="text-3xl sm:text-4xl font-black txt-ouro">18x</p>
+                <p class="mt-1 text-xs sm:text-sm text-white/60 font-semibold">no cartão</p>
+            </div>
+            <div class="revela card p-5 text-center">
+                <p class="text-3xl sm:text-4xl font-black txt-ouro">24h</p>
+                <p class="mt-1 text-xs sm:text-sm text-white/60 font-semibold">para receber sua encomenda</p>
+            </div>
+            <div class="revela card p-5 text-center">
+                <p class="text-3xl sm:text-4xl font-black txt-ouro"><i class="fa-solid fa-shield-halved text-[.85em]"></i></p>
+                <p class="mt-1 text-xs sm:text-sm text-white/60 font-semibold">garantia em todos os aparelhos</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="linha-ouro"></div>
+
+    <!-- Categorias -->
+    <section id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 scroll-mt-20">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Apple · Android · Acessórios</p>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black txt-prata">O que você procura?</h2>
+            <p class="mt-4 text-white/60">Toque na categoria e receba no WhatsApp os modelos, cores e valores disponíveis hoje.</p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            <a href="#" data-wpp="Olá! Quero ver os iPhones disponíveis (novos e seminovos)." class="revela card overflow-hidden group col-span-2 lg:col-span-1">
+                <div class="aspect-[4/3] lg:aspect-[3/4] overflow-hidden bg-black"><img src="img/cat-iphone.webp" alt="iPhones" class="w-full h-full object-cover" loading="lazy"></div>
+                <div class="p-4 flex items-center justify-between gap-2">
+                    <div><h3 class="font-extrabold text-lg">iPhone</h3><p class="text-xs text-white/55">Novos e seminovos</p></div>
+                    <span class="w-9 h-9 rounded-full btn-vidro grid place-items-center text-ouro group-hover:translate-x-1 transition"><i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="#" data-wpp="Olá! Quero ver os celulares Android disponíveis." class="revela card overflow-hidden group">
+                <div class="aspect-[3/4] overflow-hidden bg-black"><img src="img/cat-android.webp" alt="Celulares Android" class="w-full h-full object-cover" loading="lazy"></div>
+                <div class="p-4"><h3 class="font-extrabold">Android</h3><p class="text-xs text-white/55">Samsung e mais</p></div>
+            </a>
+            <a href="#" data-wpp="Olá! Quero ver os MacBooks disponíveis." class="revela card overflow-hidden group">
+                <div class="aspect-[3/4] overflow-hidden bg-black"><img src="img/cat-macbook.webp" alt="MacBook" class="w-full h-full object-cover object-left" loading="lazy"></div>
+                <div class="p-4"><h3 class="font-extrabold">MacBook</h3><p class="text-xs text-white/55">Por encomenda</p></div>
+            </a>
+            <a href="#" data-wpp="Olá! Quero ver os iPads disponíveis." class="revela card overflow-hidden group">
+                <div class="aspect-[3/4] overflow-hidden bg-black"><img src="img/cat-ipad.webp" alt="iPad" class="w-full h-full object-cover object-left" loading="lazy"></div>
+                <div class="p-4"><h3 class="font-extrabold">iPad</h3><p class="text-xs text-white/55">Para estudo e trabalho</p></div>
+            </a>
+            <a href="#" data-wpp="Olá! Quero ver Apple Watch e AirPods disponíveis." class="revela card overflow-hidden group">
+                <div class="aspect-[3/4] overflow-hidden bg-black"><img src="img/cat-watch.webp" alt="Apple Watch e AirPods" class="w-full h-full object-cover" loading="lazy"></div>
+                <div class="p-4"><h3 class="font-extrabold">Watch & AirPods</h3><p class="text-xs text-white/55">Acessórios Apple</p></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <section id="destaques" class="fumaca py-16 sm:py-24 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Em destaque</p>
+                    <h2 class="mt-3 text-3xl sm:text-5xl font-black txt-prata">Os mais pedidos</h2>
+                </div>
+                <p class="text-white/55 max-w-md text-sm">Estoque muda toda semana. Consulte o valor do dia e as condições de parcelamento direto com a gente.</p>
+            </div>
+
+            <div class="mt-10 grid lg:grid-cols-3 gap-4 sm:gap-5">
+                <!-- iPhone 18 Pro -->
+                <article class="revela card overflow-hidden lg:col-span-2 grid md:grid-cols-2">
+                    <div class="bg-[#f3f1ee] overflow-hidden"><img src="img/iphone18pro-cores.webp" alt="iPhone 18 Pro nas cores cinza escuro, dark cherry, prata e azul claro" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6 sm:p-8 flex flex-col justify-center">
+                        <span class="self-start text-[11px] font-extrabold uppercase tracking-widest text-black bg-ouro rounded-full px-3 py-1">Lançamento</span>
+                        <h3 class="mt-4 text-2xl sm:text-3xl font-black">iPhone 18 Pro <span class="txt-ouro">& Pro Max</span></h3>
+                        <p class="mt-3 text-white/60 text-sm">Novas cores reveladas. Escolha a sua e a gente encomenda — a entrega chega em até 24h.</p>
+                        <div class="mt-6">
+                            <p class="text-xs font-bold uppercase tracking-widest text-white/50">Cor: <span id="corNome" class="text-white">Cinza escuro</span></p>
+                            <div class="mt-3 flex gap-3" role="radiogroup" aria-label="Cores do iPhone 18 Pro">
+                                <button class="cor-btn ativo" style="background:#3a3a3c" data-cor="Cinza escuro" aria-label="Cinza escuro" role="radio" aria-checked="true"></button>
+                                <button class="cor-btn" style="background:#6b1f2e" data-cor="Dark cherry" aria-label="Dark cherry" role="radio" aria-checked="false"></button>
+                                <button class="cor-btn" style="background:#d9d9db" data-cor="Prata" aria-label="Prata" role="radio" aria-checked="false"></button>
+                                <button class="cor-btn" style="background:#9cc3e6" data-cor="Azul claro" aria-label="Azul claro" role="radio" aria-checked="false"></button>
+                            </div>
+                        </div>
+                        <a href="#" id="btn18" data-wpp="Olá! Quero o iPhone 18 Pro na cor Cinza escuro. Qual o valor?" class="btn-ouro mt-8 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Consultar valor
+                        </a>
+                    </div>
+                </article>
+
+                <!-- iPhone 15 Pro -->
+                <article class="revela card overflow-hidden flex flex-col">
+                    <div class="aspect-[4/5] overflow-hidden bg-black"><img src="img/iphone15pro.webp" alt="iPhone 15 Pro 256GB" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start text-[11px] font-extrabold uppercase tracking-widest text-ouro border border-ouro/50 rounded-full px-3 py-1">🔥 Super oportunidade</span>
+                        <h3 class="mt-3 text-xl font-black">iPhone 15 Pro 256GB</h3>
+                        <p class="mt-1 text-white/55 text-sm">Melhor preço da região, com garantia.</p>
+                        <a href="#" data-wpp="Olá! Vi no site o iPhone 15 Pro 256GB. Ainda está disponível? Qual o valor?" class="btn-ouro mt-5 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Consultar valor
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Galaxy S25 Ultra -->
+                <article class="revela card overflow-hidden flex flex-col">
+                    <div class="aspect-[4/5] overflow-hidden bg-black"><img src="img/galaxy.webp" alt="Samsung Galaxy S25 Ultra" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start text-[11px] font-extrabold uppercase tracking-widest text-white/80 border border-white/25 rounded-full px-3 py-1">Android</span>
+                        <h3 class="mt-3 text-xl font-black">Galaxy S25 Ultra</h3>
+                        <p class="mt-1 text-white/55 text-sm">Para quem é time Android, também temos o topo de linha.</p>
+                        <a href="#" data-wpp="Olá! Vi no site o Galaxy S25 Ultra. Qual o valor?" class="btn-ouro mt-5 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Consultar valor
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Lacrados -->
+                <article class="revela card overflow-hidden flex flex-col">
+                    <div class="aspect-[4/5] overflow-hidden bg-black"><img src="img/loja-4.webp" alt="iPhones lacrados na caixa" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start text-[11px] font-extrabold uppercase tracking-widest text-white/80 border border-white/25 rounded-full px-3 py-1">Novos</span>
+                        <h3 class="mt-3 text-xl font-black">Aparelhos lacrados</h3>
+                        <p class="mt-1 text-white/55 text-sm">Várias opções na caixa, prontas para você.</p>
+                        <a href="#" data-wpp="Olá! Quais aparelhos lacrados vocês têm hoje?" class="btn-ouro mt-5 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Ver lacrados
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Seminovos -->
+                <article class="revela card overflow-hidden flex flex-col">
+                    <div class="aspect-[4/5] overflow-hidden bg-black"><img src="img/vitrine.webp" alt="Vitrine de iPhones seminovos revisados" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start text-[11px] font-extrabold uppercase tracking-widest text-white/80 border border-white/25 rounded-full px-3 py-1">Seminovos</span>
+                        <h3 class="mt-3 text-xl font-black">Seminovos revisados</h3>
+                        <p class="mt-1 text-white/55 text-sm">Aparelhos revisados e com garantia, pelo melhor custo.</p>
+                        <a href="#" data-wpp="Olá! Quais iPhones seminovos vocês têm hoje?" class="btn-ouro mt-5 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Ver seminovos
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upgrade / troca -->
+    <section id="upgrade" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 scroll-mt-20">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div class="revela relative order-2 lg:order-1">
+                <div class="absolute -inset-6 bg-ouro/20 blur-3xl rounded-full" aria-hidden="true"></div>
+                <img src="img/upgrade.webp" alt="Fazemos upgrade: recebemos o seu usado como entrada" class="relative w-full max-w-md mx-auto rounded-[28px] border border-white/10" loading="lazy">
+            </div>
+            <div class="order-1 lg:order-2">
+                <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Compra • Venda • Troca</p>
+                <h2 class="mt-3 text-3xl sm:text-5xl font-black leading-tight"><span class="txt-prata">Fazemos</span> <span class="txt-ouro">upgrade.</span></h2>
+                <p class="mt-4 text-white/65 text-lg">Seu aparelho atual vale como entrada no próximo. O restante você parcela em até 18x no cartão.</p>
+
+                <ol class="mt-8 space-y-4">
+                    <li class="revela card p-5 flex gap-4 items-start">
+                        <span class="shrink-0 w-11 h-11 rounded-2xl btn-ouro grid place-items-center font-black">1</span>
+                        <div><h3 class="font-extrabold">Mande os dados do seu usado</h3><p class="text-sm text-white/55 mt-1">Modelo, memória, saúde da bateria e fotos pelo WhatsApp.</p></div>
+                    </li>
+                    <li class="revela card p-5 flex gap-4 items-start">
+                        <span class="shrink-0 w-11 h-11 rounded-2xl btn-ouro grid place-items-center font-black">2</span>
+                        <div><h3 class="font-extrabold">Receba a avaliação</h3><p class="text-sm text-white/55 mt-1">A gente diz quanto ele vale como entrada no aparelho que você quer.</p></div>
+                    </li>
+                    <li class="revela card p-5 flex gap-4 items-start">
+                        <span class="shrink-0 w-11 h-11 rounded-2xl btn-ouro grid place-items-center font-black">3</span>
+                        <div><h3 class="font-extrabold">Saia com o novo</h3><p class="text-sm text-white/55 mt-1">Completa a diferença à vista ou em até 18x, com garantia.</p></div>
+                    </li>
+                </ol>
+
+                <form id="formTroca" class="mt-8 card p-5 sm:p-6 grid sm:grid-cols-2 gap-3">
+                    <label class="text-xs font-bold uppercase tracking-widest text-white/50 sm:col-span-1">Tenho um
+                        <input name="usado" required placeholder="Ex.: iPhone 13 128GB" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-sm font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
+                    </label>
+                    <label class="text-xs font-bold uppercase tracking-widest text-white/50 sm:col-span-1">Quero um
+                        <input name="quero" required placeholder="Ex.: iPhone 16 Pro" class="mt-2 w-full bg-black/60 border border-white/15 rounded-xl px-4 h-12 text-white text-sm font-medium normal-case tracking-normal focus:outline-none focus:border-ouro">
+                    </label>
+                    <button class="btn-ouro sm:col-span-2 rounded-full h-12 inline-flex items-center justify-center gap-2 font-extrabold text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Avaliar minha troca
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="linha-ouro"></div>
+
+    <!-- Encomenda 24h -->
+    <section class="fumaca py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Por encomenda</p>
+                <h2 class="mt-3 text-3xl sm:text-5xl font-black leading-tight txt-prata">Escolheu hoje,<br><span class="txt-ouro">recebe em até 24h.</span></h2>
+                <p class="mt-4 text-white/65 text-lg">Quer um modelo que não está na vitrine? MacBook, iPhone, Apple Watch… Você escolhe, faz o pedido e a gente cuida do resto. Em muitos casos o aparelho chega no mesmo dia.</p>
+                <ul class="mt-6 space-y-3 text-white/80">
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ouro mt-1"></i> Toda a linha Apple e Android topo de linha</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ouro mt-1"></i> Prazo de até 24 horas</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ouro mt-1"></i> Atendimento direto com quem entende</li>
+                </ul>
+                <a href="#" data-wpp="Olá! Quero encomendar um aparelho. Vocês conseguem o modelo:" class="btn-ouro mt-8 rounded-full px-8 h-14 inline-flex items-center gap-2 font-extrabold">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Fazer minha encomenda
+                </a>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+                <a href="https://www.instagram.com/store.blackup/reel/DfPQc6WzLrZ/" target="_blank" rel="noopener" class="revela card overflow-hidden relative group" aria-label="Ver vídeo no Instagram">
+                    <img src="img/loja-1.webp" alt="Atendimento Black Up Store" class="aspect-[9/16] w-full object-cover" loading="lazy">
+                    <span class="absolute inset-0 grid place-items-center"><span class="w-12 h-12 rounded-full bg-black/55 backdrop-blur grid place-items-center text-white group-hover:scale-110 transition"><i class="fa-solid fa-play"></i></span></span>
+                </a>
+                <a href="https://www.instagram.com/store.blackup/reel/DfE2e0uz71V/" target="_blank" rel="noopener" class="revela card overflow-hidden relative group translate-y-6" aria-label="Ver vídeo no Instagram">
+                    <img src="img/loja-5.webp" alt="Encomenda em até 24 horas" class="aspect-[9/16] w-full object-cover" loading="lazy">
+                    <span class="absolute inset-0 grid place-items-center"><span class="w-12 h-12 rounded-full bg-black/55 backdrop-blur grid place-items-center text-white group-hover:scale-110 transition"><i class="fa-solid fa-play"></i></span></span>
+                </a>
+                <a href="https://www.instagram.com/store.blackup/reel/DafT-yPxdCK/" target="_blank" rel="noopener" class="revela card overflow-hidden relative group" aria-label="Ver vídeo no Instagram">
+                    <img src="img/loja-2.webp" alt="iPhones novos e seminovos" class="aspect-[9/16] w-full object-cover" loading="lazy">
+                    <span class="absolute inset-0 grid place-items-center"><span class="w-12 h-12 rounded-full bg-black/55 backdrop-blur grid place-items-center text-white group-hover:scale-110 transition"><i class="fa-solid fa-play"></i></span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clientes -->
+    <section id="clientes" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 scroll-mt-20">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Bastidores da entrega</p>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black txt-prata">Mais clientes <span class="txt-ouro">satisfeitos</span></h2>
+            <p class="mt-4 text-white/60">Cada entrega é feita com cuidado. Veja quem já saiu de celular novo com a Black Up.</p>
+        </div>
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            <a href="https://www.instagram.com/store.blackup/reel/DfxuXLlz5DK/" target="_blank" rel="noopener" class="revela card overflow-hidden md:row-span-2"><img src="img/entrega.webp" alt="Entrega de dois iPhone 18 Pro Max" class="w-full h-full object-cover" loading="lazy"></a>
+            <a href="https://www.instagram.com/store.blackup/reel/DYKiqOIRF_S/" target="_blank" rel="noopener" class="revela card overflow-hidden"><img src="img/cliente.webp" alt="Cliente com celular novo" class="w-full aspect-square object-cover" loading="lazy"></a>
+            <a href="https://www.instagram.com/store.blackup/reel/DYengmeu55v/" target="_blank" rel="noopener" class="revela card overflow-hidden"><img src="img/loja-3.webp" alt="Atendimento em Ouro Preto" class="w-full aspect-square object-cover object-top" loading="lazy"></a>
+            <a href="https://www.instagram.com/store.blackup/reel/DfPQc6WzLrZ/" target="_blank" rel="noopener" class="revela card overflow-hidden md:row-span-2"><img src="img/loja-6.webp" alt="Atendimento pelo WhatsApp" class="w-full h-full object-cover" loading="lazy"></a>
+            <a href="https://www.instagram.com/store.blackup/p/DdTkFPckXgA/" target="_blank" rel="noopener" class="revela card overflow-hidden"><img src="img/ios27.webp" alt="O novo iOS 27 chegou" class="w-full aspect-square object-cover" loading="lazy"></a>
+            <a href="https://www.instagram.com/store.blackup/p/DfsmZekGzxq/" target="_blank" rel="noopener" class="revela card overflow-hidden"><img src="img/bateria.webp" alt="Guia Black Up: sua bateria não aguenta o dia?" class="w-full aspect-square object-cover" loading="lazy"></a>
+        </div>
+        <div class="mt-8 text-center">
+            <a href="https://www.instagram.com/store.blackup/" target="_blank" rel="noopener" class="btn-vidro rounded-full px-6 h-12 inline-flex items-center gap-2 font-bold text-sm">
+                <i class="fa-brands fa-instagram text-ouro text-lg"></i> Ver mais no @store.blackup
+            </a>
+        </div>
+    </section>
+
+    <!-- Patrocínio -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24">
+        <div class="revela card overflow-hidden grid md:grid-cols-[1fr_1.2fr] items-center">
+            <img src="img/patrocinio.webp" alt="Black Up Store, patrocinadora master do Alumina Esporte Clube" class="w-full h-full object-cover" loading="lazy">
+            <div class="p-6 sm:p-10">
+                <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Patrocinador master</p>
+                <h2 class="mt-3 text-2xl sm:text-4xl font-black txt-prata">Junto com o Alumina Esporte Clube</h2>
+                <p class="mt-4 text-white/60">A Black Up acredita no esporte e na comunidade de Ouro Preto. Somos patrocinadora master do Alumina Esporte Clube na temporada 2026.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="linha-ouro"></div>
+
+    <!-- Dúvidas -->
+    <section id="duvidas" class="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24 scroll-mt-20">
+        <div class="text-center">
+            <p class="text-xs font-bold uppercase tracking-[.3em] text-ouro">Dúvidas</p>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black txt-prata">Perguntas frequentes</h2>
+        </div>
+        <div class="mt-10 space-y-3">
+            <details class="card p-5 group" open>
+                <summary class="flex justify-between items-center gap-4 cursor-pointer font-extrabold">Vocês só vendem iPhones seminovos?<i class="fa-solid fa-plus faq-icone text-ouro"></i></summary>
+                <p class="mt-3 text-white/60 text-sm leading-relaxed">Não! Trabalhamos com iPhones novos (lacrados) e seminovos revisados, além de Android, MacBook, iPad, Apple Watch e AirPods.</p>
+            </details>
+            <details class="card p-5">
+                <summary class="flex justify-between items-center gap-4 cursor-pointer font-extrabold">Os aparelhos têm garantia?<i class="fa-solid fa-plus faq-icone text-ouro"></i></summary>
+                <p class="mt-3 text-white/60 text-sm leading-relaxed">Sim. Todos os aparelhos saem com garantia. Pergunte no WhatsApp o prazo do modelo que você escolher.</p>
+            </details>
+            <details class="card p-5">
+                <summary class="flex justify-between items-center gap-4 cursor-pointer font-extrabold">Posso dar meu celular usado na troca?<i class="fa-solid fa-plus faq-icone text-ouro"></i></summary>
+                <p class="mt-3 text-white/60 text-sm leading-relaxed">Pode. A gente avalia seu aparelho e ele vale como entrada no novo. O restante pode ser parcelado.</p>
+            </details>
+            <details class="card p-5">
+                <summary class="flex justify-between items-center gap-4 cursor-pointer font-extrabold">Em quantas vezes posso parcelar?<i class="fa-solid fa-plus faq-icone text-ouro"></i></summary>
+                <p class="mt-3 text-white/60 text-sm leading-relaxed">Em até 18x no cartão de crédito.</p>
+            </details>
+            <details class="card p-5">
+                <summary class="flex justify-between items-center gap-4 cursor-pointer font-extrabold">O aparelho chega mesmo no mesmo dia?<i class="fa-solid fa-plus faq-icone text-ouro"></i></summary>
+                <p class="mt-3 text-white/60 text-sm leading-relaxed">Nas encomendas, o prazo é de até 24 horas — e muitas vezes chega no mesmo dia. Confirme a disponibilidade do modelo pelo WhatsApp.</p>
+            </details>
+            <details class="card p-5">
+                <summary class="flex justify-between items-center gap-4 cursor-pointer font-extrabold">Vocês enviam para outras cidades?<i class="fa-solid fa-plus faq-icone text-ouro"></i></summary>
+                <p class="mt-3 text-white/60 text-sm leading-relaxed">Atendemos Ouro Preto e região e também fazemos envio. Chame no WhatsApp para combinar a entrega para a sua cidade.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="fumaca py-16 sm:py-24 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+            <img src="img/logo.webp" alt="Black Up Store" class="h-20 sm:h-28 w-auto mx-auto">
+            <h2 class="mt-6 text-3xl sm:text-5xl font-black txt-prata">Fale com a gente</h2>
+            <p class="mt-4 text-white/60">Atendimento pelo WhatsApp. Escolha com quem falar:</p>
+            <div class="mt-10 grid sm:grid-cols-2 gap-4 text-left">
+                <a href="#" data-wpp="Olá, Tullio! Vim pelo site da Black Up Store." data-num="5531990761855" class="revela card p-6 flex items-center gap-4 group">
+                    <span class="w-14 h-14 rounded-2xl bg-[#25d366] grid place-items-center text-white text-2xl shrink-0"><i class="fa-brands fa-whatsapp"></i></span>
+                    <span class="flex-1"><span class="block font-extrabold text-lg">Tullio</span><span class="block text-white/60 text-sm">(31) 99076-1855</span></span>
+                    <i class="fa-solid fa-arrow-right text-ouro group-hover:translate-x-1 transition"></i>
+                </a>
+                <a href="#" data-wpp="Olá, Marcelo! Vim pelo site da Black Up Store." data-num="5531972074125" class="revela card p-6 flex items-center gap-4 group">
+                    <span class="w-14 h-14 rounded-2xl bg-[#25d366] grid place-items-center text-white text-2xl shrink-0"><i class="fa-brands fa-whatsapp"></i></span>
+                    <span class="flex-1"><span class="block font-extrabold text-lg">Marcelo</span><span class="block text-white/60 text-sm">(31) 97207-4125</span></span>
+                    <i class="fa-solid fa-arrow-right text-ouro group-hover:translate-x-1 transition"></i>
+                </a>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-white/60">
+                <a href="https://www.instagram.com/store.blackup/" target="_blank" rel="noopener" class="btn-vidro rounded-full px-5 h-11 inline-flex items-center gap-2"><i class="fa-brands fa-instagram text-ouro"></i> @store.blackup</a>
+                <span class="btn-vidro rounded-full px-5 h-11 inline-flex items-center gap-2"><i class="fa-solid fa-location-dot text-ouro"></i> Ouro Preto – MG</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-8 text-center text-xs text-white/40 px-4">
+        <p>© <span id="ano"></span> Black Up Store · Apple · Tecnologia · Confiança</p>
+        <p class="mt-1">iPhone, MacBook, iPad, Apple Watch e AirPods são marcas da Apple Inc. Galaxy é marca da Samsung.</p>
+    </footer>
+
+    <!-- WhatsApp flutuante -->
+    <a href="#" data-wpp="Olá! Vim pelo site da Black Up Store." class="wpp-flutuante fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25d366] grid place-items-center text-white text-3xl shadow-xl" aria-label="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // WhatsApp: todos os botões com data-wpp abrem a conversa com a mensagem pronta
+        const WPP_PADRAO = '5531990761855'; // Tullio
+        const linkWpp = (msg, num) => 'https://wa.me/' + (num || WPP_PADRAO) + '?text=' + encodeURIComponent(msg);
+        function ligarWpp(el) {
+            el.href = linkWpp(el.dataset.wpp, el.dataset.num);
+            el.target = '_blank';
+            el.rel = 'noopener';
+        }
+        document.querySelectorAll('[data-wpp]').forEach(ligarWpp);
+
+        // Cores do iPhone 18 Pro
+        const corNome = document.getElementById('corNome');
+        const btn18 = document.getElementById('btn18');
+        document.querySelectorAll('.cor-btn').forEach((b) => b.addEventListener('click', () => {
+            document.querySelectorAll('.cor-btn').forEach((x) => { x.classList.remove('ativo'); x.setAttribute('aria-checked', 'false'); });
+            b.classList.add('ativo'); b.setAttribute('aria-checked', 'true');
+            corNome.textContent = b.dataset.cor;
+            btn18.dataset.wpp = 'Olá! Quero o iPhone 18 Pro na cor ' + b.dataset.cor + '. Qual o valor?';
+            ligarWpp(btn18);
+        }));
+
+        // Formulário de troca → WhatsApp
+        document.getElementById('formTroca').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const f = e.target;
+            const msg = 'Olá! Quero fazer upgrade. Tenho um ' + f.usado.value.trim() + ' e quero um ' + f.quero.value.trim() + '. Quanto fica a troca?';
+            window.open(linkWpp(msg), '_blank', 'noopener');
+        });
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const menu = document.getElementById('menuMobile');
+        menuBtn.addEventListener('click', () => {
+            const aberto = menu.classList.toggle('hidden') === false;
+            menuBtn.setAttribute('aria-expanded', String(aberto));
+            menuBtn.innerHTML = aberto ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+        });
+        menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => menuBtn.click()));
+
+        // Cabeçalho sólido ao rolar
+        const topo = document.getElementById('topo');
+        const aoRolar = () => topo.classList.toggle('header-solido', window.scrollY > 10);
+        window.addEventListener('scroll', aoRolar, { passive: true });
+        aoRolar();
+
+        // Revelar ao rolar
+        const io = new IntersectionObserver((itens) => itens.forEach((it) => {
+            if (it.isIntersecting) { it.target.classList.add('ativo'); io.unobserve(it.target); }
+        }), { threshold: 0.12 });
+        document.querySelectorAll('.revela').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); });
+
+        document.getElementById('ano').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Pousada Vila de Gaia">
+  <title>Pousada Vila de Gaia</title>
+  <circle cx="50.00" cy="50.00" r="50.00" fill="#c23a55"/>
+  <circle cx="50.00" cy="50.00" r="44.50" fill="none" stroke="#f4ede1" stroke-width="1.60" opacity=".85"/>
+  <path d="M44.00,14.50 L49.56,24.23 L59.25,18.59 L59.20,29.80 L70.41,29.75 L64.77,39.44 L74.50,45.00 L64.77,50.56 L70.41,60.25 L59.20,60.20 L59.25,71.41 L49.56,65.77 L44.00,75.50 L38.44,65.77 L28.75,71.41 L28.80,60.20 L17.59,60.25 L23.23,50.56 L13.50,45.00 L23.23,39.44 L17.59,29.75 L28.80,29.80 L28.75,18.59 L38.44,24.23Z" fill="#f4ede1" stroke="#f4ede1" stroke-width="1.20" stroke-linejoin="round"/>
+  <circle cx="44.00" cy="45.00" r="17.50" fill="#f4ede1"/>
+  <path d="M59.44,44.07 A18.00,18.00 0 1 0 78.62,65.66 A14.50,14.50 0 0 1 59.44,44.07Z" fill="#e9b45a" stroke="#c23a55" stroke-width="5.00" stroke-linejoin="round" paint-order="stroke"/>
+</svg>

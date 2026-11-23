@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pousada Vila de Gaia — Lavras Novas, Ouro Preto/MG</title>
+<meta name="description" content="Pousada Vila de Gaia, em Lavras Novas (Ouro Preto/MG): casarão de pedra, suítes aconchegantes, piscina, sauna, jardim, café da manhã artesanal e ponto de carimbo do Passaporte Estrada Real. Reservas pelo WhatsApp.">
+<meta name="theme-color" content="#1c3326">
+<meta property="og:title" content="Pousada Vila de Gaia — Lavras Novas/MG">
+<meta property="og:description" content="Pedra, jardim, piscina e café artesanal na serra de Lavras Novas.">
+<meta property="og:image" content="img/hero-piscina-entardecer.jpg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..800,50;1,9..144,400..700,50&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa:#c23a55;      /* parede do casarão */
+    --rosa-d:#9e2a42;
+    --pedra:#8e8375;
+    --turq:#19b3b1;      /* azulejo e piscina */
+    --mata:#1c3326;      /* jardim à noite */
+    --mata-2:#264434;
+    --creme:#f4ede1;
+    --papel:#faf6ee;
+    --madeira:#6b4428;
+    --lume:#e9b45a;      /* luz das lamparinas */
+    --ink:#24201b;
+    --muted:#6f675c;
+    --line:rgba(36,32,27,.14);
+    --display:"Fraunces",Georgia,serif;
+    --sans:"Manrope",system-ui,sans-serif;
+    --hand:"Caveat",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--papel);color:var(--ink);font-family:var(--sans);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  svg{display:block}
+  ::selection{background:var(--rosa);color:#fff}
+  .wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+  section{position:relative;padding:clamp(84px,11vw,150px) 0}
+
+  /* grão de papel */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:300;opacity:.06;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  .kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--rosa);display:inline-flex;gap:.7rem;align-items:center}
+  .kicker i{font-style:normal;font-family:var(--display);font-size:1rem;letter-spacing:0;color:var(--pedra)}
+  h2{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,5.4vw,4.4rem);line-height:1;letter-spacing:-.02em;margin:.9rem 0 1.3rem;font-variation-settings:"SOFT" 50}
+  h2 em{font-style:italic;color:var(--rosa)}
+  .lead{font-size:1.06rem;color:var(--muted);max-width:56ch}
+  .note{font-family:var(--hand);font-size:1.55rem;line-height:1.05;color:var(--rosa-d)}
+
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font-weight:800;font-size:.92rem;letter-spacing:.01em;
+    background:var(--rosa);color:#fff;transition:transform .2s,background .2s;box-shadow:0 14px 30px -14px rgba(194,58,85,.8)}
+  .btn:hover{transform:translateY(-2px);background:var(--rosa-d)}
+  .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--papel)}
+  .btn.light{background:var(--creme);color:var(--mata);box-shadow:none}
+  .btn.light:hover{background:#fff}
+  .btn svg{width:18px;height:18px}
+
+  /* foto padrão */
+  .photo{position:relative;overflow:hidden;background:var(--pedra)}
+  .photo img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .photo:hover img{transform:scale(1.045)}
+  .arch{border-radius:999px 999px 14px 14px}
+  .polaroid{background:#fff;padding:10px 10px 38px;box-shadow:0 18px 40px -18px rgba(0,0,0,.45);position:absolute}
+  .polaroid .photo{aspect-ratio:1}
+  .polaroid figcaption{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--hand);font-size:1.3rem;color:var(--ink)}
+
+  /* NAV */
+  .nav{position:fixed;inset:0 0 auto;z-index:60;transition:background .3s,box-shadow .3s}
+  .nav.solid{background:rgba(250,246,238,.95);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:78px;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.75rem;line-height:1}
+  .brand .seal,.sheet-head .seal{width:44px;height:44px;flex:none;border-radius:50%;background:var(--rosa);color:var(--creme);display:grid;place-items:center;font-family:var(--display);font-style:italic;font-size:1.25rem;box-shadow:inset 0 0 0 2px var(--rosa),inset 0 0 0 4px var(--creme)}
+  .brand b{font-family:var(--display);font-weight:600;font-size:1.35rem;display:block;letter-spacing:-.01em}
+  .brand small{font-size:.6rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .menu{display:flex;gap:1.7rem;font-size:.86rem;font-weight:700}
+  .menu a{position:relative;padding:.3rem 0}
+  .menu a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--rosa);transition:right .3s}
+  .menu a:hover::after{right:0}
+  .nav .btn{padding:.75rem 1.2rem;font-size:.84rem}
+  .burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;color:var(--ink)}
+  .burger svg{width:26px;height:26px}
+  @media (max-width:980px){
+    .menu{position:fixed;inset:78px 0 auto;flex-direction:column;gap:0;background:var(--papel);box-shadow:0 20px 40px -20px rgba(0,0,0,.3);transform:translateY(-130%);transition:transform .35s;z-index:-1}
+    .menu.open{transform:none}
+    .menu a{padding:1rem 16px;border-top:1px solid var(--line)}
+    .menu a::after{display:none}
+    .burger{display:block}
+    .nav .btn{display:none}
+  }
+
+  /* HERO */
+  .hero{min-height:100svh;padding:120px 0 70px;display:flex;align-items:center;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(3.6rem,10vw,8.6rem);line-height:.86;letter-spacing:-.04em;margin:1.2rem 0 1.4rem}
+  .hero h1 span{display:block}
+  .hero h1 em{font-style:italic;color:var(--rosa);font-weight:400}
+  .hero .note{position:relative;display:inline-block;margin-bottom:1rem}
+  .hero .note svg{position:absolute;left:100%;top:40%;width:70px;color:var(--rosa-d)}
+  .hero p.lead{margin-bottom:2rem}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+  .rating{display:inline-flex;align-items:center;gap:.7rem;margin-top:2.2rem;padding:.6rem 1rem .6rem .7rem;border-radius:999px;background:#fff;box-shadow:0 10px 30px -18px rgba(0,0,0,.4);font-size:.86rem}
+  .rating b{font-family:var(--display);font-size:1.4rem;line-height:1}
+  .rating .stars{color:#e8a317;letter-spacing:.08em}
+  .rating small{color:var(--muted)}
+  .rating .g{width:28px;height:28px;border-radius:50%;background:var(--creme);display:grid;place-items:center;font-weight:800;color:#4285f4}
+
+  .hero-art{position:relative;aspect-ratio:1/1.08}
+  .hero-art .main{position:absolute;inset:0 0 0 8%;}
+  .hero-art .main.photo{border-radius:999px 999px 18px 18px;box-shadow:0 40px 80px -40px rgba(28,51,38,.7)}
+  .hero-art .polaroid{left:-4%;bottom:-6%;width:44%;transform:rotate(-7deg);z-index:2}
+  .stamp{position:absolute;right:-3%;top:6%;z-index:3;width:clamp(110px,13vw,150px);aspect-ratio:1;border-radius:50%;background:var(--turq);color:#fff;display:grid;place-items:center;
+    box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+  .stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:turn 26s linear infinite}
+  .stamp b{font-family:var(--display);font-style:italic;font-size:clamp(.95rem,1.3vw,1.15rem);line-height:1.05;text-align:center}
+  @keyframes turn{to{transform:rotate(360deg)}}
+  @media (max-width:900px){
+    .hero{padding-top:110px}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-art{max-width:520px;width:100%;margin:1rem auto 2rem}
+  }
+
+  /* FILME DE FOTOS */
+  .film{background:var(--mata);padding:22px 0;overflow:hidden;transform:rotate(-1.2deg);margin:0 -10px}
+  .film-track{display:flex;gap:14px;width:max-content;animation:slide 60s linear infinite}
+  .film:hover .film-track{animation-play-state:paused}
+  .film-track img{height:170px;width:auto;aspect-ratio:1;object-fit:cover;border-radius:8px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* A CASA */
+  .casa{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+  .casa-collage{position:relative;aspect-ratio:1/1.1}
+  .casa-collage .a{position:absolute;inset:0 26% 24% 0;border-radius:14px}
+  .casa-collage .b{position:absolute;right:0;top:18%;width:42%;aspect-ratio:3/4;border-radius:999px 999px 12px 12px;border:8px solid var(--papel)}
+  .casa-collage .c{position:absolute;left:18%;bottom:0;width:44%;aspect-ratio:1;border-radius:12px;border:8px solid var(--papel)}
+  .casa-collage .note{position:absolute;right:2%;bottom:6%;transform:rotate(-4deg);max-width:170px}
+  .casa-collage .note svg{width:60px;color:var(--rosa-d);transform:rotate(200deg);margin-bottom:.2rem}
+  .casa-text p+p{margin-top:1rem}
+  .casa-list{list-style:none;margin:2rem 0;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.6rem}
+  .casa-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.95rem}
+  .casa-list li::before{content:"";flex:none;width:9px;height:9px;margin-top:.55em;border-radius:50%;background:var(--rosa);box-shadow:0 0 0 4px rgba(194,58,85,.15)}
+  @media (max-width:900px){.casa{grid-template-columns:1fr}.casa-collage{max-width:560px}}
+
+  /* SUÍTES */
+  .suites{background:var(--creme)}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3.4rem}
+  .rooms{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+  @media (max-width:1080px){.rooms{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.rooms{grid-template-columns:1fr}}
+  .room{display:flex;flex-direction:column}
+  .room .photo{aspect-ratio:3/3.7;border-radius:999px 999px 16px 16px}
+  .room .num{font-family:var(--display);font-style:italic;color:var(--pedra);font-size:1rem;margin-top:1.2rem}
+  .room h3{font-family:var(--display);font-weight:500;font-size:1.85rem;line-height:1.05;letter-spacing:-.01em;margin:.15rem 0 .6rem}
+  .room p{font-size:.9rem;color:var(--muted);margin-bottom:1rem}
+  .room ul{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.2rem}
+  .room li{font-size:.72rem;font-weight:700;padding:.3rem .65rem;border-radius:999px;border:1px solid var(--line)}
+  .room a{margin-top:auto;display:inline-flex;align-items:center;gap:.5rem;font-weight:800;font-size:.86rem;color:var(--rosa);border-bottom:1.5px solid currentColor;align-self:flex-start;padding-bottom:2px}
+  .room a svg{width:16px;height:16px;transition:transform .2s}
+  .room a:hover svg{transform:translateX(4px)}
+  .room-strip{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.3fr;gap:12px;margin-top:3.2rem}
+  .room-strip .photo{aspect-ratio:4/3;border-radius:12px}
+  .room-strip .photo:nth-child(2),.room-strip .photo:nth-child(3){aspect-ratio:auto}
+  @media (max-width:760px){.room-strip{grid-template-columns:1fr 1fr}.room-strip .photo{aspect-ratio:1!important}}
+  .includes{margin-top:2.6rem;display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;justify-content:center;font-size:.88rem;font-weight:600}
+  .includes span::before{content:"✦ ";color:var(--rosa)}
+
+  /* UM DIA NA VILA */
+  .day{background:var(--mata);color:var(--creme);overflow:hidden}
+  .day .kicker{color:var(--lume)}
+  .day h2 em{color:var(--lume)}
+  .day .lead{color:rgba(244,237,225,.72)}
+  .timeline{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:2.6rem 16px 1.4rem;margin:0 -16px;scrollbar-width:thin;scrollbar-color:var(--lume) transparent}
+  .moment{flex:0 0 clamp(250px,26vw,310px);scroll-snap-align:start}
+  .moment .photo{aspect-ratio:4/5;border-radius:16px}
+  .moment time{display:block;font-family:var(--display);font-style:italic;font-size:2.4rem;line-height:1;color:var(--lume);margin:1rem 0 .3rem}
+  .moment h3{font-family:var(--display);font-weight:500;font-size:1.35rem;line-height:1.15}
+  .moment p{font-size:.88rem;color:rgba(244,237,225,.68);margin-top:.3rem}
+  .day-foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1rem;font-size:.84rem;color:rgba(244,237,225,.6)}
+  .day-foot .note{color:var(--lume)}
+
+  /* COMODIDADES */
+  .amen{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+  .amen-sticky{position:sticky;top:110px}
+  .amen-sticky .photo{aspect-ratio:4/5;border-radius:16px;margin-top:2rem}
+  .amen-sticky .photo img{transition:opacity .5s, transform 1s}
+  .amen-list{list-style:none;border-top:1px solid var(--line)}
+  .amen-list li{display:grid;grid-template-columns:52px 1fr auto;gap:1.2rem;align-items:center;padding:1.3rem .4rem;border-bottom:1px solid var(--line);cursor:default;transition:background .25s,padding .25s}
+  .amen-list li:hover,.amen-list li.on{background:var(--creme);padding-left:1rem}
+  .amen-list svg{width:40px;height:40px;color:var(--rosa);stroke-width:1.4}
+  .amen-list h3{font-family:var(--display);font-weight:500;font-size:1.45rem;line-height:1.15}
+  .amen-list p{font-size:.86rem;color:var(--muted)}
+  .amen-list span.n{font-family:var(--display);font-style:italic;color:var(--pedra)}
+  @media (max-width:900px){.amen{grid-template-columns:1fr}.amen-sticky{position:static}.amen-sticky .photo{display:none}}
+
+  /* CAFÉ */
+  .cafe{background:var(--rosa);color:var(--creme);overflow:hidden}
+  .cafe .kicker{color:var(--creme)}
+  .cafe .kicker i{color:rgba(244,237,225,.6)}
+  .cafe h2 em{color:#ffd9a3}
+  .cafe .lead{color:rgba(244,237,225,.85)}
+  .cafe-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+  .cafe-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:260px 260px;gap:12px}
+  .cafe-photos .photo{border-radius:14px}
+  .cafe-photos .photo:first-child{grid-row:span 2;border-radius:999px 999px 14px 14px}
+  .cafe-quote{margin:1.8rem 0;padding:1.2rem 1.4rem;border-radius:16px;background:rgba(0,0,0,.12);display:flex;gap:1rem;align-items:flex-start}
+  .cafe-quote svg{width:32px;height:32px;flex:none;color:#ffd9a3}
+  .cafe-quote p{font-family:var(--display);font-style:italic;font-size:1.2rem;line-height:1.35}
+  .cafe-items{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+  .cafe-items span{padding:.4rem .9rem;border-radius:999px;border:1px solid rgba(244,237,225,.4);font-size:.84rem;font-weight:600}
+  @media (max-width:900px){.cafe-grid{grid-template-columns:1fr}.cafe-photos{grid-template-rows:200px 200px}}
+
+  /* LAVRAS NOVAS */
+  .lavras-hero{position:relative;border-radius:22px;overflow:hidden;min-height:clamp(420px,60vw,620px);display:flex;align-items:flex-end;color:#fff}
+  .lavras-hero > .photo{position:absolute;inset:0}
+  .lavras-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(18,28,22,.85))}
+  .lavras-hero .txt{position:relative;z-index:2;padding:clamp(1.6rem,4vw,3.4rem);max-width:720px}
+  .lavras-hero h2{color:#fff;margin-top:.4rem}
+  .lavras-hero h2 em{color:#ffc1cd}
+  .lavras-hero .kicker{color:#ffc1cd}
+  .lavras-hero p{color:rgba(255,255,255,.85)}
+  .spots{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.4rem}
+  @media (max-width:980px){.spots{grid-template-columns:repeat(2,1fr)}}
+  .spot .photo{aspect-ratio:1;border-radius:14px}
+  .spot h3{font-family:var(--display);font-weight:500;font-size:1.3rem;margin-top:.8rem;line-height:1.15}
+  .spot p{font-size:.86rem;color:var(--muted)}
+  .spot a{color:var(--rosa);font-weight:800}
+  .passport{margin-top:2.4rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.4rem;align-items:center;padding:1.2rem;border-radius:20px;background:var(--creme)}
+  .passport .photo{width:110px;height:110px;border-radius:50%;border:3px dashed var(--rosa);padding:4px;background:transparent}
+  .passport .photo img{border-radius:50%}
+  .passport b{font-family:var(--display);font-weight:500;font-size:1.45rem;display:block;line-height:1.15}
+  .passport span{font-size:.9rem;color:var(--muted)}
+  @media (max-width:700px){.passport{grid-template-columns:1fr;text-align:center;justify-items:center}}
+
+  /* GUIA DO HÓSPEDE */
+  .guia{background:var(--creme)}
+  .guia-head{text-align:center;max-width:720px;margin:0 auto 3rem}
+  .guia-head .lead{margin:0 auto}
+  .guia-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  @media (max-width:1000px){.guia-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.guia-grid{grid-template-columns:1fr}}
+  .info{background:var(--papel);border-radius:18px;padding:1.6rem 1.4rem;border:1px solid var(--line);display:flex;flex-direction:column;gap:.7rem}
+  .info .ic{width:52px;height:52px;border-radius:50%;background:var(--mata);color:var(--lume);display:grid;place-items:center}
+  .info .ic svg{width:26px;height:26px}
+  .info h3{font-family:var(--display);font-weight:500;font-size:1.35rem;line-height:1.15}
+  .info p,.info li{font-size:.9rem;color:var(--muted)}
+  .info .big{display:flex;flex-direction:column;gap:.5rem}
+  .info .big div{padding:.65rem .9rem;border-radius:12px;background:var(--creme)}
+  .info .big small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--rosa)}
+  .info .big b{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--ink)}
+  .info ul{list-style:none;display:grid;gap:.45rem}
+  .info li{padding-left:1.1rem;position:relative}
+  .info li::before{content:"✦";position:absolute;left:0;color:var(--rosa);font-size:.7rem;top:.2em}
+  .guia-foot{margin-top:2rem;padding:1.6rem;border-radius:18px;background:var(--mata);color:var(--creme);text-align:center}
+  .guia-foot .note{color:var(--lume);font-size:1.9rem}
+  .guia-foot p{color:rgba(244,237,225,.8);max-width:62ch;margin:.4rem auto 0}
+
+  /* GALERIA */
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+  .gal{columns:4 240px;column-gap:12px}
+  .gal button{display:block;width:100%;margin-bottom:12px;border:0;padding:0;background:none;cursor:zoom-in;border-radius:12px;overflow:hidden;break-inside:avoid}
+  .gal img{width:100%;height:auto;transition:transform .8s,filter .3s}
+  .gal button:hover img{transform:scale(1.04);filter:saturate(1.1)}
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(15,20,16,.94);display:grid;place-items:center;padding:24px}
+  .lightbox[hidden]{display:none}
+  .lightbox img{max-width:min(1200px,100%);max-height:86vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lightbox button{position:absolute;background:rgba(255,255,255,.1);border:0;color:#fff;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.4rem}
+  .lightbox button:hover{background:rgba(255,255,255,.22)}
+  .lb-close{top:18px;right:18px}.lb-prev{left:18px;top:50%}.lb-next{right:18px;top:50%}
+  .lb-cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-family:var(--hand);font-size:1.4rem}
+
+  /* CONTATO */
+  .contact{background:var(--mata);color:var(--creme);overflow:hidden}
+  .contact .kicker{color:var(--lume)}
+  .contact h2 em{color:#ffc1cd}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,6vw,4rem)}
+  @media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+  .channels{display:grid;gap:.8rem;margin:2rem 0}
+  .channel{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border-radius:16px;background:rgba(244,237,225,.06);border:1px solid rgba(244,237,225,.1);transition:background .2s,transform .2s}
+  .channel:hover{background:rgba(244,237,225,.12);transform:translateX(4px)}
+  .channel svg{width:26px;height:26px;color:var(--lume);flex:none}
+  .channel small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,237,225,.55)}
+  .channel b{font-size:1.02rem}
+  .map{border-radius:20px;overflow:hidden;min-height:420px;background:var(--mata-2);position:relative}
+  .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.8) contrast(1.05)}
+
+  footer{background:#12211a;color:rgba(244,237,225,.55);padding:2.4rem 0;font-size:.85rem}
+  .foot{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+  .foot b{font-family:var(--display);font-weight:500;font-size:1.2rem;color:var(--creme)}
+  .foot a:hover{color:#fff}
+
+  .wa{position:fixed;right:18px;bottom:18px;z-index:70;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.7);transition:transform .2s}
+  .wa:hover{transform:scale(1.08)}
+  .wa svg{width:32px;height:32px}
+  .wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:ring 2.4s ease-out infinite}
+  @keyframes ring{to{transform:scale(1.6);opacity:0}}
+
+  /* BARRA INFERIOR (mobile) */
+  .tabbar,.sheet,.sheet-bg{display:none}
+  @media (max-width:980px){
+    body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+    .wa{display:none}
+    .tabbar{display:grid;grid-template-columns:repeat(5,1fr);align-items:end;position:fixed;left:0;right:0;bottom:0;z-index:80;
+      padding:6px 6px calc(6px + env(safe-area-inset-bottom));background:rgba(250,246,238,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-top:1px solid var(--line);box-shadow:0 -10px 30px -18px rgba(36,32,27,.35)}
+    .tabbar a,.tabbar button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;background:none;border:0;font:inherit;
+      font-size:.66rem;font-weight:700;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:52px;justify-content:flex-end}
+    .tabbar svg{width:23px;height:23px}
+    .tabbar a:active,.tabbar button:active{color:var(--rosa-d)}
+    .tabbar .tb-main{color:var(--rosa-d);font-weight:800;position:relative}
+    .tabbar .tb-main span.ic{width:60px;height:60px;margin-top:-30px;border-radius:50%;background:var(--rosa);color:var(--creme);display:grid;place-items:center;
+      box-shadow:0 0 0 5px var(--papel),0 14px 26px -8px rgba(158,42,66,.65)}
+    .tabbar .tb-main svg{width:27px;height:27px}
+    .tabbar .tb-wa{color:#128c4b}
+
+    .sheet-bg{display:block;position:fixed;inset:0;z-index:90;background:rgba(15,20,16,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+    .sheet{display:block;position:fixed;left:0;right:0;bottom:0;z-index:95;background:var(--papel);border-radius:22px 22px 0 0;
+      padding:10px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .38s cubic-bezier(.2,.8,.2,1);
+      max-height:92svh;overflow:auto;box-shadow:0 -20px 50px -20px rgba(0,0,0,.4)}
+    body.sheet-open{overflow:hidden}
+    body.sheet-open .sheet{transform:none}
+    body.sheet-open .sheet-bg{opacity:1;pointer-events:auto}
+    .sheet .grip{width:42px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+    .sheet-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+    .sheet-head b{font-family:var(--display);font-weight:500;font-size:1.4rem;line-height:1.05;display:block}
+    .sheet-head small{display:block;font-size:.78rem;line-height:1.35;color:var(--muted);margin-top:3px}
+    .sheet-x{margin-left:auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:none;font-size:1.1rem;color:var(--ink);cursor:pointer}
+    .sheet form{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+    .sheet label{display:grid;gap:4px;font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .sheet label.full{grid-column:1/-1}
+    .sheet input,.sheet select{width:100%;font:inherit;font-size:1rem;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink);background:#fff;
+      border:1px solid var(--line);border-radius:12px;padding:.75rem .8rem;min-height:48px;-webkit-appearance:none;appearance:none}
+    .sheet input:focus,.sheet select:focus{outline:2px solid var(--rosa);outline-offset:1px}
+    .stepper{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:12px;min-height:48px;padding:0 4px}
+    .stepper button{width:40px;height:40px;border:0;border-radius:10px;background:var(--creme);font-size:1.2rem;font-weight:700;color:var(--ink);cursor:pointer}
+    .stepper output{font-size:1rem;font-weight:700;color:var(--ink);letter-spacing:0}
+    .sheet .nights{grid-column:1/-1;font-family:var(--hand);font-size:1.35rem;color:var(--rosa-d);min-height:1.3em;line-height:1}
+    .sheet .send{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:.6rem;border:0;border-radius:999px;padding:1rem;
+      background:#25d366;color:#fff;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 12px 26px -10px rgba(37,211,102,.8)}
+    .sheet .send svg{width:22px;height:22px}
+    .sheet .alt{grid-column:1/-1;display:flex;justify-content:center;gap:1.4rem;font-size:.85rem;font-weight:700;color:var(--muted);padding-top:.2rem}
+    .sheet .alt a{text-decoration:underline;text-underline-offset:3px}
+  }
+
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#topo" class="brand" aria-label="Pousada Vila de Gaia — início">
+      <span class="seal" aria-hidden="true">G</span>
+      <span><b>Vila de Gaia</b><small>Pousada · Lavras Novas</small></span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#a-casa">A casa</a>
+      <a href="#suites">Suítes</a>
+      <a href="#um-dia">Um dia aqui</a>
+      <a href="#cafe">Café</a>
+      <a href="#lavras-novas">Lavras Novas</a>
+      <a href="#informacoes">Informações</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn" href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20na%20Pousada%20Vila%20de%20Gaia." target="_blank" rel="noopener">Reservar</a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="topo">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker rv">Lavras Novas <i>·</i> Ouro Preto <i>·</i> MG</span>
+      <h1 class="rv"><span>Vila</span><span><em>de</em> Gaia</span></h1>
+      <p class="note rv">pedra, jardim &amp; café no fogão
+        <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10c20 22 45 24 70 10M62 12l10 8-12 4"/></svg>
+      </p>
+      <p class="lead rv">Um casarão de pedra e paredes vermelhas no alto da serra, com piscina que acende à noite, redes no jardim e café da manhã artesanal servido todos os dias das 8h30 às 11h.</p>
+      <div class="hero-cta rv">
+        <a class="btn" href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20na%20Pousada%20Vila%20de%20Gaia." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4.1.1.1.8-.1 1.4z"/></svg>
+          Reservar pelo WhatsApp
+        </a>
+        <a class="btn ghost" href="#suites">Ver as suítes</a>
+      </div>
+      <a class="rating rv" href="https://www.google.com/search?q=Pousada+Vila+de+Gaia+Lavras+Novas" target="_blank" rel="noopener" aria-label="Nota 4,6 no Google com 203 avaliações">
+        <span class="g">G</span><b>4,6</b><span><span class="stars">★★★★★</span><br><small>203 avaliações no Google</small></span>
+      </a>
+    </div>
+
+    <div class="hero-art rv">
+      <div class="main photo"><img src="img/hero-piscina-entardecer.jpg" alt="Piscina da Vila de Gaia ao entardecer, com o casarão e a varanda de madeira"></div>
+      <figure class="polaroid">
+        <div class="photo"><img src="img/placa-entalhada.jpg" alt="Placa de madeira entalhada da Vila de Gaia Pousada"></div>
+        <figcaption>bem-vindo!</figcaption>
+      </figure>
+      <div class="stamp" aria-hidden="true">
+        <svg viewBox="0 0 150 150"><defs><path id="c1" d="M75 75m-56 0a56 56 0 1 1 112 0a56 56 0 1 1-112 0"/></defs>
+          <text font-family="Manrope" font-size="11" font-weight="800" letter-spacing="3.2" fill="#fff"><textPath href="#c1">PONTO DE CARIMBO · ESTRADA REAL · </textPath></text></svg>
+        <b>Passaporte<br>Estrada Real</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FILME ====== -->
+<div class="film" aria-hidden="true">
+  <div class="film-track" id="film"></div>
+</div>
+
+<!-- ====== A CASA ====== -->
+<section id="a-casa">
+  <div class="wrap casa">
+    <div class="casa-collage rv">
+      <div class="a photo"><img src="img/patio-piscina.jpg" alt="Pátio com piscina e o casarão vermelho" loading="lazy"></div>
+      <div class="b photo"><img src="img/fachada-pedra.jpg" alt="Parede de pedra e janela azul com lamparina" loading="lazy"></div>
+      <div class="c photo"><img src="img/hortensias.jpg" alt="Hortênsias do jardim" loading="lazy"></div>
+      <p class="note"><svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 30C20 6 40 4 56 14M46 6l10 8-12 3"/></svg>as hortênsias da porta do café ✿</p>
+    </div>
+    <div class="casa-text">
+      <span class="kicker rv">01 <i>—</i> A casa</span>
+      <h2 class="rv">Feita de pedra, <em>madeira e calma</em></h2>
+      <p class="lead rv">A Vila de Gaia é daquelas casas que dá vontade de ficar mais um dia. Paredes de pedra, janelas coloridas, varandas de madeira, jardim cheio de plantas e redes — e, no meio de tudo, a piscina de azulejo turquesa que ganha luz quando a noite cai.</p>
+      <p class="lead rv">Estamos na Rua do Chá, em Lavras Novas, a poucos passos das ruas de pedra, da igrejinha e dos restaurantes do vilarejo.</p>
+      <ul class="casa-list rv">
+        <li>Piscina externa iluminada</li>
+        <li>Sauna para as noites frias</li>
+        <li>Churrasqueira e varanda</li>
+        <li>Jardim com redes</li>
+        <li>Wi-Fi e estacionamento grátis</li>
+        <li>Café da manhã artesanal</li>
+      </ul>
+      <a class="btn ghost rv" href="#comodidades">Todas as comodidades</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SUÍTES ====== -->
+<section class="suites" id="suites">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker rv">02 <i>—</i> Suítes</span>
+        <h2 class="rv">Quatro jeitos de <em>dormir bem</em></h2>
+      </div>
+      <p class="lead rv" style="max-width:40ch">Suítes de 20 a 30 m², todas com banheiro privativo, TV e roupa de cama. Consulte a disponibilidade direto com a gente.</p>
+    </div>
+
+    <div class="rooms">
+      <article class="room rv">
+        <div class="photo"><img src="img/suite-standard.jpg" alt="Suíte Standard com teto de madeira" loading="lazy"></div>
+        <span class="num">n.º 1</span>
+        <h3>Standard</h3>
+        <p>Aconchegante e prática — o pouso certo depois de um dia inteiro explorando Lavras Novas.</p>
+        <ul><li>Banheiro privativo</li><li>TV</li><li>Roupa de cama</li></ul>
+        <a href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20saber%20a%20disponibilidade%20da%20Su%C3%ADte%20Standard." target="_blank" rel="noopener">Consultar datas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="room rv">
+        <div class="photo"><img src="img/suite-varanda.jpg" alt="Suíte com janelas para o jardim e rede na varanda" loading="lazy"></div>
+        <span class="num">n.º 2</span>
+        <h3>Com Varanda</h3>
+        <p>Janelas para o verde e uma varanda para o café da tarde e o fim de tarde na serra.</p>
+        <ul><li>Varanda</li><li>Banheiro privativo</li><li>TV</li></ul>
+        <a href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20saber%20a%20disponibilidade%20da%20Su%C3%ADte%20com%20Varanda." target="_blank" rel="noopener">Consultar datas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="room rv">
+        <div class="photo"><img src="img/suite-deluxe.jpg" alt="Suíte Deluxe com parede de pedra" loading="lazy"></div>
+        <span class="num">n.º 3</span>
+        <h3>Deluxe</h3>
+        <p>Mais espaço, parede de pedra e aquele clima de casa de serra que todo mundo procura.</p>
+        <ul><li>Mais ampla</li><li>Banheiro privativo</li><li>TV</li></ul>
+        <a href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20saber%20a%20disponibilidade%20da%20Su%C3%ADte%20Deluxe." target="_blank" rel="noopener">Consultar datas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="room rv">
+        <div class="photo"><img src="img/suite-junior-deluxe.jpg" alt="Cama arrumada com toalha bordada Vila de Gaia" loading="lazy"></div>
+        <span class="num">n.º 4</span>
+        <h3>Júnior Deluxe</h3>
+        <p>A mais espaçosa da casa, com até 30 m² — perfeita para uma escapada a dois.</p>
+        <ul><li>Até 30 m²</li><li>Banheiro privativo</li><li>TV</li></ul>
+        <a href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20saber%20a%20disponibilidade%20da%20Su%C3%ADte%20J%C3%BAnior%20Deluxe." target="_blank" rel="noopener">Consultar datas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+
+    <div class="room-strip">
+      <div class="photo rv"><img src="img/suite-janela.jpg" alt="Suíte com janelas abertas para a serra" loading="lazy"></div>
+      <div class="photo rv"><img src="img/suite-detalhe.jpg" alt="Cama decorada com pétalas para uma ocasião especial" loading="lazy"></div>
+      <div class="photo rv"><img src="img/banheiro.jpg" alt="Banheiro privativo da suíte" loading="lazy"></div>
+      <div class="photo rv"><img src="img/janela-neblina.jpg" alt="Janela de madeira com a neblina da serra" loading="lazy"></div>
+    </div>
+
+    <div class="includes rv">
+      <span>Café da manhã incluso</span><span>Wi-Fi gratuito</span><span>Estacionamento gratuito</span><span>20 a 30 m²</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== UM DIA NA VILA ====== -->
+<section class="day" id="um-dia">
+  <div class="wrap">
+    <span class="kicker rv">03 <i style="color:rgba(244,237,225,.5)">—</i> Um dia aqui</span>
+    <h2 class="rv">Do café coado <em>ao céu estrelado</em></h2>
+    <p class="lead rv">Não tem roteiro certo — mas um dia na Vila de Gaia costuma ser mais ou menos assim:</p>
+    <div class="timeline">
+      <article class="moment rv"><div class="photo"><img src="img/cafe-mesa.jpg" alt="Mesa do café da manhã" loading="lazy"></div><time>8h30</time><h3>Café artesanal na mesa</h3><p>Bolo do dia, frutas, pães e café quentinho, servido das 8h30 às 11h.</p></article>
+      <article class="moment rv"><div class="photo"><img src="img/piscina-dia.jpg" alt="Piscina em dia de sol com o casarão ao fundo" loading="lazy"></div><time>11h</time><h3>Sol na piscina</h3><p>Espreguiçadeira, céu azul de serra e o azulejo turquesa.</p></article>
+      <article class="moment rv"><div class="photo"><img src="img/cachoeira.jpg" alt="Cachoeira na região de Lavras Novas" loading="lazy"></div><time>14h</time><h3>Cachoeira ou trilha</h3><p>A região é cheia delas — dá para ir a pé ou de 4x4 com a Gaiatour.</p></article>
+      <article class="moment rv"><div class="photo"><img src="img/vila-entardecer.jpg" alt="Entardecer sobre o vilarejo de Lavras Novas" loading="lazy"></div><time>18h</time><h3>Pôr do sol no vilarejo</h3><p>As ruas de pedra ganham aquela luz rosada de fim de tarde.</p></article>
+      <article class="moment rv"><div class="photo"><img src="img/jardim-noite.jpg" alt="Jardim e piscina iluminados à noite" loading="lazy"></div><time>21h</time><h3>Jardim aceso &amp; sauna</h3><p>A piscina acende, a sauna esquenta e a serra esfria lá fora.</p></article>
+      <article class="moment rv"><div class="photo"><img src="img/redes-jardim.jpg" alt="Redes coloridas no jardim à noite" loading="lazy"></div><time>23h</time><h3>Rede e céu estrelado</h3><p>Pra fechar o dia sem pressa nenhuma.</p></article>
+    </div>
+    <div class="day-foot"><span>Arraste para o lado →</span><span class="note">e no dia seguinte, tudo de novo ♥</span></div>
+  </div>
+</section>
+
+<!-- ====== COMODIDADES ====== -->
+<section id="comodidades">
+  <div class="wrap amen">
+    <div class="amen-sticky">
+      <span class="kicker rv">04 <i>—</i> Comodidades</span>
+      <h2 class="rv">O que tem <em>por aqui</em></h2>
+      <p class="lead rv">Lazer, conforto e natureza dentro de casa — e Lavras Novas inteira logo ali fora.</p>
+      <div class="photo rv"><img id="amen-img" src="img/piscina-noite.jpg" alt="Comodidade da pousada" loading="lazy"></div>
+    </div>
+    <ul class="amen-list">
+      <li class="rv on" data-img="img/piscina-noite.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M3 30c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2 3-2 6-2 3 2 6 2M3 35c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2 3-2 6-2"/><path d="M12 26V9a4 4 0 0 1 8 0M26 26V9a4 4 0 0 0-8 0M12 15h14M12 21h14"/></svg>
+        <div><h3>Piscina externa</h3><p>Azulejo turquesa, deck e iluminação à noite.</p></div><span class="n">i</span>
+      </li>
+      <li class="rv" data-img="img/cafe-lareira.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M14 6c-3 4 3 6 0 10M20 6c-3 4 3 6 0 10M26 6c-3 4 3 6 0 10"/><path d="M6 22h28v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M6 27h28"/></svg>
+        <div><h3>Sauna</h3><p>Pra esquentar as noites frias da serra.</p></div><span class="n">ii</span>
+      </li>
+      <li class="rv" data-img="img/patio-piscina.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M6 16h28a14 10 0 0 1-28 0z"/><path d="M12 30l-3 6M28 30l3 6M20 30v6M14 6c-2 3 2 4 0 7M20 4c-2 3 2 4 0 7M26 6c-2 3 2 4 0 7"/></svg>
+        <div><h3>Churrasqueira</h3><p>Pra reunir a turma em volta da brasa.</p></div><span class="n">iii</span>
+      </li>
+      <li class="rv" data-img="img/redes-jardim.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M20 36V18M20 18c0-6 4-10 10-10 0 6-4 10-10 10zM20 24c0-5-4-8-9-8 0 5 4 8 9 8zM12 36h16"/></svg>
+        <div><h3>Jardim</h3><p>Hortênsias, palmeiras, redes coloridas e luzes à noite.</p></div><span class="n">iv</span>
+      </li>
+      <li class="rv" data-img="img/suite-janela.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M5 15a22 22 0 0 1 30 0M10 21a14 14 0 0 1 20 0M15 27a7 7 0 0 1 10 0"/><circle cx="20" cy="32" r="1.6" fill="currentColor"/></svg>
+        <div><h3>Wi-Fi gratuito</h3><p>Conectado quando quiser, desconectado quando precisar.</p></div><span class="n">v</span>
+      </li>
+      <li class="rv" data-img="img/placa-entalhada.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M7 26l3-9a3 3 0 0 1 3-2h14a3 3 0 0 1 3 2l3 9v6a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-2H12v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"/><path d="M7 26h26"/></svg>
+        <div><h3>Estacionamento gratuito</h3><p>Vaga para o carro sem custo extra.</p></div><span class="n">vi</span>
+      </li>
+      <li class="rv" data-img="img/cafe-salao.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M6 16h22v8a9 9 0 0 1-9 9h-4a9 9 0 0 1-9-9z"/><path d="M28 18h3a4 4 0 0 1 0 8h-3M12 5c-2 3 2 4 0 7M18 5c-2 3 2 4 0 7M24 5c-2 3 2 4 0 7"/></svg>
+        <div><h3>Café da manhã</h3><p>Artesanal, servido diariamente das 8h30 às 11h.</p></div><span class="n">vii</span>
+      </li>
+      <li class="rv" data-img="img/passaporte.jpg">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M8 5h18a6 6 0 0 1 6 6v24H14a6 6 0 0 1-6-6z"/><circle cx="20" cy="19" r="7" stroke-dasharray="2 2"/><path d="M17 19l2 2 4-4"/></svg>
+        <div><h3>Passaporte Estrada Real</h3><p>Ponto oficial de carimbo — traga o seu.</p></div><span class="n">viii</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== CAFÉ ====== -->
+<section class="cafe" id="cafe">
+  <div class="wrap cafe-grid">
+    <div class="cafe-photos rv">
+      <div class="photo"><img src="img/cafe-bolo.jpg" alt="Calda de chocolate sendo despejada no bolo caseiro" loading="lazy"></div>
+      <div class="photo"><img src="img/cafe-relogio.jpg" alt="Salão do café com lareira e relógio antigo" loading="lazy"></div>
+      <div class="photo"><img src="img/cafe-frutas.jpg" alt="Frutas frescas e pães do café da manhã" loading="lazy"></div>
+    </div>
+    <div>
+      <span class="kicker rv">05 <i>—</i> Café da manhã</span>
+      <h2 class="rv">Artesanal, farto <em>e na sua hora</em></h2>
+      <div class="cafe-quote rv">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 6C6 7 4 9.6 4 13.5V18h6v-6H7c0-2.3 1-3.8 3-4.5zM19.5 6C16 7 14 9.6 14 13.5V18h6v-6h-3c0-2.3 1-3.8 3-4.5z"/></svg>
+        <p>Nosso café da manhã é personalizado e feito no horário marcado pelo hóspede.</p>
+      </div>
+      <p class="lead rv">Bolo do dia (o de cenoura com muito chocolate é o clássico de domingo), pães, pão de queijo, frutas, quitandas e café coado — servido no salão de pedra, com a lareira acesa nos dias frios.</p>
+      <div class="cafe-items rv"><span>Bolos caseiros</span><span>Pão de queijo</span><span>Pães</span><span>Frutas</span><span>Quitandas</span><span>Café coado</span></div>
+      <a class="btn light rv" href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20na%20Pousada%20Vila%20de%20Gaia." target="_blank" rel="noopener">Quero acordar aí</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LAVRAS NOVAS ====== -->
+<section id="lavras-novas">
+  <div class="wrap">
+    <div class="lavras-hero rv">
+      <div class="photo"><img src="img/igreja-neblina.jpg" alt="Igreja de Nossa Senhora dos Prazeres em Lavras Novas, na neblina" loading="lazy"></div>
+      <div class="txt">
+        <span class="kicker">06 — Lavras Novas</span>
+        <h2>Um vilarejo <em>dentro da neblina</em></h2>
+        <p>Distrito de Ouro Preto, Lavras Novas tem ruas de pedra, a igrejinha no alto do morro, cachoeiras, trilhas e noites animadas com boa comida. Da pousada, você chega a tudo isso sem pressa.</p>
+      </div>
+    </div>
+    <div class="spots">
+      <article class="spot rv"><div class="photo"><img src="img/igreja-sol.jpg" alt="Igreja de Lavras Novas em dia de sol" loading="lazy"></div><h3>A igrejinha</h3><p>O cartão-postal do vilarejo, linda no sol e mais ainda na neblina.</p></article>
+      <article class="spot rv"><div class="photo"><img src="img/cachoeira-alta.jpg" alt="Cachoeira alta na mata" loading="lazy"></div><h3>Cachoeiras</h3><p>Poços e quedas d'água por toda a região — as placas na rua já mostram o caminho.</p></article>
+      <article class="spot rv"><div class="photo"><img src="img/vila-aerea.jpg" alt="Vista aérea de Lavras Novas na serra" loading="lazy"></div><h3>Passeios 4x4</h3><p>Trilhas, mirantes e cachoeiras com a <a href="https://www.instagram.com/gaiatour_4you4adventure/" target="_blank" rel="noopener">@gaiatour_4you4adventure</a>.</p></article>
+      <article class="spot rv"><div class="photo"><img src="img/drink-piscina.jpg" alt="Cerveja artesanal e taça da Vila de Gaia à beira da piscina" loading="lazy"></div><h3>Comer &amp; brindar</h3><p>Cervejas de Ouro Preto na beira da piscina e o <a href="https://www.instagram.com/botanico.lavrasnovas/" target="_blank" rel="noopener">@botanico.lavrasnovas</a> logo ali.</p></article>
+    </div>
+    <div class="passport rv">
+      <div class="photo"><img src="img/passaporte.jpg" alt="Passaporte da Estrada Real sobre a mesa" loading="lazy"></div>
+      <div><b>Ponto de carimbo do Passaporte Estrada Real</b><span>Está percorrendo a Estrada Real a pé, de bike, moto ou carro? Passe aqui e carimbe o seu passaporte.</span></div>
+      <a class="btn" href="https://wa.me/5531987298827" target="_blank" rel="noopener">Falar com a gente</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GUIA DO HÓSPEDE ====== -->
+<section class="guia" id="informacoes">
+  <div class="wrap">
+    <div class="guia-head">
+      <span class="kicker rv">Informações importantes <i>—</i> guia do hóspede</span>
+      <h2 class="rv">Seja bem-vindo(a) <em>à Vila de Gaia</em></h2>
+      <p class="lead rv">É uma alegria receber você! Esperamos que sua estadia seja confortável, tranquila e repleta de momentos especiais.</p>
+    </div>
+    <div class="guia-grid">
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M9 11v5M15 11v5"/></svg></span>
+        <h3>Check-in e check-out</h3>
+        <div class="big"><div><small>Check-in</small><b>a partir das 14h</b></div><div><small>Check-out</small><b>até às 12h</b></div></div>
+        <p>Caso necessite de horários diferenciados, consulte nossa disponibilidade.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9a13 13 0 0 1 18 0M6 12.5a8.5 8.5 0 0 1 12 0M9 16a4 4 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg></span>
+        <h3>Wi-Fi</h3>
+        <div class="big"><div><small>Rede</small><b>Vila de Gaia</b></div><div><small>Senha</small><b>informada no check-in</b></div></div>
+        <p>Wi-Fi gratuito para todos os hóspedes.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15l1.6-4.5A2 2 0 0 1 7.5 9h9a2 2 0 0 1 1.9 1.5L20 15v3a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-1h-9v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 15h16"/></svg></span>
+        <h3>Estacionamento</h3>
+        <p>Disponibilizamos estacionamento para nossos hóspedes.</p>
+        <p>Para melhor aproveitamento das vagas e maior comodidade para todos, pedimos a gentileza de estacionar os veículos em <b style="color:var(--ink)">ângulo de 45°</b>, conforme a sinalização.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17h16M5 17a7 7 0 0 1 14 0M12 8V6M10 6h4M3 20h18"/></svg></span>
+        <h3>Recepção</h3>
+        <div class="big"><div><small>Domingo a quinta</small><b>até às 16h</b></div><div><small>Sexta e sábado</small><b>até às 21h</b></div></div>
+        <p>Nossa equipe está à disposição para atendê-lo(a) dentro desses horários.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3c-1 1.5 1 2 0 4M12 3c-1 1.5 1 2 0 4"/></svg></span>
+        <h3>Café da manhã</h3>
+        <div class="big"><div><small>Diariamente</small><b>das 8h30 às 11h</b></div></div>
+        <p>Aproveite esse momento para começar o dia com tranquilidade e saborear as delícias preparadas especialmente para você.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span>
+        <h3>Horário de silêncio</h3>
+        <div class="big"><div><small>Todos os dias</small><b>das 22h às 8h</b></div></div>
+        <p>Para garantir o conforto e o descanso de todos, solicitamos silêncio nesse período.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8M7 13h7M17 13h1"/></svg></span>
+        <h3>Ambiente livre de fumaça</h3>
+        <p>Não é permitido fumar no interior das acomodações.</p>
+        <p>Pedimos a gentileza de utilizar as áreas externas destinadas a esse fim.</p>
+      </article>
+      <article class="info rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20c-5 0-8-3.5-8-8 5 0 8 3 8 8zM12 20c0-6 3-10 8-11 0 6-3 10-8 11z"/></svg></span>
+        <h3>Cuidados com a acomodação</h3>
+        <ul>
+          <li>Desligue luzes e aparelhos ao sair;</li>
+          <li>Não utilize toalhas para remover maquiagem ou limpar objetos;</li>
+          <li>Comunique imediatamente qualquer necessidade de manutenção ou eventual dano.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="guia-foot rv">
+      <p class="note">Aproveite sua estadia!</p>
+      <p>A equipe da Vila de Gaia deseja que você se sinta acolhido(a) e em casa. Ficamos felizes em recebê-lo(a) e esperamos que sua experiência conosco seja repleta de descanso, conforto e bons momentos. Seja muito bem-vindo(a)! ♥</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GALERIA ====== -->
+<section id="galeria" style="padding-top:0">
+  <div class="wrap">
+    <div class="gal-head">
+      <div>
+        <span class="kicker rv">07 <i>—</i> Galeria</span>
+        <h2 class="rv" style="margin-bottom:0">Pedacinhos <em>da Vila</em></h2>
+      </div>
+      <a class="btn ghost rv" href="https://www.instagram.com/pousadaviladegaia/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        @pousadaviladegaia
+      </a>
+    </div>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<!-- ====== CONTATO ====== -->
+<section class="contact" id="contato">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="kicker rv">08 — Reservas</span>
+      <h2 class="rv">Vem pra <em>Vila de Gaia</em></h2>
+      <p class="lead rv" style="color:rgba(244,237,225,.72)">Reservas e informações direto com a gente pelo WhatsApp — a resposta é rapidinha.</p>
+      <div class="channels">
+        <a class="channel rv" href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20na%20Pousada%20Vila%20de%20Gaia." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4.1.1.1.8-.1 1.4z"/></svg>
+          <span><small>WhatsApp</small><b>(31) 98729-8827</b></span>
+        </a>
+        <a class="channel rv" href="https://www.google.com/maps/search/?api=1&query=Pousada+Vila+de+Gaia+R.+do+Ch%C3%A1+280+Lavras+Novas+Ouro+Preto+MG" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <span><small>Endereço</small><b>R. do Chá, 280 · Lavras Novas, Ouro Preto/MG</b></span>
+        </a>
+        <a class="channel rv" href="https://www.instagram.com/pousadaviladegaia/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          <span><small>Instagram</small><b>@pousadaviladegaia</b></span>
+        </a>
+      </div>
+    </div>
+    <div class="map rv">
+      <iframe title="Mapa — Pousada Vila de Gaia, R. do Chá, 280, Lavras Novas" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Pousada+Vila+de+Gaia,+R.+do+Ch%C3%A1,+280,+Lavras+Novas,+Ouro+Preto+-+MG&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span><b>Vila de Gaia</b> · Pousada em Lavras Novas, Ouro Preto/MG · © <span id="ano"></span></span>
+    <span><a href="https://www.instagram.com/pousadaviladegaia/" target="_blank" rel="noopener">Instagram</a> · <a href="https://wa.me/5531987298827" target="_blank" rel="noopener">WhatsApp</a></span>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20na%20Pousada%20Vila%20de%20Gaia." target="_blank" rel="noopener" aria-label="Reservar pelo WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4.1.1.1.8-.1 1.4z"/></svg>
+</a>
+
+<!-- ====== BARRA INFERIOR (mobile) ====== -->
+<nav class="tabbar" aria-label="Reserva rápida">
+  <a href="#suites">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M3 18v2M21 18v2"/><path d="M6 9V6.5A1.5 1.5 0 0 1 7.5 5h9A1.5 1.5 0 0 1 18 6.5V9"/></svg>
+    Suítes
+  </a>
+  <a href="tel:+5531987298827">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.5 4.5-2 1.2a11 11 0 0 0 6.8 6.8l1.2-2L20 16v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+    Ligar
+  </a>
+  <button type="button" class="tb-main" id="open-sheet" aria-haspopup="dialog" aria-controls="sheet">
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/></svg></span>
+    Reservar
+  </button>
+  <a class="tb-wa" href="https://wa.me/5531987298827?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20na%20Pousada%20Vila%20de%20Gaia." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4.1.1.1.8-.1 1.4z"/></svg>
+    WhatsApp
+  </a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Pousada+Vila+de+Gaia+R.+do+Ch%C3%A1+280+Lavras+Novas+Ouro+Preto+MG" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+    Como chegar
+  </a>
+</nav>
+
+<div class="sheet-bg" id="sheet-bg"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
+  <div class="grip"></div>
+  <div class="sheet-head">
+    <span class="seal" aria-hidden="true">G</span>
+    <span><b id="sheet-title">Sua estadia</b><small>Escolha as datas e a gente confirma pelo WhatsApp</small></span>
+    <button type="button" class="sheet-x" id="close-sheet" aria-label="Fechar">✕</button>
+  </div>
+  <form id="book-form">
+    <label>Entrada<input type="date" id="bk-in" required></label>
+    <label>Saída<input type="date" id="bk-out" required></label>
+    <label>Adultos
+      <span class="stepper"><button type="button" data-step="ad" data-d="-1" aria-label="Menos adultos">−</button><output id="bk-ad">2</output><button type="button" data-step="ad" data-d="1" aria-label="Mais adultos">+</button></span>
+    </label>
+    <label>Crianças
+      <span class="stepper"><button type="button" data-step="cr" data-d="-1" aria-label="Menos crianças">−</button><output id="bk-cr">0</output><button type="button" data-step="cr" data-d="1" aria-label="Mais crianças">+</button></span>
+    </label>
+    <label class="full">Suíte
+      <select id="bk-suite">
+        <option>Qualquer suíte disponível</option>
+        <option>Suíte Standard</option>
+        <option>Suíte com Varanda</option>
+        <option>Suíte Deluxe</option>
+        <option>Suíte Júnior Deluxe</option>
+      </select>
+    </label>
+    <p class="nights" id="bk-nights" aria-live="polite"></p>
+    <button type="submit" class="send">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4.1.1.1.8-.1 1.4z"/></svg>
+      Consultar disponibilidade
+    </button>
+    <p class="alt"><a href="tel:+5531987298827">Prefiro ligar</a><a href="#informacoes" data-close>Check-in e regras</a></p>
+  </form>
+</div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img id="lb-img" alt="">
+  <button class="lb-close" id="lb-close" aria-label="Fechar">✕</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Foto anterior">‹</button>
+  <button class="lb-next" id="lb-next" aria-label="Próxima foto">›</button>
+  <p class="lb-cap" id="lb-cap"></p>
+</div>
+
+<script>
+  document.getElementById('ano').textContent = new Date().getFullYear();
+
+  // Barra inferior: ficha de reserva -> WhatsApp
+  (() => {
+    const $ = id => document.getElementById(id);
+    const sheet = $('sheet'), inp = $('bk-in'), out = $('bk-out');
+    const iso = d => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+    const addDays = (s, n) => { const d = new Date(s + 'T12:00'); d.setDate(d.getDate() + n); return iso(d); };
+    const br = s => s.split('-').reverse().join('/');
+    const hoje = iso(new Date());
+    inp.min = hoje; inp.value = addDays(hoje, 1);
+    out.min = addDays(inp.value, 1); out.value = addDays(inp.value, 2);
+    const noites = () => {
+      const n = Math.round((new Date(out.value + 'T12:00') - new Date(inp.value + 'T12:00')) / 864e5);
+      $('bk-nights').textContent = n > 0 ? `${n} ${n > 1 ? 'noites' : 'noite'} na serra ✦` : '';
+      return n;
+    };
+    inp.addEventListener('change', () => {
+      out.min = addDays(inp.value, 1);
+      if (!out.value || out.value <= inp.value) out.value = addDays(inp.value, 1);
+      noites();
+    });
+    out.addEventListener('change', noites);
+    noites();
+    const cont = { ad: 2, cr: 0 }, lim = { ad: [1, 10], cr: [0, 8] };
+    document.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => {
+      const k = b.dataset.step;
+      cont[k] = Math.min(lim[k][1], Math.max(lim[k][0], cont[k] + +b.dataset.d));
+      $('bk-' + k).textContent = cont[k];
+    }));
+    let last;
+    const abrir = () => { last = document.activeElement; document.body.classList.add('sheet-open'); sheet.setAttribute('aria-hidden', 'false'); setTimeout(() => inp.focus({ preventScroll: true }), 350); };
+    const fechar = () => { document.body.classList.remove('sheet-open'); sheet.setAttribute('aria-hidden', 'true'); last && last.focus({ preventScroll: true }); };
+    $('open-sheet').addEventListener('click', abrir);
+    $('close-sheet').addEventListener('click', fechar);
+    $('sheet-bg').addEventListener('click', fechar);
+    sheet.querySelector('[data-close]').addEventListener('click', fechar);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('sheet-open')) fechar(); });
+    $('book-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const n = noites();
+      if (n < 1) { out.focus(); return; }
+      const msg = `Olá! Gostaria de consultar disponibilidade na Pousada Vila de Gaia.\n\n` +
+        `📅 Entrada: ${br(inp.value)}\n📅 Saída: ${br(out.value)} (${n} ${n > 1 ? 'noites' : 'noite'})\n` +
+        `👥 ${cont.ad} ${cont.ad > 1 ? 'adultos' : 'adulto'}${cont.cr ? `, ${cont.cr} ${cont.cr > 1 ? 'crianças' : 'criança'}` : ''}\n` +
+        `🛏️ ${$('bk-suite').value}`;
+      window.open('https://wa.me/5531987298827?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    });
+  })();
+
+  // Fotos (todas da própria pousada)
+  const FOTOS = [
+    ['vista-aerea', 'A pousada vista de cima'], ['piscina-noite', 'A piscina acesa'], ['hortensias', 'Hortênsias na porta do café'],
+    ['suite-varanda', 'Suíte com vista pro verde'], ['cafe-salao', 'O salão do café'], ['casa-noite', 'A casa à noite'],
+    ['igreja-sol', 'A igrejinha de Lavras Novas'], ['cafe-lareira', 'Café com lareira acesa'], ['fachada-pedra', 'Pedra e janela azul'],
+    ['suite-lareira', 'Suíte'], ['redes-jardim', 'Redes no jardim'], ['cachoeira', 'Cachoeira na região'],
+    ['placas-cachoeiras', 'Escolha sua cachoeira'], ['suite-standard', 'Suíte Standard'], ['cafe-bolo', 'O bolo do dia'],
+    ['piscina-dia', 'Dia de sol'], ['vila-entardecer', 'Fim de tarde no vilarejo'], ['jardim-noite', 'Jardim iluminado'],
+  ];
+
+  // Faixa de fotos em movimento
+  const film = document.getElementById('film');
+  const filmHtml = FOTOS.map(([f]) => `<img src="img/${f}.jpg" alt="" loading="lazy">`).join('');
+  film.innerHTML = filmHtml + filmHtml;
+
+  // Galeria com ampliação
+  const gal = document.getElementById('gal');
+  gal.innerHTML = FOTOS.map(([f, c], i) => `<button data-i="${i}" aria-label="Ampliar: ${c}"><img src="img/${f}.jpg" alt="${c}" loading="lazy"></button>`).join('');
+  const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
+  let cur = 0;
+  const showLb = (i) => { cur = (i + FOTOS.length) % FOTOS.length; lbImg.src = `img/${FOTOS[cur][0]}.jpg`; lbImg.alt = FOTOS[cur][1]; lbCap.textContent = FOTOS[cur][1]; lb.hidden = false; document.body.style.overflow = 'hidden'; };
+  const closeLb = () => { lb.hidden = true; document.body.style.overflow = ''; };
+  gal.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) showLb(+b.dataset.i); });
+  document.getElementById('lb-close').onclick = closeLb;
+  document.getElementById('lb-prev').onclick = () => showLb(cur - 1);
+  document.getElementById('lb-next').onclick = () => showLb(cur + 1);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  addEventListener('keydown', (e) => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') showLb(cur - 1);
+    if (e.key === 'ArrowRight') showLb(cur + 1);
+  });
+
+  // Comodidades: a foto ao lado muda conforme o item
+  const amenImg = document.getElementById('amen-img');
+  document.querySelectorAll('.amen-list li').forEach((li) => {
+    li.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.amen-list li').forEach((x) => x.classList.toggle('on', x === li));
+      if (!amenImg.src.endsWith(li.dataset.img)) {
+        amenImg.style.opacity = 0;
+        setTimeout(() => { amenImg.src = li.dataset.img; amenImg.alt = li.querySelector('h3').textContent; amenImg.style.opacity = 1; }, 250);
+      }
+    });
+  });
+
+  // Menu
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('solid', scrollY > 30);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+    if (open) nav.classList.add('solid'); else onScroll();
+  });
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => { menu.classList.remove('open'); onScroll(); }));
+
+  // Aparecer ao rolar
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 90 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>
