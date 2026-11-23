@@ -127,6 +127,22 @@
   .stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:turn 26s linear infinite}
   .stamp b{font-family:var(--display);font-style:italic;font-size:clamp(.95rem,1.3vw,1.15rem);line-height:1.05;text-align:center}
   @keyframes turn{to{transform:rotate(360deg)}}
+  /* mobile: selo do Passaporte animado (carimba ao aparecer, balança e pulsa) */
+  @keyframes carimba{0%{transform:scale(2.2) rotate(-25deg);opacity:0}55%{transform:scale(.9) rotate(4deg);opacity:1}75%{transform:scale(1.06) rotate(-3deg)}100%{transform:none}}
+  @keyframes balanca{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.07)}}
+  @keyframes onda{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.55);opacity:0}}
+  @media (max-width:900px){
+    .stamp{right:0;top:4%;width:118px}
+    .stamp b{font-size:.86rem}
+    .stamp svg{animation:turn 9s linear infinite}
+    .stamp::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--turq);animation:onda 2.6s ease-out infinite;pointer-events:none}
+    .hero-art .stamp{opacity:0}
+    .hero-art.in .stamp{opacity:1;animation:carimba .9s cubic-bezier(.2,.8,.2,1) .5s both,balanca 3.4s ease-in-out 1.4s infinite}
+  }
+  @media (max-width:900px) and (prefers-reduced-motion:reduce){
+    .hero-art .stamp{opacity:1}
+    .stamp svg{animation:turn 14s linear infinite!important}
+  }
   @media (max-width:900px){
     .hero{padding-top:110px}
     .hero-grid{grid-template-columns:1fr}
@@ -364,7 +380,7 @@
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a href="#topo" class="brand" aria-label="Pousada Vila de Gaia — início">
-      <img class="brand-logo" src="img/logo-horizontal-verde.webp" alt="Pousada Vila de Gaia" width="720" height="163">
+      <img class="brand-logo" src="img/logo-horizontal-rosa.webp" alt="Pousada Vila de Gaia" width="720" height="163">
     </a>
     <nav class="menu" id="menu">
       <a href="#a-casa">A casa</a>
@@ -775,7 +791,7 @@
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
   <div class="grip"></div>
   <div class="sheet-head">
-    <img class="logo-sim" src="img/logo-simbolo-verde.webp" alt="" width="240" height="166">
+    <img class="logo-sim" src="img/logo-simbolo-rosa.webp" alt="" width="240" height="166">
     <span><b id="sheet-title">Sua estadia</b><small>Escolha as datas e a gente confirma pelo WhatsApp</small></span>
     <button type="button" class="sheet-x" id="close-sheet" aria-label="Fechar">✕</button>
   </div>
